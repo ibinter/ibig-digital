@@ -136,9 +136,9 @@ export default async function PackDetailPage({ params }: Props) {
                       <div style={{ fontWeight:700, color:'white', fontSize:'.88rem' }}>
                         {item.custom_label ?? item.product?.name}
                       </div>
-                      {item.description && (
+                      {item.product?.short_description && (
                         <div style={{ fontSize:'.76rem', color:'rgba(255,255,255,.4)', marginTop:'2px', lineHeight:1.5 }}>
-                          {item.description}
+                          {item.product.short_description}
                         </div>
                       )}
                     </div>
