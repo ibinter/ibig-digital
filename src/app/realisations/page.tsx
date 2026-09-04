@@ -363,29 +363,104 @@ export default function RealisationsPage() {
 
       {/* ═══ RÉSEAUX SOCIAUX ═══ */}
       <section style={{ maxWidth:'1280px', margin:'0 auto', padding:'0 1.5rem 5rem' }}>
-        <div style={{ background:'rgba(255,255,255,.03)', border:'1px solid rgba(255,255,255,.08)', borderRadius:'1.75rem', padding:'2.5rem', textAlign:'center' }}>
-          <div style={{ fontSize:'2.5rem', marginBottom:'.875rem', display:'inline-block', animation:'float 3s ease-in-out infinite' }}>📱</div>
-          <h2 style={{ fontWeight:900, fontSize:'1.35rem', color:'white', marginBottom:'.625rem' }}>Présence sur les réseaux sociaux</h2>
-          <p style={{ color:'rgba(255,255,255,.45)', fontSize:'.85rem', maxWidth:'480px', margin:'0 auto 1.75rem', lineHeight:1.7 }}>
-            IBIG GROUP anime ses marques sur les principales plateformes avec des contenus réguliers, des publicités ciblées et une communauté croissante en Afrique de l&apos;Ouest.
-          </p>
-          <div style={{ display:'flex', flexWrap:'wrap', gap:'.625rem', justifyContent:'center', marginBottom:'1.5rem' }}>
-            {[
-              { name: 'Facebook', color: '#1877F2' },
-              { name: 'Instagram', color: '#E1306C' },
-              { name: 'LinkedIn', color: '#0A66C2' },
-              { name: 'TikTok', color: '#69C9D0' },
-              { name: 'YouTube', color: '#FF0000' },
-              { name: 'Twitter / X', color: '#888' },
-            ].map(({ name, color }) => (
-              <div key={name} style={{ padding:'.45rem 1.1rem', borderRadius:'9999px', background:`${color}18`, border:`1px solid ${color}30`, color:'white', fontSize:'.78rem', fontWeight:700 }}>
-                {name}
+        <div style={{ display:'flex', alignItems:'center', gap:'1rem', marginBottom:'2rem' }}>
+          <div style={{ height:'3px', width:'2.5rem', borderRadius:'9999px', background:'linear-gradient(90deg,#FF6B00,#FF9A4D)' }} />
+          <h2 style={{ fontWeight:900, fontSize:'1rem', color:'white', letterSpacing:'.08em', textTransform:'uppercase' }}>Réseaux sociaux & communautés</h2>
+        </div>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(280px,1fr))', gap:'1rem' }}>
+          {[
+            {
+              platform: 'Facebook',
+              label: 'IB International Group',
+              url: 'https://www.facebook.com/IBInterOfficiel',
+              color: '#1877F2',
+              icon: 'f',
+            },
+            {
+              platform: 'Facebook',
+              label: 'IBIG IMMO TRUST',
+              url: 'https://www.facebook.com/ibigimmotrust',
+              color: '#1877F2',
+              icon: 'f',
+            },
+            {
+              platform: 'Facebook',
+              label: 'IBIG SOFT',
+              url: 'https://www.facebook.com/ibigsoft',
+              color: '#1877F2',
+              icon: 'f',
+            },
+            {
+              platform: 'Instagram',
+              label: 'ib_inter_officiel',
+              url: 'https://www.instagram.com/ib_inter_officiel/',
+              color: '#E1306C',
+              icon: '◉',
+            },
+            {
+              platform: 'TikTok',
+              label: '@ibigroupsarl',
+              url: 'https://www.tiktok.com/@ibigroupsarl',
+              color: '#69C9D0',
+              icon: '▶',
+            },
+            {
+              platform: 'YouTube',
+              label: '@ibigroupsarl',
+              url: 'https://www.youtube.com/@ibigroupsarl',
+              color: '#FF0000',
+              icon: '▶',
+            },
+            {
+              platform: 'LinkedIn',
+              label: 'Intermark Business International',
+              url: 'https://www.linkedin.com/company/intermark-business-international/',
+              color: '#0A66C2',
+              icon: 'in',
+            },
+            {
+              platform: 'Google Business',
+              label: 'IBIG GROUP',
+              url: 'https://g.co/kgs/7trJhsU',
+              color: '#4285F4',
+              icon: 'G',
+            },
+            {
+              platform: 'WhatsApp Channel',
+              label: 'IBIG GROUP',
+              url: 'https://whatsapp.com/channel/0029VaBcM3n2f3EIjk98nl0y',
+              color: '#25D366',
+              icon: '●',
+            },
+            {
+              platform: 'WhatsApp Channel',
+              label: 'IBIG IMMO TRUST',
+              url: 'https://whatsapp.com/channel/0029Vb69Y3G4Y9lwodJ7xE2V',
+              color: '#25D366',
+              icon: '●',
+            },
+            {
+              platform: 'Communauté WhatsApp',
+              label: 'IBIG GROUP',
+              url: 'https://chat.whatsapp.com/FXGHl8q45rxDJROlozRFq1',
+              color: '#128C7E',
+              icon: '👥',
+            },
+          ].map(({ platform, label, url, color, icon }) => (
+            <a key={url} href={url} target="_blank" rel="noopener noreferrer"
+              style={{ display:'flex', alignItems:'center', gap:'1rem', padding:'1.1rem 1.25rem', borderRadius:'1rem', background:`${color}10`, border:`1px solid ${color}28`, textDecoration:'none', transition:'transform .15s, box-shadow .15s' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform='translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow=`0 8px 24px ${color}25`; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform=''; (e.currentTarget as HTMLElement).style.boxShadow=''; }}>
+              <div style={{ width:'2.5rem', height:'2.5rem', borderRadius:'.75rem', background:`${color}20`, display:'flex', alignItems:'center', justifyContent:'center', color, fontWeight:900, fontSize:'1rem', flexShrink:0 }}>
+                {icon}
               </div>
-            ))}
-          </div>
-          <p style={{ fontSize:'.72rem', color:'rgba(255,255,255,.25)' }}>
-            Community Management · Création de contenus · Publicités Meta & LinkedIn · Stratégie de croissance organique
-          </p>
+              <div style={{ minWidth:0 }}>
+                <div style={{ fontSize:'.7rem', fontWeight:700, color, letterSpacing:'.04em', textTransform:'uppercase' }}>{platform}</div>
+                <div style={{ fontSize:'.85rem', fontWeight:700, color:'white', marginTop:'1px', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{label}</div>
+              </div>
+              <ExternalLink size={13} style={{ color:'rgba(255,255,255,.25)', flexShrink:0, marginLeft:'auto' }} />
+            </a>
+          ))}
         </div>
       </section>
 
