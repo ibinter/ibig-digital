@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createServiceClient } from '@/lib/supabase/server'
+import sql from '@/lib/db'
 
 export async function POST(request: Request) {
   try {
@@ -8,31 +8,22 @@ export async function POST(request: Request) {
 
     if (!token) return NextResponse.json({ error: 'Token requis.' }, { status: 400 })
 
-    const supabase = await createServiceClient()
+    const links = await sql`
+      SELECT id FROM affiliate_links WHERE token = ${token} AND is_active = true LIMIT 1
+    `
+    if (!links.length) return NextResponse.json({ error: 'Lien invalide.' }, { status: 404 })
 
-    // Trouver le lien affilié
-    const { data: link } = await supabase
-      .from('affiliate_links')
-      .select('id')
-      .eq('token', token)
-      .eq('is_active', true)
-      .single()
+    const link = links[0]
 
-    if (!link) return NextResponse.json({ error: 'Lien invalide.' }, { status: 404 })
+    await sql`
+      INSERT INTO affiliate_clicks (link_id, session_id, landing_path, referrer)
+      VALUES (${link.id}, ${session_id || null}, ${landing_path || null}, ${referrer || null})
+    `
 
-    // Enregistrer le clic
-    const url = new URL(request.url)
-    await supabase.from('affiliate_clicks').insert({
-      link_id: link.id,
-      session_id: session_id || null,
-      landing_path: landing_path || null,
-      referrer: referrer || null,
-    })
-
-    // Incrémenter le compteur de clics
-    // Incrémenter les clics (best-effort)
     try {
-      await supabase.from('affiliate_links').update({ clicks: 0 }).eq('id', link.id)
+      await sql`
+        UPDATE affiliate_links SET clicks = clicks + 1 WHERE id = ${link.id}
+      `
     } catch { /* ignore */ }
 
     return NextResponse.json({ success: true })

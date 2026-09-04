@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createServiceClient } from '@/lib/supabase/server'
+import sql from '@/lib/db'
 
 export async function POST(request: Request) {
   try {
@@ -13,17 +13,14 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'E-mail invalide.' }, { status: 400 })
     }
 
-    const supabase = await createServiceClient()
-    const { error } = await supabase.from('contact_messages').insert({
-      name: body.name,
-      email: body.email,
-      phone: body.phone || null,
-      subject: body.subject || null,
-      message: body.message,
-      source: 'contact_form',
-    })
+    await sql`
+      INSERT INTO contact_messages (name, email, phone, subject, message, source)
+      VALUES (
+        ${body.name}, ${body.email}, ${body.phone || null},
+        ${body.subject || null}, ${body.message}, 'contact_form'
+      )
+    `
 
-    if (error) throw error
     return NextResponse.json({ success: true })
   } catch (err) {
     console.error('Contact error:', err)
