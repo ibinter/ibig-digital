@@ -378,8 +378,6 @@ Les entreprises africaines qui adoptent l'IA maintenant prendront une longueur d
 IBIG DIGITAL vous accompagne dans l'intégration de l'IA dans vos processus business.
     `.trim(),
   },
-]
-
   {
     slug: 'tendances-digitales-afrique-2026',
     title: 'Les 7 tendances digitales qui vont transformer l\'Afrique en 2026',
