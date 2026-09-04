@@ -39,9 +39,13 @@ const VALUES = [
 ]
 
 const TIMELINE = [
-  { year: '2023', title: 'Fondation IBIG SARL', desc: 'Création d\'INTERMARK BUSINESS INTERNATIONAL GROUP à Abidjan, spécialisé dans le conseil aux entreprises.' },
-  { year: '2025', title: 'Naissance d\'IBIG DIGITAL', desc: 'Lancement de la branche digitale pour répondre à la demande croissante de transformation numérique des PME africaines.' },
-  { year: '2025', title: 'Plateforme ibig-digital.com', desc: 'Lancement de la plateforme digitale officielle avec système de packs, devis en ligne et espace partenaires.' },
+  { year: '2023', title: 'Fondation IBIG SARL', desc: 'Création d\'INTERMARK BUSINESS INTERNATIONAL GROUP à Abidjan. La structure se positionne comme partenaire de développement des entreprises et entrepreneurs africains.' },
+  { year: '2023', title: 'Premiers clients & validation du marché', desc: 'Premiers accompagnements en conseil aux entreprises. Identification de la demande croissante en transformation numérique des PME locales.' },
+  { year: '2024', title: 'Structuration de l\'offre digitale', desc: 'Conception et développement de l\'offre de services digitaux : sites web, identité visuelle, réseaux sociaux. Recrutement des premiers talents.' },
+  { year: '2025', title: 'Lancement officiel d\'IBIG DIGITAL', desc: 'Création de la branche digitale d\'IBIG SARL. Mission : démocratiser le digital en Afrique avec des solutions professionnelles adaptées aux réalités locales.' },
+  { year: '2025', title: 'Lancement des packs commerciaux', desc: 'Structuration de l\'offre en packs clé en main (Visibilité, Lancement, E-commerce, Mobile Pro, Digital 360) pour simplifier l\'accès aux services digitaux.' },
+  { year: '2025', title: 'Plateforme ibig-digital.com', desc: 'Mise en ligne de la plateforme digitale officielle avec catalogue de services, système de packs, devis en ligne et espace partenaires IBIG PARTNERS.' },
+  { year: '2025+', title: 'Expansion & IA', desc: 'Intégration de l\'intelligence artificielle, automatisation des processus, et déploiement vers d\'autres marchés africains et la diaspora.' },
 ]
 
 export default function AboutPage() {
