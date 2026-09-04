@@ -7,6 +7,7 @@ import PacksSection from '@/components/sections/PacksSection'
 import WhyIbig from '@/components/sections/WhyIbig'
 import ProcessSection from '@/components/sections/ProcessSection'
 import CtaSection from '@/components/sections/CtaSection'
+import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import { getProjects, getPacks } from '@/lib/queries'
 import { SITE } from '@/lib/constants'
 
@@ -35,6 +36,7 @@ export default async function HomePage() {
       <ServicesSection />
       <PacksSection packs={packs} />
       <WhyIbig />
+      <TestimonialsSection />
       <ProcessSection />
       <CtaSection />
     </>
