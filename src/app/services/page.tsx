@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { ArrowRight, Zap } from 'lucide-react'
 import { getCategories, getProducts } from '@/lib/queries'
+import { STATIC_CATEGORIES, STATIC_PRODUCTS } from '@/lib/services-data'
 import type { Category, Product } from '@/types'
 import ServicesCatalog from './ServicesCatalog'
 
@@ -12,10 +13,12 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic'
 
 export default async function ServicesPage() {
-  const [categories, products] = await Promise.all([
+  const [dbCategories, dbProducts] = await Promise.all([
     getCategories().catch((): Category[] => []),
     getProducts().catch((): Product[] => []),
   ])
+  const categories = dbCategories.length > 0 ? dbCategories : STATIC_CATEGORIES
+  const products = dbProducts.length > 0 ? dbProducts : STATIC_PRODUCTS
 
   return (
     <div style={{ background: '#06091A', minHeight: '100vh' }}>

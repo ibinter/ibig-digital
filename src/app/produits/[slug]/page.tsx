@@ -7,6 +7,7 @@ import {
   Award, Star, ChevronRight, Phone, TrendingUp, Users, Target, Lightbulb
 } from 'lucide-react'
 import { getProductBySlug, getProducts } from '@/lib/queries'
+import { getStaticProductBySlug, STATIC_PRODUCTS } from '@/lib/services-data'
 import { formatPrice, fcfaToUsd } from '@/lib/utils'
 import { SITE } from '@/lib/constants'
 
@@ -14,7 +15,7 @@ interface Props { params: Promise<{ slug: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const product = await getProductBySlug(slug).catch(() => null)
+  const product = (await getProductBySlug(slug).catch(() => null)) ?? getStaticProductBySlug(slug)
   if (!product) return {}
   return {
     title: product.seo_title ?? `${product.name} | IBIG DIGITAL`,
@@ -24,8 +25,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const products = await getProducts().catch(() => [])
-  return products.map((p) => ({ slug: p.slug }))
+  const dbProducts = await getProducts().catch(() => [])
+  const all = dbProducts.length > 0 ? dbProducts : STATIC_PRODUCTS
+  return all.map((p) => ({ slug: p.slug }))
 }
 
 export const dynamic = 'force-dynamic'
@@ -60,7 +62,7 @@ const TESTIMONIAL = {
 
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params
-  const product = await getProductBySlug(slug).catch(() => null)
+  const product = (await getProductBySlug(slug).catch(() => null)) ?? getStaticProductBySlug(slug)
   if (!product) notFound()
 
   const waMessage = `Bonjour IBIG DIGITAL, je suis intéressé par le service "${product.name}". Pouvez-vous me donner plus d'informations ?`
