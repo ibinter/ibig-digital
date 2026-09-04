@@ -249,6 +249,8 @@ export default function RealisationsPage() {
         .tech-chip { display:inline-block; padding:.18rem .55rem; border-radius:.375rem; font-size:.62rem; font-weight:600; background:rgba(255,255,255,.1); color:rgba(255,255,255,.55); }
         .ext-link { display:inline-flex; align-items:center; gap:.3rem; font-size:.68rem; color:rgba(255,255,255,.45); text-decoration:none; transition:color .15s; }
         .ext-link:hover { color:rgba(255,255,255,.8); }
+        .social-card { display:flex; align-items:center; gap:1rem; padding:1.1rem 1.25rem; border-radius:1rem; text-decoration:none; transition:transform .15s, box-shadow .15s; }
+        .social-card:hover { transform:translateY(-3px); }
       `}</style>
 
       {/* ═══ HERO ═══ */}
@@ -448,9 +450,8 @@ export default function RealisationsPage() {
             },
           ].map(({ platform, label, url, color, icon }) => (
             <a key={url} href={url} target="_blank" rel="noopener noreferrer"
-              style={{ display:'flex', alignItems:'center', gap:'1rem', padding:'1.1rem 1.25rem', borderRadius:'1rem', background:`${color}10`, border:`1px solid ${color}28`, textDecoration:'none', transition:'transform .15s, box-shadow .15s' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform='translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow=`0 8px 24px ${color}25`; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform=''; (e.currentTarget as HTMLElement).style.boxShadow=''; }}>
+              className="social-card"
+              style={{ background:`${color}10`, border:`1px solid ${color}28` }}>
               <div style={{ width:'2.5rem', height:'2.5rem', borderRadius:'.75rem', background:`${color}20`, display:'flex', alignItems:'center', justifyContent:'center', color, fontWeight:900, fontSize:'1rem', flexShrink:0 }}>
                 {icon}
               </div>
