@@ -142,10 +142,11 @@ export default function Footer() {
           <p className="text-gray-500 text-sm">
             © {year} IBIG DIGITAL – {SITE.company}. Tous droits réservés.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 flex-wrap justify-center">
             <Link href="/mentions-legales" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Mentions légales</Link>
             <Link href="/politique-confidentialite" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Confidentialité</Link>
-            <Link href="/conditions" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">CGV</Link>
+            <Link href="/cgv" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">CGV</Link>
+            <Link href="/cgu" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">CGU</Link>
           </div>
         </div>
       </div>

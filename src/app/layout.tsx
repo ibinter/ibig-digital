@@ -20,6 +20,14 @@ export const metadata: Metadata = {
   },
   description: SITE.description,
   metadataBase: new URL(SITE.url),
+  manifest: '/manifest.webmanifest',
+  applicationName: SITE.name,
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: SITE.name,
+  },
+  formatDetection: { telephone: true, email: true },
   openGraph: {
     type: 'website',
     locale: 'fr_CI',
@@ -27,11 +35,13 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} – ${SITE.tagline}`,
     description: SITE.description,
+    images: [{ url: '/logo-full.png', width: 1060, height: 60, alt: 'IBIG DIGITAL' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: `${SITE.name} – ${SITE.tagline}`,
     description: SITE.description,
+    images: ['/logo-full.png'],
   },
   robots: {
     index: true,
@@ -46,6 +56,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" href="/logo-icon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="IBIG DIGITAL" />
+        <meta name="theme-color" content="#003B7A" />
       </head>
       <body style={{ paddingTop: '36px' }}>
         <TopBar />
