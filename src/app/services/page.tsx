@@ -7,7 +7,7 @@ import ServicesCatalog from './ServicesCatalog'
 
 export const metadata: Metadata = {
   title: 'Nos Services – Solutions Digitales Premium | IBIG DIGITAL',
-  description: "77+ services digitaux : sites web, applications, documents QR, e-commerce, design, marketing, IA. Devis gratuit en 24h.",
+  description: "100+ services digitaux : sites web, applications, documents QR, e-commerce, design, marketing, IA. Devis gratuit en 24h.",
 }
 
 export const dynamic = 'force-dynamic'

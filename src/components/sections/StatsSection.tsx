@@ -1,5 +1,5 @@
 const stats = [
-  { value: '55+', label: 'Services & produits', icon: '🧩' },
+  { value: '100+', label: 'Services & produits', icon: '🧩' },
   { value: '5', label: 'Packs commerciaux', icon: '📦' },
   { value: '7', label: "Domaines d'expertise", icon: '🏆' },
   { value: '48h', label: 'Délai de réponse', icon: '⚡' },

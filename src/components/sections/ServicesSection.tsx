@@ -97,7 +97,7 @@ export default function ServicesSection() {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6"
             style={{ background: 'rgba(0,59,122,0.08)', color: '#003B7A' }}>
-            55+ services disponibles
+            100+ services disponibles
           </div>
           <h2 className="text-4xl sm:text-5xl font-black mb-6" style={{ color: '#001D3D', letterSpacing: '-0.02em' }}>
             Tout ce dont votre entreprise<br />a besoin pour{' '}

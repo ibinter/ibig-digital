@@ -53,7 +53,7 @@ const reasons = [
 ]
 
 const bigStats = [
-  { value: '55+', label: 'Services disponibles', icon: '🚀' },
+  { value: '100+', label: 'Services disponibles', icon: '🚀' },
   { value: '5', label: 'Packs tout-inclus', icon: '📦' },
   { value: '48h', label: 'Premier devis rendu', icon: '⏱️' },
   { value: '100%', label: 'Satisfaction garantie', icon: '✅' },

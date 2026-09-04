@@ -25,7 +25,7 @@ const PROJETS_PHARES = [
     nom: 'IBIG DIGITAL',
     tag: 'Site web',
     annee: 2025,
-    description: 'Site officiel de la branche digitale d\'IBIG GROUP. Catalogue de 77+ services, gestion de devis en ligne, blog, espace partenaires et back-office complet.',
+    description: 'Site officiel de la branche digitale d\'IBIG GROUP. Catalogue de 100+ services, gestion de devis en ligne, blog, espace partenaires et back-office complet.',
     url: 'https://www.ibig-digital.com',
     gradient: 'linear-gradient(135deg,#001D3D 0%,#003B7A 55%,#0056CC 100%)',
     accent: '#4D9FFF',
