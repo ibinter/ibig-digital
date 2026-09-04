@@ -75,6 +75,17 @@ export default function Header() {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
+            {/* Bouton Kits */}
+            <a
+              href="https://kits.intermark-business.com/kit.php?code=JUR-004"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 text-sm font-semibold rounded-lg transition-all hover:opacity-90 hover:shadow-lg flex items-center gap-1.5"
+              style={{ background: scrolled ? 'rgba(0,59,122,0.08)' : 'rgba(255,255,255,0.12)', color: scrolled ? 'var(--blue)' : '#ffffff', border: scrolled ? '1px solid rgba(0,59,122,0.2)' : '1px solid rgba(255,255,255,0.25)' }}
+            >
+              <span style={{ fontSize: '14px' }}>📦</span>
+              Kits
+            </a>
             <Link
               href="/contact"
               className={cn(
@@ -122,6 +133,16 @@ export default function Header() {
               </Link>
             ))}
             <div className="pt-3 border-t border-gray-100 space-y-2">
+              <a
+                href="https://kits.intermark-business.com/kit.php?code=JUR-004"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="block px-4 py-3 text-center font-semibold rounded-lg border"
+                style={{ color: 'var(--blue)', borderColor: 'var(--blue)', background: 'rgba(0,59,122,0.05)' }}
+              >
+                📦 Kits IBIG
+              </a>
               <Link
                 href="/devis"
                 onClick={() => setIsOpen(false)}

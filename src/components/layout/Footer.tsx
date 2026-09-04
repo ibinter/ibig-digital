@@ -94,6 +94,17 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href="https://kits.intermark-business.com/kit.php?code=JUR-004"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm inline-flex items-center gap-1.5 font-semibold transition-colors"
+                  style={{ color: '#FF9A4D' }}
+                >
+                  📦 Kits IBIG
+                </a>
+              </li>
             </ul>
           </div>
 
