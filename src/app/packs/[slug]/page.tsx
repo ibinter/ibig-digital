@@ -7,21 +7,17 @@ import { formatPrice, fcfaToUsd } from '@/lib/utils'
 import { SITE } from '@/lib/constants'
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const pack = await getPackBySlug(params.slug).catch(() => null)
+  const { slug } = await params
+  const pack = await getPackBySlug(slug).catch(() => null)
   if (!pack) return { title: 'Pack introuvable' }
   return {
     title: `${pack.name} – Pack Digital | IBIG DIGITAL`,
     description: pack.description ?? `Découvrez le pack ${pack.name} d'IBIG DIGITAL : services inclus, prix et avantages.`,
   }
-}
-
-export async function generateStaticParams() {
-  const packs = await getPacks().catch(() => [])
-  return packs.map((p) => ({ slug: p.slug }))
 }
 
 export const dynamic = 'force-dynamic'
@@ -34,7 +30,8 @@ const GUARANTEES = [
 ]
 
 export default async function PackDetailPage({ params }: Props) {
-  const pack = await getPackBySlug(params.slug).catch(() => null)
+  const { slug } = await params
+  const pack = await getPackBySlug(slug).catch(() => null)
   if (!pack) notFound()
 
   const waUrl = `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(`Bonjour, je suis intéressé par le pack "${pack.name}" à ${formatPrice(pack.price)}. Pouvez-vous me donner plus d'informations ?`)}`
