@@ -113,92 +113,90 @@ export default async function ProductPage({ params }: Props) {
             <span style={{ color:'rgba(255,255,255,.75)', fontWeight:600 }} className="truncate">{product.name}</span>
           </nav>
 
-          <div style={{ display:'grid', gridTemplateColumns:'1fr', gap:'2.5rem' }} className="lg:grid-cols-[1fr_380px]">
-            {/* Gauche */}
-            <div>
+          {/* Hero centré */}
+          <div style={{ textAlign:'center', maxWidth:'800px', margin:'0 auto' }}>
+            {/* Badges */}
+            <div style={{ display:'flex', alignItems:'center', justifyContent:'center', flexWrap:'wrap', gap:'.625rem', marginBottom:'1.5rem' }}>
               {product.category && (
-                <div style={{ display:'inline-flex', alignItems:'center', gap:'.4rem', padding:'.4rem 1rem', borderRadius:'9999px', background:'rgba(255,107,0,.15)', border:'1px solid rgba(255,107,0,.3)', color:'#FF9A4D', fontSize:'.75rem', fontWeight:700, marginBottom:'1.25rem' }}>
+                <div style={{ display:'inline-flex', alignItems:'center', gap:'.4rem', padding:'.4rem 1rem', borderRadius:'9999px', background:'rgba(255,107,0,.15)', border:'1px solid rgba(255,107,0,.3)', color:'#FF9A4D', fontSize:'.75rem', fontWeight:700 }}>
                   <Zap size={11} />{product.category.name}
                 </div>
               )}
-              <h1 style={{ fontSize:'clamp(2rem,4vw,3.25rem)', fontWeight:900, color:'white', marginBottom:'1rem', letterSpacing:'-.025em', lineHeight:1.1 }}>
-                {product.name}
-              </h1>
-              {product.short_description && (
-                <p style={{ fontSize:'1.1rem', color:'rgba(255,255,255,.65)', lineHeight:1.7, marginBottom:'1.5rem', maxWidth:'560px' }}>
-                  {product.short_description}
-                </p>
+              {product.is_featured && (
+                <div style={{ display:'inline-flex', alignItems:'center', gap:'.4rem', padding:'.4rem 1rem', borderRadius:'9999px', background:'rgba(255,107,0,.2)', border:'1px solid rgba(255,107,0,.3)', color:'#FF9A4D', fontSize:'.75rem', fontWeight:700 }}>
+                  <Star size={11} fill="currentColor" /> Service populaire
+                </div>
               )}
-              <div style={{ display:'flex', flexWrap:'wrap', gap:'.625rem' }}>
-                {product.delivery_time && (
-                  <span style={{ display:'flex', alignItems:'center', gap:'.4rem', padding:'.375rem .875rem', borderRadius:'9999px', background:'rgba(255,255,255,.08)', border:'1px solid rgba(255,255,255,.12)', color:'rgba(255,255,255,.7)', fontSize:'.75rem', fontWeight:600 }}>
-                    <Clock size={11} /> {product.delivery_time}
-                  </span>
-                )}
-                <span style={{ display:'flex', alignItems:'center', gap:'.4rem', padding:'.375rem .875rem', borderRadius:'9999px', background:'rgba(255,255,255,.08)', border:'1px solid rgba(255,255,255,.12)', color:'rgba(255,255,255,.7)', fontSize:'.75rem', fontWeight:600 }}>
-                  <Shield size={11} /> Satisfaction garantie
-                </span>
-                {product.is_featured && (
-                  <span style={{ display:'flex', alignItems:'center', gap:'.4rem', padding:'.375rem .875rem', borderRadius:'9999px', background:'rgba(255,107,0,.2)', border:'1px solid rgba(255,107,0,.3)', color:'#FF9A4D', fontSize:'.75rem', fontWeight:700 }}>
-                    <Star size={11} fill="currentColor" /> Service populaire
-                  </span>
-                )}
-              </div>
             </div>
 
-            {/* Carte prix hero */}
-            <div style={{ background:'rgba(255,255,255,.08)', backdropFilter:'blur(20px)', border:'1px solid rgba(255,255,255,.14)', borderRadius:'1.5rem', padding:'2rem', display:'flex', flexDirection:'column', justifyContent:'center', gap:'1.5rem' }}>
-              {/* Prix */}
-              <div>
-                {product.promo_label && (
-                  <div style={{ display:'inline-block', padding:'.25rem .75rem', borderRadius:'9999px', fontSize:'.7rem', fontWeight:700, color:'white', background:'linear-gradient(135deg,#FF6B00,#FF4500)', marginBottom:'.75rem' }}>
-                    🔥 {product.promo_label}
-                  </div>
-                )}
-                {product.price_type === 'on_quote' ? (
-                  <>
-                    <div style={{ fontSize:'2rem', fontWeight:900, color:'white' }}>Sur devis</div>
-                    <div style={{ fontSize:'.8rem', color:'rgba(255,255,255,.45)', marginTop:'.25rem' }}>Offre personnalisée selon vos besoins</div>
-                  </>
-                ) : product.price ? (
-                  <>
-                    {product.price_type === 'from' && <div style={{ fontSize:'.65rem', fontWeight:700, letterSpacing:'.1em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'.2rem' }}>À partir de</div>}
-                    <div style={{ fontSize:'2.5rem', fontWeight:900, color:'white', letterSpacing:'-.025em', lineHeight:1 }}>{formatPrice(product.price, product.currency)}</div>
-                    <div style={{ fontSize:'.875rem', color:'rgba(255,255,255,.4)', marginTop:'.2rem' }}>≈ {fcfaToUsd(product.price)}</div>
-                    {product.old_price && savings && (
-                      <div style={{ display:'flex', alignItems:'center', gap:'.5rem', marginTop:'.5rem', flexWrap:'wrap' }}>
-                        <span style={{ fontSize:'.8rem', textDecoration:'line-through', color:'rgba(255,255,255,.3)' }}>{formatPrice(product.old_price)}</span>
-                        <span style={{ fontSize:'.7rem', fontWeight:700, padding:'.15rem .5rem', borderRadius:'9999px', background:'rgba(255,107,0,.25)', color:'#FF9A4D' }}>
-                          -{Math.round((savings / product.old_price!) * 100)}% économie
-                        </span>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <div style={{ fontSize:'1.75rem', fontWeight:900, color:'white' }}>Contactez-nous</div>
-                )}
-              </div>
+            {/* Titre */}
+            <h1 style={{ fontSize:'clamp(2rem,5vw,3.5rem)', fontWeight:900, color:'white', marginBottom:'1rem', letterSpacing:'-.03em', lineHeight:1.1 }}>
+              {product.name}
+            </h1>
 
-              {/* Boutons compacts côte à côte */}
-              <div style={{ display:'flex', gap:'.75rem', flexWrap:'wrap' }}>
+            {/* Description */}
+            {product.short_description && (
+              <p style={{ fontSize:'1.1rem', color:'rgba(255,255,255,.6)', lineHeight:1.75, marginBottom:'2rem', maxWidth:'600px', margin:'0 auto 2rem' }}>
+                {product.short_description}
+              </p>
+            )}
+
+            {/* Séparateur prix */}
+            <div style={{ display:'inline-flex', flexDirection:'column', alignItems:'center', gap:'1.25rem', padding:'1.75rem 2.5rem', borderRadius:'1.5rem', background:'rgba(255,255,255,.07)', backdropFilter:'blur(20px)', border:'1px solid rgba(255,255,255,.12)', marginBottom:'1.75rem' }}>
+              {product.promo_label && (
+                <div style={{ padding:'.25rem .875rem', borderRadius:'9999px', fontSize:'.7rem', fontWeight:700, color:'white', background:'linear-gradient(135deg,#FF6B00,#FF4500)' }}>
+                  🔥 {product.promo_label}
+                </div>
+              )}
+              {product.price_type === 'on_quote' ? (
+                <div style={{ textAlign:'center' }}>
+                  <div style={{ fontSize:'2rem', fontWeight:900, color:'white' }}>Sur devis</div>
+                  <div style={{ fontSize:'.8rem', color:'rgba(255,255,255,.4)', marginTop:'.25rem' }}>Offre personnalisée selon vos besoins</div>
+                </div>
+              ) : product.price ? (
+                <div style={{ textAlign:'center' }}>
+                  {product.price_type === 'from' && <div style={{ fontSize:'.65rem', fontWeight:700, letterSpacing:'.12em', textTransform:'uppercase', color:'rgba(255,255,255,.35)', marginBottom:'.35rem' }}>À partir de</div>}
+                  <div style={{ fontSize:'clamp(2.5rem,5vw,3.5rem)', fontWeight:900, color:'white', letterSpacing:'-.03em', lineHeight:1 }}>
+                    {formatPrice(product.price, product.currency)}
+                  </div>
+                  <div style={{ fontSize:'.9rem', color:'rgba(255,255,255,.35)', marginTop:'.35rem' }}>≈ {fcfaToUsd(product.price)}</div>
+                  {product.old_price && savings && (
+                    <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:'.5rem', marginTop:'.625rem' }}>
+                      <span style={{ fontSize:'.8rem', textDecoration:'line-through', color:'rgba(255,255,255,.3)' }}>{formatPrice(product.old_price)}</span>
+                      <span style={{ fontSize:'.7rem', fontWeight:700, padding:'.2rem .6rem', borderRadius:'9999px', background:'rgba(255,107,0,.25)', color:'#FF9A4D' }}>
+                        -{Math.round((savings / product.old_price!) * 100)}% économie
+                      </span>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div style={{ fontSize:'1.75rem', fontWeight:900, color:'white' }}>Contactez-nous</div>
+              )}
+
+              {/* Boutons côte à côte */}
+              <div style={{ display:'flex', alignItems:'center', gap:'.875rem', flexWrap:'wrap', justifyContent:'center' }}>
                 <Link href={`/devis?service=${product.slug}`}
-                  style={{ display:'inline-flex', alignItems:'center', gap:'.5rem', padding:'.75rem 1.5rem', borderRadius:'.875rem', fontWeight:800, fontSize:'.875rem', color:'white', background:'linear-gradient(135deg,#FF6B00,#FF4500)', boxShadow:'0 6px 20px rgba(255,107,0,.35)', textDecoration:'none', whiteSpace:'nowrap', transition:'transform .15s, box-shadow .15s' }}>
-                  Devis gratuit <ArrowRight size={15} />
+                  style={{ display:'inline-flex', alignItems:'center', gap:'.5rem', padding:'.875rem 1.75rem', borderRadius:'1rem', fontWeight:800, fontSize:'.9rem', color:'white', background:'linear-gradient(135deg,#FF6B00,#FF4500)', boxShadow:'0 8px 24px rgba(255,107,0,.4)', textDecoration:'none', whiteSpace:'nowrap' }}>
+                  Devis gratuit <ArrowRight size={16} />
                 </Link>
                 <a href={waUrl} target="_blank" rel="noopener noreferrer"
-                  style={{ display:'inline-flex', alignItems:'center', gap:'.5rem', padding:'.75rem 1.25rem', borderRadius:'.875rem', fontWeight:700, fontSize:'.875rem', color:'white', background:'#25D366', boxShadow:'0 6px 16px rgba(37,211,102,.3)', textDecoration:'none', whiteSpace:'nowrap' }}>
-                  <MessageSquare size={14} /> WhatsApp
+                  style={{ display:'inline-flex', alignItems:'center', gap:'.5rem', padding:'.875rem 1.5rem', borderRadius:'1rem', fontWeight:700, fontSize:'.9rem', color:'white', background:'#25D366', boxShadow:'0 8px 20px rgba(37,211,102,.3)', textDecoration:'none', whiteSpace:'nowrap' }}>
+                  <MessageSquare size={15} /> WhatsApp
                 </a>
               </div>
 
-              {/* Mini info */}
-              <div style={{ display:'flex', gap:'1rem', flexWrap:'wrap' }}>
-                <span style={{ fontSize:'.72rem', color:'rgba(255,255,255,.45)', display:'flex', alignItems:'center', gap:'.3rem' }}>
-                  <Shield size={11} /> Devis sans engagement
-                </span>
-                <span style={{ fontSize:'.72rem', color:'rgba(255,255,255,.45)', display:'flex', alignItems:'center', gap:'.3rem' }}>
-                  <Clock size={11} /> Réponse sous 24h
-                </span>
+              {/* Mini réassurance */}
+              <div style={{ display:'flex', alignItems:'center', gap:'1.25rem', flexWrap:'wrap', justifyContent:'center' }}>
+                {[{ icon: Shield, text: 'Sans engagement' }, { icon: Clock, text: 'Réponse sous 24h' }].map(({ icon: Icon, text }) => (
+                  <span key={text} style={{ fontSize:'.72rem', color:'rgba(255,255,255,.35)', display:'flex', alignItems:'center', gap:'.3rem' }}>
+                    <Icon size={11} /> {text}
+                  </span>
+                ))}
+                {product.delivery_time && (
+                  <span style={{ fontSize:'.72rem', color:'rgba(255,255,255,.35)', display:'flex', alignItems:'center', gap:'.3rem' }}>
+                    <Clock size={11} /> {product.delivery_time}
+                  </span>
+                )}
               </div>
             </div>
           </div>
