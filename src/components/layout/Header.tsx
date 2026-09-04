@@ -17,12 +17,12 @@ export default function Header() {
 
   return (
     <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled
-          ? 'bg-white shadow-md border-b border-gray-100'
-          : 'bg-[#003B7A]'
-      )}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        background: scrolled ? '#ffffff' : '#003B7A',
+        boxShadow: scrolled ? '0 1px 12px rgba(0,0,0,0.08)' : 'none',
+        borderBottom: scrolled ? '1px solid #f0f0f0' : 'none',
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
