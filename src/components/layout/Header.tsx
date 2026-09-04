@@ -1,7 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import Image from 'next/image'
+import { Menu, X } from 'lucide-react'
 import { NAV_LINKS, SITE } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
@@ -29,30 +30,32 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div
-              className="w-9 h-9 rounded-lg flex items-center justify-center text-white font-bold text-sm"
-              style={{ background: 'var(--blue)' }}
+          <Link href="/" className="flex items-center group">
+            {/* Logo sur fond sombre : logo complet blanc / sur fond clair : icône + texte */}
+            <Image
+              src="/logo-full.png"
+              alt="IBIG DIGITAL"
+              width={180}
+              height={54}
+              priority
+              className={cn('transition-all duration-300', scrolled ? 'hidden' : 'block')}
+              style={{ height: '44px', width: 'auto' }}
+            />
+            <Image
+              src="/logo-icon.png"
+              alt="IBIG DIGITAL"
+              width={44}
+              height={44}
+              priority
+              className={cn('transition-all duration-300 mr-2', scrolled ? 'block' : 'hidden')}
+              style={{ height: '40px', width: 'auto' }}
+            />
+            <span
+              className={cn('font-black text-lg leading-tight transition-colors', scrolled ? 'block' : 'hidden')}
+              style={{ color: 'var(--blue)' }}
             >
-              ID
-            </div>
-            <div>
-              <div
-                className={cn('font-bold text-lg leading-tight transition-colors',
-                  scrolled ? 'text-blue-900' : 'text-white'
-                )}
-                style={{ color: scrolled ? 'var(--blue)' : undefined }}
-              >
-                IBIG DIGITAL
-              </div>
-              <div
-                className={cn('text-xs leading-tight hidden sm:block transition-colors',
-                  scrolled ? 'text-gray-500' : 'text-blue-100'
-                )}
-              >
-                Solutions Digitales
-              </div>
-            </div>
+              IBIG <span style={{ color: 'var(--orange)' }}>DIGITAL</span>
+            </span>
           </Link>
 
           {/* Desktop nav */}

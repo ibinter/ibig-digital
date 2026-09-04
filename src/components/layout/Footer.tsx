@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
 import { SITE, NAV_LINKS } from '@/lib/constants'
 
@@ -51,17 +52,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold"
-                style={{ background: 'var(--blue)' }}
-              >
-                ID
-              </div>
-              <div>
-                <div className="font-bold text-lg">IBIG DIGITAL</div>
-                <div className="text-gray-400 text-xs">Solutions Digitales</div>
-              </div>
+            <div className="mb-6">
+              <Image
+                src="/logo-full.png"
+                alt="IBIG DIGITAL"
+                width={200}
+                height={60}
+                style={{ height: '52px', width: 'auto', filter: 'brightness(0) invert(1)' }}
+              />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               La branche digitale d&apos;INTERMARK BUSINESS INTERNATIONAL GROUP – IBIG SARL. Nous accompagnons les entreprises dans leur transformation numérique.
