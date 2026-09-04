@@ -15,6 +15,7 @@ const categoryStyles: Record<string, { gradient: string; accent: string; icon: s
   'sites-web':            { gradient: 'linear-gradient(135deg,#003B7A,#0056B3)', accent: '#003B7A', icon: '🌐' },
   'ecommerce':            { gradient: 'linear-gradient(135deg,#FF6B00,#FF4500)', accent: '#FF6B00', icon: '🛒' },
   'applications':         { gradient: 'linear-gradient(135deg,#7C3AED,#5B21B6)', accent: '#7C3AED', icon: '📱' },
+  'documents-qr':         { gradient: 'linear-gradient(135deg,#0F766E,#0D9488)', accent: '#0F766E', icon: '📄' },
   'design':               { gradient: 'linear-gradient(135deg,#EC4899,#BE185D)', accent: '#EC4899', icon: '🎨' },
   'marketing-digital':    { gradient: 'linear-gradient(135deg,#0EA5E9,#0284C7)', accent: '#0EA5E9', icon: '📣' },
   'ia-automatisation':    { gradient: 'linear-gradient(135deg,#10B981,#059669)', accent: '#10B981', icon: '🤖' },
@@ -23,6 +24,12 @@ const categoryStyles: Record<string, { gradient: string; accent: string; icon: s
   'hebergement':          { gradient: 'linear-gradient(135deg,#64748B,#475569)', accent: '#64748B', icon: '☁️' },
   'cybersecurite':        { gradient: 'linear-gradient(135deg,#EF4444,#DC2626)', accent: '#EF4444', icon: '🛡️' },
   'formation':            { gradient: 'linear-gradient(135deg,#8B5CF6,#7C3AED)', accent: '#8B5CF6', icon: '🎓' },
+  'video-contenu':        { gradient: 'linear-gradient(135deg,#DC2626,#B91C1C)', accent: '#DC2626', icon: '🎬' },
+  'emailing':             { gradient: 'linear-gradient(135deg,#2563EB,#1D4ED8)', accent: '#2563EB', icon: '✉️' },
+  'consulting-digital':   { gradient: 'linear-gradient(135deg,#92400E,#78350F)', accent: '#92400E', icon: '🧭' },
+  'print-supports':       { gradient: 'linear-gradient(135deg,#374151,#1F2937)', accent: '#374151', icon: '🖨️' },
+  'cartes-digitales':     { gradient: 'linear-gradient(135deg,#BE185D,#9D174D)', accent: '#BE185D', icon: '📲' },
+  'whatsapp-business':    { gradient: 'linear-gradient(135deg,#16A34A,#15803D)', accent: '#16A34A', icon: '💬' },
 }
 const defaultStyle = { gradient: 'linear-gradient(135deg,#003B7A,#0056B3)', accent: '#003B7A', icon: '⚡' }
 
