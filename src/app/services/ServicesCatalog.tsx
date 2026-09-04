@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Clock, Star, Zap } from 'lucide-react'
 import { formatPrice, fcfaToUsd } from '@/lib/utils'
@@ -49,13 +49,21 @@ export default function ServicesCatalog({ categories, products }: Props) {
   })).filter((g) => g.products.length > 0)
 
   const [activeSlug, setActiveSlug] = useState(grouped[0]?.category.slug ?? '')
+  const [shouldScroll, setShouldScroll] = useState(false)
   const active = grouped.find((g) => g.category.slug === activeSlug) ?? grouped[0]
+
+  useEffect(() => {
+    if (!shouldScroll) return
+    setShouldScroll(false)
+    const el = servicesSectionRef.current
+    if (!el) return
+    const top = el.getBoundingClientRect().top + window.scrollY - 80
+    window.scrollTo({ top, behavior: 'smooth' })
+  }, [activeSlug, shouldScroll])
 
   function handleCategoryClick(slug: string) {
     setActiveSlug(slug)
-    setTimeout(() => {
-      servicesSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 50)
+    setShouldScroll(true)
   }
 
   return (
