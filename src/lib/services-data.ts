@@ -372,6 +372,82 @@ export const STATIC_PRODUCTS: Product[] = [
   p('wb-04','cat-18','Stratégie WhatsApp Marketing','strategie-whatsapp-marketing',100000,'from',
     'Stratégie complète et exécution de campagnes marketing WhatsApp : listes, contenus, automation.','Mensuel',false,
     ['Segmentation liste contacts','Calendrier de diffusion','Création des messages','Promotions et offres','Suivi taux d\'ouverture','Rapport mensuel']),
+  p('wb-05','cat-18','Formation WhatsApp Business','formation-whatsapp-business',50000,'fixed',
+    'Formation pratique à WhatsApp Business : catalogue, réponses automatiques, listes de diffusion, étiquettes.','1 journée',false,
+    ['Profil entreprise optimisé','Catalogue produits/services','Messages automatiques','Listes de diffusion','Étiquettes et organisation','Bonnes pratiques']),
+  p('wb-06','cat-18','Intégration CRM WhatsApp','integration-crm-whatsapp',180000,'from',
+    'Connexion de WhatsApp Business à votre CRM pour centraliser vos conversations et automatiser le suivi client.','2–3 semaines',false,
+    ['Connexion HubSpot / Zoho / Pipedrive','Historique conversations centralisé','Assignation automatique agents','Tags et pipelines','Rapports performances','Formation équipe']),
+
+  /* ══════════ CARTES DIGITALES (suite) ══════════ */
+  p('cd-04','cat-17','Carte Digitale Événement','carte-digitale-evenement',35000,'fixed',
+    'Carte digitale temporaire pour salons, conférences et événements. QR code personnalisé à l\'image de l\'événement.','2–3 jours',false,
+    ['Design aux couleurs de l\'événement','QR code imprimable','Durée de validité configurable','Formulaire de contact intégré','Analytics scan','Téléchargement vCard']),
+  p('cd-05','cat-17','Signature Email Professionnelle','signature-email-professionnelle',15000,'fixed',
+    'Création et déploiement de signatures email professionnelles pour toute votre équipe avec logo et réseaux.','1–2 jours',false,
+    ['Design aux couleurs de votre marque','Logo + coordonnées + réseaux','Compatible Gmail, Outlook, Apple Mail','Guide d\'installation','Version mobile optimisée','Pack équipe disponible']),
+
+  /* ══════════ COMMUNITY MANAGEMENT (suite) ══════════ */
+  p('cm-06','cat-08','Veille e-réputation','veille-e-reputation',80000,'from',
+    'Surveillance de votre image en ligne : mentions, avis, commentaires et alertes en temps réel.','Mensuel',false,
+    ['Alertes mentions de votre marque','Surveillance Google Alerts','Suivi des avis Google/Facebook','Rapport mensuel e-réputation','Recommandations de réponse','Score de réputation']),
+  p('cm-07','cat-08','Calendrier Éditorial','calendrier-editorial',40000,'fixed',
+    'Création d\'un calendrier éditorial sur 3 mois avec thématiques, formats et planning de publication.','1 semaine',false,
+    ['Stratégie de contenu','Thématiques mensuelles','Planning 3 mois','Mix formats (posts, stories, reels)','Idées de contenu','Fichier éditable']),
+
+  /* ══════════ SEO (suite) ══════════ */
+  p('se-06','cat-09','SEO E-commerce','seo-ecommerce',150000,'from',
+    'Optimisation SEO spécifique aux boutiques en ligne : fiches produits, catégories, avis et données structurées.','3–6 semaines',false,
+    ['Optimisation fiches produits','Données structurées (schema.org)','Catégories optimisées','Avis clients pour le SEO','Vitesse boutique','Rapport positions produits']),
+  p('se-07','cat-09','Rapport de Positionnement Mensuel','rapport-positionnement-mensuel',30000,'from',
+    'Rapport mensuel détaillé de vos positions Google : mots-clés, évolutions, opportunités et recommandations.','Mensuel',false,
+    ['Top 100 mots-clés suivis','Évolution des positions','Pages les plus performantes','Opportunités identifiées','Rapport PDF mensuel','Appel de suivi inclus']),
+
+  /* ══════════ HÉBERGEMENT (suite) ══════════ */
+  p('he-06','cat-10','Email Pro Google Workspace','email-pro-google-workspace',25000,'from',
+    'Configuration et gestion de Google Workspace pour votre entreprise : emails pro, Drive, Meet, Agenda partagé.','2–3 jours',false,
+    ['Email @votre-domaine.com','Google Drive partagé','Google Meet illimité','Agenda d\'équipe','Google Docs/Sheets/Slides','Administration centralisée']),
+
+  /* ══════════ FORMATION (suite) ══════════ */
+  p('fo-06','cat-12','Formation Community Management','formation-community-management',80000,'fixed',
+    'Formation pratique à la gestion des réseaux sociaux pour les équipes marketing et communication.','1 journée',false,
+    ['Stratégie de contenu','Création de visuels Canva','Planification et calendrier','Gestion de communauté','Publicité réseaux sociaux','Outils de gestion']),
+  p('fo-07','cat-12','Formation Google Analytics','formation-google-analytics',60000,'fixed',
+    'Maîtriser Google Analytics 4 pour mesurer, analyser et optimiser vos performances digitales.','1 journée',false,
+    ['Installation et configuration GA4','Tableaux de bord personnalisés','Suivi conversions','Analyse du comportement','Rapports automatiques','Prise de décision data-driven']),
+
+  /* ══════════ CONSULTING (suite) ══════════ */
+  p('co-06','cat-15','Accompagnement Startup Digitale','accompagnement-startup-digitale',200000,'from',
+    'Accompagnement mensuel pour startups : stratégie, outils, équipe, croissance et levée de fonds.','Mensuel',false,
+    ['Mentorat hebdomadaire','Stratégie go-to-market','Choix des outils tech','Aide au recrutement','Préparation pitch','Réseau investisseurs']),
+
+  /* ══════════ VIDÉO & CONTENU (suite) ══════════ */
+  p('vi-07','cat-13','Témoignages Clients Vidéo','temoignages-clients-video',120000,'from',
+    'Tournage et montage de témoignages vidéo de vos clients satisfaits pour renforcer votre crédibilité.','1–2 semaines',false,
+    ['Préparation des questions','Tournage chez le client','Montage professionnel','Sous-titres','Format portrait + paysage','3 témoignages minimum']),
+
+  /* ══════════ MARKETING (suite) ══════════ */
+  p('mk-07','cat-06','Gestion TikTok Business','gestion-tiktok-business',120000,'from',
+    'Stratégie et création de contenu TikTok pour toucher les jeunes consommateurs africains.','Mensuel',false,
+    ['Stratégie contenu TikTok','8 vidéos courtes/mois','Tendances et sons viraux','Hashtags optimisés','Publicité TikTok Ads','Rapport performances']),
+  p('mk-08','cat-06','Lancement de Produit Digital','lancement-produit-digital',300000,'from',
+    'Stratégie complète de lancement d\'un nouveau produit ou service : teasers, campagnes, influenceurs, presse.','4–8 semaines',false,
+    ['Stratégie de lancement','Teasers réseaux sociaux','Campagne publicité','Partenariats influenceurs','Communiqué de presse','Rapport de lancement']),
+
+  /* ══════════ IA & AUTOMATISATION (suite) ══════════ */
+  p('ia-07','cat-07','Automatisation Facturation','automatisation-facturation',150000,'from',
+    'Automatisation de vos devis, factures et relances de paiement. Intégration comptabilité et CRM.','2–4 semaines',false,
+    ['Génération automatique devis/factures','Envoi email automatique','Relances paiement','Intégration CRM','Tableau de bord financier','Rapports automatiques']),
+
+  /* ══════════ EMAILING (suite) ══════════ */
+  p('em-06','cat-14','Audit de Délivrabilité Email','audit-delivrabilite-email',60000,'fixed',
+    'Analyse et correction de votre délivrabilité email : SPF, DKIM, DMARC, score expéditeur, listes noires.','1 semaine',false,
+    ['Audit SPF/DKIM/DMARC','Score expéditeur','Vérification listes noires','Nettoyage liste contacts','Rapport et corrections','Suivi 30 jours']),
+
+  /* ══════════ PRINT (suite) ══════════ */
+  p('pr-06','cat-16','Goodies & Objets Publicitaires','goodies-objets-publicitaires',80000,'from',
+    'Conception graphique de vos goodies personnalisés : stylos, mugs, tote bags, casquettes, t-shirts.','3–5 jours',false,
+    ['Stylos et carnets','Mugs et verres','Tote bags','T-shirts et polo','Casquettes','Fichiers prêts impression']),
 ]
 
 export function getStaticProductBySlug(slug: string): Product | undefined {
