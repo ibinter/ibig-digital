@@ -96,7 +96,7 @@ export default function Footer() {
               ))}
               <li>
                 <a
-                  href="https://kits.intermark-business.com/kit.php?code=JUR-004"
+                  href="https://kits.intermark-business.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm inline-flex items-center gap-1.5 font-semibold transition-colors"

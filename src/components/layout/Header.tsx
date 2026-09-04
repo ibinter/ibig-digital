@@ -77,7 +77,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-3">
             {/* Bouton Kits */}
             <a
-              href="https://kits.intermark-business.com/kit.php?code=JUR-004"
+              href="https://kits.intermark-business.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 text-sm font-semibold rounded-lg transition-all hover:opacity-90 hover:shadow-lg flex items-center gap-1.5"
@@ -134,7 +134,7 @@ export default function Header() {
             ))}
             <div className="pt-3 border-t border-gray-100 space-y-2">
               <a
-                href="https://kits.intermark-business.com/kit.php?code=JUR-004"
+                href="https://kits.intermark-business.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
