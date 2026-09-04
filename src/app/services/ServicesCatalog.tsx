@@ -341,7 +341,7 @@ export default function ServicesCatalog({ categories, products }: Props) {
         pointerEvents:'none',
       }}>
         <Zap size={12} style={{ color:'#FF6B00' }} />
-        {products.length}+ services
+        100+ services
       </div>
     </>
   )

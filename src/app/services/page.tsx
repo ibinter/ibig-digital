@@ -43,7 +43,7 @@ export default async function ServicesPage() {
           <div style={{ display:'inline-flex', alignItems:'center', gap:'0.5rem', padding:'.5rem 1.25rem', borderRadius:'9999px', marginBottom:'2rem', background:'rgba(255,107,0,0.1)', border:'1px solid rgba(255,107,0,0.25)', backdropFilter:'blur(10px)' }}>
             <Zap size={14} style={{ color:'#FF6B00' }} />
             <span style={{ fontSize:'.75rem', fontWeight:700, color:'#FF9A4D' }}>
-              {products.length}+ SERVICES PROFESSIONNELS
+              100+ SERVICES PROFESSIONNELS
             </span>
             <span style={{ width:'6px', height:'6px', borderRadius:'50%', background:'#FF6B00', display:'inline-block', animation:'pulse-glow 1.5s ease-in-out infinite' }} />
           </div>
@@ -62,8 +62,8 @@ export default async function ServicesPage() {
           {/* Stats */}
           <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:'3rem', flexWrap:'wrap', marginTop:'2.5rem' }}>
             {[
-              { n: `${products.length}+`, l: 'Services' },
-              { n: `${categories.length}`, l: 'Catégories' },
+              { n: '100+', l: 'Services' },
+              { n: '18', l: 'Catégories' },
               { n: '24h', l: 'Devis gratuit' },
               { n: '100%', l: 'Made in Africa' },
             ].map(({ n, l }) => (
