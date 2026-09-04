@@ -40,6 +40,27 @@ export async function POST(request: Request) {
       )
     `
 
+    // Notify ibig-partners affiliate system if an affiliate code was passed
+    if (body.affiliate_code) {
+      const apiKey = process.env.IBIG_PARTNERS_API_KEY
+      if (apiKey) {
+        // Best-effort: don't block the response on this
+        fetch('https://ibigpartners.com/api/partners/report-sale', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-partner-api-key': apiKey },
+          body: JSON.stringify({
+            partnerCode: body.affiliate_code,
+            productSlug: 'ibig-digital',
+            externalRef: reference,
+            amount: 0,
+            customerName: body.name,
+            customerEmail: body.email,
+            customerPhone: body.phone || body.whatsapp || '',
+          }),
+        }).catch((err) => console.error('ibig-partners report-sale failed:', err))
+      }
+    }
+
     return NextResponse.json({ success: true, reference })
   } catch (err: unknown) {
     console.error('Quote request error:', err)

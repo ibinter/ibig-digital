@@ -28,11 +28,21 @@ export default function QuoteForm() {
     setLoading(true)
     setError('')
 
+    let affiliateCode: string | null = null
+    try {
+      const stored = localStorage.getItem('ibig_affiliate_ref')
+      const storedAt = parseInt(localStorage.getItem('ibig_affiliate_ref_at') ?? '0', 10)
+      // Cookie valid for 30 days
+      if (stored && Date.now() - storedAt < 30 * 24 * 60 * 60 * 1000) {
+        affiliateCode = stored
+      }
+    } catch { /* ignore */ }
+
     try {
       const res = await fetch('/api/devis', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, affiliate_code: affiliateCode }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error ?? 'Erreur lors de l\'envoi')

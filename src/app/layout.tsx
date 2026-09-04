@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Suspense } from 'react'
 import './globals.css'
 import { SITE } from '@/lib/constants'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import TopBar from '@/components/layout/TopBar'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
+import AffiliateTracker from '@/components/AffiliateTracker'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -63,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#003B7A" />
       </head>
       <body style={{ paddingTop: '36px' }}>
+        <Suspense fallback={null}><AffiliateTracker /></Suspense>
         <TopBar />
         <Header />
         <main>{children}</main>
