@@ -17,8 +17,9 @@ export default function Header() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      className="fixed left-0 right-0 z-50 transition-all duration-300"
       style={{
+        top: '36px',
         background: scrolled ? 'rgba(255,255,255,0.97)' : '#001D3D',
         boxShadow: scrolled ? '0 2px 24px rgba(0,0,0,0.08)' : 'none',
         borderBottom: scrolled ? '1px solid rgba(0,0,0,0.06)' : 'none',

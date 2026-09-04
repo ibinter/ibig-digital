@@ -4,6 +4,7 @@ import './globals.css'
 import { SITE } from '@/lib/constants'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import TopBar from '@/components/layout/TopBar'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
 
 const inter = Inter({
@@ -46,7 +47,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
-      <body>
+      <body style={{ paddingTop: '36px' }}>
+        <TopBar />
         <Header />
         <main>{children}</main>
         <Footer />
