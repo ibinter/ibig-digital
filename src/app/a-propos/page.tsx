@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const STATS = [
   { value: '200+', label: 'Clients accompagnés', icon: Users },
-  { value: '5+', label: 'Années d\'expertise', icon: Award },
+  { value: '2+', label: 'Années d\'expertise', icon: Award },
   { value: '15+', label: 'Pays clients', icon: Globe },
   { value: '98%', label: 'Satisfaction client', icon: Star },
 ]
@@ -39,12 +39,9 @@ const VALUES = [
 ]
 
 const TIMELINE = [
-  { year: '2019', title: 'Fondation IBIG SARL', desc: 'Création d\'INTERMARK BUSINESS INTERNATIONAL GROUP à Abidjan, spécialisé dans le conseil aux entreprises.' },
-  { year: '2020', title: 'Naissance d\'IBIG DIGITAL', desc: 'Lancement de la branche digitale pour répondre à la demande croissante de transformation numérique des PME africaines.' },
-  { year: '2021', title: 'Expansion des services', desc: 'Intégration des services IA, e-commerce et community management. Premier pack commercial lancé.' },
-  { year: '2023', title: 'IBIG PARTNERS', desc: 'Lancement du programme d\'affiliation pour permettre aux partenaires de distribuer les services IBIG DIGITAL.' },
-  { year: '2024', title: '200+ clients', desc: 'Franchissement du cap de 200 clients accompagnés, présence dans 15+ pays africains et Europe.' },
-  { year: '2025', title: 'Plateforme ibig-digital.com', desc: 'Lancement de la nouvelle plateforme digitale avec système de packs, devis en ligne et espace partenaires.' },
+  { year: '2023', title: 'Fondation IBIG SARL', desc: 'Création d\'INTERMARK BUSINESS INTERNATIONAL GROUP à Abidjan, spécialisé dans le conseil aux entreprises.' },
+  { year: '2025', title: 'Naissance d\'IBIG DIGITAL', desc: 'Lancement de la branche digitale pour répondre à la demande croissante de transformation numérique des PME africaines.' },
+  { year: '2025', title: 'Plateforme ibig-digital.com', desc: 'Lancement de la plateforme digitale officielle avec système de packs, devis en ligne et espace partenaires.' },
 ]
 
 export default function AboutPage() {
