@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Check, ArrowRight } from 'lucide-react'
 import { getPacks } from '@/lib/queries'
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Découvrez les packs commerciaux IBIG DIGITAL : Visibilité, Lancement Entreprise, Commerce en Ligne, Mobile Pro et Digital 360.',
 }
 
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 
 export default async function PacksPage() {
   const packs = await getPacks().catch(() => [])

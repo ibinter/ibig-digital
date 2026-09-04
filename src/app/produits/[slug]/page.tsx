@@ -27,7 +27,7 @@ export async function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }))
 }
 
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params

@@ -25,7 +25,7 @@ export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }))
 }
 
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params

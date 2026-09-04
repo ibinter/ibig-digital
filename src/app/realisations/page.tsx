@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import { getProjects } from '@/lib/queries'
 import ProjectCard from '@/components/ui/ProjectCard'
 import Link from 'next/link'
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Découvrez les projets réalisés par IBIG DIGITAL : sites web, applications, e-commerce, branding et solutions digitales pour entreprises.',
 }
 
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 
 export default async function RealisationsPage() {
   const projects = await getProjects().catch(() => [])

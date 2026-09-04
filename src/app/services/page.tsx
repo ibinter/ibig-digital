@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { getCategories, getProducts } from '@/lib/queries'
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Découvrez tous les services digitaux d\'IBIG DIGITAL : sites web, applications, e-commerce, design, marketing, IA, cybersécurité et plus.',
 }
 
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 
 export default async function ServicesPage() {
   const [categories, products] = await Promise.all([

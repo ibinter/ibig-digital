@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import { getFAQs } from '@/lib/queries'
 
 export const metadata: Metadata = {
@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Toutes les réponses à vos questions sur les prestations, délais, hébergement et maintenance IBIG DIGITAL.',
 }
 
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 
 export default async function FAQPage() {
   const faqs = await getFAQs().catch(() => [])
