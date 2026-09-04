@@ -109,7 +109,7 @@ const PROJETS_PHARES = [
     nom: 'Site UAJRP',
     tag: 'Site institutionnel',
     annee: 2024,
-    description: 'Site institutionnel de l\'Union des Artisans et Jeunes Professionnels. Présentation, adhésion, actualités et agenda des événements.',
+    description: 'Site institutionnel de l\'Union des Associations des Jeunes de la Riviera Palmeraie (UAJRP). Présentation, adhésion, actualités et agenda des événements.',
     url: 'https://uajrp.com',
     gradient: 'linear-gradient(135deg,#1A0A00 0%,#7C2D12 55%,#EA580C 100%)',
     accent: '#FB923C',
