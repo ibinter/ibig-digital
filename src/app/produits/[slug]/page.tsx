@@ -147,41 +147,58 @@ export default async function ProductPage({ params }: Props) {
             </div>
 
             {/* Carte prix hero */}
-            <div style={{ background:'rgba(255,255,255,.08)', backdropFilter:'blur(20px)', border:'1px solid rgba(255,255,255,.14)', borderRadius:'1.5rem', padding:'2rem' }}>
-              {product.promo_label && (
-                <div style={{ display:'inline-block', padding:'.3rem .875rem', borderRadius:'9999px', fontSize:'.75rem', fontWeight:700, color:'white', background:'linear-gradient(135deg,#FF6B00,#FF4500)', marginBottom:'1rem' }}>
-                  🔥 {product.promo_label}
-                </div>
-              )}
-              {product.price_type === 'on_quote' ? (
-                <>
-                  <div style={{ fontSize:'2rem', fontWeight:900, color:'white', marginBottom:'.25rem' }}>Sur devis</div>
-                  <div style={{ fontSize:'.875rem', color:'rgba(255,255,255,.45)', marginBottom:'1.5rem' }}>Offre personnalisée selon vos besoins</div>
-                </>
-              ) : product.price ? (
-                <div style={{ marginBottom:'1.5rem' }}>
-                  {product.price_type === 'from' && <div style={{ fontSize:'.7rem', fontWeight:700, letterSpacing:'.08em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'.25rem' }}>À partir de</div>}
-                  <div style={{ fontSize:'2.75rem', fontWeight:900, color:'white', letterSpacing:'-.025em', lineHeight:1 }}>{formatPrice(product.price, product.currency)}</div>
-                  <div style={{ fontSize:'1rem', fontWeight:600, color:'rgba(255,255,255,.45)', marginTop:'.25rem' }}>≈ {fcfaToUsd(product.price)}</div>
-                  {product.old_price && savings && (
-                    <div style={{ display:'flex', alignItems:'center', gap:'.5rem', marginTop:'.5rem' }}>
-                      <span style={{ fontSize:'.875rem', textDecoration:'line-through', color:'rgba(255,255,255,.3)' }}>{formatPrice(product.old_price)}</span>
-                      <span style={{ fontSize:'.75rem', fontWeight:700, padding:'.2rem .6rem', borderRadius:'9999px', background:'rgba(255,107,0,.25)', color:'#FF9A4D' }}>
-                        -{Math.round((savings / product.old_price!) * 100)}% d&apos;économie
-                      </span>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div style={{ fontSize:'1.75rem', fontWeight:900, color:'white', marginBottom:'1.5rem' }}>Contactez-nous</div>
-              )}
-              <div style={{ display:'flex', flexDirection:'column', gap:'.75rem' }}>
-                <Link href={`/devis?service=${product.slug}`} className="cta-btn-orange">
-                  Demander un devis <ArrowRight size={17} />
+            <div style={{ background:'rgba(255,255,255,.08)', backdropFilter:'blur(20px)', border:'1px solid rgba(255,255,255,.14)', borderRadius:'1.5rem', padding:'2rem', display:'flex', flexDirection:'column', justifyContent:'center', gap:'1.5rem' }}>
+              {/* Prix */}
+              <div>
+                {product.promo_label && (
+                  <div style={{ display:'inline-block', padding:'.25rem .75rem', borderRadius:'9999px', fontSize:'.7rem', fontWeight:700, color:'white', background:'linear-gradient(135deg,#FF6B00,#FF4500)', marginBottom:'.75rem' }}>
+                    🔥 {product.promo_label}
+                  </div>
+                )}
+                {product.price_type === 'on_quote' ? (
+                  <>
+                    <div style={{ fontSize:'2rem', fontWeight:900, color:'white' }}>Sur devis</div>
+                    <div style={{ fontSize:'.8rem', color:'rgba(255,255,255,.45)', marginTop:'.25rem' }}>Offre personnalisée selon vos besoins</div>
+                  </>
+                ) : product.price ? (
+                  <>
+                    {product.price_type === 'from' && <div style={{ fontSize:'.65rem', fontWeight:700, letterSpacing:'.1em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'.2rem' }}>À partir de</div>}
+                    <div style={{ fontSize:'2.5rem', fontWeight:900, color:'white', letterSpacing:'-.025em', lineHeight:1 }}>{formatPrice(product.price, product.currency)}</div>
+                    <div style={{ fontSize:'.875rem', color:'rgba(255,255,255,.4)', marginTop:'.2rem' }}>≈ {fcfaToUsd(product.price)}</div>
+                    {product.old_price && savings && (
+                      <div style={{ display:'flex', alignItems:'center', gap:'.5rem', marginTop:'.5rem', flexWrap:'wrap' }}>
+                        <span style={{ fontSize:'.8rem', textDecoration:'line-through', color:'rgba(255,255,255,.3)' }}>{formatPrice(product.old_price)}</span>
+                        <span style={{ fontSize:'.7rem', fontWeight:700, padding:'.15rem .5rem', borderRadius:'9999px', background:'rgba(255,107,0,.25)', color:'#FF9A4D' }}>
+                          -{Math.round((savings / product.old_price!) * 100)}% économie
+                        </span>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div style={{ fontSize:'1.75rem', fontWeight:900, color:'white' }}>Contactez-nous</div>
+                )}
+              </div>
+
+              {/* Boutons compacts côte à côte */}
+              <div style={{ display:'flex', gap:'.75rem', flexWrap:'wrap' }}>
+                <Link href={`/devis?service=${product.slug}`}
+                  style={{ display:'inline-flex', alignItems:'center', gap:'.5rem', padding:'.75rem 1.5rem', borderRadius:'.875rem', fontWeight:800, fontSize:'.875rem', color:'white', background:'linear-gradient(135deg,#FF6B00,#FF4500)', boxShadow:'0 6px 20px rgba(255,107,0,.35)', textDecoration:'none', whiteSpace:'nowrap', transition:'transform .15s, box-shadow .15s' }}>
+                  Devis gratuit <ArrowRight size={15} />
                 </Link>
-                <a href={waUrl} target="_blank" rel="noopener noreferrer" className="cta-btn-wa">
-                  <MessageSquare size={16} /> WhatsApp – Réponse rapide
+                <a href={waUrl} target="_blank" rel="noopener noreferrer"
+                  style={{ display:'inline-flex', alignItems:'center', gap:'.5rem', padding:'.75rem 1.25rem', borderRadius:'.875rem', fontWeight:700, fontSize:'.875rem', color:'white', background:'#25D366', boxShadow:'0 6px 16px rgba(37,211,102,.3)', textDecoration:'none', whiteSpace:'nowrap' }}>
+                  <MessageSquare size={14} /> WhatsApp
                 </a>
+              </div>
+
+              {/* Mini info */}
+              <div style={{ display:'flex', gap:'1rem', flexWrap:'wrap' }}>
+                <span style={{ fontSize:'.72rem', color:'rgba(255,255,255,.45)', display:'flex', alignItems:'center', gap:'.3rem' }}>
+                  <Shield size={11} /> Devis sans engagement
+                </span>
+                <span style={{ fontSize:'.72rem', color:'rgba(255,255,255,.45)', display:'flex', alignItems:'center', gap:'.3rem' }}>
+                  <Clock size={11} /> Réponse sous 24h
+                </span>
               </div>
             </div>
           </div>
