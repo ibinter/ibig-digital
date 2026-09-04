@@ -8,6 +8,7 @@ import Footer from '@/components/layout/Footer'
 import TopBar from '@/components/layout/TopBar'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
 import AffiliateTracker from '@/components/AffiliateTracker'
+import PwaInstall from '@/components/ui/PwaInstall'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
         <WhatsAppButton />
+        <PwaInstall />
       </body>
     </html>
   )
