@@ -4,13 +4,13 @@ import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
 import { SITE, NAV_LINKS } from '@/lib/constants'
 
 const services = [
-  { label: 'Sites web & présence digitale', href: '/services/sites-web' },
-  { label: 'Applications web & mobiles', href: '/services/applications' },
-  { label: 'E-commerce', href: '/services/ecommerce' },
-  { label: 'Design & identité visuelle', href: '/services/design' },
-  { label: 'Marketing digital', href: '/services/marketing-digital' },
-  { label: 'IA & Automatisation', href: '/services/ia-automatisation' },
-  { label: 'Cybersécurité', href: '/services/cybersecurite' },
+  { label: 'Sites web & présence digitale', href: '/services#sites-web' },
+  { label: 'Applications web & mobiles', href: '/services#applications' },
+  { label: 'E-commerce', href: '/services#ecommerce' },
+  { label: 'Design & identité visuelle', href: '/services#design' },
+  { label: 'Marketing digital', href: '/services#marketing-digital' },
+  { label: 'IA & Automatisation', href: '/services#ia-automatisation' },
+  { label: 'Cybersécurité', href: '/services#cybersecurite' },
 ]
 
 export default function Footer() {

@@ -30,32 +30,29 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center group">
-            {/* Logo sur fond sombre : logo complet blanc / sur fond clair : icône + texte */}
-            <Image
-              src="/logo-full.png"
-              alt="IBIG DIGITAL"
-              width={180}
-              height={54}
-              priority
-              className={cn('transition-all duration-300', scrolled ? 'hidden' : 'block')}
-              style={{ height: '44px', width: 'auto' }}
-            />
+          <Link href="/" className="flex items-center gap-2 group">
             <Image
               src="/logo-icon.png"
               alt="IBIG DIGITAL"
               width={44}
               height={44}
               priority
-              className={cn('transition-all duration-300 mr-2', scrolled ? 'block' : 'hidden')}
               style={{ height: '40px', width: 'auto' }}
             />
-            <span
-              className={cn('font-black text-lg leading-tight transition-colors', scrolled ? 'block' : 'hidden')}
-              style={{ color: 'var(--blue)' }}
-            >
-              IBIG <span style={{ color: 'var(--orange)' }}>DIGITAL</span>
-            </span>
+            <div>
+              <div
+                className="font-black text-xl leading-none tracking-tight transition-colors"
+                style={{ color: scrolled ? 'var(--blue)' : '#ffffff' }}
+              >
+                IBIG <span style={{ color: 'var(--orange)' }}>DIGITAL</span>
+              </div>
+              <div
+                className="text-[9px] font-semibold tracking-widest mt-0.5 transition-colors"
+                style={{ color: scrolled ? 'rgba(0,59,122,0.5)' : 'rgba(255,255,255,0.5)' }}
+              >
+                SOLUTIONS DIGITALES
+              </div>
+            </div>
           </Link>
 
           {/* Desktop nav */}
