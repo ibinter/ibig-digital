@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Clock, Star, Zap } from 'lucide-react'
 import { formatPrice, fcfaToUsd } from '@/lib/utils'
+import type { Category, Product } from '@/types'
 
 const CAT: Record<string, { g: string; accent: string; icon: string; glow: string }> = {
   'sites-web':            { g: 'linear-gradient(135deg,#0A2540,#003B7A,#0056CC)', accent: '#4D9FFF', icon: '🌐', glow: '0,91,204' },
@@ -26,13 +27,6 @@ const CAT: Record<string, { g: string; accent: string; icon: string; glow: strin
   'whatsapp-business':    { g: 'linear-gradient(135deg,#003D15,#15803D,#4ADE80)', accent: '#86EFAC', icon: '💬', glow: '22,163,74' },
 }
 const DEF = { g: 'linear-gradient(135deg,#001D3D,#003B7A)', accent: '#4D9FFF', icon: '⚡', glow: '0,59,122' }
-
-type Category = { id: number; name: string; slug: string; description?: string | null }
-type Product = {
-  id: number; name: string; slug: string; short_description?: string | null
-  price?: number | null; price_type?: string | null; delivery_time?: string | null
-  is_featured?: boolean; category_id: number
-}
 
 interface Props {
   categories: Category[]
@@ -255,7 +249,7 @@ export default function ServicesCatalog({ categories, products }: Props) {
 
                 {product.short_description && (
                   <p style={{ fontSize:'.8rem', color:'rgba(255,255,255,.45)', lineHeight:1.5, marginBottom:'1rem',
-                    display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical', overflow:'hidden' }}>
+                    overflow:'hidden', WebkitLineClamp:2 } as React.CSSProperties}>
                     {product.short_description}
                   </p>
                 )}

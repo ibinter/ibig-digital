@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { ArrowRight, Zap } from 'lucide-react'
 import { getCategories, getProducts } from '@/lib/queries'
+import type { Category, Product } from '@/types'
 import ServicesCatalog from './ServicesCatalog'
 
 export const metadata: Metadata = {
@@ -12,8 +13,8 @@ export const dynamic = 'force-dynamic'
 
 export default async function ServicesPage() {
   const [categories, products] = await Promise.all([
-    getCategories().catch(() => []),
-    getProducts().catch(() => []),
+    getCategories().catch((): Category[] => []),
+    getProducts().catch((): Product[] => []),
   ])
 
   return (
