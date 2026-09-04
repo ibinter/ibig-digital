@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { Check, ArrowRight } from 'lucide-react'
 import { getPacks } from '@/lib/queries'
-import { formatPrice } from '@/lib/utils'
+import { formatPrice, fcfaToUsd } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'Nos Packs',
@@ -44,15 +44,18 @@ export default async function PacksPage() {
                 <div className={`text-4xl font-bold ${pack.is_featured ? 'text-white' : ''}`} style={!pack.is_featured ? { color: 'var(--blue)' } : {}}>
                   {formatPrice(pack.price)}
                 </div>
+                <div className={`text-sm mt-0.5 font-medium ${pack.is_featured ? 'text-blue-200' : 'text-gray-400'}`}>
+                  ≈ {fcfaToUsd(pack.price)}
+                </div>
                 {pack.old_value && (
                   <div className={`text-sm line-through mt-1 ${pack.is_featured ? 'text-blue-200' : 'text-gray-400'}`}>
-                    Valeur : {formatPrice(pack.old_value)}
+                    Valeur : {formatPrice(pack.old_value)} · {fcfaToUsd(pack.old_value)}
                   </div>
                 )}
                 {pack.savings && (
                   <span className="inline-block mt-2 px-3 py-1 rounded-full text-xs font-bold"
                     style={{ background: pack.is_featured ? 'rgba(255,107,0,0.25)' : 'rgba(255,107,0,0.1)', color: pack.is_featured ? '#FFD6B0' : 'var(--orange)' }}>
-                    Économisez {formatPrice(pack.savings)}
+                    Économisez {formatPrice(pack.savings)} · {fcfaToUsd(pack.savings)}
                   </span>
                 )}
               </div>

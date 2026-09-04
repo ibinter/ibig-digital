@@ -20,6 +20,19 @@ export function formatPrice(price: number, currency = 'XOF'): string {
   }).format(price)
 }
 
+// 1 USD ≈ 600 FCFA (taux indicatif)
+export const USD_RATE = 600
+
+export function fcfaToUsd(fcfa: number): string {
+  const usd = Math.ceil(fcfa / USD_RATE)
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(usd)
+}
+
 export function slugify(text: string): string {
   return text
     .toLowerCase()

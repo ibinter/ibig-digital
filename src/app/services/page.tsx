@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Clock } from 'lucide-react'
 import { getCategories, getProducts } from '@/lib/queries'
-import { formatPrice } from '@/lib/utils'
+import { formatPrice, fcfaToUsd } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'Nos Services – Solutions Digitales | IBIG DIGITAL',
@@ -183,8 +183,11 @@ export default async function ServicesPage() {
                                 {product.price_type === 'from' && (
                                   <div className="text-xs text-gray-400 mb-0.5">À partir de</div>
                                 )}
-                                <span className="font-black text-lg" style={{ color: style.accent }}>
-                                  {formatPrice(product.price)} FCFA
+                                <span className="font-black text-base" style={{ color: style.accent }}>
+                                  {formatPrice(product.price)}
+                                </span>
+                                <span className="block text-xs text-gray-400 mt-0.5">
+                                  ≈ {fcfaToUsd(product.price)}
                                 </span>
                               </div>
                             ) : null}

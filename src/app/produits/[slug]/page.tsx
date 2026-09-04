@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Check, X, Clock, MessageSquare } from 'lucide-react'
 import { getProductBySlug, getProducts } from '@/lib/queries'
-import { formatPrice } from '@/lib/utils'
+import { formatPrice, fcfaToUsd } from '@/lib/utils'
 import { SITE } from '@/lib/constants'
 
 interface Props {
@@ -174,8 +174,13 @@ export default async function ProductPage({ params }: Props) {
                     <div className="text-3xl font-bold" style={{ color: 'var(--blue)' }}>
                       {formatPrice(product.price, product.currency)}
                     </div>
+                    <div className="text-base font-semibold text-gray-400 mt-0.5">
+                      ≈ {fcfaToUsd(product.price)}
+                    </div>
                     {product.old_price && (
-                      <div className="text-sm text-gray-400 line-through mt-1">{formatPrice(product.old_price)}</div>
+                      <div className="text-sm text-gray-400 line-through mt-1">
+                        {formatPrice(product.old_price)} · {fcfaToUsd(product.old_price)}
+                      </div>
                     )}
                   </>
                 ) : (
