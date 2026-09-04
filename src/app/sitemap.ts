@@ -1,61 +1,35 @@
-import { MetadataRoute } from 'next'
-import { getProducts, getProjects, getPacks, getBlogPosts } from '@/lib/queries'
+import type { MetadataRoute } from 'next'
 import { SITE } from '@/lib/constants'
 
-export const revalidate = 86400
+const base = SITE.url
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = SITE.url
+const staticRoutes: { url: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] }[] = [
+  { url: '/',                          priority: 1.0,  changeFrequency: 'weekly' },
+  { url: '/services',                  priority: 0.9,  changeFrequency: 'weekly' },
+  { url: '/produits',                  priority: 0.9,  changeFrequency: 'weekly' },
+  { url: '/packs',                     priority: 0.85, changeFrequency: 'weekly' },
+  { url: '/devis',                     priority: 0.85, changeFrequency: 'monthly' },
+  { url: '/contact',                   priority: 0.8,  changeFrequency: 'monthly' },
+  { url: '/realisations',              priority: 0.8,  changeFrequency: 'weekly' },
+  { url: '/a-propos',                  priority: 0.7,  changeFrequency: 'monthly' },
+  { url: '/blog',                      priority: 0.75, changeFrequency: 'weekly' },
+  { url: '/packs/pack-visibilite',             priority: 0.75, changeFrequency: 'monthly' },
+  { url: '/packs/pack-lancement-entreprise',   priority: 0.75, changeFrequency: 'monthly' },
+  { url: '/packs/pack-commerce-en-ligne',      priority: 0.75, changeFrequency: 'monthly' },
+  { url: '/packs/pack-mobile-pro',             priority: 0.75, changeFrequency: 'monthly' },
+  { url: '/packs/pack-digital-360',            priority: 0.75, changeFrequency: 'monthly' },
+  { url: '/mentions-legales',          priority: 0.3,  changeFrequency: 'yearly' },
+  { url: '/politique-confidentialite', priority: 0.3,  changeFrequency: 'yearly' },
+  { url: '/cgv',                       priority: 0.3,  changeFrequency: 'yearly' },
+  { url: '/cgu',                       priority: 0.3,  changeFrequency: 'yearly' },
+]
 
-  const [products, projects, packs, posts] = await Promise.all([
-    getProducts().catch(() => []),
-    getProjects().catch(() => []),
-    getPacks().catch(() => []),
-    getBlogPosts().catch(() => []),
-  ])
-
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: base, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
-    { url: `${base}/services`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/produits`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/packs`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/realisations`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${base}/a-propos`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${base}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${base}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${base}/devis`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${base}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${base}/mentions-legales`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${base}/politique-confidentialite`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
-  ]
-
-  const productRoutes: MetadataRoute.Sitemap = products.map((p) => ({
-    url: `${base}/produits/${p.slug}`,
-    lastModified: new Date(p.updated_at),
-    changeFrequency: 'weekly',
-    priority: 0.8,
+export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date()
+  return staticRoutes.map(({ url, priority, changeFrequency }) => ({
+    url: `${base}${url}`,
+    lastModified: now,
+    changeFrequency,
+    priority,
   }))
-
-  const projectRoutes: MetadataRoute.Sitemap = projects.map((p) => ({
-    url: `${base}/realisations/${p.slug}`,
-    lastModified: new Date(p.created_at),
-    changeFrequency: 'monthly',
-    priority: 0.7,
-  }))
-
-  const packRoutes: MetadataRoute.Sitemap = packs.map((p) => ({
-    url: `${base}/packs/${p.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.7,
-  }))
-
-  const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
-    url: `${base}/blog/${p.slug}`,
-    lastModified: new Date(p.published_at ?? p.created_at),
-    changeFrequency: 'monthly',
-    priority: 0.6,
-  }))
-
-  return [...staticRoutes, ...productRoutes, ...projectRoutes, ...packRoutes, ...blogRoutes]
 }

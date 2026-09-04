@@ -10,10 +10,12 @@ import CtaSection from '@/components/sections/CtaSection'
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import { getProjects, getPacks } from '@/lib/queries'
 import { SITE } from '@/lib/constants'
+import { LocalBusinessJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
   title: `${SITE.name} – Agence Digitale en Côte d'Ivoire`,
   description: 'IBIG DIGITAL crée vos sites web, applications mobiles, solutions e-commerce et identité visuelle. Agence digitale premium en Côte d\'Ivoire et en Afrique.',
+  alternates: { canonical: SITE.url },
   openGraph: {
     title: `${SITE.name} – Agence Digitale Premium`,
     description: 'Solutions digitales professionnelles pour entreprises, PME et startups.',
@@ -30,6 +32,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <LocalBusinessJsonLd />
       <Hero />
       <StatsSection />
       <ProjectsSection projects={projects} />

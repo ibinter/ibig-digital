@@ -6,6 +6,7 @@ import ContactForm from '@/components/forms/ContactForm'
 export const metadata: Metadata = {
   title: 'Contact',
   description: 'Contactez IBIG DIGITAL par e-mail, téléphone ou WhatsApp. Notre équipe répond sous 48h.',
+  alternates: { canonical: 'https://ibig-digital.com/contact' },
 }
 
 export default function ContactPage() {

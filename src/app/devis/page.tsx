@@ -4,6 +4,7 @@ import QuoteForm from '@/components/forms/QuoteForm'
 export const metadata: Metadata = {
   title: 'Demander un devis',
   description: 'Décrivez votre projet digital et recevez une proposition personnalisée d\'IBIG DIGITAL sous 48h. Premier échange gratuit et sans engagement.',
+  alternates: { canonical: 'https://ibig-digital.com/devis' },
 }
 
 export default function DevisPage() {
