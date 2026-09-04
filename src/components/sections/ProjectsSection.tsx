@@ -26,9 +26,7 @@ export default function ProjectsSection({ projects }: Props) {
           </p>
         </div>
 
-        {projects.length === 0 ? (
-          <EmptyProjects />
-        ) : (
+        {projects.length > 0 && (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {projects.map((project) => (
               <ProjectCard key={project.id} project={project} />
@@ -39,10 +37,10 @@ export default function ProjectsSection({ projects }: Props) {
         <div className="text-center">
           <Link
             href="/realisations"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90 hover:shadow-lg"
             style={{ background: 'var(--blue)' }}
           >
-            Voir toutes nos réalisations <ArrowRight size={20} />
+            Consulter nos réalisations <ArrowRight size={20} />
           </Link>
         </div>
       </div>
