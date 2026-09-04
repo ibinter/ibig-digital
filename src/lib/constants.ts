@@ -21,7 +21,6 @@ export const NAV_LINKS = [
   { label: 'Réalisations', href: '/realisations' },
   { label: 'À propos', href: '/a-propos' },
   { label: 'Blog', href: '/blog' },
-  { label: 'Contact', href: '/contact' },
 ] as const
 
 export const COLORS = {
