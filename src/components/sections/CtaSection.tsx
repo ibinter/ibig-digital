@@ -18,7 +18,7 @@ export default function CtaSection() {
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Carte principale */}
-        <div className="rounded-3xl p-10 sm:p-14 text-center"
+        <div className="rounded-3xl p-6 sm:p-10 lg:p-14 text-center"
           style={{ background: 'linear-gradient(135deg, #001D3D 0%, #003B7A 50%, #0056B3 100%)', boxShadow: '0 30px 80px rgba(0,59,122,0.3)' }}>
 
           {/* Badge urgence */}
@@ -28,7 +28,7 @@ export default function CtaSection() {
             Devis gratuit — Réponse sous 24h
           </div>
 
-          <h2 className="text-4xl sm:text-5xl font-black text-white mb-6" style={{ letterSpacing: '-0.02em' }}>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-6" style={{ letterSpacing: '-0.02em' }}>
             Prêt à propulser<br />votre business en ligne ?
           </h2>
 

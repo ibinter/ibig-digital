@@ -68,7 +68,7 @@ export default function TestimonialsSection() {
             style={{ background: 'rgba(0,59,122,0.08)', color: '#003B7A' }}>
             Ils nous font confiance
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black mb-4" style={{ color: '#001D3D', letterSpacing: '-0.02em' }}>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black mb-4" style={{ color: '#001D3D', letterSpacing: '-0.02em' }}>
             Ce que disent nos clients
           </h2>
           <div className="flex items-center justify-center gap-2 mb-4">
@@ -79,7 +79,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Grille témoignages */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <div key={i} className="bg-white p-7 rounded-3xl relative overflow-hidden"
               style={{ boxShadow: '0 2px 20px rgba(0,0,0,0.05)' }}>

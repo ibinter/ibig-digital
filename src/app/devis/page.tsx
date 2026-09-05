@@ -23,7 +23,7 @@ export default function DevisPage() {
       </section>
 
       <section className="py-16 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 md:p-12">
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 sm:p-8 md:p-12">
           <QuoteForm />
         </div>
       </section>

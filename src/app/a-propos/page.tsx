@@ -146,13 +146,13 @@ export default function AboutPage() {
           STATS
       ══════════════════════════════════════════ */}
       <section style={{ maxWidth:'1100px', margin:'0 auto', padding:'0 1.5rem 5rem' }}>
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(220px,1fr))', gap:'1rem' }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(220px,45%),1fr))', gap:'1rem' }}>
           {STATS.map(({ value, label, icon: Icon }) => (
             <div key={label} className="stat-card">
               <div style={{ width:'48px', height:'48px', borderRadius:'1rem', background:'rgba(255,107,0,.12)', border:'1px solid rgba(255,107,0,.22)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 1rem' }}>
                 <Icon size={22} style={{ color:'#FF9A4D' }} />
               </div>
-              <div style={{ fontSize:'2.75rem', fontWeight:900, color:'white', letterSpacing:'-.04em', lineHeight:1 }}>{value}</div>
+              <div style={{ fontSize:'clamp(1.75rem,5vw,2.75rem)', fontWeight:900, color:'white', letterSpacing:'-.04em', lineHeight:1 }}>{value}</div>
               <div style={{ fontSize:'.8rem', color:'rgba(255,255,255,.4)', marginTop:'.5rem', fontWeight:500 }}>{label}</div>
             </div>
           ))}
@@ -162,9 +162,9 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════
           MISSION + VISION
       ══════════════════════════════════════════ */}
-      <section style={{ maxWidth:'1100px', margin:'0 auto', padding:'0 1.5rem 5rem', display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.5rem', alignItems:'start' }}>
+      <section style={{ maxWidth:'1100px', margin:'0 auto', padding:'0 1.5rem 5rem' }} className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <div style={{ padding:'2.5rem', borderRadius:'1.5rem', background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.07)', position:'relative', overflow:'hidden' }}>
+        <div style={{ padding:'clamp(1.25rem,4vw,2.5rem)', borderRadius:'1.5rem', background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.07)', position:'relative', overflow:'hidden' }}>
           <div style={{ position:'absolute', top:0, left:0, right:0, height:'2px', background:'linear-gradient(90deg,#FF6B00,#FF9A4D)' }} />
           <div style={{ position:'absolute', top:'-30px', right:'-30px', width:'150px', height:'150px', borderRadius:'50%', background:'radial-gradient(circle,rgba(255,107,0,.07) 0%,transparent 70%)' }} />
           <div style={{ fontSize:'2.5rem', marginBottom:'1.25rem', animation:'float 3.5s ease-in-out infinite' }}>🎯</div>
@@ -177,7 +177,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div style={{ padding:'2.5rem', borderRadius:'1.5rem', background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.07)', position:'relative', overflow:'hidden' }}>
+        <div style={{ padding:'clamp(1.25rem,4vw,2.5rem)', borderRadius:'1.5rem', background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.07)', position:'relative', overflow:'hidden' }}>
           <div style={{ position:'absolute', top:0, left:0, right:0, height:'2px', background:'linear-gradient(90deg,#003B7A,#005BCC)' }} />
           <div style={{ position:'absolute', top:'-30px', right:'-30px', width:'150px', height:'150px', borderRadius:'50%', background:'radial-gradient(circle,rgba(0,91,204,.08) 0%,transparent 70%)' }} />
           <div style={{ fontSize:'2.5rem', marginBottom:'1.25rem', animation:'float 4s ease-in-out infinite .5s' }}>🌍</div>
@@ -271,7 +271,7 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════
           IBIG PARTNERS + INFOS LÉGALES
       ══════════════════════════════════════════ */}
-      <section style={{ maxWidth:'1100px', margin:'0 auto', padding:'0 1.5rem 5rem', display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.5rem', alignItems:'start' }}>
+      <section style={{ maxWidth:'1100px', margin:'0 auto', padding:'0 1.5rem 5rem' }} className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         {/* IBIG PARTNERS */}
         <div style={{ padding:'2.5rem', borderRadius:'1.5rem', position:'relative', overflow:'hidden', background:'linear-gradient(145deg,#0d1a33 0%,#102040 50%,#0a1628 100%)', border:'2px solid rgba(0,91,204,.4)' }}>

@@ -14,7 +14,7 @@ export default function StatsSection() {
             <div key={stat.label} className="text-center group">
               <div className="text-4xl mb-2">{stat.icon}</div>
               <div
-                className="text-4xl font-bold mb-1 transition-colors"
+                className="text-2xl sm:text-4xl font-bold mb-1 transition-colors"
                 style={{ color: 'var(--blue)' }}
               >
                 {stat.value}

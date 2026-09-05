@@ -54,7 +54,7 @@ export default function ProcessSection() {
             style={{ background: 'rgba(0,59,122,0.08)', color: '#003B7A' }}>
             Notre méthode éprouvée
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black mb-4" style={{ color: '#001D3D', letterSpacing: '-0.02em' }}>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black mb-4" style={{ color: '#001D3D', letterSpacing: '-0.02em' }}>
             De l&apos;idée au lancement en{' '}
             <span style={{ background: 'linear-gradient(90deg, #003B7A, #FF6B00)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               6 étapes

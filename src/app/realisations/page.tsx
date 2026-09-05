@@ -291,9 +291,9 @@ export default function RealisationsPage() {
           <div style={{ height:'3px', width:'2.5rem', borderRadius:'9999px', background:'linear-gradient(90deg,#FF6B00,#FF9A4D)' }} />
           <h2 style={{ fontWeight:900, fontSize:'1rem', color:'white', letterSpacing:'.08em', textTransform:'uppercase' }}>Sites web & Plateformes</h2>
         </div>
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(300px,1fr))', gap:'1.25rem' }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(300px,100%),1fr))', gap:'1.25rem' }}>
           {PROJETS_PHARES.map((p, i) => (
-            <div key={p.id} className="proj-card" style={{ background: p.gradient, height: i < 2 ? '360px' : '280px' }}>
+            <div key={p.id} className="proj-card" style={{ background: p.gradient, minHeight: i < 2 ? '320px' : '260px', height: 'auto' }}>
               <div style={{ position:'absolute', top:'1.25rem', left:'1.25rem', fontSize: i < 2 ? '3rem' : '2.25rem', animation:'float 3s ease-in-out infinite', animationDelay:`${i * .35}s`, zIndex:2 }}>
                 {p.icon}
               </div>
@@ -335,7 +335,7 @@ export default function RealisationsPage() {
           </a>
         </div>
 
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(310px,1fr))', gap:'1rem' }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(310px,100%),1fr))', gap:'1rem' }}>
           {LOGICIELS.map((log) => (
             <div key={log.id} className="logiciel-card" style={{ background: log.gradient }}>
               <div style={{ position:'absolute', top:0, right:0, width:'180px', height:'180px', borderRadius:'50%', background:`radial-gradient(circle,${log.accent}15 0%,transparent 65%)`, transform:'translate(30%,-30%)' }} />

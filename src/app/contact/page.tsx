@@ -50,7 +50,7 @@ export default function ContactPage() {
           {/* Formulaire */}
           <div>
             <h2 className="text-2xl font-bold mb-8" style={{ color: 'var(--dark)' }}>Envoyer un message</h2>
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-8">
               <ContactForm />
             </div>
           </div>

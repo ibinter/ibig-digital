@@ -230,9 +230,9 @@ export default async function ProductPage({ params }: Props) {
             {/* Images */}
             {product.images && product.images.length > 0 && (
               <div className="scard">
-                <div style={{ display:'grid', gridTemplateColumns: product.images.length === 1 ? '1fr' : '1fr 1fr', gap:'2px' }}>
+                <div style={{ display:'grid', gridTemplateColumns: product.images.length === 1 ? '1fr' : 'repeat(auto-fit,minmax(min(200px,100%),1fr))', gap:'2px' }}>
                   {product.images.map((img) => (
-                    <div key={img.id} style={{ position:'relative', height:'220px', background:'#F1F5F9' }}>
+                    <div key={img.id} style={{ position:'relative', minHeight:'180px', height:'clamp(180px,30vw,260px)', background:'#F1F5F9' }}>
                       <Image src={img.storage_path} alt={img.alt_text ?? product.name} fill style={{ objectFit:'cover' }} />
                     </div>
                   ))}

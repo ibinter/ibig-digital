@@ -70,7 +70,7 @@ export default function WhyIbig() {
             style={{ background: 'rgba(255,107,0,0.15)', color: '#FF8C42' }}>
             Pourquoi choisir IBIG DIGITAL
           </div>
-          <h2 className="text-4xl sm:text-5xl font-black text-white mb-6" style={{ letterSpacing: '-0.02em' }}>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-6" style={{ letterSpacing: '-0.02em' }}>
             L&apos;agence qui fait la{' '}
             <span style={{ background: 'linear-gradient(90deg, #FF6B00, #FF8C42)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               différence
@@ -82,7 +82,7 @@ export default function WhyIbig() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-16">
           {bigStats.map((s) => (
             <div key={s.label} className="text-center p-6 rounded-2xl"
               style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
@@ -94,7 +94,7 @@ export default function WhyIbig() {
         </div>
 
         {/* Raisons */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {reasons.map((r) => (
             <div key={r.title} className="group p-6 rounded-3xl transition-all duration-300 hover:-translate-y-1"
               style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>

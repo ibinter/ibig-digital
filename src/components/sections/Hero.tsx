@@ -27,11 +27,11 @@ export default function Hero() {
 
       {/* Orbes animés */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full"
+        <div className="absolute top-[-10%] right-[-5%] w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(0,91,187,0.5) 0%, transparent 70%)', animation: 'pulse 8s ease-in-out infinite' }} />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full"
+        <div className="absolute bottom-[-10%] left-[-5%] w-[250px] h-[250px] sm:w-[380px] sm:h-[380px] lg:w-[500px] lg:h-[500px] rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(255,107,0,0.25) 0%, transparent 70%)', animation: 'pulse 6s ease-in-out infinite 2s' }} />
-        <div className="absolute top-[40%] left-[30%] w-[300px] h-[300px] rounded-full"
+        <div className="absolute top-[40%] left-[30%] w-[150px] h-[150px] sm:w-[220px] sm:h-[220px] lg:w-[300px] lg:h-[300px] rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(0,86,179,0.2) 0%, transparent 70%)', animation: 'pulse 10s ease-in-out infinite 1s' }} />
         {/* Grille */}
         <div className="absolute inset-0 opacity-[0.04]"
@@ -63,7 +63,7 @@ export default function Hero() {
             </div>
 
             {/* Titre */}
-            <h1 className="text-5xl sm:text-6xl lg:text-6xl font-black text-white leading-[1.1] mb-6" style={{ letterSpacing: '-0.02em' }}>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-6" style={{ letterSpacing: '-0.02em' }}>
               Nous créons des{' '}
               <span className="block mt-1 word-fade" style={{
                 background: 'linear-gradient(90deg, #FF6B00, #FF8C42)',
