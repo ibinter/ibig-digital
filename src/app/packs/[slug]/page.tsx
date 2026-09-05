@@ -162,6 +162,30 @@ export default async function PackDetailPage({ params }: Props) {
           backdrop-filter:blur(20px);
           overflow:hidden;
         }
+
+        /* ── RESPONSIVE ── */
+        .pack-hero-grid {
+          display:grid;
+          grid-template-columns: 1fr 380px;
+          gap:3rem;
+          align-items:start;
+        }
+        .pack-testimonial-grid {
+          display:grid;
+          grid-template-columns: 1fr 1fr;
+          gap:1.5rem;
+          align-items:start;
+        }
+        @media (max-width: 900px) {
+          .pack-hero-grid { grid-template-columns:1fr; }
+          .sticky-card { position:static; }
+        }
+        @media (max-width: 640px) {
+          .pack-testimonial-grid { grid-template-columns:1fr; }
+          .check-row { padding:.75rem .875rem; }
+          .benefit-card { padding:1.1rem; }
+          .step-card { padding:1.1rem; }
+        }
       `}</style>
 
       {/* ── BREADCRUMB ── */}
@@ -177,12 +201,12 @@ export default async function PackDetailPage({ params }: Props) {
       <section style={{ position:'relative', overflow:'hidden', padding:'2.5rem 0 4rem' }}>
         {/* Orbs */}
         <div style={{ position:'absolute', inset:0, pointerEvents:'none' }}>
-          <div style={{ position:'absolute', top:'-5%', left:'5%', width:'600px', height:'600px', borderRadius:'50%', background:'radial-gradient(circle,rgba(0,91,204,.18) 0%,transparent 70%)', animation:'pulse-glow 4s ease-in-out infinite' }} />
+          <div style={{ position:'absolute', top:'-5%', left:'5%', width:'min(600px,100vw)', height:'min(600px,100vw)', borderRadius:'50%', background:'radial-gradient(circle,rgba(0,91,204,.18) 0%,transparent 70%)', animation:'pulse-glow 4s ease-in-out infinite' }} />
           <div style={{ position:'absolute', top:'10%', right:'5%', width:'400px', height:'400px', borderRadius:'50%', background:'radial-gradient(circle,rgba(255,107,0,.1) 0%,transparent 70%)', animation:'pulse-glow 5s ease-in-out infinite .7s' }} />
           <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px)', backgroundSize:'60px 60px' }} />
         </div>
 
-        <div style={{ position:'relative', maxWidth:'1200px', margin:'0 auto', padding:'0 1.5rem', display:'grid', gridTemplateColumns:'1fr 380px', gap:'3rem', alignItems:'start' }}>
+        <div style={{ position:'relative', maxWidth:'1200px', margin:'0 auto', padding:'0 1.5rem' }} className="pack-hero-grid">
 
           {/* LEFT */}
           <div>
@@ -333,7 +357,7 @@ export default async function PackDetailPage({ params }: Props) {
               {pack.items.length} services inclus dans ce pack
             </h2>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(340px,1fr))', gap:'.75rem' }}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(340px,100%),1fr))', gap:'.75rem' }}>
             {pack.items.map((item, i) => (
               <div key={item.id} className="check-row">
                 <div style={{ width:'32px', height:'32px', borderRadius:'50%', background:'rgba(255,107,0,.14)', border:'1px solid rgba(255,107,0,.28)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, fontSize:'.75rem', fontWeight:800, color:'#FF9A4D' }}>
@@ -364,7 +388,7 @@ export default async function PackDetailPage({ params }: Props) {
           <div style={{ height:'3px', width:'2.5rem', borderRadius:'9999px', background:'linear-gradient(90deg,#FF6B00,#FF9A4D)' }} />
           <h2 style={{ fontWeight:900, fontSize:'1rem', color:'white', letterSpacing:'.08em', textTransform:'uppercase' }}>Pourquoi choisir ce pack ?</h2>
         </div>
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(260px,1fr))', gap:'1rem' }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(260px,100%),1fr))', gap:'1rem' }}>
           {content.benefits.map(({ icon: Icon, title, desc }) => (
             <div key={title} className="benefit-card">
               <div style={{ width:'44px', height:'44px', borderRadius:'1rem', background:'rgba(255,107,0,.12)', border:'1px solid rgba(255,107,0,.22)', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'1rem' }}>
@@ -385,7 +409,7 @@ export default async function PackDetailPage({ params }: Props) {
           <div style={{ height:'3px', width:'2.5rem', borderRadius:'9999px', background:'linear-gradient(90deg,#FF6B00,#FF9A4D)' }} />
           <h2 style={{ fontWeight:900, fontSize:'1rem', color:'white', letterSpacing:'.08em', textTransform:'uppercase' }}>Comment ça se passe ?</h2>
         </div>
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(240px,1fr))', gap:'1rem' }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(240px,100%),1fr))', gap:'1rem' }}>
           {STEPS.map((step, i) => (
             <div key={step.n} className="step-card">
               {/* Connecting line */}
@@ -403,7 +427,7 @@ export default async function PackDetailPage({ params }: Props) {
       {/* ══════════════════════════════════════════
           TESTIMONIAL + IDEAL FOR
       ══════════════════════════════════════════ */}
-      <section style={{ maxWidth:'1200px', margin:'0 auto', padding:'0 1.5rem 5rem', display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.5rem', alignItems:'start' }}>
+      <section style={{ maxWidth:'1200px', margin:'0 auto', padding:'0 1.5rem 5rem' }} className="pack-testimonial-grid">
 
         {/* Testimonial */}
         <div style={{ padding:'2rem', borderRadius:'1.5rem', background:'rgba(255,255,255,.04)', border:'1px solid rgba(255,255,255,.08)', position:'relative', overflow:'hidden' }}>
@@ -478,7 +502,7 @@ export default async function PackDetailPage({ params }: Props) {
           CTA FINAL
       ══════════════════════════════════════════ */}
       <section style={{ maxWidth:'860px', margin:'0 auto', padding:'0 1.5rem 7rem', textAlign:'center' }}>
-        <div style={{ padding:'3.5rem 2.5rem', borderRadius:'2rem', background:'rgba(255,255,255,.03)', border:'1px solid rgba(255,255,255,.08)', position:'relative', overflow:'hidden' }}>
+        <div style={{ padding:'clamp(1.5rem,5vw,3.5rem) clamp(1rem,4vw,2.5rem)', borderRadius:'2rem', background:'rgba(255,255,255,.03)', border:'1px solid rgba(255,255,255,.08)', position:'relative', overflow:'hidden' }}>
           <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse at 50% 0%,rgba(255,107,0,.1) 0%,transparent 65%)', pointerEvents:'none' }} />
           <div style={{ position:'relative' }}>
             <div style={{ fontSize:'3rem', marginBottom:'1.25rem', animation:'float 3s ease-in-out infinite' }}>{content.emoji}</div>

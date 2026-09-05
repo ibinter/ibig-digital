@@ -64,8 +64,8 @@ export default async function PacksPage() {
       <section style={{ position:'relative', paddingTop:'8rem', paddingBottom:'5rem', overflow:'hidden', textAlign:'center' }}>
         {/* Glow orbs */}
         <div style={{ position:'absolute', inset:0, pointerEvents:'none' }}>
-          <div style={{ position:'absolute', top:'-5%', left:'20%', width:'520px', height:'520px', borderRadius:'50%', background:'radial-gradient(circle,rgba(0,91,204,.2) 0%,transparent 70%)', animation:'pulse-glow 4s ease-in-out infinite' }} />
-          <div style={{ position:'absolute', top:'10%', right:'15%', width:'360px', height:'360px', borderRadius:'50%', background:'radial-gradient(circle,rgba(255,107,0,.12) 0%,transparent 70%)', animation:'pulse-glow 5s ease-in-out infinite .8s' }} />
+          <div style={{ position:'absolute', top:'-5%', left:'20%', width:'min(520px,90vw)', height:'min(520px,90vw)', borderRadius:'50%', background:'radial-gradient(circle,rgba(0,91,204,.2) 0%,transparent 70%)', animation:'pulse-glow 4s ease-in-out infinite' }} />
+          <div style={{ position:'absolute', top:'10%', right:'15%', width:'min(360px,60vw)', height:'min(360px,60vw)', borderRadius:'50%', background:'radial-gradient(circle,rgba(255,107,0,.12) 0%,transparent 70%)', animation:'pulse-glow 5s ease-in-out infinite .8s' }} />
           <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px)', backgroundSize:'60px 60px' }} />
         </div>
 
@@ -101,7 +101,7 @@ export default async function PacksPage() {
             </Link>
           </div>
         ) : (
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(320px,1fr))', gap:'1.5rem', alignItems:'start' }}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(320px,100%),1fr))', gap:'1.5rem', alignItems:'start' }}>
             {packs.map((pack, i) => (
               <div
                 key={pack.id}
