@@ -300,7 +300,7 @@ export default function ServicesCatalog({ categories, products }: Props) {
         <div style={{ maxWidth:'900px', margin:'0 auto' }}>
           <div style={{
             position:'relative', borderRadius:'2rem', overflow:'hidden',
-            padding:'4rem 2rem', textAlign:'center',
+            padding:'clamp(2rem,6vw,4rem) clamp(1rem,4vw,2rem)', textAlign:'center',
             background:'linear-gradient(135deg,#001D3D 0%,#003B7A 50%,#FF6B00 160%)',
           }}>
             <div style={{ position:'absolute', inset:0, background:'radial-gradient(circle at 70% 50%,rgba(255,107,0,.2) 0%,transparent 55%)', pointerEvents:'none' }} />

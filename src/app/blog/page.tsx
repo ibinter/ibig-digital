@@ -39,8 +39,8 @@ export default function BlogPage() {
       {/* ── HERO ── */}
       <section style={{ position:'relative', overflow:'hidden', padding:'9rem 0 4rem', textAlign:'center' }}>
         <div style={{ position:'absolute', inset:0, pointerEvents:'none' }}>
-          <div style={{ position:'absolute', top:'-5%', left:'15%', width:'600px', height:'600px', borderRadius:'50%', background:'radial-gradient(circle,rgba(0,91,204,.18) 0%,transparent 70%)', animation:'pulse-glow 4s ease-in-out infinite' }} />
-          <div style={{ position:'absolute', top:'10%', right:'10%', width:'400px', height:'400px', borderRadius:'50%', background:'radial-gradient(circle,rgba(255,107,0,.1) 0%,transparent 70%)', animation:'pulse-glow 5s ease-in-out infinite .8s' }} />
+          <div style={{ position:'absolute', top:'-5%', left:'15%', width:'min(600px,100vw)', height:'min(600px,100vw)', borderRadius:'50%', background:'radial-gradient(circle,rgba(0,91,204,.18) 0%,transparent 70%)', animation:'pulse-glow 4s ease-in-out infinite' }} />
+          <div style={{ position:'absolute', top:'10%', right:'10%', width:'min(400px,70vw)', height:'min(400px,70vw)', borderRadius:'50%', background:'radial-gradient(circle,rgba(255,107,0,.1) 0%,transparent 70%)', animation:'pulse-glow 5s ease-in-out infinite .8s' }} />
           <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px)', backgroundSize:'60px 60px' }} />
         </div>
         <div style={{ position:'relative', maxWidth:'700px', margin:'0 auto', padding:'0 1.5rem' }}>
@@ -62,14 +62,14 @@ export default function BlogPage() {
 
       {/* ── ARTICLE FEATURED ── */}
       <section style={{ maxWidth:'1100px', margin:'0 auto', padding:'0 1.5rem 3rem' }}>
-        <Link href={`/blog/${featured.slug}`} style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0', borderRadius:'1.75rem', overflow:'hidden', textDecoration:'none', border:'1px solid rgba(255,255,255,.08)', background:'rgba(255,255,255,.04)', transition:'border-color .2s, transform .2s' }}>
+        <Link href={`/blog/${featured.slug}`} style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(min(300px,100%),1fr))', gap:'0', borderRadius:'1.75rem', overflow:'hidden', textDecoration:'none', border:'1px solid rgba(255,255,255,.08)', background:'rgba(255,255,255,.04)', transition:'border-color .2s, transform .2s' }}>
           {/* Emoji side */}
-          <div style={{ display:'flex', alignItems:'center', justifyContent:'center', minHeight:'280px', background:'linear-gradient(135deg,rgba(255,107,0,.1) 0%,rgba(0,59,122,.15) 100%)', position:'relative', overflow:'hidden' }}>
+          <div style={{ display:'flex', alignItems:'center', justifyContent:'center', minHeight:'200px', background:'linear-gradient(135deg,rgba(255,107,0,.1) 0%,rgba(0,59,122,.15) 100%)', position:'relative', overflow:'hidden' }}>
             <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)', backgroundSize:'30px 30px' }} />
             <div style={{ fontSize:'7rem', animation:'float 3s ease-in-out infinite', position:'relative' }}>{featured.emoji}</div>
           </div>
           {/* Content side */}
-          <div style={{ padding:'2.5rem' }}>
+          <div style={{ padding:'clamp(1.25rem,4vw,2.5rem)' }}>
             <div style={{ display:'flex', alignItems:'center', gap:'.625rem', marginBottom:'1rem' }}>
               <span className="cat-badge">{featured.category}</span>
               <span style={{ display:'inline-flex', alignItems:'center', gap:'.3rem', fontSize:'.65rem', color:'rgba(255,255,255,.3)', fontWeight:500 }}>
@@ -105,7 +105,7 @@ export default function BlogPage() {
           </h2>
         </div>
 
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(320px,1fr))', gap:'1.25rem' }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(320px,100%),1fr))', gap:'1.25rem' }}>
           {rest.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className="post-card">
               {/* Emoji banner */}

@@ -110,8 +110,8 @@ export default function AboutPage() {
       ══════════════════════════════════════════ */}
       <section style={{ position:'relative', overflow:'hidden', padding:'9rem 0 5rem', textAlign:'center' }}>
         <div style={{ position:'absolute', inset:0, pointerEvents:'none' }}>
-          <div style={{ position:'absolute', top:'-10%', left:'10%', width:'700px', height:'700px', borderRadius:'50%', background:'radial-gradient(circle,rgba(0,91,204,.2) 0%,transparent 70%)', animation:'pulse-glow 4s ease-in-out infinite' }} />
-          <div style={{ position:'absolute', top:'5%', right:'5%', width:'450px', height:'450px', borderRadius:'50%', background:'radial-gradient(circle,rgba(255,107,0,.1) 0%,transparent 70%)', animation:'pulse-glow 5s ease-in-out infinite .8s' }} />
+          <div style={{ position:'absolute', top:'-10%', left:'10%', width:'min(700px,100vw)', height:'min(700px,100vw)', borderRadius:'50%', background:'radial-gradient(circle,rgba(0,91,204,.2) 0%,transparent 70%)', animation:'pulse-glow 4s ease-in-out infinite' }} />
+          <div style={{ position:'absolute', top:'5%', right:'5%', width:'min(450px,80vw)', height:'min(450px,80vw)', borderRadius:'50%', background:'radial-gradient(circle,rgba(255,107,0,.1) 0%,transparent 70%)', animation:'pulse-glow 5s ease-in-out infinite .8s' }} />
           <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px)', backgroundSize:'60px 60px' }} />
         </div>
 

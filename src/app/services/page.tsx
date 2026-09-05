@@ -32,9 +32,9 @@ export default async function ServicesPage() {
       <section style={{ position:'relative', paddingTop:'7rem', paddingBottom:'5rem', overflow:'hidden' }}>
         {/* Orbes */}
         <div style={{ position:'absolute', inset:0, pointerEvents:'none' }}>
-          <div style={{ position:'absolute', top:'-10%', left:'20%', width:'600px', height:'600px', borderRadius:'50%', background:'radial-gradient(circle,rgba(0,91,204,.28) 0%,transparent 70%)', animation:'pulse-glow 4s ease-in-out infinite' }} />
-          <div style={{ position:'absolute', bottom:'-10%', right:'20%', width:'500px', height:'500px', borderRadius:'50%', background:'radial-gradient(circle,rgba(255,107,0,.15) 0%,transparent 70%)', animation:'pulse-glow 5s ease-in-out infinite .5s' }} />
-          <div style={{ position:'absolute', top:'40%', left:0, width:'300px', height:'300px', borderRadius:'50%', background:'radial-gradient(circle,rgba(124,58,237,.15) 0%,transparent 70%)' }} />
+          <div style={{ position:'absolute', top:'-10%', left:'20%', width:'min(600px,100vw)', height:'min(600px,100vw)', borderRadius:'50%', background:'radial-gradient(circle,rgba(0,91,204,.28) 0%,transparent 70%)', animation:'pulse-glow 4s ease-in-out infinite' }} />
+          <div style={{ position:'absolute', bottom:'-10%', right:'20%', width:'min(500px,80vw)', height:'min(500px,80vw)', borderRadius:'50%', background:'radial-gradient(circle,rgba(255,107,0,.15) 0%,transparent 70%)', animation:'pulse-glow 5s ease-in-out infinite .5s' }} />
+          <div style={{ position:'absolute', top:'40%', left:0, width:'min(300px,60vw)', height:'min(300px,60vw)', borderRadius:'50%', background:'radial-gradient(circle,rgba(124,58,237,.15) 0%,transparent 70%)' }} />
         </div>
         {/* Grille */}
         <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px)', backgroundSize:'60px 60px', pointerEvents:'none' }} />

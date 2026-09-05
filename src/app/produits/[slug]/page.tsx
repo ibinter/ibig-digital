@@ -102,7 +102,7 @@ export default async function ProductPage({ params }: Props) {
       {/* ═══════════ HERO ═══════════ */}
       <div style={{ background:'linear-gradient(135deg,#001D3D 0%,#003B7A 60%,#0056CC 100%)', paddingTop:'6rem', paddingBottom:'4rem', position:'relative', overflow:'hidden' }}>
         <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px)', backgroundSize:'40px 40px', pointerEvents:'none' }} />
-        <div style={{ position:'absolute', top:0, right:0, width:'500px', height:'500px', borderRadius:'50%', background:'radial-gradient(circle,rgba(255,107,0,.12) 0%,transparent 65%)', transform:'translate(30%,-30%)', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', top:0, right:0, width:'min(500px,80vw)', height:'min(500px,80vw)', borderRadius:'50%', background:'radial-gradient(circle,rgba(255,107,0,.12) 0%,transparent 65%)', transform:'translate(30%,-30%)', pointerEvents:'none' }} />
 
         <div style={{ maxWidth:'1280px', margin:'0 auto', padding:'0 1.5rem' }}>
           {/* Breadcrumb */}
@@ -144,7 +144,7 @@ export default async function ProductPage({ params }: Props) {
             )}
 
             {/* Séparateur prix */}
-            <div style={{ display:'inline-flex', flexDirection:'column', alignItems:'center', gap:'1.25rem', padding:'1.75rem 2.5rem', borderRadius:'1.5rem', background:'rgba(255,255,255,.07)', backdropFilter:'blur(20px)', border:'1px solid rgba(255,255,255,.12)', marginBottom:'1.75rem' }}>
+            <div style={{ display:'inline-flex', flexDirection:'column', alignItems:'center', gap:'1.25rem', padding:'clamp(1rem,3vw,1.75rem) clamp(.875rem,4vw,2.5rem)', borderRadius:'1.5rem', width:'100%', boxSizing:'border-box', background:'rgba(255,255,255,.07)', backdropFilter:'blur(20px)', border:'1px solid rgba(255,255,255,.12)', marginBottom:'1.75rem' }}>
               {product.promo_label && (
                 <div style={{ padding:'.25rem .875rem', borderRadius:'9999px', fontSize:'.7rem', fontWeight:700, color:'white', background:'linear-gradient(135deg,#FF6B00,#FF4500)' }}>
                   🔥 {product.promo_label}

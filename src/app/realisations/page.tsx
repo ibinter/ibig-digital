@@ -256,7 +256,7 @@ export default function RealisationsPage() {
       {/* ═══ HERO ═══ */}
       <section style={{ position:'relative', paddingTop:'7rem', paddingBottom:'5rem', overflow:'hidden' }}>
         <div style={{ position:'absolute', inset:0, pointerEvents:'none' }}>
-          <div style={{ position:'absolute', top:'-10%', left:'15%', width:'550px', height:'550px', borderRadius:'50%', background:'radial-gradient(circle,rgba(0,91,204,.22) 0%,transparent 70%)', animation:'pulse-glow 4s ease-in-out infinite' }} />
+          <div style={{ position:'absolute', top:'-10%', left:'15%', width:'min(550px,100vw)', height:'min(550px,100vw)', borderRadius:'50%', background:'radial-gradient(circle,rgba(0,91,204,.22) 0%,transparent 70%)', animation:'pulse-glow 4s ease-in-out infinite' }} />
           <div style={{ position:'absolute', bottom:0, right:'10%', width:'380px', height:'380px', borderRadius:'50%', background:'radial-gradient(circle,rgba(255,107,0,.12) 0%,transparent 70%)', animation:'pulse-glow 5s ease-in-out infinite .6s' }} />
           <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px)', backgroundSize:'60px 60px' }} />
         </div>
