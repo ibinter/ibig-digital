@@ -72,7 +72,7 @@ export default async function TicketsPage() {
                   <div style={{ flex: 1, minWidth: '200px' }}>
                     <div style={{ fontWeight: 700, color: 'white', fontSize: '.92rem', marginBottom: '.25rem' }}>{t.subject as string}</div>
                     <div style={{ fontSize: '.7rem', color: 'rgba(255,255,255,.3)', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                      {t.order_reference && <span>📦 {t.template_label as string}</span>}
+                      {!!t.order_reference && <span>📦 {t.template_label as string}</span>}
                       <span>💬 {t.message_count as number} message{(t.message_count as number) > 1 ? 's' : ''}</span>
                       <span>🕐 {new Date(t.updated_at as string).toLocaleDateString('fr-FR')}</span>
                     </div>

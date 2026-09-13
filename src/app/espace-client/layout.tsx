@@ -1,4 +1,5 @@
-import type { Metadata, ReactNode } from 'next'
+import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 import { redirect } from 'next/navigation'
 import { getClient } from '@/lib/auth'
 import EspaceClientNav from '@/components/espace-client/EspaceClientNav'

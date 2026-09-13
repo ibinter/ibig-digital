@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import EspaceClientNav from '@/components/espace-client/EspaceClientNav'
 import { Save, Loader2, AlertCircle, CheckCircle2, Lock, User } from 'lucide-react'
 
-interface Client { id: string; email: string; name: string; phone?: string; company?: string; country?: string }
+interface Client { id: string; email: string; name: string; phone?: string; company?: string; country?: string; created_at: string }
 
 const COUNTRIES = [
   'Côte d\'Ivoire', 'Sénégal', 'Mali', 'Burkina Faso', 'Guinée', 'Togo', 'Bénin',

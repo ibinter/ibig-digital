@@ -96,17 +96,17 @@ export default async function CommandeDetailPage({ params }: { params: Promise<{
         </div>
 
         {/* Accès au site (si livré) */}
-        {order.status === 'delivered' && (order.site_url || order.admin_url) && (
+        {order.status === 'delivered' && !!(order.site_url || order.admin_url) && (
           <div style={{ background: 'rgba(34,197,94,.05)', border: '1px solid rgba(34,197,94,.2)', borderRadius: '1.25rem', padding: '1.5rem', marginBottom: '1.5rem' }}>
             <div style={{ fontSize: '.72rem', fontWeight: 800, color: '#4ADE80', letterSpacing: '.06em', marginBottom: '1rem' }}>🎉 VOTRE SITE EST EN LIGNE</div>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              {order.site_url && (
+              {!!order.site_url && (
                 <a href={order.site_url as string} target="_blank" rel="noopener noreferrer"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.75rem 1.5rem', borderRadius: '.875rem', fontWeight: 700, fontSize: '.85rem', color: 'white', background: 'rgba(34,197,94,.15)', border: '1px solid rgba(34,197,94,.3)', textDecoration: 'none' }}>
                   <Globe size={15} /> Voir mon site <ExternalLink size={13} />
                 </a>
               )}
-              {order.admin_url && (
+              {!!order.admin_url && (
                 <a href={order.admin_url as string} target="_blank" rel="noopener noreferrer"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.75rem 1.5rem', borderRadius: '.875rem', fontWeight: 700, fontSize: '.85rem', color: 'rgba(255,255,255,.6)', border: '1px solid rgba(255,255,255,.12)', textDecoration: 'none' }}>
                   <Key size={15} /> Administration <ExternalLink size={13} />

@@ -71,7 +71,7 @@ export default async function CommandesPage() {
                       <span style={{ fontSize: '.72rem', color: 'rgba(255,255,255,.35)' }}>
                         🧾 Formule : <span style={{ color: 'rgba(255,255,255,.6)', fontWeight: 600 }}>{order.formule as string}</span>
                       </span>
-                      {order.domain && (
+                      {!!order.domain && (
                         <span style={{ fontSize: '.72rem', color: 'rgba(255,255,255,.35)' }}>
                           🌐 <span style={{ color: 'rgba(255,255,255,.6)', fontWeight: 600 }}>{order.domain as string}</span>
                         </span>
@@ -82,7 +82,7 @@ export default async function CommandesPage() {
                   <div style={{ textAlign: 'right', flexShrink: 0 }}>
                     <div style={{ fontSize: '1rem', fontWeight: 900, color: 'white', marginBottom: '.2rem' }}>{fmt(order.total_initial as number)}</div>
                     {(order.total_monthly as number) > 0 && <div style={{ fontSize: '.68rem', color: 'rgba(255,255,255,.3)' }}>+{fmt(order.total_monthly as number)}/mois</div>}
-                    {order.site_url && (
+                    {!!order.site_url && (
                       <a href={order.site_url as string} target="_blank" rel="noopener noreferrer"
                         style={{ display: 'inline-flex', alignItems: 'center', gap: '.3rem', fontSize: '.7rem', color: '#4ADE80', marginTop: '.4rem', textDecoration: 'none' }}>
                         <ExternalLink size={11} /> Voir le site
