@@ -14,12 +14,24 @@ export const dynamic = 'force-dynamic'
 const STATS = [
   { n: '25+', label: 'Projets livrés' },
   { n: '11', label: 'Logiciels SaaS en ligne' },
-  { n: '7', label: 'Marques du groupe' },
+  { n: '100+', label: 'Templates disponibles' },
   { n: '17+', label: 'Secteurs couverts' },
 ]
 
 /* ─── PROJETS PHARES (sites & plateformes) ───────────────────────────────── */
 const PROJETS_PHARES = [
+  {
+    id: 'ibig-digital-templates',
+    nom: 'IBIG DIGITAL TEMPLATES',
+    tag: 'Plateforme SaaS',
+    annee: 2026,
+    description: 'Plateforme mondiale de templates de sites web professionnels prêts à l\'emploi. 100+ modèles spécialisés par secteur, configurateur de commande en ligne, CMS propriétaire multi-sites et espace client.',
+    url: 'https://ibig-digital.com/templates',
+    gradient: 'linear-gradient(135deg,#1A0800 0%,#7C1D06 55%,#EA580C 100%)',
+    accent: '#FB923C',
+    icon: '🎨',
+    tech: ['Next.js 15', 'PHP/MySQL', 'CMS Propriétaire', 'Multi-tenant'],
+  },
   {
     id: 'ibig-digital',
     nom: 'IBIG DIGITAL',

@@ -3,6 +3,7 @@ import Hero from '@/components/sections/Hero'
 import StatsSection from '@/components/sections/StatsSection'
 import ProjectsSection from '@/components/sections/ProjectsSection'
 import ServicesSection from '@/components/sections/ServicesSection'
+import TemplatesSection from '@/components/sections/TemplatesSection'
 import PacksSection from '@/components/sections/PacksSection'
 import WhyIbig from '@/components/sections/WhyIbig'
 import ProcessSection from '@/components/sections/ProcessSection'
@@ -37,6 +38,7 @@ export default async function HomePage() {
       <StatsSection />
       <ProjectsSection projects={projects} />
       <ServicesSection />
+      <TemplatesSection />
       <PacksSection packs={packs} />
       <WhyIbig />
       <TestimonialsSection />
