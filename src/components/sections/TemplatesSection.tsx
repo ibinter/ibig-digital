@@ -79,15 +79,15 @@ export default function TemplatesSection() {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-              <Link href="/templates"
+              <Link href="/templates/commander"
                 className="tpl-cta-primary"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '.6rem', padding: '.875rem 2rem', borderRadius: '1rem', fontWeight: 800, fontSize: '.9rem', color: 'white', background: 'linear-gradient(135deg,#FF6B00,#FF4500)', boxShadow: '0 10px 30px rgba(255,107,0,.3)', textDecoration: 'none', transition: 'all .2s' }}>
-                Découvrir les templates <ArrowRight size={16} />
+                Configurer mon site web <ArrowRight size={16} />
               </Link>
-              <Link href="/devis"
+              <Link href="/templates"
                 className="tpl-cta-secondary"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.875rem 1.75rem', borderRadius: '1rem', fontWeight: 700, fontSize: '.85rem', color: 'rgba(255,255,255,.55)', border: '1px solid rgba(255,255,255,.1)', textDecoration: 'none', transition: 'all .2s' }}>
-                Demander un devis
+                Voir les templates
               </Link>
             </div>
           </div>

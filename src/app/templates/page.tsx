@@ -145,9 +145,9 @@ export default function TemplatesPage() {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <Link href="/devis"
+            <Link href="/templates/commander"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '.6rem', padding: '.9rem 2rem', borderRadius: '1rem', fontWeight: 800, fontSize: '.95rem', color: 'white', background: 'linear-gradient(135deg,#FF6B00,#FF4500)', boxShadow: '0 12px 35px rgba(255,107,0,.35)', textDecoration: 'none' }}>
-              Choisir mon template <ArrowRight size={17} />
+              Configurer mon site <ArrowRight size={17} />
             </Link>
             <a href="#categories"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.9rem 2rem', borderRadius: '1rem', fontWeight: 700, fontSize: '.9rem', color: 'rgba(255,255,255,.65)', border: '1px solid rgba(255,255,255,.12)', textDecoration: 'none', background: 'rgba(255,255,255,.04)' }}>
@@ -203,9 +203,9 @@ export default function TemplatesPage() {
         </div>
 
         <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
-          <Link href="/devis"
+          <Link href="/templates/commander"
             style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.75rem 1.75rem', borderRadius: '.875rem', fontWeight: 700, fontSize: '.85rem', color: '#FF9A4D', border: '1px solid rgba(255,107,0,.3)', background: 'rgba(255,107,0,.06)', textDecoration: 'none' }}>
-            Voir tous les templates <ArrowRight size={14} />
+            Configurer mon site maintenant <ArrowRight size={14} />
           </Link>
         </div>
       </section>
@@ -344,9 +344,9 @@ export default function TemplatesPage() {
             Décrivez votre projet, choisissez votre secteur et notre équipe vous propose le template idéal avec un devis personnalisé.
           </p>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <Link href="/devis"
+            <Link href="/templates/commander"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '.625rem', padding: '1rem 2.25rem', borderRadius: '1rem', fontWeight: 800, fontSize: '.95rem', color: 'white', background: 'linear-gradient(135deg,#FF6B00,#FF4500)', boxShadow: '0 10px 30px rgba(255,107,0,.35)', textDecoration: 'none' }}>
-              Demander un devis gratuit <ArrowRight size={17} />
+              Configurer mon site web <ArrowRight size={17} />
             </Link>
             <Link href="/contact"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '1rem 2rem', borderRadius: '1rem', fontWeight: 700, fontSize: '.9rem', color: 'rgba(255,255,255,.6)', border: '1px solid rgba(255,255,255,.12)', textDecoration: 'none', background: 'rgba(255,255,255,.04)' }}>
