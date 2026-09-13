@@ -22,6 +22,7 @@ export const NAV_LINKS = [
   { label: 'Réalisations', href: '/realisations' },
   { label: 'À propos', href: '/a-propos' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Espace Client', href: '/espace-client' },
 ] as const
 
 export const COLORS = {
