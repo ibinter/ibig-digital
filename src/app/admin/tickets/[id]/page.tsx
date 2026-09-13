@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, type FormEvent } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import AdminNav from '@/components/admin/AdminNav'
@@ -32,7 +32,7 @@ export default function AdminTicketDetailPage() {
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages])
 
-  const send = async (e: React.FormEvent) => {
+  const send = async (e: FormEvent) => {
     e.preventDefault()
     if (sending) return
     setSending(true)
@@ -116,7 +116,7 @@ export default function AdminTicketDetailPage() {
         {/* Zone réponse admin */}
         <form onSubmit={send} style={{ padding: '1rem 1.5rem', borderTop: '1px solid rgba(255,255,255,.06)', background: 'rgba(255,255,255,.02)', display: 'flex', gap: '.75rem', alignItems: 'flex-end' }}>
           <textarea className="rep-ta" rows={2} placeholder="Répondre au client (laissez vide pour seulement changer le statut)…" value={reply} onChange={(e) => setReply(e.target.value)}
-            onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(e as unknown as React.FormEvent) } }} />
+            onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(e as unknown as FormEvent) } }} />
           <button type="submit" disabled={sending}
             style={{ width: '2.75rem', height: '2.75rem', borderRadius: '.875rem', border: 'none', cursor: sending ? 'not-allowed' : 'pointer', background: sending ? 'rgba(255,255,255,.08)' : 'linear-gradient(135deg,#FF6B00,#FF4500)', color: sending ? 'rgba(255,255,255,.2)' : 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             {sending ? <Loader2 size={14} style={{ animation: 'spin 1s linear infinite' }} /> : <Send size={14} />}

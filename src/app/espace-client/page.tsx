@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { Eye, EyeOff, LogIn, UserPlus, AlertCircle, Loader2, CheckCircle } from 'lucide-react'
 
@@ -16,7 +16,7 @@ export default function EspaceClientPage() {
 
   const COUNTRIES = ["Côte d'Ivoire", 'Sénégal', 'Mali', 'Burkina Faso', 'Guinée', 'Togo', 'Bénin', 'Cameroun', 'Ghana', 'Nigeria', 'France', 'Belgique', 'Autre']
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = async (e: FormEvent) => {
     e.preventDefault()
     setError('')
     setSuccess('')

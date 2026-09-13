@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import AdminNav from '@/components/admin/AdminNav'
@@ -11,7 +11,7 @@ interface Stats {
   recentOrders: Array<{ id: string; reference: string; template_label: string; formule: string; total_initial: number; status: string; created_at: string; client_name: string; client_email: string }>
 }
 
-const STATUS_META: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
+const STATUS_META: Record<string, { label: string; color: string; icon: ReactNode }> = {
   pending:     { label: 'En attente',  color: '#F59E0B', icon: <Clock size={12} /> },
   in_progress: { label: 'En cours',    color: '#3B82F6', icon: <Loader size={12} /> },
   delivered:   { label: 'Livré',       color: '#22C55E', icon: <CheckCircle size={12} /> },

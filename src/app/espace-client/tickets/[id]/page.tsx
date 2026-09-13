@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, type FormEvent } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Send, Loader2, User, Headphones } from 'lucide-react'
@@ -29,7 +29,7 @@ export default function TicketDetailPage() {
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages])
 
-  const send = async (e: React.FormEvent) => {
+  const send = async (e: FormEvent) => {
     e.preventDefault()
     if (!reply.trim() || sending) return
     setSending(true)
@@ -109,7 +109,7 @@ export default function TicketDetailPage() {
       {isOpen ? (
         <form onSubmit={send} style={{ padding: '1rem 1.5rem', borderTop: '1px solid rgba(255,255,255,.06)', background: 'rgba(255,255,255,.02)', display: 'flex', gap: '.75rem', alignItems: 'flex-end' }}>
           <textarea className="rep-input" rows={2} placeholder="Votre réponse…" value={reply} onChange={(e) => setReply(e.target.value)}
-            onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(e as unknown as React.FormEvent) } }} />
+            onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(e as unknown as FormEvent) } }} />
           <button type="submit" disabled={!reply.trim() || sending}
             style={{ width: '2.75rem', height: '2.75rem', borderRadius: '.875rem', border: 'none', cursor: reply.trim() && !sending ? 'pointer' : 'not-allowed', background: reply.trim() && !sending ? 'linear-gradient(135deg,#FF6B00,#FF4500)' : 'rgba(255,255,255,.08)', color: reply.trim() && !sending ? 'white' : 'rgba(255,255,255,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             {sending ? <Loader2 size={15} style={{ animation: 'spin 1s linear infinite' }} /> : <Send size={15} />}

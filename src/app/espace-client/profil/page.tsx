@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import EspaceClientNav from '@/components/espace-client/EspaceClientNav'
 import { Save, Loader2, AlertCircle, CheckCircle2, Lock, User } from 'lucide-react'
@@ -37,7 +37,7 @@ export default function ProfilPage() {
       .finally(() => setLoading(false))
   }, [router])
 
-  const saveInfo = async (e: React.FormEvent) => {
+  const saveInfo = async (e: FormEvent) => {
     e.preventDefault()
     setSaving(true)
     setInfoMsg(null)
@@ -61,7 +61,7 @@ export default function ProfilPage() {
     }
   }
 
-  const savePwd = async (e: React.FormEvent) => {
+  const savePwd = async (e: FormEvent) => {
     e.preventDefault()
     if (pwd.next !== pwd.confirm) { setPwdMsg({ ok: false, text: 'Les nouveaux mots de passe ne correspondent pas.' }); return }
     if (pwd.next.length < 8) { setPwdMsg({ ok: false, text: 'Le nouveau mot de passe doit contenir au moins 8 caractères.' }); return }

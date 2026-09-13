@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, ReactNode } from 'next'
 import { redirect } from 'next/navigation'
 import { getClient } from '@/lib/auth'
 import EspaceClientNav from '@/components/espace-client/EspaceClientNav'
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Gérez vos commandes, suivez vos projets et contactez notre équipe depuis votre espace client IBIG DIGITAL.',
 }
 
-export default async function EspaceClientLayout({ children }: { children: React.ReactNode }) {
+export default async function EspaceClientLayout({ children }: { children: ReactNode }) {
   return (
     <div style={{ minHeight: '100vh', background: '#0B0F1E' }}>
       {children}
@@ -17,7 +17,7 @@ export default async function EspaceClientLayout({ children }: { children: React
 }
 
 /* Layout protégé pour les sous-pages /espace-client/(dashboard|...) */
-export async function ProtectedLayout({ children }: { children: React.ReactNode }) {
+export async function ProtectedLayout({ children }: { children: ReactNode }) {
   const client = await getClient()
   if (!client) redirect('/espace-client')
   return (

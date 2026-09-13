@@ -1,5 +1,6 @@
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
+import { type ReactNode } from 'react'
 import { getClient } from '@/lib/auth'
 import sql from '@/lib/db'
 import EspaceClientNav from '@/components/espace-client/EspaceClientNav'
@@ -7,7 +8,7 @@ import { ArrowLeft, ExternalLink, Globe, Key, MessageSquare, CheckCircle, Clock,
 
 export const dynamic = 'force-dynamic'
 
-const STATUS: Record<string, { label: string; color: string; bg: string; icon: React.ReactNode }> = {
+const STATUS: Record<string, { label: string; color: string; bg: string; icon: ReactNode }> = {
   pending:     { label: 'En attente de traitement', color: '#F59E0B', bg: 'rgba(245,158,11,.12)', icon: <Clock size={14} /> },
   in_progress: { label: 'En cours de réalisation',  color: '#3B82F6', bg: 'rgba(59,130,246,.12)', icon: <Loader size={14} /> },
   delivered:   { label: 'Site livré',                color: '#22C55E', bg: 'rgba(34,197,94,.12)',  icon: <CheckCircle size={14} /> },

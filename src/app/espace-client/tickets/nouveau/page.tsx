@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect, Suspense, type FormEvent } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Send, Loader2, AlertCircle } from 'lucide-react'
@@ -20,7 +20,7 @@ function NouveauTicketForm() {
     fetch('/api/espace-client/commandes').then((r) => r.json()).then(setOrders).catch(() => {})
   }, [])
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = async (e: FormEvent) => {
     e.preventDefault()
     setError('')
     setLoading(true)
