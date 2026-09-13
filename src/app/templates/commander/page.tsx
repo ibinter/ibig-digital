@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import Configurateur from '@/components/configurateur/Configurateur'
 
 export const metadata: Metadata = {
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function CommanderPage() {
-  return <Configurateur />
+  return (
+    <Suspense>
+      <Configurateur />
+    </Suspense>
+  )
 }

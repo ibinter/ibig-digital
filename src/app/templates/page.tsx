@@ -9,18 +9,18 @@ export const metadata: Metadata = {
 
 /* ─── CATÉGORIES DE TEMPLATES ──────────────────────────────────────────────── */
 const CATEGORIES = [
-  { icon: '🍽️', label: 'Restaurant & Food', count: 8, color: '#F97316', from: '49 900' },
-  { icon: '🏠', label: 'Immobilier', count: 6, color: '#3B82F6', from: '79 900' },
-  { icon: '🏥', label: 'Santé & Clinique', count: 7, color: '#10B981', from: '59 900' },
-  { icon: '🎓', label: 'Formation & École', count: 9, color: '#8B5CF6', from: '59 900' },
-  { icon: '🛒', label: 'E-commerce', count: 10, color: '#EF4444', from: '99 900' },
-  { icon: '🏗️', label: 'BTP & Construction', count: 5, color: '#F59E0B', from: '69 900' },
-  { icon: '⚖️', label: 'Cabinet & Conseil', count: 6, color: '#06B6D4', from: '59 900' },
-  { icon: '🏨', label: 'Hôtel & Tourisme', count: 7, color: '#EC4899', from: '79 900' },
-  { icon: '💄', label: 'Beauté & Spa', count: 8, color: '#A855F7', from: '49 900' },
-  { icon: '🚗', label: 'Auto & Transport', count: 5, color: '#14B8A6', from: '59 900' },
-  { icon: '🌾', label: 'Agriculture', count: 4, color: '#84CC16', from: '49 900' },
-  { icon: '💼', label: 'Corporate & Finance', count: 9, color: '#64748B', from: '69 900' },
+  { icon: '🍽️', label: 'Restaurant & Food', count: 8, color: '#F97316', from: '49 900', href: '/templates/restaurant' },
+  { icon: '🏠', label: 'Immobilier', count: 6, color: '#3B82F6', from: '79 900', href: '/templates/immobilier' },
+  { icon: '🏥', label: 'Santé & Clinique', count: 7, color: '#10B981', from: '59 900', href: '/templates/sante' },
+  { icon: '🎓', label: 'Formation & École', count: 9, color: '#8B5CF6', from: '59 900', href: '/templates/formation' },
+  { icon: '🛒', label: 'E-commerce', count: 10, color: '#EF4444', from: '99 900', href: '/templates/ecommerce' },
+  { icon: '🏗️', label: 'BTP & Construction', count: 5, color: '#F59E0B', from: '69 900', href: '/templates/btp' },
+  { icon: '⚖️', label: 'Cabinet & Conseil', count: 6, color: '#06B6D4', from: '59 900', href: '/templates/cabinet' },
+  { icon: '🏨', label: 'Hôtel & Tourisme', count: 7, color: '#EC4899', from: '79 900', href: '/templates/hotel' },
+  { icon: '💄', label: 'Beauté & Spa', count: 8, color: '#A855F7', from: '49 900', href: '/templates/beaute' },
+  { icon: '🚗', label: 'Auto & Transport', count: 5, color: '#14B8A6', from: '59 900', href: '/templates/auto' },
+  { icon: '🌾', label: 'Agriculture', count: 4, color: '#84CC16', from: '49 900', href: '/templates/agriculture' },
+  { icon: '💼', label: 'Corporate & Finance', count: 9, color: '#64748B', from: '69 900', href: '/templates/corporate' },
 ]
 
 /* ─── FORMULES ──────────────────────────────────────────────────────────────── */
@@ -190,7 +190,7 @@ export default function TemplatesPage() {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(240px,1fr))', gap: '1rem' }}>
           {CATEGORIES.map((cat) => (
-            <div key={cat.label} className="tpl-cat-card" style={{ padding: '1.5rem' }}>
+            <Link key={cat.label} href={cat.href} className="tpl-cat-card" style={{ padding: '1.5rem', display: 'block', textDecoration: 'none' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
                 <div style={{ fontSize: '2rem', animation: 'float 3s ease-in-out infinite' }}>{cat.icon}</div>
                 <span style={{ fontSize: '.62rem', fontWeight: 700, color: cat.color, background: `${cat.color}18`, padding: '.2rem .6rem', borderRadius: '9999px', border: `1px solid ${cat.color}30` }}>{cat.count} modèles</span>
@@ -198,7 +198,7 @@ export default function TemplatesPage() {
               <div style={{ fontWeight: 800, color: 'white', fontSize: '.95rem', marginBottom: '.3rem' }}>{cat.label}</div>
               <div style={{ fontSize: '.7rem', color: 'rgba(255,255,255,.3)', marginBottom: '1rem' }}>À partir de <span style={{ color: cat.color, fontWeight: 700 }}>{cat.from} FCFA</span></div>
               <div style={{ height: '2px', borderRadius: '9999px', background: `linear-gradient(90deg,${cat.color}60,transparent)` }} />
-            </div>
+            </Link>
           ))}
         </div>
 

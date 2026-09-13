@@ -1,5 +1,6 @@
 'use client'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { CheckCircle, ChevronLeft, ChevronRight, Check, AlertCircle, Loader2 } from 'lucide-react'
 import {
   TEMPLATE_CATEGORIES, FORMULES, DOMAIN_EXTENSIONS,
@@ -81,12 +82,26 @@ const fmt = (n: number) => n.toLocaleString('fr-FR') + ' FCFA'
 
 /* ─── COMPOSANT PRINCIPAL ───────────────────────────────────────────────── */
 export default function Configurateur() {
+  const searchParams = useSearchParams()
   const [step, setStep] = useState(1)
   const [config, setConfig] = useState<Config>(DEFAULT)
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
   const [reference, setReference] = useState('')
   const prices = usePrices(config)
+
+  useEffect(() => {
+    const secteur = searchParams.get('secteur')
+    const formule = searchParams.get('formule')
+    if (secteur || formule) {
+      setConfig((prev) => ({
+        ...prev,
+        ...(secteur ? { sector: secteur } : {}),
+        ...(formule && ['standard', 'premium', 'elite'].includes(formule) ? { formule: formule as Config['formule'] } : {}),
+      }))
+      if (secteur) setStep(2)
+    }
+  }, [searchParams])
 
   const set = <K extends keyof Config>(key: K, val: Config[K]) =>
     setConfig((prev) => ({ ...prev, [key]: val }))
