@@ -1,4 +1,161 @@
-﻿<span>Démo IBIG Digital — Commander ce template : </span>
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AfriRent Cars — Location de Véhicules</title>
+<style>
+:root{
+  --primary:#1D4ED8;
+  --accent:#1E40AF;
+  --bg:#FFFFFF;
+  --bg2:#F0F4FF;
+  --text:#0F172A;
+  --text-muted:#64748B;
+  --border:#E2E8F0;
+  --orange:#F97316;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
+
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#0F172A;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:12px}
+
+nav{position:sticky;top:40px;background:#fff;border-bottom:1px solid var(--border);z-index:100;padding:0 5%}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto}
+.logo{font-size:20px;font-weight:900;color:var(--text)}
+.logo span{color:var(--primary)}
+.logo em{font-style:normal;font-size:10px;display:block;color:var(--text-muted);font-weight:500;letter-spacing:1px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--primary)}
+.nav-actions{display:flex;gap:10px}
+.nav-tel{font-size:13px;color:var(--text-muted);font-weight:600;display:flex;align-items:center;gap:4px}
+.nav-cta{background:var(--primary);color:#fff;padding:9px 20px;border-radius:8px;font-weight:700;text-decoration:none;font-size:14px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:22px;height:2px;background:var(--text);border-radius:2px}
+@media(max-width:768px){.nav-links,.nav-tel{display:none}.burger{display:flex}}
+
+/* HERO */
+.hero{background:linear-gradient(120deg,#0F172A 0%,var(--accent) 100%);padding:72px 5% 56px;position:relative;overflow:hidden}
+.hero::after{content:'🚗';position:absolute;right:-40px;bottom:-40px;font-size:300px;opacity:.05}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:18px;text-transform:uppercase;letter-spacing:.5px}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:16px}
+.hero h1 em{font-style:normal;color:#60A5FA}
+.hero p{color:rgba(255,255,255,.8);font-size:16px;line-height:1.7;margin-bottom:28px;max-width:460px}
+.search-box{background:#fff;border-radius:16px;padding:20px;margin-bottom:24px;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.sb-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px}
+.sb-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.sb-field{display:flex;flex-direction:column;gap:4px}
+.sb-field label{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+.sb-field input,.sb-field select{padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text);outline:none;transition:.2s}
+.sb-field input:focus,.sb-field select:focus{border-color:var(--primary)}
+.sb-btn{width:100%;background:var(--primary);color:#fff;border:none;padding:12px;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer}
+.hero-trust{display:flex;gap:16px;flex-wrap:wrap}
+.trust-item{color:rgba(255,255,255,.7);font-size:13px;display:flex;align-items:center;gap:6px;font-weight:600}
+.hero-visual-side{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.car-teaser{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:20px;text-align:center;transition:.2s}
+.car-teaser:hover{background:rgba(255,255,255,.14)}
+.ct-emoji{font-size:40px;margin-bottom:8px}
+.ct-name{color:#fff;font-weight:700;font-size:13px;margin-bottom:4px}
+.ct-price{color:#60A5FA;font-size:15px;font-weight:800}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr}.hero-visual-side{display:none}.sb-row{grid-template-columns:1fr}}
+
+/* SECTIONS */
+section{padding:72px 5%}
+.max-w{max-width:1200px;margin:0 auto}
+.stag{display:inline-block;background:var(--bg2);color:var(--primary);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.sh2{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;margin-bottom:8px}
+.sh2 em{font-style:normal;color:var(--primary)}
+.ssub{color:var(--text-muted);font-size:15px;max-width:520px;line-height:1.6}
+
+/* FLEET */
+.fleet-section{background:var(--bg2)}
+.fleet-filters{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 28px}
+.ff{padding:8px 18px;border-radius:20px;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:13px;font-weight:600;color:var(--text-muted);transition:.2s}
+.ff.active,.ff:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.fleet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.car-card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:.2s}
+.car-card:hover{box-shadow:0 8px 32px rgba(29,78,216,.12);transform:translateY(-3px)}
+.car-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:64px;background:linear-gradient(135deg,#EEF2FF,#E0E7FF);position:relative}
+.car-cat{position:absolute;top:10px;left:10px;background:var(--primary);color:#fff;padding:4px 10px;border-radius:10px;font-size:11px;font-weight:700}
+.car-avail{position:absolute;top:10px;right:10px;background:#10B981;color:#fff;padding:4px 10px;border-radius:10px;font-size:11px;font-weight:700}
+.car-body{padding:16px}
+.car-name{font-weight:800;font-size:16px;margin-bottom:4px}
+.car-model{font-size:13px;color:var(--text-muted);margin-bottom:12px}
+.car-specs{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.cs{font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:4px;font-weight:600}
+.car-pricing{display:flex;align-items:flex-end;gap:4px;margin-bottom:12px}
+.car-price{font-size:22px;font-weight:900;color:var(--primary)}
+.car-unit{font-size:13px;color:var(--text-muted);margin-bottom:4px}
+.car-btn{display:block;background:var(--primary);color:#fff;padding:10px;border-radius:10px;text-align:center;text-decoration:none;font-weight:700;font-size:14px;transition:.2s}
+.car-btn:hover{background:var(--accent)}
+
+/* TARIFS */
+.tarifs-section{background:#fff}
+.tarifs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.tarif-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;position:relative;transition:.2s}
+.tarif-card.featured{background:var(--primary);border-color:transparent;color:#fff}
+.tarif-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;padding:4px 14px;border-radius:12px;font-size:12px;font-weight:800;white-space:nowrap}
+.tarif-period{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:8px}
+.tarif-card.featured .tarif-period{color:rgba(255,255,255,.7)}
+.tarif-price{font-size:36px;font-weight:900;color:var(--primary);margin-bottom:4px}
+.tarif-card.featured .tarif-price{color:#fff}
+.tarif-sub{font-size:13px;color:var(--text-muted);margin-bottom:20px}
+.tarif-card.featured .tarif-sub{color:rgba(255,255,255,.7)}
+.tarif-features{list-style:none;margin-bottom:24px;text-align:left}
+.tarif-features li{padding:8px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:14px;color:var(--text-muted);display:flex;align-items:center;gap:8px}
+.tarif-card.featured .tarif-features li{border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.85)}
+.tarif-features li::before{content:'✓';color:var(--primary);font-weight:900}
+.tarif-card.featured .tarif-features li::before{color:#fff}
+.tarif-btn{display:block;background:var(--primary);color:#fff;padding:11px;border-radius:8px;font-weight:700;text-decoration:none;text-align:center;transition:.2s}
+.tarif-card.featured .tarif-btn{background:#fff;color:var(--primary)}
+@media(max-width:900px){.tarifs-grid{grid-template-columns:1fr}}
+
+/* AVANTAGES */
+.avantages-section{background:var(--bg2)}
+.av-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.av-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+.av-icon{font-size:32px;margin-bottom:10px}
+.av-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.av-desc{font-size:13px;color:var(--text-muted);line-height:1.4}
+@media(max-width:768px){.av-grid{grid-template-columns:1fr 1fr}}
+
+/* CONTACT */
+.contact-section{background:var(--primary);padding:72px 5%}
+.ct-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:1100px;margin:0 auto;align-items:center}
+.ct-info h2{font-size:2rem;font-weight:900;color:#fff;margin-bottom:14px}
+.ct-info p{color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:24px;font-size:15px}
+.ct-contacts{display:flex;flex-direction:column;gap:10px}
+.ctc{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.85);font-size:14px}
+.ctc-icon{width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.ct-form{background:#fff;border-radius:16px;padding:28px}
+.ct-form h3{font-size:17px;font-weight:800;margin-bottom:18px;color:var(--text)}
+.fg{margin-bottom:12px}
+.fg label{display:block;font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.fg input,.fg select{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;outline:none;color:var(--text);transition:.2s}
+.fg input:focus,.fg select:focus{border-color:var(--primary)}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ct-btn{width:100%;background:var(--primary);color:#fff;border:none;padding:12px;border-radius:8px;font-size:14px;font-weight:800;cursor:pointer;transition:.2s}
+.ct-btn:hover{background:var(--accent)}
+@media(max-width:768px){.ct-inner{grid-template-columns:1fr}.fg-row{grid-template-columns:1fr}}
+
+footer{background:#0F172A;color:#fff;padding:48px 5% 24px}
+.fg-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;max-width:1200px;margin:0 auto 40px}
+.fbl p{color:rgba(255,255,255,.55);font-size:14px;line-height:1.6;margin-top:10px}
+.fc h4{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#60A5FA;margin-bottom:14px}
+.fc a{display:block;color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;margin-bottom:8px;transition:color .2s}
+.fc a:hover{color:#fff}
+.fb-bot{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.35);max-width:1200px;margin:0 auto}
+@media(max-width:768px){.fg-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : </span>
   <a href="https://ibig.digital">Commander</a>
 </div>
 
