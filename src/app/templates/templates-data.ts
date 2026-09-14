@@ -1,4 +1,4 @@
-/* ─── DONNÉES COMPLÈTES — 84 TEMPLATES PAR SECTEUR ──────────────────────── */
+﻿/* ─── DONNÉES COMPLÈTES — 84 TEMPLATES PAR SECTEUR ──────────────────────── */
 
 export interface TemplateItem {
   id: string
@@ -32,7 +32,7 @@ export const SECTORS_DATA: SectorData[] = [
     icon: '🍽️',
     label: 'Restaurant & Food',
     color: '#F97316',
-    basePrice: 49900,
+    basePrice: 29900,
     tagline: 'Un site web qui donne faim',
     description: 'Templates conçus pour les restaurants, snacks, traiteurs et services de livraison. Présentez votre carte, vos spécialités et recevez des réservations en ligne.',
     templates: [
@@ -146,7 +146,7 @@ export const SECTORS_DATA: SectorData[] = [
     icon: '🏠',
     label: 'Immobilier',
     color: '#3B82F6',
-    basePrice: 79900,
+    basePrice: 59900,
     tagline: 'Vendez et louez plus vite en ligne',
     description: 'Templates professionnels pour agences immobilières, promoteurs et agents indépendants. Publiez vos annonces, qualifiez vos prospects et boostez vos ventes.',
     templates: [
@@ -236,7 +236,7 @@ export const SECTORS_DATA: SectorData[] = [
     icon: '🏥',
     label: 'Santé & Clinique',
     color: '#10B981',
-    basePrice: 59900,
+    basePrice: 39900,
     tagline: 'La confiance commence sur votre site',
     description: 'Templates rassurants pour cliniques, cabinets médicaux, pharmacies et laboratoires. Gérez les prises de rendez-vous et informez vos patients efficacement.',
     templates: [
@@ -338,7 +338,7 @@ export const SECTORS_DATA: SectorData[] = [
     icon: '🎓',
     label: 'Formation & École',
     color: '#8B5CF6',
-    basePrice: 59900,
+    basePrice: 39900,
     tagline: "Attirez plus d'apprenants en ligne",
     description: 'Templates conçus pour centres de formation, écoles privées, auto-écoles et organismes de certification. Présentez vos programmes et recevez des inscriptions.',
     templates: [
@@ -466,7 +466,7 @@ export const SECTORS_DATA: SectorData[] = [
     icon: '🛒',
     label: 'E-commerce',
     color: '#EF4444',
-    basePrice: 99900,
+    basePrice: 79900,
     tagline: 'Vendez partout, 24h/24',
     description: 'Templates e-commerce complets pour boutiques en ligne, revendeurs et créateurs. Gérez votre catalogue, recevez des paiements Mobile Money et développez vos ventes.',
     templates: [
@@ -605,7 +605,7 @@ export const SECTORS_DATA: SectorData[] = [
     icon: '🏗️',
     label: 'BTP & Construction',
     color: '#F59E0B',
-    basePrice: 69900,
+    basePrice: 49900,
     tagline: 'Montrez vos réalisations, décrochez des chantiers',
     description: 'Templates solides pour entreprises BTP, architectes, promoteurs et artisans du bâtiment. Valorisez vos chantiers et recevez des demandes de devis qualifiées.',
     templates: [
@@ -682,7 +682,7 @@ export const SECTORS_DATA: SectorData[] = [
     icon: '⚖️',
     label: 'Cabinet & Conseil',
     color: '#06B6D4',
-    basePrice: 59900,
+    basePrice: 39900,
     tagline: 'La crédibilité en ligne dès le premier clic',
     description: "Templates sobres et professionnels pour cabinets d'avocats, experts-comptables, consultants et conseillers. Générez de la confiance et convertissez vos prospects.",
     templates: [
@@ -772,7 +772,7 @@ export const SECTORS_DATA: SectorData[] = [
     icon: '🏨',
     label: 'Hôtel & Tourisme',
     color: '#EC4899',
-    basePrice: 79900,
+    basePrice: 59900,
     tagline: 'Réservations directes, zéro commission',
     description: "Templates élégants pour hôtels, résidences, agences de voyage et prestataires touristiques. Augmentez vos réservations directes sans payer de commission.",
     templates: [
@@ -874,7 +874,7 @@ export const SECTORS_DATA: SectorData[] = [
     icon: '💄',
     label: 'Beauté & Spa',
     color: '#A855F7',
-    basePrice: 49900,
+    basePrice: 29900,
     tagline: 'Sublimez votre image, développez votre clientèle',
     description: 'Templates élégants pour salons de beauté, instituts, spas et coiffeurs. Présentez vos prestations, gérez vos rendez-vous et fidélisez votre clientèle.',
     templates: [
@@ -988,7 +988,7 @@ export const SECTORS_DATA: SectorData[] = [
     icon: '🚗',
     label: 'Auto & Transport',
     color: '#14B8A6',
-    basePrice: 59900,
+    basePrice: 39900,
     tagline: 'Votre parc auto en ligne, clients en confiance',
     description: 'Templates dynamiques pour concessionnaires, garages, agences de location et transporteurs. Publiez votre parc, recevez des demandes et développez votre activité.',
     templates: [
@@ -1065,7 +1065,7 @@ export const SECTORS_DATA: SectorData[] = [
     icon: '🌾',
     label: 'Agriculture',
     color: '#84CC16',
-    basePrice: 49900,
+    basePrice: 29900,
     tagline: 'Connectez vos produits aux marchés',
     description: "Templates professionnels pour agriculteurs, coopératives, agro-industries et fournisseurs d'intrants. Présentez vos produits et développez vos débouchés commerciaux.",
     templates: [
@@ -1130,7 +1130,7 @@ export const SECTORS_DATA: SectorData[] = [
     icon: '💼',
     label: 'Corporate & Finance',
     color: '#64748B',
-    basePrice: 69900,
+    basePrice: 49900,
     tagline: "L'image de marque qui inspire confiance",
     description: "Templates haut de gamme pour grandes entreprises, banques, assurances et institutions financières. Communiquez votre vision et attirez partenaires et investisseurs.",
     templates: [

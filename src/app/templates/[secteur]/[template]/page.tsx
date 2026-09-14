@@ -124,8 +124,8 @@ const SECTOR_DEMOS: Record<string, string> = {
 
 const FORMULES = [
   { id: 'standard', name: 'Standard', desc: 'Besoins essentiels', supplement: 0, color: '#64748B', gradient: 'linear-gradient(135deg,rgba(30,41,59,.9),rgba(51,65,85,.9))', features: ['Template de base complet', 'Design responsive mobile', 'Contenu administrable', '5 pages incluses', 'Formulaire de contact', 'SEO de base'] },
-  { id: 'premium',  name: 'Premium',  desc: 'Besoins plus complets', supplement: 50000, color: '#FF6B00', gradient: 'linear-gradient(135deg,rgba(124,29,6,.9),rgba(194,65,12,.9))', popular: true, features: ['Tout Standard inclus', 'Personnalisation avancée', 'Domaine + hébergement 1 an', '10 pages incluses', 'Blog & galerie', 'Réseaux sociaux', 'Analytics'] },
-  { id: 'elite',    name: 'Elite',    desc: 'Entreprises exigeantes', supplement: 150000, color: '#7C3AED', gradient: 'linear-gradient(135deg,rgba(30,27,75,.9),rgba(79,70,229,.9))', features: ['Tout Premium inclus', 'Modules au choix', 'Espace client/membre', 'Paiement en ligne', 'Maintenance 3 mois offerte', 'Support prioritaire 7j/7'] },
+  { id: 'premium',  name: 'Premium',  desc: 'Besoins plus complets', supplement: 35000, color: '#FF6B00', gradient: 'linear-gradient(135deg,rgba(124,29,6,.9),rgba(194,65,12,.9))', popular: true, features: ['Tout Standard inclus', 'Personnalisation avancée', 'Domaine + hébergement 1 an', '10 pages incluses', 'Blog & galerie', 'Réseaux sociaux', 'Analytics'] },
+  { id: 'elite',    name: 'Elite',    desc: 'Entreprises exigeantes', supplement: 99900, color: '#7C3AED', gradient: 'linear-gradient(135deg,rgba(30,27,75,.9),rgba(79,70,229,.9))', features: ['Tout Premium inclus', 'Modules au choix', 'Espace client/membre', 'Paiement en ligne', 'Maintenance 3 mois offerte', 'Support prioritaire 7j/7'] },
 ]
 
 const fmt = (n: number) => n.toLocaleString('fr-FR') + ' FCFA'
