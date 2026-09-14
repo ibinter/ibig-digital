@@ -203,6 +203,21 @@ export default function Configurateur() {
         .price-row { display:flex; align-items:center; justify-content:space-between; padding:.5rem 0; border-bottom:1px solid rgba(255,255,255,.05); font-size:.78rem; }
         .price-row:last-child { border-bottom:none; }
         .nav-btn { display:inline-flex; align-items:center; gap:.5rem; padding:.85rem 1.75rem; border-radius:1rem; font-weight:800; font-size:.9rem; cursor:pointer; border:none; transition:all .18s; }
+
+        /* ── Grille principale responsive ── */
+        .cfg-main-grid { display:grid; grid-template-columns:1fr 320px; gap:1.5rem; align-items:start; }
+        .cfg-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:.875rem; }
+
+        @media (max-width: 900px) {
+          .cfg-main-grid { grid-template-columns:1fr; }
+          .cfg-price-panel { position:static !important; }
+        }
+        @media (max-width: 600px) {
+          .cfg-form-grid { grid-template-columns:1fr; }
+          .cfg-form-grid > [style*="span 2"] { grid-column:span 1 !important; }
+          .nav-btn { padding:.75rem 1.25rem; font-size:.82rem; }
+          .cfg-radio, .cfg-check { padding:.875rem !important; }
+        }
       `}</style>
 
       <div style={{ maxWidth: '1140px', margin: '0 auto', padding: '0 1.25rem' }}>
@@ -242,7 +257,7 @@ export default function Configurateur() {
         </div>
 
         {/* ── Grille principale ── */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '1.5rem', alignItems: 'start' }}>
+        <div className="cfg-main-grid">
 
           {/* Colonne gauche — Étape active */}
           <div style={{ background: 'rgba(255,255,255,.025)', border: '1px solid rgba(255,255,255,.07)', borderRadius: '1.5rem', padding: '2rem' }}>
@@ -504,7 +519,7 @@ export default function Configurateur() {
                 {/* Formulaire contact */}
                 <div>
                   <div style={{ fontSize: '.78rem', fontWeight: 700, color: 'rgba(255,255,255,.4)', letterSpacing: '.05em', marginBottom: '1rem' }}>VOS COORDONNÉES</div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.875rem' }}>
+                  <div className="cfg-form-grid">
                     <div style={{ gridColumn: 'span 2' }}>
                       <label style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.4)', marginBottom: '.4rem', display: 'block' }}>Nom complet *</label>
                       <input className="cfg-input" placeholder="Votre nom et prénom" value={config.name} onChange={(e) => set('name', e.target.value)} />
@@ -583,7 +598,7 @@ function PricePanel({ config, prices, step }: { config: Config; prices: ReturnTy
   const formule = FORMULES.find((x) => x.id === config.formule)
 
   return (
-    <div style={{ position: 'sticky', top: '120px', background: 'rgba(255,255,255,.025)', border: '1px solid rgba(255,107,0,.15)', borderRadius: '1.5rem', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+    <div className="cfg-price-panel" style={{ position: 'sticky', top: '120px', background: 'rgba(255,255,255,.025)', border: '1px solid rgba(255,107,0,.15)', borderRadius: '1.5rem', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       <div style={{ fontSize: '.7rem', fontWeight: 800, color: '#FF9A4D', letterSpacing: '.07em' }}>RÉCAPITULATIF DES PRIX</div>
 
       {/* Lignes détail */}

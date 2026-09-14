@@ -109,6 +109,12 @@ export default function TemplatesPage() {
         .module-chip { display:inline-block; padding:.4rem .9rem; border-radius:9999px; font-size:.72rem; font-weight:600; border:1px solid rgba(255,255,255,.1); color:rgba(255,255,255,.55); background:rgba(255,255,255,.04); transition:background .15s,color .15s; cursor:default; }
         .module-chip:hover { background:rgba(255,107,0,.12); color:#FF9A4D; border-color:rgba(255,107,0,.3); }
         .popular-badge { display:inline-flex; align-items:center; gap:.3rem; padding:.3rem .8rem; border-radius:9999px; font-size:.65rem; font-weight:800; background:rgba(255,107,0,.15); color:#FF9A4D; border:1px solid rgba(255,107,0,.35); }
+
+        /* ── Responsive ── */
+        @media (max-width: 480px) {
+          .step-card { padding:1.25rem !important; }
+          .formule-card > div { padding:1.25rem !important; }
+        }
       `}</style>
 
       {/* ═══ HERO ═══ */}
