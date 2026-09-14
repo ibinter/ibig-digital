@@ -88,6 +88,7 @@ export default function Configurateur() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
   const [reference, setReference] = useState('')
+  const [payStatus, setPayStatus] = useState<'idle' | 'loading'>('idle')
   const prices = usePrices(config)
 
   useEffect(() => {
@@ -174,6 +175,38 @@ export default function Configurateur() {
     } catch (e: unknown) {
       setErrorMsg(e instanceof Error ? e.message : 'Une erreur est survenue.')
       setStatus('error')
+    }
+  }
+
+  const handlePayer = async () => {
+    setPayStatus('loading')
+    try {
+      const [nom, ...prenomParts] = config.name.trim().split(' ')
+      const res = await fetch('/api/paiement/initier', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nom,
+          prenom: prenomParts.join(' ') || undefined,
+          email: config.email,
+          telephone: config.phone || '00000000',
+          montant: prices.initial,
+          description: `Template ${config.sector} — Formule ${config.formule}`,
+          template_id: config.sector,
+          secteur_id: config.sector,
+          formule: config.formule,
+        }),
+      })
+      const data = await res.json()
+      if (data.payment_url) {
+        window.location.href = data.payment_url
+      } else {
+        alert(data.error || 'Erreur lors de l\'initiation du paiement.')
+        setPayStatus('idle')
+      }
+    } catch {
+      alert('Erreur réseau. Veuillez réessayer.')
+      setPayStatus('idle')
     }
   }
 
@@ -574,12 +607,22 @@ export default function Configurateur() {
                   Suivant <ChevronRight size={16} />
                 </button>
               ) : (
-                <button className="nav-btn"
-                  onClick={handleSubmit}
-                  disabled={!canNext() || status === 'loading'}
-                  style={{ background: canNext() ? 'linear-gradient(135deg,#FF6B00,#FF4500)' : 'rgba(255,255,255,.06)', color: canNext() ? 'white' : 'rgba(255,255,255,.25)', cursor: canNext() ? 'pointer' : 'not-allowed', boxShadow: canNext() ? '0 8px 24px rgba(255,107,0,.3)' : 'none', minWidth: '180px', justifyContent: 'center' }}>
-                  {status === 'loading' ? <><Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} /> Envoi…</> : <><CheckCircle size={16} /> Envoyer ma commande</>}
-                </button>
+                <div style={{ display: 'flex', gap: '.625rem', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+                  {/* Devis sans paiement */}
+                  <button className="nav-btn"
+                    onClick={handleSubmit}
+                    disabled={!canNext() || status === 'loading'}
+                    style={{ background: 'rgba(255,255,255,.07)', color: 'rgba(255,255,255,.7)', border: '1px solid rgba(255,255,255,.12)', cursor: canNext() ? 'pointer' : 'not-allowed', fontSize: '.82rem' }}>
+                    {status === 'loading' ? <><Loader2 size={14} style={{ animation: 'spin 1s linear infinite' }} /> Envoi…</> : <><CheckCircle size={14} /> Devis sans paiement</>}
+                  </button>
+                  {/* Payer en ligne */}
+                  <button className="nav-btn"
+                    onClick={handlePayer}
+                    disabled={!canNext() || payStatus === 'loading'}
+                    style={{ background: canNext() ? 'linear-gradient(135deg,#FF6B00,#FF4500)' : 'rgba(255,255,255,.06)', color: canNext() ? 'white' : 'rgba(255,255,255,.25)', cursor: canNext() ? 'pointer' : 'not-allowed', boxShadow: canNext() ? '0 8px 24px rgba(255,107,0,.3)' : 'none', minWidth: '160px', justifyContent: 'center' }}>
+                    {payStatus === 'loading' ? <><Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} /> Redirection…</> : <>💳 Payer en ligne</>}
+                  </button>
+                </div>
               )}
             </div>
           </div>

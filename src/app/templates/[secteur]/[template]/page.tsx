@@ -355,11 +355,11 @@ export default async function TemplatePage({ params }: { params: Promise<{ secte
               </div>
 
               <div className="hero-btns">
-                <Link href={`/templates/commander?secteur=${s.id}&formule=premium`} className="btn-primary">
+                <Link href={`/templates/commander?secteur=${s.id}&template=${tpl.id}&formule=premium`} className="btn-primary">
                   Commander ce template <ArrowRight size={16} />
                 </Link>
-                <Link href={`/templates/${s.id}`} className="btn-secondary">
-                  <ArrowLeft size={13} /> Autres templates {s.label}
+                <Link href={`/templates/${s.id}/${tpl.id}/demo`} className="btn-secondary">
+                  <span style={{ fontSize: '13px' }}>▶</span> Voir la démo live
                 </Link>
               </div>
             </div>
