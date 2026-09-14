@@ -179,8 +179,8 @@ export default async function TemplatePage({ params }: { params: Promise<{ secte
         }
 
         /* ── Hero ── */
-        .hero-tpl { position: relative; padding-top: 7rem; padding-bottom: 4rem; overflow: hidden; }
-        .hero-tpl-inner { position: relative; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .hero-tpl { position: relative; padding-top: 7rem; padding-bottom: 4rem; overflow: clip; }
+        .hero-tpl-inner { position: relative; max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; box-sizing: border-box; width: 100%; }
         .breadcrumb {
           display: flex; align-items: center; gap: .5rem;
           margin-bottom: 2rem; font-size: .72rem; color: rgba(255,255,255,.3);
@@ -200,7 +200,7 @@ export default async function TemplatePage({ params }: { params: Promise<{ secte
         .price-box {
           display: flex; align-items: flex-start; gap: .5rem;
           padding: 1.25rem 1.5rem; border-radius: 1.25rem;
-          margin-bottom: 2rem;
+          margin-bottom: 2rem; box-sizing: border-box; width: 100%;
         }
         .price-label { font-size: .6rem; color: rgba(255,255,255,.3); font-weight: 600; letter-spacing: .05em; margin-bottom: .2rem; }
         .price-value { font-size: 2.25rem; font-weight: 900; color: white; }
@@ -299,8 +299,16 @@ export default async function TemplatePage({ params }: { params: Promise<{ secte
           .breadcrumb { font-size: .65rem; gap: .3rem; }
           .price-box { padding: 1rem 1.1rem; }
           .price-value { font-size: 1.75rem; }
-          .hero-btns { flex-direction: column; }
-          .btn-primary, .btn-secondary { justify-content: center; width: 100%; }
+          .hero-btns { flex-direction: column; align-items: stretch; }
+          .btn-primary, .btn-secondary {
+            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
+            white-space: normal;
+            text-align: center;
+            padding: .85rem 1rem;
+            font-size: .85rem;
+          }
           .delivery-badge { width: 100%; justify-content: center; }
           .feat-section { padding: 2rem .875rem 2.5rem; }
           .section-h2 { font-size: 1.25rem; }
