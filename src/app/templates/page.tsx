@@ -9,18 +9,18 @@ export const metadata: Metadata = {
 
 /* ─── CATÉGORIES DE TEMPLATES ──────────────────────────────────────────────── */
 const CATEGORIES = [
-  { icon: '🍽️', label: 'Restaurant & Food', count: 8, color: '#F97316', from: '49 900', href: '/templates/restaurant' },
-  { icon: '🏠', label: 'Immobilier', count: 6, color: '#3B82F6', from: '79 900', href: '/templates/immobilier' },
-  { icon: '🏥', label: 'Santé & Clinique', count: 7, color: '#10B981', from: '59 900', href: '/templates/sante' },
-  { icon: '🎓', label: 'Formation & École', count: 9, color: '#8B5CF6', from: '59 900', href: '/templates/formation' },
-  { icon: '🛒', label: 'E-commerce', count: 10, color: '#EF4444', from: '99 900', href: '/templates/ecommerce' },
-  { icon: '🏗️', label: 'BTP & Construction', count: 5, color: '#F59E0B', from: '69 900', href: '/templates/btp' },
-  { icon: '⚖️', label: 'Cabinet & Conseil', count: 6, color: '#06B6D4', from: '59 900', href: '/templates/cabinet' },
-  { icon: '🏨', label: 'Hôtel & Tourisme', count: 7, color: '#EC4899', from: '79 900', href: '/templates/hotel' },
-  { icon: '💄', label: 'Beauté & Spa', count: 8, color: '#A855F7', from: '49 900', href: '/templates/beaute' },
-  { icon: '🚗', label: 'Auto & Transport', count: 5, color: '#14B8A6', from: '59 900', href: '/templates/auto' },
-  { icon: '🌾', label: 'Agriculture', count: 4, color: '#84CC16', from: '49 900', href: '/templates/agriculture' },
-  { icon: '💼', label: 'Corporate & Finance', count: 9, color: '#64748B', from: '69 900', href: '/templates/corporate' },
+  { icon: '🍽️', label: 'Restaurant & Food', count: 8, color: '#F97316', from: '29 900', href: '/templates/restaurant' },
+  { icon: '🏠', label: 'Immobilier', count: 6, color: '#3B82F6', from: '59 900', href: '/templates/immobilier' },
+  { icon: '🏥', label: 'Santé & Clinique', count: 7, color: '#10B981', from: '39 900', href: '/templates/sante' },
+  { icon: '🎓', label: 'Formation & École', count: 9, color: '#8B5CF6', from: '39 900', href: '/templates/formation' },
+  { icon: '🛒', label: 'E-commerce', count: 10, color: '#EF4444', from: '79 900', href: '/templates/ecommerce' },
+  { icon: '🏗️', label: 'BTP & Construction', count: 5, color: '#F59E0B', from: '49 900', href: '/templates/btp' },
+  { icon: '⚖️', label: 'Cabinet & Conseil', count: 6, color: '#06B6D4', from: '39 900', href: '/templates/cabinet' },
+  { icon: '🏨', label: 'Hôtel & Tourisme', count: 7, color: '#EC4899', from: '59 900', href: '/templates/hotel' },
+  { icon: '💄', label: 'Beauté & Spa', count: 8, color: '#A855F7', from: '29 900', href: '/templates/beaute' },
+  { icon: '🚗', label: 'Auto & Transport', count: 5, color: '#14B8A6', from: '39 900', href: '/templates/auto' },
+  { icon: '🌾', label: 'Agriculture', count: 4, color: '#84CC16', from: '29 900', href: '/templates/agriculture' },
+  { icon: '💼', label: 'Corporate & Finance', count: 9, color: '#64748B', from: '49 900', href: '/templates/corporate' },
 ]
 
 /* ─── FORMULES ──────────────────────────────────────────────────────────────── */
@@ -324,7 +324,7 @@ export default function TemplatesPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '1rem' }}>
           {[
             { icon: '⚡', title: 'Livraison rapide', desc: 'Votre site est opérationnel en 3 à 7 jours ouvrés, pas en plusieurs semaines comme une création sur mesure.' },
-            { icon: '💰', title: 'Prix accessibles', desc: 'Dès 49 900 FCFA pour un site professionnel complet. Pensé pour les entrepreneurs et PME africains.' },
+            { icon: '💰', title: 'Prix accessibles', desc: 'Dès 29 900 FCFA pour un site professionnel complet. Pensé pour les entrepreneurs et PME africains.' },
             { icon: '🔧', title: 'Administrable sans coder', desc: 'Modifiez vos textes, images, produits et services vous-même depuis un back-office simple et intuitif.' },
             { icon: '🌍', title: 'Pensé pour l\'Afrique', desc: 'Mobile Money intégré, adapté aux réseaux locaux, multidevise et multilingue dès la conception.' },
             { icon: '📈', title: 'Évolutif dans le temps', desc: 'Ajoutez des modules, des pages ou des fonctionnalités à tout moment selon l\'évolution de votre activité.' },
