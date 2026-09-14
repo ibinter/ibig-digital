@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Séjour Côte d'Ivoire — Location Vacances</title>
+<style>
+:root {
+  --primary: #0891B2;
+  --primary-dark: #0E7490;
+  --primary-light: #22D3EE;
+  --accent: #F59E0B;
+  --accent2: #D97706;
+  --bg: #FFFFFF;
+  --bg2: #F0FDFF;
+  --bg3: #ECFEFF;
+  --text: #164E63;
+  --text2: #0E7490;
+  --text3: #6B7280;
+  --sand: #FEF3C7;
+  --border: #BAE6FD;
+  --card-shadow: 0 4px 20px rgba(8,145,178,0.12);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+
+.demo-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 40px; z-index: 9999;
+  background: #0C4A6E; color: #fff; display: flex; align-items: center;
+  justify-content: center; gap: 16px; font-size: 13px; padding: 0 16px;
+}
+.demo-bar a { background: #16A34A; color: #fff; padding: 4px 14px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 12px; }
+
+nav {
+  position: sticky; top: 40px; z-index: 100; background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 66px;
+  box-shadow: 0 2px 12px rgba(8,145,178,0.08);
+}
+.logo { font-size: 20px; font-weight: 800; color: var(--primary); }
+.logo span { color: var(--accent); }
+.logo .small { font-size: 12px; font-weight: 500; color: var(--text3); display: block; }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--text3); font-size: 14px; font-weight: 500; transition: color .2s; }
+.nav-links a:hover { color: var(--primary); }
+.nav-right { display: flex; gap: 8px; align-items: center; }
+.nav-lang { background: var(--bg2); border: 1px solid var(--border); padding: 6px 12px; border-radius: 8px; font-size: 13px; color: var(--text2); cursor: pointer; }
+.nav-cta { background: var(--primary); color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; border: none; cursor: pointer; transition: all .2s; }
+.nav-cta:hover { background: var(--primary-dark); }
+
+.hero {
+  background: linear-gradient(180deg, #0C4A6E 0%, #0891B2 50%, #0E7490 100%);
+  color: #fff; min-height: 580px; padding: 80px 5% 40px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  position: relative; overflow: hidden;
+}
+.hero-bg-shapes {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.wave { position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: var(--bg); clip-path: ellipse(60% 100% at 50% 100%); }
+.bubble { position: absolute; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); }
+.hero-content { position: relative; z-index: 1; max-width: 680px; margin-bottom: 40px; }
+.hero-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.hero-tag { background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: .5px; }
+.hero h1 { font-size: clamp(28px, 4vw, 52px); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+.hero p { font-size: 17px; opacity: .88; margin-bottom: 28px; max-width: 520px; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-white { background: #fff; color: var(--primary); padding: 13px 28px; border-radius: 10px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: all .2s; }
+.btn-white:hover { background: var(--bg2); transform: translateY(-2px); }
+.btn-outline-w { background: transparent; color: #fff; padding: 13px 28px; border-radius: 10px; font-weight: 600; font-size: 14px; border: 2px solid rgba(255,255,255,.4); cursor: pointer; transition: all .2s; }
+.btn-outline-w:hover { border-color: #fff; }
+.hero-chips { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1; }
+.chip { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); padding: 8px 14px; border-radius: 20px; font-size: 13px; font-weight: 500; }
+
+/* SEARCH */
+.search-section { padding: 0 5%; }
+.search-card {
+  background: var(--bg); border-radius: 16px; padding: 24px 28px;
+  box-shadow: 0 8px 30px rgba(8,145,178,0.15); border: 1px solid var(--border);
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end;
+  margin-top: -24px; position: relative; z-index: 10;
+}
+.sf { flex: 1; min-width: 150px; }
+.sf label { display: block; font-size: 11px; font-weight: 700; color: var(--text2); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .5px; }
+.sf input, .sf select {
+  width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px;
+  font-size: 14px; color: var(--text); outline: none; transition: border-color .2s; background: var(--bg);
+}
+.sf input:focus, .sf select:focus { border-color: var(--primary); }
+.btn-search { background: var(--primary); color: #fff; padding: 10px 24px; border-radius: 8px; font-weight: 600; font-size: 14px; border: none; cursor: pointer; white-space: nowrap; transition: all .2s; }
+.btn-search:hover { background: var(--primary-dark); }
+
+.section { padding: 64px 5%; }
+.section-header { text-align: center; margin-bottom: 40px; }
+.s-tag { display: inline-block; background: var(--bg3); color: var(--primary); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; border: 1px solid var(--border); }
+.s-title { font-size: clamp(22px, 2.5vw, 34px); font-weight: 800; margin-bottom: 8px; }
+.s-sub { color: var(--text3); font-size: 15px; max-width: 480px; margin: 0 auto; }
+
+.section-header-row { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+.see-all { color: var(--primary); font-size: 14px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--border); padding: 8px 16px; border-radius: 8px; transition: all .2s; }
+.see-all:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+.properties-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+.prop-card {
+  background: var(--bg); border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--border); box-shadow: var(--card-shadow); transition: all .3s; cursor: pointer;
+}
+.prop-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(8,145,178,.2); }
+.prop-img {
+  height: 210px; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center; font-size: 60px;
+}
+.prop-badge { position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.badge-beach { background: var(--primary); color: #fff; }
+.badge-pool { background: var(--accent); color: #fff; }
+.badge-new { background: #10B981; color: #fff; }
+.prop-rating { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,.55); color: #fff; padding: 4px 8px; border-radius: 8px; font-size: 12px; font-weight: 600; }
+.prop-fav { position: absolute; bottom: 12px; right: 12px; background: rgba(255,255,255,.9); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; }
+.prop-body { padding: 16px 18px; }
+.prop-price { font-size: 20px; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+.prop-price span { font-size: 12px; font-weight: 500; color: var(--text3); }
+.prop-title { font-size: 15px; font-weight: 700; margin-bottom: 5px; color: var(--text); }
+.prop-loc { font-size: 13px; color: var(--text3); margin-bottom: 12px; }
+.prop-feats { display: flex; gap: 12px; flex-wrap: wrap; padding-top: 10px; border-top: 1px solid var(--border); }
+.feat { font-size: 12px; color: var(--text3); display: flex; align-items: center; gap: 4px; }
+.prop-footer { padding: 10px 18px 14px; display: flex; gap: 8px; }
+.btn-book { flex: 1; background: var(--primary); color: #fff; padding: 9px; border-radius: 8px; font-size: 13px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
+.btn-book:hover { background: var(--primary-dark); }
+.btn-info { flex: 1; background: var(--bg2); color: var(--text2); padding: 9px; border-radius: 8px; font-size: 13px; border: 1px solid var(--border); cursor: pointer; transition: all .2s; }
+.btn-info:hover { border-color: var(--primary); color: var(--primary); }
+
+.why-section { background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%); }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+.why-card {
+  background: var(--bg); border-radius: 14px; padding: 26px;
+  border: 1px solid var(--border); transition: all .2s;
+}
+.why-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+.why-icon { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; }
+.why-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.why-card p { font-size: 13px; color: var(--text3); line-height: 1.6; }
+
+/* CALENDAR */
+.calendar-section { background: var(--sand); }
+.calendar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.calendar-left {}
+.calendar-left h2 { font-size: clamp(20px, 2.5vw, 30px); font-weight: 800; margin-bottom: 12px; }
+.calendar-left p { color: var(--text3); font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+.cal-form { background: var(--bg); border-radius: 14px; padding: 24px; border: 1px solid var(--border); }
+.cal-form h3 { font-size: 16px; font-weight: 700; margin-bottom: 18px; color: var(--text); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.form-field label { display: block; font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 5px; text-transform: uppercase; }
+.form-field input, .form-field select {
+  width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px;
+  font-size: 14px; color: var(--text); outline: none; transition: border-color .2s;
+}
+.form-field input:focus, .form-field select:focus { border-color: var(--primary); }
+.btn-check { width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 13px; border-radius: 10px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; margin-top: 8px; transition: all .2s; }
+.btn-check:hover { transform: translateY(-2px); }
+.calendar-right {}
+.calendar-widget { background: var(--bg); border-radius: 14px; padding: 20px; border: 1px solid var(--border); }
+.cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.cal-nav { background: var(--bg2); border: none; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; font-size: 16px; color: var(--text2); transition: all .2s; }
+.cal-nav:hover { background: var(--primary); color: #fff; }
+.cal-month { font-weight: 700; color: var(--text); }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal-day-name { text-align: center; font-size: 11px; color: var(--text3); font-weight: 600; padding: 4px 0; }
+.cal-day { text-align: center; padding: 8px 4px; border-radius: 8px; font-size: 13px; cursor: pointer; transition: all .2s; }
+.cal-day:hover { background: var(--bg2); }
+.cal-day.taken { background: rgba(8,145,178,.12); color: var(--primary); font-weight: 600; }
+.cal-day.available { }
+.cal-day.selected { background: var(--primary); color: #fff; font-weight: 700; }
+.cal-day.empty { }
+.cal-legend { display: flex; gap: 16px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.cal-leg { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text3); }
+.cal-dot { width: 10px; height: 10px; border-radius: 2px; }
+
+.testimonials-section {}
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.testi-card { background: var(--bg); border-radius: 14px; padding: 22px; border: 1px solid var(--border); box-shadow: var(--card-shadow); }
+.testi-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+.testi-stars { color: var(--accent); }
+.testi-date { font-size: 12px; color: var(--text3); }
+.testi-card p { font-size: 14px; color: var(--text3); line-height: 1.7; font-style: italic; margin-bottom: 14px; }
+.testi-foot { display: flex; align-items: center; gap: 10px; }
+.tav { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #fff; }
+.t-name { font-weight: 700; font-size: 14px; }
+.t-loc { font-size: 12px; color: var(--text3); }
+.t-badge { margin-left: auto; background: var(--bg3); color: var(--primary); padding: 3px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+
+.cta-section {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #fff; padding: 70px 5%; text-align: center;
+}
+.cta-section h2 { font-size: clamp(22px, 3vw, 38px); font-weight: 800; margin-bottom: 14px; }
+.cta-section p { opacity: .85; font-size: 16px; margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; }
+.cta-form-inline { display: flex; gap: 10px; max-width: 480px; margin: 0 auto; flex-wrap: wrap; }
+.cta-form-inline input { flex: 1; padding: 13px 16px; border-radius: 10px; border: none; font-size: 14px; min-width: 200px; outline: none; }
+.cta-form-inline button { background: var(--accent); color: #fff; padding: 13px 24px; border-radius: 10px; border: none; font-weight: 700; font-size: 14px; cursor: pointer; white-space: nowrap; transition: all .2s; }
+.cta-form-inline button:hover { background: var(--accent2); }
+
+footer { background: #0C4A6E; color: rgba(255,255,255,.65); padding: 50px 5% 24px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+.footer-logo { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+.footer-brand p { font-size: 13px; line-height: 1.7; }
+.footer-col h4 { color: #fff; font-size: 13px; font-weight: 700; margin-bottom: 14px; text-transform: uppercase; letter-spacing: .5px; }
+.footer-col a { display: block; color: rgba(255,255,255,.6); text-decoration: none; font-size: 13px; margin-bottom: 8px; transition: color .2s; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.15); padding-top: 20px; display: flex; justify-content: space-between; font-size: 12px; flex-wrap: wrap; gap: 8px; }
+
+@media (max-width: 768px) {
+  .calendar-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>🌊 Démo IBIG Digital — Commandez ce template vacances : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="logo">
+    Séjour<span>CI</span>
+    <span class="small">Location vacances en Côte d'Ivoire</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Locations</a></li>
+    <li><a href="#">Destinations</a></li>
+    <li><a href="#">Expériences</a></li>
+    <li><a href="#">Hôtes</a></li>
+    <li><a href="#">Aide</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-lang">🇫🇷 FR</span>
+    <button class="nav-cta">Publier votre bien</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-shapes">
+    <div class="bubble" style="width:400px;height:400px;top:-150px;right:-100px"></div>
+    <div class="bubble" style="width:200px;height:200px;top:30%;right:15%"></div>
+    <div class="wave"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="hero-tag">🌴 Grand Bassam · Assinie · San Pedro · Sassandra</span>
+    </div>
+    <h1>Vos vacances de rêve sur la côte ivoirienne</h1>
+    <p>Villas bord de mer, appartements avec vue, bungalows cocotiers. Réservez en quelques clics pour des vacances inoubliables.</p>
+    <div class="hero-btns">
+      <button class="btn-white">🏖 Chercher une location</button>
+      <button class="btn-outline-w">▶ Voir les vidéos</button>
+    </div>
+  </div>
+  <div class="hero-chips">
+    <div class="chip">🏠 320+ locations vérifiées</div>
+    <div class="chip">⭐ 4.8 note moyenne</div>
+    <div class="chip">✅ Paiement sécurisé</div>
+    <div class="chip">📞 Support 7j/7</div>
+  </div>
+</section>
+
+<div class="search-section">
+  <div class="search-card">
+    <div class="sf">
+      <label>Destination</label>
+      <select>
+        <option>Toutes destinations</option>
+        <option>Grand Bassam</option>
+        <option>Assinie</option>
+        <option>San Pedro</option>
+        <option>Sassandra</option>
+        <option>Abidjan</option>
+      </select>
+    </div>
+    <div class="sf">
+      <label>Arrivée</label>
+      <input type="date">
+    </div>
+    <div class="sf">
+      <label>Départ</label>
+      <input type="date">
+    </div>
+    <div class="sf">
+      <label>Voyageurs</label>
+      <select>
+        <option>2 personnes</option>
+        <option>1 personne</option>
+        <option>3 personnes</option>
+        <option>4 personnes</option>
+        <option>5+ personnes</option>
+      </select>
+    </div>
+    <div class="sf">
+      <label>Budget / nuit</label>
+      <select>
+        <option>Tous budgets</option>
+        <option>-50 000 FCFA</option>
+        <option>50 000–150 000</option>
+        <option>150 000–300 000</option>
+        <option>300 000+</option>
+      </select>
+    </div>
+    <button class="btn-search">🔍 Rechercher</button>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-header-row">
+    <div>
+      <div class="s-tag">Coup de cœur</div>
+      <div class="s-title" style="font-size:24px;text-align:left">Locations populaires</div>
+    </div>
+    <a href="#" class="see-all">Tout voir →</a>
+  </div>
+  <div class="properties-grid">
+
+    <div class="prop-card">
+      <div class="prop-img" style="background:linear-gradient(135deg,#0891B2,#22D3EE)">🏖️
+        <span class="prop-badge badge-beach">Bord de mer</span>
+        <div class="prop-rating">⭐ 4.9 (47)</div>
+        <div class="prop-fav">🤍</div>
+      </div>
+      <div class="prop-body">
+        <div class="prop-price">95 000 FCFA <span>/ nuit</span></div>
+        <div class="prop-title">Villa cocotiers avec accès plage privée</div>
+        <div class="prop-loc">📍 Assinie-Mafia, Côte d'Ivoire</div>
+        <div class="prop-feats">
+          <div class="feat">🛏 4 lits</div>
+          <div class="feat">🚿 2 SDB</div>
+          <div class="feat">👥 8 pers</div>
+          <div class="feat">🌊 Plage</div>
+          <div class="feat">🌐 Wifi</div>
+        </div>
+      </div>
+      <div class="prop-footer">
+        <button class="btn-book">Réserver</button>
+        <button class="btn-info">Voir plus</button>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background:linear-gradient(135deg,#0E7490,#0891B2)">🏡
+        <span class="prop-badge badge-pool">Piscine</span>
+        <div class="prop-rating">⭐ 4.8 (62)</div>
+        <div class="prop-fav">❤️</div>
+      </div>
+      <div class="prop-body">
+        <div class="prop-price">65 000 FCFA <span>/ nuit</span></div>
+        <div class="prop-title">Maison coloniale avec piscine, vue lagune</div>
+        <div class="prop-loc">📍 Grand Bassam, Côte d'Ivoire</div>
+        <div class="prop-feats">
+          <div class="feat">🛏 3 lits</div>
+          <div class="feat">🚿 2 SDB</div>
+          <div class="feat">👥 6 pers</div>
+          <div class="feat">🏊 Piscine</div>
+        </div>
+      </div>
+      <div class="prop-footer">
+        <button class="btn-book">Réserver</button>
+        <button class="btn-info">Voir plus</button>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background:linear-gradient(135deg,#164E63,#0891B2)">🌴
+        <span class="prop-badge badge-new">Nouveau</span>
+        <div class="prop-rating">⭐ 5.0 (8)</div>
+        <div class="prop-fav">🤍</div>
+      </div>
+      <div class="prop-body">
+        <div class="prop-price">180 000 FCFA <span>/ nuit</span></div>
+        <div class="prop-title">Resort luxe bord d'océan, 6 chambres</div>
+        <div class="prop-loc">📍 San Pedro, Côte d'Ivoire</div>
+        <div class="prop-feats">
+          <div class="feat">🛏 6 lits</div>
+          <div class="feat">🚿 4 SDB</div>
+          <div class="feat">👥 12 pers</div>
+          <div class="feat">🍳 Cuisine</div>
+        </div>
+      </div>
+      <div class="prop-footer">
+        <button class="btn-book">Réserver</button>
+        <button class="btn-info">Voir plus</button>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background:linear-gradient(135deg,#0F766E,#14B8A6)">🌅
+        <span class="prop-badge" style="background:#7C3AED;color:#fff">Vue panoramique</span>
+        <div class="prop-rating">⭐ 4.7 (29)</div>
+        <div class="prop-fav">🤍</div>
+      </div>
+      <div class="prop-body">
+        <div class="prop-price">42 000 FCFA <span>/ nuit</span></div>
+        <div class="prop-title">Appartement vue mer, terrasse, 2 chambres</div>
+        <div class="prop-loc">📍 Sassandra, Côte d'Ivoire</div>
+        <div class="prop-feats">
+          <div class="feat">🛏 2 lits</div>
+          <div class="feat">🚿 1 SDB</div>
+          <div class="feat">👥 4 pers</div>
+          <div class="feat">🌅 Terrasse</div>
+        </div>
+      </div>
+      <div class="prop-footer">
+        <button class="btn-book">Réserver</button>
+        <button class="btn-info">Voir plus</button>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background:linear-gradient(135deg,#92400E,#D97706)">🛖
+        <span class="prop-badge" style="background:#D97706;color:#fff">Authentique</span>
+        <div class="prop-rating">⭐ 4.9 (35)</div>
+        <div class="prop-fav">❤️</div>
+      </div>
+      <div class="prop-body">
+        <div class="prop-price">28 000 FCFA <span>/ nuit</span></div>
+        <div class="prop-title">Bungalow sous cocotiers, terrasse hammock</div>
+        <div class="prop-loc">📍 Assinie, Côte d'Ivoire</div>
+        <div class="prop-feats">
+          <div class="feat">🛏 2 lits</div>
+          <div class="feat">🚿 1 SDB</div>
+          <div class="feat">👥 3 pers</div>
+          <div class="feat">🌴 Jardin</div>
+        </div>
+      </div>
+      <div class="prop-footer">
+        <button class="btn-book">Réserver</button>
+        <button class="btn-info">Voir plus</button>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="prop-img" style="background:linear-gradient(135deg,#4338CA,#7C3AED)">🏙️
+        <span class="prop-badge" style="background:#4338CA;color:#fff">Centre-ville</span>
+        <div class="prop-rating">⭐ 4.6 (54)</div>
+        <div class="prop-fav">🤍</div>
+      </div>
+      <div class="prop-body">
+        <div class="prop-price">35 000 FCFA <span>/ nuit</span></div>
+        <div class="prop-title">Studio moderne, Abidjan Cocody, tout équipé</div>
+        <div class="prop-loc">📍 Cocody, Abidjan</div>
+        <div class="prop-feats">
+          <div class="feat">🛏 1 lit</div>
+          <div class="feat">🚿 1 SDB</div>
+          <div class="feat">👥 2 pers</div>
+          <div class="feat">❄️ Clim</div>
+        </div>
+      </div>
+      <div class="prop-footer">
+        <button class="btn-book">Réserver</button>
+        <button class="btn-info">Voir plus</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section why-section">
+  <div class="section-header">
+    <div class="s-tag">Nos avantages</div>
+    <div class="s-title">Pourquoi choisir SéjourCI ?</div>
+    <div class="s-sub">La meilleure façon de vivre la Côte d'Ivoire</div>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">✅</div>
+      <h3>Propriétés vérifiées</h3>
+      <p>Chaque logement est inspecté par notre équipe avant d'être publié. Photos réelles, descriptions honnêtes.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💳</div>
+      <h3>Paiement sécurisé</h3>
+      <p>Mobile Money, carte bancaire, virement. Vos paiements sont sécurisés et remboursables selon nos conditions.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📞</div>
+      <h3>Support 7j/7</h3>
+      <p>Notre équipe est disponible tous les jours, même les weekends et jours fériés pour vous accompagner.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🌊</div>
+      <h3>Expériences exclusives</h3>
+      <p>Excursions, plongée, cuisine locale, visites guidées — découvrez la Côte d'Ivoire autrement.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section calendar-section">
+  <div class="calendar-grid">
+    <div class="calendar-left">
+      <div class="s-tag" style="display:inline-block">Réservation</div>
+      <h2 style="margin-top:10px">Réservez votre séjour en quelques clics</h2>
+      <p>Choisissez vos dates, votre location préférée et confirmez avec un simple acompte de 30%. Le reste à l'arrivée.</p>
+      <div class="cal-form">
+        <h3>📅 Vérifier les disponibilités</h3>
+        <div class="form-row">
+          <div class="form-field">
+            <label>Arrivée</label>
+            <input type="date">
+          </div>
+          <div class="form-field">
+            <label>Départ</label>
+            <input type="date">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>Adultes</label>
+            <select><option>2</option><option>1</option><option>3</option><option>4</option><option>5+</option></select>
+          </div>
+          <div class="form-field">
+            <label>Enfants</label>
+            <select><option>0</option><option>1</option><option>2</option><option>3+</option></select>
+          </div>
+        </div>
+        <button class="btn-check">🔍 Vérifier les disponibilités</button>
+      </div>
+    </div>
+    <div class="calendar-right">
+      <div class="calendar-widget">
+        <div class="cal-header">
+          <button class="cal-nav">‹</button>
+          <div class="cal-month">Décembre 2025</div>
+          <button class="cal-nav">›</button>
+        </div>
+        <div class="cal-grid">
+          <div class="cal-day-name">Lun</div>
+          <div class="cal-day-name">Mar</div>
+          <div class="cal-day-name">Mer</div>
+          <div class="cal-day-name">Jeu</div>
+          <div class="cal-day-name">Ven</div>
+          <div class="cal-day-name">Sam</div>
+          <div class="cal-day-name">Dim</div>
+          <div class="cal-day empty"></div>
+          <div class="cal-day">1</div>
+          <div class="cal-day">2</div>
+          <div class="cal-day">3</div>
+          <div class="cal-day">4</div>
+          <div class="cal-day taken">5</div>
+          <div class="cal-day taken">6</div>
+          <div class="cal-day taken">7</div>
+          <div class="cal-day taken">8</div>
+          <div class="cal-day">9</div>
+          <div class="cal-day">10</div>
+          <div class="cal-day">11</div>
+          <div class="cal-day">12</div>
+          <div class="cal-day taken">13</div>
+          <div class="cal-day taken">14</div>
+          <div class="cal-day selected">15</div>
+          <div class="cal-day selected">16</div>
+          <div class="cal-day selected">17</div>
+          <div class="cal-day selected">18</div>
+          <div class="cal-day selected">19</div>
+          <div class="cal-day">20</div>
+          <div class="cal-day">21</div>
+          <div class="cal-day taken">22</div>
+          <div class="cal-day taken">23</div>
+          <div class="cal-day taken">24</div>
+          <div class="cal-day taken">25</div>
+          <div class="cal-day taken">26</div>
+          <div class="cal-day taken">27</div>
+          <div class="cal-day taken">28</div>
+          <div class="cal-day">29</div>
+          <div class="cal-day">30</div>
+          <div class="cal-day">31</div>
+        </div>
+        <div class="cal-legend">
+          <div class="cal-leg"><div class="cal-dot" style="background:var(--primary);opacity:.3"></div>Réservé</div>
+          <div class="cal-leg"><div class="cal-dot" style="background:var(--primary)"></div>Votre séjour</div>
+          <div class="cal-leg"><div class="cal-dot" style="background:#E5E7EB"></div>Disponible</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="s-tag">Avis</div>
+    <div class="s-title">Ce que disent nos voyageurs</div>
+    <div class="s-sub">4.8/5 basé sur 1 240 avis vérifiés</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-date">Août 2025</div>
+      </div>
+      <p>« La villa à Assinie était parfaite — exactement comme les photos. L'accès à la plage privée était magique. On reviendra l'année prochaine ! »</p>
+      <div class="testi-foot">
+        <div class="tav" style="background:linear-gradient(135deg,#0891B2,#22D3EE)">AK</div>
+        <div><div class="t-name">Amara Koné</div><div class="t-loc">Abidjan</div></div>
+        <span class="t-badge">Famille</span>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-date">Juillet 2025</div>
+      </div>
+      <p>« Séjour à Grand Bassam de 5 jours. La maison coloniale était magnifique, bien équipée, la piscine impeccable. Service client très réactif. »</p>
+      <div class="testi-foot">
+        <div class="tav" style="background:linear-gradient(135deg,#0F766E,#14B8A6)">FN</div>
+        <div><div class="t-name">Fatou N'Gom</div><div class="t-loc">Dakar</div></div>
+        <span class="t-badge">Couple</span>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-stars">★★★★☆</div>
+        <div class="testi-date">Juin 2025</div>
+      </div>
+      <p>« Très bonne expérience. Le bungalow à Assinie était charmant. Je recommande SéjourCI pour les vacances en Côte d'Ivoire, bien organisés. »</p>
+      <div class="testi-foot">
+        <div class="tav" style="background:linear-gradient(135deg,#92400E,#F59E0B)">PO</div>
+        <div><div class="t-name">Philippe Ouédraogo</div><div class="t-loc">Ouagadougou</div></div>
+        <span class="t-badge">Amis</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>🌊 Planifiez vos prochaines vacances</h2>
+  <p>Recevez nos meilleures offres et promotions pour la saison directement dans votre boîte mail.</p>
+  <div class="cta-form-inline">
+    <input type="email" placeholder="votre@email.com">
+    <button>Recevoir les offres</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">🌊 SéjourCI</div>
+      <p>La plateforme de référence pour la location de vacances en Côte d'Ivoire. Locations vérifiées, paiement sécurisé, support local.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <a href="#">Grand Bassam</a>
+      <a href="#">Assinie</a>
+      <a href="#">San Pedro</a>
+      <a href="#">Sassandra</a>
+    </div>
+    <div class="footer-col">
+      <h4>Hôtes</h4>
+      <a href="#">Publier votre bien</a>
+      <a href="#">Guide des hôtes</a>
+      <a href="#">Assurance hôte</a>
+      <a href="#">Tarification</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">📞 +225 07 00 00 00</a>
+      <a href="#">✉ bonjour@sejour.ci</a>
+      <a href="#">💬 WhatsApp 24h/24</a>
+      <a href="#">📍 Abidjan, Côte d'Ivoire</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 SéjourCI. Tous droits réservés.</span>
+    <span>Site créé avec <strong style="color:#22D3EE">IBIG Digital</strong></span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.prop-fav').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    btn.textContent = btn.textContent === '🤍' ? '❤️' : '🤍';
+  });
+});
+document.querySelectorAll('.cal-day:not(.empty):not(.taken)').forEach(day => {
+  day.addEventListener('click', function() {
+    this.classList.toggle('selected');
+  });
+});
+document.querySelector('.btn-check').addEventListener('click', function() {
+  this.textContent = '⏳ Vérification...';
+  setTimeout(() => { this.textContent = '✅ Disponible ! Réserver maintenant'; }, 1500);
+});
+</script>
+</body>
+</html>

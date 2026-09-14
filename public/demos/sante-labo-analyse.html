@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratoire Bio-Analyse Accra</title>
+  <style>
+    :root {
+      --navy: #1E3A5F;
+      --navy-dark: #152D4A;
+      --navy-mid: #2C5282;
+      --blue-accent: #3B82F6;
+      --blue-light: #EFF6FF;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-900: #0F172A;
+      --green: #10B981;
+      --yellow: #F59E0B;
+      --shadow: 0 4px 20px rgba(30,58,95,0.12);
+      --radius: 10px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: system-ui,-apple-system,sans-serif; background:var(--white); color:var(--gray-700); }
+
+    .demo-bar { position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px; }
+    .demo-bar a { background:#22C55E;color:#fff;padding:5px 14px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700; }
+
+    nav {
+      position:sticky; top:40px; z-index:100;
+      background:var(--navy); color:#fff;
+      padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:70px;
+    }
+    .nav-logo { display:flex; align-items:center; gap:12px; }
+    .logo-badge { background:var(--blue-accent); color:#fff; width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; }
+    .logo-name { font-size:16px; font-weight:900; color:#fff; }
+    .logo-sub { font-size:11px; color:#93C5FD; font-weight:600; }
+    .nav-links { display:flex; gap:28px; }
+    .nav-links a { text-decoration:none; color:#CBD5E1; font-size:14px; transition:color 0.2s; }
+    .nav-links a:hover { color:#fff; }
+    .btn-light { background:#fff; color:var(--navy); padding:10px 22px; border-radius:8px; text-decoration:none; font-size:14px; font-weight:700; transition:all 0.2s; }
+    .btn-light:hover { background:#E0F2FE; }
+
+    /* HERO */
+    .hero {
+      background:linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1E40AF 100%);
+      padding:80px 48px 70px; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; color:#fff; min-height:500px;
+    }
+    .hero-badge { display:inline-block; background:rgba(255,255,255,0.15); color:#fff; padding:6px 16px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:20px; }
+    .hero h1 { font-size:42px; font-weight:900; line-height:1.15; margin-bottom:16px; }
+    .hero h1 span { color:#93C5FD; }
+    .hero p { font-size:16px; opacity:0.85; line-height:1.7; margin-bottom:28px; }
+    .hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-primary { background:var(--blue-accent); color:#fff; padding:13px 24px; border-radius:10px; font-size:14px; font-weight:700; text-decoration:none; border:none; cursor:pointer; transition:all 0.2s; }
+    .btn-primary:hover { background:#2563EB; transform:translateY(-2px); }
+    .btn-outline-w { background:transparent; color:#fff; padding:13px 24px; border-radius:10px; font-size:14px; font-weight:700; text-decoration:none; border:2px solid rgba(255,255,255,0.4); }
+    .hero-features { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:28px; }
+    .feat { display:flex; gap:10px; align-items:center; font-size:13px; opacity:0.85; }
+    .feat span { font-size:16px; }
+    .hero-panel {
+      background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
+      border-radius:16px; padding:28px; backdrop-filter:blur(10px);
+    }
+    .hero-panel h3 { font-size:16px; font-weight:700; margin-bottom:20px; opacity:0.9; }
+    .panel-items { display:flex; flex-direction:column; gap:12px; }
+    .panel-item { display:flex; align-items:center; gap:14px; padding:12px; background:rgba(255,255,255,0.06); border-radius:8px; }
+    .panel-item-icon { font-size:24px; }
+    .panel-item-text h4 { font-size:13px; font-weight:700; margin-bottom:2px; }
+    .panel-item-text p { font-size:11px; opacity:0.7; }
+    .panel-badge { margin-left:auto; background:var(--green); color:#fff; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700; }
+    .panel-badge.warn { background:var(--yellow); color:var(--gray-900); }
+
+    /* ANALYSES */
+    .analyses { padding:80px 48px; }
+    .sect-top { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:48px; }
+    .sect-left {}
+    .sect-badge { display:inline-block; background:var(--blue-light); color:var(--navy); padding:5px 14px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:8px; }
+    .sect-h2 { font-size:32px; font-weight:900; color:var(--gray-900); }
+    .sect-p { font-size:14px; color:var(--gray-600); margin-top:6px; }
+    .search-bar {
+      display:flex; align-items:center; gap:10px;
+      background:var(--gray-100); border:1.5px solid var(--gray-200); border-radius:10px;
+      padding:10px 16px; min-width:260px;
+    }
+    .search-bar input { background:transparent; border:none; outline:none; font-size:14px; color:var(--gray-900); flex:1; }
+    .analyses-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .analyse-card {
+      background:var(--gray-50); border:1.5px solid var(--gray-200); border-radius:var(--radius);
+      padding:24px; transition:all 0.3s;
+    }
+    .analyse-card:hover { border-color:var(--blue-accent); background:#fff; box-shadow:var(--shadow); transform:translateY(-3px); }
+    .a-header { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+    .a-icon { width:44px; height:44px; background:var(--blue-light); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; }
+    .a-tag { font-size:10px; font-weight:700; background:var(--navy); color:#fff; padding:3px 8px; border-radius:4px; }
+    .analyse-card h3 { font-size:15px; font-weight:800; color:var(--gray-900); margin-bottom:6px; }
+    .analyse-card p { font-size:12px; color:var(--gray-600); line-height:1.5; margin-bottom:14px; }
+    .a-meta { display:flex; justify-content:space-between; align-items:center; padding-top:12px; border-top:1px solid var(--gray-200); flex-wrap:wrap; gap:8px; }
+    .a-price { font-size:17px; font-weight:900; color:var(--navy); }
+    .a-delai { font-size:11px; color:var(--gray-600); }
+    .a-status { font-size:10px; font-weight:700; padding:3px 8px; border-radius:20px; }
+    .status-fast { background:#D1FAE5; color:#065F46; }
+    .status-24h { background:#FEF3C7; color:#92400E; }
+
+    /* PROCESS */
+    .process { background:var(--navy); padding:70px 48px; color:#fff; }
+    .process h2 { font-size:32px; font-weight:900; text-align:center; margin-bottom:48px; }
+    .process-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; position:relative; }
+    .process-steps::before {
+      content:''; position:absolute; top:30px; left:10%; right:10%;
+      height:2px; background:rgba(255,255,255,0.2); z-index:0;
+    }
+    .p-step { text-align:center; position:relative; z-index:1; }
+    .step-circle { width:60px; height:60px; background:var(--blue-accent); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; margin:0 auto 16px; box-shadow:0 4px 14px rgba(59,130,246,0.4); }
+    .p-step h3 { font-size:14px; font-weight:700; margin-bottom:8px; }
+    .p-step p { font-size:12px; color:#94A3B8; line-height:1.5; }
+
+    /* RESULTATS EN LIGNE */
+    .resultats { padding:80px 48px; background:var(--gray-50); }
+    .res-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+    .res-info {}
+    .res-info h2 { font-size:32px; font-weight:900; color:var(--gray-900); margin-bottom:14px; }
+    .res-info p { font-size:15px; color:var(--gray-600); line-height:1.7; margin-bottom:24px; }
+    .res-features { display:flex; flex-direction:column; gap:14px; }
+    .res-feat { display:flex; gap:14px; align-items:flex-start; }
+    .res-feat-icon { width:36px; height:36px; background:var(--blue-light); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+    .res-feat h4 { font-size:14px; font-weight:700; color:var(--gray-900); margin-bottom:2px; }
+    .res-feat p { font-size:13px; color:var(--gray-600); line-height:1.5; }
+    .res-mockup {
+      background:#fff; border-radius:16px; padding:28px; box-shadow:var(--shadow); border:1px solid var(--gray-200);
+    }
+    .mockup-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+    .mockup-header h4 { font-size:15px; font-weight:700; color:var(--gray-900); }
+    .mockup-status { background:#D1FAE5; color:#065F46; padding:4px 10px; border-radius:20px; font-size:11px; font-weight:700; }
+    .result-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--gray-100); }
+    .result-name { font-size:13px; color:var(--gray-700); }
+    .result-val { font-size:13px; font-weight:800; }
+    .val-normal { color:var(--green); }
+    .val-high { color:#EF4444; }
+    .val-low { color:var(--yellow); }
+    .result-ref { font-size:11px; color:var(--gray-600); }
+
+    /* RDV & TARIFS */
+    .rdv-tarifs { padding:80px 48px; }
+    .rt-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+    .tarifs-list { background:var(--gray-50); border-radius:14px; padding:28px; }
+    .tarifs-list h3 { font-size:18px; font-weight:800; color:var(--gray-900); margin-bottom:20px; }
+    .tarif-row { display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--gray-200); }
+    .tarif-row:last-child { border-bottom:none; }
+    .tarif-name-cell { font-size:14px; color:var(--gray-700); }
+    .tarif-price-cell { font-size:15px; font-weight:900; color:var(--navy); }
+    .tarif-time-cell { font-size:11px; color:var(--gray-600); text-align:right; }
+    .rdv-form { background:var(--navy); border-radius:14px; padding:28px; color:#fff; }
+    .rdv-form h3 { font-size:18px; font-weight:800; margin-bottom:22px; }
+    .fg { margin-bottom:14px; }
+    .fg label { display:block; font-size:12px; font-weight:700; color:#CBD5E1; margin-bottom:5px; }
+    .fg input, .fg select { width:100%; padding:10px 14px; border:1.5px solid rgba(255,255,255,0.2); border-radius:8px; font-size:14px; color:#fff; background:rgba(255,255,255,0.1); }
+    .fg input::placeholder { color:rgba(255,255,255,0.5); }
+    .fg input:focus, .fg select:focus { outline:none; border-color:var(--blue-accent); }
+    .fg select option { color:var(--gray-900); background:#fff; }
+    .submit-btn { width:100%; background:var(--blue-accent); color:#fff; padding:13px; border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; transition:background 0.2s; }
+    .submit-btn:hover { background:#2563EB; }
+    .fg-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+    footer { background:var(--gray-900); color:#fff; padding:50px 48px 24px; }
+    .ft-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:36px; }
+    .fb h3 { font-size:18px; font-weight:900; margin-bottom:8px; }
+    .fb p { font-size:13px; color:#94A3B8; line-height:1.6; margin-bottom:14px; }
+    .fb-c { font-size:13px; color:#94A3B8; line-height:2; }
+    .fc h4 { font-size:13px; font-weight:700; margin-bottom:14px; color:#E2E8F0; }
+    .fc a { display:block; color:#94A3B8; text-decoration:none; font-size:13px; margin-bottom:8px; }
+    .fc a:hover { color:var(--blue-accent); }
+    .ft-bottom { border-top:1px solid #1E293B; padding-top:20px; text-align:center; font-size:12px; color:#64748B; }
+
+    @media(max-width:768px) {
+      .hero, .res-grid, .rt-grid, .ft-grid { grid-template-columns:1fr; }
+      .hero { padding:40px 20px; }
+      .analyses-grid { grid-template-columns:1fr; }
+      .process-steps { grid-template-columns:1fr 1fr; }
+      nav { padding:0 20px; background:var(--navy); }
+      .nav-links { display:none; }
+      .analyses, .resultats, .rdv-tarifs { padding-left:20px; padding-right:20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="https://ibig-digital.com/commander" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-badge">🔬</div>
+    <div>
+      <div class="logo-name">Bio-Analyse Accra</div>
+      <div class="logo-sub">Laboratoire Médical Certifié</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#analyses">Analyses</a>
+    <a href="#process">Comment ça marche</a>
+    <a href="#resultats">Résultats en ligne</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="#rdv">Rendez-vous</a>
+  </div>
+  <a href="#rdv" class="btn-light">📋 Prendre RDV</a>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-badge">🏥 Laboratoire certifié ISO 15189 · Accra, Ghana</div>
+    <h1>Analyses Médicales<br>de <span>Précision</span><br>à Accra</h1>
+    <p>Résultats fiables, délais garantis et accès sécurisé en ligne. Plus de 200 analyses disponibles pour votre santé.</p>
+    <div class="hero-btns">
+      <a href="#rdv" class="btn-primary">📋 Commander une analyse</a>
+      <a href="#resultats" class="btn-outline-w">🔍 Voir mes résultats</a>
+    </div>
+    <div class="hero-features">
+      <div class="feat"><span>⚡</span> Résultats express 2h</div>
+      <div class="feat"><span>📱</span> Résultats sur mobile</div>
+      <div class="feat"><span>🏠</span> Prélèvement domicile</div>
+      <div class="feat"><span>🔒</span> Données chiffrées</div>
+    </div>
+  </div>
+  <div class="hero-panel">
+    <h3>📊 Tableau de bord laboratoire</h3>
+    <div class="panel-items">
+      <div class="panel-item">
+        <div class="panel-item-icon">🧪</div>
+        <div class="panel-item-text">
+          <h4>Analyses disponibles</h4>
+          <p>200+ types d'analyses</p>
+        </div>
+        <div class="panel-badge">Actif</div>
+      </div>
+      <div class="panel-item">
+        <div class="panel-item-icon">⏱️</div>
+        <div class="panel-item-text">
+          <h4>Délai moyen résultats</h4>
+          <p>Sanguines : 4h · PCR : 24h</p>
+        </div>
+        <div class="panel-badge">Rapide</div>
+      </div>
+      <div class="panel-item">
+        <div class="panel-item-icon">🚑</div>
+        <div class="panel-item-text">
+          <h4>Prélèvement à domicile</h4>
+          <p>Disponible toute la ville</p>
+        </div>
+        <div class="panel-badge warn">+3 000 GHS</div>
+      </div>
+      <div class="panel-item">
+        <div class="panel-item-icon">📱</div>
+        <div class="panel-item-text">
+          <h4>Portail résultats en ligne</h4>
+          <p>Accès 24h/7j sécurisé</p>
+        </div>
+        <div class="panel-badge">Disponible</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="analyses" id="analyses">
+  <div class="sect-top">
+    <div class="sect-left">
+      <div class="sect-badge">Nos Analyses</div>
+      <h2 class="sect-h2">200+ Analyses Médicales</h2>
+      <p class="sect-p">De l'hémogramme complet au dépistage PCR, nous couvrons tous vos besoins médicaux.</p>
+    </div>
+    <div class="search-bar">
+      <span>🔍</span>
+      <input type="text" placeholder="Rechercher une analyse..." oninput="filterAnalyses(this.value)">
+    </div>
+  </div>
+  <div class="analyses-grid" id="analyses-grid">
+    <div class="analyse-card">
+      <div class="a-header"><div class="a-icon">🩸</div><div><div style="font-size:11px;font-weight:700;color:var(--navy);">Hématologie</div></div></div>
+      <h3>Hémogramme Complet (NFS)</h3>
+      <p>Numération formule sanguine, globules rouges, globules blancs, plaquettes et hémoglobine.</p>
+      <div class="a-meta">
+        <span class="a-price">8 000 FCFA</span>
+        <span class="a-status status-fast">⚡ 2h</span>
+      </div>
+    </div>
+    <div class="analyse-card">
+      <div class="a-header"><div class="a-icon">🧪</div><div><div style="font-size:11px;font-weight:700;color:var(--navy);">Biochimie</div></div></div>
+      <h3>Glycémie & HbA1c</h3>
+      <p>Dosage de la glycémie à jeun et de l'hémoglobine glyquée pour le suivi du diabète.</p>
+      <div class="a-meta">
+        <span class="a-price">12 000 FCFA</span>
+        <span class="a-status status-fast">⚡ 3h</span>
+      </div>
+    </div>
+    <div class="analyse-card">
+      <div class="a-header"><div class="a-icon">🦠</div><div><div style="font-size:11px;font-weight:700;color:var(--navy);">Virologie</div></div></div>
+      <h3>Test PCR COVID-19 / Grippe</h3>
+      <p>Détection par PCR des virus respiratoires. Résultat certifié reconnu pour voyages internationaux.</p>
+      <div class="a-meta">
+        <span class="a-price">35 000 FCFA</span>
+        <span class="a-status status-24h">⏱️ 24h</span>
+      </div>
+    </div>
+    <div class="analyse-card">
+      <div class="a-header"><div class="a-icon">❤️</div><div><div style="font-size:11px;font-weight:700;color:var(--navy);">Cardiologie</div></div></div>
+      <h3>Bilan Lipidique Complet</h3>
+      <p>Cholestérol total, HDL, LDL, triglycérides. Évaluation du risque cardiovasculaire.</p>
+      <div class="a-meta">
+        <span class="a-price">15 000 FCFA</span>
+        <span class="a-status status-fast">⚡ 4h</span>
+      </div>
+    </div>
+    <div class="analyse-card">
+      <div class="a-header"><div class="a-icon">🦟</div><div><div style="font-size:11px;font-weight:700;color:var(--navy);">Infectiologie</div></div></div>
+      <h3>Test Paludisme (TDR + Frottis)</h3>
+      <p>Diagnostic rapide et microscopique du Plasmodium. Résultat express en 30 minutes.</p>
+      <div class="a-meta">
+        <span class="a-price">6 000 FCFA</span>
+        <span class="a-status status-fast">⚡ 30 min</span>
+      </div>
+    </div>
+    <div class="analyse-card">
+      <div class="a-header"><div class="a-icon">🔬</div><div><div style="font-size:11px;font-weight:700;color:var(--navy);">Bactériologie</div></div></div>
+      <h3>ECBU (Examen Urinaire)</h3>
+      <p>Recherche de bactéries et champignons dans les urines. Antibiogramme inclus si positif.</p>
+      <div class="a-meta">
+        <span class="a-price">10 000 FCFA</span>
+        <span class="a-status status-24h">⏱️ 48h</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <h2>Comment Obtenir Vos Résultats ?</h2>
+  <div class="process-steps">
+    <div class="p-step">
+      <div class="step-circle">1</div>
+      <h3>Commandez en ligne</h3>
+      <p>Sélectionnez vos analyses et choisissez votre mode de prélèvement (cabinet ou domicile).</p>
+    </div>
+    <div class="p-step">
+      <div class="step-circle">2</div>
+      <h3>Prélèvement</h3>
+      <p>Venez au laboratoire ou recevez notre infirmier à domicile à l'heure choisie.</p>
+    </div>
+    <div class="p-step">
+      <div class="step-circle">3</div>
+      <h3>Analyse en laboratoire</h3>
+      <p>Vos échantillons sont analysés par nos automates de dernière génération.</p>
+    </div>
+    <div class="p-step">
+      <div class="step-circle">4</div>
+      <h3>Résultats en ligne</h3>
+      <p>Accédez à vos résultats sécurisés via votre espace personnel, par SMS ou email.</p>
+    </div>
+  </div>
+</section>
+
+<section class="resultats" id="resultats">
+  <div class="res-grid">
+    <div class="res-info">
+      <div class="sect-badge" style="display:inline-block;background:var(--blue-light);color:var(--navy);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:10px;">Résultats en Ligne</div>
+      <h2 class="sect-h2" style="margin-bottom:12px;">Vos Résultats Disponibles<br>24h/7j sur Mobile</h2>
+      <p style="font-size:15px;color:var(--gray-600);line-height:1.7;margin-bottom:28px;">Consultez vos analyses depuis votre smartphone, recevez des alertes instantanées et partagez directement avec votre médecin.</p>
+      <div class="res-features">
+        <div class="res-feat">
+          <div class="res-feat-icon">🔔</div>
+          <div>
+            <h4>Notifications Instantanées</h4>
+            <p>Recevez un SMS et email dès que vos résultats sont prêts.</p>
+          </div>
+        </div>
+        <div class="res-feat">
+          <div class="res-feat-icon">🔒</div>
+          <div>
+            <h4>Accès Sécurisé</h4>
+            <p>Code patient unique et chiffrement SSL. Vos données médicales sont protégées.</p>
+          </div>
+        </div>
+        <div class="res-feat">
+          <div class="res-feat-icon">📤</div>
+          <div>
+            <h4>Partage Médecin</h4>
+            <p>Envoyez vos résultats directement à votre médecin traitant en un clic.</p>
+          </div>
+        </div>
+        <div class="res-feat">
+          <div class="res-feat-icon">📊</div>
+          <div>
+            <h4>Historique & Courbes</h4>
+            <p>Visualisez l'évolution de vos valeurs dans le temps sur des graphiques clairs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="res-mockup">
+      <div class="mockup-header">
+        <h4>🧪 Résultats — M. Asante Kwame</h4>
+        <span class="mockup-status">✅ Disponibles</span>
+      </div>
+      <div style="font-size:12px;color:var(--gray-600);margin-bottom:14px;">Hémogramme · 13/09/2026 · 09h42</div>
+      <div class="result-row">
+        <span class="result-name">Globules rouges</span>
+        <span class="result-val val-normal">4.8 M/µL</span>
+        <span class="result-ref">4.0–5.5</span>
+      </div>
+      <div class="result-row">
+        <span class="result-name">Hémoglobine</span>
+        <span class="result-val val-low">10.2 g/dL</span>
+        <span class="result-ref">12.0–17.0</span>
+      </div>
+      <div class="result-row">
+        <span class="result-name">Globules blancs</span>
+        <span class="result-val val-high">14 200 /µL</span>
+        <span class="result-ref">4 000–10 000</span>
+      </div>
+      <div class="result-row">
+        <span class="result-name">Plaquettes</span>
+        <span class="result-val val-normal">320 000 /µL</span>
+        <span class="result-ref">150 000–400 000</span>
+      </div>
+      <div class="result-row">
+        <span class="result-name">Glycémie</span>
+        <span class="result-val val-normal">0.94 g/L</span>
+        <span class="result-ref">0.70–1.10</span>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:10px;">
+        <button style="flex:1;background:var(--navy);color:#fff;border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;">📥 Télécharger PDF</button>
+        <button style="flex:1;background:var(--blue-light);color:var(--navy);border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;">📤 Envoyer Médecin</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rdv-tarifs" id="tarifs">
+  <div class="rt-grid">
+    <div class="tarifs-list">
+      <h3>💰 Grille Tarifaire</h3>
+      <div class="tarif-row">
+        <span class="tarif-name-cell">Hémogramme complet (NFS)</span>
+        <span class="tarif-time-cell">2h</span>
+        <span class="tarif-price-cell">8 000 FCFA</span>
+      </div>
+      <div class="tarif-row">
+        <span class="tarif-name-cell">Glycémie à jeun</span>
+        <span class="tarif-time-cell">1h</span>
+        <span class="tarif-price-cell">3 500 FCFA</span>
+      </div>
+      <div class="tarif-row">
+        <span class="tarif-name-cell">Bilan lipidique complet</span>
+        <span class="tarif-time-cell">4h</span>
+        <span class="tarif-price-cell">15 000 FCFA</span>
+      </div>
+      <div class="tarif-row">
+        <span class="tarif-name-cell">Test paludisme TDR+frottis</span>
+        <span class="tarif-time-cell">30 min</span>
+        <span class="tarif-price-cell">6 000 FCFA</span>
+      </div>
+      <div class="tarif-row">
+        <span class="tarif-name-cell">PCR COVID-19</span>
+        <span class="tarif-time-cell">24h</span>
+        <span class="tarif-price-cell">35 000 FCFA</span>
+      </div>
+      <div class="tarif-row">
+        <span class="tarif-name-cell">Sérologie VIH (confidentiel)</span>
+        <span class="tarif-time-cell">4h</span>
+        <span class="tarif-price-cell">12 000 FCFA</span>
+      </div>
+      <div class="tarif-row">
+        <span class="tarif-name-cell">Bilan rénal complet</span>
+        <span class="tarif-time-cell">4h</span>
+        <span class="tarif-price-cell">18 000 FCFA</span>
+      </div>
+      <div class="tarif-row">
+        <span class="tarif-name-cell">Prélèvement à domicile</span>
+        <span class="tarif-time-cell">—</span>
+        <span class="tarif-price-cell">+5 000 FCFA</span>
+      </div>
+    </div>
+    <div class="rdv-form" id="rdv">
+      <h3>📋 Commander une Analyse</h3>
+      <div class="fg-row">
+        <div class="fg"><label>Prénom</label><input type="text" placeholder="Kwame"></div>
+        <div class="fg"><label>Nom</label><input type="text" placeholder="Asante"></div>
+      </div>
+      <div class="fg"><label>Téléphone</label><input type="tel" placeholder="+233 24 000 0000"></div>
+      <div class="fg">
+        <label>Type d'analyse</label>
+        <select>
+          <option>Hémogramme complet</option>
+          <option>Glycémie</option>
+          <option>Bilan lipidique</option>
+          <option>Test paludisme</option>
+          <option>PCR COVID-19</option>
+          <option>Autre (préciser)</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Mode de prélèvement</label>
+        <select>
+          <option>Au laboratoire</option>
+          <option>À domicile (+5 000 FCFA)</option>
+        </select>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Date</label><input type="date"></div>
+        <div class="fg"><label>Heure</label>
+          <select>
+            <option>07h00</option><option>08h00</option><option>09h00</option>
+            <option>10h00</option><option>11h00</option><option>14h00</option>
+          </select>
+        </div>
+      </div>
+      <button class="submit-btn" onclick="alert('✅ Votre demande est enregistrée. Code patient : LAB-2026-0847. SMS envoyé.')">🔬 Confirmer la Commande</button>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="ft-grid">
+    <div class="fb">
+      <h3>🔬 Bio-Analyse Accra</h3>
+      <p>Laboratoire médical certifié ISO 15189 à Accra. Analyses de précision, résultats rapides et portail en ligne sécurisé.</p>
+      <div class="fb-c">📍 Liberation Road, Accra — Ghana<br>📞 +233 30 200 0000<br>✉️ contact@bioanalyse-accra.gh<br>🕐 Lun–Sam : 7h–18h | Garde : 18h–22h</div>
+    </div>
+    <div class="fc"><h4>Nos Analyses</h4><a href="#">Hématologie</a><a href="#">Biochimie</a><a href="#">Microbiologie</a><a href="#">Virologie</a><a href="#">Immunologie</a></div>
+    <div class="fc"><h4>Services</h4><a href="#">Résultats en ligne</a><a href="#">Prélèvement domicile</a><a href="#">Analyses urgentes</a><a href="#">Bilan préemploi</a></div>
+    <div class="fc"><h4>Informations</h4><a href="#">Tarifs</a><a href="#">Assurances</a><a href="#">Certifications</a><a href="#">Contact</a></div>
+  </div>
+  <div class="ft-bottom">© 2026 Bio-Analyse Accra · Accra, Ghana · Cert. ISO 15189 N° GHA-LAB-2018 | Site par <a href="https://ibig-digital.com" style="color:var(--blue-accent);text-decoration:none;">IBIG Digital</a></div>
+</footer>
+
+<script>
+  function filterAnalyses(query) {
+    const cards = document.querySelectorAll('.analyse-card');
+    const q = query.toLowerCase();
+    cards.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      card.style.display = text.includes(q) || q === '' ? 'block' : 'none';
+    });
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => { e.preventDefault(); const t = document.querySelector(a.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth'}); });
+  });
+</script>
+</body>
+</html>

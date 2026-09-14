@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUTO ELITE — Garage & Vente Automobile Abidjan</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#DC2626;--red2:#F87171;--dark:#060404;--dark2:#0C0606;--dark3:#14080A;--text:#FFF5F5;--text2:rgba(255,245,245,.6);--text3:rgba(255,245,245,.3)}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:'Helvetica Neue',Arial,sans-serif;overflow-x:hidden}
+.demo-bar{position:fixed;top:0;left:0;right:0;z-index:1000;height:40px;background:#060404;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;border-bottom:1px solid rgba(220,38,38,.25)}
+.demo-badge{background:rgba(220,38,38,.15);border:1px solid rgba(248,113,113,.35);color:var(--red2);padding:.15rem .6rem;border-radius:9999px;font-size:.6rem;font-weight:800;letter-spacing:.05em}
+.demo-bar-text{font-size:.7rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:.75rem}
+.demo-btn{padding:.35rem 1.25rem;border-radius:9999px;background:linear-gradient(135deg,#FF6B00,#FF4500);color:white;font-size:.68rem;font-weight:800;text-decoration:none}
+nav{position:fixed;top:40px;left:0;right:0;z-index:900;background:rgba(6,4,4,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(220,38,38,.18);display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem}
+.nav-logo{font-size:1.1rem;font-weight:900;letter-spacing:.2em;color:var(--text);text-transform:uppercase}
+.nav-logo span{color:var(--red);font-style:normal}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.78rem;transition:color .2s}
+.nav-links a:hover{color:var(--red2)}
+.nav-cta{padding:.6rem 1.5rem;background:var(--red);color:white;border-radius:4px;font-size:.75rem;font-weight:800;text-decoration:none}
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.2fr .8fr;padding-top:88px;overflow:hidden;background:var(--dark);position:relative}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero-lines{position:absolute;bottom:0;left:0;right:0;height:50%;background:repeating-linear-gradient(90deg,rgba(220,38,38,.03) 0px,rgba(220,38,38,.03) 1px,transparent 1px,transparent 80px);opacity:.5}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:4rem 2.5rem 4rem 4rem;position:relative;z-index:1}
+.hero-eyebrow{font-size:.58rem;font-weight:800;letter-spacing:.2em;color:var(--red2);text-transform:uppercase;margin-bottom:1.25rem}
+.hero h1{font-size:clamp(2.5rem,5.5vw,4.75rem);font-weight:900;line-height:.95;letter-spacing:-.04em;text-transform:uppercase;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero-sub{font-size:.92rem;color:var(--text2);line-height:1.8;max-width:430px;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:.875rem;margin-bottom:3rem;flex-wrap:wrap}
+.btn-red{padding:.875rem 2.25rem;border-radius:2px;background:var(--red);color:white;font-size:.82rem;font-weight:900;text-decoration:none;letter-spacing:.06em}
+.btn-outline{padding:.875rem 1.875rem;border-radius:2px;border:1px solid rgba(220,38,38,.3);color:var(--red2);font-size:.82rem;font-weight:600;text-decoration:none}
+.hero-trust{display:flex;gap:2rem;flex-wrap:wrap}
+.trust-item{font-size:.68rem;color:var(--text3);display:flex;align-items:center;gap:.4rem}
+/* Hero right — car visual */
+.hero-right{position:relative;overflow:hidden;background:linear-gradient(135deg,#0C0606,#1A0808);display:flex;align-items:center;justify-content:center}
+.car-visual{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.car-glow{position:absolute;bottom:25%;left:50%;transform:translateX(-50%);width:400px;height:60px;background:radial-gradient(ellipse,rgba(220,38,38,.4),transparent 70%);filter:blur(20px)}
+.car-emoji{font-size:12rem;position:relative;z-index:2;filter:drop-shadow(0 30px 40px rgba(220,38,38,.3))}
+.car-shadow{position:absolute;bottom:20%;left:50%;transform:translateX(-50%);width:350px;height:30px;background:radial-gradient(ellipse,rgba(0,0,0,.8),transparent 70%);filter:blur(15px)}
+/* VÉHICULES */
+section{padding:6rem 0}
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+.sec-eyebrow{font-size:.58rem;font-weight:800;letter-spacing:.18em;color:var(--red2);text-transform:uppercase;margin-bottom:.75rem}
+.sec-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:900;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:.75rem}
+.sec-sub{font-size:.88rem;color:var(--text2);line-height:1.8;max-width:500px;margin-bottom:3rem}
+.vehicules{background:var(--dark2)}
+.veh-filter{display:flex;gap:.625rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.vf-btn{padding:.45rem 1.125rem;border-radius:2px;font-size:.75rem;font-weight:700;border:1px solid rgba(255,255,255,.1);color:var(--text2);background:transparent;cursor:pointer;transition:all .2s;letter-spacing:.04em}
+.vf-btn.active{background:var(--red);border-color:var(--red);color:white}
+.veh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.veh-card{border-radius:.875rem;overflow:hidden;background:var(--dark3);border:1px solid rgba(255,255,255,.05);transition:transform .2s,border-color .2s}
+.veh-card:hover{transform:translateY(-4px);border-color:rgba(220,38,38,.2)}
+.vc-img{height:200px;display:flex;align-items:center;justify-content:center;position:relative}
+.vi1{background:linear-gradient(145deg,#0C0608,#201010)}
+.vi2{background:linear-gradient(145deg,#04060C,#0A1020)}
+.vi3{background:linear-gradient(145deg,#060C04,#102010)}
+.vc-emoji{font-size:4.5rem;opacity:.6;position:relative;z-index:1}
+.vc-tag{position:absolute;top:.75rem;left:.75rem;padding:.25rem .625rem;border-radius:2px;font-size:.58rem;font-weight:800;z-index:2}
+.tag-neuf{background:var(--red);color:white}
+.tag-occasion{background:rgba(234,179,8,.8);color:#060404}
+.vc-km{position:absolute;top:.75rem;right:.75rem;background:rgba(6,4,4,.85);border-radius:4px;padding:.25rem .55rem;font-size:.58rem;color:var(--text2);z-index:2}
+.vc-body{padding:1.25rem}
+.vc-brand{font-size:.55rem;font-weight:800;color:var(--red2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.vc-model{font-size:.95rem;font-weight:800;color:var(--text);margin-bottom:.25rem}
+.vc-year{font-size:.65rem;color:var(--text3);margin-bottom:.875rem}
+.vc-specs{display:flex;gap:.625rem;flex-wrap:wrap;margin-bottom:1rem}
+.vc-spec{font-size:.6rem;color:var(--text2);background:rgba(255,255,255,.04);border-radius:2px;padding:.2rem .5rem}
+.vc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.875rem;border-top:1px solid rgba(255,255,255,.04)}
+.vc-price{font-size:1.05rem;font-weight:900;color:var(--text)}
+.vc-btn{padding:.5rem 1rem;background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.25);border-radius:2px;font-size:.7rem;font-weight:800;color:var(--red2);text-decoration:none}
+/* SERVICES */
+.services{background:var(--dark)}
+.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.srv-card{padding:2rem 1.5rem;border-radius:.875rem;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-top:3px solid rgba(220,38,38,.35);transition:border-color .2s}
+.srv-card:hover{border-top-color:var(--red)}
+.srv-icon{font-size:2.25rem;margin-bottom:1rem;display:block}
+.srv-name{font-size:.92rem;font-weight:800;color:var(--text);margin-bottom:.4rem}
+.srv-desc{font-size:.72rem;color:var(--text3);line-height:1.7}
+/* FOOTER */
+footer{background:var(--dark2);padding:4rem 0 2rem;border-top:1px solid rgba(220,38,38,.1)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-logo{font-size:1.1rem;font-weight:900;letter-spacing:.18em;color:var(--text);margin-bottom:.625rem}
+.footer-logo span{color:var(--red)}
+.footer-desc{font-size:.75rem;color:var(--text3);line-height:1.8;max-width:230px;margin-bottom:1.25rem}
+.footer-col h4{font-size:.58rem;font-weight:800;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.625rem}
+.footer-links a{font-size:.78rem;color:var(--text3);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--red2)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.04);padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.footer-copy{font-size:.7rem;color:var(--text3)}
+@media(max-width:768px){
+  nav{padding:.75rem 1.25rem}.nav-links{display:none}
+  .hero{grid-template-columns:1fr}.hero-right{height:280px}
+  .hero-left{padding:2rem 1.5rem}
+  .veh-grid,.srv-grid,.footer-top{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <div class="demo-bar-text"><span class="demo-badge">DÉMO LIVE</span><span>Template <strong style="color:rgba(255,255,255,.8)">Garage Elite Auto</strong> — Automobile</span></div>
+  <div style="display:flex;gap:.75rem">
+    <a href="/templates/auto/garage-elite" class="demo-btn">← Retour</a>
+    <a href="/templates/commander?secteur=auto&formule=premium" class="demo-btn">Commander →</a>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-logo">AUTO <span>ELITE</span></div>
+  <ul class="nav-links">
+    <li><a href="#vehicules">Véhicules</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#">Financement</a></li>
+  </ul>
+  <a href="#vehicules" class="nav-cta">Voir les véhicules</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"><div class="hero-lines"></div></div>
+  <div class="hero-left">
+    <p class="hero-eyebrow">🏆 N°1 véhicules d'occasion premium — Abidjan</p>
+    <h1>Votre prochain<br>véhicule<br>vous attend<br><em>ici</em></h1>
+    <p class="hero-sub">Plus de 200 véhicules en stock : berlines, SUV, 4x4, pick-up. Import Japan, Europe, USA. Véhicules inspectés, garantis et financements disponibles.</p>
+    <div class="hero-btns">
+      <a href="#vehicules" class="btn-red">Voir le stock →</a>
+      <a href="#contact" class="btn-outline">Demander un devis</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">✅ 200+ véhicules en stock</div>
+      <div class="trust-item">🔧 Garantie 6 mois</div>
+      <div class="trust-item">💳 Financement disponible</div>
+      <div class="trust-item">📋 Dossiers clé en main</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="car-visual">
+      <div class="car-glow"></div>
+      <div class="car-emoji">🚗</div>
+      <div class="car-shadow"></div>
+    </div>
+  </div>
+</section>
+
+<section id="vehicules" class="vehicules">
+  <div class="container">
+    <p class="sec-eyebrow">Stock disponible</p>
+    <h2 class="sec-title">Nos véhicules</h2>
+    <div class="veh-filter">
+      <button class="vf-btn active">Tous</button>
+      <button class="vf-btn">Berlines</button>
+      <button class="vf-btn">SUV</button>
+      <button class="vf-btn">4x4</button>
+      <button class="vf-btn">Pick-up</button>
+    </div>
+    <div class="veh-grid">
+      <div class="veh-card"><div class="vc-img vi1"><span class="vc-emoji">🚗</span><span class="vc-tag tag-occasion">OCCASION</span><span class="vc-km">45 000 km</span></div><div class="vc-body"><div class="vc-brand">Toyota</div><div class="vc-model">Camry SE 2020</div><div class="vc-year">Automatique · Essence · Import USA</div><div class="vc-specs"><span class="vc-spec">2.5L V4</span><span class="vc-spec">203 ch</span><span class="vc-spec">Caméra 360°</span><span class="vc-spec">Cuir</span></div><div class="vc-footer"><div class="vc-price">9 500 000 FCFA</div><a href="#contact" class="vc-btn">Voir →</a></div></div></div>
+      <div class="veh-card"><div class="vc-img vi2"><span class="vc-emoji">🚙</span><span class="vc-tag tag-occasion">OCCASION</span><span class="vc-km">32 000 km</span></div><div class="vc-body"><div class="vc-brand">Honda</div><div class="vc-model">CR-V EX-L 2021</div><div class="vc-year">Automatique · Essence · Import Japan</div><div class="vc-specs"><span class="vc-spec">1.5T Turbo</span><span class="vc-spec">190 ch</span><span class="vc-spec">AWD</span><span class="vc-spec">Toit ouvrant</span></div><div class="vc-footer"><div class="vc-price">12 800 000 FCFA</div><a href="#contact" class="vc-btn">Voir →</a></div></div></div>
+      <div class="veh-card"><div class="vc-img vi3"><span class="vc-emoji">🚐</span><span class="vc-tag tag-neuf">NEUF</span><span class="vc-km">0 km</span></div><div class="vc-body"><div class="vc-brand">Toyota</div><div class="vc-model">Land Cruiser GX 2024</div><div class="vc-year">Automatique · Diesel · Neuf</div><div class="vc-specs"><span class="vc-spec">3.0L V6</span><span class="vc-spec">245 ch</span><span class="vc-spec">4x4</span><span class="vc-spec">7 places</span></div><div class="vc-footer"><div class="vc-price">38 500 000 FCFA</div><a href="#contact" class="vc-btn">Voir →</a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="services">
+  <div class="container">
+    <p class="sec-eyebrow">Nos services</p>
+    <h2 class="sec-title">Auto Elite, c'est aussi</h2>
+    <div class="srv-grid">
+      <div class="srv-card"><span class="srv-icon">🔧</span><div class="srv-name">Garage & Entretien</div><div class="srv-desc">Révision, vidange, freinage, pneumatiques, climatisation, diagnostic électronique</div></div>
+      <div class="srv-card"><span class="srv-icon">📋</span><div class="srv-name">Immatriculation</div><div class="srv-desc">Gestion complète des dossiers : carte grise, assurance, visite technique, mise en circulation</div></div>
+      <div class="srv-card"><span class="srv-icon">💳</span><div class="srv-name">Financement</div><div class="srv-desc">Crédit auto avec nos partenaires bancaires. Apport dès 20%. Décision rapide en 48h</div></div>
+      <div class="srv-card"><span class="srv-icon">🔍</span><div class="srv-name">Expertise & reprise</div><div class="srv-desc">Rachat de votre ancien véhicule. Expertise gratuite sur place. Prix juste garanti</div></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="footer-top">
+      <div><div class="footer-logo">AUTO <span>ELITE</span></div><p class="footer-desc">Le spécialiste des véhicules d'occasion premium à Abidjan. Import, vente, entretien et financement.</p>
+      <div style="font-size:.78rem;color:var(--text3);line-height:1.9"><div>📍 Route de l'Aéroport, Marcory, Abidjan</div><div>📞 +225 07 00 00 00 00</div><div>📱 WhatsApp disponible 7j/7</div></div></div>
+      <div class="footer-col"><h4>Catalogue</h4><ul class="footer-links"><li><a href="#">Berlines</a></li><li><a href="#">SUV</a></li><li><a href="#">4x4 & Pick-up</a></li><li><a href="#">Utilitaires</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="#">Garage</a></li><li><a href="#">Financement</a></li><li><a href="#">Immatriculation</a></li><li><a href="#">Reprise</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">© 2025 Auto Elite — Abidjan, Côte d'Ivoire</span><span class="footer-copy">Site par <span style="color:var(--red2)">IBIG DIGITAL</span></span></div>
+  </div>
+</footer>
+<script>document.querySelectorAll('.vf-btn').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.vf-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active')})})</script>
+</body>
+</html>

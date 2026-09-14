@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoachPro Africa — Orientation & Carrière</title>
+<style>
+:root{--orange:#EA580C;--dark-orange:#C2410C;--black:#0A0A0A;--dark:#111827;--text:#1F2937;--gray:#6B7280;--light:#FFF7ED;--white:#fff;--border:#E5E7EB;--shadow:0 4px 24px rgba(234,88,12,0.14)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
+#demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
+#demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
+
+nav{position:sticky;top:40px;background:var(--white);border-bottom:3px solid var(--orange);z-index:100;box-shadow:0 2px 16px rgba(234,88,12,0.08)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--orange),var(--dark-orange));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.logo-text{font-weight:900;font-size:19px;color:var(--dark)}
+.logo-text span{color:var(--orange);display:block;font-size:11px;font-weight:500;letter-spacing:0.5px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--orange)}
+.nav-cta{background:var(--orange);color:#fff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;transition:all .2s}
+.nav-cta:hover{background:var(--dark-orange);transform:translateY(-1px)}
+
+.hero{background:linear-gradient(135deg,var(--black) 0%,#1a0a00 60%,#0a0a0a 100%);padding:90px 24px 70px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:50%;left:50%;transform:translate(-20%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(234,88,12,0.12),transparent 70%);pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(234,88,12,0.15);border:1px solid rgba(234,88,12,0.3);color:var(--orange);padding:6px 16px;border-radius:4px;font-size:12px;font-weight:700;margin-bottom:24px;text-transform:uppercase;letter-spacing:1px}
+.hero h1{font-size:54px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:20px;letter-spacing:-1px}
+.hero h1 span{color:var(--orange)}
+.hero-desc{font-size:17px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-orange{background:var(--orange);color:#fff;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:all .2s}
+.btn-orange:hover{background:var(--dark-orange);transform:translateY(-2px);box-shadow:0 8px 24px rgba(234,88,12,0.4)}
+.btn-white{background:#fff;color:var(--dark);padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:all .2s}
+.btn-white:hover{transform:translateY(-2px)}
+.hero-proof{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.proof-box{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px;text-align:center}
+.proof-num{font-size:36px;font-weight:900;color:var(--orange);line-height:1}
+.proof-label{font-size:12px;color:rgba(255,255,255,0.5);margin-top:6px}
+.hero-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px}
+.hero-card h3{font-size:18px;font-weight:700;color:#fff;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.service-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.service-item:last-child{border-bottom:none}
+.service-icon{width:40px;height:40px;background:rgba(234,88,12,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.service-name{font-size:15px;font-weight:600;color:#fff}
+.service-price{font-size:13px;color:var(--orange);font-weight:600}
+
+section{padding:72px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;background:rgba(234,88,12,0.1);color:var(--orange);padding:4px 14px;border-radius:4px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.section-title{font-size:36px;font-weight:800;color:var(--dark);margin-bottom:14px}
+.section-sub{font-size:16px;color:var(--gray);line-height:1.7;max-width:580px}
+
+.stats{background:var(--orange);padding:40px 24px}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:24px}
+.stat-num{font-size:44px;font-weight:900;color:#fff;line-height:1}
+.stat-label{color:rgba(255,255,255,0.75);font-size:14px;margin-top:6px}
+
+.services{background:var(--light)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.svc-card{background:#fff;border-radius:16px;padding:32px;box-shadow:var(--shadow);transition:transform .3s;border-top:4px solid var(--orange)}
+.svc-card:hover{transform:translateY(-6px)}
+.svc-icon{font-size:44px;margin-bottom:18px}
+.svc-title{font-size:21px;font-weight:800;color:var(--dark);margin-bottom:10px}
+.svc-desc{font-size:14px;color:var(--gray);line-height:1.6;margin-bottom:20px}
+.svc-includes{list-style:none;margin-bottom:24px}
+.svc-includes li{padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px}
+.svc-includes li::before{content:'→';color:var(--orange);font-weight:700}
+.svc-includes li:last-child{border-bottom:none}
+.svc-footer{display:flex;align-items:center;justify-content:space-between}
+.svc-price{font-size:18px;font-weight:700;color:var(--orange)}
+.svc-btn{background:var(--orange);color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;transition:all .2s}
+.svc-btn:hover{background:var(--dark-orange)}
+
+.process{background:#fff}
+.process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:48px;position:relative}
+.process-steps::before{content:'';position:absolute;top:28px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--orange),var(--dark-orange));z-index:0}
+.proc-step{text-align:center;position:relative;z-index:1;padding:0 12px}
+.proc-num{width:56px;height:56px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;margin:0 auto 16px;border:4px solid #fff;box-shadow:0 0 0 4px var(--orange)}
+.proc-title{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:8px}
+.proc-desc{font-size:12px;color:var(--gray);line-height:1.5}
+
+.coachs{background:var(--light)}
+.coachs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.coach-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:transform .3s}
+.coach-card:hover{transform:translateY(-6px)}
+.coach-header{height:200px;position:relative;display:flex;align-items:flex-end;padding:24px}
+.coach-avatar-area{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:80px}
+.coach-header-bg{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6),transparent)}
+.coach-cert{background:var(--orange);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;position:relative;z-index:1}
+.coach-body{padding:24px}
+.coach-name{font-size:20px;font-weight:800;color:var(--dark);margin-bottom:4px}
+.coach-title{font-size:14px;color:var(--orange);font-weight:600;margin-bottom:12px}
+.coach-bio{font-size:13px;color:var(--gray);line-height:1.5;margin-bottom:16px}
+.coach-specialites{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.spec-tag{background:var(--light);color:var(--orange);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid rgba(234,88,12,0.2)}
+.coach-stats{display:flex;gap:20px}
+.coach-stat{text-align:center}
+.coach-stat-num{font-size:20px;font-weight:800;color:var(--orange)}
+.coach-stat-label{font-size:11px;color:var(--gray)}
+
+.temoignages{background:#fff}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.testi-card{background:var(--light);border-radius:16px;padding:28px;border:2px solid transparent;transition:all .2s}
+.testi-card:hover{border-color:var(--orange);transform:translateY(-4px)}
+.testi-stars{color:var(--orange);font-size:16px;margin-bottom:14px}
+.testi-text{color:var(--gray);font-size:15px;line-height:1.7;font-style:italic;margin-bottom:20px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{width:48px;height:48px;background:linear-gradient(135deg,var(--orange),var(--dark-orange));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:18px}
+.testi-name{font-size:15px;font-weight:700;color:var(--dark)}
+.testi-info{font-size:12px;color:var(--gray)}
+.testi-result{display:inline-block;background:rgba(234,88,12,0.1);color:var(--orange);padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-top:4px}
+
+.cta-section{background:linear-gradient(135deg,var(--orange),var(--dark-orange),#7c1c00);padding:80px 24px}
+.cta-inner{max-width:800px;margin:0 auto;text-align:center}
+.cta-inner h2{font-size:48px;font-weight:900;color:#fff;margin-bottom:16px;letter-spacing:-1px}
+.cta-inner p{font-size:18px;color:rgba(255,255,255,0.8);margin-bottom:36px}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-white-dark{background:#fff;color:var(--orange);padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;transition:all .2s}
+.btn-white-dark:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+.btn-outline-w{border:2px solid rgba(255,255,255,0.5);color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:600;font-size:16px;transition:all .2s}
+.btn-outline-w:hover{border-color:#fff}
+
+footer{background:var(--black);padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-heading{font-size:13px;font-weight:700;color:#fff;margin-bottom:18px;text-transform:uppercase;letter-spacing:1px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:9px}
+.footer-links a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-links a:hover{color:var(--orange)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:10px}
+.footer-bottom a{color:var(--orange);text-decoration:none}
+
+@media(max-width:768px){
+  .hero-inner,.footer-grid{grid-template-columns:1fr}
+  .hero h1{font-size:36px}
+  .services-grid,.coachs-grid,.testi-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr 1fr}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .nav-links,.nav-cta{display:none}
+}
+</style>
+</head>
+<body>
+<div id="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="#">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">🚀</div>
+      <div class="logo-text">CoachPro Africa<span>Orientation & Développement Carrière</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Coachs</a></li>
+      <li><a href="#">Méthode</a></li>
+      <li><a href="#">Tarifs</a></li>
+      <li><a href="#">Témoignages</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Séance gratuite</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🏆 Cabinet de coaching N°1 en Afrique francophone</div>
+      <h1>Décuplez Votre<br><span>Potentiel</span> Professionnel</h1>
+      <p class="hero-desc">CoachPro Africa accompagne les professionnels africains dans leur évolution de carrière : CV, entretiens, reconversions, promotions, création d'entreprise. Résultats concrets garantis.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-orange">Séance découverte gratuite</a>
+        <a href="#" class="btn-white">Voir nos services</a>
+      </div>
+      <div class="hero-proof">
+        <div class="proof-box"><div class="proof-num">4 800+</div><div class="proof-label">Clients accompagnés</div></div>
+        <div class="proof-box"><div class="proof-num">89%</div><div class="proof-label">Obtiennent leur poste en 3 mois</div></div>
+        <div class="proof-box"><div class="proof-num">+42%</div><div class="proof-label">Salaire moyen après coaching</div></div>
+        <div class="proof-box"><div class="proof-num">38</div><div class="proof-label">Coachs certifiés ICF</div></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>🎯 Nos accompagnements</h3>
+      <div class="service-item"><div class="service-icon">📄</div><div><div class="service-name">Refonte CV & LinkedIn</div><div class="service-price">à partir de 25 000 FCFA</div></div></div>
+      <div class="service-item"><div class="service-icon">🎤</div><div><div class="service-name">Coaching entretien</div><div class="service-price">à partir de 35 000 FCFA</div></div></div>
+      <div class="service-item"><div class="service-icon">🔄</div><div><div class="service-name">Bilan de compétences</div><div class="service-price">à partir de 120 000 FCFA</div></div></div>
+      <div class="service-item"><div class="service-icon">📈</div><div><div class="service-name">Coaching leadership</div><div class="service-price">à partir de 80 000 FCFA</div></div></div>
+      <div class="service-item"><div class="service-icon">🚀</div><div><div class="service-name">Création d'entreprise</div><div class="service-price">à partir de 150 000 FCFA</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stats-inner">
+    <div><div class="stat-num">4 800+</div><div class="stat-label">Clients accompagnés</div></div>
+    <div><div class="stat-num">8 ans</div><div class="stat-label">D'expérience</div></div>
+    <div><div class="stat-num">15</div><div class="stat-label">Pays africains</div></div>
+    <div><div class="stat-num">4.9/5</div><div class="stat-label">Note moyenne</div></div>
+  </div>
+</div>
+
+<section class="services">
+  <div class="section-inner">
+    <div class="section-tag">Nos Services</div>
+    <h2 class="section-title">Un Accompagnement Sur-Mesure</h2>
+    <p class="section-sub">Que vous cherchiez un emploi, une promotion ou une reconversion, nous avons le programme adapté à votre situation.</p>
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-icon">📄</div>
+        <div class="svc-title">CV & Personal Branding</div>
+        <p class="svc-desc">Votre CV est votre vitrine. Nous le transformons en outil de séduction irrésistible pour les recruteurs africains et internationaux.</p>
+        <ul class="svc-includes">
+          <li>Audit de votre CV actuel</li>
+          <li>Rédaction CV professionnel (2 versions)</li>
+          <li>Optimisation profil LinkedIn</li>
+          <li>Lettre de motivation personnalisée</li>
+          <li>Portfolio numérique si besoin</li>
+        </ul>
+        <div class="svc-footer"><div class="svc-price">dès 25 000 FCFA</div><a href="#" class="svc-btn">Commencer</a></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🎤</div>
+        <div class="svc-title">Coaching Entretiens</div>
+        <p class="svc-desc">Maîtrisez les techniques d'entretien pour décrocher le poste que vous méritez. Simulations réelles, feedback expert.</p>
+        <ul class="svc-includes">
+          <li>3 sessions de simulation d'entretien</li>
+          <li>Analyse vidéo de vos prestations</li>
+          <li>Techniques STAR et storytelling</li>
+          <li>Gestion du stress & présence</li>
+          <li>Suivi post-entretiens</li>
+        </ul>
+        <div class="svc-footer"><div class="svc-price">dès 35 000 FCFA</div><a href="#" class="svc-btn">Commencer</a></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🔄</div>
+        <div class="svc-title">Bilan de Compétences</div>
+        <p class="svc-desc">Découvrez vos vraies forces, vos valeurs profondes et construisez un projet professionnel qui vous ressemble vraiment.</p>
+        <ul class="svc-includes">
+          <li>10 heures de coaching individuel</li>
+          <li>Tests psychométriques certifiés</li>
+          <li>Analyse du marché africain</li>
+          <li>Plan d'action personnalisé</li>
+          <li>Suivi 6 mois inclus</li>
+        </ul>
+        <div class="svc-footer"><div class="svc-price">dès 120 000 FCFA</div><a href="#" class="svc-btn">Commencer</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="section-inner">
+    <div class="section-tag">Notre Méthode</div>
+    <h2 class="section-title">La Méthode CoachPro 5 Étapes</h2>
+    <p class="section-sub">Une approche éprouvée par 4 800 professionnels africains pour transformer leur trajectoire de carrière.</p>
+    <div class="process-steps">
+      <div class="proc-step"><div class="proc-num">1</div><div class="proc-title">Diagnostic</div><div class="proc-desc">Bilan complet de votre situation professionnelle actuelle</div></div>
+      <div class="proc-step"><div class="proc-num">2</div><div class="proc-title">Objectifs</div><div class="proc-desc">Définition SMART de vos ambitions à 3 et 12 mois</div></div>
+      <div class="proc-step"><div class="proc-num">3</div><div class="proc-title">Stratégie</div><div class="proc-desc">Plan d'action personnalisé avec jalons clairs</div></div>
+      <div class="proc-step"><div class="proc-num">4</div><div class="proc-title">Action</div><div class="proc-desc">Accompagnement intensif et soutien hebdomadaire</div></div>
+      <div class="proc-step"><div class="proc-num">5</div><div class="proc-title">Résultats</div><div class="proc-desc">Mesure des progrès et ajustements en temps réel</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="coachs">
+  <div class="section-inner">
+    <div class="section-tag">Nos Coachs</div>
+    <h2 class="section-title">Des Experts de Votre Réussite</h2>
+    <p class="section-sub">Nos 38 coachs sont tous certifiés ICF (International Coach Federation) et ont exercé en entreprise pendant au minimum 10 ans.</p>
+    <div class="coachs-grid">
+      <div class="coach-card">
+        <div class="coach-header" style="background:linear-gradient(135deg,#1a0a00,#7c1c00)"><div class="coach-avatar-area">👨‍💼</div><div class="coach-header-bg"></div><span class="coach-cert">ICF PCC · 15 ans</span></div>
+        <div class="coach-body">
+          <div class="coach-name">Mamadou Doumbia</div>
+          <div class="coach-title">Coach Carrière & Leadership</div>
+          <p class="coach-bio">Ex-DRH Orange Mali. Accompagne cadres dirigeants et managers dans leur évolution. Spécialiste leadership africain et management interculturel.</p>
+          <div class="coach-specialites"><span class="spec-tag">Leadership</span><span class="spec-tag">Promotion</span><span class="spec-tag">Management</span></div>
+          <div class="coach-stats"><div class="coach-stat"><div class="coach-stat-num">380+</div><div class="coach-stat-label">Clients</div></div><div class="coach-stat"><div class="coach-stat-num">4.9</div><div class="coach-stat-label">Note</div></div><div class="coach-stat"><div class="coach-stat-num">15 ans</div><div class="coach-stat-label">Expérience</div></div></div>
+        </div>
+      </div>
+      <div class="coach-card">
+        <div class="coach-header" style="background:linear-gradient(135deg,#0a1a00,#1a4d00)"><div class="coach-avatar-area">👩‍💻</div><div class="coach-header-bg"></div><span class="coach-cert">ICF MCC · Reconversion</span></div>
+        <div class="coach-body">
+          <div class="coach-name">Fatoumata Sylla</div>
+          <div class="coach-title">Coach Reconversion & Entrepreneuriat</div>
+          <p class="coach-bio">Ancienne consultante McKinsey Afrique. Spécialiste reconversion professionnelle et lancement d'entreprise. 200+ entrepreneurs accompagnés.</p>
+          <div class="coach-specialites"><span class="spec-tag">Reconversion</span><span class="spec-tag">Startup</span><span class="spec-tag">Business Plan</span></div>
+          <div class="coach-stats"><div class="coach-stat"><div class="coach-stat-num">210+</div><div class="coach-stat-label">Clients</div></div><div class="coach-stat"><div class="coach-stat-num">5.0</div><div class="coach-stat-label">Note</div></div><div class="coach-stat"><div class="coach-stat-num">11 ans</div><div class="coach-stat-label">Expérience</div></div></div>
+        </div>
+      </div>
+      <div class="coach-card">
+        <div class="coach-header" style="background:linear-gradient(135deg,#0a001a,#3d0060)"><div class="coach-avatar-area">👨‍🎓</div><div class="coach-header-bg"></div><span class="coach-cert">ICF ACC · Entretiens</span></div>
+        <div class="coach-body">
+          <div class="coach-name">Eric Kouamé</div>
+          <div class="coach-title">Coach Entretiens & Personal Branding</div>
+          <p class="coach-bio">Ancien recruteur chez TotalEnergies et Unilever Afrique. Connaît les codes des grands groupes et les PME africaines de l'intérieur.</p>
+          <div class="coach-specialites"><span class="spec-tag">Entretiens</span><span class="spec-tag">CV</span><span class="spec-tag">LinkedIn</span></div>
+          <div class="coach-stats"><div class="coach-stat"><div class="coach-stat-num">450+</div><div class="coach-stat-label">Clients</div></div><div class="coach-stat"><div class="coach-stat-num">4.8</div><div class="coach-stat-label">Note</div></div><div class="coach-stat"><div class="coach-stat-num">12 ans</div><div class="coach-stat-label">Expérience</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="temoignages">
+  <div class="section-inner">
+    <div class="section-tag">Témoignages</div>
+    <h2 class="section-title">Leurs Succès, Notre Fierté</h2>
+    <p class="section-sub">Découvrez comment CoachPro Africa a transformé la carrière de professionnels de toute l'Afrique francophone.</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Je cherchais un poste de manager depuis 2 ans. Mamadou a revu mon positionnement en 3 semaines. J'ai décroché un poste de Directeur Régional. Mon salaire a doublé !"</p>
+        <div class="testi-author"><div class="testi-av">O</div><div><div class="testi-name">Oumar Traoré</div><div class="testi-info">Abidjan · Ex-chef d'équipe → Directeur Régional</div><span class="testi-result">+120% de salaire</span></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"J'étais comptable frustrée. Fatoumata m'a aidée à identifier ma vraie passion : la formation. J'ai créé mon cabinet de formation il y a 18 mois. Ca marche !"</p>
+        <div class="testi-author"><div class="testi-av">A</div><div><div class="testi-name">Awa Diatta</div><div class="testi-info">Dakar · Comptable → Fondatrice cabinet formation</div><span class="testi-result">Reconversion réussie</span></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Avec Eric, j'ai transformé mes entretiens. De 0 réponse positive en 6 mois, j'ai enchaîné 3 offres en 3 semaines. J'ai choisi mon futur employeur, pas l'inverse."</p>
+        <div class="testi-author"><div class="testi-av">K</div><div><div class="testi-name">Koffi Assamoi</div><div class="testi-info">Abidjan · Ingénieur en recherche d'emploi</div><span class="testi-result">3 offres en 3 semaines</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Votre Prochaine Étape Commence Ici</h2>
+    <p>Première séance de 30 minutes 100% gratuite, sans engagement. Découvrez comment nous pouvons transformer votre carrière.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-white-dark">Réserver ma séance gratuite</a>
+      <a href="#" class="btn-outline-w">Voir tous nos services</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:14px">🚀 CoachPro Africa</div>
+        <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,0.4);margin-bottom:18px">Cabinet de coaching carrière certifié ICF. Accompagnement personnalisé des professionnels africains depuis Abidjan, Dakar, Douala, Lomé.</p>
+        <div style="font-size:14px;line-height:2;color:rgba(255,255,255,0.4)">📍 Abidjan, Dakar, Douala, Bamako<br>📞 +225 07 00 00 00 00<br>✉️ bonjour@coachpro-africa.com</div>
+      </div>
+      <div><div class="footer-heading">Services</div><ul class="footer-links"><li><a href="#">CV & LinkedIn</a></li><li><a href="#">Entretiens</a></li><li><a href="#">Bilan compétences</a></li><li><a href="#">Leadership</a></li><li><a href="#">Reconversion</a></li></ul></div>
+      <div><div class="footer-heading">Cabinet</div><ul class="footer-links"><li><a href="#">Nos coachs</a></li><li><a href="#">Méthode</a></li><li><a href="#">Témoignages</a></li><li><a href="#">Blog carrière</a></li><li><a href="#">Entreprises</a></li></ul></div>
+      <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="#">Séance gratuite</a></li><li><a href="#">Agenda coachs</a></li><li><a href="#">WhatsApp</a></li><li><a href="#">FAQ</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 CoachPro Africa · Membre ICF Africa Chapter</span>
+      <span>Site créé avec <a href="#">IBIG Digital</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

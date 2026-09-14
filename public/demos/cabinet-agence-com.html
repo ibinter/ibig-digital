@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agence Créative Dakar — Branding & Digital</title>
+<style>
+:root{--bg:#0A0A0A;--card:#141414;--border:#222;--text:#f0f0f0;--muted:#888;--neon-pink:#FF2D87;--neon-cyan:#00F5FF;--neon-yellow:#FFE600;--neon-green:#39FF14;--white:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--bg);padding-top:40px}
+#demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
+#demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
+
+nav{position:sticky;top:40px;background:rgba(10,10,10,0.95);border-bottom:1px solid var(--border);z-index:100;backdrop-filter:blur(12px)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark{width:40px;height:40px;background:linear-gradient(135deg,var(--neon-pink),var(--neon-cyan));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#000}
+.logo-text{font-weight:900;font-size:18px;color:var(--white);letter-spacing:-0.5px}
+.logo-text span{display:block;font-size:11px;font-weight:400;color:var(--muted);letter-spacing:1px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--neon-pink);color:#000;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;transition:all .2s}
+.nav-cta:hover{background:#ff5ea7;transform:translateY(-1px)}
+
+.hero{min-height:92vh;display:flex;align-items:center;padding:80px 24px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 30% 40%,rgba(255,45,135,0.08),transparent),radial-gradient(ellipse 40% 50% at 70% 60%,rgba(0,245,255,0.06),transparent),radial-gradient(ellipse 60% 40% at 50% 90%,rgba(57,255,20,0.04),transparent)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:40px 40px}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-kicker{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+.hero-kicker span{color:var(--neon-pink);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px}
+.hero h1{font-size:64px;font-weight:900;color:var(--white);line-height:1.0;margin-bottom:20px;letter-spacing:-2px}
+.hero h1 .p{color:var(--neon-pink)}
+.hero h1 .c{color:var(--neon-cyan)}
+.hero-desc{font-size:17px;color:var(--muted);line-height:1.7;margin-bottom:36px;max-width:480px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-pink{background:var(--neon-pink);color:#000;padding:16px 36px;border-radius:6px;text-decoration:none;font-weight:700;font-size:15px;transition:all .2s}
+.btn-pink:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,45,135,0.4)}
+.btn-outline{border:1.5px solid rgba(255,255,255,0.2);color:var(--text);padding:16px 36px;border-radius:6px;text-decoration:none;font-weight:600;font-size:15px;transition:all .2s}
+.btn-outline:hover{border-color:rgba(255,255,255,0.5);color:var(--white)}
+.hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hv-item{border-radius:12px;overflow:hidden;position:relative;padding-bottom:100%;cursor:pointer;transition:transform .3s}
+.hv-item:hover{transform:scale(1.04)}
+.hv-item-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
+.hv-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.6);margin-bottom:4px}
+.hv-title{font-size:14px;font-weight:700;color:#fff}
+.hv-emoji{position:absolute;top:50%;left:50%;transform:translate(-50%,-70%);font-size:56px;opacity:0.25}
+
+section{padding:72px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;background:rgba(255,45,135,0.1);color:var(--neon-pink);padding:4px 14px;border-radius:4px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.section-title{font-size:40px;font-weight:900;color:var(--white);margin-bottom:14px;letter-spacing:-1px}
+.section-sub{font-size:16px;color:var(--muted);line-height:1.7;max-width:560px}
+
+.services{background:var(--bg)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:16px;overflow:hidden;margin-top:48px}
+.svc-card{background:var(--card);padding:36px;transition:background .2s;cursor:pointer;position:relative}
+.svc-card:hover{background:#181818}
+.svc-number{font-size:48px;font-weight:900;color:rgba(255,255,255,0.04);position:absolute;top:16px;right:20px;line-height:1}
+.svc-icon{font-size:40px;margin-bottom:16px}
+.svc-title{font-size:21px;font-weight:800;color:var(--white);margin-bottom:10px}
+.svc-desc{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:20px}
+.svc-tags{display:flex;flex-wrap:wrap;gap:8px}
+.svc-tag{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid}
+.svc-tag.pink{color:var(--neon-pink);border-color:rgba(255,45,135,0.3);background:rgba(255,45,135,0.06)}
+.svc-tag.cyan{color:var(--neon-cyan);border-color:rgba(0,245,255,0.3);background:rgba(0,245,255,0.06)}
+.svc-tag.yellow{color:var(--neon-yellow);border-color:rgba(255,230,0,0.3);background:rgba(255,230,0,0.06)}
+.svc-tag.green{color:var(--neon-green);border-color:rgba(57,255,20,0.3);background:rgba(57,255,20,0.06)}
+
+.portfolio{background:#0d0d0d}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.port-card{border-radius:12px;overflow:hidden;position:relative;aspect-ratio:4/3;cursor:pointer;transition:transform .3s}
+.port-card:hover{transform:scale(1.03)}
+.port-card:hover .port-overlay{opacity:1}
+.port-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:64px;opacity:0.2}
+.port-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.75);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:28px;opacity:0;transition:opacity .3s}
+.port-cat{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.port-title{font-size:20px;font-weight:800;color:#fff;margin-bottom:8px}
+.port-client{font-size:13px;color:rgba(255,255,255,0.6)}
+.port-arrow{margin-top:16px;font-size:20px;color:#fff}
+
+.process-section{background:var(--bg)}
+.proc-timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;margin-top:48px;position:relative}
+.proc-timeline::before{content:'';position:absolute;top:28px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,var(--neon-pink),var(--neon-cyan));z-index:0}
+.proc-item{text-align:center;position:relative;z-index:1}
+.proc-dot{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 16px;border:2px solid}
+.proc-dot.p1{background:rgba(255,45,135,0.1);border-color:var(--neon-pink)}
+.proc-dot.p2{background:rgba(0,245,255,0.1);border-color:var(--neon-cyan)}
+.proc-dot.p3{background:rgba(255,230,0,0.1);border-color:var(--neon-yellow)}
+.proc-dot.p4{background:rgba(57,255,20,0.1);border-color:var(--neon-green)}
+.proc-dot.p5{background:rgba(255,45,135,0.1);border-color:var(--neon-pink)}
+.proc-title{font-size:15px;font-weight:700;color:var(--white);margin-bottom:8px}
+.proc-desc{font-size:12px;color:var(--muted);line-height:1.5}
+
+.equipe{background:#0d0d0d}
+.equipe-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
+.eq-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .2s}
+.eq-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-4px)}
+.eq-avatar{height:160px;display:flex;align-items:center;justify-content:center;font-size:64px}
+.eq-body{padding:18px}
+.eq-name{font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px}
+.eq-role{font-size:13px;font-weight:600;margin-bottom:6px}
+.eq-role.pink{color:var(--neon-pink)}
+.eq-role.cyan{color:var(--neon-cyan)}
+.eq-role.yellow{color:var(--neon-yellow)}
+.eq-role.green{color:var(--neon-green)}
+.eq-skills{font-size:12px;color:var(--muted)}
+
+.testi{background:var(--bg);padding:80px 24px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.testi-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;transition:border-color .2s}
+.testi-card:hover{border-color:rgba(255,255,255,0.15)}
+.testi-neon{font-size:32px;margin-bottom:14px;line-height:1}
+.testi-text{color:rgba(255,255,255,0.75);font-size:14px;line-height:1.7;font-style:italic;margin-bottom:20px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#000;font-size:16px}
+.testi-name{font-size:14px;font-weight:700;color:var(--white)}
+.testi-info{font-size:12px;color:var(--muted)}
+
+.cta-section{background:var(--bg);padding:80px 24px;text-align:center;border-top:1px solid var(--border);position:relative;overflow:hidden}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:200px;background:radial-gradient(ellipse,rgba(255,45,135,0.08),transparent);pointer-events:none}
+.cta-section h2{font-size:56px;font-weight:900;color:var(--white);margin-bottom:16px;letter-spacing:-2px;position:relative;z-index:1}
+.cta-section h2 span.pink{color:var(--neon-pink)}
+.cta-section p{font-size:18px;color:var(--muted);margin-bottom:36px;position:relative;z-index:1}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.btn-big-pink{background:var(--neon-pink);color:#000;padding:18px 48px;border-radius:6px;text-decoration:none;font-weight:700;font-size:17px;transition:all .2s}
+.btn-big-pink:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,45,135,0.3)}
+.btn-big-ghost{border:1.5px solid rgba(255,255,255,0.2);color:var(--text);padding:18px 48px;border-radius:6px;text-decoration:none;font-weight:600;font-size:17px;transition:all .2s}
+.btn-big-ghost:hover{border-color:rgba(255,255,255,0.5);color:#fff}
+
+footer{background:#050505;border-top:1px solid var(--border);padding:56px 24px 24px;color:var(--muted)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-heading{font-size:12px;font-weight:700;color:var(--white);margin-bottom:18px;text-transform:uppercase;letter-spacing:2px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:10px}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-links a:hover{color:var(--neon-pink)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:10px}
+.footer-bottom a{color:var(--neon-pink);text-decoration:none}
+
+@media(max-width:768px){
+  .hero-inner,.footer-grid{grid-template-columns:1fr}
+  .hero h1{font-size:40px}
+  .port-grid,.equipe-grid,.testi-grid{grid-template-columns:1fr 1fr}
+  .services-grid{grid-template-columns:1fr}
+  .proc-timeline{grid-template-columns:1fr 1fr}
+  .nav-links,.nav-cta{display:none}
+}
+</style>
+</head>
+<body>
+<div id="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="#">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">A</div>
+      <div class="logo-text">Agence Créative Dakar<span>Branding · Web · Digital</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">Équipe</a></li>
+      <li><a href="#">Processus</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Parler d'un projet</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-kicker"><span>🎨 Dakar · Sénégal</span></div>
+      <h1>On Crée.<br><span class="p">On Impacte.</span><br><span class="c">On Marque.</span></h1>
+      <p class="hero-desc">L'agence créative qui propulse les marques africaines au niveau international. Branding, web, social media, campagnes digitales — on fait sonner votre identité.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-pink">Démarrer un projet</a>
+        <a href="#" class="btn-outline">Voir le portfolio</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hv-item" style="background:linear-gradient(135deg,#FF2D87,#FF6B35)"><div class="hv-emoji">🎨</div><div class="hv-item-inner"><div class="hv-label">Branding</div><div class="hv-title">Harmattan Foods</div></div></div>
+      <div class="hv-item" style="background:linear-gradient(135deg,#00F5FF,#0EA5E9)"><div class="hv-emoji">💻</div><div class="hv-item-inner"><div class="hv-label">Web Design</div><div class="hv-title">DakarPay</div></div></div>
+      <div class="hv-item" style="background:linear-gradient(135deg,#7C3AED,#FF2D87)"><div class="hv-emoji">📱</div><div class="hv-item-inner"><div class="hv-label">Social Media</div><div class="hv-title">Ndox Beauty</div></div></div>
+      <div class="hv-item" style="background:linear-gradient(135deg,#FFE600,#FF6B35)"><div class="hv-emoji">🚀</div><div class="hv-item-inner"><div class="hv-label">Campagne</div><div class="hv-title">TerragaExpress</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="section-inner">
+    <div class="section-tag">Nos Services</div>
+    <h2 class="section-title">Ce Qu'on Fait<br>Vraiment Bien</h2>
+    <div class="services-grid">
+      <div class="svc-card"><div class="svc-number">01</div><div class="svc-icon">✏️</div><div class="svc-title">Branding & Identité</div><div class="svc-desc">On crée des identités visuelles africaines qui parlent à votre audience, restent dans les mémoires et traversent le temps.</div><div class="svc-tags"><span class="svc-tag pink">Logo</span><span class="svc-tag pink">Charte graphique</span><span class="svc-tag pink">Naming</span></div></div>
+      <div class="svc-card"><div class="svc-number">02</div><div class="svc-icon">💻</div><div class="svc-title">Design Web & Digital</div><div class="svc-desc">Sites vitrines, e-commerce, applications mobiles — on conçoit des expériences digitales qui convertissent et impressionnent.</div><div class="svc-tags"><span class="svc-tag cyan">UX/UI</span><span class="svc-tag cyan">Webflow</span><span class="svc-tag cyan">WordPress</span></div></div>
+      <div class="svc-card"><div class="svc-number">03</div><div class="svc-icon">📱</div><div class="svc-title">Social Media</div><div class="svc-desc">Stratégie, création de contenu et gestion de vos réseaux sociaux pour construire une communauté engagée en Afrique.</div><div class="svc-tags"><span class="svc-tag yellow">Instagram</span><span class="svc-tag yellow">TikTok</span><span class="svc-tag yellow">LinkedIn</span></div></div>
+      <div class="svc-card"><div class="svc-number">04</div><div class="svc-icon">🎯</div><div class="svc-title">Campagnes Digitales</div><div class="svc-desc">Google Ads, Meta Ads, influence marketing — on gère vos budgets pub avec une obsession : le retour sur investissement.</div><div class="svc-tags"><span class="svc-tag green">Google Ads</span><span class="svc-tag green">Meta Ads</span><span class="svc-tag green">ROI</span></div></div>
+      <div class="svc-card"><div class="svc-number">05</div><div class="svc-icon">🎬</div><div class="svc-title">Motion & Vidéo</div><div class="svc-desc">Motion design, films de marque, spots pub, reportages — on raconte votre histoire en mouvement avec une signature africaine.</div><div class="svc-tags"><span class="svc-tag pink">Motion</span><span class="svc-tag pink">Reels</span><span class="svc-tag pink">Spot</span></div></div>
+      <div class="svc-card"><div class="svc-number">06</div><div class="svc-icon">🖨️</div><div class="svc-title">Print & OOH</div><div class="svc-desc">Affiches, flyers, panneaux, packaging, stands d'exposition — notre design print impressionne dans la vraie vie.</div><div class="svc-tags"><span class="svc-tag cyan">Print</span><span class="svc-tag cyan">Packaging</span><span class="svc-tag cyan">OOH</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio">
+  <div class="section-inner">
+    <div class="section-tag" style="color:var(--neon-cyan);background:rgba(0,245,255,0.08)">Portfolio</div>
+    <h2 class="section-title">Quelques Travaux Récents</h2>
+    <p class="section-sub">20+ projets livrés en 2024. Voici une sélection de ce qui nous rend fiers.</p>
+    <div class="port-grid">
+      <div class="port-card" style="background:linear-gradient(135deg,#FF2D87,#FF6B35)"><div class="port-inner">🍲</div><div class="port-overlay"><div class="port-cat" style="color:var(--neon-pink)">Branding complet</div><div class="port-title">Harmattan Foods</div><div class="port-client">Marque agroalimentaire sénégalaise</div><div class="port-arrow">→</div></div></div>
+      <div class="port-card" style="background:linear-gradient(135deg,#00F5FF,#0EA5E9)"><div class="port-inner">💳</div><div class="port-overlay"><div class="port-cat" style="color:var(--neon-cyan)">Web & UX Design</div><div class="port-title">DakarPay</div><div class="port-client">Fintech — paiement mobile Sénégal</div><div class="port-arrow">→</div></div></div>
+      <div class="port-card" style="background:linear-gradient(135deg,#7C3AED,#BF5FFF)"><div class="port-inner">💄</div><div class="port-overlay"><div class="port-cat" style="color:#e9d5ff">Social Media + Contenu</div><div class="port-title">Ndox Beauty</div><div class="port-client">Cosmétiques naturels africains</div><div class="port-arrow">→</div></div></div>
+      <div class="port-card" style="background:linear-gradient(135deg,#FFE600,#FF6B35)"><div class="port-inner">🚚</div><div class="port-overlay"><div class="port-cat" style="color:var(--neon-yellow)">Campagne digitale</div><div class="port-title">TerragaExpress</div><div class="port-client">Livraison last-mile Dakar</div><div class="port-arrow">→</div></div></div>
+      <div class="port-card" style="background:linear-gradient(135deg,#039669,#00F5FF)"><div class="port-inner">🌿</div><div class="port-overlay"><div class="port-cat" style="color:var(--neon-green)">Packaging + Print</div><div class="port-title">Teranga Tea</div><div class="port-client">Marque de thés et tisanes du Sahel</div><div class="port-arrow">→</div></div></div>
+      <div class="port-card" style="background:linear-gradient(135deg,#FF2D87,#7C3AED)"><div class="port-inner">🎪</div><div class="port-overlay"><div class="port-cat" style="color:#fda4af)">Motion + Vidéo</div><div class="port-title">Festival Dakar Beats</div><div class="port-client">Festival musical afro-urban annuel</div><div class="port-arrow">→</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="process-section">
+  <div class="section-inner">
+    <div class="section-tag" style="color:var(--neon-yellow);background:rgba(255,230,0,0.08)">Processus</div>
+    <h2 class="section-title">Comment On Travaille</h2>
+    <p class="section-sub">5 étapes, 0 surprise. Voilà comment on livre des projets qui dépassent les attentes.</p>
+    <div class="proc-timeline">
+      <div class="proc-item"><div class="proc-dot p1">💬</div><div class="proc-title">Brief</div><div class="proc-desc">On comprend votre vision, vos valeurs et votre cible africaine</div></div>
+      <div class="proc-item"><div class="proc-dot p2">🔬</div><div class="proc-title">Stratégie</div><div class="proc-desc">Analyse concurrentielle et positionnement différenciant</div></div>
+      <div class="proc-item"><div class="proc-dot p3">✏️</div><div class="proc-title">Création</div><div class="proc-desc">Concepts créatifs, maquettes et directions visuelles</div></div>
+      <div class="proc-item"><div class="proc-dot p4">🔄</div><div class="proc-title">Révisions</div><div class="proc-desc">3 aller-retours inclus jusqu'à votre satisfaction complète</div></div>
+      <div class="proc-item"><div class="proc-dot p5">🚀</div><div class="proc-title">Livraison</div><div class="proc-desc">Fichiers sources + guide d'utilisation + support 30 jours</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="equipe">
+  <div class="section-inner">
+    <div class="section-tag" style="color:var(--neon-green);background:rgba(57,255,20,0.08)">L'Équipe</div>
+    <h2 class="section-title">Les Cerveaux Derrière</h2>
+    <div class="equipe-grid">
+      <div class="eq-card"><div class="eq-avatar" style="background:linear-gradient(135deg,#FF2D87,#FF6B35)">🎨</div><div class="eq-body"><div class="eq-name">Mamadou Badji</div><div class="eq-role pink">Directeur Créatif</div><div class="eq-skills">Branding · Art direction · Motion</div></div></div>
+      <div class="eq-card"><div class="eq-avatar" style="background:linear-gradient(135deg,#00F5FF,#0EA5E9)">💻</div><div class="eq-body"><div class="eq-name">Adama Diallo</div><div class="eq-role cyan">Lead Designer UX/UI</div><div class="eq-skills">Figma · Webflow · React</div></div></div>
+      <div class="eq-card"><div class="eq-avatar" style="background:linear-gradient(135deg,#FFE600,#FF6B35)">📊</div><div class="eq-body"><div class="eq-name">Rokhaya Ndiaye</div><div class="eq-role yellow">Directrice Stratégie</div><div class="eq-skills">Data · Growth · Performance</div></div></div>
+      <div class="eq-card"><div class="eq-avatar" style="background:linear-gradient(135deg,#39FF14,#0D9488)">🎬</div><div class="eq-body"><div class="eq-name">Cheikh Sall</div><div class="eq-role green">Motion Designer</div><div class="eq-skills">After Effects · Cinema 4D · Film</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testi">
+  <div class="section-inner">
+    <div class="section-tag">Ils En Parlent Mieux Que Nous</div>
+    <h2 class="section-title">La Voix de Nos Clients</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-neon" style="color:var(--neon-pink)">"</div>
+        <p class="testi-text">En 3 semaines, ils ont refait notre identité de zéro. Le résultat est si fort que nos concurrents nous ont demandé qui était notre agence. Merci l'Agence Créative Dakar !</p>
+        <div class="testi-author"><div class="testi-av" style="background:var(--neon-pink)">F</div><div><div class="testi-name">Fatou Dieng</div><div class="testi-info">PDG · Harmattan Foods</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-neon" style="color:var(--neon-cyan)">"</div>
+        <p class="testi-text">Notre taux de conversion a augmenté de 180% après le redesign de notre app mobile. L'équipe a une compréhension unique du comportement des utilisateurs africains sur mobile.</p>
+        <div class="testi-author"><div class="testi-av" style="background:var(--neon-cyan);color:#000">M</div><div><div class="testi-name">Moussa Faye</div><div class="testi-info">CTO · DakarPay</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-neon" style="color:var(--neon-yellow)">"</div>
+        <p class="testi-text">Leur gestion de notre social media est irréprochable. En 4 mois on est passé de 2 000 à 48 000 abonnés Instagram avec un engagement authentique. C'est de la magie !</p>
+        <div class="testi-author"><div class="testi-av" style="background:var(--neon-yellow);color:#000">A</div><div><div class="testi-name">Awa Touré</div><div class="testi-info">Fondatrice · Ndox Beauty</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="section-inner" style="position:relative;z-index:1">
+    <h2>On Fait Quoi<br><span class="pink">Ensemble ?</span></h2>
+    <p>Dites-nous votre projet. En 24h, vous avez un devis et une vision créative.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-big-pink">Parler de votre projet</a>
+      <a href="#" class="btn-big-ghost">Voir le portfolio complet</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:20px;font-weight:900;color:var(--white);margin-bottom:14px;letter-spacing:-0.5px">🎨 Agence Créative Dakar</div>
+        <p style="font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:18px">Branding, web design, social media et campagnes digitales pour les marques africaines qui veulent marquer les esprits en Afrique et dans le monde.</p>
+        <div style="font-size:14px;line-height:2;color:var(--muted)">📍 Point E, Dakar, Sénégal<br>📞 +221 77 000 00 00<br>✉️ hello@agence-creative-dakar.sn</div>
+      </div>
+      <div><div class="footer-heading">Services</div><ul class="footer-links"><li><a href="#">Branding</a></li><li><a href="#">Web Design</a></li><li><a href="#">Social Media</a></li><li><a href="#">Campagnes</a></li><li><a href="#">Motion</a></li></ul></div>
+      <div><div class="footer-heading">Agence</div><ul class="footer-links"><li><a href="#">Portfolio</a></li><li><a href="#">L'équipe</a></li><li><a href="#">Processus</a></li><li><a href="#">Blog</a></li></ul></div>
+      <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="#">Devis gratuit</a></li><li><a href="#">WhatsApp</a></li><li><a href="#">Instagram</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Agence Créative Dakar</span>
+      <span>Site créé avec <a href="#">IBIG Digital</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

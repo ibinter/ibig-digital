@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spa Évasion Lagos — Spa de Luxe & Bien-être</title>
+<style>
+:root{--bg:#FAF5EB;--bg2:#FFFBF2;--bg3:#FEF3C7;--gold:#D97706;--gold2:#B45309;--gold-light:#FEF3C7;--cream:#FFFBEB;--dark:#1C1917;--dark2:#292524;--gray:#78716C;--gray2:#A8A29E;--beige:#F5EED8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--dark);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
+.demo-bar strong{color:#D97706}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600}
+nav{position:sticky;top:40px;z-index:999;background:rgba(250,245,235,0.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(217,119,6,0.15);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:72px}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.brand-emblem{font-size:24px}
+.brand-name{font-size:22px;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--dark2);font-family:Georgia,serif}
+.brand-name em{color:var(--gold);font-style:normal}
+.brand-tagline{font-size:10px;letter-spacing:3px;color:var(--gray);text-transform:uppercase;margin-top:2px}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.phone-display{font-size:13px;color:var(--gray);display:flex;align-items:center;gap:6px}
+.resa-btn{background:var(--gold);color:#fff;padding:10px 24px;font-size:12px;font-weight:600;border:none;cursor:pointer;letter-spacing:2px;text-transform:uppercase;transition:background .2s}
+.resa-btn:hover{background:var(--gold2)}
+/* HERO */
+.hero{background:var(--dark2);padding:100px 40px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(217,119,6,0.12) 0%,transparent 60%)}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative}
+.hero-badge{display:inline-block;background:transparent;border:1px solid rgba(217,119,6,0.4);color:var(--gold);padding:8px 20px;font-size:10px;letter-spacing:4px;text-transform:uppercase;margin-bottom:24px}
+.hero h1{font-size:60px;font-weight:300;line-height:1.1;color:#fff;margin-bottom:20px;font-family:Georgia,serif;letter-spacing:-1px}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero-p{color:#A8A29E;font-size:16px;line-height:1.85;margin-bottom:36px;letter-spacing:0.3px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:#fff;padding:16px 32px;font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn-outline-light{background:transparent;color:#fff;padding:16px 32px;font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;border:1px solid rgba(255,255,255,0.25);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+.btn-outline-light:hover{border-color:#fff}
+.hero-numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.08)}
+.h-num{text-align:center}
+.h-num-value{font-size:28px;font-weight:300;color:var(--gold);font-family:Georgia,serif}
+.h-num-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6B7280;margin-top:4px}
+.hero-spa-card{background:rgba(255,255,255,0.04);border:1px solid rgba(217,119,6,0.15);border-radius:4px;padding:32px}
+.spa-card-title{font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+.spa-services-list{display:flex;flex-direction:column;gap:14px}
+.spa-svc{display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.spa-svc:last-child{border-bottom:none;padding-bottom:0}
+.spa-svc-left{display:flex;align-items:center;gap:14px}
+.spa-svc-emoji{font-size:22px}
+.spa-svc-name{font-size:14px;font-weight:600;color:#fff}
+.spa-svc-duration{font-size:11px;color:#78716C;margin-top:2px}
+.spa-svc-price{font-size:16px;font-weight:300;color:var(--gold);font-family:Georgia,serif}
+/* GOLD DIVIDER */
+.gold-divider{background:var(--gold);height:2px}
+/* EXPERIENCE */
+.experience{padding:80px 40px;max-width:1200px;margin:0 auto}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(217,119,6,0.1);margin-top:50px}
+.exp-item{background:var(--bg2);padding:48px 40px;text-align:center}
+.exp-icon{font-size:48px;margin-bottom:20px}
+.exp-title{font-size:16px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--dark);margin-bottom:12px}
+.exp-desc{font-size:14px;color:var(--gray);line-height:1.75}
+/* SOINS */
+.soins-section{background:var(--dark2);padding:80px 40px}
+.soins-inner{max-width:1200px;margin:0 auto}
+.section-header-luxe{margin-bottom:50px}
+.shl-eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.shl-title{font-size:42px;font-weight:300;color:#fff;font-family:Georgia,serif;line-height:1.1}
+.shl-title em{color:var(--gold);font-style:italic}
+.shl-desc{font-size:15px;color:#78716C;margin-top:16px;line-height:1.75}
+.soins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.soin-card{background:rgba(255,255,255,0.03);border:1px solid rgba(217,119,6,0.1);padding:36px;position:relative;overflow:hidden;transition:all .3s;cursor:pointer}
+.soin-card:hover{border-color:rgba(217,119,6,0.4);background:rgba(217,119,6,0.04)}
+.soin-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--gold);transition:height .3s}
+.soin-card:hover::before{height:100%}
+.soin-emoji{font-size:40px;margin-bottom:20px}
+.soin-title{font-size:18px;font-weight:600;color:#fff;font-family:Georgia,serif;margin-bottom:10px}
+.soin-desc{font-size:13px;color:#6B7280;line-height:1.75;margin-bottom:20px}
+.soin-duration{font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.soin-price{font-size:22px;font-weight:300;color:var(--gold);font-family:Georgia,serif}
+.soin-btn{margin-top:20px;background:transparent;color:var(--gold);border:1px solid rgba(217,119,6,0.3);padding:10px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.soin-btn:hover{background:var(--gold);color:#fff}
+/* PACKAGES */
+.packages-section{padding:80px 40px;max-width:1200px;margin:0 auto}
+.packages-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-top:50px}
+.package-card{border:1px solid rgba(217,119,6,0.15);padding:40px;position:relative;transition:all .3s}
+.package-card:hover{border-color:var(--gold)}
+.package-card.featured{background:var(--dark2);color:#fff;border-color:var(--gold)}
+.pkg-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:4px 16px}
+.pkg-icon{font-size:44px;margin-bottom:16px}
+.pkg-name{font-size:20px;font-weight:600;font-family:Georgia,serif;margin-bottom:6px}
+.pkg-tagline{font-size:12px;letter-spacing:1px;color:var(--gray);margin-bottom:20px}
+.featured .pkg-tagline{color:#9CA3AF}
+.pkg-price{font-size:40px;font-weight:300;color:var(--gold);font-family:Georgia,serif;margin-bottom:4px}
+.pkg-price small{font-size:16px}
+.pkg-duration{font-size:12px;color:var(--gray2);margin-bottom:24px}
+.pkg-includes{list-style:none;margin-bottom:28px}
+.pkg-includes li{font-size:13px;padding:8px 0;border-bottom:1px solid rgba(217,119,6,0.08);display:flex;align-items:center;gap:8px}
+.featured .pkg-includes li{border-bottom-color:rgba(255,255,255,0.06);color:#D1D5DB}
+.pkg-btn{width:100%;background:var(--gold);color:#fff;border:none;padding:14px;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.pkg-btn:hover{background:var(--gold2)}
+.pkg-btn-outline{width:100%;background:transparent;color:var(--gold);border:1px solid var(--gold);padding:14px;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.pkg-btn-outline:hover{background:var(--gold);color:#fff}
+/* TESTIMONIALS */
+.testis{background:var(--dark2);padding:80px 40px}
+.testis-inner{max-width:1200px;margin:0 auto}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:50px}
+.testi-card{border:1px solid rgba(217,119,6,0.1);padding:32px;position:relative}
+.testi-quote{position:absolute;top:20px;right:24px;font-size:60px;color:rgba(217,119,6,0.15);font-family:Georgia,serif;line-height:1}
+.testi-stars{color:var(--gold);margin-bottom:16px;font-size:14px}
+.testi-text{font-size:14px;color:#9CA3AF;line-height:1.85;font-style:italic;margin-bottom:24px}
+.testi-au{display:flex;align-items:center;gap:14px}
+.testi-av{width:44px;height:44px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff}
+.testi-nm{font-size:14px;font-weight:600;color:#fff}
+.testi-lo{font-size:11px;color:#6B7280;margin-top:2px}
+/* FOOTER */
+footer{background:#0A0A0A;padding:60px 40px 24px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-desc{color:#4B5563;font-size:13px;line-height:1.75;margin:16px 0}
+.fh{font-size:10px;font-weight:700;margin-bottom:16px;color:var(--gold);letter-spacing:3px;text-transform:uppercase}
+.ful{list-style:none}
+.ful li{margin-bottom:10px}
+.ful li a{color:#4B5563;text-decoration:none;font-size:13px;letter-spacing:0.5px;transition:color .2s}
+.ful li a:hover{color:var(--gold)}
+.foot-bottom{border-top:1px solid #1F2937;padding-top:20px;display:flex;justify-content:space-between;color:#374151;font-size:11px;letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <span>Démo IBIG Digital — <strong>Spa Évasion Lagos</strong> — Commander ce template :</span>
+  <strong>25 000 FCFA</strong>
+  <a href="#">Commander</a>
+</div>
+<nav>
+  <div class="nav-brand">
+    <span class="brand-emblem">🌿</span>
+    <div>
+      <div class="brand-name">Spa <em>Évasion</em></div>
+      <div class="brand-tagline">Lagos · Expérience Sensorielle</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Soins</a></li>
+    <li><a href="#">Massages</a></li>
+    <li><a href="#">Hammam</a></li>
+    <li><a href="#">Packages</a></li>
+    <li><a href="#">Tarifs VIP</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="phone-display">📞 +234 901 000 000</span>
+    <button class="resa-btn">Réserver</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Spa 5 étoiles · Lagos</div>
+      <h1>L'Art du<br><em>Bien-Être</em><br>Absolu</h1>
+      <p class="hero-p">Un sanctuaire de sérénité au cœur de Lagos. Massages thérapeutiques, soins visage premium, hammam traditionnel — une expérience sensorielle qui transcende l'ordinaire.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-gold">Réserver une Séance</a>
+        <a href="#" class="btn-outline-light">Découvrir nos Soins</a>
+      </div>
+      <div class="hero-numbers">
+        <div class="h-num"><div class="h-num-value">12</div><div class="h-num-label">Années d'Excellence</div></div>
+        <div class="h-num"><div class="h-num-value">8 500+</div><div class="h-num-label">Clients Fidèles</div></div>
+        <div class="h-num"><div class="h-num-value">42</div><div class="h-num-label">Thérapeutes Certifiés</div></div>
+        <div class="h-num"><div class="h-num-value">5★</div><div class="h-num-label">Satisfaction</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="hero-spa-card">
+        <div class="spa-card-title">Séances du Jour</div>
+        <div class="spa-services-list">
+          <div class="spa-svc"><div class="spa-svc-left"><div class="spa-svc-emoji">💆</div><div><div class="spa-svc-name">Massage Balinais Profond</div><div class="spa-svc-duration">90 minutes · Aromathérapie</div></div></div><div class="spa-svc-price">75 000 FCFA</div></div>
+          <div class="spa-svc"><div class="spa-svc-left"><div class="spa-svc-emoji">✨</div><div><div class="spa-svc-name">Soin Visage Premium</div><div class="spa-svc-duration">60 minutes · Caviar</div></div></div><div class="spa-svc-price">85 000 FCFA</div></div>
+          <div class="spa-svc"><div class="spa-svc-left"><div class="spa-svc-emoji">🛁</div><div><div class="spa-svc-name">Hammam & Gommage</div><div class="spa-svc-duration">120 minutes · Tradition</div></div></div><div class="spa-svc-price">65 000 FCFA</div></div>
+          <div class="spa-svc"><div class="spa-svc-left"><div class="spa-svc-emoji">💎</div><div><div class="spa-svc-name">Rituel Or 24 Carats</div><div class="spa-svc-duration">180 minutes · VIP</div></div></div><div class="spa-svc-price">150 000 FCFA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<div class="experience">
+  <div class="section-header-luxe">
+    <div class="shl-eyebrow">Notre Philosophie</div>
+    <div class="shl-title">Un univers de luxe,<br>un art de <em>vivre</em></div>
+    <div class="shl-desc">Chez Spa Évasion, chaque détail est pensé pour vous offrir une expérience unique qui engage tous vos sens.</div>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-item">
+      <div class="exp-icon">🌿</div>
+      <div class="exp-title">Ingrédients Premium</div>
+      <div class="exp-desc">Huiles essentielles rares, argile du Nil, extraits de plantes africaines — uniquement ce qu'il y a de meilleur pour votre peau.</div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-icon">🏆</div>
+      <div class="exp-title">Thérapeutes Experts</div>
+      <div class="exp-desc">Chacun de nos 42 thérapeutes est certifié internationalement avec minimum 5 ans d'expérience en soins de luxe.</div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-icon">🌸</div>
+      <div class="exp-title">Ambiance Exclusive</div>
+      <div class="exp-desc">Architecture zen inspirée des thermes africains traditionnels. Lumière tamisée, musique apaisante, arômes subtils.</div>
+    </div>
+  </div>
+</div>
+
+<div class="soins-section">
+  <div class="soins-inner">
+    <div class="section-header-luxe">
+      <div class="shl-eyebrow">Notre Menu de Soins</div>
+      <div class="shl-title" style="color:#fff">Des soins d'<em>exception</em><br>pour chaque besoin</div>
+    </div>
+    <div class="soins-grid">
+      <div class="soin-card">
+        <div class="soin-emoji">💆</div>
+        <div class="soin-title">Massage Suédois Profond</div>
+        <div class="soin-desc">Technique suédoise associée aux huiles précieuses africaines pour une relaxation musculaire totale et profonde.</div>
+        <div class="soin-duration">60 — 90 — 120 minutes</div>
+        <div class="soin-price">À partir de 55 000 FCFA</div>
+        <button class="soin-btn">Réserver</button>
+      </div>
+      <div class="soin-card">
+        <div class="soin-emoji">✨</div>
+        <div class="soin-title">Soin Visage Caviar</div>
+        <div class="soin-desc">Extraits de caviar d'Afrique du Sud, acide hyaluronique et peptides — anti-âge intensif pour une peau lumineuse.</div>
+        <div class="soin-duration">60 — 90 minutes</div>
+        <div class="soin-price">À partir de 85 000 FCFA</div>
+        <button class="soin-btn">Réserver</button>
+      </div>
+      <div class="soin-card">
+        <div class="soin-emoji">🛁</div>
+        <div class="soin-title">Rituel Hammam Marocain</div>
+        <div class="soin-desc">Bain de vapeur, gommage au savon beldi, enveloppement à la ghassoul — purification totale du corps et de l'esprit.</div>
+        <div class="soin-duration">120 — 150 minutes</div>
+        <div class="soin-price">À partir de 65 000 FCFA</div>
+        <button class="soin-btn">Réserver</button>
+      </div>
+      <div class="soin-card">
+        <div class="soin-emoji">💎</div>
+        <div class="soin-title">Rituel Or 24 Carats</div>
+        <div class="soin-desc">Notre soin signature exclusif. Massage à l'or colloïdal, masque 24 carats, soins corps aux huiles précieuses.</div>
+        <div class="soin-duration">180 — 240 minutes</div>
+        <div class="soin-price">À partir de 150 000 FCFA</div>
+        <button class="soin-btn">Réserver</button>
+      </div>
+      <div class="soin-card">
+        <div class="soin-emoji">🌊</div>
+        <div class="soin-title">Hydrothérapie Premium</div>
+        <div class="soin-desc">Jacuzzi aux huiles essentielles, douche vichy, enveloppement aux algues marines — thérapie aquatique complète.</div>
+        <div class="soin-duration">90 minutes</div>
+        <div class="soin-price">À partir de 70 000 FCFA</div>
+        <button class="soin-btn">Réserver</button>
+      </div>
+      <div class="soin-card">
+        <div class="soin-emoji">👰</div>
+        <div class="soin-title">Package Jour de Mariée</div>
+        <div class="soin-desc">Journée complète de préparation — soin corps, visage, coiffure, maquillage — rayonnez lors de votre plus beau jour.</div>
+        <div class="soin-duration">Journée complète</div>
+        <div class="soin-price">À partir de 350 000 FCFA</div>
+        <button class="soin-btn">Réserver</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="packages-section">
+  <div class="section-header-luxe">
+    <div class="shl-eyebrow">Nos Packages VIP</div>
+    <div class="shl-title">Des expériences<br><em>sur-mesure</em></div>
+  </div>
+  <div class="packages-grid">
+    <div class="package-card">
+      <div class="pkg-icon">🌿</div>
+      <div class="pkg-name">Sérénité</div>
+      <div class="pkg-tagline">Escapade d'une demi-journée</div>
+      <div class="pkg-price">95 000 <small>FCFA</small></div>
+      <div class="pkg-duration">3 heures · Pour 1 personne</div>
+      <ul class="pkg-includes">
+        <li>✓ Massage relaxant 60 min</li>
+        <li>✓ Soin visage express 30 min</li>
+        <li>✓ Accès hammam</li>
+        <li>✓ Tisanes et fruits frais</li>
+        <li>✓ Peignoir et serviettes</li>
+      </ul>
+      <button class="pkg-btn-outline">Réserver</button>
+    </div>
+    <div class="package-card featured">
+      <div class="pkg-badge">★ VIP</div>
+      <div class="pkg-icon">💎</div>
+      <div class="pkg-name">Prestige Évasion</div>
+      <div class="pkg-tagline">Journée de luxe absolu</div>
+      <div class="pkg-price">220 000 <small>FCFA</small></div>
+      <div class="pkg-duration" style="color:#9CA3AF">6 heures · Pour 1 personne</div>
+      <ul class="pkg-includes">
+        <li>✓ Rituel Or 24 carats 3h</li>
+        <li>✓ Hammam marocain complet</li>
+        <li>✓ Soin visage caviar</li>
+        <li>✓ Massage dos & nuque</li>
+        <li>✓ Déjeuner gastronomique</li>
+        <li>✓ Accès espace détente</li>
+      </ul>
+      <button class="pkg-btn">Réserver maintenant</button>
+    </div>
+    <div class="package-card">
+      <div class="pkg-icon">💑</div>
+      <div class="pkg-name">Duo Romantique</div>
+      <div class="pkg-tagline">Moment partagé à deux</div>
+      <div class="pkg-price">165 000 <small>FCFA</small></div>
+      <div class="pkg-duration">4 heures · Pour 2 personnes</div>
+      <ul class="pkg-includes">
+        <li>✓ Suite spa privatisée</li>
+        <li>✓ Massage 60 min chacun</li>
+        <li>✓ Bain aux pétales de roses</li>
+        <li>✓ Champagne et chocolats</li>
+        <li>✓ Accès hammam privatif</li>
+      </ul>
+      <button class="pkg-btn-outline">Réserver</button>
+    </div>
+  </div>
+</div>
+
+<div class="testis">
+  <div class="testis-inner">
+    <div class="section-header-luxe">
+      <div class="shl-eyebrow">Témoignages</div>
+      <div class="shl-title" style="color:#fff">Ce que disent nos <em>clients</em></div>
+    </div>
+    <div class="testis-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">Le Rituel Or 24 Carats a été une expérience hors du temps. Ma peau n'a jamais été aussi lumineuse. Le cadre, les thérapeutes, chaque détail est parfait.</div>
+        <div class="testi-au"><div class="testi-av">NK</div><div><div class="testi-nm">Ngozi Kamara</div><div class="testi-lo">Victoria Island, Lagos</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">J'ai offert le Package Duo à mon époux pour son anniversaire. Nous sommes ressortis complètement régénérés. Le service est d'un niveau international.</div>
+        <div class="testi-au"><div class="testi-av">AA</div><div><div class="testi-nm">Amara Adeyemi</div><div class="testi-lo">Lekki, Lagos</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">Je viens ici chaque mois depuis 3 ans. Le hammam marocain est le meilleur que j'ai connu, même comparé aux spas d'Europe. Un vrai trésor de Lagos.</div>
+        <div class="testi-au"><div class="testi-av">CB</div><div><div class="testi-nm">Chisom Babatunde</div><div class="testi-lo">Ikoyi, Lagos</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:22px;letter-spacing:3px;font-family:Georgia,serif;color:var(--gold)">SPA ÉVASION</div>
+        <p class="footer-desc">Le spa de luxe de référence à Lagos depuis 2013. Soins premium, thérapeutes certifiés, expériences sensorielles uniques en Afrique de l'Ouest.</p>
+      </div>
+      <div><div class="fh">Nos Soins</div><ul class="ful"><li><a href="#">Massages</a></li><li><a href="#">Soins visage</a></li><li><a href="#">Hammam</a></li><li><a href="#">Packages VIP</a></li></ul></div>
+      <div><div class="fh">Informations</div><ul class="ful"><li><a href="#">Tarifs</a></li><li><a href="#">Horaires</a></li><li><a href="#">Carte cadeau</a></li><li><a href="#">Abonnement spa</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Victoria Island, Lagos</a></li><li><a href="#">📞 +234 901 000 000</a></li><li><a href="#">✉️ contact@spaevasion.ng</a></li><li><a href="#">7j/7 · 9h–21h</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2025 SPA ÉVASION LAGOS — TOUS DROITS RÉSERVÉS</span><span>MENTIONS LÉGALES · CONFIDENTIALITÉ</span></div>
+  </div>
+</footer>
+</body>
+</html>

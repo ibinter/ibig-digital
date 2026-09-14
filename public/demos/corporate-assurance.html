@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assurance Protège Africa</title>
+<style>
+:root{
+  --bg:#FFFFFF;
+  --primary:#1E3A5F;
+  --primary-light:#EBF4FF;
+  --accent:#2563EB;
+  --gold:#C9A840;
+  --text:#0F172A;
+  --text-light:#64748B;
+  --border:#E2E8F0;
+  --dark:#0B1B30;
+  --success:#166534;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
+.demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
+
+.trust-bar{background:var(--primary);color:rgba(255,255,255,0.8);padding:9px 40px;display:flex;justify-content:space-between;align-items:center;font-size:12px;margin-top:40px;}
+.trust-items{display:flex;gap:24px;}
+.trust-item{display:flex;align-items:center;gap:6px;}
+.trust-badge{background:var(--gold);color:#fff;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:700;}
+
+nav{position:sticky;top:40px;background:#fff;border-bottom:1px solid var(--border);z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.logo{font-size:20px;font-weight:800;color:var(--primary);}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--text-light);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--primary);}
+.nav-btns{display:flex;gap:10px;}
+.btn-espace{background:var(--primary-light);color:var(--primary);padding:9px 20px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;transition:all 0.2s;}
+.btn-devis{background:var(--accent);color:#fff;padding:9px 20px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;transition:background 0.2s;}
+.btn-devis:hover{background:#1D4ED8;}
+
+/* HERO */
+.hero{min-height:88vh;background:linear-gradient(135deg,#0B1B30 0%,#1E3A5F 55%,#2563EB 100%);display:flex;align-items:center;overflow:hidden;position:relative;}
+.hero-shield{position:absolute;right:-80px;top:50%;transform:translateY(-50%);font-size:400px;opacity:0.04;}
+.hero-circles{position:absolute;inset:0;}
+.hero-circles span{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,0.05);}
+.hero-circles span:nth-child(1){width:400px;height:400px;top:-100px;right:100px;}
+.hero-circles span:nth-child(2){width:600px;height:600px;top:-200px;right:0;}
+.hero-circles span:nth-child(3){width:800px;height:800px;top:-300px;right:-100px;}
+.hero-content{max-width:1200px;margin:0 auto;padding:0 40px;width:100%;display:grid;grid-template-columns:1fr 480px;gap:60px;align-items:center;position:relative;z-index:1;}
+.hero-trust-badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
+.htb{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);padding:6px 14px;border-radius:50px;font-size:12px;}
+.hero h1{font-size:54px;font-weight:800;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:18px;}
+.hero h1 span{color:#93C5FD;}
+.hero-desc{color:rgba(255,255,255,0.75);font-size:17px;line-height:1.7;margin-bottom:32px;}
+.hero-promises{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px;}
+.hp-item{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.8);font-size:14px;}
+.hp-check{width:22px;height:22px;background:rgba(37,99,235,0.5);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-white{background:#fff;color:var(--primary);padding:14px 32px;border-radius:8px;text-decoration:none;font-size:15px;font-weight:700;transition:all 0.2s;}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2);}
+.btn-ghost{border:2px solid rgba(255,255,255,0.4);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-size:15px;transition:all 0.2s;}
+
+.hero-devis-card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,0.3);}
+.hdc-title{font-size:18px;font-weight:700;color:var(--primary);margin-bottom:4px;}
+.hdc-sub{font-size:13px;color:var(--text-light);margin-bottom:22px;}
+.hdc-tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
+.hdc-tab{padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:#F1F5F9;color:var(--text-light);transition:all 0.2s;}
+.hdc-tab.active{background:var(--accent);color:#fff;}
+.hdc-field{margin-bottom:12px;}
+.hdc-field label{display:block;font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;}
+.hdc-field input,.hdc-field select{width:100%;border:1px solid var(--border);border-radius:6px;padding:10px 12px;font-size:14px;outline:none;}
+.hdc-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.hdc-price{background:var(--primary-light);border-radius:8px;padding:14px;text-align:center;margin-bottom:12px;}
+.hdc-price-from{font-size:12px;color:var(--text-light);margin-bottom:2px;}
+.hdc-price-val{font-size:28px;font-weight:800;color:var(--primary);}
+.hdc-price-per{font-size:13px;color:var(--text-light);}
+.btn-hdc{width:100%;background:var(--accent);color:#fff;border:none;padding:14px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:background 0.2s;}
+.btn-hdc:hover{background:#1D4ED8;}
+
+/* SECTIONS */
+.si{max-width:1200px;margin:0 auto;}
+.stag{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.stitle{font-size:36px;font-weight:800;color:var(--text);letter-spacing:-0.5px;margin-bottom:14px;}
+.ssub{color:var(--text-light);font-size:16px;max-width:520px;line-height:1.6;}
+.sh{margin-bottom:44px;}
+.sh.center{text-align:center;}
+.sh.center .ssub{margin:0 auto;}
+
+/* PRODUITS */
+.produits-section{padding:80px 40px;background:var(--bg);}
+.produits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.produit-card{background:#fff;border-radius:14px;overflow:hidden;border:2px solid var(--border);transition:all 0.3s;cursor:pointer;}
+.produit-card:hover{border-color:var(--accent);transform:translateY(-5px);box-shadow:0 12px 40px rgba(37,99,235,0.1);}
+.produit-card.featured{border-color:var(--accent);}
+.pc-header{padding:24px;text-align:center;}
+.pch-blue{background:linear-gradient(135deg,#1E3A5F,#2563EB);}
+.pch-red{background:linear-gradient(135deg,#991B1B,#DC2626);}
+.pch-green{background:linear-gradient(135deg,#166534,#16A34A);}
+.pch-purple{background:linear-gradient(135deg,#4C1D95,#7C3AED);}
+.pc-icon{font-size:40px;margin-bottom:10px;}
+.pc-name{font-size:17px;font-weight:700;color:#fff;}
+.pc-body{padding:20px;}
+.pc-price{font-size:24px;font-weight:800;color:var(--primary);margin-bottom:4px;}
+.pc-price small{font-size:12px;font-weight:400;color:var(--text-light);}
+.pc-features{list-style:none;margin-bottom:16px;}
+.pc-features li{display:flex;align-items:center;gap:7px;padding:6px 0;border-bottom:1px solid #F1F5F9;font-size:13px;color:var(--text-light);}
+.pc-features li::before{content:'✓';color:var(--success);font-weight:700;font-size:13px;}
+.btn-pc{width:100%;background:var(--accent);color:#fff;border:none;padding:10px;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;display:block;text-align:center;transition:background 0.2s;}
+.btn-pc:hover{background:#1D4ED8;}
+
+/* STATS */
+.stats-section{padding:60px 40px;background:var(--primary);}
+.stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:20px;text-align:center;}
+.stat-n{font-size:40px;font-weight:800;color:#93C5FD;}
+.stat-l{font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;text-transform:uppercase;letter-spacing:0.5px;}
+
+/* PROCESS */
+.process-section{padding:80px 40px;background:var(--primary-light);}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;}
+.process-steps::before{content:'';position:absolute;top:32px;left:calc(12.5% + 32px);right:calc(12.5% + 32px);height:2px;background:var(--border);}
+.step-card{text-align:center;position:relative;}
+.step-num{width:64px;height:64px;border-radius:50%;background:var(--accent);color:#fff;font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;position:relative;z-index:1;box-shadow:0 4px 16px rgba(37,99,235,0.3);}
+.step-title{font-size:15px;font-weight:700;margin-bottom:6px;}
+.step-desc{font-size:13px;color:var(--text-light);}
+
+/* SINISTRES */
+.sinistres-section{padding:80px 40px;background:#fff;}
+.sinistres-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.sinistres-steps{display:flex;flex-direction:column;gap:16px;}
+.s-step{display:flex;gap:16px;align-items:flex-start;padding:20px;background:var(--primary-light);border-radius:10px;}
+.ss-num{width:36px;height:36px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;}
+.ss-title{font-size:15px;font-weight:700;margin-bottom:4px;}
+.ss-desc{font-size:13px;color:var(--text-light);}
+.sinistres-promo{background:var(--primary);border-radius:16px;padding:32px;color:#fff;}
+.sp-icon{font-size:48px;margin-bottom:16px;}
+.sp-title{font-size:22px;font-weight:700;margin-bottom:12px;}
+.sp-desc{color:rgba(255,255,255,0.75);font-size:15px;margin-bottom:24px;line-height:1.6;}
+.sp-phone{font-size:28px;font-weight:800;color:#93C5FD;margin-bottom:8px;}
+.sp-sub{font-size:13px;color:rgba(255,255,255,0.6);}
+
+/* AGENCES */
+.agences-section{padding:80px 40px;background:var(--bg);}
+.agences-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.agence-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px;transition:all 0.3s;}
+.agence-card:hover{border-color:var(--accent);}
+.ag-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.ag-icon{width:42px;height:42px;background:var(--primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.ag-city{font-size:16px;font-weight:700;}
+.ag-region{font-size:12px;color:var(--text-light);}
+.ag-info{font-size:13px;color:var(--text-light);line-height:1.6;}
+
+/* TESTIMONIALS */
+.testis-section{padding:80px 40px;background:var(--dark);}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.testi-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:26px;}
+.t-stars{color:var(--gold);font-size:14px;margin-bottom:12px;}
+.t-text{color:rgba(255,255,255,0.8);font-style:italic;font-size:15px;line-height:1.7;margin-bottom:18px;}
+.t-author{display:flex;align-items:center;gap:10px;}
+.ta{width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;}
+.tn{font-size:14px;font-weight:600;color:#fff;}
+.tr{font-size:12px;color:rgba(255,255,255,0.5);}
+.testis-section .stitle{color:#fff;}
+.testis-section .stag{color:#93C5FD;}
+
+.cta-section{padding:100px 40px;background:linear-gradient(135deg,var(--primary),var(--accent));text-align:center;}
+.cta-section h2{font-size:44px;font-weight:800;color:#fff;margin-bottom:14px;letter-spacing:-0.5px;}
+.cta-section p{color:rgba(255,255,255,0.8);font-size:17px;margin-bottom:36px;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-cta-w{background:#fff;color:var(--primary);padding:16px 40px;border-radius:8px;text-decoration:none;font-size:16px;font-weight:700;transition:all 0.2s;}
+.btn-cta-w:hover{transform:translateY(-2px);}
+.btn-cta-g{border:2px solid rgba(255,255,255,0.5);color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-size:16px;transition:all 0.2s;}
+
+footer{background:#060F1A;padding:60px 40px 28px;}
+.fg{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.fl{font-size:20px;font-weight:800;color:#fff;margin-bottom:14px;}
+.fl span{color:#93C5FD;}
+footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:16px;}
+.f-socs{display:flex;gap:8px;}
+.f-soc{width:34px;height:34px;background:rgba(255,255,255,0.07);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;text-decoration:none;color:rgba(255,255,255,0.5);transition:all 0.2s;}
+.f-soc:hover{background:var(--accent);color:#fff;}
+.fc h5{color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;}
+.fc ul{list-style:none;}
+.fc li{margin-bottom:9px;}
+.fc a{color:rgba(255,255,255,0.45);font-size:13px;text-decoration:none;transition:color 0.2s;}
+.fc a:hover{color:#93C5FD;}
+.fb{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.3);}
+.fb a{color:rgba(255,255,255,0.3);text-decoration:none;}
+
+@media(max-width:900px){
+  .hero-content,.sinistres-grid,.testis-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:36px;}
+  .produits-grid,.process-steps,.agences-grid{grid-template-columns:1fr 1fr;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .fg{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<div class="trust-bar">
+  <div class="trust-items">
+    <div class="trust-item">🏆 Agréé CIMA N°2010/CI/004</div>
+    <div class="trust-item">📞 Sinistres 24h/24 : 0 800 000 123</div>
+    <div class="trust-item">✉️ sinistres@protege-africa.ci</div>
+  </div>
+  <div class="trust-badge">N°1 Assurance Afrique de l'Ouest</div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Protège <span>Africa</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Assurance Auto</a></li>
+      <li><a href="#">Assurance Santé</a></li>
+      <li><a href="#">Habitation</a></li>
+      <li><a href="#">Assurance Vie</a></li>
+      <li><a href="#">Sinistres</a></li>
+    </ul>
+    <div class="nav-btns">
+      <a href="#" class="btn-espace">Mon espace</a>
+      <a href="#" class="btn-devis">Devis gratuit</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-shield">🛡️</div>
+  <div class="hero-circles"><span></span><span></span><span></span></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-trust-badges">
+        <div class="htb">🏆 Agréé CIMA</div>
+        <div class="htb">⚡ Paiement sinistre 48h</div>
+        <div class="htb">🌍 14 pays Afrique</div>
+      </div>
+      <h1>Protégez<br>ce qui compte<br><span>vraiment</span></h1>
+      <p class="hero-desc">Auto, santé, habitation, vie — des assurances conçues pour les familles et entreprises africaines. Indemnisation rapide garantie sous 48h.</p>
+      <div class="hero-promises">
+        <div class="hp-item"><div class="hp-check">✓</div>Souscription en 5 minutes</div>
+        <div class="hp-item"><div class="hp-check">✓</div>Paiement sinistre 48h</div>
+        <div class="hp-item"><div class="hp-check">✓</div>Réseau 500+ partenaires</div>
+        <div class="hp-item"><div class="hp-check">✓</div>Assistance 24h/24</div>
+      </div>
+      <div class="hero-cta">
+        <a href="#" class="btn-white">Devis gratuit en 2 min</a>
+        <a href="#" class="btn-ghost">Déclarer un sinistre</a>
+      </div>
+    </div>
+    <div class="hero-devis-card">
+      <div class="hdc-title">🛡️ Calculer mon assurance</div>
+      <div class="hdc-sub">Devis instantané · Sans engagement</div>
+      <div class="hdc-tabs">
+        <button class="hdc-tab active">🚗 Auto</button>
+        <button class="hdc-tab">🏥 Santé</button>
+        <button class="hdc-tab">🏠 Habitation</button>
+        <button class="hdc-tab">💎 Vie</button>
+      </div>
+      <div class="hdc-field"><label>Marque du véhicule</label><select><option>Toyota</option><option>Peugeot</option><option>Renault</option><option>Mercedes</option><option>Hyundai</option></select></div>
+      <div class="hdc-row">
+        <div class="hdc-field"><label>Année</label><input type="number" value="2022" min="2000" max="2025"></div>
+        <div class="hdc-field"><label>Utilisation</label><select><option>Personnelle</option><option>Professionnelle</option></select></div>
+      </div>
+      <div class="hdc-field"><label>Valeur véhicule (FCFA)</label><input type="number" placeholder="8 000 000"></div>
+      <div class="hdc-price">
+        <div class="hdc-price-from">Prime estimée à partir de</div>
+        <div class="hdc-price-val">48 000 FCFA</div>
+        <div class="hdc-price-per">/ an · Tous risques</div>
+      </div>
+      <button class="btn-hdc">Obtenir mon devis définitif →</button>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="stats-grid">
+    <div><div class="stat-n">1,2M+</div><div class="stat-l">Assurés actifs</div></div>
+    <div><div class="stat-n">14</div><div class="stat-l">Pays Afrique</div></div>
+    <div><div class="stat-n">98%</div><div class="stat-l">Sinistres payés</div></div>
+    <div><div class="stat-n">48h</div><div class="stat-l">Délai moyen paiement</div></div>
+    <div><div class="stat-n">25 ans</div><div class="stat-l">D'expérience</div></div>
+  </div>
+</section>
+
+<section class="produits-section">
+  <div class="si">
+    <div class="sh">
+      <div class="stag">Nos assurances</div>
+      <h2 class="stitle">Protection complète pour vous et votre famille</h2>
+      <p class="ssub">Des couvertures adaptées à chaque profil et chaque besoin des africains.</p>
+    </div>
+    <div class="produits-grid">
+      <div class="produit-card">
+        <div class="pc-header pch-blue"><div class="pc-icon">🚗</div><div class="pc-name">Assurance Auto</div></div>
+        <div class="pc-body">
+          <div class="pc-price">48 000 FCFA <small>/ an</small></div>
+          <ul class="pc-features">
+            <li>Responsabilité civile</li>
+            <li>Tous risques optionnel</li>
+            <li>Assistance dépannage</li>
+            <li>Protection conducteur</li>
+          </ul>
+          <a href="#" class="btn-pc">Souscrire</a>
+        </div>
+      </div>
+      <div class="produit-card featured">
+        <div class="pc-header pch-red"><div class="pc-icon">🏥</div><div class="pc-name">Assurance Santé</div></div>
+        <div class="pc-body">
+          <div class="pc-price">85 000 FCFA <small>/ an</small></div>
+          <ul class="pc-features">
+            <li>Hospitalisation 100%</li>
+            <li>Consultations remboursées</li>
+            <li>Médicaments couverts</li>
+            <li>Maternité incluse</li>
+          </ul>
+          <a href="#" class="btn-pc">Souscrire</a>
+        </div>
+      </div>
+      <div class="produit-card">
+        <div class="pc-header pch-green"><div class="pc-icon">🏠</div><div class="pc-name">Assurance Habitation</div></div>
+        <div class="pc-body">
+          <div class="pc-price">32 000 FCFA <small>/ an</small></div>
+          <ul class="pc-features">
+            <li>Incendie & Dégâts des eaux</li>
+            <li>Vol & Vandalisme</li>
+            <li>Responsabilité civile</li>
+            <li>Catastrophes naturelles</li>
+          </ul>
+          <a href="#" class="btn-pc">Souscrire</a>
+        </div>
+      </div>
+      <div class="produit-card">
+        <div class="pc-header pch-purple"><div class="pc-icon">💎</div><div class="pc-name">Assurance Vie</div></div>
+        <div class="pc-body">
+          <div class="pc-price">120 000 FCFA <small>/ an</small></div>
+          <ul class="pc-features">
+            <li>Capital décès garanti</li>
+            <li>Rente invalidité</li>
+            <li>Épargne retraite</li>
+            <li>Transmission patrimoine</li>
+          </ul>
+          <a href="#" class="btn-pc">Souscrire</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process-section">
+  <div class="si">
+    <div class="sh center">
+      <div class="stag">Comment ça marche</div>
+      <h2 class="stitle">Souscrire en 4 étapes simples</h2>
+    </div>
+    <div class="process-steps">
+      <div class="step-card"><div class="step-num">1</div><div class="step-title">Choisissez votre formule</div><div class="step-desc">Sélectionnez la couverture adaptée à vos besoins et votre budget.</div></div>
+      <div class="step-card"><div class="step-num">2</div><div class="step-title">Obtenez votre devis</div><div class="step-desc">Devis instantané en ligne ou avec l'un de nos 200 agents terrain.</div></div>
+      <div class="step-card"><div class="step-num">3</div><div class="step-title">Souscrivez en ligne</div><div class="step-desc">Signature électronique, paiement Mobile Money ou agence.</div></div>
+      <div class="step-card"><div class="step-num">4</div><div class="step-title">Attestation reçue</div><div class="step-desc">Votre attestation d'assurance est envoyée par SMS en 2 minutes.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sinistres-section">
+  <div class="si">
+    <div class="sinistres-grid">
+      <div>
+        <div class="stag">Gestion des sinistres</div>
+        <h2 class="stitle">Un sinistre ? Nous réglons en 48h</h2>
+        <p class="ssub">Notre procédure accélérée garantit un paiement rapide et sans tracas.</p>
+        <div class="sinistres-steps" style="margin-top:28px">
+          <div class="s-step"><div class="ss-num">1</div><div><div class="ss-title">Déclarez en ligne ou par téléphone</div><div class="ss-desc">Notre numéro sinistres est disponible 24h/24, 7j/7.</div></div></div>
+          <div class="s-step"><div class="ss-num">2</div><div><div class="ss-title">Expert mandaté sous 24h</div><div class="ss-desc">Un expert Protège Africa se déplace pour constater le sinistre.</div></div></div>
+          <div class="s-step"><div class="ss-num">3</div><div><div class="ss-title">Indemnisation en 48h</div><div class="ss-desc">Virement bancaire ou Mobile Money selon votre préférence.</div></div></div>
+        </div>
+      </div>
+      <div class="sinistres-promo">
+        <div class="sp-icon">🆘</div>
+        <div class="sp-title">Assistance Sinistres 24h/24</div>
+        <div class="sp-desc">Un accident ? Un incendie ? Appelez immédiatement notre centre d'urgence. Nos équipes sont mobilisées en moins de 30 minutes dans les grandes villes.</div>
+        <div class="sp-phone">0 800 000 123</div>
+        <div class="sp-sub">Appel gratuit depuis tous opérateurs CI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="agences-section">
+  <div class="si">
+    <div class="sh">
+      <div class="stag">Réseau d'agences</div>
+      <h2 class="stitle">Présents dans tout le pays</h2>
+      <p class="ssub">200+ agents terrain, 60 agences en Côte d'Ivoire pour vous accompagner.</p>
+    </div>
+    <div class="agences-grid">
+      <div class="agence-card"><div class="ag-header"><div class="ag-icon">🏢</div><div><div class="ag-city">Plateau, Abidjan</div><div class="ag-region">Siège Social</div></div></div><div class="ag-info">Avenue Joseph Anoma · Imm. Nour Al Hayat<br>📞 +225 27 20 30 40 50 · Lun-Ven 8h-17h</div></div>
+      <div class="agence-card"><div class="ag-header"><div class="ag-icon">🏬</div><div><div class="ag-city">Marcory, Abidjan</div><div class="ag-region">Zone 4</div></div></div><div class="ag-info">Boulevard de Marseille, Rez-de-Chaussée<br>📞 +225 27 21 31 41 51 · Lun-Ven 8h-17h</div></div>
+      <div class="agence-card"><div class="ag-header"><div class="ag-icon">🏪</div><div><div class="ag-city">Bouaké</div><div class="ag-region">Centre-ville</div></div></div><div class="ag-info">Rue du Commerce, Quartier Air France<br>📞 +225 27 31 42 53 · Lun-Ven 8h-16h</div></div>
+      <div class="agence-card"><div class="ag-header"><div class="ag-icon">🏛️</div><div><div class="ag-city">Yamoussoukro</div><div class="ag-region">Capitale</div></div></div><div class="ag-info">Bd de la République, face Mairie<br>📞 +225 27 32 43 54 · Lun-Ven 8h-16h</div></div>
+      <div class="agence-card"><div class="ag-header"><div class="ag-icon">⚓</div><div><div class="ag-city">San Pedro</div><div class="ag-region">Zone Portuaire</div></div></div><div class="ag-info">Quartier Port, Immeuble Asecna<br>📞 +225 27 40 50 60 · Lun-Ven 8h-16h</div></div>
+      <div class="agence-card"><div class="ag-header"><div class="ag-icon">🌿</div><div><div class="ag-city">Korhogo</div><div class="ag-region">Nord CI</div></div></div><div class="ag-info">Centre commercial, face Marché Central<br>📞 +225 27 50 60 70 · Lun-Ven 8h-16h</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testis-section">
+  <div class="si">
+    <div class="sh center">
+      <div class="stag">Témoignages</div>
+      <h2 class="stitle">Ils nous font confiance</h2>
+    </div>
+    <div class="testis-grid">
+      <div class="testi-card"><div class="t-stars">★★★★★</div><p class="t-text">Mon véhicule a été accidenté un vendredi soir. Le lundi matin, j'avais déjà reçu l'indemnisation sur mon compte. Service exceptionnel, vraiment 48h comme promis.</p><div class="t-author"><div class="ta">KD</div><div><div class="tn">Konan Djé</div><div class="tr">Ingénieur · Abidjan</div></div></div></div>
+      <div class="testi-card"><div class="t-stars">★★★★★</div><p class="t-text">Mon mari est décédé il y a deux ans. Protège Africa a honoré son engagement en moins d'un mois. Sans eux, je n'aurais pas pu scolariser mes enfants.</p><div class="t-author"><div class="ta">EB</div><div><div class="tn">Estelle Bini</div><div class="tr">Veuve · Bouaké</div></div></div></div>
+      <div class="testi-card"><div class="t-stars">★★★★★</div><p class="t-text">L'assurance santé a remboursé 100% de mon hospitalisation de 3 semaines. Le gestionnaire de sinistres a été d'un professionnalisme remarquable.</p><div class="t-author"><div class="ta">MT</div><div><div class="tn">Moussa Touré</div><div class="tr">Enseignant · San Pedro</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Votre protection commence aujourd'hui</h2>
+  <p>Devis gratuit en 2 minutes · Attestation en 5 minutes</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-cta-w">Obtenir mon devis gratuit</a>
+    <a href="#" class="btn-cta-g">Contacter un agent</a>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div>
+      <div class="fl">Protège <span>Africa</span></div>
+      <p class="fp">Compagnie d'assurance agréée CIMA, présente dans 14 pays d'Afrique de l'Ouest et Centrale. Assurance auto, santé, habitation et vie depuis 2000.</p>
+      <div class="f-socs"><a href="#" class="f-soc">f</a><a href="#" class="f-soc">in</a><a href="#" class="f-soc">ig</a><a href="#" class="f-soc">tw</a></div>
+    </div>
+    <div class="fc"><h5>Nos assurances</h5><ul><li><a href="#">Assurance Auto</a></li><li><a href="#">Assurance Santé</a></li><li><a href="#">Habitation</a></li><li><a href="#">Assurance Vie</a></li></ul></div>
+    <div class="fc"><h5>Services</h5><ul><li><a href="#">Déclarer un sinistre</a></li><li><a href="#">Mon espace client</a></li><li><a href="#">Trouver un agent</a></li><li><a href="#">Partenaires santé</a></li></ul></div>
+    <div class="fc"><h5>Contact</h5><ul><li><a href="#">📍 Plateau, Abidjan</a></li><li><a href="#">🆘 0 800 000 123 (gratuit)</a></li><li><a href="#">✉️ contact@protege-africa.ci</a></li><li><a href="#">🕐 Urgences 24h/24</a></li></ul></div>
+  </div>
+  <div class="fb">
+    <span>© 2025 Protège Africa Assurances. Agréé CIMA N°2010/CI/004.</span>
+    <div><a href="#">CGU</a> · <a href="#">Mentions légales</a> · <a href="#">RGPD</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

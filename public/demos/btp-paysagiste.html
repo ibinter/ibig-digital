@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jardin Tropical Cameroun</title>
+  <style>
+    :root {
+      --green: #15803D;
+      --green-dark: #14532D;
+      --green-mid: #16A34A;
+      --green-light: #DCFCE7;
+      --green-pale: #F0FDF4;
+      --white: #FFFFFF;
+      --gray-50: #F9FAF9;
+      --gray-200: #E2E8F0;
+      --gray-600: #4B5563;
+      --gray-700: #374151;
+      --gray-900: #111827;
+      --brown: #92400E;
+      --brown-light: #FEF3C7;
+      --accent: #FCD34D;
+      --shadow: 0 4px 24px rgba(21,128,61,0.15);
+      --radius: 12px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: system-ui,-apple-system,sans-serif; background:var(--white); color:var(--gray-700); }
+
+    .demo-bar { position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px; }
+    .demo-bar a { background:#22C55E;color:#fff;padding:5px 14px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700; }
+
+    nav {
+      position:sticky; top:40px; z-index:100;
+      background:rgba(255,255,255,0.97); backdrop-filter:blur(10px);
+      border-bottom:2px solid var(--green-light);
+      padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:72px;
+    }
+    .nav-logo { display:flex; align-items:center; gap:12px; }
+    .logo-leaf { font-size:34px; }
+    .logo-name { font-size:18px; font-weight:900; color:var(--green-dark); }
+    .logo-sub { font-size:11px; color:var(--green-mid); font-weight:700; }
+    .nav-links { display:flex; gap:28px; }
+    .nav-links a { text-decoration:none; color:var(--gray-600); font-size:14px; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--green); }
+    .btn-cta { background:var(--green); color:#fff; padding:11px 24px; border-radius:10px; text-decoration:none; font-size:14px; font-weight:700; transition:all 0.2s; }
+    .btn-cta:hover { background:var(--green-dark); }
+
+    /* HERO — Full-width green landscape */
+    .hero {
+      background:linear-gradient(135deg, var(--green-dark) 0%, var(--green) 40%, #1A7A40 80%, #0F5C2E 100%);
+      padding:80px 48px 70px; min-height:560px;
+      display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+      position:relative; overflow:hidden;
+    }
+    .hero-leaves {
+      position:absolute; top:0; left:0; right:0; bottom:0; pointer-events:none;
+      background:radial-gradient(circle at 80% 30%, rgba(255,255,255,0.05) 0%, transparent 60%);
+    }
+    .hero-plants {
+      position:absolute; bottom:0; left:0; right:0; height:80px;
+      background:linear-gradient(0deg, rgba(15,92,46,0.8), transparent);
+    }
+    .hero-content { position:relative; z-index:1; color:#fff; }
+    .hero-tag { display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:var(--green-dark); padding:6px 16px; border-radius:20px; font-size:12px; font-weight:800; margin-bottom:20px; }
+    .hero h1 { font-size:48px; font-weight:900; line-height:1.1; margin-bottom:16px; }
+    .hero h1 em { color:var(--accent); font-style:normal; }
+    .hero p { font-size:16px; color:rgba(255,255,255,0.85); line-height:1.7; margin-bottom:30px; max-width:440px; }
+    .hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-light { background:#fff; color:var(--green-dark); padding:13px 26px; border-radius:10px; font-size:15px; font-weight:700; text-decoration:none; border:none; cursor:pointer; transition:all 0.2s; }
+    .btn-light:hover { background:var(--accent); transform:translateY(-2px); }
+    .btn-outline-w { background:transparent; color:#fff; padding:13px 26px; border-radius:10px; font-size:15px; font-weight:700; text-decoration:none; border:2px solid rgba(255,255,255,0.4); }
+    .hero-right { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .hero-stat-box { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:20px; text-align:center; backdrop-filter:blur(10px); }
+    .hero-stat-num { font-size:28px; font-weight:900; color:var(--accent); }
+    .hero-stat-label { font-size:11px; color:rgba(255,255,255,0.7); margin-top:4px; }
+
+    /* SERVICES */
+    .services { padding:80px 48px; }
+    .sect-label { display:inline-block; background:var(--green-light); color:var(--green-dark); padding:5px 14px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:10px; }
+    .sect-h2 { font-size:34px; font-weight:900; color:var(--gray-900); margin-bottom:10px; }
+    .sect-p { font-size:15px; color:var(--gray-600); max-width:540px; line-height:1.7; margin-bottom:48px; }
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+    .svc-card {
+      background:var(--green-pale); border:1.5px solid var(--green-light); border-radius:var(--radius);
+      padding:28px; transition:all 0.3s; cursor:pointer; position:relative; overflow:hidden;
+    }
+    .svc-card:hover { background:#fff; border-color:var(--green); box-shadow:var(--shadow); transform:translateY(-4px); }
+    .svc-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--green),var(--green-mid)); transform:scaleX(0); transition:transform 0.3s; }
+    .svc-card:hover::after { transform:scaleX(1); }
+    .svc-icon { width:54px; height:54px; background:var(--green-light); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:26px; margin-bottom:18px; }
+    .svc-card h3 { font-size:16px; font-weight:800; color:var(--gray-900); margin-bottom:8px; }
+    .svc-card p { font-size:13px; color:var(--gray-600); line-height:1.6; margin-bottom:14px; }
+    .svc-price { font-size:15px; font-weight:900; color:var(--green); }
+
+    /* REALISATIONS */
+    .realisations { background:var(--green-dark); padding:80px 48px; }
+    .realisations h2 { font-size:34px; font-weight:900; color:#fff; margin-bottom:12px; }
+    .realisations p { font-size:15px; color:rgba(255,255,255,0.7); max-width:540px; margin-bottom:48px; }
+    .proj-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .proj-card {
+      border-radius:14px; overflow:hidden; cursor:pointer; position:relative;
+      transition:transform 0.3s;
+    }
+    .proj-card:hover { transform:scale(1.03); }
+    .proj-img { height:200px; display:flex; align-items:center; justify-content:center; font-size:60px; position:relative; }
+    .proj-card:nth-child(1) .proj-img { background:linear-gradient(135deg,#14532D,#166534); }
+    .proj-card:nth-child(2) .proj-img { background:linear-gradient(135deg,#164E63,#0E7490); }
+    .proj-card:nth-child(3) .proj-img { background:linear-gradient(135deg,#6B21A8,#7E22CE); }
+    .proj-card:nth-child(4) .proj-img { background:linear-gradient(135deg,#92400E,#B45309); }
+    .proj-card:nth-child(5) .proj-img { background:linear-gradient(135deg,#1E3A5F,#1E40AF); }
+    .proj-card:nth-child(6) .proj-img { background:linear-gradient(135deg,#14532D,#22C55E); }
+    .proj-overlay {
+      position:absolute; bottom:0; left:0; right:0;
+      background:linear-gradient(0deg,rgba(0,0,0,0.85),transparent);
+      padding:20px; color:#fff;
+    }
+    .proj-overlay h4 { font-size:14px; font-weight:800; margin-bottom:3px; }
+    .proj-overlay p { font-size:11px; color:rgba(255,255,255,0.75); }
+    .proj-overlay .proj-budget { font-size:12px; font-weight:700; color:var(--accent); margin-top:4px; }
+
+    /* PLANTES */
+    .plantes { padding:80px 48px; background:var(--gray-50); }
+    .plantes-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-top:48px; }
+    .plante {
+      background:#fff; border-radius:var(--radius); padding:18px; text-align:center;
+      border:1.5px solid var(--gray-200); transition:all 0.3s; cursor:pointer;
+    }
+    .plante:hover { border-color:var(--green); background:var(--green-pale); transform:translateY(-3px); }
+    .plante .icon { font-size:36px; margin-bottom:10px; }
+    .plante h4 { font-size:13px; font-weight:800; color:var(--gray-900); margin-bottom:4px; }
+    .plante .type { font-size:11px; color:var(--green); font-weight:700; }
+
+    /* DEVIS / CONTACT */
+    .devis { padding:80px 48px; }
+    .devis-inner { background:linear-gradient(135deg,var(--green),var(--green-mid)); border-radius:24px; padding:60px; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; color:#fff; }
+    .devis-info h2 { font-size:36px; font-weight:900; margin-bottom:14px; }
+    .devis-info p { font-size:15px; opacity:0.9; line-height:1.7; margin-bottom:24px; }
+    .devis-list { list-style:none; display:flex; flex-direction:column; gap:12px; }
+    .devis-list li { display:flex; gap:10px; align-items:center; font-size:14px; }
+    .devis-list li span { font-size:18px; }
+    .devis-address { background:rgba(255,255,255,0.15); border-radius:10px; padding:18px; margin-top:20px; font-size:13px; line-height:2; }
+    .devis-form { background:#fff; border-radius:16px; padding:36px; }
+    .devis-form h3 { font-size:18px; font-weight:800; color:var(--gray-900); margin-bottom:22px; }
+    .fg { margin-bottom:14px; }
+    .fg label { display:block; font-size:12px; font-weight:700; color:var(--gray-700); margin-bottom:5px; }
+    .fg input, .fg select, .fg textarea { width:100%; padding:10px 14px; border:1.5px solid var(--gray-200); border-radius:8px; font-size:14px; color:var(--gray-900); background:#fff; }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { outline:none; border-color:var(--green); }
+    .fg-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .submit-btn { width:100%; background:var(--green); color:#fff; padding:14px; border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; transition:background 0.2s; }
+    .submit-btn:hover { background:var(--green-dark); }
+
+    /* TEMOIGNAGES */
+    .temoignages { background:var(--green-pale); padding:80px 48px; }
+    .temo-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:48px; }
+    .temo { background:#fff; border-radius:14px; padding:28px; border-left:4px solid var(--green); box-shadow:var(--shadow); }
+    .temo-stars { font-size:14px; margin-bottom:10px; }
+    .temo blockquote { font-size:14px; color:var(--gray-700); line-height:1.7; font-style:italic; margin-bottom:14px; }
+    .temo-author { font-size:13px; font-weight:800; color:var(--green-dark); }
+    .temo-location { font-size:12px; color:var(--gray-600); }
+
+    footer { background:var(--green-dark); color:#fff; padding:50px 48px 24px; }
+    .ft-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:36px; }
+    .fb h3 { font-size:18px; font-weight:900; margin-bottom:8px; color:var(--accent); }
+    .fb p { font-size:13px; color:rgba(255,255,255,0.6); line-height:1.6; margin-bottom:14px; }
+    .fb-c { font-size:13px; color:rgba(255,255,255,0.6); line-height:2; }
+    .fc h4 { font-size:13px; font-weight:700; margin-bottom:14px; color:var(--green-light); }
+    .fc a { display:block; color:rgba(255,255,255,0.55); text-decoration:none; font-size:13px; margin-bottom:8px; }
+    .fc a:hover { color:var(--accent); }
+    .ft-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; font-size:12px; color:rgba(255,255,255,0.4); text-align:center; }
+
+    @media(max-width:768px) {
+      .hero, .devis-inner, .ft-grid { grid-template-columns:1fr; }
+      nav { padding:0 20px; }
+      .nav-links { display:none; }
+      .hero { padding:40px 20px; }
+      .services-grid, .proj-grid, .temo-grid { grid-template-columns:1fr; }
+      .plantes-grid { grid-template-columns:repeat(3,1fr); }
+      .services, .realisations, .plantes, .devis, .temoignages { padding-left:20px; padding-right:20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="https://ibig-digital.com/commander" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-leaf">🌿</div>
+    <div>
+      <div class="logo-name">Jardin Tropical</div>
+      <div class="logo-sub">Cameroun · Paysagisme & Espaces Verts</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#realisations">Réalisations</a>
+    <a href="#plantes">Nos Plantes</a>
+    <a href="#temoignages">Avis Clients</a>
+    <a href="#devis">Devis Gratuit</a>
+  </div>
+  <a href="#devis" class="btn-cta">🌱 Devis Gratuit</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-leaves"></div>
+  <div class="hero-plants"></div>
+  <div class="hero-content">
+    <div class="hero-tag">🏆 N°1 Paysagisme au Cameroun · Yaoundé & Douala</div>
+    <h1>Vos Espaces<br><em>Verts</em><br>Nos Créations</h1>
+    <p>Conception et entretien de jardins tropicaux luxuriants. Votre espace extérieur transformé en paradis vert par nos experts paysagistes.</p>
+    <div class="hero-btns">
+      <a href="#devis" class="btn-light">🌿 Devis Gratuit</a>
+      <a href="#realisations" class="btn-outline-w">🖼️ Nos Réalisations</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-box"><div class="hero-stat-num">340+</div><div class="hero-stat-label">Jardins créés</div></div>
+    <div class="hero-stat-box"><div class="hero-stat-num">12</div><div class="hero-stat-label">Ans d'expérience</div></div>
+    <div class="hero-stat-box"><div class="hero-stat-num">18</div><div class="hero-stat-label">Paysagistes experts</div></div>
+    <div class="hero-stat-box"><div class="hero-stat-num">98%</div><div class="hero-stat-label">Clients satisfaits</div></div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="sect-label">Nos Services</div>
+  <h2 class="sect-h2">Aménagement Paysager Complet</h2>
+  <p class="sect-p">De la création de votre jardin tropical à son entretien régulier, nous prenons en charge tous vos espaces verts.</p>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon">🌳</div>
+      <h3>Création de Jardins</h3>
+      <p>Conception et aménagement de jardins tropicaux personnalisés. Étude du terrain, plan paysager, implantation des végétaux.</p>
+      <span class="svc-price">Sur devis gratuit</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">✂️</div>
+      <h3>Entretien Espaces Verts</h3>
+      <p>Tonte de pelouse, taille des haies et arbustes, désherbage, fertilisation et arrosage. Contrats mensuels disponibles.</p>
+      <span class="svc-price">Dès 25 000 FCFA/mois</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🌊</div>
+      <h3>Systèmes d'Arrosage</h3>
+      <p>Installation de systèmes d'arrosage automatique et goutte-à-goutte. Économie d'eau garantie jusqu'à 40%.</p>
+      <span class="svc-price">Dès 120 000 FCFA</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🪨</div>
+      <h3>Aménagement Minéral</h3>
+      <p>Allées, terrasses, escaliers de jardin, murets en pierres naturelles. Intégration harmonieuse dans le paysage.</p>
+      <span class="svc-price">Sur devis gratuit</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">💡</div>
+      <h3>Éclairage Extérieur</h3>
+      <p>Illumination de jardins et espaces extérieurs. Spots LED, guirlandes, bornes lumineuses. Ambiance nuit garantie.</p>
+      <span class="svc-price">Dès 80 000 FCFA</span>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🏢</div>
+      <h3>Espaces Verts Entreprises</h3>
+      <p>Aménagement et entretien des espaces verts d'entreprises, hôtels, résidences. Contrats annuels avec SLA garanti.</p>
+      <span class="svc-price">Contrat mensuel</span>
+    </div>
+  </div>
+</section>
+
+<section class="realisations" id="realisations">
+  <h2>🌿 Nos Réalisations</h2>
+  <p>Découvrez quelques-uns des jardins tropicaux que nous avons créés à Yaoundé, Douala et dans toute la région.</p>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-img"><span>🌴</span>
+        <div class="proj-overlay"><h4>Villa Bastos — Jardin Tropical</h4><p>Yaoundé · 2025</p><div class="proj-budget">3 800 000 FCFA</div></div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-img"><span>🌿</span>
+        <div class="proj-overlay"><h4>Résidence Bonanjo — Espaces Verts</h4><p>Douala · 2025</p><div class="proj-budget">5 200 000 FCFA</div></div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-img"><span>🌺</span>
+        <div class="proj-overlay"><h4>Hôtel Hibiscus — Parcs et jardins</h4><p>Kribi · 2024</p><div class="proj-budget">12 000 000 FCFA</div></div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-img"><span>🎋</span>
+        <div class="proj-overlay"><h4>Villa Omnisports — Jardin Zen</h4><p>Yaoundé · 2024</p><div class="proj-budget">2 500 000 FCFA</div></div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-img"><span>🌳</span>
+        <div class="proj-overlay"><h4>Campus Privé — Massifs fleuris</h4><p>Douala · 2024</p><div class="proj-budget">8 500 000 FCFA</div></div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-img"><span>🌱</span>
+        <div class="proj-overlay"><h4>Résidence Mvan — Pelouse anglaise</h4><p>Yaoundé · 2023</p><div class="proj-budget">1 800 000 FCFA</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="plantes" id="plantes">
+  <div class="sect-label">Notre Pépinière</div>
+  <h2 class="sect-h2">Plantes & Arbres Tropicaux</h2>
+  <p class="sect-p">Nous disposons de notre propre pépinière avec plus de 150 espèces de plantes tropicales africaines cultivées localement.</p>
+  <div class="plantes-grid">
+    <div class="plante"><div class="icon">🌴</div><h4>Palmier Areca</h4><div class="type">Décoratif</div></div>
+    <div class="plante"><div class="icon">🌺</div><h4>Bougainvillier</h4><div class="type">Fleurissant</div></div>
+    <div class="plante"><div class="icon">🎋</div><h4>Bambou Tropical</h4><div class="type">Haie privative</div></div>
+    <div class="plante"><div class="icon">🌿</div><h4>Ficus Benjamin</h4><div class="type">Intérieur/Ext.</div></div>
+    <div class="plante"><div class="icon">🌸</div><h4>Hibiscus Rouge</h4><div class="type">Fleurissant</div></div>
+    <div class="plante"><div class="icon">🌱</div><h4>Gazon Kikuyu</h4><div class="type">Pelouse</div></div>
+    <div class="plante"><div class="icon">🌻</div><h4>Tournesol Trop.</h4><div class="type">Coloré</div></div>
+    <div class="plante"><div class="icon">🌳</div><h4>Flamboyant</h4><div class="type">Grand arbre</div></div>
+    <div class="plante"><div class="icon">🍃</div><h4>Lierre Tropical</h4><div class="type">Couvre-sol</div></div>
+    <div class="plante"><div class="icon">🌾</div><h4>Herbe de Pampas</h4><div class="type">Décoratif</div></div>
+  </div>
+</section>
+
+<section class="temoignages" id="temoignages">
+  <div class="sect-label">Avis Clients</div>
+  <h2 class="sect-h2">Ce que Disent Nos Clients</h2>
+  <p class="sect-p">Plus de 340 familles et entreprises ont confié leurs espaces verts à Jardin Tropical.</p>
+  <div class="temo-grid">
+    <div class="temo">
+      <div class="temo-stars">⭐⭐⭐⭐⭐</div>
+      <blockquote>"L'équipe a transformé notre jardin en véritable paradis tropical. Professionnalisme et créativité au rendez-vous. Nos voisins sont jaloux !"</blockquote>
+      <div class="temo-author">Mme Nguembo Christine</div>
+      <div class="temo-location">📍 Bastos, Yaoundé</div>
+    </div>
+    <div class="temo">
+      <div class="temo-stars">⭐⭐⭐⭐⭐</div>
+      <blockquote>"Le système d'arrosage automatique installé est parfait. Économie d'eau significative et notre pelouse est toujours verte. Excellent travail."</blockquote>
+      <div class="temo-author">M. Ateba Jean-Paul</div>
+      <div class="temo-location">📍 Bonanjo, Douala</div>
+    </div>
+    <div class="temo">
+      <div class="temo-stars">⭐⭐⭐⭐⭐</div>
+      <blockquote>"Contrat d'entretien depuis 2 ans pour notre hôtel. Toujours ponctuels, soigneux et leur travail est remarquable. Je recommande vivement."</blockquote>
+      <div class="temo-author">Directeur Hôtel Résidence</div>
+      <div class="temo-location">📍 Kribi Beach, Cameroun</div>
+    </div>
+  </div>
+</section>
+
+<section class="devis" id="devis">
+  <div class="devis-inner">
+    <div class="devis-info">
+      <h2>Devis Gratuit en 48h</h2>
+      <p>Votre jardin de rêve commence par une visite de nos experts. Devis gratuit, sans engagement.</p>
+      <ul class="devis-list">
+        <li><span>🌿</span> Visite de terrain gratuite</li>
+        <li><span>📐</span> Plan paysager offert</li>
+        <li><span>💰</span> Devis détaillé sous 48h</li>
+        <li><span>🛡️</span> Garantie satisfaction</li>
+        <li><span>📅</span> Délais respectés</li>
+      </ul>
+      <div class="devis-address">
+        📍 Rue Nkomo, Bastos — Yaoundé, Cameroun<br>
+        📞 +237 222 00 00 00<br>
+        📱 +237 699 00 00 00 (WhatsApp)<br>
+        ✉️ contact@jardin-tropical.cm<br>
+        🕐 Lun–Sam : 8h–18h
+      </div>
+    </div>
+    <div class="devis-form">
+      <h3>🌳 Demander un Devis</h3>
+      <div class="fg-row">
+        <div class="fg"><label>Prénom</label><input type="text" placeholder="Emmanuel"></div>
+        <div class="fg"><label>Nom</label><input type="text" placeholder="Mbida"></div>
+      </div>
+      <div class="fg"><label>Téléphone</label><input type="tel" placeholder="+237 699 00 00 00"></div>
+      <div class="fg">
+        <label>Type de projet</label>
+        <select>
+          <option>Création de jardin</option>
+          <option>Entretien espaces verts</option>
+          <option>Système d'arrosage</option>
+          <option>Aménagement terrasse</option>
+          <option>Éclairage extérieur</option>
+          <option>Espaces verts entreprise</option>
+        </select>
+      </div>
+      <div class="fg-row">
+        <div class="fg">
+          <label>Superficie estimée</label>
+          <select>
+            <option>Moins de 100 m²</option>
+            <option>100 – 300 m²</option>
+            <option>300 – 1000 m²</option>
+            <option>Plus de 1000 m²</option>
+          </select>
+        </div>
+        <div class="fg"><label>Ville</label>
+          <select>
+            <option>Yaoundé</option>
+            <option>Douala</option>
+            <option>Kribi</option>
+            <option>Bafoussam</option>
+            <option>Autre</option>
+          </select>
+        </div>
+      </div>
+      <button class="submit-btn" onclick="alert('🌿 Votre demande est enregistrée ! Nos paysagistes vous contactent sous 24h pour fixer la visite.')">🌿 Envoyer ma Demande</button>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="ft-grid">
+    <div class="fb">
+      <h3>🌿 Jardin Tropical</h3>
+      <p>Votre partenaire paysagiste de référence au Cameroun. Jardins tropicaux, espaces verts et entretien pour particuliers et entreprises.</p>
+      <div class="fb-c">📍 Rue Nkomo, Bastos, Yaoundé<br>📞 +237 222 00 00 00<br>📱 +237 699 00 00 00 (WhatsApp)<br>✉️ contact@jardin-tropical.cm<br>🕐 Lun–Sam : 8h–18h</div>
+    </div>
+    <div class="fc"><h4>Services</h4><a href="#">Création jardins</a><a href="#">Entretien</a><a href="#">Arrosage auto</a><a href="#">Éclairage</a><a href="#">Entreprises</a></div>
+    <div class="fc"><h4>Notre Pépinière</h4><a href="#">Palmiers</a><a href="#">Plantes fleurissantes</a><a href="#">Arbres tropicaux</a><a href="#">Pelouses & gazons</a></div>
+    <div class="fc"><h4>Informations</h4><a href="#">Nos réalisations</a><a href="#">Avis clients</a><a href="#">Zones d'intervention</a><a href="#">Devis gratuit</a></div>
+  </div>
+  <div class="ft-bottom">© 2026 Jardin Tropical Cameroun · Yaoundé & Douala, Cameroun | Site réalisé par <a href="https://ibig-digital.com" style="color:var(--accent);text-decoration:none;">IBIG Digital</a></div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => { e.preventDefault(); const t = document.querySelector(a.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth'}); });
+  });
+  document.querySelectorAll('.plante').forEach(p => {
+    p.addEventListener('click', function() {
+      this.style.background = '#DCFCE7';
+      this.style.borderColor = '#15803D';
+      setTimeout(() => { this.style.background = ''; this.style.borderColor = ''; }, 1500);
+    });
+  });
+</script>
+</body>
+</html>

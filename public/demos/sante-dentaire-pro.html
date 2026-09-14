@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabinet Dentaire Sourire d'Afrique</title>
+  <style>
+    :root {
+      --primary: #0EA5E9;
+      --primary-dark: #0284C7;
+      --primary-light: #E0F2FE;
+      --accent: #06B6D4;
+      --white: #FFFFFF;
+      --gray-50: #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-900: #0F172A;
+      --red: #EF4444;
+      --green: #10B981;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(14,165,233,0.12);
+      --shadow-lg: 0 12px 40px rgba(14,165,233,0.2);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: system-ui,-apple-system,sans-serif; background:var(--white); color:var(--gray-700); }
+
+    /* DEMO BAR */
+    .demo-bar {
+      position:fixed; top:0; left:0; right:0; height:40px;
+      background:#000; color:#fff; z-index:9999;
+      display:flex; align-items:center; justify-content:center; gap:16px;
+      font-size:13px; font-weight:500;
+    }
+    .demo-bar a {
+      background:#22C55E; color:#fff; padding:5px 14px; border-radius:6px;
+      text-decoration:none; font-size:12px; font-weight:700; white-space:nowrap;
+    }
+    .demo-bar a:hover { background:#16A34A; }
+
+    /* NAV */
+    nav {
+      position:sticky; top:40px; z-index:100;
+      background:rgba(255,255,255,0.95); backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--gray-200);
+      padding:0 40px; display:flex; align-items:center; justify-content:space-between;
+      height:70px;
+    }
+    .nav-logo { display:flex; align-items:center; gap:10px; }
+    .nav-logo-icon {
+      width:42px; height:42px; background:var(--primary); border-radius:10px;
+      display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px;
+    }
+    .nav-logo-text { font-size:16px; font-weight:800; color:var(--gray-900); }
+    .nav-logo-sub { font-size:11px; color:var(--primary); font-weight:600; }
+    .nav-links { display:flex; gap:28px; }
+    .nav-links a { text-decoration:none; color:var(--gray-600); font-size:14px; font-weight:500; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--primary); }
+    .nav-cta {
+      background:var(--primary); color:#fff; padding:10px 22px; border-radius:8px;
+      text-decoration:none; font-size:14px; font-weight:700; transition:background 0.2s;
+    }
+    .nav-cta:hover { background:var(--primary-dark); }
+
+    /* HERO */
+    .hero {
+      background:linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 50%, #F0FFFE 100%);
+      padding:80px 40px 60px;
+      display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+      min-height:520px;
+    }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--primary-light); color:var(--primary-dark);
+      padding:6px 16px; border-radius:20px; font-size:12px; font-weight:700;
+      margin-bottom:20px;
+    }
+    .hero h1 { font-size:44px; font-weight:900; color:var(--gray-900); line-height:1.15; margin-bottom:16px; }
+    .hero h1 span { color:var(--primary); }
+    .hero p { font-size:17px; color:var(--gray-600); line-height:1.7; margin-bottom:32px; }
+    .hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
+    .btn-primary {
+      background:var(--primary); color:#fff; padding:14px 28px; border-radius:10px;
+      font-size:15px; font-weight:700; text-decoration:none; border:none; cursor:pointer;
+      transition:all 0.2s; display:inline-flex; align-items:center; gap:8px;
+    }
+    .btn-primary:hover { background:var(--primary-dark); transform:translateY(-2px); box-shadow:var(--shadow-lg); }
+    .btn-outline {
+      background:transparent; color:var(--primary); padding:14px 28px; border-radius:10px;
+      font-size:15px; font-weight:700; text-decoration:none; border:2px solid var(--primary);
+      cursor:pointer; transition:all 0.2s;
+    }
+    .btn-outline:hover { background:var(--primary); color:#fff; }
+    .hero-stats { display:flex; gap:32px; margin-top:36px; }
+    .hero-stat { text-align:center; }
+    .hero-stat-num { font-size:28px; font-weight:900; color:var(--primary); }
+    .hero-stat-label { font-size:12px; color:var(--gray-600); margin-top:2px; }
+    .hero-image {
+      background:var(--white); border-radius:20px; box-shadow:var(--shadow-lg);
+      padding:30px; position:relative;
+    }
+    .hero-card {
+      background:var(--primary-light); border-radius:14px; padding:24px;
+      text-align:center; margin-bottom:16px;
+    }
+    .hero-card-icon { font-size:48px; margin-bottom:12px; }
+    .hero-card h3 { font-size:18px; font-weight:800; color:var(--gray-900); }
+    .hero-card p { font-size:13px; color:var(--gray-600); margin-top:6px; }
+    .hero-tag {
+      position:absolute; top:-12px; right:20px;
+      background:var(--green); color:#fff; padding:6px 14px;
+      border-radius:20px; font-size:12px; font-weight:700;
+    }
+
+    /* SERVICES */
+    .section { padding:80px 40px; }
+    .section-title { text-align:center; margin-bottom:56px; }
+    .section-title h2 { font-size:36px; font-weight:900; color:var(--gray-900); margin-bottom:12px; }
+    .section-title p { font-size:16px; color:var(--gray-600); max-width:560px; margin:0 auto; }
+    .section-label {
+      display:inline-block; background:var(--primary-light); color:var(--primary-dark);
+      padding:5px 14px; border-radius:20px; font-size:12px; font-weight:700;
+      margin-bottom:12px;
+    }
+
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .service-card {
+      background:var(--white); border:1px solid var(--gray-200); border-radius:var(--radius);
+      padding:28px; transition:all 0.3s; cursor:pointer;
+    }
+    .service-card:hover { border-color:var(--primary); box-shadow:var(--shadow); transform:translateY(-4px); }
+    .service-icon {
+      width:52px; height:52px; background:var(--primary-light); border-radius:12px;
+      display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:16px;
+    }
+    .service-card h3 { font-size:17px; font-weight:800; color:var(--gray-900); margin-bottom:8px; }
+    .service-card p { font-size:14px; color:var(--gray-600); line-height:1.6; margin-bottom:16px; }
+    .service-price {
+      display:flex; align-items:center; justify-content:space-between;
+      padding-top:16px; border-top:1px solid var(--gray-100);
+    }
+    .price { font-size:18px; font-weight:900; color:var(--primary); }
+    .duration { font-size:12px; color:var(--gray-600); background:var(--gray-100); padding:3px 10px; border-radius:20px; }
+
+    /* TEAM */
+    .team-section { background:var(--gray-50); padding:80px 40px; }
+    .team-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:48px; }
+    .team-card { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); text-align:center; }
+    .team-avatar {
+      height:160px;
+      display:flex; align-items:center; justify-content:center; font-size:64px;
+    }
+    .team-card:nth-child(1) .team-avatar { background:linear-gradient(135deg,#E0F2FE,#BAE6FD); }
+    .team-card:nth-child(2) .team-avatar { background:linear-gradient(135deg,#F0FDF4,#BBF7D0); }
+    .team-card:nth-child(3) .team-avatar { background:linear-gradient(135deg,#FFF7ED,#FED7AA); }
+    .team-card:nth-child(4) .team-avatar { background:linear-gradient(135deg,#FDF4FF,#F5D0FE); }
+    .team-info { padding:20px; }
+    .team-info h3 { font-size:15px; font-weight:800; color:var(--gray-900); margin-bottom:4px; }
+    .team-info .role { font-size:12px; color:var(--primary); font-weight:600; margin-bottom:10px; }
+    .team-info p { font-size:13px; color:var(--gray-600); line-height:1.5; }
+
+    /* RDV FORM */
+    .rdv-section {
+      background:linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      padding:80px 40px; color:#fff;
+    }
+    .rdv-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+    .rdv-info h2 { font-size:36px; font-weight:900; margin-bottom:16px; }
+    .rdv-info p { font-size:16px; opacity:0.9; line-height:1.7; margin-bottom:28px; }
+    .rdv-features { list-style:none; display:flex; flex-direction:column; gap:12px; }
+    .rdv-features li { display:flex; align-items:center; gap:10px; font-size:14px; }
+    .rdv-features li::before { content:"✓"; background:rgba(255,255,255,0.2); width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:900; flex-shrink:0; }
+    .rdv-form { background:#fff; border-radius:16px; padding:36px; }
+    .rdv-form h3 { font-size:20px; font-weight:800; color:var(--gray-900); margin-bottom:24px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .form-group { margin-bottom:16px; }
+    .form-group label { display:block; font-size:13px; font-weight:700; color:var(--gray-700); margin-bottom:6px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width:100%; padding:11px 14px; border:1.5px solid var(--gray-200); border-radius:8px;
+      font-size:14px; color:var(--gray-900); background:#fff; transition:border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline:none; border-color:var(--primary);
+    }
+    .form-submit {
+      width:100%; background:var(--primary); color:#fff; padding:14px; border:none;
+      border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; transition:background 0.2s;
+    }
+    .form-submit:hover { background:var(--primary-dark); }
+
+    /* TARIFS */
+    .tarifs-section { padding:80px 40px; background:var(--white); }
+    .tarifs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
+    .tarif-card {
+      border:2px solid var(--gray-200); border-radius:16px; padding:32px; text-align:center;
+      position:relative; transition:all 0.3s;
+    }
+    .tarif-card.featured { border-color:var(--primary); transform:scale(1.04); box-shadow:var(--shadow-lg); }
+    .tarif-badge {
+      position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+      background:var(--primary); color:#fff; padding:5px 20px; border-radius:20px;
+      font-size:12px; font-weight:700;
+    }
+    .tarif-icon { font-size:36px; margin-bottom:12px; }
+    .tarif-name { font-size:18px; font-weight:800; color:var(--gray-900); margin-bottom:8px; }
+    .tarif-price { font-size:32px; font-weight:900; color:var(--primary); margin-bottom:4px; }
+    .tarif-unit { font-size:13px; color:var(--gray-600); margin-bottom:20px; }
+    .tarif-features { list-style:none; text-align:left; margin-bottom:24px; }
+    .tarif-features li { font-size:13px; color:var(--gray-600); padding:6px 0; border-bottom:1px solid var(--gray-100); display:flex; gap:8px; align-items:center; }
+    .tarif-features li::before { content:"✓"; color:var(--green); font-weight:900; }
+
+    /* FOOTER */
+    footer {
+      background:var(--gray-900); color:#fff; padding:60px 40px 30px;
+    }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:40px; }
+    .footer-brand h3 { font-size:20px; font-weight:900; margin-bottom:8px; }
+    .footer-brand p { font-size:13px; color:#94A3B8; line-height:1.6; margin-bottom:16px; }
+    .footer-contact { font-size:13px; color:#94A3B8; line-height:2; }
+    .footer-col h4 { font-size:14px; font-weight:700; margin-bottom:16px; color:#E2E8F0; }
+    .footer-col a { display:block; color:#94A3B8; text-decoration:none; font-size:13px; margin-bottom:8px; }
+    .footer-col a:hover { color:var(--primary); }
+    .footer-bottom { border-top:1px solid #1E293B; padding-top:24px; text-align:center; font-size:12px; color:#64748B; }
+
+    @media (max-width:768px) {
+      .hero { grid-template-columns:1fr; padding:40px 20px; }
+      .hero h1 { font-size:30px; }
+      .services-grid, .team-grid, .rdv-grid, .tarifs-grid { grid-template-columns:1fr; }
+      nav { padding:0 20px; }
+      .nav-links { display:none; }
+      .section { padding:50px 20px; }
+      .footer-grid { grid-template-columns:1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- DEMO BAR -->
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="https://ibig-digital.com/commander" target="_blank">Commander</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">🦷</div>
+    <div>
+      <div class="nav-logo-text">Sourire d'Afrique</div>
+      <div class="nav-logo-sub">Cabinet Dentaire</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#equipe">Notre Équipe</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="#rdv">Rendez-vous</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#rdv" class="nav-cta">📅 Prendre RDV</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🏆 Cabinet certifié ISO 9001 · Abidjan</div>
+    <h1>Votre <span>Sourire</span><br>Notre Passion</h1>
+    <p>Cabinet dentaire moderne au cœur d'Abidjan. Soins de qualité internationale, équipements de pointe, et une équipe dévouée pour votre santé bucco-dentaire.</p>
+    <div class="hero-btns">
+      <a href="#rdv" class="btn-primary">📅 Prendre RDV en ligne</a>
+      <a href="tel:+2250707000001" class="btn-outline">📞 Appeler maintenant</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">4 800+</div><div class="hero-stat-label">Patients satisfaits</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">12</div><div class="hero-stat-label">Ans d'expérience</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">98%</div><div class="hero-stat-label">Satisfaction</div></div>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="hero-tag">🟢 Ouvert aujourd'hui</div>
+    <div class="hero-card">
+      <div class="hero-card-icon">🦷</div>
+      <h3>Soins Complets</h3>
+      <p>Orthodontie · Implants · Blanchiment<br>Prothèse · Pédodontie</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div style="background:#F0FDF4;border-radius:10px;padding:16px;text-align:center;">
+        <div style="font-size:24px;">⏰</div>
+        <div style="font-size:12px;font-weight:700;color:#166534;margin-top:6px;">Lun–Sam</div>
+        <div style="font-size:11px;color:#4B5563;">8h–20h</div>
+      </div>
+      <div style="background:#FFF7ED;border-radius:10px;padding:16px;text-align:center;">
+        <div style="font-size:24px;">🚨</div>
+        <div style="font-size:12px;font-weight:700;color:#9A3412;margin-top:6px;">Urgences</div>
+        <div style="font-size:11px;color:#4B5563;">24h/7j</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-title">
+    <div class="section-label">Nos Spécialités</div>
+    <h2>Des Soins Dentaires d'Excellence</h2>
+    <p>Une gamme complète de traitements bucco-dentaires pour toute la famille, réalisés par des spécialistes certifiés.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔬</div>
+      <h3>Détartrage & Prophylaxie</h3>
+      <p>Nettoyage professionnel complet pour éliminer le tartre et prévenir les caries. Recommandé tous les 6 mois.</p>
+      <div class="service-price">
+        <span class="price">15 000 FCFA</span>
+        <span class="duration">45 min</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <h3>Blanchiment Dentaire</h3>
+      <p>Retrouvez un sourire éclatant grâce à nos techniques de blanchiment professionnel sans danger pour l'émail.</p>
+      <div class="service-price">
+        <span class="price">45 000 FCFA</span>
+        <span class="duration">90 min</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🦿</div>
+      <h3>Prothèse Dentaire</h3>
+      <p>Couronnes, bridges et prothèses amovibles sur mesure. Retrouvez votre confort masticatoire et votre sourire.</p>
+      <div class="service-price">
+        <span class="price">Dès 80 000 FCFA</span>
+        <span class="duration">Plusieurs séances</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📐</div>
+      <h3>Orthodontie</h3>
+      <p>Correction des malpositions dentaires pour enfants et adultes. Bagues classiques ou aligneurs transparents.</p>
+      <div class="service-price">
+        <span class="price">Dès 200 000 FCFA</span>
+        <span class="duration">12–24 mois</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔩</div>
+      <h3>Implants Dentaires</h3>
+      <p>Remplacement permanent des dents manquantes par des implants en titane. Solution durable et naturelle.</p>
+      <div class="service-price">
+        <span class="price">Dès 250 000 FCFA</span>
+        <span class="duration">3–6 mois</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👶</div>
+      <h3>Pédodontie</h3>
+      <p>Soins dentaires spécialisés pour les enfants dans un environnement accueillant et rassurant.</p>
+      <div class="service-price">
+        <span class="price">10 000 FCFA</span>
+        <span class="duration">30–60 min</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section" id="equipe">
+  <div class="section-title">
+    <div class="section-label">Notre Équipe</div>
+    <h2>Des Spécialistes à Votre Service</h2>
+    <p>Une équipe de dentistes expérimentés, formés en Europe et en Afrique, passionnés par votre santé.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">👨‍⚕️</div>
+      <div class="team-info">
+        <h3>Dr. Konan Emmanuel</h3>
+        <div class="role">Directeur Médical · Chirurgien-Dentiste</div>
+        <p>15 ans d'expérience, spécialiste en implantologie. Formé à Paris et Abidjan.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">👩‍⚕️</div>
+      <div class="team-info">
+        <h3>Dr. Aminata Traoré</h3>
+        <div class="role">Orthodontiste</div>
+        <p>Spécialiste en orthodontie adulte et pédiatrique. 10 ans d'expérience clinique.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">👨‍⚕️</div>
+      <div class="team-info">
+        <h3>Dr. Yao Kouassi</h3>
+        <div class="role">Prothésiste Dentaire</div>
+        <p>Expert en prothèses et couronnes céramiques. Formation au CHU de Bordeaux.</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">👩‍⚕️</div>
+      <div class="team-info">
+        <h3>Dr. Fatou Diallo</h3>
+        <div class="role">Pédodontiste</div>
+        <p>Spécialiste en dentisterie pédiatrique. Rend les enfants à l'aise au cabinet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section class="tarifs-section" id="tarifs">
+  <div class="section-title">
+    <div class="section-label">Nos Forfaits</div>
+    <h2>Tarifs Transparents & Accessibles</h2>
+    <p>Des forfaits adaptés à tous les budgets. Facilités de paiement disponibles.</p>
+  </div>
+  <div class="tarifs-grid">
+    <div class="tarif-card">
+      <div class="tarif-icon">🌟</div>
+      <div class="tarif-name">Consultation Standard</div>
+      <div class="tarif-price">10 000 FCFA</div>
+      <div class="tarif-unit">par visite</div>
+      <ul class="tarif-features">
+        <li>Examen clinique complet</li>
+        <li>Radiographie panoramique</li>
+        <li>Bilan de santé bucco-dentaire</li>
+        <li>Ordonnance si nécessaire</li>
+        <li>Conseils personnalisés</li>
+      </ul>
+      <a href="#rdv" class="btn-outline" style="display:block;text-align:center;">Réserver</a>
+    </div>
+    <div class="tarif-card featured">
+      <div class="tarif-badge">⭐ Le Plus Choisi</div>
+      <div class="tarif-icon">💎</div>
+      <div class="tarif-name">Pack Sourire</div>
+      <div class="tarif-price">85 000 FCFA</div>
+      <div class="tarif-unit">pack complet</div>
+      <ul class="tarif-features">
+        <li>Consultation + bilan complet</li>
+        <li>Détartrage professionnel</li>
+        <li>Blanchiment dentaire</li>
+        <li>2 soins conservateurs</li>
+        <li>Suivi 6 mois inclus</li>
+        <li>Urgences prioritaires</li>
+      </ul>
+      <a href="#rdv" class="btn-primary" style="display:block;text-align:center;">Réserver maintenant</a>
+    </div>
+    <div class="tarif-card">
+      <div class="tarif-icon">👨‍👩‍👧‍👦</div>
+      <div class="tarif-name">Forfait Famille</div>
+      <div class="tarif-price">150 000 FCFA</div>
+      <div class="tarif-unit">famille (jusqu'à 5 pers.)</div>
+      <ul class="tarif-features">
+        <li>Bilan pour toute la famille</li>
+        <li>Détartrage x5 personnes</li>
+        <li>Soins pédiatriques inclus</li>
+        <li>Priorité aux rdv</li>
+        <li>Validité 12 mois</li>
+      </ul>
+      <a href="#rdv" class="btn-outline" style="display:block;text-align:center;">Réserver</a>
+    </div>
+  </div>
+</section>
+
+<!-- RDV -->
+<section class="rdv-section" id="rdv">
+  <div class="rdv-grid">
+    <div class="rdv-info">
+      <h2>Prenez Rendez-Vous en Ligne</h2>
+      <p>Réservez votre consultation en quelques clics. Confirmation par SMS sous 30 minutes.</p>
+      <ul class="rdv-features">
+        <li>Confirmation par SMS immédiate</li>
+        <li>Rappel automatique 24h avant</li>
+        <li>Annulation gratuite jusqu'à 2h avant</li>
+        <li>Urgences traitées le jour même</li>
+        <li>Parking gratuit devant le cabinet</li>
+      </ul>
+      <div style="margin-top:28px;padding:20px;background:rgba(255,255,255,0.15);border-radius:12px;">
+        <p style="font-size:13px;opacity:0.9;margin-bottom:8px;">📍 <strong>Adresse</strong></p>
+        <p style="font-size:14px;">Rue des Jardins, Cocody — Abidjan, Côte d'Ivoire</p>
+        <p style="font-size:13px;margin-top:12px;opacity:0.9;">📞 <strong>Téléphone</strong></p>
+        <p style="font-size:14px;">+225 07 07 00 00 01</p>
+      </div>
+    </div>
+    <div class="rdv-form">
+      <h3>🗓️ Réserver une Consultation</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom *</label>
+          <input type="text" placeholder="Kouamé">
+        </div>
+        <div class="form-group">
+          <label>Nom *</label>
+          <input type="text" placeholder="Assi">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Téléphone *</label>
+        <input type="tel" placeholder="+225 07 00 00 00 00">
+      </div>
+      <div class="form-group">
+        <label>Type de soin</label>
+        <select>
+          <option>Consultation générale</option>
+          <option>Détartrage</option>
+          <option>Blanchiment</option>
+          <option>Orthodontie</option>
+          <option>Implant</option>
+          <option>Urgence dentaire</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Date souhaitée</label>
+          <input type="date">
+        </div>
+        <div class="form-group">
+          <label>Heure préférée</label>
+          <select>
+            <option>08h00</option><option>09h00</option><option>10h00</option>
+            <option>11h00</option><option>14h00</option><option>15h00</option>
+            <option>16h00</option><option>17h00</option>
+          </select>
+        </div>
+      </div>
+      <button class="form-submit" onclick="alert('✅ Votre RDV est en cours de confirmation. Vous recevrez un SMS sous 30 minutes.')">📅 Confirmer le Rendez-Vous</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>🦷 Sourire d'Afrique</h3>
+      <p>Cabinet dentaire de référence à Abidjan depuis 2012. Soins de qualité internationale pour toute la famille.</p>
+      <div class="footer-contact">
+        📍 Rue des Jardins, Cocody, Abidjan<br>
+        📞 +225 07 07 00 00 01<br>
+        ✉️ contact@souriredafrique.ci<br>
+        🕐 Lun–Sam : 8h–20h | Urgences 24h/7j
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Nos Services</h4>
+      <a href="#">Consultation</a>
+      <a href="#">Détartrage</a>
+      <a href="#">Blanchiment</a>
+      <a href="#">Orthodontie</a>
+      <a href="#">Implants</a>
+      <a href="#">Pédodontie</a>
+    </div>
+    <div class="footer-col">
+      <h4>Le Cabinet</h4>
+      <a href="#">À propos</a>
+      <a href="#">Notre équipe</a>
+      <a href="#">Nos équipements</a>
+      <a href="#">Témoignages</a>
+      <a href="#">Blog santé</a>
+    </div>
+    <div class="footer-col">
+      <h4>Informations</h4>
+      <a href="#">Tarifs & Remboursements</a>
+      <a href="#">Urgences dentaires</a>
+      <a href="#">Accès & Parking</a>
+      <a href="#">Politique de confidentialité</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Cabinet Dentaire Sourire d'Afrique · Abidjan, Côte d'Ivoire<br>
+    <span style="color:#475569;margin-top:6px;display:block;">Site réalisé avec ❤️ par <a href="https://ibig-digital.com" style="color:#0EA5E9;text-decoration:none;">IBIG Digital</a></span>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  // Nav active on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#'+current ? 'var(--primary)' : '';
+    });
+  });
+</script>
+</body>
+</html>

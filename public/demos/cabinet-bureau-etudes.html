@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bureau d'Études Techniques Afrique</title>
+<style>
+:root{--blue:#1E40AF;--navy:#0F1F4A;--sky:#0EA5E9;--light:#F0F6FF;--white:#fff;--text:#0F172A;--gray:#64748B;--border:#CBD5E1;--shadow:0 4px 24px rgba(14,32,74,0.10);--accent:#F59E0B}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
+#demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
+#demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
+
+nav{position:sticky;top:40px;background:var(--navy);z-index:100;box-shadow:0 2px 20px rgba(15,31,74,0.3)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+.logo-icon{width:48px;height:48px;background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.logo-text{color:#fff;font-weight:700;font-size:15px;line-height:1.3}
+.logo-text small{display:block;font-size:11px;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--sky);color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:700;font-size:13px;transition:all .2s}
+.nav-cta:hover{background:#0284c7}
+
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0a1830 60%,#050d1a 100%);padding:88px 24px 72px;position:relative;overflow:hidden}
+.hero-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(14,165,233,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(14,165,233,0.03) 1px,transparent 1px);background-size:60px 60px}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:56px;align-items:center;position:relative;z-index:1}
+.hero-iso{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px}
+.hero-iso span{background:rgba(14,165,233,0.12);border:1px solid rgba(14,165,233,0.25);color:var(--sky);padding:4px 12px;border-radius:4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.hero h1{font-size:52px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:18px;letter-spacing:-1px}
+.hero h1 span{color:var(--sky)}
+.hero-desc{font-size:17px;color:rgba(255,255,255,0.68);line-height:1.7;margin-bottom:32px}
+.hero-certifications{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.cert-tag{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);padding:7px 14px;border-radius:4px;font-size:12px;font-weight:600}
+.hero-btns{display:flex;gap:12px}
+.btn-sky{background:var(--sky);color:#fff;padding:14px 32px;border-radius:6px;text-decoration:none;font-weight:700;font-size:15px;transition:all .2s}
+.btn-sky:hover{background:#0284c7;transform:translateY(-2px);box-shadow:0 8px 24px rgba(14,165,233,0.3)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,0.2);color:#fff;padding:14px 32px;border-radius:6px;text-decoration:none;font-weight:600;font-size:15px;transition:all .2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.5)}
+.hero-credentials{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:28px}
+.hero-credentials h3{font-size:16px;font-weight:700;color:#fff;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.cred-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.cred-item:last-child{border-bottom:none}
+.cred-icon{width:36px;height:36px;background:rgba(14,165,233,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.cred-text{font-size:14px;color:rgba(255,255,255,0.8)}
+.cred-text strong{color:#fff;display:block;font-size:13px;font-weight:600}
+
+section{padding:72px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;background:rgba(30,64,175,0.1);color:var(--blue);padding:4px 14px;border-radius:4px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.section-title{font-size:36px;font-weight:800;color:var(--text);margin-bottom:14px}
+.section-sub{font-size:16px;color:var(--gray);line-height:1.7;max-width:580px}
+
+.kpis{background:var(--blue);padding:44px 24px}
+.kpis-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:24px}
+.kpi-num{font-size:44px;font-weight:900;color:#fff;line-height:1}
+.kpi-label{color:rgba(255,255,255,0.65);font-size:14px;margin-top:6px}
+
+.expertises{background:var(--light)}
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.exp-card{background:#fff;border-radius:16px;padding:32px;box-shadow:var(--shadow);transition:transform .3s;border-top:4px solid var(--blue)}
+.exp-card:hover{transform:translateY(-6px)}
+.exp-card:nth-child(2){border-top-color:var(--sky)}
+.exp-card:nth-child(3){border-top-color:var(--accent)}
+.exp-card:nth-child(4){border-top-color:#059669}
+.exp-card:nth-child(5){border-top-color:#dc2626}
+.exp-card:nth-child(6){border-top-color:#7c3aed}
+.exp-icon{font-size:44px;margin-bottom:16px}
+.exp-title{font-size:21px;font-weight:800;color:var(--text);margin-bottom:10px}
+.exp-desc{font-size:14px;color:var(--gray);line-height:1.5;margin-bottom:20px}
+.exp-list{list-style:none}
+.exp-list li{padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px}
+.exp-list li::before{content:'▸';color:var(--blue);font-weight:700}
+.exp-list li:last-child{border-bottom:none}
+
+.projets{background:#fff}
+.projets-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.projet-card{border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform .3s}
+.projet-card:hover{transform:translateY(-6px)}
+.projet-header{height:200px;position:relative;display:flex;align-items:flex-end;padding:20px}
+.projet-header-bg{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.6),transparent)}
+.projet-emoji{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);font-size:64px;opacity:0.25}
+.projet-badge{background:var(--sky);color:#fff;padding:4px 12px;border-radius:4px;font-size:11px;font-weight:700;position:relative;z-index:1}
+.projet-body{padding:24px;background:#fff}
+.projet-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px}
+.projet-location{font-size:13px;color:var(--gray);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.projet-specs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.spec-item{background:var(--light);border-radius:8px;padding:10px}
+.spec-label{font-size:11px;color:var(--gray);font-weight:600;margin-bottom:2px}
+.spec-val{font-size:14px;font-weight:700;color:var(--blue)}
+
+.ingenieur{background:var(--light)}
+.ing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.ing-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s}
+.ing-card:hover{transform:translateY(-4px)}
+.ing-header{height:160px;display:flex;align-items:center;justify-content:center;font-size:64px}
+.ing-body{padding:22px}
+.ing-name{font-size:17px;font-weight:700;color:var(--text);margin-bottom:4px}
+.ing-title{font-size:13px;color:var(--sky);font-weight:600;margin-bottom:8px}
+.ing-bio{font-size:13px;color:var(--gray);line-height:1.4;margin-bottom:12px}
+.ing-certs{display:flex;gap:8px;flex-wrap:wrap}
+.ing-cert{background:var(--light);color:var(--blue);padding:3px 10px;border-radius:4px;font-size:11px;font-weight:700}
+
+.process{background:#fff}
+.proc-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+.proc-step-card{background:var(--light);border-radius:14px;padding:28px;text-align:center;position:relative}
+.proc-step-card::after{content:'→';position:absolute;right:-14px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--border)}
+.proc-step-card:last-child::after{display:none}
+.proc-num{width:48px;height:48px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;margin:0 auto 14px}
+.proc-icon{font-size:36px;margin-bottom:14px}
+.proc-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px}
+.proc-desc{font-size:13px;color:var(--gray);line-height:1.5}
+
+.testi{background:var(--navy);padding:80px 24px}
+.testi .section-title{color:#fff}
+.testi .section-tag{background:rgba(14,165,233,0.15);color:var(--sky)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.testi-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:28px}
+.testi-quote{font-size:32px;color:var(--sky);opacity:0.4;margin-bottom:8px;line-height:1}
+.testi-text{color:rgba(255,255,255,0.78);font-size:14px;line-height:1.7;font-style:italic;margin-bottom:20px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{width:44px;height:44px;background:var(--sky);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:16px}
+.testi-name{font-size:14px;font-weight:700;color:#fff}
+.testi-info{font-size:12px;color:rgba(255,255,255,0.4)}
+
+.cta-section{background:linear-gradient(135deg,var(--sky),var(--blue));padding:72px 24px;text-align:center}
+.cta-section h2{font-size:44px;font-weight:900;color:#fff;margin-bottom:14px}
+.cta-section p{font-size:17px;color:rgba(255,255,255,0.8);margin-bottom:32px}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--blue);padding:16px 40px;border-radius:6px;text-decoration:none;font-weight:700;font-size:16px;transition:all .2s}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+.btn-outline-w{border:2px solid rgba(255,255,255,0.4);color:#fff;padding:16px 40px;border-radius:6px;text-decoration:none;font-weight:600;font-size:16px;transition:all .2s}
+.btn-outline-w:hover{border-color:#fff}
+
+footer{background:#050d1a;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-heading{font-size:12px;font-weight:700;color:#fff;margin-bottom:18px;text-transform:uppercase;letter-spacing:2px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:9px}
+.footer-links a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-links a:hover{color:var(--sky)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:10px}
+.footer-bottom a{color:var(--sky);text-decoration:none}
+
+@media(max-width:768px){
+  .hero-inner,.footer-grid{grid-template-columns:1fr}
+  .hero h1{font-size:34px}
+  .exp-grid,.projets-grid,.ing-grid,.testi-grid,.proc-steps{grid-template-columns:1fr}
+  .kpis-inner{grid-template-columns:repeat(2,1fr)}
+  .nav-links,.nav-cta{display:none}
+}
+</style>
+</head>
+<body>
+<div id="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="#">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">⚙️</div>
+      <div class="logo-text">BET Afrique<small>Bureau d'Études Techniques</small></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Domaines</a></li>
+      <li><a href="#">Projets</a></li>
+      <li><a href="#">Ingénieurs</a></li>
+      <li><a href="#">Certifications</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Demander un devis</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-lines"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-iso">
+        <span>ISO 9001:2015</span>
+        <span>ISO 14001:2015</span>
+        <span>OHSAS 18001</span>
+      </div>
+      <h1>Ingénierie d'Excellence<br>Pour <span>l'Afrique</span><br>de Demain</h1>
+      <p class="hero-desc">Le Bureau d'Études Techniques Afrique conçoit, planifie et supervise les projets d'infrastructure, d'énergie et de génie civil qui transforment le continent africain.</p>
+      <div class="hero-certifications">
+        <span class="cert-tag">🏗️ Génie Civil</span>
+        <span class="cert-tag">⚡ Énergie</span>
+        <span class="cert-tag">🌊 Hydraulique</span>
+        <span class="cert-tag">🏢 Architecture</span>
+        <span class="cert-tag">🌱 Environnement</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#" class="btn-sky">Demander un devis</a>
+        <a href="#" class="btn-ghost">Voir nos projets</a>
+      </div>
+    </div>
+    <div class="hero-credentials">
+      <h3>🏅 Nos accréditations</h3>
+      <div class="cred-item"><div class="cred-icon">📋</div><div class="cred-text"><strong>ISO 9001:2015 Certifié</strong>Système Management Qualité audité annuellement</div></div>
+      <div class="cred-item"><div class="cred-icon">🌿</div><div class="cred-text"><strong>ISO 14001 Environnement</strong>Démarche environnementale intégrée à tous projets</div></div>
+      <div class="cred-item"><div class="cred-icon">⚡</div><div class="cred-text"><strong>ANARE Agréé</strong>Autorité Nationale de Régulation de l'Électricité CI</div></div>
+      <div class="cred-item"><div class="cred-icon">🏛️</div><div class="cred-text"><strong>Ordre des Ingénieurs CI</strong>Membres 142 ingénieurs certifiés OICGI</div></div>
+      <div class="cred-item"><div class="cred-icon">🌍</div><div class="cred-text"><strong>Partenaire Banque Mondiale</strong>Études et MOE projets financés BM & BAD</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="kpis">
+  <div class="kpis-inner">
+    <div><div class="kpi-num">280+</div><div class="kpi-label">Projets réalisés</div></div>
+    <div><div class="kpi-num">22 ans</div><div class="kpi-label">D'expérience</div></div>
+    <div><div class="kpi-num">142</div><div class="kpi-label">Ingénieurs certifiés</div></div>
+    <div><div class="kpi-num">16</div><div class="kpi-label">Pays africains</div></div>
+  </div>
+</div>
+
+<section class="expertises">
+  <div class="section-inner">
+    <div class="section-tag">Domaines d'Expertise</div>
+    <h2 class="section-title">6 Pôles Techniques d'Excellence</h2>
+    <p class="section-sub">Des ingénieurs spécialisés dans chaque domaine pour vous offrir la meilleure expertise technique africaine.</p>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-icon">🏗️</div>
+        <div class="exp-title">Génie Civil & Structures</div>
+        <p class="exp-desc">Conception et calcul de structures pour ouvrages d'art, bâtiments, ponts et infrastructures routières.</p>
+        <ul class="exp-list">
+          <li>Calculs de structures béton/métal</li>
+          <li>Ouvrages d'art et ponts</li>
+          <li>Fondations spéciales</li>
+          <li>Surveillance de chantier</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">⚡</div>
+        <div class="exp-title">Énergie & Électricité</div>
+        <p class="exp-desc">Études et conception de réseaux électriques, centrales solaires, barrages hydroélectriques et smart grids.</p>
+        <ul class="exp-list">
+          <li>Centrales solaires off-grid</li>
+          <li>Réseaux HTA/BT</li>
+          <li>Études d'impact énergétique</li>
+          <li>Audit énergétique bâtiment</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🌊</div>
+        <div class="exp-title">Hydraulique & Eau</div>
+        <p class="exp-desc">Adduction d'eau potable, assainissement, barrages, gestion des eaux pluviales et irrigation agricole.</p>
+        <ul class="exp-list">
+          <li>AEP zones rurales et urbaines</li>
+          <li>Réseaux assainissement</li>
+          <li>Barrages et retenues collinaires</li>
+          <li>Études hydrologiques</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🏢</div>
+        <div class="exp-title">Architecture & Urbanisme</div>
+        <p class="exp-desc">Conception architecturale bioclimatique adaptée au contexte africain, plans d'urbanisme, études d'aménagement.</p>
+        <ul class="exp-list">
+          <li>Plans architecturaux</li>
+          <li>Études d'aménagement urbain</li>
+          <li>Architecture bioclimatique</li>
+          <li>Permis de construire</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🌱</div>
+        <div class="exp-title">Environnement & RSE</div>
+        <p class="exp-desc">Études d'impact environnemental et social (EIES), plans de gestion environnementale, conformité normes africaines.</p>
+        <ul class="exp-list">
+          <li>EIES projets industriels</li>
+          <li>Plans de gestion PGES</li>
+          <li>Audit environnemental</li>
+          <li>Compensation carbone</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🛣️</div>
+        <div class="exp-title">Routes & Transport</div>
+        <p class="exp-desc">Conception et supervision de voiries, routes nationales, pistes rurales, aérodromes et infrastructures portuaires.</p>
+        <ul class="exp-list">
+          <li>Études routes nationales</li>
+          <li>Pistes agricoles & rurales</li>
+          <li>Signalisation routière</li>
+          <li>Études de trafic</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="projets">
+  <div class="section-inner">
+    <div class="section-tag">Références Projets</div>
+    <h2 class="section-title">280+ Projets Réalisés en Afrique</h2>
+    <p class="section-sub">Une sélection de nos réalisations dans 16 pays africains, pour clients publics et privés.</p>
+    <div class="projets-grid">
+      <div class="projet-card">
+        <div class="projet-header" style="background:linear-gradient(135deg,#1e40af,#0f1f4a)"><div class="projet-emoji">🌊</div><div class="projet-header-bg"></div><span class="projet-badge">Hydraulique · Terminé</span></div>
+        <div class="projet-body">
+          <div class="projet-title">Adduction d'eau potable — Zone rurale Tiassalé</div>
+          <div class="projet-location">📍 Tiassalé, Côte d'Ivoire · Maître d'ouvrage : ONEP CI</div>
+          <div class="projet-specs">
+            <div class="spec-item"><div class="spec-label">Population desservie</div><div class="spec-val">42 000 hab.</div></div>
+            <div class="spec-item"><div class="spec-label">Montant travaux</div><div class="spec-val">2,4 Mds FCFA</div></div>
+            <div class="spec-item"><div class="spec-label">Durée mission</div><div class="spec-val">18 mois</div></div>
+            <div class="spec-item"><div class="spec-label">Financeur</div><div class="spec-val">Banque Mondiale</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="projet-card">
+        <div class="projet-header" style="background:linear-gradient(135deg,#d97706,#92400e)"><div class="projet-emoji">⚡</div><div class="projet-header-bg"></div><span class="projet-badge">Énergie · En cours</span></div>
+        <div class="projet-body">
+          <div class="projet-title">Centrale solaire 5 MWc — Bouaké</div>
+          <div class="projet-location">📍 Bouaké, Côte d'Ivoire · Client privé</div>
+          <div class="projet-specs">
+            <div class="spec-item"><div class="spec-label">Puissance installée</div><div class="spec-val">5 MWc</div></div>
+            <div class="spec-item"><div class="spec-label">Montant travaux</div><div class="spec-val">4,8 Mds FCFA</div></div>
+            <div class="spec-item"><div class="spec-label">Panneaux</div><div class="spec-val">14 800 unités</div></div>
+            <div class="spec-item"><div class="spec-label">Énergie produite</div><div class="spec-val">8 GWh/an</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="projet-card">
+        <div class="projet-header" style="background:linear-gradient(135deg,#059669,#065f46)"><div class="projet-emoji">🏗️</div><div class="projet-header-bg"></div><span class="projet-badge">Génie Civil · Terminé</span></div>
+        <div class="projet-body">
+          <div class="projet-title">Pont à poutres précontraintes — Fleuve Comoé</div>
+          <div class="projet-location">📍 M'Bahiakro, Côte d'Ivoire · Ministère des Travaux Publics</div>
+          <div class="projet-specs">
+            <div class="spec-item"><div class="spec-label">Longueur tablier</div><div class="spec-val">180 mètres</div></div>
+            <div class="spec-item"><div class="spec-label">Montant travaux</div><div class="spec-val">3,2 Mds FCFA</div></div>
+            <div class="spec-item"><div class="spec-label">Durée chantier</div><div class="spec-val">24 mois</div></div>
+            <div class="spec-item"><div class="spec-label">Charge admise</div><div class="spec-val">40 tonnes</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ingenieur">
+  <div class="section-inner">
+    <div class="section-tag">Direction Technique</div>
+    <h2 class="section-title">Des Ingénieurs d'Expérience</h2>
+    <p class="section-sub">Nos directeurs techniques cumulent plus de 80 ans d'expérience collective sur des projets en Afrique et à l'international.</p>
+    <div class="ing-grid">
+      <div class="ing-card">
+        <div class="ing-header" style="background:linear-gradient(135deg,var(--navy),#2563eb)">👨‍🔬</div>
+        <div class="ing-body">
+          <div class="ing-name">Ing. Koffi Anoman</div>
+          <div class="ing-title">Directeur Technique Génie Civil</div>
+          <p class="ing-bio">École Polytechnique Abidjan. 22 ans d'expérience. Spécialiste structures et ouvrages d'art. Expert BAD pour supervision de projets routiers.</p>
+          <div class="ing-certs"><span class="ing-cert">OICGI</span><span class="ing-cert">OGC France</span></div>
+        </div>
+      </div>
+      <div class="ing-card">
+        <div class="ing-header" style="background:linear-gradient(135deg,#d97706,#92400e)">👩‍🔧</div>
+        <div class="ing-body">
+          <div class="ing-name">Ing. Aya Séka</div>
+          <div class="ing-title">Directrice Pôle Énergie</div>
+          <p class="ing-bio">Master Énergies Renouvelables. Grenoble INP. 14 ans sur projets solaires et réseaux électriques ruraux en Afrique de l'Ouest subsaharienne.</p>
+          <div class="ing-certs"><span class="ing-cert">OICGI</span><span class="ing-cert">ANARE</span></div>
+        </div>
+      </div>
+      <div class="ing-card">
+        <div class="ing-header" style="background:linear-gradient(135deg,#059669,#065f46)">👨‍💻</div>
+        <div class="ing-body">
+          <div class="ing-name">Ing. Moussa Ouédraogo</div>
+          <div class="ing-title">Directeur Hydraulique</div>
+          <p class="ing-bio">EIER Ouagadougou. 18 ans projets AEP et assainissement. Expert WHO eau potable zones rurales africaines. 60+ projets supervisés.</p>
+          <div class="ing-certs"><span class="ing-cert">OICGI</span><span class="ing-cert">Expert OMS</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="section-inner">
+    <div class="section-tag">Notre Démarche</div>
+    <h2 class="section-title">Rigueur et Méthode à Chaque Étape</h2>
+    <div class="proc-steps">
+      <div class="proc-step-card"><div class="proc-num">1</div><div class="proc-icon">📋</div><div class="proc-title">Consultation</div><div class="proc-desc">Analyse de votre projet, faisabilité technique et proposition de mission</div></div>
+      <div class="proc-step-card"><div class="proc-num">2</div><div class="proc-icon">🔬</div><div class="proc-title">Études</div><div class="proc-desc">Études préliminaires, APD, DCE, plans d'exécution et spécifications techniques</div></div>
+      <div class="proc-step-card"><div class="proc-num">3</div><div class="proc-icon">👷</div><div class="proc-title">Supervision</div><div class="proc-desc">Direction et contrôle de l'exécution des travaux sur le chantier</div></div>
+      <div class="proc-step-card"><div class="proc-num">4</div><div class="proc-icon">✅</div><div class="proc-title">Réception</div><div class="proc-desc">Réception des travaux, levée des réserves et remise du DOE</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testi">
+  <div class="section-inner">
+    <div class="section-tag">Témoignages Maîtres d'Ouvrage</div>
+    <h2 class="section-title">Ce Que Disent Nos Clients</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">BET Afrique a livré notre AEP en avance sur le planning et avec un excellent niveau de qualité. Leurs ingénieurs hydrauliques connaissent parfaitement les contraintes terrain africaines.</p>
+        <div class="testi-author"><div class="testi-av">D</div><div><div class="testi-name">Directeur Régional — ONEP CI</div><div class="testi-info">Projet AEP Tiassalé · 2023</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">La centrale solaire qu'ils ont dimensionnée dépasse les performances attendues. Leur maîtrise des normes internationales couplée à leur connaissance du contexte ivoirien fait la différence.</p>
+        <div class="testi-author"><div class="testi-av">A</div><div><div class="testi-name">CEO — Investisseur solaire privé</div><div class="testi-info">Centrale solaire Bouaké · 2024</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Le pont a été livré dans les délais et dans le budget. La qualité des plans d'exécution et le suivi de chantier de l'équipe ont évité de nombreuses malfaçons. Un partenaire sérieux.</p>
+        <div class="testi-author"><div class="testi-av">K</div><div><div class="testi-name">Chef de Projet — Ministère TP</div><div class="testi-info">Pont M'Bahiakro · 2022</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="section-inner">
+    <h2>Votre Projet d'Infrastructure Commence Ici</h2>
+    <p>Expertise technique certifiée, 280+ références, 22 ans d'expérience africaine. Demandez votre devis sous 48h.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-white">Demander un devis</a>
+      <a href="#" class="btn-outline-w">Voir toutes nos références</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:18px;font-weight:800;color:#fff;margin-bottom:14px">⚙️ BET Afrique</div>
+        <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,0.35);margin-bottom:18px">Bureau d'Études Techniques Afrique — ingénierie pluridisciplinaire certifiée ISO 9001:2015 au service des projets d'infrastructure sur tout le continent africain.</p>
+        <div style="font-size:14px;line-height:2;color:rgba(255,255,255,0.4)">📍 Plateau, Abidjan, Côte d'Ivoire<br>📞 +225 20 22 00 00<br>✉️ contact@bet-afrique.ci</div>
+      </div>
+      <div><div class="footer-heading">Domaines</div><ul class="footer-links"><li><a href="#">Génie Civil</a></li><li><a href="#">Énergie</a></li><li><a href="#">Hydraulique</a></li><li><a href="#">Architecture</a></li><li><a href="#">Environnement</a></li></ul></div>
+      <div><div class="footer-heading">Cabinet</div><ul class="footer-links"><li><a href="#">Projets références</a></li><li><a href="#">Certifications</a></li><li><a href="#">L'équipe</a></li><li><a href="#">Partenaires</a></li></ul></div>
+      <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="#">Demande de devis</a></li><li><a href="#">Offres d'emploi</a></li><li><a href="#">Sous-traitance</a></li><li><a href="#">Plan d'accès</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 BET Afrique · ISO 9001:2015 · OICGI Agrément N°BET-2003-042</span>
+      <span>Site créé avec <a href="#">IBIG Digital</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

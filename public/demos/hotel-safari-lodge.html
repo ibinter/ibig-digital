@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safari Lodge Masai — Kenya</title>
+<style>
+:root{
+  --bg:#1C1710;
+  --primary:#C9A227;
+  --primary-dark:#A67C00;
+  --jungle:#2A4A1E;
+  --text:#F5EFD6;
+  --text-dim:#A89A6A;
+  --border:rgba(201,162,39,0.2);
+  --card-bg:#251E10;
+  --card-border:rgba(201,162,39,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.7;}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-family:system-ui,sans-serif;font-size:13px;}
+.demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
+
+nav{position:sticky;top:40px;background:rgba(28,23,16,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:70px;}
+.logo{font-size:20px;color:var(--primary);letter-spacing:1px;font-weight:700;}
+.logo em{font-style:normal;color:var(--text-dim);}
+.nav-links{display:flex;gap:30px;list-style:none;}
+.nav-links a{color:var(--text-dim);text-decoration:none;font-family:system-ui,sans-serif;font-size:13px;letter-spacing:0.5px;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--primary);}
+.btn-nav{background:var(--primary);color:var(--bg);padding:10px 22px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;transition:all 0.2s;}
+.btn-nav:hover{background:var(--primary-dark);}
+
+/* HERO */
+.hero{min-height:95vh;background:linear-gradient(160deg,#0A0804 0%,#1C1710 50%,#2A1E08 100%);display:flex;align-items:center;position:relative;overflow:hidden;}
+.hero-glow{position:absolute;top:10%;right:5%;width:600px;height:600px;background:radial-gradient(circle,rgba(201,162,39,0.12),transparent 70%);border-radius:50%;}
+.hero-glow2{position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(42,74,30,0.3),transparent 70%);border-radius:50%;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,162,39,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,162,39,0.03) 1px,transparent 1px);background-size:60px 60px;}
+.hero-content{max-width:1200px;margin:0 auto;padding:0 40px;width:100%;display:grid;grid-template-columns:1fr 460px;gap:60px;align-items:center;position:relative;z-index:1;}
+.hero-line{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.hero-line-bar{width:40px;height:1px;background:var(--primary);}
+.hero-line-text{color:var(--primary);font-family:system-ui,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;}
+.hero h1{font-size:64px;line-height:1.05;margin-bottom:20px;font-weight:400;letter-spacing:-1px;}
+.hero h1 .big{display:block;font-size:80px;color:var(--primary);font-weight:700;line-height:0.9;}
+.hero-sub{color:var(--text-dim);font-size:18px;font-style:italic;margin-bottom:36px;line-height:1.6;}
+.hero-packages{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
+.hp{display:flex;align-items:center;gap:6px;background:rgba(201,162,39,0.1);border:1px solid var(--border);color:var(--text-dim);padding:7px 16px;border-radius:4px;font-family:system-ui,sans-serif;font-size:13px;cursor:pointer;transition:all 0.2s;}
+.hp:hover,.hp.active{background:var(--primary);color:var(--bg);border-color:var(--primary);}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-gold{background:var(--primary);color:var(--bg);padding:16px 36px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:15px;font-weight:800;letter-spacing:0.5px;transition:all 0.2s;}
+.btn-gold:hover{background:var(--primary-dark);transform:translateY(-1px);}
+.btn-outline-gold{border:2px solid var(--primary);color:var(--primary);padding:16px 36px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:15px;transition:all 0.2s;}
+.btn-outline-gold:hover{background:rgba(201,162,39,0.1);}
+
+.hero-aside{display:flex;flex-direction:column;gap:16px;}
+.aside-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:22px;transition:border-color 0.3s;}
+.aside-card:hover{border-color:var(--primary);}
+.ac-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
+.ac-pkg-name{color:var(--primary);font-size:16px;font-weight:700;}
+.ac-pkg-days{background:rgba(201,162,39,0.15);color:var(--primary);padding:3px 10px;border-radius:4px;font-family:system-ui,sans-serif;font-size:12px;font-weight:700;}
+.ac-features{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.ac-feat{display:flex;align-items:center;gap:8px;font-family:system-ui,sans-serif;font-size:13px;color:var(--text-dim);}
+.ac-feat::before{content:'▸';color:var(--primary);}
+.ac-footer{display:flex;justify-content:space-between;align-items:center;}
+.ac-price{font-size:22px;font-weight:700;color:var(--text);}
+.ac-price small{font-size:12px;font-weight:400;color:var(--text-dim);font-family:system-ui,sans-serif;}
+.btn-ac{background:transparent;border:1px solid var(--border);color:var(--primary);padding:7px 16px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:13px;font-weight:700;transition:all 0.2s;}
+.btn-ac:hover{background:var(--primary);color:var(--bg);}
+
+/* SECTIONS */
+.section-inner{max-width:1200px;margin:0 auto;}
+.s-eyebrow{font-family:system-ui,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--primary);margin-bottom:12px;}
+.s-title{font-size:40px;font-weight:400;color:var(--text);line-height:1.2;margin-bottom:14px;}
+.s-sub{color:var(--text-dim);font-size:16px;font-style:italic;max-width:520px;line-height:1.7;}
+.s-header{margin-bottom:48px;}
+.s-header.center{text-align:center;}
+.s-header.center .s-sub{margin:0 auto;}
+
+/* STATS */
+.stats-band{background:var(--jungle);padding:48px 40px;}
+.stats-row{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:20px;text-align:center;}
+.sn{font-size:40px;font-weight:700;color:var(--primary);}
+.sl{font-size:12px;color:rgba(255,255,255,0.5);font-family:system-ui,sans-serif;text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+
+/* SAFARIS */
+.safaris-section{padding:80px 40px;background:var(--bg);}
+.safaris-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.safari-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;overflow:hidden;transition:all 0.3s;}
+.safari-card:hover{border-color:var(--primary);transform:translateY(-5px);}
+.safari-top{height:180px;display:flex;align-items:center;justify-content:center;font-size:60px;position:relative;}
+.st1{background:linear-gradient(160deg,#0A1205,#2A4A1E);}
+.st2{background:linear-gradient(160deg,#1C1005,#3D2B00);}
+.st3{background:linear-gradient(160deg,#050A1C,#1E3A5F);}
+.safari-badge{position:absolute;top:12px;right:12px;background:var(--primary);color:var(--bg);padding:4px 12px;border-radius:4px;font-family:system-ui,sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;}
+.safari-body{padding:22px;}
+.safari-name{font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.safari-desc{font-size:14px;color:var(--text-dim);font-family:system-ui,sans-serif;margin-bottom:14px;line-height:1.5;}
+.safari-includes{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.si{background:rgba(201,162,39,0.1);border:1px solid var(--card-border);color:var(--primary);padding:3px 10px;border-radius:4px;font-size:11px;font-family:system-ui,sans-serif;}
+.safari-footer{display:flex;justify-content:space-between;align-items:center;}
+.safari-price{font-size:22px;font-weight:700;color:var(--primary);}
+.safari-price small{font-size:12px;font-weight:400;color:var(--text-dim);font-family:system-ui,sans-serif;}
+.btn-safari{background:var(--primary);color:var(--bg);padding:9px 18px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:13px;font-weight:800;transition:all 0.2s;}
+.btn-safari:hover{background:var(--primary-dark);}
+
+/* LODGES */
+.lodges-section{padding:80px 40px;background:#150F09;}
+.lodges-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.lodge-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;overflow:hidden;display:flex;transition:all 0.3s;}
+.lodge-card:hover{border-color:var(--primary);}
+.lodge-img{width:180px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:52px;}
+.li1{background:linear-gradient(160deg,#2A4A1E,#1B3D10);}
+.li2{background:linear-gradient(160deg,#3D2B00,#1C1005);}
+.li3{background:linear-gradient(160deg,#0A1A2E,#1E3A5F);}
+.li4{background:linear-gradient(160deg,#1C0505,#4A1515);}
+.lodge-body{padding:22px;flex:1;}
+.lodge-name{font-size:17px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.lodge-cat{font-size:12px;color:var(--primary);font-family:system-ui,sans-serif;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;}
+.lodge-feats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.lf{background:rgba(201,162,39,0.08);color:var(--text-dim);padding:3px 9px;border-radius:4px;font-size:11px;font-family:system-ui,sans-serif;}
+.lodge-price-row{display:flex;justify-content:space-between;align-items:center;}
+.lodge-price{font-size:20px;font-weight:700;color:var(--primary);}
+.lodge-price span{font-size:11px;font-weight:400;color:var(--text-dim);font-family:system-ui,sans-serif;}
+
+/* ANIMAUX */
+.wildlife-section{padding:80px 40px;background:var(--bg);}
+.wildlife-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+.wl-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:20px;text-align:center;transition:all 0.3s;}
+.wl-card:hover{border-color:var(--primary);transform:scale(1.04);}
+.wl-animal{font-size:44px;margin-bottom:10px;}
+.wl-name{font-size:14px;font-weight:700;color:var(--text);}
+.wl-rate{font-size:12px;color:var(--primary);font-family:system-ui,sans-serif;margin-top:4px;}
+
+/* GALERIE */
+.gallery-section{padding:80px 40px;background:#100C07;}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:200px 200px;gap:12px;}
+.gal-item{border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:56px;cursor:pointer;transition:transform 0.3s;}
+.gal-item:hover{transform:scale(1.02);}
+.gal-item.large{grid-column:span 2;grid-row:span 2;}
+.g1{background:linear-gradient(135deg,#1B3D10,#2A4A1E);}
+.g2{background:linear-gradient(135deg,#3D2B00,#5C4200);}
+.g3{background:linear-gradient(135deg,#0A1A2E,#1E3A5F);}
+.g4{background:linear-gradient(135deg,#1C0F05,#3D2200);}
+.g5{background:linear-gradient(135deg,#0A1205,#1C2A10);}
+
+/* TESTIMONIALS */
+.testis-section{padding:80px 40px;background:#150F09;}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.testi-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:28px;}
+.testi-stars{color:var(--primary);font-size:14px;letter-spacing:2px;margin-bottom:14px;}
+.testi-text{color:var(--text-dim);font-style:italic;font-size:15px;line-height:1.7;margin-bottom:20px;}
+.testi-author{display:flex;align-items:center;gap:12px;}
+.ta{width:40px;height:40px;border-radius:50%;background:var(--jungle);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;font-family:system-ui,sans-serif;color:var(--primary);}
+.tn{font-size:14px;font-weight:700;color:var(--text);}
+.tr{font-size:12px;color:var(--text-dim);font-family:system-ui,sans-serif;}
+
+/* CTA */
+.cta-section{padding:100px 40px;background:linear-gradient(135deg,#2A4A1E,#1B3D10);text-align:center;}
+.cta-section h2{font-size:48px;color:var(--text);font-weight:400;margin-bottom:14px;}
+.cta-section h2 em{color:var(--primary);font-style:normal;}
+.cta-section p{color:rgba(245,239,214,0.65);font-size:17px;font-style:italic;margin-bottom:36px;}
+.cta-btns{display:flex;gap:14px;justify-content:center;}
+
+footer{background:#0A0804;padding:60px 40px 28px;}
+.fg{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.fl{font-size:20px;color:var(--primary);margin-bottom:14px;letter-spacing:1px;}
+.fl em{font-style:normal;color:var(--text-dim);}
+footer .fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16px;}
+.f-socs{display:flex;gap:8px;}
+.f-soc{width:34px;height:34px;background:rgba(201,162,39,0.08);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;text-decoration:none;color:var(--text-dim);transition:all 0.2s;}
+.f-soc:hover{background:var(--primary);color:var(--bg);}
+.fc h5{color:var(--primary);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-family:system-ui,sans-serif;}
+.fc ul{list-style:none;}
+.fc li{margin-bottom:9px;}
+.fc a{color:var(--text-dim);font-size:13px;text-decoration:none;font-family:system-ui,sans-serif;transition:color 0.2s;}
+.fc a:hover{color:var(--primary);}
+.fb{max-width:1200px;margin:0 auto;border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;font-size:13px;color:var(--text-dim);font-family:system-ui,sans-serif;}
+.fb a{color:var(--text-dim);text-decoration:none;}
+
+@media(max-width:900px){
+  .hero-content,.lodges-grid,.testis-grid,.safaris-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:40px;}
+  .hero h1 .big{font-size:56px;}
+  .stats-row,.wildlife-grid{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
+  .gal-item.large{grid-column:span 1;grid-row:span 1;}
+  .fg{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">MASAI <em>Safari Lodge</em></div>
+    <ul class="nav-links">
+      <li><a href="#">Safaris</a></li>
+      <li><a href="#">Lodges</a></li>
+      <li><a href="#">Galerie</a></li>
+      <li><a href="#">Packages</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="btn-nav">Réserver un Safari</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-line"><div class="hero-line-bar"></div><div class="hero-line-text">Kenya · Masai Mara · Big Five</div></div>
+      <h1>L'Afrique<span class="big">Sauvage</span>vous attend</h1>
+      <p class="hero-sub">Safaris Big Five, lodges de luxe en pleine savane, guides Masai expérimentés. Une expérience unique à 300km de Nairobi.</p>
+      <div class="hero-packages">
+        <div class="hp active">🦁 3 Jours</div>
+        <div class="hp">🐘 5 Jours</div>
+        <div class="hp">🦒 7 Jours</div>
+        <div class="hp">🐆 Sur mesure</div>
+      </div>
+      <div class="hero-cta">
+        <a href="#" class="btn-gold">Réserver mon Safari</a>
+        <a href="#" class="btn-outline-gold">Voir la galerie</a>
+      </div>
+    </div>
+    <div class="hero-aside">
+      <div class="aside-card">
+        <div class="ac-header">
+          <div class="ac-pkg-name">Safari Classic</div>
+          <div class="ac-pkg-days">3 jours</div>
+        </div>
+        <div class="ac-features">
+          <div class="ac-feat">6 sorties safari en 4x4</div>
+          <div class="ac-feat">Lodge 4★ vue savane</div>
+          <div class="ac-feat">Guide Masai certifié</div>
+          <div class="ac-feat">Pension complète incluse</div>
+        </div>
+        <div class="ac-footer"><div class="ac-price">285 000 FCFA <small>/ pers.</small></div><a href="#" class="btn-ac">Réserver</a></div>
+      </div>
+      <div class="aside-card">
+        <div class="ac-header">
+          <div class="ac-pkg-name">Safari Prestige</div>
+          <div class="ac-pkg-days">7 jours</div>
+        </div>
+        <div class="ac-features">
+          <div class="ac-feat">Masai Mara + Amboseli</div>
+          <div class="ac-feat">Tented Camp luxe</div>
+          <div class="ac-feat">Photographe pro inclus</div>
+        </div>
+        <div class="ac-footer"><div class="ac-price">580 000 FCFA <small>/ pers.</small></div><a href="#" class="btn-ac">Réserver</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-band">
+  <div class="stats-row">
+    <div><div class="sn">5</div><div class="sl">Big Five garantis</div></div>
+    <div><div class="sn">200+</div><div class="sl">Espèces observées</div></div>
+    <div><div class="sn">12 000+</div><div class="sl">Safaris organisés</div></div>
+    <div><div class="sn">18 ans</div><div class="sl">D'expérience</div></div>
+    <div><div class="sn">4.9/5</div><div class="sl">Satisfaction clients</div></div>
+  </div>
+</div>
+
+<section class="safaris-section">
+  <div class="section-inner">
+    <div class="s-header">
+      <div class="s-eyebrow">Nos Safaris</div>
+      <h2 class="s-title">Choisissez votre aventure</h2>
+      <p class="s-sub">Packages soigneusement conçus pour maximiser vos rencontres avec la faune sauvage du Masai Mara.</p>
+    </div>
+    <div class="safaris-grid">
+      <div class="safari-card">
+        <div class="safari-top st1"><span>🦁</span><div class="safari-badge">Populaire</div></div>
+        <div class="safari-body">
+          <div class="safari-name">Safari Classic — 3 Jours</div>
+          <div class="safari-desc">L'essentiel du Masai Mara en 3 jours intenses. Lions, éléphants, buffles — les Big Five à portée de téléobjectif.</div>
+          <div class="safari-includes"><span class="si">6 sorties 4x4</span><span class="si">Lodge 4★</span><span class="si">Pension complète</span><span class="si">Guide Masai</span></div>
+          <div class="safari-footer"><div class="safari-price">285 000 FCFA <small>/ pers.</small></div><a href="#" class="btn-safari">Réserver</a></div>
+        </div>
+      </div>
+      <div class="safari-card">
+        <div class="safari-top st2"><span>🐆</span><div class="safari-badge">⭐ Best Seller</div></div>
+        <div class="safari-body">
+          <div class="safari-name">Safari Premium — 5 Jours</div>
+          <div class="safari-desc">5 jours pour explorer Masai Mara + lac Nakuru. Flamants roses, rhinocéros blancs, la faune dans toute sa splendeur.</div>
+          <div class="safari-includes"><span class="si">10 sorties</span><span class="si">Tented Camp 5★</span><span class="si">2 parcs</span><span class="si">Photographe</span></div>
+          <div class="safari-footer"><div class="safari-price">420 000 FCFA <small>/ pers.</small></div><a href="#" class="btn-safari">Réserver</a></div>
+        </div>
+      </div>
+      <div class="safari-card">
+        <div class="safari-top st3"><span>🐘</span><div class="safari-badge">Luxe</div></div>
+        <div class="safari-body">
+          <div class="safari-name">Safari Prestige — 7 Jours</div>
+          <div class="safari-desc">L'expérience ultime : Masai Mara + Amboseli + Tsavo. Grande Migration, guépards, photographe pro, lodge de luxe.</div>
+          <div class="safari-includes"><span class="si">14 sorties</span><span class="si">3 parcs</span><span class="si">Lodge 5★</span><span class="si">Vol interne inclus</span></div>
+          <div class="safari-footer"><div class="safari-price">580 000 FCFA <small>/ pers.</small></div><a href="#" class="btn-safari">Réserver</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lodges-section">
+  <div class="section-inner">
+    <div class="s-header">
+      <div class="s-eyebrow">Hébergements</div>
+      <h2 class="s-title">Nos lodges en pleine nature</h2>
+      <p class="s-sub">Dormez au cœur de la savane dans des lodges de luxe qui respectent l'écosystème.</p>
+    </div>
+    <div class="lodges-grid">
+      <div class="lodge-card">
+        <div class="lodge-img li1">🌿</div>
+        <div class="lodge-body">
+          <div class="lodge-name">Masai Tented Camp</div>
+          <div class="lodge-cat">★★★★★ Luxury Tented</div>
+          <div class="lodge-feats"><span class="lf">Vue rivière Mara</span><span class="lf">En-suite bathroom</span><span class="lf">Lit king</span><span class="lf">Terrasse privée</span></div>
+          <div class="lodge-price-row"><div class="lodge-price">95 000 FCFA <span>/ nuit · 2 pers.</span></div><a href="#" class="btn-ac">Voir</a></div>
+        </div>
+      </div>
+      <div class="lodge-card">
+        <div class="lodge-img li2">🔥</div>
+        <div class="lodge-body">
+          <div class="lodge-name">Savana Bush Lodge</div>
+          <div class="lodge-cat">★★★★ Bush Lodge</div>
+          <div class="lodge-feats"><span class="lf">Vue savane 360°</span><span class="lf">Piscine naturelle</span><span class="lf">Bar & Resto</span><span class="lf">WiFi</span></div>
+          <div class="lodge-price-row"><div class="lodge-price">68 000 FCFA <span>/ nuit · 2 pers.</span></div><a href="#" class="btn-ac">Voir</a></div>
+        </div>
+      </div>
+      <div class="lodge-card">
+        <div class="lodge-img li3">🌙</div>
+        <div class="lodge-body">
+          <div class="lodge-name">Star Bed Under Sky</div>
+          <div class="lodge-cat">Expérience Unique</div>
+          <div class="lodge-feats"><span class="lf">Lit sous les étoiles</span><span class="lf">Vue Big Dipper</span><span class="lf">Astronomie</span><span class="lf">Exclusif</span></div>
+          <div class="lodge-price-row"><div class="lodge-price">120 000 FCFA <span>/ nuit · 2 pers.</span></div><a href="#" class="btn-ac">Voir</a></div>
+        </div>
+      </div>
+      <div class="lodge-card">
+        <div class="lodge-img li4">👨‍👩‍👧‍👦</div>
+        <div class="lodge-body">
+          <div class="lodge-name">Family Safari Villa</div>
+          <div class="lodge-cat">★★★★★ Family Lodge</div>
+          <div class="lodge-feats"><span class="lf">4-6 personnes</span><span class="lf">3 chambres</span><span class="lf">Piscine privée</span><span class="lf">Chef privé</span></div>
+          <div class="lodge-price-row"><div class="lodge-price">195 000 FCFA <span>/ nuit</span></div><a href="#" class="btn-ac">Voir</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wildlife-section">
+  <div class="section-inner">
+    <div class="s-header center">
+      <div class="s-eyebrow">Faune</div>
+      <h2 class="s-title">Les Big Five & plus</h2>
+      <p class="s-sub">Le Masai Mara abrite la plus grande concentration de faune sauvage en Afrique.</p>
+    </div>
+    <div class="wildlife-grid">
+      <div class="wl-card"><div class="wl-animal">🦁</div><div class="wl-name">Lion</div><div class="wl-rate">Vu 99% des sorties</div></div>
+      <div class="wl-card"><div class="wl-animal">🐘</div><div class="wl-name">Éléphant</div><div class="wl-rate">Vu 95% des sorties</div></div>
+      <div class="wl-card"><div class="wl-animal">🐆</div><div class="wl-name">Léopard</div><div class="wl-rate">Vu 70% des sorties</div></div>
+      <div class="wl-card"><div class="wl-animal">🦏</div><div class="wl-name">Rhinocéros</div><div class="wl-rate">Vu à Nakuru</div></div>
+      <div class="wl-card"><div class="wl-animal">🐃</div><div class="wl-name">Buffle</div><div class="wl-rate">Vu 99% des sorties</div></div>
+      <div class="wl-card"><div class="wl-animal">🦒</div><div class="wl-name">Girafe Masai</div><div class="wl-rate">Vu 100% des sorties</div></div>
+      <div class="wl-card"><div class="wl-animal">🐊</div><div class="wl-name">Crocodile du Nil</div><div class="wl-rate">Vu sur la Mara</div></div>
+      <div class="wl-card"><div class="wl-animal">🦓</div><div class="wl-name">Zèbre de Burchell</div><div class="wl-rate">Vu 100% des sorties</div></div>
+      <div class="wl-card"><div class="wl-animal">🐒</div><div class="wl-name">Babouin Olive</div><div class="wl-rate">Vu 100% des sorties</div></div>
+      <div class="wl-card"><div class="wl-animal">🦅</div><div class="wl-name">Aigle Martial</div><div class="wl-rate">200 espèces d'oiseaux</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="section-inner">
+    <div class="s-header center">
+      <div class="s-eyebrow">Galerie</div>
+      <h2 class="s-title">La savane en images</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gal-item large g1">🦁</div>
+      <div class="gal-item g2">🌅</div>
+      <div class="gal-item g3">🐘</div>
+      <div class="gal-item g4">🦒</div>
+      <div class="gal-item g5">🌿</div>
+    </div>
+  </div>
+</section>
+
+<section class="testis-section">
+  <div class="section-inner">
+    <div class="s-header center">
+      <div class="s-eyebrow">Témoignages</div>
+      <h2 class="s-title">Ils ont vécu la savane</h2>
+    </div>
+    <div class="testis-grid">
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Voir un lion à 5 mètres de notre 4x4 au lever du soleil... les mots ne suffisent pas. Notre guide Joseph Masai est exceptionnel, une mémoire vivante du parc.</p><div class="testi-author"><div class="ta">AK</div><div><div class="tn">Aminata Kourouma</div><div class="tr">Conakry — Safari 5 jours</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Le Masai Tented Camp était comme rêver les yeux ouverts. On entendait les lions rugir la nuit. Les repas au coin du feu avec les Masai... inoubliable.</p><div class="testi-author"><div class="ta">OD</div><div><div class="tn">Oumar Diallo</div><div class="tr">Dakar — Safari Prestige 7j</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Troisième séjour chez Masai Lodge et toujours la même magie. La grande migration des gnous en juillet est un spectacle qui devrait être au programme de tout africain.</p><div class="testi-author"><div class="ta">YB</div><div><div class="tn">Yao Bédié</div><div class="tr">Abidjan — 3 séjours</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Vivez <em>l'Afrique sauvage</em></h2>
+  <p>Places limitées — réservez votre safari avant la grande migration de juillet</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-gold">Réserver mon Safari</a>
+    <a href="#" class="btn-outline-gold">Télécharger la brochure</a>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div>
+      <div class="fl">MASAI <em>Safari Lodge</em></div>
+      <p class="fp">Lodge de safari 5 étoiles au cœur du Masai Mara, Kenya. Big Five garanti, guides Masai certifiés, luxe éco-responsable depuis 2006.</p>
+      <div class="f-socs"><a href="#" class="f-soc">f</a><a href="#" class="f-soc">ig</a><a href="#" class="f-soc">yt</a><a href="#" class="f-soc">tw</a></div>
+    </div>
+    <div class="fc"><h5>Safaris</h5><ul><li><a href="#">Safari Classic 3j</a></li><li><a href="#">Safari Premium 5j</a></li><li><a href="#">Safari Prestige 7j</a></li><li><a href="#">Sur mesure</a></li></ul></div>
+    <div class="fc"><h5>Lodges</h5><ul><li><a href="#">Masai Tented Camp</a></li><li><a href="#">Savana Bush Lodge</a></li><li><a href="#">Star Bed</a></li><li><a href="#">Family Villa</a></li></ul></div>
+    <div class="fc"><h5>Contact</h5><ul><li><a href="#">📍 Masai Mara, Kenya</a></li><li><a href="#">📞 +254 20 000 1234</a></li><li><a href="#">✉️ booking@masaisafari.ke</a></li><li><a href="#">🕐 Ouvert toute l'année</a></li></ul></div>
+  </div>
+  <div class="fb">
+    <span>© 2025 Masai Safari Lodge Kenya. Tous droits réservés.</span>
+    <div><a href="#">CGV</a> · <a href="#">Confidentialité</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centre Bien-Être Harmonie — Yoga, Méditation & Massages</title>
+<style>
+:root{--bg:#F0FDF4;--bg2:#fff;--bg3:#DCFCE7;--green:#166534;--green2:#15803D;--green-light:#BBF7D0;--beige:#F5F0E8;--beige2:#E8DFD0;--brown:#78350F;--dark:#1A2E1A;--gray:#6B7280;--warm:#92400E;--gold:#D97706}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--dark);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
+.demo-bar strong{color:#4ADE80}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600}
+nav{position:sticky;top:40px;z-index:999;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:2px solid var(--green-light);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.brand-leaf{font-size:28px}
+.brand-nm{font-size:19px;font-weight:700;color:var(--green);font-family:Georgia,serif}
+.brand-sub{font-size:10px;color:var(--gray);letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{color:var(--dark);text-decoration:none;font-size:14px;transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.rdv-btn{background:var(--green);color:#fff;padding:10px 22px;border-radius:30px;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:all .2s}
+.rdv-btn:hover{background:var(--green2);transform:translateY(-1px)}
+/* HERO */
+.hero{background:linear-gradient(135deg,#F0FDF4 0%,#DCFCE7 40%,#F5F0E8 100%);padding:80px 32px 60px}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--green-light);color:var(--green);padding:6px 16px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:22px}
+.hero h1{font-size:54px;font-weight:700;line-height:1.1;color:var(--dark);margin-bottom:18px;font-family:Georgia,serif}
+.hero h1 em{color:var(--green);font-style:normal}
+.hero-p{font-size:16px;color:var(--gray);line-height:1.8;margin-bottom:28px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-g{background:var(--green);color:#fff;padding:14px 28px;border-radius:30px;font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-g:hover{background:var(--green2);transform:translateY(-2px)}
+.btn-beige{background:var(--beige);color:var(--brown);padding:14px 28px;border-radius:30px;font-size:14px;font-weight:700;border:1.5px solid var(--beige2);cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-beige:hover{background:var(--beige2)}
+.hero-stats{display:flex;gap:28px;margin-top:32px}
+.h-stat-num{font-size:28px;font-weight:800;color:var(--green)}
+.h-stat-label{font-size:11px;color:var(--gray);margin-top:3px}
+.hero-visual{}
+.zen-card{background:white;border-radius:20px;padding:28px;box-shadow:0 12px 40px rgba(22,101,52,0.1);border:1px solid var(--green-light)}
+.zc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.zc-title{font-size:14px;font-weight:700;color:var(--green)}
+.zc-live{background:var(--green-light);color:var(--green);font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;display:flex;align-items:center;gap:4px}
+.zc-live::before{content:"●";font-size:8px}
+.sessions-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.sess-item{display:flex;align-items:center;gap:12px;background:var(--bg);border-radius:12px;padding:12px 16px;cursor:pointer;transition:all .2s;border:1.5px solid transparent}
+.sess-item:hover{border-color:var(--green);background:var(--green-light)}
+.sess-emoji{font-size:28px}
+.sess-info{flex:1}
+.sess-name{font-size:14px;font-weight:700}
+.sess-time{font-size:11px;color:var(--gray);margin-top:2px}
+.sess-spots{font-size:11px;font-weight:700;color:var(--green)}
+.zc-quote{background:var(--beige);border-radius:12px;padding:16px;text-align:center;border-left:3px solid var(--green)}
+.zc-q-text{font-size:13px;color:var(--brown);font-style:italic;font-family:Georgia,serif;line-height:1.6}
+/* STRIP */
+.strip{background:var(--green);padding:14px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:8px}
+.strip span{color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px}
+/* SERVICES */
+.services-wrap{padding:70px 32px;max-width:1200px;margin:0 auto}
+.sec-center{text-align:center;margin-bottom:44px}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+.sec-h{font-size:38px;font-weight:700;font-family:Georgia,serif}
+.sec-h em{color:var(--green);font-style:normal}
+.sec-p{font-size:15px;color:var(--gray);margin-top:8px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.svc-card{background:white;border-radius:16px;padding:28px;box-shadow:0 4px 20px rgba(22,101,52,0.06);cursor:pointer;transition:all .3s;border:2px solid transparent}
+.svc-card:hover{border-color:var(--green);transform:translateY(-8px);box-shadow:0 16px 40px rgba(22,101,52,0.12)}
+.svc-icon{font-size:48px;margin-bottom:16px}
+.svc-name{font-size:18px;font-weight:700;margin-bottom:8px;font-family:Georgia,serif}
+.svc-desc{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:14px}
+.svc-features{list-style:none;margin-bottom:16px}
+.svc-features li{font-size:12px;color:var(--gray);padding:5px 0;border-bottom:1px solid var(--bg);display:flex;gap:8px}
+.svc-price{font-size:22px;font-weight:800;color:var(--green)}
+.svc-freq{font-size:11px;color:var(--gray);margin-top:3px}
+.btn-svc{width:100%;background:var(--green-light);color:var(--green);border:1.5px solid var(--green);padding:10px;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;margin-top:14px;transition:all .2s}
+.btn-svc:hover{background:var(--green);color:#fff}
+/* PROGRAMS */
+.programs-wrap{background:var(--beige);padding:70px 32px}
+.programs-inner{max-width:1200px;margin:0 auto}
+.programs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.prog-card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(22,101,52,0.06);transition:all .3s}
+.prog-card:hover{transform:translateY(-8px);box-shadow:0 16px 40px rgba(22,101,52,0.12)}
+.prog-header{padding:28px;text-align:center;background:linear-gradient(135deg,var(--green-light),var(--bg))}
+.prog-emoji{font-size:52px;margin-bottom:12px}
+.prog-name{font-size:20px;font-weight:700;color:var(--green);font-family:Georgia,serif}
+.prog-duration{font-size:12px;color:var(--gray);margin-top:4px;font-weight:600}
+.prog-body{padding:24px}
+.prog-items{list-style:none;margin-bottom:20px}
+.prog-items li{font-size:13px;color:var(--gray);padding:7px 0;border-bottom:1px solid var(--bg);display:flex;gap:8px}
+.prog-price{font-size:28px;font-weight:800;color:var(--green)}
+.prog-note{font-size:11px;color:var(--gray);margin-top:4px;margin-bottom:14px}
+.btn-prog{width:100%;background:var(--green);color:#fff;border:none;padding:12px;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-prog:hover{background:var(--green2)}
+/* TEAM */
+.team-wrap{padding:70px 32px;max-width:1200px;margin:0 auto}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px}
+.team-card{background:white;border-radius:16px;padding:24px;text-align:center;box-shadow:0 4px 20px rgba(22,101,52,0.06);transition:all .3s;border:2px solid transparent}
+.team-card:hover{border-color:var(--green);transform:translateY(-6px)}
+.team-emoji{font-size:52px;margin-bottom:12px}
+.team-name{font-size:16px;font-weight:700}
+.team-spec{font-size:12px;color:var(--green);font-weight:600;margin-top:4px}
+.team-exp{font-size:12px;color:var(--gray);margin-top:4px}
+.team-cert{background:var(--green-light);color:var(--green);font-size:10px;padding:3px 12px;border-radius:20px;font-weight:700;margin-top:10px;display:inline-block}
+/* SCHEDULE */
+.schedule-wrap{background:var(--dark);padding:70px 32px}
+.schedule-inner{max-width:1200px;margin:0 auto}
+.schedule-table{background:#1E3A1E;border-radius:16px;overflow:hidden;margin-top:40px}
+.st-row{display:grid;grid-template-columns:1.5fr repeat(5,1fr);padding:14px 24px;border-bottom:1px solid rgba(22,163,74,0.1);align-items:center}
+.st-row:last-child{border-bottom:none}
+.st-header{background:var(--green);color:#fff;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.st-time{font-size:13px;font-weight:700;color:#fff}
+.st-class{text-align:center}
+.sc-badge{display:inline-block;background:rgba(22,163,74,0.2);color:#4ADE80;font-size:11px;padding:4px 10px;border-radius:20px;font-weight:600}
+.sc-badge.massage{background:rgba(212,175,55,0.15);color:var(--gold)}
+.sc-badge.yoga{background:rgba(22,163,74,0.2);color:#4ADE80}
+.sc-badge.med{background:rgba(124,58,237,0.2);color:#A78BFA}
+.sc-badge.nutri{background:rgba(234,88,12,0.2);color:#FB923C}
+.sc-badge.libre{color:#6B7280;font-style:italic}
+/* TESTI */
+.testis-wrap{padding:70px 32px;max-width:1200px;margin:0 auto}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.testi-card{background:white;border-radius:16px;padding:28px;box-shadow:0 4px 20px rgba(22,101,52,0.06);border:1px solid var(--green-light)}
+.t-stars{color:#F59E0B;margin-bottom:12px}
+.t-q{font-size:42px;color:var(--green-light);font-family:Georgia,serif;line-height:1;margin-bottom:-8px}
+.t-text{font-size:14px;color:var(--gray);line-height:1.7;font-style:italic;margin-bottom:18px}
+.t-au{display:flex;align-items:center;gap:12px}
+.t-av{width:40px;height:40px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:14px}
+.t-nm{font-size:14px;font-weight:700}
+.t-lo{font-size:12px;color:var(--gray)}
+/* FOOTER */
+footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-desc{color:#6B7280;font-size:13px;line-height:1.7;margin:12px 0}
+.fh{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--green-light);margin-bottom:14px}
+.ful{list-style:none}
+.ful li{margin-bottom:9px}
+.ful li a{color:#6B7280;text-decoration:none;font-size:13px;transition:color .2s}
+.ful li a:hover{color:var(--green-light)}
+.foot-bottom{border-top:1px solid rgba(22,163,74,0.15);padding-top:20px;display:flex;justify-content:space-between;color:#4B5563;font-size:12px}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <span>Démo IBIG Digital — <strong>Centre Bien-Être Harmonie</strong> — Commander ce template :</span>
+  <strong>25 000 FCFA</strong>
+  <a href="#">Commander</a>
+</div>
+<nav>
+  <div class="nav-brand">
+    <span class="brand-leaf">🌿</span>
+    <div>
+      <div class="brand-nm">Harmonie</div>
+      <div class="brand-sub">Centre Bien-Être · Abidjan</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Yoga</a></li>
+    <li><a href="#">Méditation</a></li>
+    <li><a href="#">Massages</a></li>
+    <li><a href="#">Nutrition</a></li>
+    <li><a href="#">Programmes</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="rdv-btn">🌿 Essai Gratuit</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">🌿 Centre Certifié · Abidjan · Côte d'Ivoire</div>
+      <h1>Trouvez votre<br><em>équilibre</em><br>intérieur</h1>
+      <p class="hero-p">Yoga, méditation, massages thérapeutiques et accompagnement nutritionnel — retrouvez la paix, la vitalité et le bien-être durable au cœur d'Abidjan.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-g">🌿 Cours d'Essai Gratuit</a>
+        <a href="#" class="btn-beige">📅 Voir le Planning</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="h-stat-num">2 400+</div><div class="h-stat-label">Membres actifs</div></div>
+        <div><div class="h-stat-num">12</div><div class="h-stat-label">Instructeurs certifiés</div></div>
+        <div><div class="h-stat-num">98%</div><div class="h-stat-label">Satisfaits</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="zen-card">
+        <div class="zc-head">
+          <span class="zc-title">🗓 Sessions du Jour</span>
+          <span class="zc-live">En direct</span>
+        </div>
+        <div class="sessions-list">
+          <div class="sess-item">
+            <span class="sess-emoji">🧘</span>
+            <div class="sess-info">
+              <div class="sess-name">Yoga Matinal</div>
+              <div class="sess-time">07h00 – 08h30 · Salle Lotus</div>
+            </div>
+            <span class="sess-spots">3 places</span>
+          </div>
+          <div class="sess-item">
+            <span class="sess-emoji">🌊</span>
+            <div class="sess-info">
+              <div class="sess-name">Méditation Guidée</div>
+              <div class="sess-time">10h00 – 11h00 · Salle Zen</div>
+            </div>
+            <span class="sess-spots">7 places</span>
+          </div>
+          <div class="sess-item">
+            <span class="sess-emoji">💆</span>
+            <div class="sess-info">
+              <div class="sess-name">Massage Relaxant</div>
+              <div class="sess-time">14h00 – 15h30 · Cabine 2</div>
+            </div>
+            <span class="sess-spots">1 place</span>
+          </div>
+        </div>
+        <div class="zc-quote">
+          <div class="zc-q-text">"Le bien-être n'est pas un luxe, c'est une nécessité de l'âme."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <span>🌿 Cours d'essai gratuit</span>
+  <span>🧘 Instructeurs certifiés RYT-500</span>
+  <span>💆 Produits bio & naturels</span>
+  <span>🥗 Nutrition intégrative</span>
+</div>
+
+<div class="services-wrap">
+  <div class="sec-center">
+    <div class="sec-label">Nos disciplines</div>
+    <h2 class="sec-h">Soins pour le <em>Corps & l'Esprit</em></h2>
+    <p class="sec-p">Six disciplines holistiques pour une transformation durable</p>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon">🧘</div>
+      <div class="svc-name">Yoga</div>
+      <div class="svc-desc">Hatha, Vinyasa, Yin Yoga et Yoga restaurateur — des cours pour tous niveaux dans nos studios climatisés.</div>
+      <ul class="svc-features">
+        <li>🌱 Débutant à confirmé</li>
+        <li>⏰ Sessions 60 à 90 min</li>
+        <li>👥 Max 12 personnes par cours</li>
+      </ul>
+      <div class="svc-price">25 000 FCFA</div>
+      <div class="svc-freq">/ mois · 3 cours/semaine</div>
+      <button class="btn-svc">S'inscrire</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🌊</div>
+      <div class="svc-name">Méditation</div>
+      <div class="svc-desc">Pleine conscience, Vipassana, méditation transcendantale et techniques de respiration pranayama.</div>
+      <ul class="svc-features">
+        <li>🧠 Réduit stress et anxiété</li>
+        <li>😴 Améliore le sommeil</li>
+        <li>🎯 Concentration renforcée</li>
+      </ul>
+      <div class="svc-price">20 000 FCFA</div>
+      <div class="svc-freq">/ mois · 2 cours/semaine</div>
+      <button class="btn-svc">S'inscrire</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">💆</div>
+      <div class="svc-name">Massages Thérapeutiques</div>
+      <div class="svc-desc">Massage suédois, sportif, pierres chaudes, reflexologie — soins par des thérapeutes certifiés.</div>
+      <ul class="svc-features">
+        <li>🌿 Huiles essentielles bio</li>
+        <li>⏰ 60 à 90 minutes</li>
+        <li>💆 Soulagement des tensions</li>
+      </ul>
+      <div class="svc-price">45 000 FCFA</div>
+      <div class="svc-freq">/ séance de 90 min</div>
+      <button class="btn-svc">Réserver</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🥗</div>
+      <div class="svc-name">Consultation Nutritionniste</div>
+      <div class="svc-desc">Bilan nutritionnel personnalisé, plan alimentaire adapté à vos objectifs et suivi mensuel dédié.</div>
+      <ul class="svc-features">
+        <li>📊 Bilan complet 2h</li>
+        <li>📋 Plan alimentaire sur mesure</li>
+        <li>📞 Suivi mensuel inclus</li>
+      </ul>
+      <div class="svc-price">55 000 FCFA</div>
+      <div class="svc-freq">/ bilan initial + suivi</div>
+      <button class="btn-svc">Réserver</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🏃</div>
+      <div class="svc-name">Pilates & Stretching</div>
+      <div class="svc-desc">Renforcement musculaire doux, posture, souplesse et rééducation par le mouvement conscient.</div>
+      <ul class="svc-features">
+        <li>🎯 Gainage & stabilité</li>
+        <li>🦴 Rééducation posturale</li>
+        <li>👩‍⚕️ Idéal post-grossesse</li>
+      </ul>
+      <div class="svc-price">28 000 FCFA</div>
+      <div class="svc-freq">/ mois · 2 cours/semaine</div>
+      <button class="btn-svc">S'inscrire</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🌸</div>
+      <div class="svc-name">Retraite Bien-Être</div>
+      <div class="svc-desc">Week-ends immersifs yoga, méditation et nutrition — déconnectez-vous pour mieux vous reconnecter.</div>
+      <ul class="svc-features">
+        <li>🏡 Cadre naturel apaisant</li>
+        <li>🥗 Repas sains inclus</li>
+        <li>🌿 Ateliers intensifs</li>
+      </ul>
+      <div class="svc-price">120 000 FCFA</div>
+      <div class="svc-freq">/ week-end tout inclus</div>
+      <button class="btn-svc">Réserver</button>
+    </div>
+  </div>
+</div>
+
+<div class="programs-wrap">
+  <div class="programs-inner">
+    <div class="sec-center">
+      <div class="sec-label">Nos abonnements</div>
+      <h2 class="sec-h">Programmes <em>Bien-Être</em></h2>
+      <p class="sec-p" style="color:var(--brown)">Choisissez l'abonnement qui correspond à votre parcours</p>
+    </div>
+    <div class="programs-grid">
+      <div class="prog-card">
+        <div class="prog-header">
+          <div class="prog-emoji">🌱</div>
+          <div class="prog-name">Sérénité</div>
+          <div class="prog-duration">Débutant · Découverte</div>
+        </div>
+        <div class="prog-body">
+          <ul class="prog-items">
+            <li>🧘 Yoga 2x/semaine</li>
+            <li>🌊 Méditation 1x/semaine</li>
+            <li>📚 Accès bibliothèque zen</li>
+            <li>📱 App bien-être incluse</li>
+          </ul>
+          <div class="prog-price">35 000 FCFA</div>
+          <div class="prog-note">/ mois · Sans engagement</div>
+          <button class="btn-prog">Commencer</button>
+        </div>
+      </div>
+      <div class="prog-card" style="transform:scale(1.04);box-shadow:0 20px 60px rgba(22,101,52,0.15)">
+        <div class="prog-header" style="background:linear-gradient(135deg,var(--green),var(--green2))">
+          <div class="prog-emoji">🌿</div>
+          <div class="prog-name" style="color:#fff">Équilibre</div>
+          <div class="prog-duration" style="color:rgba(255,255,255,0.8)">Complet · Le plus populaire</div>
+        </div>
+        <div class="prog-body">
+          <ul class="prog-items">
+            <li>🧘 Yoga illimité</li>
+            <li>🌊 Méditation illimitée</li>
+            <li>💆 1 massage/mois</li>
+            <li>🥗 Consultation nutritionniste</li>
+            <li>🏃 Pilates 2x/semaine</li>
+          </ul>
+          <div class="prog-price">65 000 FCFA</div>
+          <div class="prog-note">/ mois · Économisez 30%</div>
+          <button class="btn-prog">Choisir ce programme</button>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-header">
+          <div class="prog-emoji">🌺</div>
+          <div class="prog-name">Transformation</div>
+          <div class="prog-duration">Premium · Accompagnement total</div>
+        </div>
+        <div class="prog-body">
+          <ul class="prog-items">
+            <li>✅ Tout programme Équilibre</li>
+            <li>💆 4 massages/mois</li>
+            <li>👩‍⚕️ Suivi nutritionnel mensuel</li>
+            <li>🌸 Retraite weekend incluse</li>
+            <li>🎯 Coach personnel dédié</li>
+          </ul>
+          <div class="prog-price">120 000 FCFA</div>
+          <div class="prog-note">/ mois · VIP total</div>
+          <button class="btn-prog">Programme VIP</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="team-wrap">
+  <div class="sec-center">
+    <div class="sec-label">Notre équipe</div>
+    <h2 class="sec-h">Experts <em>Certifiés</em></h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card"><div class="team-emoji">🧘</div><div class="team-name">Khadidja Traoré</div><div class="team-spec">Professeure de Yoga</div><div class="team-exp">9 ans · RYT-500 certifiée</div><div class="team-cert">🏆 Certifiée Inde</div></div>
+    <div class="team-card"><div class="team-emoji">🌊</div><div class="team-name">Ibrahima Koné</div><div class="team-spec">Maître Méditation</div><div class="team-exp">7 ans · Vipassana</div><div class="team-cert">🏆 Certifié Sri Lanka</div></div>
+    <div class="team-card"><div class="team-emoji">💆</div><div class="team-name">Marie-Claire Bah</div><div class="team-spec">Massothérapeute</div><div class="team-exp">6 ans · Certifiée ITEC</div><div class="team-cert">🏆 Certifiée Suisse</div></div>
+    <div class="team-card"><div class="team-emoji">🥗</div><div class="team-name">Dr. Aminata Diallo</div><div class="team-spec">Nutritionniste</div><div class="team-exp">10 ans · Doctorat nutrition</div><div class="team-cert">🏆 Spécialiste africain</div></div>
+  </div>
+</div>
+
+<div class="schedule-wrap">
+  <div class="schedule-inner">
+    <div class="sec-center">
+      <div class="sec-label" style="color:var(--green-light)">Planning hebdomadaire</div>
+      <h2 class="sec-h" style="color:#fff">Horaires des <em style="color:var(--green-light)">Cours</em></h2>
+    </div>
+    <div class="schedule-table">
+      <div class="st-row st-header"><span>Horaire</span><span>Lundi</span><span>Mardi</span><span>Mercredi</span><span>Jeudi</span><span>Vendredi</span></div>
+      <div class="st-row"><span class="st-time">07h00</span><span class="st-class"><span class="sc-badge yoga">Yoga</span></span><span class="st-class"><span class="sc-badge yoga">Yoga</span></span><span class="st-class"><span class="sc-badge yoga">Yoga</span></span><span class="st-class"><span class="sc-badge yoga">Yoga</span></span><span class="st-class"><span class="sc-badge yoga">Yoga</span></span></div>
+      <div class="st-row"><span class="st-time">10h00</span><span class="st-class"><span class="sc-badge med">Méditation</span></span><span class="st-class"><span class="sc-badge libre">—</span></span><span class="st-class"><span class="sc-badge med">Méditation</span></span><span class="st-class"><span class="sc-badge libre">—</span></span><span class="st-class"><span class="sc-badge med">Méditation</span></span></div>
+      <div class="st-row"><span class="st-time">14h00</span><span class="st-class"><span class="sc-badge massage">Massage</span></span><span class="st-class"><span class="sc-badge massage">Massage</span></span><span class="st-class"><span class="sc-badge massage">Massage</span></span><span class="st-class"><span class="sc-badge massage">Massage</span></span><span class="st-class"><span class="sc-badge massage">Massage</span></span></div>
+      <div class="st-row"><span class="st-time">17h30</span><span class="st-class"><span class="sc-badge yoga">Pilates</span></span><span class="st-class"><span class="sc-badge nutri">Nutrition</span></span><span class="st-class"><span class="sc-badge yoga">Pilates</span></span><span class="st-class"><span class="sc-badge nutri">Nutrition</span></span><span class="st-class"><span class="sc-badge yoga">Pilates</span></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="testis-wrap">
+  <div class="sec-center">
+    <div class="sec-label">Témoignages</div>
+    <h2 class="sec-h">Transformations <em>Réelles</em></h2>
+  </div>
+  <div class="testis-grid">
+    <div class="testi-card">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-q">"</div>
+      <div class="t-text">Après 3 mois de yoga et de méditation chez Harmonie, mon niveau de stress a chuté de façon spectaculaire. Je dors mieux, je travaille mieux — c'est une transformation totale.</div>
+      <div class="t-au"><div class="t-av">FK</div><div><div class="t-nm">Fatoumata Kouyaté</div><div class="t-lo">Manager, Cocody-Abidjan</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-q">"</div>
+      <div class="t-text">La consultation avec Dr. Aminata a changé ma façon de manger. J'ai perdu 8 kg en 4 mois tout en mangeant des plats africains que j'adore. La nutrition intelligente, ça marche !</div>
+      <div class="t-au"><div class="t-av">BN</div><div><div class="t-nm">Bintou Ndiaye</div><div class="t-lo">Enseignante, Adjamé-Abidjan</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-q">"</div>
+      <div class="t-text">Les massages de Marie-Claire sont extraordinaires. Mes douleurs de dos chroniques ont presque disparu après seulement 6 séances. Je recommande le programme Transformation !</div>
+      <div class="t-au"><div class="t-av">OD</div><div><div class="t-nm">Ousmane Dembélé</div><div class="t-lo">Directeur commercial, Plateau</div></div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:32px">🌿</div>
+        <h2 style="font-size:20px;font-weight:700;color:var(--green-light);margin-top:10px;font-family:Georgia,serif">Centre Harmonie</h2>
+        <p class="footer-desc">Le centre bien-être de référence à Abidjan depuis 2018. Yoga, méditation, massages et nutrition — votre chemin vers l'équilibre total.</p>
+      </div>
+      <div><div class="fh">Services</div><ul class="ful"><li><a href="#">Yoga</a></li><li><a href="#">Méditation</a></li><li><a href="#">Massages</a></li><li><a href="#">Nutrition</a></li><li><a href="#">Pilates</a></li></ul></div>
+      <div><div class="fh">Programmes</div><ul class="ful"><li><a href="#">Sérénité</a></li><li><a href="#">Équilibre</a></li><li><a href="#">Transformation VIP</a></li><li><a href="#">Retraite Weekend</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Cocody, Abidjan</a></li><li><a href="#">📞 +225 07 00 00 00</a></li><li><a href="#">💬 WhatsApp</a></li><li><a href="#">Lun–Sam 7h–20h</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2025 Centre Bien-Être Harmonie — Tous droits réservés</span><span>CGV · Confidentialité</span></div>
+  </div>
+</footer>
+</body>
+</html>

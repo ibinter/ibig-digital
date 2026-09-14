@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taxi Prestige Dakar — VTC Haut de Gamme</title>
+<style>
+:root{
+  --primary:#D4AF37;
+  --accent:#B8960C;
+  --bg:#0A0A0A;
+  --bg2:#111111;
+  --bg3:#1A1A1A;
+  --text:#ffffff;
+  --text-muted:rgba(255,255,255,.55);
+  --border:rgba(212,175,55,.2);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
+
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;border-bottom:1px solid var(--primary)}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:12px}
+
+nav{position:sticky;top:40px;background:rgba(0,0,0,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;padding:0 5%}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto}
+.logo{font-size:20px;font-weight:900;letter-spacing:1px}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--primary)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.nav-tel{font-size:14px;color:var(--primary);font-weight:700}
+.nav-cta{background:var(--primary);color:#000;padding:9px 22px;border-radius:4px;font-weight:800;text-decoration:none;font-size:13px;letter-spacing:.5px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:22px;height:2px;background:var(--primary);border-radius:2px}
+@media(max-width:768px){.nav-links,.nav-tel{display:none}.burger{display:flex}}
+
+/* HERO */
+.hero{min-height:92vh;background:radial-gradient(circle at 30% 50%,rgba(212,175,55,.08) 0%,transparent 60%),linear-gradient(180deg,#000 0%,var(--bg) 100%);display:flex;align-items:center;padding:80px 5%;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;right:5%;top:50%;transform:translateY(-50%);width:450px;height:450px;background:radial-gradient(circle,rgba(212,175,55,.1) 0%,transparent 70%);border-radius:50%}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.ey-line{width:36px;height:1px;background:var(--primary)}
+.ey-text{color:var(--primary);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:900;line-height:1.0;margin-bottom:18px;letter-spacing:-1px}
+.hero h1 em{font-style:italic;color:var(--primary)}
+.hero p{color:var(--text-muted);font-size:17px;line-height:1.7;margin-bottom:32px;max-width:460px}
+.hero-btns{display:flex;gap:12px;margin-bottom:40px;flex-wrap:wrap}
+.btn-gold{background:var(--primary);color:#000;padding:14px 32px;border-radius:4px;font-weight:800;text-decoration:none;font-size:15px;letter-spacing:.5px;transition:.2s}
+.btn-gold:hover{background:var(--accent)}
+.btn-ghost{background:transparent;color:var(--primary);padding:14px 32px;border-radius:4px;font-weight:700;text-decoration:none;font-size:15px;border:1px solid var(--primary);transition:.2s}
+.btn-ghost:hover{background:rgba(212,175,55,.08)}
+.hero-numbers{display:flex;gap:36px;padding-top:28px;border-top:1px solid var(--border)}
+.hn strong{display:block;font-size:28px;font-weight:900;color:var(--primary)}
+.hn span{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+.hero-visual{position:relative}
+.booking-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.bc-title{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.bc-title h3{font-size:17px;font-weight:800}
+.bc-available{font-size:12px;color:var(--primary);font-weight:700;background:rgba(212,175,55,.1);padding:4px 12px;border-radius:10px;margin-left:auto}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.fg input,.fg select{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);color:#fff;padding:11px 14px;border-radius:8px;font-size:14px;outline:none;transition:.2s;font-family:inherit}
+.fg input:focus,.fg select:focus{border-color:var(--primary)}
+.fg select option{background:#1A1A1A;color:#fff}
+.fare-estimate{background:rgba(212,175,55,.06);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+.fe-label{font-size:13px;color:var(--text-muted)}
+.fe-price{font-size:22px;font-weight:900;color:var(--primary)}
+.book-btn{width:100%;background:var(--primary);color:#000;border:none;padding:14px;border-radius:8px;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:.5px;transition:.2s}
+.book-btn:hover{background:var(--accent)}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr}}
+
+/* SECTIONS */
+section{padding:72px 5%}
+.max-w{max-width:1200px;margin:0 auto}
+.gold-tag{display:inline-block;color:var(--primary);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border:1px solid var(--border);border-radius:4px;margin-bottom:12px}
+.sh2{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;margin-bottom:8px;letter-spacing:-.5px}
+.sh2 em{font-style:normal;color:var(--primary)}
+.ssub{color:var(--text-muted);font-size:15px;max-width:520px;line-height:1.6}
+
+/* SERVICES */
+.services-section{background:var(--bg2)}
+.sv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+.sv-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:28px;transition:.3s}
+.sv-card:hover{border-color:var(--primary);transform:translateY(-3px)}
+.sv-icon{font-size:36px;margin-bottom:14px}
+.sv-name{font-size:17px;font-weight:800;margin-bottom:8px;color:var(--primary)}
+.sv-desc{color:var(--text-muted);font-size:14px;line-height:1.6;margin-bottom:14px}
+.sv-price{font-size:14px;font-weight:700;color:var(--text)}
+@media(max-width:768px){.sv-grid{grid-template-columns:1fr}}
+
+/* TARIFS */
+.tarifs-section{background:var(--bg)}
+.tarifs-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px}
+.tf-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.tf-header{background:linear-gradient(135deg,var(--bg2),var(--bg3));padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px}
+.tf-icon{font-size:32px}
+.tf-info h3{font-size:16px;font-weight:800;margin-bottom:2px}
+.tf-info p{font-size:13px;color:var(--text-muted)}
+.tf-body{padding:20px 24px}
+.tf-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:14px}
+.tf-row:last-child{border:none}
+.tf-zone{color:var(--text-muted)}
+.tf-price{color:var(--primary);font-weight:800;font-size:15px}
+@media(max-width:768px){.tarifs-grid{grid-template-columns:1fr}}
+
+/* DRIVERS */
+.drivers-section{background:var(--bg2)}
+.drivers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.driver-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;transition:.2s}
+.driver-card:hover{border-color:var(--primary)}
+.driver-av{width:80px;height:80px;border-radius:50%;background:var(--bg);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:38px;border:2px solid var(--border)}
+.driver-name{font-weight:800;font-size:14px;margin-bottom:4px}
+.driver-lang{font-size:11px;color:var(--primary);font-weight:700;margin-bottom:4px}
+.driver-rating{font-size:12px;color:var(--text-muted)}
+@media(max-width:768px){.drivers-grid{grid-template-columns:1fr 1fr}}
+
+footer{background:#000;padding:48px 5% 24px;border-top:1px solid var(--border)}
+.fg-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;max-width:1200px;margin:0 auto 40px}
+.fbl p{color:var(--text-muted);font-size:14px;line-height:1.6;margin-top:10px}
+.fc h4{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.fc a{display:block;color:var(--text-muted);text-decoration:none;font-size:14px;margin-bottom:8px;transition:color .2s}
+.fc a:hover{color:#fff}
+.fb-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.3);max-width:1200px;margin:0 auto}
+@media(max-width:768px){.fg-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">TAXI <span>PRESTIGE</span> DAKAR</div>
+    <ul class="nav-links">
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Tarifs</a></li>
+      <li><a href="#">Chauffeurs</a></li>
+      <li><a href="#">Entreprises</a></li>
+    </ul>
+    <div class="nav-actions">
+      <span class="nav-tel">📞 +221 77 100 XX XX</span>
+      <a href="#" class="nav-cta">Réserver</a>
+      <div class="burger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow"><div class="ey-line"></div><div class="ey-text">Dakar · Sénégal · Service Premium</div></div>
+      <h1>Le taxi VTC<br>haut de gamme<br>de <em>Dakar</em></h1>
+      <p>Chauffeurs professionnels, véhicules haut de gamme, ponctualité garantie. Pour vos transferts aéroport, réunions d'affaires et sorties de soirée.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-gold">📱 Réserver maintenant</a>
+        <a href="#" class="btn-ghost">📞 Appeler</a>
+      </div>
+      <div class="hero-numbers">
+        <div class="hn"><strong>12 000+</strong><span>Courses effectuées</span></div>
+        <div class="hn"><strong>4.97★</strong><span>Note moyenne</span></div>
+        <div class="hn"><strong>15 min</strong><span>Délai moyen</span></div>
+      </div>
+    </div>
+    <div class="booking-card">
+      <div class="bc-title">
+        <span style="font-size:20px">🚗</span>
+        <h3>Réserver un taxi</h3>
+        <span class="bc-available">● Disponible</span>
+      </div>
+      <div class="fg"><label>Prise en charge</label><input type="text" placeholder="Ex: Hôtel Radisson, Dakar centre" id="from" oninput="updateFare()"></div>
+      <div class="fg"><label>Destination</label><input type="text" placeholder="Ex: Aéroport AIBD" id="to" oninput="updateFare()"></div>
+      <div class="fg"><label>Type de véhicule</label>
+        <select id="carType" onchange="updateFare()">
+          <option value="berline">Berline standard</option>
+          <option value="premium">Premium (Mercedes E-Class)</option>
+          <option value="van">Van 7 places</option>
+        </select>
+      </div>
+      <div class="fg"><label>Date et heure</label><input type="datetime-local"></div>
+      <div class="fare-estimate">
+        <span class="fe-label">🧮 Estimation du tarif</span>
+        <span class="fe-price" id="fareEstimate">— FCFA</span>
+      </div>
+      <button class="book-btn" onclick="alert('Réservation confirmée! Votre chauffeur vous sera attribué et vous contactera 30 minutes avant la prise en charge.')">Confirmer la réservation</button>
+    </div>
+  </div>
+</section>
+
+<section class="services-section">
+  <div class="max-w">
+    <div class="gold-tag">Nos services</div>
+    <h2 class="sh2">Chaque trajet,<br>une <em>expérience</em></h2>
+    <div class="sv-grid">
+      <div class="sv-card"><div class="sv-icon">✈️</div><div class="sv-name">Transfert aéroport</div><div class="sv-desc">Accueil personnalisé, suivi des vols en temps réel, attente incluse en cas de retard. AIBD, Léopold Sédar Senghor.</div><div class="sv-price">À partir de 12 000 FCFA</div></div>
+      <div class="sv-card"><div class="sv-icon">🏢</div><div class="sv-name">Courses d'affaires</div><div class="sv-desc">Chauffeur en costume, véhicule premium, discrétion assurée pour vos réunions et rendez-vous professionnels.</div><div class="sv-price">À partir de 6 000 FCFA</div></div>
+      <div class="sv-card"><div class="sv-icon">🎉</div><div class="sv-name">Soirées & Événements</div><div class="sv-desc">Mariage, gala, soirée d'entreprise — votre chauffeur dévoué pour toute la durée de l'événement.</div><div class="sv-price">À la demi-journée / journée</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tarifs-section">
+  <div class="max-w">
+    <div class="gold-tag">Tarification</div>
+    <h2 class="sh2">Tarifs clairs,<br><em>sans surprise</em></h2>
+    <div class="tarifs-grid">
+      <div class="tf-card">
+        <div class="tf-header"><div class="tf-icon">🚗</div><div class="tf-info"><h3>Berline Standard</h3><p>Toyota Camry · Mercedes C200</p></div></div>
+        <div class="tf-body">
+          <div class="tf-row"><span class="tf-zone">Dakar intramuros</span><span class="tf-price">3 000 – 5 000 F</span></div>
+          <div class="tf-row"><span class="tf-zone">Plateau → Yoff</span><span class="tf-price">4 500 F</span></div>
+          <div class="tf-row"><span class="tf-zone">Dakar → AIBD</span><span class="tf-price">12 000 F</span></div>
+          <div class="tf-row"><span class="tf-zone">Dakar → Thiès</span><span class="tf-price">18 000 F</span></div>
+          <div class="tf-row"><span class="tf-zone">Mise à disposition (4h)</span><span class="tf-price">25 000 F</span></div>
+        </div>
+      </div>
+      <div class="tf-card">
+        <div class="tf-header"><div class="tf-icon">🚙</div><div class="tf-info"><h3>Premium & Van</h3><p>Mercedes E-Class · Toyota Hiace</p></div></div>
+        <div class="tf-body">
+          <div class="tf-row"><span class="tf-zone">Dakar intramuros</span><span class="tf-price">6 000 – 9 000 F</span></div>
+          <div class="tf-row"><span class="tf-zone">Plateau → Yoff</span><span class="tf-price">7 500 F</span></div>
+          <div class="tf-row"><span class="tf-zone">Dakar → AIBD</span><span class="tf-price">20 000 F</span></div>
+          <div class="tf-row"><span class="tf-zone">Dakar → Saint-Louis</span><span class="tf-price">55 000 F</span></div>
+          <div class="tf-row"><span class="tf-zone">Mise à disposition (4h)</span><span class="tf-price">40 000 F</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="drivers-section">
+  <div class="max-w">
+    <div class="gold-tag">L'équipe</div>
+    <h2 class="sh2">Nos chauffeurs <em>certifiés</em></h2>
+    <p class="ssub">Sélectionnés, formés et évalués pour vous offrir une expérience irréprochable</p>
+    <div class="drivers-grid">
+      <div class="driver-card"><div class="driver-av">👨‍✈️</div><div class="driver-name">Cheikh Diop</div><div class="driver-lang">FR · EN · Wolof</div><div class="driver-rating">★★★★★ · 4.98 · 2 400 courses</div></div>
+      <div class="driver-card"><div class="driver-av">👨‍✈️</div><div class="driver-name">Modou Ndiaye</div><div class="driver-lang">FR · Wolof · Pular</div><div class="driver-rating">★★★★★ · 4.97 · 1 870 courses</div></div>
+      <div class="driver-card"><div class="driver-av">👨‍✈️</div><div class="driver-name">Ibrahima Fall</div><div class="driver-lang">FR · EN · Sérère</div><div class="driver-rating">★★★★★ · 4.96 · 3 100 courses</div></div>
+      <div class="driver-card"><div class="driver-av">👨‍✈️</div><div class="driver-name">Ousmane Ba</div><div class="driver-lang">FR · AR · Wolof</div><div class="driver-rating">★★★★★ · 4.99 · 1 400 courses</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fg-grid">
+    <div class="fbl">
+      <div style="font-size:19px;font-weight:900;letter-spacing:1px">TAXI <span style="color:var(--primary)">PRESTIGE</span> DAKAR</div>
+      <p>Le service VTC haut de gamme de référence à Dakar. Chauffeurs professionnels, véhicules premium, ponctualité garantie.</p>
+    </div>
+    <div class="fc"><h4>Services</h4><a href="#">Transfert aéroport</a><a href="#">Courses affaires</a><a href="#">Événements</a><a href="#">Abonnement entreprise</a></div>
+    <div class="fc"><h4>Zones</h4><a href="#">Dakar centre</a><a href="#">Aéroport AIBD</a><a href="#">Thiès / Rufisque</a><a href="#">Saly / Mbour</a></div>
+    <div class="fc"><h4>Contact</h4><a href="#">📞 +221 77 100 XX XX</a><a href="#">💬 WhatsApp 24h/24</a><a href="#">✉️ prestige@taxi-dakar.sn</a></div>
+  </div>
+  <div class="fb-bot"><span>© 2024 Taxi Prestige Dakar</span><span>Site créé par IBIG Digital</span></div>
+</footer>
+
+<script>
+function updateFare(){
+  const from=document.getElementById('from').value;
+  const to=document.getElementById('to').value;
+  const type=document.getElementById('carType').value;
+  const el=document.getElementById('fareEstimate');
+  if(from&&to){
+    const base=type==='berline'?5000:type==='premium'?9000:8000;
+    const fare=base+Math.floor(Math.random()*3000);
+    el.textContent=fare.toLocaleString('fr-FR')+' FCFA';
+  } else {
+    el.textContent='— FCFA';
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brasserie du Plateau — Abidjan</title>
+<style>
+:root{
+  --primary:#2D6A4F;
+  --accent:#52B788;
+  --bg:#FFFFFF;
+  --bg2:#F8FAF9;
+  --text:#1C1C1E;
+  --text-muted:#6B7280;
+  --border:#E5E7EB;
+  --wood:#A0522D;
+  --light-green:#D8F3DC;
+  --dark-green:#1B4332;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
+
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#1B4332;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:12px}
+
+nav{position:sticky;top:40px;background:#fff;border-bottom:1px solid var(--border);z-index:100;padding:0 5%}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto}
+.logo{font-size:18px;font-weight:900;color:var(--text);letter-spacing:-0.5px}
+.logo span{color:var(--primary)}
+.logo em{font-style:normal;font-size:11px;font-weight:500;color:var(--text-muted);display:block;letter-spacing:1px;text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--primary)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.nav-tel{font-size:13px;color:var(--text-muted);font-weight:600}
+.nav-cta{background:var(--primary);color:#fff;padding:9px 20px;border-radius:8px;font-weight:700;text-decoration:none;font-size:14px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:22px;height:2px;background:var(--text);border-radius:2px}
+.mobile-menu{display:none;background:#fff;padding:16px 5%;border-top:1px solid var(--border)}
+.mobile-menu a{display:block;color:var(--text-muted);text-decoration:none;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+@media(max-width:768px){.nav-links,.nav-tel{display:none}.burger{display:flex}}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:88vh;margin-top:0}
+.hero-left{background:var(--dark-green);display:flex;align-items:center;padding:80px 5% 80px 8%}
+.hero-content{max-width:500px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(82,183,136,.15);border:1px solid rgba(82,183,136,.3);color:var(--accent);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:20px;text-transform:uppercase;letter-spacing:.5px}
+.hero h1{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{color:rgba(255,255,255,.75);font-size:16px;line-height:1.7;margin-bottom:32px}
+.hero-ctas{display:flex;gap:12px;margin-bottom:40px}
+.btn-green{background:var(--accent);color:#fff;padding:12px 26px;border-radius:8px;font-weight:700;text-decoration:none;font-size:15px;transition:.2s}
+.btn-green:hover{background:var(--primary)}
+.btn-ghost{background:transparent;color:#fff;padding:12px 26px;border-radius:8px;font-weight:600;text-decoration:none;font-size:15px;border:1px solid rgba(255,255,255,.3);transition:.2s}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.hero-infos{display:flex;gap:24px}
+.info-item{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.6)}
+.info-item span:first-child{font-size:16px}
+.hero-right{background:var(--bg2);display:flex;flex-direction:column;gap:0}
+.hero-img-block{flex:1;display:flex;align-items:center;justify-content:center;font-size:80px;background:var(--light-green)}
+.hero-img-block:nth-child(2){background:#fff;border-top:1px solid var(--border)}
+.hero-quote{background:#fff;padding:28px 32px;border-top:1px solid var(--border)}
+.hero-quote p{font-size:15px;font-style:italic;color:var(--text-muted);line-height:1.6}
+.hero-quote strong{display:block;margin-top:8px;font-size:13px;color:var(--primary);font-style:normal}
+@media(max-width:768px){.hero{grid-template-columns:1fr}.hero-right{display:none}}
+
+/* SECTION */
+section{padding:72px 5%}
+.max-w{max-width:1200px;margin:0 auto}
+.tag{display:inline-block;background:var(--light-green);color:var(--primary);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.h2{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;color:var(--text);margin-bottom:8px}
+.h2 em{font-style:normal;color:var(--primary)}
+.sub{color:var(--text-muted);font-size:15px;max-width:520px;line-height:1.6}
+
+/* MENU */
+.menu-section{background:var(--bg2)}
+.menu-tabs{display:flex;gap:4px;background:var(--border);padding:4px;border-radius:12px;width:fit-content;margin:24px 0 32px}
+.tab{padding:8px 20px;border-radius:10px;border:none;background:transparent;cursor:pointer;font-size:14px;font-weight:600;color:var(--text-muted);transition:.2s}
+.tab.active{background:#fff;color:var(--primary);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.menu-item{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;gap:16px;padding:16px;align-items:flex-start;transition:.2s}
+.menu-item:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(45,106,79,.08)}
+.menu-emoji{font-size:40px;width:60px;height:60px;background:var(--light-green);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.menu-info{flex:1}
+.menu-name{font-weight:700;font-size:15px;margin-bottom:4px}
+.menu-desc{font-size:13px;color:var(--text-muted);line-height:1.4;margin-bottom:8px}
+.menu-footer{display:flex;align-items:center;justify-content:space-between}
+.menu-price{font-weight:800;font-size:16px;color:var(--primary)}
+.menu-tag{font-size:11px;background:var(--light-green);color:var(--primary);padding:2px 8px;border-radius:10px;font-weight:600}
+
+/* TERRASSE */
+.terrasse-section{background:#fff}
+.terrasse-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.terrasse-visual{background:var(--light-green);border-radius:16px;height:380px;display:flex;align-items:center;justify-content:center;font-size:80px;position:relative;overflow:hidden}
+.terrasse-visual::after{content:'🌿';position:absolute;bottom:-10px;right:-10px;font-size:120px;opacity:.3}
+.terrasse-content h2{margin-bottom:16px}
+.terrasse-content p{color:var(--text-muted);line-height:1.7;margin-bottom:20px;font-size:15px}
+.terrasse-features{list-style:none;margin-bottom:28px}
+.terrasse-features li{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-muted)}
+.terrasse-features li span:first-child{font-size:18px}
+@media(max-width:768px){.terrasse-inner{grid-template-columns:1fr}}
+
+/* RESERVATION */
+.resa-section{background:var(--primary)}
+.resa-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.resa-info h2{font-size:2rem;font-weight:900;color:#fff;margin-bottom:14px}
+.resa-info p{color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:24px;font-size:15px}
+.resa-horaires{background:rgba(255,255,255,.1);border-radius:12px;padding:20px}
+.horaire-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.15);font-size:14px;color:rgba(255,255,255,.85)}
+.horaire-row:last-child{border:none}
+.resa-form{background:#fff;border-radius:16px;padding:32px}
+.resa-form h3{font-size:18px;font-weight:800;margin-bottom:20px;color:var(--text)}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.fg input,.fg select{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;outline:none;transition:.2s;color:var(--text)}
+.fg input:focus,.fg select:focus{border-color:var(--primary)}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.resa-btn{width:100%;background:var(--primary);color:#fff;border:none;padding:13px;border-radius:8px;font-size:15px;font-weight:800;cursor:pointer;transition:.2s}
+.resa-btn:hover{background:var(--dark-green)}
+@media(max-width:768px){.resa-inner{grid-template-columns:1fr}.fg-row{grid-template-columns:1fr}}
+
+/* TEMOIGNAGES */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+.testi-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px}
+.testi-stars{color:#F59E0B;margin-bottom:10px;font-size:14px}
+.testi-text{font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:16px;font-style:italic}
+.testi-by{display:flex;align-items:center;gap:10px}
+.testi-av{width:38px;height:38px;border-radius:50%;background:var(--light-green);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--primary)}
+.testi-name{font-weight:700;font-size:13px}
+.testi-job{font-size:12px;color:var(--text-muted)}
+@media(max-width:900px){.testi-grid{grid-template-columns:1fr}}
+
+footer{background:var(--dark-green);color:#fff;padding:48px 5% 24px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;max-width:1200px;margin:0 auto 40px}
+.fl .logo{display:block;margin-bottom:10px}
+.fl p{color:rgba(255,255,255,.65);font-size:14px;line-height:1.6}
+.fc h4{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.fc a{display:block;color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;margin-bottom:8px;transition:color .2s}
+.fc a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.5);max-width:1200px;margin:0 auto}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span>Brasserie</span> du Plateau<em>Cuisine française-africaine</em></div>
+    <ul class="nav-links">
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">La terrasse</a></li>
+      <li><a href="#">Événements</a></li>
+      <li><a href="#">Notre histoire</a></li>
+    </ul>
+    <div class="nav-actions">
+      <span class="nav-tel">+225 27 20 XX XX</span>
+      <a href="#" class="nav-cta">Réserver</a>
+      <div class="burger" onclick="document.getElementById('mm').style.display=document.getElementById('mm').style.display==='block'?'none':'block'"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mm">
+    <a href="#">Menu</a><a href="#">La terrasse</a><a href="#">Réserver une table</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-content">
+      <div class="hero-badge">🌿 Terrasse ouverte · Plateau, Abidjan</div>
+      <h1>Cuisine fusion<br><em>franco-africaine</em></h1>
+      <p>La Brasserie du Plateau allie la finesse de la cuisine française à la richesse des saveurs africaines. Un lieu de vie au cœur d'Abidjan.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-green">Réserver une table</a>
+        <a href="#" class="btn-ghost">Voir le menu</a>
+      </div>
+      <div class="hero-infos">
+        <div class="info-item"><span>📍</span><span>Plateau, Abidjan</span></div>
+        <div class="info-item"><span>🕐</span><span>12h–23h, 7j/7</span></div>
+        <div class="info-item"><span>⭐</span><span>4.7/5 (320 avis)</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-block">🥗</div>
+    <div class="hero-img-block" style="background:#fff;font-size:72px">🍷</div>
+    <div class="hero-quote">
+      <p>"Une table dans un cadre exceptionnel, des saveurs qui racontent deux continents."</p>
+      <strong>— Guide Gastronomique Abidjan 2024</strong>
+    </div>
+  </div>
+</div>
+
+<section class="menu-section">
+  <div class="max-w">
+    <div class="tag">Notre menu</div>
+    <h2 class="h2">Des plats qui racontent <em>deux continents</em></h2>
+    <p class="sub">Cuisine française revisitée avec les épices et produits locaux d'Afrique de l'Ouest</p>
+    <div class="menu-tabs">
+      <button class="tab active" onclick="switchTab(this,'dejeuner')">Déjeuner</button>
+      <button class="tab" onclick="switchTab(this,'diner')">Dîner</button>
+      <button class="tab" onclick="switchTab(this,'brunch')">Brunch</button>
+      <button class="tab" onclick="switchTab(this,'boissons')">Boissons</button>
+    </div>
+    <div class="menu-grid" id="menuDejeuner">
+      <div class="menu-item"><div class="menu-emoji">🥗</div><div class="menu-info"><div class="menu-name">Salade Tropicale</div><div class="menu-desc">Salade fraîche, mangue, avocat, crevettes grillées, vinaigrette passion</div><div class="menu-footer"><span class="menu-price">5 500 FCFA</span><span class="menu-tag">Entrée</span></div></div></div>
+      <div class="menu-item"><div class="menu-emoji">🐓</div><div class="menu-info"><div class="menu-name">Poulet Yassa Gastronomique</div><div class="menu-desc">Suprême de poulet fermier au yassa revisité, riz basmati, légumes de saison</div><div class="menu-footer"><span class="menu-price">9 500 FCFA</span><span class="menu-tag">Plat</span></div></div></div>
+      <div class="menu-item"><div class="menu-emoji">🐟</div><div class="menu-info"><div class="menu-name">Filet de Capitaine</div><div class="menu-desc">Filet de capitaine poêlé, sauce vierge à l'ananas, légumes grillés</div><div class="menu-footer"><span class="menu-price">11 000 FCFA</span><span class="menu-tag">Plat</span></div></div></div>
+      <div class="menu-item"><div class="menu-emoji">🥩</div><div class="menu-info"><div class="menu-name">Entrecôte & Attieké Frites</div><div class="menu-desc">Entrecôte de bœuf, sauce au poivre vert, attieké frit croustillant</div><div class="menu-footer"><span class="menu-price">14 500 FCFA</span><span class="menu-tag">Plat</span></div></div></div>
+      <div class="menu-item"><div class="menu-emoji">🍮</div><div class="menu-info"><div class="menu-name">Fondant Chocolat Gingembre</div><div class="menu-desc">Fondant au chocolat, glace gingembre-coco, coulis de mangue</div><div class="menu-footer"><span class="menu-price">4 000 FCFA</span><span class="menu-tag">Dessert</span></div></div></div>
+      <div class="menu-item"><div class="menu-emoji">🍜</div><div class="menu-info"><div class="menu-name">Thiéboudienne Royale</div><div class="menu-desc">La grande spécialité, riz à la tomate, poisson frais, légumes variés — version gastronomique</div><div class="menu-footer"><span class="menu-price">8 500 FCFA</span><span class="menu-tag">Plat</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="terrasse-section">
+  <div class="max-w">
+    <div class="terrasse-inner">
+      <div class="terrasse-visual">🌿</div>
+      <div class="terrasse-content">
+        <div class="tag">La terrasse</div>
+        <h2 class="h2">Profitez de notre <em>terrasse verdoyante</em></h2>
+        <p>Une oasis de verdure au cœur du Plateau. Notre terrasse accueille jusqu'à 80 personnes dans un cadre tropical unique. Idéal pour les déjeuners d'affaires et les dîners romantiques.</p>
+        <ul class="terrasse-features">
+          <li><span>🌿</span><span>Jardin tropical avec palmiers et plantes locales</span></li>
+          <li><span>🌬️</span><span>Climatisation naturelle et ventilateurs de plafond</span></li>
+          <li><span>🎵</span><span>Musique live vendredi et samedi soir</span></li>
+          <li><span>🅿️</span><span>Parking sécurisé gratuit pour les clients</span></li>
+          <li><span>♿</span><span>Accès adapté aux personnes à mobilité réduite</span></li>
+        </ul>
+        <a href="#" class="btn-green">Réserver la terrasse</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:64px 5%;background:var(--bg2)">
+  <div class="max-w">
+    <div class="tag">Témoignages</div>
+    <h2 class="h2">Ce que disent nos <em>clients</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"La meilleure table du Plateau! La fusion franco-africaine est parfaitement maîtrisée. Le thiéboudienne gastronomique est un chef-d'œuvre."</p><div class="testi-by"><div class="testi-av">M</div><div><div class="testi-name">Marie-Claire Konan</div><div class="testi-job">Dirigeante d'entreprise, Plateau</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Nous utilisons la brasserie pour tous nos déjeuners d'affaires. Cadre professionnel, service impeccable, cuisine excellente."</p><div class="testi-by"><div class="testi-av">A</div><div><div class="testi-name">Abdou Traoré</div><div class="testi-job">Directeur commercial, BNI</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"La terrasse est magique en soirée. Ambiance parfaite, le filet de capitaine est divin. On revient chaque week-end!"</p><div class="testi-by"><div class="testi-av">F</div><div><div class="testi-name">Fatoumata Bah</div><div class="testi-job">Architecte, Cocody</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="resa-section">
+  <div class="max-w" style="padding:72px 0">
+    <div class="resa-inner">
+      <div class="resa-info">
+        <h2>Réservez votre table en ligne</h2>
+        <p>Pour garantir votre place, réservez à l'avance. Nous confirmons par SMS dans l'heure. Pour les groupes de 10+ personnes, contactez-nous directement.</p>
+        <div class="resa-horaires">
+          <div class="horaire-row"><span>Lun – Ven</span><span>12h00 – 14h30 & 19h00 – 22h30</span></div>
+          <div class="horaire-row"><span>Samedi</span><span>12h00 – 23h30 (sans coupure)</span></div>
+          <div class="horaire-row"><span>Dimanche Brunch</span><span>10h30 – 15h00</span></div>
+          <div class="horaire-row"><span>Fermé</span><span>Jours fériés nationaux</span></div>
+        </div>
+      </div>
+      <div class="resa-form">
+        <h3>📅 Réservation</h3>
+        <div class="fg-row">
+          <div class="fg"><label>Nom</label><input type="text" placeholder="Votre nom"></div>
+          <div class="fg"><label>Téléphone</label><input type="tel" placeholder="+225 XX XX XX"></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label>Date</label><input type="date"></div>
+          <div class="fg"><label>Heure</label>
+            <select><option>12h00</option><option>12h30</option><option>13h00</option><option>19h00</option><option>19h30</option><option>20h00</option><option>20h30</option></select>
+          </div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label>Nombre de couverts</label>
+            <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5-6</option><option>7-10</option><option>10+</option></select>
+          </div>
+          <div class="fg"><label>Espace</label>
+            <select><option>Salle intérieure</option><option>Terrasse</option><option>Salon privé</option></select>
+          </div>
+        </div>
+        <button class="resa-btn" onclick="alert('Réservation confirmée! Vous recevrez un SMS de confirmation dans les 30 minutes.')">Confirmer la réservation</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="fl">
+      <span class="logo" style="font-weight:900;font-size:18px;display:block;margin-bottom:10px">Brasserie <span style="color:var(--accent)">du Plateau</span></span>
+      <p>Cuisine franco-africaine au cœur d'Abidjan depuis 2016. Un lieu de vie, de partage et de saveurs.</p>
+    </div>
+    <div class="fc"><h4>Menu</h4><a href="#">Déjeuner</a><a href="#">Dîner</a><a href="#">Brunch</a><a href="#">Carte des vins</a></div>
+    <div class="fc"><h4>Chez nous</h4><a href="#">Notre histoire</a><a href="#">L'équipe</a><a href="#">La terrasse</a><a href="#">Événements privés</a></div>
+    <div class="fc"><h4>Contact</h4><a href="#">📍 Plateau, Abidjan</a><a href="#">📞 +225 27 20 XX XX</a><a href="#">🕐 12h–23h / 7j7</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2024 Brasserie du Plateau</span><span>Site créé par IBIG Digital</span></div>
+</footer>
+
+<script>
+function switchTab(btn,tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

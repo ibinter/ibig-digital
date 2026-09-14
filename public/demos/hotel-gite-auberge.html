@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gîte Savane — Burkina Faso</title>
+<style>
+:root{
+  --bg:#FDF6EC;
+  --primary:#2D6A4F;
+  --primary-light:#D1FAE5;
+  --accent:#D97706;
+  --accent-light:#FEF3C7;
+  --text:#1C1005;
+  --text-light:#78716C;
+  --border:#E7DDD0;
+  --white:#FFFFFF;
+  --sand:#F5E6D3;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.7;}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-family:system-ui,sans-serif;font-size:13px;}
+.demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
+
+nav{position:sticky;top:40px;background:var(--bg);border-bottom:2px solid var(--border);z-index:100;}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.logo{font-size:20px;color:var(--primary);font-weight:700;}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--text-light);text-decoration:none;font-family:system-ui,sans-serif;font-size:14px;transition:color 0.2s;}
+.nav-links a:hover{color:var(--primary);}
+.btn-nav{background:var(--accent);color:#fff;padding:9px 22px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:13px;font-weight:700;transition:background 0.2s;}
+.btn-nav:hover{background:#B45309;}
+
+/* HERO */
+.hero{min-height:90vh;background:linear-gradient(160deg,#1B3D29 0%,#2D6A4F 60%,#52796F 100%);display:flex;align-items:center;position:relative;overflow:hidden;}
+.hero-texture{position:absolute;inset:0;opacity:0.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23fff' stroke-width='1' fill='none'/%3E%3Ccircle cx='50' cy='50' r='20' stroke='%23fff' stroke-width='1' fill='none'/%3E%3C/svg%3E");background-size:100px 100px;}
+.hero-sun{position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(217,119,6,0.3),transparent 70%);border-radius:50%;}
+.hero-content{max-width:1100px;margin:0 auto;padding:0 40px;width:100%;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;position:relative;z-index:1;}
+.hero-label{display:inline-flex;align-items:center;gap:8px;background:rgba(217,119,6,0.2);border:1px solid rgba(217,119,6,0.4);color:var(--accent);padding:7px 16px;border-radius:4px;font-family:system-ui,sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:22px;}
+.hero h1{font-size:52px;color:#fff;line-height:1.15;margin-bottom:18px;font-weight:400;}
+.hero h1 strong{color:var(--accent);font-weight:700;}
+.hero-quote{border-left:3px solid var(--accent);padding-left:20px;margin-bottom:32px;}
+.hero-quote p{color:rgba(255,255,255,0.75);font-size:17px;font-style:italic;}
+.hero-badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
+.h-badge{background:rgba(255,255,255,0.12);color:#fff;padding:6px 14px;border-radius:4px;font-family:system-ui,sans-serif;font-size:13px;}
+.hero-btns{display:flex;gap:12px;}
+.btn-ocre{background:var(--accent);color:#fff;padding:14px 30px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:15px;font-weight:700;transition:all 0.2s;}
+.btn-ocre:hover{background:#B45309;transform:translateY(-1px);}
+.btn-ghost{border:2px solid rgba(255,255,255,0.4);color:#fff;padding:14px 30px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:15px;transition:all 0.2s;}
+.btn-ghost:hover{background:rgba(255,255,255,0.08);}
+
+.booking-panel{background:var(--bg);border-radius:8px;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,0.25);}
+.bp-title{font-size:17px;font-weight:700;color:var(--primary);margin-bottom:6px;}
+.bp-sub{font-size:13px;color:var(--text-light);font-family:system-ui,sans-serif;margin-bottom:22px;}
+.bp-field{margin-bottom:14px;}
+.bp-field label{display:block;font-size:12px;font-weight:700;color:var(--text-light);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:5px;font-family:system-ui,sans-serif;}
+.bp-field input,.bp-field select{width:100%;border:1px solid var(--border);background:var(--white);border-radius:4px;padding:10px 12px;font-size:14px;color:var(--text);font-family:system-ui,sans-serif;outline:none;}
+.bp-field input:focus,.bp-field select:focus{border-color:var(--primary);}
+.bp-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.btn-bp{width:100%;background:var(--primary);color:#fff;border:none;padding:13px;border-radius:4px;font-size:15px;font-weight:700;cursor:pointer;font-family:system-ui,sans-serif;margin-top:4px;transition:background 0.2s;}
+.btn-bp:hover{background:#1B4332;}
+.bp-note{font-size:12px;color:var(--text-light);text-align:center;margin-top:10px;font-family:system-ui,sans-serif;}
+
+/* SECTION */
+.section-inner{max-width:1100px;margin:0 auto;}
+.s-tag{font-family:system-ui,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.s-title{font-size:36px;font-weight:400;color:var(--text);line-height:1.2;margin-bottom:14px;}
+.s-sub{color:var(--text-light);font-size:16px;max-width:500px;line-height:1.7;font-style:italic;}
+.s-header{margin-bottom:44px;}
+.s-header.center{text-align:center;}
+.s-header.center .s-sub{margin:0 auto;}
+
+/* STATS */
+.stats{background:var(--primary);padding:50px 40px;}
+.stats-row{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;}
+.stat-n{font-size:42px;font-weight:700;color:var(--accent);}
+.stat-l{color:rgba(255,255,255,0.7);font-size:13px;font-family:system-ui,sans-serif;margin-top:4px;}
+
+/* CHAMBRES */
+.rooms{padding:80px 40px;background:var(--white);}
+.rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.room-card{border-radius:8px;overflow:hidden;border:1px solid var(--border);transition:all 0.3s;}
+.room-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,0.1);}
+.room-img{height:200px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;}
+.ri1{background:linear-gradient(135deg,#2D6A4F,#1B3D29);}
+.ri2{background:linear-gradient(135deg,#D97706,#92400E);}
+.ri3{background:linear-gradient(135deg,#52796F,#354F52);}
+.room-badge{position:absolute;top:12px;right:12px;background:var(--accent);color:#fff;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;font-family:system-ui,sans-serif;}
+.room-body{padding:20px;background:var(--bg);}
+.room-name{font-size:18px;font-weight:700;margin-bottom:4px;color:var(--text);}
+.room-desc{font-size:14px;color:var(--text-light);font-family:system-ui,sans-serif;margin-bottom:12px;font-style:italic;}
+.room-details{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.rd{background:var(--primary-light);color:var(--primary);padding:3px 10px;border-radius:4px;font-size:11px;font-family:system-ui,sans-serif;font-weight:600;}
+.room-footer{display:flex;justify-content:space-between;align-items:center;}
+.r-price{font-size:20px;font-weight:700;color:var(--primary);}
+.r-price small{font-size:12px;font-weight:400;color:var(--text-light);font-family:system-ui,sans-serif;}
+.btn-r{background:var(--primary);color:#fff;padding:8px 18px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:13px;font-weight:700;transition:background 0.2s;}
+.btn-r:hover{background:#1B4332;}
+
+/* CUISINE */
+.cuisine{padding:80px 40px;background:var(--bg);}
+.cuisine-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.plats-list{display:flex;flex-direction:column;gap:14px;}
+.plat-item{display:flex;align-items:center;gap:16px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:16px;}
+.plat-emoji{font-size:32px;flex-shrink:0;}
+.plat-name{font-size:15px;font-weight:700;color:var(--text);}
+.plat-desc{font-size:13px;color:var(--text-light);font-family:system-ui,sans-serif;}
+.plat-price{margin-left:auto;font-size:16px;font-weight:700;color:var(--accent);white-space:nowrap;font-family:system-ui,sans-serif;}
+.cuisine-visual{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cv-img{border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:44px;}
+.cv1{height:160px;background:linear-gradient(135deg,#D97706,#B45309);}
+.cv2{height:160px;background:linear-gradient(135deg,#2D6A4F,#1B3D29);}
+.cv3{height:120px;grid-column:span 2;background:linear-gradient(135deg,#1C1917,#44403C);}
+
+/* ACTIVITÉS */
+.activites{padding:80px 40px;background:var(--sand);}
+.acts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.act-card{background:var(--white);border-radius:8px;padding:24px;text-align:center;border:1px solid var(--border);transition:all 0.3s;}
+.act-card:hover{border-color:var(--primary);box-shadow:0 6px 24px rgba(45,106,79,0.1);}
+.act-icon{font-size:40px;margin-bottom:12px;}
+.act-name{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.act-desc{font-size:13px;color:var(--text-light);font-family:system-ui,sans-serif;margin-bottom:10px;}
+.act-price{font-size:14px;font-weight:700;color:var(--accent);font-family:system-ui,sans-serif;}
+
+/* ECO */
+.eco{padding:80px 40px;background:var(--primary);}
+.eco-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.eco-text .s-title{color:#fff;}
+.eco-text .s-tag{color:var(--accent);}
+.eco-text .s-sub{color:rgba(255,255,255,0.75);}
+.eco-points{display:flex;flex-direction:column;gap:16px;margin-top:28px;}
+.eco-pt{display:flex;align-items:flex-start;gap:14px;}
+.eco-icon{width:44px;height:44px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.eco-pt-title{color:#fff;font-size:15px;font-weight:700;margin-bottom:3px;}
+.eco-pt-desc{color:rgba(255,255,255,0.65);font-size:14px;font-family:system-ui,sans-serif;}
+.eco-certifs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.certif-badge{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:18px;text-align:center;}
+.certif-badge .cert-icon{font-size:28px;margin-bottom:8px;}
+.certif-badge .cert-name{color:#fff;font-size:13px;font-weight:700;font-family:system-ui,sans-serif;}
+.certif-badge .cert-org{color:rgba(255,255,255,0.55);font-size:11px;font-family:system-ui,sans-serif;}
+
+/* TESTIMONIALS */
+.testis{padding:80px 40px;background:var(--accent-light);}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.testi-card{background:var(--white);border-radius:8px;padding:26px;border-left:4px solid var(--accent);}
+.testi-stars{color:var(--accent);font-size:14px;margin-bottom:12px;}
+.testi-text{font-style:italic;color:var(--text-light);font-size:15px;line-height:1.7;margin-bottom:18px;}
+.testi-author{display:flex;align-items:center;gap:10px;}
+.ta{width:38px;height:38px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;font-family:system-ui,sans-serif;}
+.tn{font-size:14px;font-weight:700;}
+.tr{font-size:12px;color:var(--text-light);font-family:system-ui,sans-serif;}
+
+/* CTA */
+.cta{padding:100px 40px;background:var(--text);text-align:center;}
+.cta h2{font-size:42px;color:#fff;margin-bottom:14px;font-weight:400;}
+.cta h2 em{color:var(--accent);}
+.cta p{color:rgba(255,255,255,0.65);font-size:17px;margin-bottom:36px;font-style:italic;}
+.cta-btns{display:flex;gap:14px;justify-content:center;}
+.btn-ocre-lg{background:var(--accent);color:#fff;padding:16px 40px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:16px;font-weight:700;transition:all 0.2s;}
+.btn-ocre-lg:hover{background:#B45309;transform:translateY(-2px);}
+.btn-ghost-lg{border:2px solid rgba(255,255,255,0.3);color:#fff;padding:16px 40px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:16px;transition:all 0.2s;}
+
+footer{background:#0D1A0F;padding:60px 40px 28px;}
+.fg{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px;}
+.fl{font-size:20px;color:#fff;font-weight:700;margin-bottom:14px;}
+.fl span{color:var(--accent);}
+footer .fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:16px;}
+.f-socs{display:flex;gap:8px;}
+.f-soc{width:32px;height:32px;background:rgba(255,255,255,0.07);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;text-decoration:none;color:rgba(255,255,255,0.5);transition:all 0.2s;}
+.f-soc:hover{background:var(--accent);color:#fff;}
+.fc h5{color:#fff;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;font-family:system-ui,sans-serif;}
+.fc ul{list-style:none;}
+.fc li{margin-bottom:8px;}
+.fc a{color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;font-family:system-ui,sans-serif;transition:color 0.2s;}
+.fc a:hover{color:var(--accent);}
+.fb{max-width:1100px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.07);padding-top:22px;display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.3);font-family:system-ui,sans-serif;}
+.fb a{color:rgba(255,255,255,0.3);text-decoration:none;}
+
+@media(max-width:900px){
+  .hero-content,.cuisine-grid,.eco-grid,.rooms-grid,.acts-grid,.testis-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:36px;}
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .fg{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Gîte <span>Savane</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Chambres</a></li>
+      <li><a href="#">Cuisine</a></li>
+      <li><a href="#">Excursions</a></li>
+      <li><a href="#">Éco-tourisme</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="btn-nav">Réserver</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-sun"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-label">🌿 Tourisme Responsable · Burkina Faso</div>
+      <h1>L'authenticité<br>du Sahel au<br><strong>cœur de la savane</strong></h1>
+      <div class="hero-quote"><p>"Akwaaba — Bienvenue dans notre maison, votre maison."</p></div>
+      <div class="hero-badges">
+        <span class="h-badge">🏡 6 chambres authentiques</span>
+        <span class="h-badge">🍲 Cuisine traditionnelle</span>
+        <span class="h-badge">🚶 Excursions locales</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#" class="btn-ocre">Réserver un séjour</a>
+        <a href="#" class="btn-ghost">Découvrir le gîte</a>
+      </div>
+    </div>
+    <div class="booking-panel">
+      <div class="bp-title">Réserver au Gîte Savane</div>
+      <div class="bp-sub">Réponse personnalisée sous 4h — Paiement sur place</div>
+      <div class="bp-row">
+        <div class="bp-field"><label>Arrivée</label><input type="date" value="2026-01-10"></div>
+        <div class="bp-field"><label>Départ</label><input type="date" value="2026-01-15"></div>
+      </div>
+      <div class="bp-field"><label>Type de chambre</label><select><option>Chambre Savane (2 pers.)</option><option>Suite Baobab (3 pers.)</option><option>Dortoir Voyageurs (6 pers.)</option></select></div>
+      <div class="bp-row">
+        <div class="bp-field"><label>Adultes</label><select><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+        <div class="bp-field"><label>Enfants</label><select><option>0</option><option>1</option><option>2</option></select></div>
+      </div>
+      <div class="bp-field"><label>Options</label><select><option>Hébergement seul</option><option>Demi-pension</option><option>Pension complète</option></select></div>
+      <button class="btn-bp">Envoyer ma demande →</button>
+      <div class="bp-note">📞 Ou appelez-nous : +226 25 36 47 58</div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stats-row">
+    <div><div class="stat-n">6</div><div class="stat-l">Chambres authentiques</div></div>
+    <div><div class="stat-n">8 ans</div><div class="stat-l">D'hospitalité</div></div>
+    <div><div class="stat-n">4 800+</div><div class="stat-l">Visiteurs reçus</div></div>
+    <div><div class="stat-n">100%</div><div class="stat-l">Produits locaux</div></div>
+  </div>
+</div>
+
+<section class="rooms">
+  <div class="section-inner">
+    <div class="s-header">
+      <div class="s-tag">Hébergements</div>
+      <h2 class="s-title">Des chambres dans la tradition</h2>
+      <p class="s-sub">Chaque chambre est décorée avec des matériaux naturels et artisanat burkinabé authentique.</p>
+    </div>
+    <div class="rooms-grid">
+      <div class="room-card">
+        <div class="room-img ri1"><span>🌿</span><div class="room-badge">Populaire</div></div>
+        <div class="room-body">
+          <div class="room-name">Chambre Savane</div>
+          <div class="room-desc">Vue sur la savane, lit en bois de teck, moustiquaire brodée.</div>
+          <div class="room-details"><span class="rd">2 pers.</span><span class="rd">Ventilateur</span><span class="rd">Sdb partagée</span></div>
+          <div class="room-footer"><div class="r-price">18 000 <small>FCFA / nuit</small></div><a href="#" class="btn-r">Réserver</a></div>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img ri2"><span>🌳</span><div class="room-badge">Authentique</div></div>
+        <div class="room-body">
+          <div class="room-name">Suite Baobab</div>
+          <div class="room-desc">Suite indépendante avec terrasse privée et vue panoramique.</div>
+          <div class="room-details"><span class="rd">3 pers.</span><span class="rd">Clim.</span><span class="rd">Sdb privée</span><span class="rd">Terrasse</span></div>
+          <div class="room-footer"><div class="r-price">32 000 <small>FCFA / nuit</small></div><a href="#" class="btn-r">Réserver</a></div>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img ri3"><span>🏕️</span><div class="room-badge">Économique</div></div>
+        <div class="room-body">
+          <div class="room-name">Dortoir Voyageurs</div>
+          <div class="room-desc">6 lits superposés, idéal pour les groupes et routards.</div>
+          <div class="room-details"><span class="rd">6 pers.</span><span class="rd">Casier</span><span class="rd">Ventilateur</span></div>
+          <div class="room-footer"><div class="r-price">8 000 <small>FCFA / pers.</small></div><a href="#" class="btn-r">Réserver</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cuisine">
+  <div class="section-inner">
+    <div class="cuisine-grid">
+      <div>
+        <div class="s-tag">Cuisine Burkinabé</div>
+        <h2 class="s-title">Les saveurs authentiques du Sahel</h2>
+        <p class="s-sub">Tout est préparé avec des produits frais du jardin et du marché local de Bobo-Dioulasso.</p>
+        <div class="plats-list">
+          <div class="plat-item"><div class="plat-emoji">🍲</div><div><div class="plat-name">Tô de Mil</div><div class="plat-desc">Pâte de mil accompagnée de sauce gluante aux feuilles de baobab</div></div><div class="plat-price">3 500 FCFA</div></div>
+          <div class="plat-item"><div class="plat-emoji">🐔</div><div><div class="plat-name">Poulet Bicyclette Grillé</div><div class="plat-desc">Poulet fermier mariné aux épices locales, feu de bois</div></div><div class="plat-price">6 000 FCFA</div></div>
+          <div class="plat-item"><div class="plat-emoji">🥜</div><div><div class="plat-name">Soupe Arachide</div><div class="plat-desc">Soupe crémeuse aux arachides fraîches, tomates et épices</div></div><div class="plat-price">2 500 FCFA</div></div>
+          <div class="plat-item"><div class="plat-emoji">🍌</div><div><div class="plat-name">Brochettes Plantain</div><div class="plat-desc">Plantain grillé caramélisé au miel de ruche locale</div></div><div class="plat-price">1 500 FCFA</div></div>
+        </div>
+      </div>
+      <div class="cuisine-visual">
+        <div class="cv-img cv1">🍲</div>
+        <div class="cv-img cv2">🌿</div>
+        <div class="cv-img cv3">🔥</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="activites">
+  <div class="section-inner">
+    <div class="s-header center">
+      <div class="s-tag">Excursions & Activités</div>
+      <h2 class="s-title">Découvrez le vrai Burkina</h2>
+      <p class="s-sub">Toutes nos excursions sont guidées par des habitants locaux. L'expérience authentique garantie.</p>
+    </div>
+    <div class="acts-grid">
+      <div class="act-card"><div class="act-icon">🐘</div><div class="act-name">Safari Savane</div><div class="act-desc">Observation d'éléphants, hippos et antilopes dans le Parc de Nazinga.</div><div class="act-price">15 000 FCFA / pers.</div></div>
+      <div class="act-card"><div class="act-icon">🎭</div><div class="act-name">Village Artisanal</div><div class="act-desc">Visite d'un village de bronziers et tisserands de Bobo-Dioulasso.</div><div class="act-price">5 000 FCFA / pers.</div></div>
+      <div class="act-card"><div class="act-icon">🚴</div><div class="act-name">Balade à Vélo</div><div class="act-desc">Circuit cycliste en brousse, 20km à travers villages et forêts sacrées.</div><div class="act-price">8 000 FCFA / pers.</div></div>
+      <div class="act-card"><div class="act-icon">⭐</div><div class="act-name">Nuit Étoilée</div><div class="act-desc">Observation des étoiles dans la savane avec guide astronomique local.</div><div class="act-price">4 000 FCFA / pers.</div></div>
+      <div class="act-card"><div class="act-icon">🥁</div><div class="act-name">Musique Traditionnelle</div><div class="act-desc">Soirée balafon et djembé avec les musiciens du village voisin.</div><div class="act-price">3 000 FCFA / pers.</div></div>
+      <div class="act-card"><div class="act-icon">🌊</div><div class="act-name">Lac Bam</div><div class="act-desc">Journée au bord du lac, pêche avec les pêcheurs locaux, repas inclus.</div><div class="act-price">12 000 FCFA / pers.</div></div>
+      <div class="act-card"><div class="act-icon">🏺</div><div class="act-name">Atelier Poterie</div><div class="act-desc">Initiation à la poterie avec les femmes artisanes du village de Koupéla.</div><div class="act-price">6 000 FCFA / pers.</div></div>
+      <div class="act-card"><div class="act-icon">🌿</div><div class="act-name">Plantes Médicinales</div><div class="act-desc">Balade avec le guérisseur du village, découverte plantes et pharmacopée.</div><div class="act-price">4 500 FCFA / pers.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="eco">
+  <div class="section-inner">
+    <div class="eco-grid">
+      <div class="eco-text">
+        <div class="s-tag">Tourisme Responsable</div>
+        <h2 class="s-title">Notre engagement pour la nature</h2>
+        <p class="s-sub">Le Gîte Savane est un exemple de tourisme durable en Afrique de l'Ouest.</p>
+        <div class="eco-points">
+          <div class="eco-pt"><div class="eco-icon">☀️</div><div><div class="eco-pt-title">Énergie Solaire</div><div class="eco-pt-desc">80% de notre énergie provient de nos panneaux solaires installés en 2020.</div></div></div>
+          <div class="eco-pt"><div class="eco-icon">💧</div><div><div class="eco-pt-title">Eau Recyclée</div><div class="eco-pt-desc">Système de récupération des eaux de pluie pour l'irrigation du jardin.</div></div></div>
+          <div class="eco-pt"><div class="eco-icon">🌱</div><div><div class="eco-pt-title">Jardin Biologique</div><div class="eco-pt-desc">Nos légumes et herbes aromatiques poussent sans pesticides sur place.</div></div></div>
+          <div class="eco-pt"><div class="eco-icon">👥</div><div><div class="eco-pt-title">Impact Communautaire</div><div class="eco-pt-desc">90% de nos employés viennent des villages environnants.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="eco-certifs">
+          <div class="certif-badge"><div class="cert-icon">🌿</div><div class="cert-name">Green Key</div><div class="cert-org">Certification Éco-tourisme</div></div>
+          <div class="certif-badge"><div class="cert-icon">🤝</div><div class="cert-name">Fair Trade</div><div class="cert-org">Commerce Équitable</div></div>
+          <div class="certif-badge"><div class="cert-icon">🌍</div><div class="cert-name">UICN Partner</div><div class="cert-org">Conservation Nature</div></div>
+          <div class="certif-badge"><div class="cert-icon">⭐</div><div class="cert-name">Top Éco-Lodge</div><div class="cert-org">Africa Travel Awards 2024</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testis">
+  <div class="section-inner">
+    <div class="s-header center">
+      <div class="s-tag">Avis voyageurs</div>
+      <h2 class="s-title">Ils ont vécu l'expérience</h2>
+    </div>
+    <div class="testis-grid">
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Une expérience humaine extraordinaire. Maminata et sa famille nous ont accueillis comme si nous faisions partie de la famille. La cuisine était divine.</p><div class="testi-author"><div class="ta">SD</div><div><div class="tn">Sophie Dupont</div><div class="tr">Paris — 2 semaines au Gîte Savane</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Le safari à Nazinga était incroyable — j'ai vu des éléphants à 10 mètres ! Et le tô de mil de la mère est le meilleur plat que j'ai mangé en Afrique.</p><div class="testi-author"><div class="ta">KT</div><div><div class="tn">Koffi Togola</div><div class="tr">Abidjan — Safari + Séjour 5 jours</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">Pour ceux qui veulent fuir le tourisme de masse et vivre quelque chose de vrai, ce gîte est la perle rare du Burkina Faso. Je reviendrai chaque année.</p><div class="testi-author"><div class="ta">MB</div><div><div class="tn">Marie Bédier</div><div class="tr">Lyon — Circuit Afrique de l'Ouest</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Vivez l'<em>Afrique authentique</em></h2>
+  <p>Réservez votre séjour — chaque FCFA profite directement aux familles locales.</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-ocre-lg">Réserver mon séjour</a>
+    <a href="#" class="btn-ghost-lg">Nous écrire</a>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div>
+      <div class="fl">Gîte <span>Savane</span></div>
+      <p class="fp">Gîte éco-touristique authentique en pleine savane burkinabé, à 30km de Bobo-Dioulasso. Cuisine locale, excursions, art et artisanat du Burkina Faso.</p>
+      <div class="f-socs"><a href="#" class="f-soc">f</a><a href="#" class="f-soc">ig</a><a href="#" class="f-soc">wa</a></div>
+    </div>
+    <div class="fc"><h5>Hébergements</h5><ul><li><a href="#">Chambre Savane</a></li><li><a href="#">Suite Baobab</a></li><li><a href="#">Dortoir Voyageurs</a></li><li><a href="#">Camping</a></li></ul></div>
+    <div class="fc"><h5>Activités</h5><ul><li><a href="#">Safari Nazinga</a></li><li><a href="#">Villages artisanaux</a></li><li><a href="#">Balade vélo</a></li><li><a href="#">Soirée musicale</a></li></ul></div>
+    <div class="fc"><h5>Contact</h5><ul><li><a href="#">📍 Bobo-Dioulasso, Burkina</a></li><li><a href="#">📞 +226 25 36 47 58</a></li><li><a href="#">✉️ gitesavane@bf.com</a></li><li><a href="#">🕐 Ouvert toute l'année</a></li></ul></div>
+  </div>
+  <div class="fb">
+    <span>© 2025 Gîte Savane Burkina Faso. Tous droits réservés.</span>
+    <div><a href="#">Mentions légales</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

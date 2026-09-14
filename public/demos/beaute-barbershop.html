@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barber Kings Dakar — Barbershop Masculin Premium</title>
+<style>
+:root{--bg:#111827;--bg2:#1F2937;--bg3:#374151;--gold:#F59E0B;--gold2:#D97706;--white:#F9FAFB;--gray:#9CA3AF;--gray2:#6B7280;--dark:#000;--red:#EF4444;--green:#22C55E}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
+.demo-bar strong{color:#F59E0B}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600}
+nav{position:sticky;top:40px;z-index:999;background:#000;border-bottom:1px solid rgba(245,158,11,0.2);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.brand-crown{font-size:28px}
+.brand-name{font-size:22px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+.brand-name em{color:var(--gold);font-style:normal}
+.brand-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-top:2px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.tel-btn{display:flex;align-items:center;gap:6px;color:var(--gold);font-size:13px;font-weight:600;cursor:pointer;border:none;background:none}
+.rdv-btn{background:var(--gold);color:#000;padding:10px 22px;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
+.rdv-btn:hover{background:var(--gold2)}
+/* HERO */
+.hero{background:#000;padding:80px 32px 0;position:relative;overflow:hidden}
+.hero-grid-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,158,11,0.08) 0%,transparent 50%)}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:flex-start;position:relative}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-size:11px;letter-spacing:4px;text-transform:uppercase;margin-bottom:20px}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold)}
+.hero h1{font-size:68px;font-weight:900;line-height:0.95;text-transform:uppercase;letter-spacing:-2px;margin-bottom:24px}
+.hero h1 em{color:var(--gold);font-style:normal;display:block}
+.hero-p{color:var(--gray);font-size:15px;line-height:1.7;margin-bottom:32px;max-width:440px}
+.hero-btns{display:flex;gap:14px}
+.btn-gold{background:var(--gold);color:#000;padding:14px 28px;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+.btn-gold:hover{background:var(--gold2)}
+.btn-outline{background:transparent;color:var(--gold);padding:14px 28px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--gold);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+.btn-outline:hover{background:rgba(245,158,11,0.1)}
+.hero-numbers{display:flex;gap:32px;margin-top:40px;padding-top:32px;border-top:1px solid rgba(245,158,11,0.15)}
+.h-stat-num{font-size:30px;font-weight:900;color:var(--gold)}
+.h-stat-label{font-size:10px;color:var(--gray);text-transform:uppercase;letter-spacing:2px;margin-top:2px}
+.hero-visual{padding-top:40px}
+.barber-card{background:var(--bg2);border:1px solid rgba(245,158,11,0.15);padding:28px}
+.bc-header{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;border-bottom:1px solid rgba(245,158,11,0.1);padding-bottom:12px}
+.bc-services{display:flex;flex-direction:column;gap:0}
+.bc-svc{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.bc-svc:last-child{border-bottom:none}
+.bcs-left{display:flex;align-items:center;gap:12px}
+.bcs-emoji{font-size:22px}
+.bcs-name{font-size:14px;font-weight:600}
+.bcs-time{font-size:11px;color:var(--gray);margin-top:2px}
+.bcs-price{font-size:17px;font-weight:700;color:var(--gold)}
+.barber-cta{background:var(--gold);color:#000;width:100%;padding:14px;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;margin-top:20px;transition:all .2s}
+.barber-cta:hover{background:var(--gold2)}
+/* GOLD STRIP */
+.gold-strip{background:var(--gold);padding:14px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:8px}
+.gold-strip span{color:#000;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+/* BARBERS */
+.section{padding:70px 32px;max-width:1200px;margin:0 auto}
+.s-header{margin-bottom:50px}
+.s-eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.s-title{font-size:42px;font-weight:900;text-transform:uppercase;letter-spacing:-1px;line-height:1}
+.s-title em{color:var(--gold);font-style:normal}
+.s-desc{color:var(--gray);font-size:14px;margin-top:12px}
+.barbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.barber-profile{background:var(--bg2);border:1px solid var(--bg3);padding:24px;text-align:center;transition:all .3s;cursor:pointer}
+.barber-profile:hover{border-color:var(--gold)}
+.bp-avatar{font-size:56px;margin-bottom:16px}
+.bp-name{font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.bp-title{font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.bp-specialties{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
+.bp-spec-tag{background:var(--bg3);color:var(--gray);font-size:10px;padding:3px 8px;border-radius:2px;letter-spacing:1px}
+.bp-rating{color:var(--gold);font-size:13px;margin-top:10px}
+.bp-experience{font-size:12px;color:var(--gray);margin-top:4px}
+/* SERVICES */
+.services-section{background:var(--bg2);padding:70px 32px}
+.services-inner{max-width:1200px;margin:0 auto}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px}
+.svc-card{background:var(--bg);border:1px solid var(--bg3);padding:32px;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+.svc-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .3s}
+.svc-card:hover::after{width:100%}
+.svc-card:hover{border-color:rgba(245,158,11,0.3)}
+.svc-emoji{font-size:40px;margin-bottom:18px}
+.svc-name{font-size:18px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.svc-desc{font-size:13px;color:var(--gray);line-height:1.65;margin-bottom:18px}
+.svc-includes{list-style:none;margin-bottom:18px}
+.svc-includes li{font-size:12px;color:var(--gray);padding:4px 0;display:flex;align-items:center;gap:8px}
+.svc-includes li::before{content:'·';color:var(--gold);font-size:20px;line-height:1}
+.svc-price{font-size:24px;font-weight:900;color:var(--gold)}
+.svc-price small{font-size:13px;font-weight:400;color:var(--gray)}
+.btn-svc{margin-top:16px;background:transparent;color:var(--gold);border:1px solid var(--gold);padding:10px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.btn-svc:hover{background:var(--gold);color:#000}
+/* GALLERY */
+.gallery{padding:70px 32px;background:var(--dark)}
+.gallery-inner{max-width:1200px;margin:0 auto}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:50px}
+.gallery-item{background:var(--bg2);height:200px;display:flex;align-items:center;justify-content:center;font-size:60px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.gallery-item:hover{filter:brightness(1.1)}
+.gallery-item::after{content:attr(data-label);position:absolute;bottom:0;left:0;right:0;background:var(--gold);color:#000;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px;text-align:center;transform:translateY(100%);transition:transform .3s}
+.gallery-item:hover::after{transform:translateY(0)}
+/* TESTIMONIALS */
+.testis{padding:70px 32px;max-width:1200px;margin:0 auto}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px}
+.testi-card{background:var(--bg2);border:1px solid var(--bg3);padding:28px;position:relative;transition:all .3s}
+.testi-card:hover{border-color:rgba(245,158,11,0.3)}
+.testi-gold-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold)}
+.testi-stars{color:var(--gold);font-size:14px;margin-bottom:14px}
+.testi-text{font-size:14px;color:var(--gray);line-height:1.7;font-style:italic;margin-bottom:20px}
+.testi-au{display:flex;align-items:center;gap:12px}
+.testi-av{width:42px;height:42px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:#000}
+.testi-nm{font-size:14px;font-weight:700}
+.testi-lo{font-size:11px;color:var(--gray);margin-top:2px}
+/* CTA */
+.cta-section{background:var(--gold);padding:70px 32px;text-align:center}
+.cta-section h2{font-size:52px;font-weight:900;color:#000;text-transform:uppercase;letter-spacing:-1px;margin-bottom:12px}
+.cta-section p{font-size:18px;color:rgba(0,0,0,0.7);margin-bottom:32px}
+.btn-dark{background:#000;color:var(--gold);padding:16px 40px;font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px}
+/* FOOTER */
+footer{background:#000;padding:60px 32px 20px;border-top:1px solid rgba(245,158,11,0.1)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-desc{color:var(--gray2);font-size:13px;line-height:1.7;margin:12px 0}
+.fh{font-size:10px;font-weight:700;margin-bottom:14px;color:var(--gold);letter-spacing:3px;text-transform:uppercase}
+.ful{list-style:none}
+.ful li{margin-bottom:8px}
+.ful li a{color:var(--gray2);text-decoration:none;font-size:13px;transition:color .2s}
+.ful li a:hover{color:var(--gold)}
+.foot-bottom{border-top:1px solid rgba(245,158,11,0.1);padding-top:16px;display:flex;justify-content:space-between;color:var(--gray2);font-size:11px;letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <span>Démo IBIG Digital — <strong>Barber Kings Dakar</strong> — Commander ce template :</span>
+  <strong>25 000 FCFA</strong>
+  <a href="#">Commander</a>
+</div>
+<nav>
+  <div class="nav-brand">
+    <span class="brand-crown">👑</span>
+    <div>
+      <div class="brand-name">Barber <em>Kings</em></div>
+      <div class="brand-sub">Dakar · Premium Barbershop</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Coupes</a></li>
+    <li><a href="#">Barbe</a></li>
+    <li><a href="#">Soins Homme</a></li>
+    <li><a href="#">Maîtres Barbiers</a></li>
+    <li><a href="#">Tarifs</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="tel-btn">📞 +221 78 000 000</button>
+    <button class="rdv-btn">Réserver</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Le Royaume du Style Masculin</div>
+      <h1>Soyez<br>le <em>Roi</em><br>du Look</h1>
+      <p class="hero-p">Coupes signature, dégradés de précision, mise en forme de barbe — nos maîtres barbiers de Dakar sculptent votre style avec un savoir-faire exceptionnel.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-gold">Réserver Maintenant</a>
+        <a href="#" class="btn-outline">Voir nos Services</a>
+      </div>
+      <div class="hero-numbers">
+        <div><div class="h-stat-num">10 ans</div><div class="h-stat-label">d'excellence</div></div>
+        <div><div class="h-stat-num">15 000+</div><div class="h-stat-label">Clients fidèles</div></div>
+        <div><div class="h-stat-num">8</div><div class="h-stat-label">Maîtres barbiers</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="barber-card">
+        <div class="bc-header">Services Express · Disponible Maintenant</div>
+        <div class="bc-services">
+          <div class="bc-svc"><div class="bcs-left"><div class="bcs-emoji">💈</div><div><div class="bcs-name">Coupe + Dégradé</div><div class="bcs-time">⏰ 30-45 min</div></div></div><div class="bcs-price">8 000 FCFA</div></div>
+          <div class="bc-svc"><div class="bcs-left"><div class="bcs-emoji">🪒</div><div><div class="bcs-name">Taille de Barbe</div><div class="bcs-time">⏰ 20-30 min</div></div></div><div class="bcs-price">5 000 FCFA</div></div>
+          <div class="bc-svc"><div class="bcs-left"><div class="bcs-emoji">✨</div><div><div class="bcs-name">Coupe + Barbe Complète</div><div class="bcs-time">⏰ 60-75 min</div></div></div><div class="bcs-price">12 500 FCFA</div></div>
+          <div class="bc-svc"><div class="bcs-left"><div class="bcs-emoji">👑</div><div><div class="bcs-name">Package King</div><div class="bcs-time">⏰ 90-120 min</div></div></div><div class="bcs-price">22 000 FCFA</div></div>
+        </div>
+        <button class="barber-cta">📅 RÉSERVER MAINTENANT</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-strip">
+  <span>💈 Accueil sans RDV</span>
+  <span>🕐 Ouvert 7j/7</span>
+  <span>👑 Maîtres certifiés</span>
+  <span>💳 Wave & Orange Money</span>
+  <span>📸 Lookbook disponible</span>
+</div>
+
+<div class="section">
+  <div class="s-header">
+    <div class="s-eyebrow">Notre Équipe</div>
+    <div class="s-title">Les <em>Maîtres</em><br>Barbiers</div>
+    <div class="s-desc">8 artistes du ciseau, chacun spécialisé dans son domaine</div>
+  </div>
+  <div class="barbers-grid">
+    <div class="barber-profile">
+      <div class="bp-avatar">💈</div>
+      <div class="bp-name">Moussa Fall</div>
+      <div class="bp-title">Master Barber · 15 ans</div>
+      <div class="bp-specialties"><span class="bp-spec-tag">Dégradés</span><span class="bp-spec-tag">Fades</span><span class="bp-spec-tag">Textured</span></div>
+      <div class="bp-rating">★★★★★ (1 240)</div>
+      <div class="bp-experience">15 ans · Spécialiste fade</div>
+    </div>
+    <div class="barber-profile">
+      <div class="bp-avatar">🪒</div>
+      <div class="bp-name">Ibrahima Sy</div>
+      <div class="bp-title">Beard Specialist · 8 ans</div>
+      <div class="bp-specialties"><span class="bp-spec-tag">Barbe</span><span class="bp-spec-tag">Rasage</span><span class="bp-spec-tag">Design</span></div>
+      <div class="bp-rating">★★★★★ (890)</div>
+      <div class="bp-experience">8 ans · Artiste barbe</div>
+    </div>
+    <div class="barber-profile">
+      <div class="bp-avatar">✂️</div>
+      <div class="bp-name">Papa Diop</div>
+      <div class="bp-title">Style Director · 12 ans</div>
+      <div class="bp-specialties"><span class="bp-spec-tag">Coupe</span><span class="bp-spec-tag">Afro</span><span class="bp-spec-tag">Dreadlocks</span></div>
+      <div class="bp-rating">★★★★★ (1 560)</div>
+      <div class="bp-experience">12 ans · Afro specialist</div>
+    </div>
+    <div class="barber-profile">
+      <div class="bp-avatar">👑</div>
+      <div class="bp-name">Assane Niang</div>
+      <div class="bp-title">Lead Barber · 10 ans</div>
+      <div class="bp-specialties"><span class="bp-spec-tag">VIP</span><span class="bp-spec-tag">Mariage</span><span class="bp-spec-tag">Events</span></div>
+      <div class="bp-rating">★★★★★ (2 100)</div>
+      <div class="bp-experience">10 ans · Expert VIP</div>
+    </div>
+  </div>
+</div>
+
+<div class="services-section">
+  <div class="services-inner">
+    <div class="s-header">
+      <div class="s-eyebrow">Notre Menu</div>
+      <div class="s-title">Services <em>Premium</em></div>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-emoji">💈</div>
+        <div class="svc-name">Coupe Signature</div>
+        <div class="svc-desc">Notre coupe emblématique — dégradé de précision, finish parfait avec rasoir droit, finalisation cire.</div>
+        <ul class="svc-includes">
+          <li>Consultation style incluse</li>
+          <li>Shampooing et séchage</li>
+          <li>Dégradé machine + ciseau</li>
+          <li>Rasage des contours au rasoir</li>
+          <li>Finition cire ou huile</li>
+        </ul>
+        <div class="svc-price">8 000 FCFA <small>/ séance</small></div>
+        <button class="btn-svc">Réserver</button>
+      </div>
+      <div class="svc-card">
+        <div class="svc-emoji">🪒</div>
+        <div class="svc-name">Mise en Forme Barbe</div>
+        <div class="svc-desc">Dessin précis des contours, taille personnalisée, soin hydratant — une barbe sculptée comme une œuvre d'art.</div>
+        <ul class="svc-includes">
+          <li>Analyse de la pilosité</li>
+          <li>Design barbe personnalisé</li>
+          <li>Rasage au rasoir droit</li>
+          <li>Soin barbe huile premium</li>
+          <li>Styling et shaping final</li>
+        </ul>
+        <div class="svc-price">5 000 FCFA <small>/ séance</small></div>
+        <button class="btn-svc">Réserver</button>
+      </div>
+      <div class="svc-card">
+        <div class="svc-emoji">👑</div>
+        <div class="svc-name">Package King</div>
+        <div class="svc-desc">Le summum de l'expérience Barber Kings — coupe, barbe, soins complets, massage du cuir chevelu.</div>
+        <ul class="svc-includes">
+          <li>Coupe signature complète</li>
+          <li>Mise en forme barbe</li>
+          <li>Masque visage kaolinite</li>
+          <li>Massage crânien 15 min</li>
+          <li>Boisson offerte · Priorité</li>
+        </ul>
+        <div class="svc-price">22 000 FCFA <small>/ séance</small></div>
+        <button class="btn-svc">Réserver</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="gallery">
+  <div class="gallery-inner">
+    <div class="s-header" style="color:var(--white)">
+      <div class="s-eyebrow">Nos Créations</div>
+      <div class="s-title" style="color:var(--white)">Le <em>Lookbook</em></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item" data-label="Dégradé Skin Fade">💈</div>
+      <div class="gallery-item" data-label="Barbe Design Arabe">🪒</div>
+      <div class="gallery-item" data-label="Afro Texture Cut">✂️</div>
+      <div class="gallery-item" data-label="Buzz Cut Premium">💇‍♂️</div>
+      <div class="gallery-item" data-label="Coupe Mariage VIP">👑</div>
+      <div class="gallery-item" data-label="Dreadlocks Styling">🎭</div>
+      <div class="gallery-item" data-label="French Crop">🎨</div>
+      <div class="gallery-item" data-label="Full Beard Treatment">🪞</div>
+    </div>
+  </div>
+</div>
+
+<div class="testis">
+  <div class="s-header">
+    <div class="s-eyebrow">Témoignages</div>
+    <div class="s-title">Nos <em>Rois</em> Témoignent</div>
+  </div>
+  <div class="testis-grid">
+    <div class="testi-card">
+      <div class="testi-gold-accent"></div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Ici, on ne coupe pas des cheveux — on sculpte une identité. Moussa Fall est un vrai artiste. Depuis 3 ans, c'est mon seul barbier à Dakar."</div>
+      <div class="testi-au"><div class="testi-av">AS</div><div><div class="testi-nm">Amadou Sarr</div><div class="testi-lo">Mermoz, Dakar</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-gold-accent"></div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Le Package King c'est du luxe pur. Le masque visage, le massage crânien — je ressors comme un nouveau homme. Mon business meeting suit toujours mon RDV ici."</div>
+      <div class="testi-au"><div class="testi-av">CB</div><div><div class="testi-nm">Cheikh Ba</div><div class="testi-lo">Plateau, Dakar</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-gold-accent"></div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Ils ont géré ma coiffure de mariage parfaitement. Coupe, barbe, tout était impeccable. Toutes mes photos de mariage sont réussies grâce à eux !"</div>
+      <div class="testi-au"><div class="testi-av">OD</div><div><div class="testi-nm">Oumar Diallo</div><div class="testi-lo">Almadies, Dakar</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h2>Votre Tour de Roi</h2>
+  <p>Prenez rendez-vous maintenant — priorité aux membres VIP</p>
+  <button class="btn-dark">👑 Réserver Maintenant →</button>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:22px;font-weight:900;letter-spacing:2px;color:var(--gold)">BARBER KINGS</div>
+        <p class="footer-desc">Le barbershop masculin premium de Dakar depuis 2015. Maîtres barbiers certifiés, services haut de gamme, ambiance exclusive.</p>
+      </div>
+      <div><div class="fh">Services</div><ul class="ful"><li><a href="#">Coupes Homme</a></li><li><a href="#">Barbe & Rasage</a></li><li><a href="#">Soins Capillaires</a></li><li><a href="#">Package King</a></li></ul></div>
+      <div><div class="fh">Infos</div><ul class="ful"><li><a href="#">Nos Barbiers</a></li><li><a href="#">Tarifs</a></li><li><a href="#">Carte Cadeau</a></li><li><a href="#">Carte de Fidélité</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Sacré-Cœur, Dakar</a></li><li><a href="#">📞 +221 78 000 000</a></li><li><a href="#">💬 WhatsApp</a></li><li><a href="#">Lun–Dim 8h–20h</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2025 BARBER KINGS DAKAR</span><span>CGV · MENTIONS LÉGALES</span></div>
+  </div>
+</footer>
+</body>
+</html>

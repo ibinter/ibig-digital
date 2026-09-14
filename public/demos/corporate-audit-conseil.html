@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conseil & Audit Stratégique Africa</title>
+<style>
+:root{
+  --bg:#FAFAFA;
+  --primary:#374151;
+  --accent:#D97706;
+  --accent-light:#FEF3C7;
+  --text:#111827;
+  --text-light:#6B7280;
+  --border:#E5E7EB;
+  --dark:#1F2937;
+  --white:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
+.demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
+.topbar{background:var(--dark);color:rgba(255,255,255,0.7);padding:9px 40px;display:flex;justify-content:space-between;font-size:12px;margin-top:40px;}
+nav{position:sticky;top:40px;background:#fff;border-bottom:1px solid var(--border);z-index:100;box-shadow:0 1px 6px rgba(0,0,0,0.06);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.logo{font-size:17px;font-weight:800;color:var(--text);letter-spacing:-0.3px;}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--text-light);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--accent);}
+.btn-nav{background:var(--accent);color:#fff;padding:10px 22px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:700;transition:background 0.2s;}
+.btn-nav:hover{background:#B45309;}
+
+/* HERO */
+.hero{min-height:88vh;background:linear-gradient(160deg,#111827 0%,#1F2937 50%,#374151 100%);display:flex;align-items:center;position:relative;overflow:hidden;}
+.hero-accent-line{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent),#F59E0B,var(--accent));}
+.hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.hero-content{max-width:1180px;margin:0 auto;padding:0 40px;width:100%;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;position:relative;z-index:1;}
+.hero-pre{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.hero-pre-line{width:36px;height:3px;background:var(--accent);}
+.hero-pre-text{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.hero h1{font-size:52px;font-weight:800;color:#fff;line-height:1.1;letter-spacing:-1.5px;margin-bottom:20px;}
+.hero h1 em{font-style:normal;color:#FCD34D;}
+.hero-desc{color:rgba(255,255,255,0.7);font-size:17px;line-height:1.7;margin-bottom:32px;}
+.hero-certifs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
+.cert-item{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);padding:6px 14px;border-radius:4px;font-size:12px;font-weight:600;}
+.cert-item span{color:var(--accent);}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-h-gold{background:var(--accent);color:#fff;padding:14px 32px;border-radius:6px;text-decoration:none;font-size:15px;font-weight:700;transition:all 0.2s;}
+.btn-h-gold:hover{background:#B45309;transform:translateY(-1px);}
+.btn-h-outline{border:2px solid rgba(255,255,255,0.3);color:#fff;padding:14px 32px;border-radius:6px;text-decoration:none;font-size:15px;transition:all 0.2s;}
+
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.hs-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:22px;transition:all 0.3s;}
+.hs-card:hover{background:rgba(255,255,255,0.1);border-color:var(--accent);}
+.hs-n{font-size:36px;font-weight:800;color:var(--accent);}
+.hs-l{font-size:13px;color:rgba(255,255,255,0.6);margin-top:4px;}
+
+/* SECTIONS */
+.si{max-width:1180px;margin:0 auto;}
+.stag{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.stitle{font-size:36px;font-weight:800;color:var(--text);letter-spacing:-0.5px;margin-bottom:14px;}
+.ssub{color:var(--text-light);font-size:16px;max-width:520px;line-height:1.6;}
+.sh{margin-bottom:44px;}
+.sh.center{text-align:center;}
+.sh.center .ssub{margin:0 auto;}
+
+/* SERVICES */
+.services-section{padding:80px 40px;background:#fff;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.svc-card{border-radius:12px;padding:28px;border:1px solid var(--border);background:#fff;transition:all 0.3s;position:relative;overflow:hidden;}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transition:transform 0.3s;}
+.svc-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.08);transform:translateY(-4px);}
+.svc-card:hover::before{transform:scaleX(1);}
+.svc-num{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--text-light);text-transform:uppercase;margin-bottom:14px;}
+.svc-icon{font-size:36px;margin-bottom:14px;}
+.svc-name{font-size:18px;font-weight:700;margin-bottom:8px;}
+.svc-desc{font-size:14px;color:var(--text-light);line-height:1.6;margin-bottom:16px;}
+.svc-link{color:var(--accent);font-size:13px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px;transition:gap 0.2s;}
+.svc-link:hover{gap:10px;}
+
+/* STATS */
+.stats-section{padding:60px 40px;background:var(--accent);}
+.stats-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+.stat-n{font-size:44px;font-weight:800;color:#fff;}
+.stat-l{font-size:13px;color:rgba(255,255,255,0.75);margin-top:4px;text-transform:uppercase;letter-spacing:0.5px;}
+
+/* APPROCHE */
+.approche-section{padding:80px 40px;background:var(--bg);}
+.approche-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.approche-steps{display:flex;flex-direction:column;gap:20px;}
+.ap-step{display:flex;gap:16px;padding:22px;background:#fff;border:1px solid var(--border);border-radius:10px;transition:all 0.3s;}
+.ap-step:hover{border-color:var(--accent);box-shadow:0 4px 20px rgba(0,0,0,0.06);}
+.ap-num{width:36px;height:36px;background:var(--accent);color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex-shrink:0;}
+.ap-title{font-size:15px;font-weight:700;margin-bottom:4px;}
+.ap-desc{font-size:13px;color:var(--text-light);}
+.approche-visual{background:var(--dark);border-radius:16px;padding:36px;color:#fff;}
+.av-title{font-size:22px;font-weight:700;margin-bottom:8px;}
+.av-sub{color:rgba(255,255,255,0.6);font-size:14px;margin-bottom:28px;}
+.av-skills{display:flex;flex-direction:column;gap:12px;}
+.av-skill{display:flex;align-items:center;gap:12px;}
+.av-skill-name{font-size:13px;color:rgba(255,255,255,0.8);width:160px;flex-shrink:0;}
+.av-bar{flex:1;background:rgba(255,255,255,0.1);border-radius:4px;height:6px;}
+.av-bar-fill{height:100%;border-radius:4px;background:var(--accent);}
+.av-pct{font-size:12px;color:var(--accent);font-weight:700;width:36px;text-align:right;}
+
+/* SECTEURS */
+.secteurs-section{padding:80px 40px;background:#fff;}
+.secteurs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.secteur-card{border-radius:10px;padding:22px;background:var(--bg);border:1px solid var(--border);text-align:center;transition:all 0.3s;}
+.secteur-card:hover{background:var(--accent-light);border-color:var(--accent);}
+.secteur-icon{font-size:36px;margin-bottom:12px;}
+.secteur-name{font-size:14px;font-weight:700;color:var(--text);}
+
+/* REFERENCES */
+.refs-section{padding:80px 40px;background:var(--bg);}
+.refs-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;}
+.ref-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:all 0.3s;}
+.ref-item:hover{border-color:var(--accent);}
+.ref-logo{font-size:28px;}
+.ref-name{font-size:12px;font-weight:700;color:var(--text-light);text-align:center;}
+
+/* TEMOIGNAGES */
+.testis-section{padding:80px 40px;background:var(--dark);}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.testi-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:28px;}
+.t-quote{font-size:48px;color:var(--accent);line-height:0.8;margin-bottom:14px;}
+.t-text{color:rgba(255,255,255,0.8);font-style:italic;font-size:15px;line-height:1.7;margin-bottom:20px;}
+.t-author{display:flex;align-items:center;gap:12px;}
+.ta{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;}
+.tn{font-size:14px;font-weight:700;color:#fff;}
+.tr{font-size:12px;color:rgba(255,255,255,0.5);}
+.testis-section .stitle{color:#fff;}
+.testis-section .stag{color:#FCD34D;}
+
+/* CTA */
+.cta-section{padding:100px 40px;background:linear-gradient(135deg,var(--dark),var(--primary));text-align:center;}
+.cta-section h2{font-size:44px;font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:14px;}
+.cta-section h2 span{color:#FCD34D;}
+.cta-section p{color:rgba(255,255,255,0.7);font-size:17px;margin-bottom:36px;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-cta-g{background:var(--accent);color:#fff;padding:16px 40px;border-radius:6px;text-decoration:none;font-size:16px;font-weight:700;transition:all 0.2s;}
+.btn-cta-g:hover{background:#B45309;transform:translateY(-2px);}
+.btn-cta-o{border:2px solid rgba(255,255,255,0.4);color:#fff;padding:16px 40px;border-radius:6px;text-decoration:none;font-size:16px;transition:all 0.2s;}
+
+footer{background:#0D1117;padding:60px 40px 28px;}
+.fg{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.fl{font-size:18px;font-weight:800;color:#fff;margin-bottom:14px;}
+.fl span{color:var(--accent);}
+footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:16px;}
+.f-socs{display:flex;gap:8px;}
+.f-soc{width:34px;height:34px;background:rgba(255,255,255,0.07);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;text-decoration:none;color:rgba(255,255,255,0.5);transition:all 0.2s;}
+.f-soc:hover{background:var(--accent);color:#fff;}
+.fc h5{color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;}
+.fc ul{list-style:none;}
+.fc li{margin-bottom:9px;}
+.fc a{color:rgba(255,255,255,0.45);font-size:13px;text-decoration:none;transition:color 0.2s;}
+.fc a:hover{color:var(--accent);}
+.fb{max-width:1180px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.3);}
+.fb a{color:rgba(255,255,255,0.3);text-decoration:none;}
+
+@media(max-width:900px){
+  .hero-content,.approche-grid,.testis-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:36px;}
+  .services-grid,.secteurs-grid{grid-template-columns:1fr 1fr;}
+  .refs-grid{grid-template-columns:1fr 1fr 1fr;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .fg{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+<div class="topbar">
+  <span>📍 Plateau, Abidjan · Cocody, Abidjan · Dakar · Douala</span>
+  <span>📞 +225 27 22 38 49 50 · conseil@casa-africa.ci</span>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">CASA <span>Africa</span> Conseil</div>
+    <ul class="nav-links">
+      <li><a href="#">Audit & Finance</a></li>
+      <li><a href="#">Conseil Stratégique</a></li>
+      <li><a href="#">Digital</a></li>
+      <li><a href="#">Études</a></li>
+      <li><a href="#">À propos</a></li>
+    </ul>
+    <a href="#" class="btn-nav">Prendre RDV</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-accent-line"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-pre"><div class="hero-pre-line"></div><div class="hero-pre-text">Cabinet de Conseil — Abidjan · Dakar</div></div>
+      <h1>Conseil &<br>Audit pour<br>l'Afrique <em>de demain</em></h1>
+      <p class="hero-desc">Nous aidons les organisations africaines à performer, se transformer et croître. Audit financier, stratégie, digitalisation — expertise locale, standards internationaux.</p>
+      <div class="hero-certifs">
+        <div class="cert-item">🏆 <span>Membre FIDEF</span></div>
+        <div class="cert-item">🎓 <span>Experts DSCG</span></div>
+        <div class="cert-item">🌍 <span>Cabinet Accrédité</span></div>
+        <div class="cert-item">⭐ <span>ISO 9001:2015</span></div>
+      </div>
+      <div class="hero-btns">
+        <a href="#" class="btn-h-gold">Prendre un rendez-vous</a>
+        <a href="#" class="btn-h-outline">Nos références</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hs-card"><div class="hs-n">18 ans</div><div class="hs-l">D'expérience africaine</div></div>
+      <div class="hs-card"><div class="hs-n">400+</div><div class="hs-l">Missions réalisées</div></div>
+      <div class="hs-card"><div class="hs-n">12</div><div class="hs-l">Pays d'intervention</div></div>
+      <div class="hs-card"><div class="hs-n">95%</div><div class="hs-l">Clients fidèles</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="stats-grid">
+    <div><div class="stat-n">400+</div><div class="stat-l">Missions</div></div>
+    <div><div class="stat-n">120+</div><div class="stat-l">Experts associés</div></div>
+    <div><div class="stat-n">12</div><div class="stat-l">Pays Afrique</div></div>
+    <div><div class="stat-n">2,4 Mds</div><div class="stat-l">FCFA de CA audités</div></div>
+  </div>
+</section>
+
+<section class="services-section">
+  <div class="si">
+    <div class="sh">
+      <div class="stag">Nos expertises</div>
+      <h2 class="stitle">Une offre intégrée pour votre performance</h2>
+      <p class="ssub">Du diagnostic au déploiement, nous vous accompagnons à chaque étape de votre transformation.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card"><div class="svc-num">01 / Audit</div><div class="svc-icon">📋</div><div class="svc-name">Audit Financier & Comptable</div><div class="svc-desc">Certification des comptes, audit légal, commissariat aux comptes, due diligence financière pour acquisitions et fusions.</div><a href="#" class="svc-link">En savoir plus →</a></div>
+      <div class="svc-card"><div class="svc-num">02 / Stratégie</div><div class="svc-icon">🎯</div><div class="svc-name">Conseil Stratégique</div><div class="svc-desc">Diagnostic organisationnel, plan stratégique 3-5 ans, développement marché, restructurations et accompagnement au changement.</div><a href="#" class="svc-link">En savoir plus →</a></div>
+      <div class="svc-card"><div class="svc-num">03 / Digital</div><div class="svc-icon">💻</div><div class="svc-name">Transformation Digitale</div><div class="svc-desc">Stratégie SI, ERP & CRM africains, digitalisation des processus, cybersécurité, accompagnement au changement numérique.</div><a href="#" class="svc-link">En savoir plus →</a></div>
+      <div class="svc-card"><div class="svc-num">04 / RH</div><div class="svc-icon">👥</div><div class="svc-name">Conseil RH & Organisation</div><div class="svc-desc">Audit RH, politiques de rémunération, formation managériale, restructurations, évaluation des performances.</div><a href="#" class="svc-link">En savoir plus →</a></div>
+      <div class="svc-card"><div class="svc-num">05 / Fiscal</div><div class="svc-icon">⚖️</div><div class="svc-name">Fiscalité & Droit des Affaires</div><div class="svc-desc">Optimisation fiscale légale, contentieux fiscal, droit OHADA, contrats commerciaux, assistance juridique entreprises.</div><a href="#" class="svc-link">En savoir plus →</a></div>
+      <div class="svc-card"><div class="svc-num">06 / Études</div><div class="svc-icon">📊</div><div class="svc-name">Études & Recherche</div><div class="svc-desc">Études de marché, business plans, études de faisabilité, analyse sectorielle, études d'impact socio-économique.</div><a href="#" class="svc-link">En savoir plus →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="approche-section">
+  <div class="si">
+    <div class="approche-grid">
+      <div>
+        <div class="stag">Notre approche</div>
+        <h2 class="stitle">Une méthode éprouvée en contexte africain</h2>
+        <p class="ssub">Nous avons développé une méthodologie spécifique aux réalités africaines, combinant standards internationaux et pragmatisme local.</p>
+        <div class="approche-steps" style="margin-top:28px">
+          <div class="ap-step"><div class="ap-num">1</div><div><div class="ap-title">Diagnostic approfondi</div><div class="ap-desc">Analyse 360° de votre organisation, identification des leviers de performance et des risques.</div></div></div>
+          <div class="ap-step"><div class="ap-num">2</div><div><div class="ap-title">Recommandations contextualisées</div><div class="ap-desc">Des solutions adaptées à vos contraintes africaines, réalistes et actionnables.</div></div></div>
+          <div class="ap-step"><div class="ap-num">3</div><div><div class="ap-title">Accompagnement à l'implémentation</div><div class="ap-desc">Nous restons à vos côtés jusqu'à l'obtention des résultats concrets.</div></div></div>
+          <div class="ap-step"><div class="ap-num">4</div><div><div class="ap-title">Mesure des résultats</div><div class="ap-desc">Tableaux de bord et KPIs pour mesurer l'impact de chaque transformation.</div></div></div>
+        </div>
+      </div>
+      <div class="approche-visual">
+        <div class="av-title">Nos domaines d'expertise</div>
+        <div class="av-sub">Évaluation par nos 120+ partenaires clients</div>
+        <div class="av-skills">
+          <div class="av-skill"><div class="av-skill-name">Audit financier</div><div class="av-bar"><div class="av-bar-fill" style="width:95%"></div></div><div class="av-pct">95%</div></div>
+          <div class="av-skill"><div class="av-skill-name">Stratégie d'entreprise</div><div class="av-bar"><div class="av-bar-fill" style="width:90%"></div></div><div class="av-pct">90%</div></div>
+          <div class="av-skill"><div class="av-skill-name">Transformation digitale</div><div class="av-bar"><div class="av-bar-fill" style="width:85%"></div></div><div class="av-pct">85%</div></div>
+          <div class="av-skill"><div class="av-skill-name">Droit OHADA</div><div class="av-bar"><div class="av-bar-fill" style="width:88%"></div></div><div class="av-pct">88%</div></div>
+          <div class="av-skill"><div class="av-skill-name">Management RH</div><div class="av-bar"><div class="av-bar-fill" style="width:82%"></div></div><div class="av-pct">82%</div></div>
+          <div class="av-skill"><div class="av-skill-name">Études de marché</div><div class="av-bar"><div class="av-bar-fill" style="width:92%"></div></div><div class="av-pct">92%</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secteurs-section">
+  <div class="si">
+    <div class="sh center">
+      <div class="stag">Secteurs</div>
+      <h2 class="stitle">Experts dans vos secteurs</h2>
+    </div>
+    <div class="secteurs-grid">
+      <div class="secteur-card"><div class="secteur-icon">🏦</div><div class="secteur-name">Banques & Finance</div></div>
+      <div class="secteur-card"><div class="secteur-icon">🌾</div><div class="secteur-name">Agriculture & Agro-industrie</div></div>
+      <div class="secteur-card"><div class="secteur-icon">🏥</div><div class="secteur-name">Santé & Pharma</div></div>
+      <div class="secteur-card"><div class="secteur-icon">📡</div><div class="secteur-name">Télécoms & Technologie</div></div>
+      <div class="secteur-card"><div class="secteur-icon">🏗️</div><div class="secteur-name">BTP & Immobilier</div></div>
+      <div class="secteur-card"><div class="secteur-icon">⚡</div><div class="secteur-name">Énergie & Mines</div></div>
+      <div class="secteur-card"><div class="secteur-icon">🛒</div><div class="secteur-name">Commerce & Distribution</div></div>
+      <div class="secteur-card"><div class="secteur-icon">🏛️</div><div class="secteur-name">Institutions Publiques</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="refs-section">
+  <div class="si">
+    <div class="sh center">
+      <div class="stag">Références clients</div>
+      <h2 class="stitle">Ils nous font confiance</h2>
+      <p class="ssub">Organisations publiques et privées d'Afrique de l'Ouest qui ont choisi CASA Africa.</p>
+    </div>
+    <div class="refs-grid">
+      <div class="ref-item"><div class="ref-logo">🏦</div><div class="ref-name">BCEAO</div></div>
+      <div class="ref-item"><div class="ref-logo">🛢️</div><div class="ref-name">SIR Abidjan</div></div>
+      <div class="ref-item"><div class="ref-logo">📡</div><div class="ref-name">MTN Côte d'Ivoire</div></div>
+      <div class="ref-item"><div class="ref-logo">🌾</div><div class="ref-name">SIFCA Groupe</div></div>
+      <div class="ref-item"><div class="ref-logo">🏛️</div><div class="ref-name">Ministère des Finances</div></div>
+      <div class="ref-item"><div class="ref-logo">✈️</div><div class="ref-name">Air Côte d'Ivoire</div></div>
+      <div class="ref-item"><div class="ref-logo">🏗️</div><div class="ref-name">Orascom CI</div></div>
+      <div class="ref-item"><div class="ref-logo">🌍</div><div class="ref-name">BAD Abidjan</div></div>
+      <div class="ref-item"><div class="ref-logo">💊</div><div class="ref-name">Ivoire Pharma</div></div>
+      <div class="ref-item"><div class="ref-logo">⚡</div><div class="ref-name">CIE Énergie</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testis-section">
+  <div class="si">
+    <div class="sh center">
+      <div class="stag">Témoignages</div>
+      <h2 class="stitle">Ce que disent nos clients</h2>
+    </div>
+    <div class="testis-grid">
+      <div class="testi-card"><div class="t-quote">"</div><p class="t-text">CASA Africa a réalisé l'audit de consolidation de notre groupe en 6 semaines. Leur expertise comptable SYSCOHADA et la qualité de leurs recommandations sont inégalées en Afrique de l'Ouest.</p><div class="t-author"><div class="ta">BK</div><div><div class="tn">Benjamin Koné</div><div class="tr">DAF · Groupe SIFCA</div></div></div></div>
+      <div class="testi-card"><div class="t-quote">"</div><p class="t-text">La mission de transformation digitale a permis de réduire nos délais de traitement de 60%. L'équipe CASA comprend les réalités africaines et adapte ses solutions en conséquence.</p><div class="t-author"><div class="ta">AM</div><div><div class="tn">Aminata Maïga</div><div class="tr">DSI · Banque régionale</div></div></div></div>
+      <div class="testi-card"><div class="t-quote">"</div><p class="t-text">Leur étude de faisabilité pour notre expansion au Ghana et au Sénégal était d'une rigueur exemplaire. Grâce à leur travail, nous avons levé 5 milliards FCFA auprès de nos investisseurs.</p><div class="t-author"><div class="ta">OT</div><div><div class="tn">Oumar Traoré</div><div class="tr">PDG · Groupe Logistique Africa</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Parlons de <span>votre projet</span></h2>
+  <p>Premier entretien gratuit · Réponse sous 24h</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-cta-g">Prendre rendez-vous</a>
+    <a href="#" class="btn-cta-o">Télécharger notre profil</a>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div>
+      <div class="fl">CASA <span>Africa</span> Conseil</div>
+      <p class="fp">Cabinet d'audit et de conseil pan-africain. Présent dans 12 pays, nous accompagnons la transformation des organisations africaines depuis 2007.</p>
+      <div class="f-socs"><a href="#" class="f-soc">in</a><a href="#" class="f-soc">f</a><a href="#" class="f-soc">tw</a></div>
+    </div>
+    <div class="fc"><h5>Services</h5><ul><li><a href="#">Audit financier</a></li><li><a href="#">Conseil stratégique</a></li><li><a href="#">Transformation digitale</a></li><li><a href="#">Fiscalité</a></li></ul></div>
+    <div class="fc"><h5>À propos</h5><ul><li><a href="#">Notre cabinet</a></li><li><a href="#">Nos experts</a></li><li><a href="#">Références</a></li><li><a href="#">Rejoindre l'équipe</a></li></ul></div>
+    <div class="fc"><h5>Contact</h5><ul><li><a href="#">📍 Plateau, Abidjan</a></li><li><a href="#">📞 +225 27 22 38 49 50</a></li><li><a href="#">✉️ conseil@casa-africa.ci</a></li><li><a href="#">🕐 Lun-Ven 8h-18h</a></li></ul></div>
+  </div>
+  <div class="fb">
+    <span>© 2025 CASA Africa Conseil & Audit. Tous droits réservés.</span>
+    <div><a href="#">Mentions légales</a> · <a href="#">RGPD</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

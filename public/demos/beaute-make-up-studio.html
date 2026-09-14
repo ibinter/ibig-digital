@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Make-Up Pro Studio Kigali — Maquillage Artistique</title>
+<style>
+:root{--bg:#1A1A1A;--bg2:#222222;--bg3:#2A2A2A;--rose-gold:#C9A096;--rose-gold2:#B8887D;--rose-light:#F0DDD9;--cream:#FAF6F5;--gray:#9CA3AF;--dark:#111;--gold:#D4AF37;--accent:#E8C5BD;--white:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
+.demo-bar strong{color:var(--rose-gold)}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600}
+nav{position:sticky;top:40px;z-index:999;background:rgba(26,26,26,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,160,150,0.2);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.brand-logo{width:40px;height:40px;background:var(--rose-gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
+.brand-nm{font-size:18px;font-weight:800;color:var(--white);letter-spacing:1px}
+.brand-sub{font-size:10px;color:var(--rose-gold);letter-spacing:3px;text-transform:uppercase;margin-top:2px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:13px;letter-spacing:1px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--rose-gold)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.book-btn{background:var(--rose-gold);color:#fff;padding:10px 22px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
+.book-btn:hover{background:var(--rose-gold2);transform:translateY(-1px)}
+/* HERO */
+.hero{background:linear-gradient(135deg,#1A1A1A 0%,#2A1A18 100%);padding:80px 32px 60px;min-height:560px;display:flex;align-items:center}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,160,150,0.12);color:var(--rose-gold);border:1px solid rgba(201,160,150,0.3);padding:6px 16px;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px}
+.hero h1{font-size:54px;font-weight:800;line-height:1.08;margin-bottom:18px;font-family:Georgia,serif}
+.hero h1 span{color:var(--rose-gold)}
+.hero-p{font-size:16px;color:var(--gray);line-height:1.75;margin-bottom:28px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-rg{background:var(--rose-gold);color:#fff;padding:14px 28px;border-radius:4px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-rg:hover{background:var(--rose-gold2);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--rose-gold);padding:14px 28px;border-radius:4px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:1.5px solid var(--rose-gold);cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-outline:hover{background:var(--rose-gold);color:#fff}
+.hero-stats{display:flex;gap:32px;margin-top:36px;border-top:1px solid rgba(201,160,150,0.15);padding-top:28px}
+.h-stat-num{font-size:28px;font-weight:800;color:var(--rose-gold)}
+.h-stat-label{font-size:11px;color:var(--gray);margin-top:3px;letter-spacing:1px;text-transform:uppercase}
+.hero-visual{}
+.portfolio-card{background:#222;border-radius:12px;border:1px solid rgba(201,160,150,0.2);overflow:hidden}
+.pc-header{background:linear-gradient(135deg,#2A1A18,#3A2520);padding:24px;display:flex;align-items:center;justify-content:space-between}
+.pc-title{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose-gold)}
+.pc-status{background:rgba(22,163,74,0.2);color:#4ADE80;font-size:10px;padding:4px 10px;border-radius:20px;font-weight:700}
+.portfolio-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:0}
+.pm-item{background:#333;height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.pm-item::after{content:attr(data-label);position:absolute;bottom:0;left:0;right:0;background:rgba(201,160,150,0.9);color:#fff;font-size:9px;font-weight:700;padding:4px;text-align:center;transform:translateY(100%);transition:transform .3s}
+.pm-item:hover::after{transform:translateY(0)}
+.pm-item:hover{transform:scale(1.05)}
+.pc-footer{padding:20px 24px;background:#1A1A1A}
+.pc-footer-row{display:flex;align-items:center;justify-content:space-between}
+.pcf-label{font-size:12px;color:var(--gray);text-transform:uppercase;letter-spacing:1px}
+.pcf-count{font-size:22px;font-weight:800;color:var(--rose-gold)}
+/* STRIP */
+.strip{background:var(--rose-gold);padding:14px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:8px}
+.strip span{color:#fff;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+/* SERVICES */
+.services-section{padding:70px 32px;max-width:1200px;margin:0 auto}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--rose-gold);margin-bottom:10px}
+.sec-h{font-size:38px;font-weight:700;margin-bottom:8px;font-family:Georgia,serif}
+.sec-p{font-size:15px;color:var(--gray);margin-bottom:40px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc-card{background:var(--bg2);border-radius:10px;padding:28px;border:1px solid rgba(201,160,150,0.1);transition:all .3s;cursor:pointer}
+.svc-card:hover{border-color:var(--rose-gold);transform:translateY(-6px);background:#2A1A18}
+.svc-icon{font-size:44px;margin-bottom:16px}
+.svc-name{font-size:18px;font-weight:700;margin-bottom:8px}
+.svc-desc{font-size:13px;color:var(--gray);line-height:1.65;margin-bottom:14px}
+.svc-details{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+.svc-detail{font-size:12px;color:var(--gray);display:flex;align-items:center;gap:6px}
+.svc-price-row{display:flex;align-items:center;justify-content:space-between}
+.svc-price{font-size:22px;font-weight:800;color:var(--rose-gold)}
+.svc-book{background:rgba(201,160,150,0.12);color:var(--rose-gold);border:1px solid rgba(201,160,150,0.3);padding:8px 16px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.svc-book:hover{background:var(--rose-gold);color:#fff}
+/* PORTFOLIO */
+.portfolio-section{background:var(--bg2);padding:70px 32px}
+.portfolio-inner{max-width:1200px;margin:0 auto}
+.portfolio-tabs{display:flex;gap:6px;margin-bottom:32px;border-bottom:1px solid rgba(201,160,150,0.1);padding-bottom:16px}
+.pt-tab{background:transparent;color:var(--gray);border:none;padding:8px 18px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s;border-bottom:2px solid transparent;margin-bottom:-17px}
+.pt-tab:hover,.pt-tab.on{color:var(--rose-gold);border-bottom-color:var(--rose-gold)}
+.portfolio-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.pg-item{background:#333;border-radius:8px;overflow:hidden;cursor:pointer;transition:all .3s;border:1px solid transparent}
+.pg-item:hover{border-color:var(--rose-gold);transform:scale(1.02)}
+.pg-img{height:200px;display:flex;align-items:center;justify-content:center;font-size:70px;background:linear-gradient(135deg,#2A1A18,#3A2520)}
+.pg-info{padding:14px}
+.pg-type{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--rose-gold)}
+.pg-name{font-size:13px;font-weight:600;margin-top:4px}
+/* FORMATIONS */
+.formations-section{padding:70px 32px;max-width:1200px;margin:0 auto}
+.formations-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.form-card{background:var(--bg2);border-radius:10px;overflow:hidden;border:1px solid rgba(201,160,150,0.1);transition:all .3s}
+.form-card:hover{border-color:var(--rose-gold);transform:translateY(-6px)}
+.form-header{background:linear-gradient(135deg,#2A1A18,#3A2520);padding:28px;text-align:center}
+.form-emoji{font-size:48px;margin-bottom:10px}
+.form-name{font-size:18px;font-weight:800;color:var(--rose-gold)}
+.form-body{padding:24px}
+.form-items{list-style:none;margin-bottom:20px}
+.form-items li{font-size:13px;color:var(--gray);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:8px}
+.form-price{font-size:26px;font-weight:800;color:var(--rose-gold);margin-bottom:4px}
+.form-duration{font-size:12px;color:var(--gray);margin-bottom:16px}
+.btn-form{width:100%;background:var(--rose-gold);color:#fff;border:none;padding:12px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.btn-form:hover{background:var(--rose-gold2)}
+/* ARTISTES */
+.artistes-section{background:var(--bg2);padding:70px 32px}
+.artistes-inner{max-width:1200px;margin:0 auto}
+.artistes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px}
+.art-card{background:var(--bg3);border-radius:10px;overflow:hidden;border:1px solid rgba(201,160,150,0.1);transition:all .3s;text-align:center}
+.art-card:hover{border-color:var(--rose-gold);transform:translateY(-6px)}
+.art-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:64px;background:linear-gradient(135deg,#2A1A18,#3A2520)}
+.art-body{padding:20px}
+.art-name{font-size:15px;font-weight:700}
+.art-spec{font-size:12px;color:var(--rose-gold);margin-top:4px;font-weight:600}
+.art-exp{font-size:12px;color:var(--gray);margin-top:4px}
+.art-stars{color:#F59E0B;font-size:12px;margin-top:8px}
+.art-badge{background:rgba(201,160,150,0.12);color:var(--rose-gold);font-size:10px;padding:3px 12px;border-radius:20px;font-weight:700;margin-top:8px;display:inline-block;border:1px solid rgba(201,160,150,0.2)}
+/* TESTI */
+.testis-section{padding:70px 32px;max-width:1200px;margin:0 auto}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.testi-card{background:var(--bg2);border-radius:10px;padding:28px;border:1px solid rgba(201,160,150,0.1);transition:all .3s}
+.testi-card:hover{border-color:var(--rose-gold)}
+.t-stars{color:#F59E0B;font-size:14px;margin-bottom:12px}
+.t-text{font-size:14px;color:var(--gray);line-height:1.7;font-style:italic;margin-bottom:18px}
+.t-au{display:flex;align-items:center;gap:12px}
+.t-av{width:40px;height:40px;background:var(--rose-gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+.t-nm{font-size:14px;font-weight:700}
+.t-lo{font-size:12px;color:var(--gray);margin-top:2px}
+/* FOOTER */
+footer{background:#111;padding:60px 32px 24px;border-top:1px solid rgba(201,160,150,0.1)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-desc{font-size:13px;color:var(--gray);line-height:1.7;margin:12px 0}
+.fh{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--rose-gold);margin-bottom:14px}
+.ful{list-style:none}
+.ful li{margin-bottom:9px}
+.ful li a{color:var(--gray);text-decoration:none;font-size:13px;transition:color .2s}
+.ful li a:hover{color:var(--rose-gold)}
+.foot-bottom{border-top:1px solid rgba(201,160,150,0.1);padding-top:20px;display:flex;justify-content:space-between;color:#4B5563;font-size:12px}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <span>Démo IBIG Digital — <strong>Make-Up Pro Studio Kigali</strong> — Commander ce template :</span>
+  <strong>25 000 FCFA</strong>
+  <a href="#">Commander</a>
+</div>
+<nav>
+  <div class="nav-brand">
+    <div class="brand-logo">💄</div>
+    <div>
+      <div class="brand-nm">MAKE-UP PRO STUDIO</div>
+      <div class="brand-sub">Kigali · Rwanda</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#">Formations</a></li>
+    <li><a href="#">Artistes</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="book-btn">💄 Réserver</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">💄 Studio Professionnel · Kigali · Rwanda</div>
+      <h1>L'art du<br><span>maquillage</span><br>professionnel</h1>
+      <p class="hero-p">Maquillage mariage, shooting photo, événements premium et formations certifiées — notre studio élite transforme chaque visage en chef-d'œuvre.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-rg">💄 Réserver une Session</a>
+        <a href="#" class="btn-outline">📸 Voir le Portfolio</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="h-stat-num">3 800+</div><div class="h-stat-label">Clientes</div></div>
+        <div><div class="h-stat-num">850+</div><div class="h-stat-label">Mariées</div></div>
+        <div><div class="h-stat-num">120+</div><div class="h-stat-label">Diplômés</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="portfolio-card">
+        <div class="pc-header">
+          <span class="pc-title">Portfolio Récent</span>
+          <span class="pc-status">● Actif</span>
+        </div>
+        <div class="portfolio-mini">
+          <div class="pm-item" data-label="Mariage">👰</div>
+          <div class="pm-item" data-label="Shooting">📸</div>
+          <div class="pm-item" data-label="Soirée">✨</div>
+          <div class="pm-item" data-label="Naturel">🌸</div>
+          <div class="pm-item" data-label="Glam">💎</div>
+          <div class="pm-item" data-label="Coucher">🌇</div>
+        </div>
+        <div class="pc-footer">
+          <div class="pc-footer-row">
+            <span class="pcf-label">Réalisations ce mois</span>
+            <span class="pcf-count">47</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <span>💄 Produits professionnels MAC/NARS</span>
+  <span>📸 Photo offerte</span>
+  <span>✨ Durée jusqu'à 18h garantie</span>
+  <span>🎓 Formations certifiées</span>
+</div>
+
+<div class="services-section">
+  <div class="sec-label">Ce que nous offrons</div>
+  <h2 class="sec-h">Nos <span style="color:var(--rose-gold)">Prestations</span></h2>
+  <p class="sec-p">Du maquillage quotidien au glamour absolu — chaque prestation est réalisée avec des produits professionnels</p>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon">👰</div>
+      <div class="svc-name">Maquillage Mariage</div>
+      <div class="svc-desc">Maquillage exclusif pour la mariée et le cortège — durée garantie 18h, résistant à la chaleur et aux larmes.</div>
+      <div class="svc-details">
+        <div class="svc-detail">⏰ 3h mariée + 1h par demoiselle</div>
+        <div class="svc-detail">📍 À domicile ou en studio</div>
+        <div class="svc-detail">📸 Séance test incluse</div>
+      </div>
+      <div class="svc-price-row">
+        <span class="svc-price">85 000 FCFA</span>
+        <button class="svc-book">Réserver</button>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">📸</div>
+      <div class="svc-name">Shooting Photo / Vidéo</div>
+      <div class="svc-desc">Maquillage professionnel pour shootings mode, publicité, couvertures magazines et projets audiovisuels.</div>
+      <div class="svc-details">
+        <div class="svc-detail">⏰ 2h par modèle</div>
+        <div class="svc-detail">🎨 Adapté à la lumière studio</div>
+        <div class="svc-detail">✨ Retouches en cours de session</div>
+      </div>
+      <div class="svc-price-row">
+        <span class="svc-price">55 000 FCFA</span>
+        <button class="svc-book">Réserver</button>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">✨</div>
+      <div class="svc-name">Maquillage Soirée Glamour</div>
+      <div class="svc-desc">Look sophistiqué pour galas, cérémonies, soirées de prestige — smoky eye, contouring précis, lèvres parfaites.</div>
+      <div class="svc-details">
+        <div class="svc-detail">⏰ 1h30</div>
+        <div class="svc-detail">💄 Produits MAC & Charlotte Tilbury</div>
+        <div class="svc-detail">🌟 Tenue garantie 12h</div>
+      </div>
+      <div class="svc-price-row">
+        <span class="svc-price">42 000 FCFA</span>
+        <button class="svc-book">Réserver</button>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🌸</div>
+      <div class="svc-name">Maquillage Naturel Chic</div>
+      <div class="svc-desc">No-makeup makeup pour réunions pro, déjeuners élégants ou sorties quotidiennes sophistiquées.</div>
+      <div class="svc-details">
+        <div class="svc-detail">⏰ 45 min – 1h</div>
+        <div class="svc-detail">🌿 Produits non comédogènes</div>
+        <div class="svc-detail">💧 Hydratation sublimée</div>
+      </div>
+      <div class="svc-price-row">
+        <span class="svc-price">28 000 FCFA</span>
+        <button class="svc-book">Réserver</button>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🎭</div>
+      <div class="svc-name">Maquillage Artistique</div>
+      <div class="svc-desc">Body painting, maquillage scénique, cosplay, comédie musicale — art total du corps et du visage.</div>
+      <div class="svc-details">
+        <div class="svc-detail">⏰ 2h – 4h selon complexité</div>
+        <div class="svc-detail">🎨 Peintures corporelles pro</div>
+        <div class="svc-detail">💡 Consultation préalable</div>
+      </div>
+      <div class="svc-price-row">
+        <span class="svc-price">À partir de 60 000 FCFA</span>
+        <button class="svc-book">Réserver</button>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">👗</div>
+      <div class="svc-name">Défilé & Fashion Week</div>
+      <div class="svc-desc">Maquillage de défilé avec direction artistique complète — cohérence visuelle pour collections mode.</div>
+      <div class="svc-details">
+        <div class="svc-detail">⏰ Sur devis</div>
+        <div class="svc-detail">👩‍🎨 Chef maquilleur dédié</div>
+        <div class="svc-detail">🌍 Déplacements possibles</div>
+      </div>
+      <div class="svc-price-row">
+        <span class="svc-price">Sur devis</span>
+        <button class="svc-book">Devis</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="portfolio-section">
+  <div class="portfolio-inner">
+    <div class="sec-label">Nos créations</div>
+    <h2 class="sec-h" style="font-family:Georgia,serif">Portfolio <span style="color:var(--rose-gold)">d'Excellence</span></h2>
+    <div class="portfolio-tabs">
+      <button class="pt-tab on">Tous</button>
+      <button class="pt-tab">Mariage</button>
+      <button class="pt-tab">Shooting</button>
+      <button class="pt-tab">Soirée</button>
+      <button class="pt-tab">Artistique</button>
+    </div>
+    <div class="portfolio-grid">
+      <div class="pg-item"><div class="pg-img">👰</div><div class="pg-info"><div class="pg-type">Mariage</div><div class="pg-name">Amina & David — Décembre 2024</div></div></div>
+      <div class="pg-item"><div class="pg-img">📸</div><div class="pg-info"><div class="pg-type">Shooting Mode</div><div class="pg-name">Collection Automne — Vogue Africa</div></div></div>
+      <div class="pg-item"><div class="pg-img">✨</div><div class="pg-info"><div class="pg-type">Gala</div><div class="pg-name">Gala Présidence — Kigali 2025</div></div></div>
+      <div class="pg-item"><div class="pg-img">🎭</div><div class="pg-info"><div class="pg-type">Artistique</div><div class="pg-name">Festival Culturel Rwanda</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="formations-section">
+  <div class="sec-label">Nos formations</div>
+  <h2 class="sec-h" style="font-family:Georgia,serif">Devenez <span style="color:var(--rose-gold)">Maquilleur Pro</span></h2>
+  <p class="sec-p" style="color:var(--gray)">Des formations intensives pour lancer votre carrière de maquilleur professionnel</p>
+  <div class="formations-grid">
+    <div class="form-card">
+      <div class="form-header">
+        <div class="form-emoji">🌸</div>
+        <div class="form-name">Formation Débutant</div>
+      </div>
+      <div class="form-body">
+        <ul class="form-items">
+          <li>💄 Bases du maquillage teint</li>
+          <li>👁️ Maquillage yeux essentiels</li>
+          <li>💋 Lèvres et contours</li>
+          <li>🛒 Guide produits professionnels</li>
+        </ul>
+        <div class="form-price">180 000 FCFA</div>
+        <div class="form-duration">⏰ 5 jours intensifs · Diplôme inclus</div>
+        <button class="btn-form">S'inscrire</button>
+      </div>
+    </div>
+    <div class="form-card" style="border-color:var(--rose-gold)">
+      <div class="form-header" style="background:var(--rose-gold)">
+        <div class="form-emoji">💄</div>
+        <div class="form-name" style="color:#fff">Formation Pro Complète</div>
+      </div>
+      <div class="form-body">
+        <ul class="form-items">
+          <li>💄 Tout niveau débutant</li>
+          <li>👰 Spécialisation mariage</li>
+          <li>📸 Maquillage photo/vidéo</li>
+          <li>💼 Création d'entreprise</li>
+          <li>🤳 Communication réseaux sociaux</li>
+        </ul>
+        <div class="form-price">450 000 FCFA</div>
+        <div class="form-duration">⏰ 15 jours · Certification pro</div>
+        <button class="btn-form">S'inscrire</button>
+      </div>
+    </div>
+    <div class="form-card">
+      <div class="form-header">
+        <div class="form-emoji">🎭</div>
+        <div class="form-name">Formation Artistique</div>
+      </div>
+      <div class="form-body">
+        <ul class="form-items">
+          <li>🎨 Body painting avancé</li>
+          <li>🎭 Maquillage scénique</li>
+          <li>🌍 Techniques africaines</li>
+          <li>📚 Portfolio professionnel</li>
+        </ul>
+        <div class="form-price">280 000 FCFA</div>
+        <div class="form-duration">⏰ 8 jours · Certification</div>
+        <button class="btn-form">S'inscrire</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="artistes-section">
+  <div class="artistes-inner">
+    <div class="sec-label">Notre équipe</div>
+    <h2 class="sec-h" style="font-family:Georgia,serif">Nos <span style="color:var(--rose-gold)">Maquilleurs</span></h2>
+    <div class="artistes-grid">
+      <div class="art-card"><div class="art-img">💄</div><div class="art-body"><div class="art-name">Claudine Uwase</div><div class="art-spec">Maquillage Mariage</div><div class="art-exp">8 ans · Certifiée MAC Pro</div><div class="art-stars">★★★★★ (1 240)</div><div class="art-badge">🏆 Senior Artist</div></div></div>
+      <div class="art-card"><div class="art-img">📸</div><div class="art-body"><div class="art-name">Solange Murekatete</div><div class="art-spec">Photo & Fashion</div><div class="art-exp">6 ans · Ex Vogue Africa</div><div class="art-stars">★★★★★ (876)</div><div class="art-badge">📸 Fashion Expert</div></div></div>
+      <div class="art-card"><div class="art-img">🎭</div><div class="art-body"><div class="art-name">Patrick Nkurunziza</div><div class="art-spec">Maquillage Artistique</div><div class="art-exp">5 ans · Body painting</div><div class="art-stars">★★★★★ (642)</div><div class="art-badge">🎨 Creative Director</div></div></div>
+      <div class="art-card"><div class="art-img">✨</div><div class="art-body"><div class="art-name">Viviane Ingabire</div><div class="art-spec">Formations Pro</div><div class="art-exp">10 ans · 120+ diplômés</div><div class="art-stars">★★★★★ (980)</div><div class="art-badge">🎓 Head Trainer</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="testis-section">
+  <div class="sec-label">Témoignages</div>
+  <h2 class="sec-h" style="font-family:Georgia,serif">Elles nous <span style="color:var(--rose-gold)">font confiance</span></h2>
+  <div class="testis-grid">
+    <div class="testi-card">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-text">"Claudine a réalisé le maquillage de mon mariage avec une précision incroyable. 16 heures plus tard, mon maquillage était toujours parfait. Je recommande les yeux fermés !"</div>
+      <div class="t-au"><div class="t-av">AM</div><div><div class="t-nm">Amina Mukantwari</div><div class="t-lo">Kigali, Rwanda</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-text">"J'ai suivi la formation pro complète. En 15 jours j'ai acquis toutes les bases pour lancer mon business. Aujourd'hui j'ai mon propre studio à Butare — merci Make-Up Pro !"</div>
+      <div class="t-au"><div class="t-av">GN</div><div><div class="t-nm">Grace Nyiraneza</div><div class="t-lo">Butare, Rwanda</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-text">"Le shooting pour notre collection a été sublimé par l'équipe. Solange comprend parfaitement les exigences de la mode et adapte le maquillage à la lumière studio. Professionnalisme pur."</div>
+      <div class="t-au"><div class="t-av">IM</div><div><div class="t-nm">Immaculée Mukamana</div><div class="t-lo">Directrice créative, Kigali</div></div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:32px">💄</div>
+        <h2 style="font-size:18px;font-weight:800;color:var(--rose-gold);margin-top:10px;letter-spacing:2px">MAKE-UP PRO STUDIO</h2>
+        <p class="footer-desc">Le studio de maquillage professionnel de Kigali depuis 2016. Mariage, shooting, événements et formations certifiées pour la beauté africaine contemporaine.</p>
+      </div>
+      <div><div class="fh">Prestations</div><ul class="ful"><li><a href="#">Maquillage Mariage</a></li><li><a href="#">Shooting Photo</a></li><li><a href="#">Soirée Glamour</a></li><li><a href="#">Maquillage Artistique</a></li></ul></div>
+      <div><div class="fh">Formations</div><ul class="ful"><li><a href="#">Niveau Débutant</a></li><li><a href="#">Formation Pro</a></li><li><a href="#">Maquillage Artistique</a></li><li><a href="#">Calendrier</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Kiyovu, Kigali, Rwanda</a></li><li><a href="#">📞 +250 78 000 000</a></li><li><a href="#">💬 WhatsApp</a></li><li><a href="#">Lun–Sam 9h–19h</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2025 Make-Up Pro Studio Kigali — Tous droits réservés</span><span>CGV · Politique de confidentialité</span></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.pt-tab').forEach(b=>{b.addEventListener('click',function(){document.querySelectorAll('.pt-tab').forEach(x=>x.classList.remove('on'));this.classList.add('on')})});
+</script>
+</body>
+</html>

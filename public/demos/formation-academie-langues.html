@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alliance Langues Africa</title>
+<style>
+:root{--green:#059669;--orange:#EA580C;--teal:#0D9488;--white:#fff;--light:#F0FDF4;--text:#111827;--gray:#6B7280;--border:#E5E7EB;--shadow:0 4px 24px rgba(5,150,105,0.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
+#demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
+#demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
+
+nav{position:sticky;top:40px;background:var(--white);z-index:100;box-shadow:0 2px 16px rgba(0,0,0,0.08);border-bottom:3px solid var(--green)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--green),var(--teal));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.logo-text{font-weight:800;font-size:18px;color:var(--text)}
+.logo-text span{color:var(--green);display:block;font-size:11px;font-weight:500}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+.nav-actions{display:flex;gap:10px}
+.nav-login{border:1.5px solid var(--border);color:var(--text);padding:9px 18px;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;transition:all .2s}
+.nav-login:hover{border-color:var(--green);color:var(--green)}
+.nav-cta{background:var(--green);color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:700;font-size:13px;transition:all .2s}
+.nav-cta:hover{background:#047857}
+
+.hero{background:linear-gradient(135deg,#ecfdf5 0%,#f0fdf4 40%,#fff7ed 100%);padding:80px 24px 60px;position:relative;overflow:hidden}
+.hero-blob{position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(5,150,105,0.12),transparent 70%);border-radius:50%}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(5,150,105,0.12);color:var(--green);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:20px}
+.hero h1{font-size:50px;font-weight:900;color:var(--text);line-height:1.1;margin-bottom:18px}
+.hero h1 span.green{color:var(--green)}
+.hero h1 span.orange{color:var(--orange)}
+.hero-desc{font-size:17px;color:var(--gray);line-height:1.7;margin-bottom:32px}
+.hero-langs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.lang-tag{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--border);padding:8px 16px;border-radius:20px;font-size:14px;font-weight:600;color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.lang-tag.active{border-color:var(--green);background:rgba(5,150,105,0.06);color:var(--green)}
+.hero-btns{display:flex;gap:12px}
+.btn-green{background:var(--green);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:all .2s}
+.btn-green:hover{background:#047857;transform:translateY(-2px);box-shadow:0 8px 24px rgba(5,150,105,0.35)}
+.btn-orange{background:var(--orange);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:all .2s}
+.btn-orange:hover{background:#c2410c;transform:translateY(-2px)}
+.hero-card{background:#fff;border-radius:20px;padding:32px;box-shadow:0 16px 48px rgba(5,150,105,0.12);border:2px solid rgba(5,150,105,0.1)}
+.hero-card h3{font-size:18px;font-weight:700;margin-bottom:20px;color:var(--text)}
+.lang-list-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
+.lang-list-item:last-child{border-bottom:none}
+.lang-info{display:flex;align-items:center;gap:12px}
+.lang-flag{font-size:24px}
+.lang-name{font-size:15px;font-weight:600;color:var(--text)}
+.lang-levels-count{font-size:12px;color:var(--gray)}
+.lang-next{font-size:13px;color:var(--green);font-weight:600}
+
+section{padding:72px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;background:rgba(5,150,105,0.1);color:var(--green);padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.section-title{font-size:36px;font-weight:800;color:var(--text);margin-bottom:14px}
+.section-sub{font-size:16px;color:var(--gray);line-height:1.7;max-width:580px}
+
+.stats-row{background:linear-gradient(135deg,var(--green),var(--teal));padding:40px 24px}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat-item .num{font-size:44px;font-weight:900;color:#fff;line-height:1}
+.stat-item .lbl{color:rgba(255,255,255,0.75);font-size:14px;margin-top:6px}
+
+.langues{background:var(--light)}
+.langues-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.langue-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:transform .3s}
+.langue-card:hover{transform:translateY(-6px)}
+.langue-header{padding:32px 28px;position:relative}
+.langue-header.fr{background:linear-gradient(135deg,#1d4ed8,#2563eb)}
+.langue-header.en{background:linear-gradient(135deg,#dc2626,#b91c1c)}
+.langue-header.zh{background:linear-gradient(135deg,#d97706,#b45309)}
+.langue-header.ar{background:linear-gradient(135deg,#059669,#047857)}
+.langue-header.pt{background:linear-gradient(135deg,#7c3aed,#6d28d9)}
+.langue-header.de{background:linear-gradient(135deg,#0f172a,#1e293b)}
+.langue-flag{font-size:48px;margin-bottom:12px;display:block}
+.langue-name{font-size:24px;font-weight:800;color:#fff;margin-bottom:6px}
+.langue-desc{font-size:13px;color:rgba(255,255,255,0.75)}
+.niveau-badge{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.15);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600}
+.langue-body{padding:24px 28px}
+.niveau-list{list-style:none;margin-bottom:20px}
+.niveau-item{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+.niveau-item:last-child{border-bottom:none}
+.niveau-name{font-weight:600;color:var(--text)}
+.niveau-duration{font-size:12px;color:var(--gray)}
+.niveau-price{color:var(--green);font-weight:700;font-size:14px}
+.langue-btn{display:block;background:var(--green);color:#fff;text-align:center;padding:12px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;transition:all .2s}
+.langue-btn:hover{background:#047857}
+
+.certif{background:#fff}
+.certif-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
+.certif-card{background:var(--light);border-radius:16px;padding:28px;text-align:center;border:2px solid transparent;transition:all .2s}
+.certif-card:hover{border-color:var(--green);transform:translateY(-4px)}
+.certif-logo{font-size:44px;margin-bottom:14px}
+.certif-name{font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px}
+.certif-lang{font-size:13px;color:var(--green);font-weight:600;margin-bottom:8px}
+.certif-desc{font-size:12px;color:var(--gray);line-height:1.5}
+
+.modes{background:var(--light)}
+.modes-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:48px}
+.mode-card{background:#fff;border-radius:20px;padding:36px;display:grid;grid-template-columns:80px 1fr;gap:24px;align-items:center;box-shadow:var(--shadow);transition:transform .2s}
+.mode-card:hover{transform:translateY(-4px)}
+.mode-icon{width:80px;height:80px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:36px}
+.mode-icon.green{background:linear-gradient(135deg,var(--green),var(--teal))}
+.mode-icon.orange{background:linear-gradient(135deg,var(--orange),#c2410c)}
+.mode-title{font-size:22px;font-weight:800;color:var(--text);margin-bottom:10px}
+.mode-desc{font-size:14px;color:var(--gray);line-height:1.6;margin-bottom:14px}
+.mode-pros{list-style:none}
+.mode-pros li{font-size:13px;color:var(--text);padding:4px 0;display:flex;align-items:center;gap:8px}
+.mode-pros li::before{content:'✓';color:var(--green);font-weight:700}
+
+.profs{background:#fff}
+.profs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+.prof-card{background:var(--light);border-radius:16px;overflow:hidden;transition:all .2s}
+.prof-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.prof-top{height:140px;display:flex;align-items:center;justify-content:center;font-size:56px}
+.prof-top.g{background:linear-gradient(135deg,var(--green),var(--teal))}
+.prof-top.o{background:linear-gradient(135deg,var(--orange),#c2410c)}
+.prof-top.b{background:linear-gradient(135deg,#1d4ed8,#2563eb)}
+.prof-top.p{background:linear-gradient(135deg,#7c3aed,#6d28d9)}
+.prof-info{padding:20px}
+.prof-name{font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px}
+.prof-lang{font-size:13px;color:var(--green);font-weight:600;margin-bottom:6px}
+.prof-origin{font-size:12px;color:var(--gray);margin-bottom:8px}
+.prof-stars{color:var(--orange);font-size:14px}
+
+.testi{background:linear-gradient(135deg,#0d4731,var(--green));padding:80px 24px}
+.testi .section-title{color:#fff}
+.testi .section-tag{background:rgba(255,255,255,0.15);color:#fff}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.testi-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px}
+.testi-stars{color:var(--orange);font-size:16px;margin-bottom:14px}
+.testi-text{color:rgba(255,255,255,0.85);font-size:14px;line-height:1.7;font-style:italic;margin-bottom:20px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{width:44px;height:44px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:16px}
+.testi-name{font-size:14px;font-weight:700;color:#fff}
+.testi-info{font-size:12px;color:rgba(255,255,255,0.5)}
+
+.cta-section{background:linear-gradient(135deg,var(--orange),#c2410c);padding:72px 24px;text-align:center}
+.cta-section h2{font-size:42px;font-weight:900;color:#fff;margin-bottom:14px}
+.cta-section p{font-size:17px;color:rgba(255,255,255,0.8);margin-bottom:32px}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--orange);padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;transition:all .2s}
+.btn-white:hover{transform:translateY(-2px)}
+.btn-outline{border:2px solid rgba(255,255,255,0.5);color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:600;font-size:16px;transition:all .2s}
+.btn-outline:hover{border-color:#fff}
+
+footer{background:#0d1f17;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-heading{font-size:13px;font-weight:700;color:#fff;margin-bottom:18px;text-transform:uppercase;letter-spacing:1px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:9px}
+.footer-links a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-links a:hover{color:var(--green)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:10px}
+.footer-bottom a{color:var(--orange);text-decoration:none}
+
+@media(max-width:768px){
+  .hero-inner,.modes-grid,.footer-grid{grid-template-columns:1fr}
+  .hero h1{font-size:34px}
+  .langues-grid,.testi-grid,.certif-grid,.profs-grid{grid-template-columns:1fr 1fr}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .nav-links,.nav-actions{display:none}
+}
+</style>
+</head>
+<body>
+<div id="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="#">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">🌍</div>
+      <div class="logo-text">Alliance Langues Africa<span>Centre de langues certifié · Abidjan</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Langues</a></li>
+      <li><a href="#">Certifications</a></li>
+      <li><a href="#">Cours en ligne</a></li>
+      <li><a href="#">Professeurs</a></li>
+      <li><a href="#">Tarifs</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#" class="nav-login">Mon espace</a>
+      <a href="#" class="nav-cta">Cours d'essai gratuit</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🏆 Centre de langues N°1 en Côte d'Ivoire</div>
+      <h1>Apprenez une <span class="green">Nouvelle Langue</span>,<br>Ouvrez de <span class="orange">Nouvelles Portes</span></h1>
+      <p class="hero-desc">Alliance Langues Africa propose un apprentissage des langues de qualité internationale avec des professeurs natifs. Anglais, mandarin, arabe, espagnol et plus — en présentiel ou 100% en ligne.</p>
+      <div class="hero-langs">
+        <div class="lang-tag active">🇬🇧 Anglais</div>
+        <div class="lang-tag">🇨🇳 Mandarin</div>
+        <div class="lang-tag">🇸🇦 Arabe</div>
+        <div class="lang-tag">🇪🇸 Espagnol</div>
+        <div class="lang-tag">🇵🇹 Portugais</div>
+        <div class="lang-tag">🇩🇪 Allemand</div>
+      </div>
+      <div class="hero-btns">
+        <a href="#" class="btn-green">Commencer gratuitement</a>
+        <a href="#" class="btn-orange">Voir les programmes</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>📅 Prochains démarrages</h3>
+      <div class="lang-list-item"><div class="lang-info"><span class="lang-flag">🇬🇧</span><div><div class="lang-name">Anglais professionnel</div><div class="lang-levels-count">Débutant → Avancé</div></div></div><span class="lang-next">Lun 14 oct.</span></div>
+      <div class="lang-list-item"><div class="lang-info"><span class="lang-flag">🇨🇳</span><div><div class="lang-name">Mandarin HSK 1-2</div><div class="lang-levels-count">Débutants uniquement</div></div></div><span class="lang-next">Sam 19 oct.</span></div>
+      <div class="lang-list-item"><div class="lang-info"><span class="lang-flag">🇸🇦</span><div><div class="lang-name">Arabe standard</div><div class="lang-levels-count">Débutant → Intermédiaire</div></div></div><span class="lang-next">Dim 20 oct.</span></div>
+      <div class="lang-list-item"><div class="lang-info"><span class="lang-flag">🇪🇸</span><div><div class="lang-name">Espagnol business</div><div class="lang-levels-count">Intermédiaire +</div></div></div><span class="lang-next">Mar 15 oct.</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-row">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="num">9 800+</div><div class="lbl">Apprenants formés</div></div>
+    <div class="stat-item"><div class="num">6</div><div class="lbl">Langues enseignées</div></div>
+    <div class="stat-item"><div class="num">48</div><div class="lbl">Profs natifs</div></div>
+    <div class="stat-item"><div class="num">95%</div><div class="lbl">Taux satisfaction</div></div>
+  </div>
+</div>
+
+<section class="langues">
+  <div class="section-inner">
+    <div class="section-tag">Nos Langues</div>
+    <h2 class="section-title">6 Langues, des Dizaines de Niveaux</h2>
+    <p class="section-sub">Nous proposons des cours pour tous les niveaux, du grand débutant au niveau professionnel certifié.</p>
+    <div class="langues-grid">
+      <div class="langue-card">
+        <div class="langue-header en"><span class="langue-flag">🇬🇧</span><div class="langue-name">Anglais</div><div class="langue-desc">Business · IELTS · TOEFL</div><div class="niveau-badge">6 niveaux</div></div>
+        <div class="langue-body">
+          <ul class="niveau-list">
+            <li class="niveau-item"><span class="niveau-name">Débutant A1-A2</span><span class="niveau-duration">3 mois</span><span class="niveau-price">45 000 FCFA</span></li>
+            <li class="niveau-item"><span class="niveau-name">Intermédiaire B1-B2</span><span class="niveau-duration">3 mois</span><span class="niveau-price">50 000 FCFA</span></li>
+            <li class="niveau-item"><span class="niveau-name">Avancé C1-C2</span><span class="niveau-duration">4 mois</span><span class="niveau-price">55 000 FCFA</span></li>
+          </ul>
+          <a href="#" class="langue-btn">S'inscrire en anglais</a>
+        </div>
+      </div>
+      <div class="langue-card">
+        <div class="langue-header zh"><span class="langue-flag">🇨🇳</span><div class="langue-name">Mandarin</div><div class="langue-desc">HSK 1 à 6 · Business</div><div class="niveau-badge">6 niveaux</div></div>
+        <div class="langue-body">
+          <ul class="niveau-list">
+            <li class="niveau-item"><span class="niveau-name">HSK 1-2</span><span class="niveau-duration">4 mois</span><span class="niveau-price">55 000 FCFA</span></li>
+            <li class="niveau-item"><span class="niveau-name">HSK 3-4</span><span class="niveau-duration">5 mois</span><span class="niveau-price">60 000 FCFA</span></li>
+            <li class="niveau-item"><span class="niveau-name">HSK 5-6</span><span class="niveau-duration">6 mois</span><span class="niveau-price">70 000 FCFA</span></li>
+          </ul>
+          <a href="#" class="langue-btn">S'inscrire en mandarin</a>
+        </div>
+      </div>
+      <div class="langue-card">
+        <div class="langue-header ar"><span class="langue-flag">🇸🇦</span><div class="langue-name">Arabe</div><div class="langue-desc">Standard · Coranique · Business</div><div class="niveau-badge">4 niveaux</div></div>
+        <div class="langue-body">
+          <ul class="niveau-list">
+            <li class="niveau-item"><span class="niveau-name">Initiation</span><span class="niveau-duration">3 mois</span><span class="niveau-price">42 000 FCFA</span></li>
+            <li class="niveau-item"><span class="niveau-name">Intermédiaire</span><span class="niveau-duration">4 mois</span><span class="niveau-price">48 000 FCFA</span></li>
+            <li class="niveau-item"><span class="niveau-name">Avancé</span><span class="niveau-duration">5 mois</span><span class="niveau-price">55 000 FCFA</span></li>
+          </ul>
+          <a href="#" class="langue-btn">S'inscrire en arabe</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="certif">
+  <div class="section-inner">
+    <div class="section-tag">Certifications</div>
+    <h2 class="section-title">Certifications Internationales Reconnues</h2>
+    <p class="section-sub">Préparez-vous aux examens internationaux avec nos formations spécialisées et augmentez votre valeur sur le marché africain.</p>
+    <div class="certif-grid">
+      <div class="certif-card"><div class="certif-logo">📋</div><div class="certif-name">IELTS</div><div class="certif-lang">🇬🇧 Anglais</div><div class="certif-desc">Certification internationale pour études et immigration. Prépa intensive 8 semaines.</div></div>
+      <div class="certif-card"><div class="certif-logo">📝</div><div class="certif-name">TOEFL</div><div class="certif-lang">🇬🇧 Anglais</div><div class="certif-desc">Certification académique américaine reconnue dans 130 pays. Score garanti.</div></div>
+      <div class="certif-card"><div class="certif-logo">🎖️</div><div class="certif-name">HSK</div><div class="certif-lang">🇨🇳 Mandarin</div><div class="certif-desc">Certificat officiel chinois niveaux 1 à 6. Centre accrédité Hanban.</div></div>
+      <div class="certif-card"><div class="certif-logo">⭐</div><div class="certif-name">DELE</div><div class="certif-lang">🇪🇸 Espagnol</div><div class="certif-desc">Diplôme espagnol officiel du Instituto Cervantes. A1 à C2.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="modes">
+  <div class="section-inner">
+    <div class="section-tag">Modalités</div>
+    <h2 class="section-title">Apprenez où Vous Voulez</h2>
+    <p class="section-sub">Cours en présentiel dans notre centre ou 100% en ligne. La même qualité d'enseignement.</p>
+    <div class="modes-grid">
+      <div class="mode-card"><div class="mode-icon green">🏫</div><div><div class="mode-title">Cours en Présentiel</div><div class="mode-desc">Nos salles climatisées à Cocody accueillent des groupes de 6 à 10 apprenants maximum pour un apprentissage personnalisé et immersif.</div><ul class="mode-pros"><li>Interaction directe avec le professeur natif</li><li>Groupes homogènes et petits effectifs</li><li>Accès bibliothèque et médiathèque</li><li>Activités culturelles incluses</li></ul></div></div>
+      <div class="mode-card"><div class="mode-icon orange">💻</div><div><div class="mode-title">Cours 100% en Ligne</div><div class="mode-desc">Notre plateforme e-learning vous permet d'apprendre depuis Abidjan, Dakar, Bamako ou n'importe où en Afrique — et dans le monde.</div><ul class="mode-pros"><li>Cours en direct par visioconférence</li><li>Enregistrements disponibles 48h</li><li>App mobile iOS & Android</li><li>Support 7j/7 par chat</li></ul></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="profs">
+  <div class="section-inner">
+    <div class="section-tag">Notre Équipe</div>
+    <h2 class="section-title">Professeurs Natifs & Certifiés</h2>
+    <p class="section-sub">Nos 48 enseignants sont tous locuteurs natifs et titulaires d'un diplôme en FLE, enseignement ou linguistique.</p>
+    <div class="profs-grid">
+      <div class="prof-card"><div class="prof-top g">👨‍🏫</div><div class="prof-info"><div class="prof-name">James Osei</div><div class="prof-lang">🇬🇧 Anglais natif</div><div class="prof-origin">Originaire du Ghana · 8 ans d'expérience</div><div class="prof-stars">★★★★★ 4.9/5</div></div></div>
+      <div class="prof-card"><div class="prof-top o">👩‍🏫</div><div class="prof-info"><div class="prof-name">Wang Li Ming</div><div class="prof-lang">🇨🇳 Mandarin natif</div><div class="prof-origin">Originaire de Chengdu · 6 ans en Afrique</div><div class="prof-stars">★★★★★ 4.8/5</div></div></div>
+      <div class="prof-card"><div class="prof-top b">👨‍🎓</div><div class="prof-info"><div class="prof-name">Ahmed Al-Rashid</div><div class="prof-lang">🇸🇦 Arabe natif</div><div class="prof-origin">Originaire de Marrakech · 10 ans</div><div class="prof-stars">★★★★★ 4.9/5</div></div></div>
+      <div class="prof-card"><div class="prof-top p">👩‍💼</div><div class="prof-info"><div class="prof-name">Carmen Ruiz</div><div class="prof-lang">🇪🇸 Espagnol natif</div><div class="prof-origin">Originaire de Madrid · 5 ans en CI</div><div class="prof-stars">★★★★★ 4.7/5</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testi">
+  <div class="section-inner">
+    <div class="section-tag">Avis Apprenants</div>
+    <h2 class="section-title">Ils Parlent, Ils Témoignent</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"J'ai appris l'anglais en 6 mois avec Alliance Langues Africa. Mon IELTS 7.0 m'a permis d'obtenir une bourse pour étudier au Canada. Incroyable !"</p>
+        <div class="testi-author"><div class="testi-av">B</div><div><div class="testi-name">Bintou Diabaté</div><div class="testi-info">Anglais · Niveau C1 obtenu</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Grâce au cours de mandarin, j'ai pu négocier directement avec nos fournisseurs chinois. L'économie réalisée sur les interprètes a plus que couvert le coût des cours !"</p>
+        <div class="testi-author"><div class="testi-av">K</div><div><div class="testi-name">Konan Assi</div><div class="testi-info">Mandarin HSK 3 · Importateur</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Les cours en ligne sont parfaits pour mon emploi du temps chargé. Je me connecte depuis mon bureau à Plateau et mes progrès sont visibles dès la 3e semaine."</p>
+        <div class="testi-author"><div class="testi-av">I</div><div><div class="testi-name">Issouf Keita</div><div class="testi-info">Anglais en ligne · Chef de projet</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="section-inner">
+    <h2>Un Cours d'Essai 100% Gratuit !</h2>
+    <p>Commencez votre aventure linguistique aujourd'hui. Premier cours offert, sans engagement.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-white">Réserver mon cours gratuit</a>
+      <a href="#" class="btn-outline">Appeler le +225 27 22 00 00</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:14px">🌍 Alliance Langues Africa</div>
+        <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,0.4);margin-bottom:18px">Centre de langues certifié, partenaire des ambassades et entreprises multinationales opérant en Afrique de l'Ouest depuis 2010.</p>
+        <div style="font-size:14px;line-height:2;color:rgba(255,255,255,0.4)">📍 Rue des Jardins, Cocody, Abidjan<br>📞 +225 27 22 00 00 00<br>✉️ info@alliancelangues-africa.ci</div>
+      </div>
+      <div><div class="footer-heading">Langues</div><ul class="footer-links"><li><a href="#">Anglais</a></li><li><a href="#">Mandarin</a></li><li><a href="#">Arabe</a></li><li><a href="#">Espagnol</a></li><li><a href="#">Portugais</a></li></ul></div>
+      <div><div class="footer-heading">Certifications</div><ul class="footer-links"><li><a href="#">IELTS</a></li><li><a href="#">TOEFL</a></li><li><a href="#">HSK</a></li><li><a href="#">DELE</a></li><li><a href="#">DELF/DALF</a></li></ul></div>
+      <div><div class="footer-heading">Centre</div><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#">Cours en ligne</a></li><li><a href="#">Entreprises</a></li><li><a href="#">Recrutement</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Alliance Langues Africa · Agréé Ministère de l'Éducation CI</span>
+      <span>Site créé avec <a href="#">IBIG Digital</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

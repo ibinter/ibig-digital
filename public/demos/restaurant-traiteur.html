@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traiteur Royal Sénégal — Événements d'Exception</title>
+<style>
+:root{
+  --primary:#D4AF37;
+  --accent:#C9A227;
+  --bg:#1A1A2E;
+  --bg2:#16213E;
+  --bg3:#0F3460;
+  --text:#fff;
+  --text-muted:rgba(255,255,255,.65);
+  --card-bg:#1E2A4A;
+  --border:rgba(212,175,55,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
+
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;border-bottom:1px solid var(--primary)}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:12px}
+
+nav{position:sticky;top:40px;background:rgba(26,26,46,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;padding:0 5%}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1200px;margin:0 auto}
+.logo{font-size:20px;font-weight:900;letter-spacing:1px}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-weight:600;font-size:14px;letter-spacing:.5px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--primary)}
+.nav-cta{background:var(--primary);color:#000;padding:10px 24px;border-radius:4px;font-weight:800;text-decoration:none;font-size:13px;letter-spacing:.5px;text-transform:uppercase}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:24px;height:2px;background:var(--primary);border-radius:2px}
+.mobile-menu{display:none;background:var(--bg2);padding:16px 5%;border-top:1px solid var(--border)}
+.mobile-menu a{display:block;color:var(--text-muted);text-decoration:none;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+@media(max-width:768px){.nav-links,.nav-cta{display:none}.burger{display:flex}}
+
+/* HERO */
+.hero{min-height:92vh;background:linear-gradient(160deg,var(--bg) 0%,var(--bg3) 100%);display:flex;align-items:center;padding:80px 5%;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.eyebrow-line{width:40px;height:2px;background:var(--primary)}
+.eyebrow-text{color:var(--primary);font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.05;margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--primary)}
+.hero p{color:var(--text-muted);font-size:17px;line-height:1.7;margin-bottom:32px;max-width:480px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-gold{background:var(--primary);color:#000;padding:14px 32px;border-radius:4px;font-weight:800;text-decoration:none;font-size:15px;letter-spacing:.5px;transition:background .2s}
+.btn-gold:hover{background:var(--accent)}
+.btn-outline{background:transparent;color:var(--primary);padding:14px 32px;border-radius:4px;font-weight:700;text-decoration:none;font-size:15px;border:1px solid var(--primary);transition:.2s}
+.btn-outline:hover{background:rgba(212,175,55,.1)}
+.hero-numbers{display:flex;gap:32px;margin-top:40px;padding-top:32px;border-top:1px solid var(--border)}
+.hero-num{text-align:left}
+.hero-num strong{display:block;font-size:28px;font-weight:900;color:var(--primary)}
+.hero-num span{font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+.hero-gallery{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:12px}
+.gallery-card{border-radius:12px;overflow:hidden;background:var(--card-bg);border:1px solid var(--border)}
+.gallery-card:first-child{grid-column:1/-1}
+.gallery-img{height:200px;display:flex;align-items:center;justify-content:center;font-size:56px;background:linear-gradient(135deg,var(--bg3),var(--bg2))}
+.gallery-card:first-child .gallery-img{height:240px}
+.gallery-label{padding:12px 16px;font-size:13px;font-weight:600;color:var(--text-muted)}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr}.hero-gallery{display:none}}
+
+/* SERVICES */
+.services-section{padding:80px 5%;background:var(--bg2)}
+.section-header{text-align:center;margin-bottom:48px}
+.gold-tag{display:inline-block;color:var(--primary);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;padding:5px 16px;border:1px solid var(--border);border-radius:4px}
+.section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;margin-bottom:12px}
+.section-title em{font-style:normal;color:var(--primary)}
+.section-sub{color:var(--text-muted);font-size:16px;max-width:540px;margin:0 auto;line-height:1.6}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;max-width:1200px;margin:0 auto}
+.service-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:32px;transition:transform .2s,border-color .2s}
+.service-card:hover{transform:translateY(-4px);border-color:var(--primary)}
+.service-icon{font-size:40px;margin-bottom:16px}
+.service-card h3{font-size:18px;font-weight:800;margin-bottom:10px;color:var(--primary)}
+.service-card p{color:var(--text-muted);font-size:14px;line-height:1.6;margin-bottom:16px}
+.service-price{font-size:15px;color:var(--text);font-weight:700}
+.service-price span{color:var(--primary);font-size:20px;font-weight:900}
+
+/* FORMULES */
+.formules-section{padding:80px 5%;background:var(--bg)}
+.formules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:40px auto 0}
+.formule-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center;position:relative;transition:.3s}
+.formule-card.featured{border-color:var(--primary);background:linear-gradient(160deg,var(--bg3),var(--card-bg))}
+.badge-featured{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--primary);color:#000;padding:4px 16px;border-radius:12px;font-size:12px;font-weight:800;white-space:nowrap}
+.formule-tier{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px}
+.formule-name{font-size:22px;font-weight:900;margin-bottom:8px;color:var(--primary)}
+.formule-price{font-size:32px;font-weight:900;margin-bottom:4px}
+.formule-unit{font-size:13px;color:var(--text-muted);margin-bottom:20px}
+.formule-features{list-style:none;margin-bottom:24px;text-align:left}
+.formule-features li{padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-muted);display:flex;align-items:center;gap:8px}
+.formule-features li::before{content:'✓';color:var(--primary);font-weight:900}
+.formule-btn{display:block;background:var(--primary);color:#000;padding:12px;border-radius:8px;font-weight:800;text-decoration:none;font-size:14px;transition:.2s}
+.formule-btn:hover{background:var(--accent)}
+.formule-card:not(.featured) .formule-btn{background:transparent;color:var(--primary);border:1px solid var(--primary)}
+@media(max-width:900px){.formules-grid{grid-template-columns:1fr}}
+
+/* GALERIE ÉVÉNEMENTS */
+.gallery-section{padding:80px 5%;background:var(--bg2)}
+.event-gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:12px;max-width:1200px;margin:40px auto 0}
+.event-item{background:var(--card-bg);border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.event-item.wide{grid-column:span 2}
+.event-thumb{height:160px;display:flex;align-items:center;justify-content:center;font-size:52px;background:linear-gradient(135deg,var(--bg3),#0d1b3e)}
+.event-item.wide .event-thumb{height:200px}
+.event-info{padding:14px 16px}
+.event-type{font-size:11px;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.event-name{font-size:14px;font-weight:700;margin-top:2px}
+@media(max-width:900px){.event-gallery{grid-template-columns:1fr 1fr}.event-item.wide{grid-column:span 2}}
+@media(max-width:600px){.event-gallery{grid-template-columns:1fr}.event-item.wide{grid-column:span 1}}
+
+/* BOOKING */
+.booking-section{padding:80px 5%;background:var(--bg3)}
+.booking-inner{max-width:700px;margin:0 auto;text-align:center}
+.booking-inner h2{font-size:2.4rem;font-weight:900;margin-bottom:12px}
+.booking-inner h2 em{font-style:normal;color:var(--primary)}
+.booking-inner p{color:var(--text-muted);margin-bottom:36px;line-height:1.6}
+.booking-form{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:36px;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border);color:#fff;padding:11px 14px;border-radius:8px;font-size:14px;outline:none;transition:.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary);background:rgba(212,175,55,.05)}
+.form-group select option{background:#1E2A4A;color:#fff}
+.submit-btn{width:100%;background:var(--primary);color:#000;border:none;padding:14px;border-radius:8px;font-size:16px;font-weight:900;cursor:pointer;letter-spacing:.5px;text-transform:uppercase;transition:.2s}
+.submit-btn:hover{background:var(--accent)}
+
+footer{background:#0a0a16;color:#fff;padding:56px 5% 24px;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px;max-width:1200px;margin:0 auto 40px}
+.footer-brand .logo{font-size:20px;margin-bottom:12px;display:block}
+.footer-brand p{color:var(--text-muted);font-size:14px;line-height:1.6}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.footer-col a{display:block;color:var(--text-muted);text-decoration:none;font-size:14px;margin-bottom:8px;transition:color .2s}
+.footer-col a:hover{color:var(--primary)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;color:var(--text-muted);max-width:1200px;margin:0 auto}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}.form-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">TRAITEUR <span>ROYAL</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Formules</a></li>
+      <li><a href="#">Galerie</a></li>
+      <li><a href="#">Témoignages</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Devis gratuit</a>
+    <div class="burger" onclick="document.getElementById('mm').style.display=document.getElementById('mm').style.display==='block'?'none':'block'"><span></span><span></span><span></span></div>
+  </div>
+  <div class="mobile-menu" id="mm">
+    <a href="#">Services</a><a href="#">Formules</a><a href="#">Galerie</a><a href="#">Devis gratuit</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow"><div class="eyebrow-line"></div><div class="eyebrow-text">Dakar · Sénégal · Depuis 2005</div></div>
+      <h1>Vos événements méritent<br>une cuisine <em>d'exception</em></h1>
+      <p>Traiteur haut de gamme spécialisé dans les mariages, les réceptions d'entreprise et les grandes cérémonies. Excellence sénégalaise depuis 20 ans.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-gold">Demander un devis</a>
+        <a href="#" class="btn-outline">Voir nos réalisations</a>
+      </div>
+      <div class="hero-numbers">
+        <div class="hero-num"><strong>500+</strong><span>Événements réalisés</span></div>
+        <div class="hero-num"><strong>20 ans</strong><span>D'expérience</span></div>
+        <div class="hero-num"><strong>98%</strong><span>Clients satisfaits</span></div>
+      </div>
+    </div>
+    <div class="hero-gallery">
+      <div class="gallery-card"><div class="gallery-img">💍</div><div class="gallery-label">Mariage prestige • 250 convives</div></div>
+      <div class="gallery-card"><div class="gallery-img">🏢</div><div class="gallery-label">Gala corporate</div></div>
+      <div class="gallery-card"><div class="gallery-img">🎂</div><div class="gallery-label">Réception anniversaire</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="services-section">
+  <div class="section-header">
+    <div class="gold-tag">Nos prestations</div>
+    <h2 class="section-title">Services <em>sur mesure</em></h2>
+    <p class="section-sub">Chaque événement est unique. Nous concevons une expérience culinaire personnalisée pour vous.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon">💍</div><h3>Mariages & Cérémonies</h3><p>Service complet pour vos mariages : menu gourmet, décoration de table, service à l'assiette pour 50 à 1000 convives.</p><div class="service-price">À partir de <span>800 000 F</span></div></div>
+    <div class="service-card"><div class="service-icon">🏢</div><h3>Événements Corporate</h3><p>Séminaires, galas, lancements de produits. Menu professionnel, service impeccable pour valoriser l'image de votre entreprise.</p><div class="service-price">À partir de <span>500 000 F</span></div></div>
+    <div class="service-card"><div class="service-icon">🎂</div><h3>Fêtes & Anniversaires</h3><p>Anniversaires, baptêmes, remises de diplômes. Ambiance festive et cuisine savoureuse pour les grandes occasions.</p><div class="service-price">À partir de <span>300 000 F</span></div></div>
+    <div class="service-card"><div class="service-icon">🌍</div><h3>Cuisine Panafricaine</h3><p>Thiéboudienne, mafé, yassa, ndolé, poulet DG... Un voyage culinaire à travers les saveurs authentiques d'Afrique.</p><div class="service-price">Menu sur devis</div></div>
+    <div class="service-card"><div class="service-icon">🍾</div><h3>Cocktails & Réceptions</h3><p>Service cocktail dinatoire haut de gamme avec finger food, verrines et animations culinaires live.</p><div class="service-price">À partir de <span>250 000 F</span></div></div>
+    <div class="service-card"><div class="service-icon">🚐</div><h3>Livraison sur site</h3><p>Notre équipe se déplace partout au Sénégal avec le matériel complet : cuisines mobiles, tentes, vaisselle.</p><div class="service-price">Déplacement inclus</div></div>
+  </div>
+</section>
+
+<section class="formules-section">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-header">
+      <div class="gold-tag">Nos formules</div>
+      <h2 class="section-title">Choisissez votre <em>formule</em></h2>
+      <p class="section-sub">Des forfaits pensés pour s'adapter à votre budget sans compromis sur la qualité</p>
+    </div>
+    <div class="formules-grid">
+      <div class="formule-card">
+        <div class="formule-tier">Formule</div>
+        <div class="formule-name">Essentielle</div>
+        <div class="formule-price">15 000 F</div>
+        <div class="formule-unit">par personne · min. 50 pers.</div>
+        <ul class="formule-features">
+          <li>Menu 3 plats</li>
+          <li>Service à table</li>
+          <li>Vaisselle incluse</li>
+          <li>1 serveur pour 20 pers.</li>
+        </ul>
+        <a href="#" class="formule-btn">Choisir cette formule</a>
+      </div>
+      <div class="formule-card featured">
+        <div class="badge-featured">⭐ Plus populaire</div>
+        <div class="formule-tier">Formule</div>
+        <div class="formule-name">Prestige</div>
+        <div class="formule-price">25 000 F</div>
+        <div class="formule-unit">par personne · min. 30 pers.</div>
+        <ul class="formule-features">
+          <li>Menu 5 plats gastronomique</li>
+          <li>Service à l'assiette blanc gants</li>
+          <li>Vaisselle haut de gamme</li>
+          <li>Chef dédié + équipe complète</li>
+          <li>Déco de table incluse</li>
+          <li>Animation culinaire live</li>
+        </ul>
+        <a href="#" class="formule-btn">Choisir cette formule</a>
+      </div>
+      <div class="formule-card">
+        <div class="formule-tier">Formule</div>
+        <div class="formule-name">Excellence</div>
+        <div class="formule-price">Sur devis</div>
+        <div class="formule-unit">expérience entièrement personnalisée</div>
+        <ul class="formule-features">
+          <li>Menu entièrement sur mesure</li>
+          <li>Accord mets et boissons</li>
+          <li>Décoration florale incluse</li>
+          <li>Coordination jour J</li>
+          <li>Photographe culinaire</li>
+        </ul>
+        <a href="#" class="formule-btn">Demander un devis</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-header">
+      <div class="gold-tag">Galerie</div>
+      <h2 class="section-title">Nos <em>réalisations</em></h2>
+      <p class="section-sub">Quelques moments magiques créés pour nos clients</p>
+    </div>
+    <div class="event-gallery">
+      <div class="event-item wide"><div class="event-thumb">💒</div><div class="event-info"><div class="event-type">Mariage</div><div class="event-name">Mariage Diop-Sow • 400 convives • Dakar 2024</div></div></div>
+      <div class="event-item"><div class="event-thumb">🎓</div><div class="event-info"><div class="event-type">Remise de diplômes</div><div class="event-name">UCAD • 200 pers.</div></div></div>
+      <div class="event-item"><div class="event-thumb">🤝</div><div class="event-info"><div class="event-type">Corporate</div><div class="event-name">Gala SONATEL 2024</div></div></div>
+      <div class="event-item wide"><div class="event-thumb">🥂</div><div class="event-info"><div class="event-type">Réception</div><div class="event-name">Inauguration ambassade • 150 invités</div></div></div>
+      <div class="event-item"><div class="event-thumb">🎂</div><div class="event-info"><div class="event-type">Anniversaire</div><div class="event-name">50 ans Président Fall</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="booking-section">
+  <div class="booking-inner">
+    <div class="gold-tag">Demande de devis</div>
+    <h2>Planifions votre<br><em>événement ensemble</em></h2>
+    <p>Décrivez-nous votre projet et nous vous contactons dans les 24h avec une proposition personnalisée et gratuite.</p>
+    <div class="booking-form">
+      <div class="form-row">
+        <div class="form-group"><label>Votre nom</label><input type="text" placeholder="Moussa Diop"></div>
+        <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="+221 77 XXX XX XX"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Type d'événement</label>
+          <select><option>Mariage</option><option>Corporate</option><option>Anniversaire</option><option>Baptême</option><option>Autre</option></select>
+        </div>
+        <div class="form-group"><label>Nombre de convives</label>
+          <select><option>50-100</option><option>100-200</option><option>200-500</option><option>500+</option></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Date de l'événement</label><input type="date"></div>
+        <div class="form-group"><label>Ville</label>
+          <select><option>Dakar</option><option>Thiès</option><option>Ziguinchor</option><option>Saint-Louis</option><option>Autre</option></select>
+        </div>
+      </div>
+      <div class="form-group"><label>Détails supplémentaires</label><textarea rows="3" placeholder="Décrivez votre vision, vos préférences culinaires, le lieu..."></textarea></div>
+      <button class="submit-btn" onclick="alert('Votre demande a été envoyée! Nous vous contactons dans les 24h.')">Envoyer ma demande de devis</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo" style="font-weight:900;letter-spacing:1px">TRAITEUR <span style="color:var(--primary)">ROYAL</span></span>
+      <p>Excellence culinaire sénégalaise pour vos moments les plus précieux. Dakar depuis 2005.</p>
+    </div>
+    <div class="footer-col"><h4>Services</h4><a href="#">Mariages</a><a href="#">Corporate</a><a href="#">Cocktails</a><a href="#">Anniversaires</a></div>
+    <div class="footer-col"><h4>Entreprise</h4><a href="#">À propos</a><a href="#">Notre équipe</a><a href="#">Galerie</a><a href="#">Témoignages</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="#">📍 Dakar, Point E</a><a href="#">📞 +221 77 200 30 40</a><a href="#">✉️ contact@traiteurroyal.sn</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2024 Traiteur Royal Sénégal</span><span>Site créé par IBIG Digital</span></div>
+</footer>
+
+</body>
+</html>

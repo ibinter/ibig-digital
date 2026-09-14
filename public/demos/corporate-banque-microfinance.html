@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MicroFinance Plus — Côte d'Ivoire</title>
+<style>
+:root{
+  --bg:#FFFFFF;
+  --primary:#166534;
+  --primary-light:#DCFCE7;
+  --accent:#D97706;
+  --accent-light:#FEF3C7;
+  --text:#0F2A1A;
+  --text-light:#6B7280;
+  --border:#E5E7EB;
+  --dark:#0A1F12;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
+.demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
+
+/* TOP BAR */
+.top-bar{background:var(--primary);color:rgba(255,255,255,0.8);padding:8px 40px;display:flex;justify-content:space-between;font-size:12px;margin-top:40px;}
+.tb-items{display:flex;gap:24px;}
+
+nav{position:sticky;top:40px;background:#fff;border-bottom:1px solid var(--border);z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.logo{font-size:20px;font-weight:800;color:var(--primary);}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--text-light);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--primary);}
+.nav-btns{display:flex;gap:10px;align-items:center;}
+.btn-outline{border:2px solid var(--primary);color:var(--primary);padding:9px 20px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;transition:all 0.2s;}
+.btn-fill{background:var(--primary);color:#fff;padding:9px 20px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;transition:background 0.2s;}
+.btn-fill:hover{background:var(--dark);}
+
+/* HERO */
+.hero{min-height:88vh;background:linear-gradient(135deg,#0A1F12 0%,#166534 60%,#22C55E 100%);display:flex;align-items:center;position:relative;overflow:hidden;}
+.hero-pattern{position:absolute;inset:0;opacity:0.04;background-image:repeating-linear-gradient(0deg,#fff,#fff 1px,transparent 1px,transparent 50px),repeating-linear-gradient(90deg,#fff,#fff 1px,transparent 1px,transparent 50px);}
+.hero-circle{position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:600px;height:600px;border:1px solid rgba(255,255,255,0.06);border-radius:50%;}
+.hero-circle2{position:absolute;right:-180px;top:50%;transform:translateY(-50%);width:800px;height:800px;border:1px solid rgba(255,255,255,0.04);border-radius:50%;}
+.hero-content{max-width:1200px;margin:0 auto;padding:0 40px;width:100%;display:grid;grid-template-columns:1fr 460px;gap:60px;align-items:center;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(217,119,6,0.2);border:1px solid rgba(217,119,6,0.4);color:#FCD34D;padding:6px 14px;border-radius:50px;font-size:12px;font-weight:700;margin-bottom:20px;}
+.hero h1{font-size:52px;font-weight:800;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:18px;}
+.hero h1 span{color:#6EE7B7;}
+.hero-desc{color:rgba(255,255,255,0.75);font-size:17px;margin-bottom:32px;}
+.hero-stats-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;}
+.hsm{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:14px;text-align:center;}
+.hsm-n{font-size:26px;font-weight:800;color:#6EE7B7;}
+.hsm-l{font-size:12px;color:rgba(255,255,255,0.6);margin-top:2px;}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-h-white{background:#fff;color:var(--primary);padding:14px 32px;border-radius:8px;text-decoration:none;font-size:15px;font-weight:700;transition:all 0.2s;}
+.btn-h-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2);}
+.btn-h-ghost{border:2px solid rgba(255,255,255,0.4);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-size:15px;transition:all 0.2s;}
+
+.hero-form{background:#fff;border-radius:16px;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,0.25);}
+.hf-title{font-size:18px;font-weight:700;color:var(--primary);margin-bottom:4px;}
+.hf-sub{font-size:13px;color:var(--text-light);margin-bottom:22px;}
+.hf-field{margin-bottom:14px;}
+.hf-field label{display:block;font-size:12px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;}
+.hf-field input,.hf-field select{width:100%;border:1px solid var(--border);border-radius:6px;padding:10px 12px;font-size:14px;color:var(--text);outline:none;transition:border-color 0.2s;}
+.hf-field input:focus,.hf-field select:focus{border-color:var(--primary);}
+.hf-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.hf-amount{font-size:24px;font-weight:800;color:var(--primary);text-align:center;padding:12px;border:2px solid var(--primary-light);border-radius:8px;margin-bottom:14px;}
+.btn-hf{width:100%;background:var(--primary);color:#fff;border:none;padding:14px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:background 0.2s;}
+.btn-hf:hover{background:var(--dark);}
+.hf-note{font-size:12px;color:var(--text-light);text-align:center;margin-top:8px;}
+
+/* SECTION */
+.si{max-width:1200px;margin:0 auto;}
+.stag{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:10px;}
+.stitle{font-size:36px;font-weight:800;color:var(--text);letter-spacing:-0.5px;margin-bottom:14px;}
+.ssub{color:var(--text-light);font-size:16px;max-width:520px;line-height:1.6;}
+.sh{margin-bottom:44px;}
+.sh.center{text-align:center;}
+.sh.center .ssub{margin:0 auto;}
+
+/* PRODUITS */
+.produits-section{padding:80px 40px;background:var(--bg);}
+.produits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.produit-card{border-radius:14px;overflow:hidden;border:2px solid var(--border);transition:all 0.3s;}
+.produit-card:hover,.produit-card.featured{border-color:var(--primary);}
+.produit-card.featured{transform:scale(1.02);}
+.produit-header{padding:24px;position:relative;}
+.ph-green{background:linear-gradient(135deg,var(--primary),#14532D);}
+.ph-gold{background:linear-gradient(135deg,#D97706,#92400E);}
+.ph-blue{background:linear-gradient(135deg,#1E3A5F,#0891B2);}
+.produit-icon{font-size:40px;margin-bottom:14px;}
+.produit-name{font-size:20px;font-weight:700;color:#fff;}
+.produit-tag{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.2);color:#fff;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:700;}
+.produit-body{padding:22px;background:#fff;}
+.produit-rate{font-size:36px;font-weight:800;color:var(--primary);}
+.produit-rate small{font-size:14px;font-weight:400;color:var(--text-light);}
+.produit-desc{font-size:14px;color:var(--text-light);margin-bottom:16px;}
+.produit-features{list-style:none;margin-bottom:20px;}
+.produit-features li{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-light);}
+.produit-features li::before{content:'✓';color:var(--primary);font-weight:700;}
+.btn-produit{width:100%;background:var(--primary);color:#fff;border:none;padding:12px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;display:block;transition:background 0.2s;}
+.btn-produit:hover{background:var(--dark);}
+
+/* STATS */
+.stats-section{padding:60px 40px;background:var(--primary-light);}
+.stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+.stat-n{font-size:44px;font-weight:800;color:var(--primary);}
+.stat-l{font-size:13px;color:var(--text-light);margin-top:4px;text-transform:uppercase;letter-spacing:0.5px;}
+
+/* SERVICES */
+.services-section{padding:80px 40px;background:#fff;}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.svc-card{background:#F9FFF9;border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center;transition:all 0.3s;}
+.svc-card:hover{border-color:var(--primary);box-shadow:0 6px 24px rgba(22,101,52,0.08);}
+.svc-icon{font-size:36px;margin-bottom:12px;}
+.svc-name{font-size:15px;font-weight:700;margin-bottom:6px;}
+.svc-desc{font-size:13px;color:var(--text-light);}
+
+/* AGENCES */
+.agences-section{padding:80px 40px;background:var(--bg);}
+.agences-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.agence-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;transition:all 0.3s;}
+.agence-card:hover{border-color:var(--primary);}
+.ag-city{font-size:15px;font-weight:700;margin-bottom:4px;}
+.ag-addr{font-size:13px;color:var(--text-light);margin-bottom:8px;}
+.ag-hours{font-size:12px;color:var(--primary);font-weight:600;}
+
+/* TEMOIGNAGES */
+.testis-section{padding:80px 40px;background:var(--primary);}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.testi-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:26px;}
+.t-stars{color:#FCD34D;font-size:14px;margin-bottom:12px;}
+.t-text{color:rgba(255,255,255,0.8);font-style:italic;font-size:15px;line-height:1.7;margin-bottom:18px;}
+.t-author{display:flex;align-items:center;gap:10px;}
+.ta{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;}
+.tn{font-size:14px;font-weight:600;color:#fff;}
+.tr{font-size:12px;color:rgba(255,255,255,0.55);}
+.testis-section .stitle{color:#fff;}
+.testis-section .stag{color:#6EE7B7;}
+
+/* CTA */
+.cta-section{padding:100px 40px;background:var(--accent-light);text-align:center;}
+.cta-section h2{font-size:44px;font-weight:800;color:var(--text);letter-spacing:-0.5px;margin-bottom:14px;}
+.cta-section h2 span{color:var(--primary);}
+.cta-section p{color:var(--text-light);font-size:17px;margin-bottom:36px;}
+.cta-btns{display:flex;gap:14px;justify-content:center;}
+.btn-cta-green{background:var(--primary);color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-size:16px;font-weight:700;transition:all 0.2s;}
+.btn-cta-green:hover{background:var(--dark);transform:translateY(-2px);}
+.btn-cta-outline{border:2px solid var(--primary);color:var(--primary);padding:16px 40px;border-radius:8px;text-decoration:none;font-size:16px;font-weight:600;transition:all 0.2s;}
+
+footer{background:var(--dark);padding:60px 40px 28px;}
+.fg{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.fl{font-size:20px;font-weight:800;color:#fff;margin-bottom:14px;}
+.fl span{color:var(--accent);}
+footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:16px;}
+.f-socs{display:flex;gap:8px;}
+.f-soc{width:34px;height:34px;background:rgba(255,255,255,0.07);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;text-decoration:none;color:rgba(255,255,255,0.5);transition:all 0.2s;}
+.f-soc:hover{background:var(--primary);color:#fff;}
+.fc h5{color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;}
+.fc ul{list-style:none;}
+.fc li{margin-bottom:9px;}
+.fc a{color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;transition:color 0.2s;}
+.fc a:hover{color:#6EE7B7;}
+.fb{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.07);padding-top:24px;display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.35);}
+.fb a{color:rgba(255,255,255,0.35);text-decoration:none;}
+.agrément{display:inline-flex;align-items:center;gap:6px;background:rgba(110,231,183,0.1);border:1px solid rgba(110,231,183,0.2);color:#6EE7B7;padding:4px 12px;border-radius:4px;font-size:11px;margin-top:8px;}
+
+@media(max-width:900px){
+  .hero-content,.produits-grid,.testis-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:36px;}
+  .stats-grid,.services-grid,.agences-grid{grid-template-columns:1fr 1fr;}
+  .fg{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<div class="top-bar">
+  <div class="tb-items">
+    <span>📞 +225 27 30 44 55 66</span>
+    <span>✉️ contact@microfinance-plus.ci</span>
+    <span>🕐 Lun-Ven 8h-17h · Sam 9h-13h</span>
+  </div>
+  <div>🔒 Agréé BCEAO N°2019/CI/001</div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">MicroFinance<span>Plus</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Épargne</a></li>
+      <li><a href="#">Crédit</a></li>
+      <li><a href="#">Mobile Money</a></li>
+      <li><a href="#">Agences</a></li>
+      <li><a href="#">À propos</a></li>
+    </ul>
+    <div class="nav-btns">
+      <a href="#" class="btn-outline">Se connecter</a>
+      <a href="#" class="btn-fill">Ouvrir un compte</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-circle2"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge">🏦 Institution de Microfinance Agréée · BCEAO</div>
+      <h1>La finance<br><span>accessible</span><br>à tous</h1>
+      <p class="hero-desc">Épargne, crédit, mobile money — des services financiers adaptés aux besoins des entrepreneurs et familles ivoiriennes depuis 2008.</p>
+      <div class="hero-stats-mini">
+        <div class="hsm"><div class="hsm-n">85 000+</div><div class="hsm-l">Clients actifs</div></div>
+        <div class="hsm"><div class="hsm-n">28 Mds</div><div class="hsm-l">FCFA distribués</div></div>
+        <div class="hsm"><div class="hsm-n">42</div><div class="hsm-l">Agences CI</div></div>
+      </div>
+      <div class="hero-cta">
+        <a href="#" class="btn-h-white">Demander un crédit</a>
+        <a href="#" class="btn-h-ghost">Ouvrir un compte</a>
+      </div>
+    </div>
+    <div class="hero-form">
+      <div class="hf-title">Simulateur de crédit</div>
+      <div class="hf-sub">Calculez votre mensualité en 30 secondes</div>
+      <div class="hf-field">
+        <label>Montant souhaité</label>
+        <select onchange="updateAmount(this)">
+          <option>500 000 FCFA</option>
+          <option>1 000 000 FCFA</option>
+          <option>2 000 000 FCFA</option>
+          <option>5 000 000 FCFA</option>
+          <option>10 000 000 FCFA</option>
+        </select>
+      </div>
+      <div class="hf-row">
+        <div class="hf-field"><label>Durée</label><select><option>6 mois</option><option>12 mois</option><option>24 mois</option><option>36 mois</option></select></div>
+        <div class="hf-field"><label>Type de crédit</label><select><option>Crédit commerce</option><option>Crédit agricole</option><option>Crédit logement</option></select></div>
+      </div>
+      <div class="hf-amount">Mensualité estimée : 89 500 FCFA</div>
+      <button class="btn-hf">Soumettre ma demande →</button>
+      <p class="hf-note">Réponse sous 48h · Sans engagement · Taux à partir de 1,2%/mois</p>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="stats-grid">
+    <div><div class="stat-n">85 000+</div><div class="stat-l">Clients actifs</div></div>
+    <div><div class="stat-n">28 Mds</div><div class="stat-l">FCFA décaissés</div></div>
+    <div><div class="stat-n">42</div><div class="stat-l">Agences en CI</div></div>
+    <div><div class="stat-n">16 ans</div><div class="stat-l">D'expérience</div></div>
+  </div>
+</section>
+
+<section class="produits-section">
+  <div class="si">
+    <div class="sh">
+      <div class="stag">Nos produits financiers</div>
+      <h2 class="stitle">Des solutions pour chaque besoin</h2>
+      <p class="ssub">Crédit PME, épargne rémunérée, mobile money — tout pour développer vos projets.</p>
+    </div>
+    <div class="produits-grid">
+      <div class="produit-card featured">
+        <div class="produit-header ph-green"><div class="produit-icon">💳</div><div class="produit-name">Crédit Express PME</div><div class="produit-tag">⭐ Populaire</div></div>
+        <div class="produit-body">
+          <div class="produit-rate">1,2% <small>/ mois</small></div>
+          <div class="produit-desc">Financement rapide pour les petites et moyennes entreprises.</div>
+          <ul class="produit-features">
+            <li>De 100 000 à 25 000 000 FCFA</li>
+            <li>Réponse sous 48h</li>
+            <li>Durée jusqu'à 36 mois</li>
+            <li>Garantie flexible</li>
+            <li>Accompagnement gestionnaire</li>
+          </ul>
+          <a href="#" class="btn-produit">Demander maintenant</a>
+        </div>
+      </div>
+      <div class="produit-card">
+        <div class="produit-header ph-gold"><div class="produit-icon">💰</div><div class="produit-name">Épargne Dynamique</div></div>
+        <div class="produit-body">
+          <div class="produit-rate">6,5% <small>/ an</small></div>
+          <div class="produit-desc">Faites fructifier votre épargne avec un taux avantageux garanti.</div>
+          <ul class="produit-features">
+            <li>Dépôt minimum : 10 000 FCFA</li>
+            <li>Intérêts versés mensuellement</li>
+            <li>Livret accessible en agence</li>
+            <li>Retrait partiel autorisé</li>
+          </ul>
+          <a href="#" class="btn-produit">Ouvrir un livret</a>
+        </div>
+      </div>
+      <div class="produit-card">
+        <div class="produit-header ph-blue"><div class="produit-icon">📱</div><div class="produit-name">Mobile Money</div></div>
+        <div class="produit-body">
+          <div class="produit-rate">0 FCFA <small>/ retrait agence</small></div>
+          <div class="produit-desc">Gérez votre compte depuis votre téléphone, 24h/24.</div>
+          <ul class="produit-features">
+            <li>Compatible MTN & Orange Money</li>
+            <li>Transferts gratuits entre clients</li>
+            <li>Paiement marchand QR Code</li>
+            <li>Relevé SMS instantané</li>
+          </ul>
+          <a href="#" class="btn-produit">Activer Mobile Money</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services-section">
+  <div class="si">
+    <div class="sh center">
+      <div class="stag">Nos services</div>
+      <h2 class="stitle">Un accompagnement complet</h2>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card"><div class="svc-icon">🏘️</div><div class="svc-name">Crédit Logement</div><div class="svc-desc">Financement construction et rénovation jusqu'à 50 000 000 FCFA.</div></div>
+      <div class="svc-card"><div class="svc-icon">🌾</div><div class="svc-name">Crédit Agricole</div><div class="svc-desc">Financement campagnes agricoles, équipements, semences.</div></div>
+      <div class="svc-card"><div class="svc-icon">🎓</div><div class="svc-name">Crédit Éducation</div><div class="svc-desc">Paiement frais de scolarité, formation professionnelle.</div></div>
+      <div class="svc-card"><div class="svc-icon">👨‍👩‍👧</div><div class="svc-name">Crédit Solidaire</div><div class="svc-desc">Groupes de solidarité, tontines organisées, micro-épargne.</div></div>
+      <div class="svc-card"><div class="svc-icon">🚗</div><div class="svc-name">Crédit Auto-Moto</div><div class="svc-desc">Financement véhicule particulier et engins deux-roues.</div></div>
+      <div class="svc-card"><div class="svc-icon">💊</div><div class="svc-name">Crédit Santé</div><div class="svc-desc">Prise en charge frais médicaux et hospitalisation urgente.</div></div>
+      <div class="svc-card"><div class="svc-icon">📊</div><div class="svc-name">Conseil Financier</div><div class="svc-desc">Accompagnement business plan, gestion comptable PME.</div></div>
+      <div class="svc-card"><div class="svc-icon">🌍</div><div class="svc-name">Transfert International</div><div class="svc-desc">Envoi et réception d'argent depuis/vers la diaspora.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="agences-section">
+  <div class="si">
+    <div class="sh">
+      <div class="stag">Réseau d'agences</div>
+      <h2 class="stitle">42 agences en Côte d'Ivoire</h2>
+      <p class="ssub">Présents dans les grandes villes et zones rurales pour vous servir au plus près.</p>
+    </div>
+    <div class="agences-grid">
+      <div class="agence-card"><div class="ag-city">📍 Plateau, Abidjan</div><div class="ag-addr">Rue du Commerce, Imm. CCIA</div><div class="ag-hours">Lun-Ven 8h-17h · Sam 9h-12h</div></div>
+      <div class="agence-card"><div class="ag-city">📍 Adjamé, Abidjan</div><div class="ag-addr">Marché Adjamé, Bloc B</div><div class="ag-hours">Lun-Ven 8h-17h · Sam 9h-12h</div></div>
+      <div class="agence-card"><div class="ag-city">📍 Bouaké Centre</div><div class="ag-addr">Av. de la Paix, face Mairie</div><div class="ag-hours">Lun-Ven 8h-17h</div></div>
+      <div class="agence-card"><div class="ag-city">📍 Yamoussoukro</div><div class="ag-addr">Boulevard de la République</div><div class="ag-hours">Lun-Ven 8h-17h</div></div>
+      <div class="agence-card"><div class="ag-city">📍 San Pedro</div><div class="ag-addr">Quartier Commerce, Port</div><div class="ag-hours">Lun-Ven 8h-16h</div></div>
+      <div class="agence-card"><div class="ag-city">📍 Korhogo</div><div class="ag-addr">Centre-ville, Marché Central</div><div class="ag-hours">Lun-Ven 8h-16h</div></div>
+      <div class="agence-card"><div class="ag-city">📍 Abengourou</div><div class="ag-addr">Av. Félix Houphouët-Boigny</div><div class="ag-hours">Lun-Ven 8h-16h</div></div>
+      <div class="agence-card"><div class="ag-city">📍 Gagnoa</div><div class="ag-addr">Quartier Administratif</div><div class="ag-hours">Lun-Ven 8h-16h</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testis-section">
+  <div class="si">
+    <div class="sh center">
+      <div class="stag">Témoignages clients</div>
+      <h2 class="stitle">Ils ont développé leur activité</h2>
+    </div>
+    <div class="testis-grid">
+      <div class="testi-card"><div class="t-stars">★★★★★</div><p class="t-text">Grâce au crédit PME de 3 millions FCFA, j'ai pu agrandir mon atelier de couture à Adjamé. Aujourd'hui j'emploie 6 personnes. MicroFinance Plus a cru en mon projet.</p><div class="t-author"><div class="ta">FK</div><div><div class="tn">Fatimata Koné</div><div class="tr">Couturière · Abidjan</div></div></div></div>
+      <div class="testi-card"><div class="t-stars">★★★★★</div><p class="t-text">Le crédit agricole de campagne m'a permis d'acheter un tracteur. Ma récolte de cacao a doublé cette année. Les conseillers sont vraiment à l'écoute.</p><div class="t-author"><div class="ta">AK</div><div><div class="tn">Adou Kouassi</div><div class="tr">Planteur de cacao · Divo</div></div></div></div>
+      <div class="testi-card"><div class="t-stars">★★★★★</div><p class="t-text">L'application Mobile Money est très pratique. Je gère tous mes paiements depuis Korhogo sans me déplacer à l'agence. Simple, rapide, fiable.</p><div class="t-author"><div class="ta">MY</div><div><div class="tn">Mariam Yeo</div><div class="tr">Commerçante · Korhogo</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Votre projet mérite un <span>financement</span></h2>
+  <p>Rejoignez 85 000 clients qui font confiance à MicroFinance Plus</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-cta-green">Ouvrir un compte gratuit</a>
+    <a href="#" class="btn-cta-outline">Demander un crédit</a>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div>
+      <div class="fl">MicroFinance<span>Plus</span></div>
+      <p class="fp">Institution de microfinance agréée par la BCEAO. 42 agences en Côte d'Ivoire. Services financiers accessibles pour tous les ivoiriens depuis 2008.</p>
+      <div class="agrément">🏦 Agréé BCEAO N°2019/CI/001</div>
+      <div class="f-socs" style="margin-top:12px"><a href="#" class="f-soc">f</a><a href="#" class="f-soc">in</a><a href="#" class="f-soc">ig</a></div>
+    </div>
+    <div class="fc"><h5>Produits</h5><ul><li><a href="#">Crédit PME</a></li><li><a href="#">Épargne dynamique</a></li><li><a href="#">Mobile Money</a></li><li><a href="#">Crédit logement</a></li></ul></div>
+    <div class="fc"><h5>Services</h5><ul><li><a href="#">Crédit agricole</a></li><li><a href="#">Crédit éducation</a></li><li><a href="#">Transfert international</a></li><li><a href="#">Conseil financier</a></li></ul></div>
+    <div class="fc"><h5>Contact</h5><ul><li><a href="#">📍 Plateau, Abidjan</a></li><li><a href="#">📞 +225 27 30 44 55 66</a></li><li><a href="#">✉️ contact@microfinanceplus.ci</a></li><li><a href="#">📱 Application Mobile</a></li></ul></div>
+  </div>
+  <div class="fb">
+    <span>© 2025 MicroFinance Plus CI. Tous droits réservés.</span>
+    <div><a href="#">CGU</a> · <a href="#">Mentions légales</a> · <a href="#">Réclamations</a></div>
+  </div>
+</footer>
+
+<script>
+function updateAmount(sel){
+  const prices={0:89500,1:179000,2:358000,3:895000,4:1790000};
+  const idx=sel.selectedIndex;
+  document.querySelector('.hf-amount').textContent='Mensualité estimée : '+(prices[idx]||89500).toLocaleString('fr-FR')+' FCFA';
+}
+</script>
+</body>
+</html>

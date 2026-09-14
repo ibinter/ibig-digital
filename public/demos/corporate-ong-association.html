@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONG Solidarité Africa</title>
+<style>
+:root{
+  --bg:#FFFFFF;
+  --primary:#EA580C;
+  --primary-light:#FFF7ED;
+  --green:#166534;
+  --green-light:#DCFCE7;
+  --text:#1C1917;
+  --text-light:#78716C;
+  --border:#E7E5E4;
+  --dark:#0C0A09;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
+.demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
+nav{position:sticky;top:40px;background:#fff;border-bottom:1px solid var(--border);z-index:100;box-shadow:0 1px 6px rgba(0,0,0,0.06);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.logo{font-size:18px;font-weight:800;color:var(--text);}
+.logo span{color:var(--primary);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--text-light);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--primary);}
+.btn-don{background:var(--primary);color:#fff;padding:10px 24px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:700;transition:all 0.2s;box-shadow:0 4px 14px rgba(234,88,12,0.3);}
+.btn-don:hover{background:#C2410C;transform:translateY(-1px);}
+
+/* HERO */
+.hero{min-height:88vh;background:linear-gradient(160deg,#0C0A09 0%,#1C1008 50%,#2D1A0A 100%);display:flex;align-items:center;position:relative;overflow:hidden;}
+.hero-img{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Ccircle cx='200' cy='200' r='150' fill='none' stroke='rgba(234,88,12,0.08)' stroke-width='1'/%3E%3Ccircle cx='200' cy='200' r='100' fill='none' stroke='rgba(22,101,52,0.08)' stroke-width='1'/%3E%3C/svg%3E") center/cover;}
+.hero-glow{position:absolute;top:-100px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(234,88,12,0.12),transparent 70%);border-radius:50%;}
+.hero-content{max-width:1180px;margin:0 auto;padding:0 40px;width:100%;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;position:relative;z-index:1;}
+.hero-urgency{display:inline-flex;align-items:center;gap:8px;background:rgba(234,88,12,0.2);border:1px solid rgba(234,88,12,0.4);color:#FED7AA;padding:7px 16px;border-radius:50px;font-size:13px;font-weight:600;margin-bottom:22px;}
+.urgency-dot{width:8px;height:8px;background:#EA580C;border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.hero h1{font-size:54px;font-weight:800;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:18px;}
+.hero h1 span{color:#FCA26C;}
+.hero-desc{color:rgba(255,255,255,0.7);font-size:17px;line-height:1.7;margin-bottom:32px;}
+.hero-impact{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px;}
+.hi{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:16px;text-align:center;}
+.hi-n{font-size:28px;font-weight:800;color:#FCA26C;}
+.hi-l{font-size:12px;color:rgba(255,255,255,0.55);margin-top:2px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-don-hero{background:var(--primary);color:#fff;padding:16px 36px;border-radius:50px;text-decoration:none;font-size:16px;font-weight:700;transition:all 0.2s;box-shadow:0 4px 20px rgba(234,88,12,0.4);}
+.btn-don-hero:hover{background:#C2410C;transform:translateY(-2px);}
+.btn-ghost{border:2px solid rgba(255,255,255,0.3);color:#fff;padding:16px 36px;border-radius:50px;text-decoration:none;font-size:16px;transition:all 0.2s;}
+
+.hero-don-card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 24px 60px rgba(0,0,0,0.3);}
+.hdc-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.hdc-sub{font-size:13px;color:var(--text-light);margin-bottom:22px;}
+.amounts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+.amount-btn{border:2px solid var(--border);border-radius:8px;padding:12px;text-align:center;cursor:pointer;transition:all 0.2s;background:#fff;}
+.amount-btn.active,.amount-btn:hover{border-color:var(--primary);background:var(--primary-light);}
+.amount-btn .amount-val{font-size:15px;font-weight:800;color:var(--text);}
+.amount-btn .amount-impact{font-size:11px;color:var(--text-light);margin-top:2px;}
+.custom-amount{width:100%;border:2px solid var(--border);border-radius:8px;padding:12px 14px;font-size:15px;font-weight:700;text-align:center;margin-bottom:14px;outline:none;}
+.custom-amount:focus{border-color:var(--primary);}
+.don-type-row{display:flex;gap:8px;margin-bottom:14px;}
+.don-type{flex:1;padding:10px;border:2px solid var(--border);border-radius:8px;text-align:center;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.2s;background:#fff;}
+.don-type.active{border-color:var(--green);background:var(--green-light);color:var(--green);}
+.btn-give{width:100%;background:var(--primary);color:#fff;border:none;padding:16px;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;transition:background 0.2s;margin-top:4px;}
+.btn-give:hover{background:#C2410C;}
+.hdc-note{font-size:12px;color:var(--text-light);text-align:center;margin-top:8px;}
+
+/* SECTIONS */
+.si{max-width:1180px;margin:0 auto;}
+.stag{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.stag.orange{color:var(--primary);}
+.stag.green{color:var(--green);}
+.stitle{font-size:36px;font-weight:800;color:var(--text);letter-spacing:-0.5px;margin-bottom:14px;}
+.ssub{color:var(--text-light);font-size:16px;max-width:520px;line-height:1.6;}
+.sh{margin-bottom:44px;}
+.sh.center{text-align:center;}
+.sh.center .ssub{margin:0 auto;}
+
+/* PROJETS */
+.projets-section{padding:80px 40px;background:var(--bg);}
+.projets-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.projet-card{border-radius:14px;overflow:hidden;border:1px solid var(--border);transition:all 0.3s;}
+.projet-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,0.1);}
+.projet-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;}
+.pi1{background:linear-gradient(135deg,#166534,#15803D);}
+.pi2{background:linear-gradient(135deg,#EA580C,#C2410C);}
+.pi3{background:linear-gradient(135deg,#0891B2,#0E7490);}
+.projet-status{position:absolute;top:12px;right:12px;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:700;font-family:system-ui,sans-serif;}
+.status-active{background:rgba(22,101,52,0.2);color:#6EE7B7;border:1px solid rgba(22,101,52,0.3);}
+.status-urgent{background:rgba(234,88,12,0.2);color:#FED7AA;border:1px solid rgba(234,88,12,0.3);}
+.projet-body{padding:22px;}
+.projet-name{font-size:18px;font-weight:700;margin-bottom:6px;}
+.projet-loc{color:var(--primary);font-size:13px;font-weight:600;margin-bottom:8px;}
+.projet-desc{font-size:14px;color:var(--text-light);margin-bottom:16px;line-height:1.5;}
+.progress-bar{background:#F5F5F4;border-radius:4px;height:6px;margin-bottom:8px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:4px;background:var(--primary);}
+.progress-fill.green{background:var(--green);}
+.progress-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--text-light);}
+.progress-meta strong{color:var(--text);}
+
+/* IMPACT */
+.impact-section{padding:80px 40px;background:var(--primary);}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+.impact-card{padding:28px 20px;}
+.impact-icon{font-size:44px;margin-bottom:14px;}
+.impact-n{font-size:44px;font-weight:800;color:#fff;}
+.impact-l{font-size:14px;color:rgba(255,255,255,0.7);margin-top:4px;}
+.impact-section .stitle{color:#fff;}
+.impact-section .stag.orange{color:#FED7AA;}
+
+/* TÉMOIGNAGES */
+.testis-section{padding:80px 40px;background:var(--primary-light);}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.testi-card{background:#fff;border-radius:12px;padding:26px;box-shadow:0 2px 14px rgba(0,0,0,0.06);}
+.t-stars{color:#F59E0B;margin-bottom:12px;font-size:14px;}
+.t-text{font-style:italic;color:var(--text-light);font-size:15px;line-height:1.7;margin-bottom:18px;}
+.t-author{display:flex;align-items:center;gap:10px;}
+.ta{width:38px;height:38px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;}
+.tn{font-size:14px;font-weight:700;}
+.tr{font-size:12px;color:var(--text-light);}
+
+/* PARTENAIRES */
+.partenaires-section{padding:60px 40px;background:#fff;text-align:center;}
+.partenaires-grid{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:32px;}
+.part-item{background:#F5F5F4;border-radius:10px;padding:16px 24px;font-size:13px;font-weight:700;color:var(--text-light);display:flex;align-items:center;gap:8px;}
+
+/* BÉNÉVOLES */
+.benevoles-section{padding:80px 40px;background:var(--bg);}
+.benv-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.benv-steps{display:flex;flex-direction:column;gap:16px;}
+.benv-step{display:flex;gap:16px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px;}
+.bs-icon{font-size:28px;flex-shrink:0;width:48px;height:48px;background:var(--primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.bs-title{font-size:15px;font-weight:700;margin-bottom:4px;}
+.bs-desc{font-size:13px;color:var(--text-light);}
+.benv-cta{background:linear-gradient(135deg,var(--green),#15803D);border-radius:16px;padding:36px;color:#fff;}
+.bc-title{font-size:22px;font-weight:700;margin-bottom:12px;}
+.bc-desc{color:rgba(255,255,255,0.75);font-size:15px;margin-bottom:24px;line-height:1.6;}
+.bc-form input{width:100%;border:none;border-radius:8px;padding:12px 14px;font-size:14px;margin-bottom:10px;outline:none;}
+.bc-form select{width:100%;border:none;border-radius:8px;padding:12px 14px;font-size:14px;margin-bottom:10px;outline:none;}
+.bc-btn{width:100%;background:#fff;color:var(--green);border:none;padding:14px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:background 0.2s;}
+.bc-btn:hover{background:#F0FDF4;}
+
+/* CTA */
+.cta-section{padding:100px 40px;background:var(--dark);text-align:center;}
+.cta-section h2{font-size:48px;font-weight:800;color:#fff;margin-bottom:14px;letter-spacing:-1px;}
+.cta-section h2 span{color:#FCA26C;}
+.cta-section p{color:rgba(255,255,255,0.65);font-size:17px;margin-bottom:40px;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-cta-o{background:var(--primary);color:#fff;padding:18px 44px;border-radius:50px;text-decoration:none;font-size:17px;font-weight:700;transition:all 0.2s;box-shadow:0 4px 20px rgba(234,88,12,0.4);}
+.btn-cta-o:hover{background:#C2410C;transform:translateY(-2px);}
+.btn-cta-g{border:2px solid rgba(255,255,255,0.3);color:#fff;padding:18px 44px;border-radius:50px;text-decoration:none;font-size:17px;transition:all 0.2s;}
+
+footer{background:#0C0A09;padding:60px 40px 28px;}
+.fg{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.fl{font-size:20px;font-weight:800;color:#fff;margin-bottom:14px;}
+.fl span{color:var(--primary);}
+footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:16px;}
+.f-socs{display:flex;gap:8px;}
+.f-soc{width:34px;height:34px;background:rgba(255,255,255,0.07);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;text-decoration:none;color:rgba(255,255,255,0.5);transition:all 0.2s;}
+.f-soc:hover{background:var(--primary);color:#fff;}
+.fc h5{color:rgba(255,255,255,0.6);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;}
+.fc ul{list-style:none;}
+.fc li{margin-bottom:9px;}
+.fc a{color:rgba(255,255,255,0.45);font-size:13px;text-decoration:none;transition:color 0.2s;}
+.fc a:hover{color:var(--primary);}
+.fb{max-width:1180px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.3);}
+.fb a{color:rgba(255,255,255,0.3);text-decoration:none;}
+
+@media(max-width:900px){
+  .hero-content,.benv-grid,.testis-grid,.projets-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:36px;}
+  .impact-grid{grid-template-columns:1fr 1fr;}
+  .fg{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">ONG <span>Solidarité Africa</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Nos projets</a></li>
+      <li><a href="#">Notre impact</a></li>
+      <li><a href="#">Bénévolat</a></li>
+      <li><a href="#">Actualités</a></li>
+      <li><a href="#">À propos</a></li>
+    </ul>
+    <a href="#" class="btn-don">❤️ Faire un don</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-urgency"><div class="urgency-dot"></div>Appel urgent — Inondations Mali 2025</div>
+      <h1>Ensemble,<br>changeons<br><span>l'Afrique</span></h1>
+      <p class="hero-desc">Éducation, santé, eau potable, autonomisation des femmes — depuis 2010, Solidarité Africa transforme des vies au cœur du continent.</p>
+      <div class="hero-impact">
+        <div class="hi"><div class="hi-n">450K</div><div class="hi-l">Bénéficiaires</div></div>
+        <div class="hi"><div class="hi-n">12</div><div class="hi-l">Pays d'action</div></div>
+        <div class="hi"><div class="hi-n">280</div><div class="hi-l">Projets réalisés</div></div>
+      </div>
+      <div class="hero-btns">
+        <a href="#" class="btn-don-hero">❤️ Faire un don maintenant</a>
+        <a href="#" class="btn-ghost">Découvrir nos actions</a>
+      </div>
+    </div>
+    <div class="hero-don-card">
+      <div class="hdc-title">💝 Faire un don</div>
+      <div class="hdc-sub">100% des dons vont aux bénéficiaires</div>
+      <div class="amounts-grid">
+        <div class="amount-btn"><div class="amount-val">5 000 FCFA</div><div class="amount-impact">🍚 2 repas</div></div>
+        <div class="amount-btn active"><div class="amount-val">10 000 FCFA</div><div class="amount-impact">📚 1 kit scolaire</div></div>
+        <div class="amount-btn"><div class="amount-val">25 000 FCFA</div><div class="amount-impact">💊 1 mois santé</div></div>
+        <div class="amount-btn"><div class="amount-val">50 000 FCFA</div><div class="amount-impact">💧 1 puits</div></div>
+        <div class="amount-btn"><div class="amount-val">100 000 FCFA</div><div class="amount-impact">🏫 1 mois école</div></div>
+        <div class="amount-btn"><div class="amount-val">Autre</div><div class="amount-impact">Montant libre</div></div>
+      </div>
+      <div class="don-type-row">
+        <div class="don-type">Don unique</div>
+        <div class="don-type active">Don mensuel 💚</div>
+      </div>
+      <button class="btn-give">💝 Je fais un don de 10 000 FCFA →</button>
+      <p class="hdc-note">🔒 Sécurisé · Reçu fiscal disponible · Déductible des impôts</p>
+    </div>
+  </div>
+</section>
+
+<section class="projets-section">
+  <div class="si">
+    <div class="sh">
+      <div class="stag orange">Nos projets actifs</div>
+      <h2 class="stitle">Des actions concrètes sur le terrain</h2>
+      <p class="ssub">Chaque projet est suivi par nos équipes locales et évalué par des experts indépendants.</p>
+    </div>
+    <div class="projets-grid">
+      <div class="projet-card">
+        <div class="projet-img pi1">🏫<div class="projet-status status-active">● Actif</div></div>
+        <div class="projet-body">
+          <div class="projet-name">Écoles pour Toutes</div>
+          <div class="projet-loc">📍 Régions du Sahel, Burkina Faso</div>
+          <div class="projet-desc">Construction de 15 salles de classe et formation de 45 enseignants dans les zones rurales les plus reculées.</div>
+          <div class="progress-bar"><div class="progress-fill green" style="width:72%"></div></div>
+          <div class="progress-meta"><span><strong>72%</strong> financé</span><span>52 000 000 FCFA / 72 000 000 FCFA</span></div>
+        </div>
+      </div>
+      <div class="projet-card">
+        <div class="projet-img pi2">🚨<div class="projet-status status-urgent">⚡ Urgent</div></div>
+        <div class="projet-body">
+          <div class="projet-name">Aide d'Urgence Mali</div>
+          <div class="projet-loc">📍 Régions inondées, Mali</div>
+          <div class="projet-desc">Distribution de nourriture, eau potable et abris d'urgence pour 12 000 familles déplacées par les inondations.</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:34%"></div></div>
+          <div class="progress-meta"><span><strong>34%</strong> financé</span><span>17 000 000 FCFA / 50 000 000 FCFA</span></div>
+        </div>
+      </div>
+      <div class="projet-card">
+        <div class="projet-img pi3">💧<div class="projet-status status-active">● Actif</div></div>
+        <div class="projet-body">
+          <div class="projet-name">Eau Propre pour Tous</div>
+          <div class="projet-loc">📍 Nord Côte d'Ivoire</div>
+          <div class="projet-desc">Installation de 40 pompes à eau solaires dans les villages sans accès à l'eau potable des régions du Nord.</div>
+          <div class="progress-bar"><div class="progress-fill green" style="width:88%"></div></div>
+          <div class="progress-meta"><span><strong>88%</strong> financé</span><span>35 200 000 FCFA / 40 000 000 FCFA</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="impact-section">
+  <div class="si">
+    <div class="sh center">
+      <div class="stag orange">Notre impact</div>
+      <h2 class="stitle">15 ans d'actions mesurées</h2>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card"><div class="impact-icon">👧</div><div class="impact-n">450 000</div><div class="impact-l">Bénéficiaires directs</div></div>
+      <div class="impact-card"><div class="impact-icon">🏫</div><div class="impact-n">320</div><div class="impact-l">Salles de classe construites</div></div>
+      <div class="impact-card"><div class="impact-icon">💧</div><div class="impact-n">180</div><div class="impact-l">Puits et pompes installés</div></div>
+      <div class="impact-card"><div class="impact-icon">👩</div><div class="impact-n">12 000</div><div class="impact-l">Femmes autonomisées</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testis-section">
+  <div class="si">
+    <div class="sh center">
+      <div class="stag orange">Témoignages</div>
+      <h2 class="stitle">Des vies transformées</h2>
+    </div>
+    <div class="testis-grid">
+      <div class="testi-card"><div class="t-stars">❤️❤️❤️❤️❤️</div><p class="t-text">Grâce à la pompe solaire installée par Solidarité Africa, mes enfants n'ont plus besoin de marcher 8km pour chercher de l'eau. Ils vont maintenant à l'école.</p><div class="t-author"><div class="ta">AT</div><div><div class="tn">Awa Touré</div><div class="tr">Mère de famille · Korhogo, CI</div></div></div></div>
+      <div class="testi-card"><div class="t-stars">❤️❤️❤️❤️❤️</div><p class="t-text">Le programme de formation en couture m'a donné un métier. J'ai maintenant ma propre boutique et je fais vivre mes 4 enfants seule. Je suis libre et fière.</p><div class="t-author"><div class="ta">MK</div><div><div class="tn">Mariama Koné</div><div class="tr">Artisane · Ouagadougou, BF</div></div></div></div>
+      <div class="testi-card"><div class="t-stars">❤️❤️❤️❤️❤️</div><p class="t-text">Donateur mensuel depuis 3 ans, je reçois les rapports d'impact détaillés. Je vois exactement où va mon argent. Cette transparence est rare et précieuse.</p><div class="t-author"><div class="ta">PL</div><div><div class="tn">Philippe Legrand</div><div class="tr">Donateur depuis 2022 · Paris</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="partenaires-section">
+  <div class="si">
+    <div class="stag orange" style="text-align:center">Partenaires</div>
+    <h2 class="stitle" style="text-align:center">Ils soutiennent nos actions</h2>
+    <div class="partenaires-grid">
+      <div class="part-item">🌍 UNICEF</div>
+      <div class="part-item">🏛️ Union Européenne</div>
+      <div class="part-item">🏦 BAD</div>
+      <div class="part-item">🤝 AFD France</div>
+      <div class="part-item">💊 MSF</div>
+      <div class="part-item">🌾 FAO</div>
+      <div class="part-item">💧 WASH</div>
+      <div class="part-item">📚 Ministères Éducation CI</div>
+    </div>
+  </div>
+</section>
+
+<section class="benevoles-section">
+  <div class="si">
+    <div class="benv-grid">
+      <div>
+        <div class="stag green">Bénévolat</div>
+        <h2 class="stitle">Rejoignez nos 2 000 bénévoles</h2>
+        <p class="ssub">En présentiel ou en ligne, votre temps et vos compétences ont de la valeur.</p>
+        <div class="benv-steps" style="margin-top:28px">
+          <div class="benv-step"><div class="bs-icon">📝</div><div><div class="bs-title">Candidatez en 5 minutes</div><div class="bs-desc">Remplissez notre formulaire avec vos compétences et disponibilités.</div></div></div>
+          <div class="benv-step"><div class="bs-icon">📞</div><div><div class="bs-title">Entretien de motivation</div><div class="bs-desc">Un appel de 30 min avec nos coordinateurs pour trouver la mission adaptée.</div></div></div>
+          <div class="benv-step"><div class="bs-icon">🌍</div><div><div class="bs-title">Rejoignez une mission</div><div class="bs-desc">Sur le terrain en Afrique ou à distance selon vos disponibilités.</div></div></div>
+        </div>
+      </div>
+      <div class="benv-cta">
+        <div class="bc-title">🙋 Devenir bénévole</div>
+        <div class="bc-desc">Apportez vos compétences à nos projets. Enseignant, médecin, ingénieur, logisticien — tous les profils sont utiles.</div>
+        <div class="bc-form">
+          <input type="text" placeholder="Votre nom complet">
+          <input type="email" placeholder="Votre email">
+          <select><option>Compétences : Enseignement</option><option>Compétences : Santé / Médecine</option><option>Compétences : Ingénierie / Eau</option><option>Compétences : Communication / Marketing</option><option>Compétences : Logistique / Transport</option></select>
+          <button class="bc-btn">Candidater au bénévolat →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Donnez de l'<span>espoir</span> aujourd'hui</h2>
+  <p>Chaque don, aussi petit soit-il, change une vie</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-cta-o">❤️ Faire un don maintenant</a>
+    <a href="#" class="btn-cta-g">Voir tous nos projets</a>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div>
+      <div class="fl">ONG <span>Solidarité Africa</span></div>
+      <p class="fp">ONG internationale créée en 2010. Présente dans 12 pays d'Afrique. Actions en éducation, santé, eau, autonomisation des femmes et aide d'urgence. 98% des dons vont directement sur le terrain.</p>
+      <div class="f-socs"><a href="#" class="f-soc">f</a><a href="#" class="f-soc">ig</a><a href="#" class="f-soc">tw</a><a href="#" class="f-soc">yt</a></div>
+    </div>
+    <div class="fc"><h5>Nos causes</h5><ul><li><a href="#">Éducation</a></li><li><a href="#">Santé</a></li><li><a href="#">Eau & Hygiène</a></li><li><a href="#">Femmes & Jeunes</a></li><li><a href="#">Urgences</a></li></ul></div>
+    <div class="fc"><h5>Participer</h5><ul><li><a href="#">Faire un don</a></li><li><a href="#">Devenir bénévole</a></li><li><a href="#">Partenariats entreprises</a></li><li><a href="#">Legs & Donations</a></li></ul></div>
+    <div class="fc"><h5>Contact</h5><ul><li><a href="#">📍 Cocody, Abidjan</a></li><li><a href="#">📞 +225 27 22 36 47 58</a></li><li><a href="#">✉️ contact@solidarite-africa.org</a></li></ul></div>
+  </div>
+  <div class="fb">
+    <span>© 2025 ONG Solidarité Africa. Numéro d'agrément : 2010/CI/ONG/004</span>
+    <div><a href="#">Mentions légales</a> · <a href="#">Rapports annuels</a></div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.amount-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.amount-btn').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+    const val=this.querySelector('.amount-val').textContent;
+    const give=document.querySelector('.btn-give');
+    if(!val.includes('Autre'))give.textContent='💝 Je fais un don de '+val+' →';
+  });
+});
+document.querySelectorAll('.don-type').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.don-type').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

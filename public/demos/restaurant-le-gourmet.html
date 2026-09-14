@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Gourmet — Restaurant Gastronomique</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --gold:#C9A84C;--gold-light:#E8C97A;--dark:#09050A;--dark2:#120B05;
+    --dark3:#1E1208;--text:#F5EDD8;--text2:rgba(245,237,216,.6);
+    --text3:rgba(245,237,216,.35);--accent:#8B1A1A;--radius:1rem;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--dark);color:var(--text);font-family:'Georgia',serif;overflow-x:hidden}
+
+  /* ── NAV ── */
+  nav{position:fixed;top:40px;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:.875rem 3rem;background:rgba(9,5,10,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.12)}
+  .nav-logo{display:flex;align-items:center;gap:.75rem}
+  .nav-logo-icon{width:36px;height:36px;border-radius:.5rem;background:linear-gradient(135deg,#8B1A1A,#C9A84C);display:flex;align-items:center;justify-content:center;font-size:1rem}
+  .nav-logo-text{font-size:1.1rem;font-weight:700;letter-spacing:.05em;color:var(--gold)}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{color:var(--text2);text-decoration:none;font-family:sans-serif;font-size:.82rem;letter-spacing:.04em;transition:color .2s}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-cta{padding:.6rem 1.5rem;border-radius:.5rem;background:linear-gradient(135deg,var(--gold),#B8860B);color:#1A0A00;font-family:sans-serif;font-size:.78rem;font-weight:800;text-decoration:none;letter-spacing:.04em;transition:opacity .2s}
+  .nav-cta:hover{opacity:.85}
+
+  /* ── DEMO BAR ── */
+  .demo-bar{position:fixed;top:0;left:0;right:0;z-index:1000;height:40px;background:linear-gradient(90deg,#1a0800,#2d0f00);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;border-bottom:1px solid rgba(255,107,0,.3)}
+  .demo-bar-left{display:flex;align-items:center;gap:.75rem;font-size:.7rem;color:rgba(255,255,255,.5);font-family:sans-serif}
+  .demo-badge{background:rgba(255,107,0,.2);border:1px solid rgba(255,107,0,.4);color:#FF9A4D;padding:.15rem .6rem;border-radius:9999px;font-size:.6rem;font-weight:800;letter-spacing:.05em;font-family:sans-serif}
+  .demo-bar-right{display:flex;gap:.75rem;align-items:center}
+  .demo-order{padding:.35rem 1.25rem;border-radius:9999px;background:linear-gradient(135deg,#FF6B00,#FF4500);color:white;font-size:.68rem;font-weight:800;text-decoration:none;font-family:sans-serif;letter-spacing:.04em;white-space:nowrap}
+
+  /* ── HERO ── */
+  .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 100% 80% at 50% 0%,#2D1000 0%,#0D0400 60%,var(--dark) 100%)}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 30% 40%,rgba(139,26,26,.25) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 70% 60%,rgba(201,168,76,.12) 0%,transparent 60%)}
+  .hero-pattern{position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(45deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 50%);background-size:20px 20px}
+  .hero-content{position:relative;z-index:1;max-width:800px;padding:0 2rem}
+  .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1.25rem;border-radius:9999px;border:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.08);color:var(--gold);font-family:sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.1em;margin-bottom:2rem}
+  .hero h1{font-size:clamp(3.5rem,8vw,7rem);line-height:.95;letter-spacing:-.02em;color:var(--text);margin-bottom:1.5rem}
+  .hero h1 span{color:var(--gold)}
+  .hero-tagline{font-size:1.15rem;color:var(--text2);margin-bottom:1rem;font-style:italic;letter-spacing:.02em}
+  .hero-sub{font-size:.88rem;color:var(--text3);font-family:sans-serif;margin-bottom:3rem;letter-spacing:.04em;line-height:1.7}
+  .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn-gold{padding:.875rem 2.25rem;border-radius:.5rem;background:linear-gradient(135deg,var(--gold),#B8860B);color:#0D0500;font-family:sans-serif;font-size:.85rem;font-weight:800;text-decoration:none;letter-spacing:.04em;transition:opacity .2s}
+  .btn-ghost{padding:.875rem 2.25rem;border-radius:.5rem;border:1px solid rgba(201,168,76,.3);color:var(--gold);font-family:sans-serif;font-size:.85rem;font-weight:600;text-decoration:none;background:rgba(201,168,76,.05);letter-spacing:.04em}
+  .hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:5rem;padding-top:3rem;border-top:1px solid rgba(201,168,76,.12)}
+  .hero-stat-n{font-size:2rem;font-weight:700;color:var(--gold)}
+  .hero-stat-l{font-family:sans-serif;font-size:.65rem;color:var(--text3);letter-spacing:.08em;margin-top:.25rem}
+
+  /* ── SECTION WRAPPER ── */
+  section{padding:6rem 0}
+  .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+  .section-label{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:1rem}
+  .section-label-line{height:1px;width:2.5rem;background:linear-gradient(90deg,transparent,var(--gold))}
+  .section-label-line.r{background:linear-gradient(90deg,var(--gold),transparent)}
+  .section-label span{font-family:sans-serif;font-size:.65rem;font-weight:800;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+  .section-title{font-size:clamp(2rem,4vw,3rem);text-align:center;letter-spacing:-.02em;color:var(--text);margin-bottom:.75rem}
+  .section-sub{text-align:center;font-family:sans-serif;font-size:.9rem;color:var(--text2);max-width:520px;margin:0 auto 3.5rem;line-height:1.8}
+
+  /* ── AMBIANCE ── */
+  .ambiance{background:var(--dark2)}
+  .ambiance-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+  .ambiance-photos{display:grid;grid-template-columns:1fr 1fr;gap:.875rem}
+  .ambiance-photo{border-radius:1rem;overflow:hidden;position:relative}
+  .ambiance-photo.tall{grid-row:span 2}
+  .photo-box{width:100%;aspect-ratio:1;background:var(--dark3);display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
+  .photo-box.tall{aspect-ratio:unset;height:100%}
+  .photo-box::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:.7}
+  .photo-restaurant-1{--grad:linear-gradient(135deg,#3D0A0A 0%,#7C1C0A 50%,#C44000 100%)}
+  .photo-restaurant-2{--grad:linear-gradient(135deg,#1A0A00 0%,#5C2800 100%)}
+  .photo-restaurant-3{--grad:linear-gradient(135deg,#2A1500 0%,#8B4500 100%)}
+  .photo-restaurant-4{--grad:linear-gradient(135deg,#380E00 0%,#6B1A00 100%)}
+  .photo-emoji{position:relative;z-index:1;font-size:2.5rem;opacity:.6}
+  .ambiance-text h2{font-size:2.25rem;color:var(--text);margin-bottom:1.5rem;letter-spacing:-.02em;line-height:1.2}
+  .ambiance-text p{font-family:sans-serif;color:var(--text2);line-height:1.8;margin-bottom:1.25rem;font-size:.9rem}
+  .ambiance-list{list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-top:2rem}
+  .ambiance-list li{display:flex;align-items:center;gap:.75rem;font-family:sans-serif;font-size:.85rem;color:var(--text2)}
+  .ambiance-list li::before{content:'✦';color:var(--gold);font-size:.7rem;flex-shrink:0}
+
+  /* ── MENU ── */
+  .menu{background:var(--dark)}
+  .menu-tabs{display:flex;gap:.5rem;justify-content:center;margin-bottom:3rem;flex-wrap:wrap}
+  .menu-tab{padding:.625rem 1.5rem;border-radius:9999px;font-family:sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;border:1px solid rgba(201,168,76,.2);color:var(--text3);background:transparent;transition:all .2s;letter-spacing:.04em}
+  .menu-tab.active{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.5);color:var(--gold)}
+  .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+  .menu-card{background:var(--dark3);border:1px solid rgba(201,168,76,.1);border-radius:1.25rem;overflow:hidden;transition:transform .2s,border-color .2s}
+  .menu-card:hover{transform:translateY(-4px);border-color:rgba(201,168,76,.3)}
+  .menu-card-img{height:160px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+  .menu-img-1{background:linear-gradient(135deg,#3D1500,#8B3000)}
+  .menu-img-2{background:linear-gradient(135deg,#1A2A00,#4A6600)}
+  .menu-img-3{background:linear-gradient(135deg,#380000,#8B0000)}
+  .menu-img-4{background:linear-gradient(135deg,#001A2A,#004A6B)}
+  .menu-img-5{background:linear-gradient(135deg,#2A1A00,#7C5000)}
+  .menu-img-6{background:linear-gradient(135deg,#0A0A2A,#2A1A6B)}
+  .menu-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.6))}
+  .menu-card-badge{position:absolute;top:.75rem;right:.75rem;padding:.2rem .625rem;border-radius:9999px;font-family:sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.05em}
+  .badge-signature{background:rgba(201,168,76,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold)}
+  .badge-new{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);color:#4ADE80}
+  .badge-pop{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#FCA5A5}
+  .menu-card-body{padding:1.25rem 1.5rem}
+  .menu-card-name{font-size:1.05rem;color:var(--text);margin-bottom:.4rem;letter-spacing:.01em}
+  .menu-card-desc{font-family:sans-serif;font-size:.75rem;color:var(--text3);line-height:1.6;margin-bottom:1rem}
+  .menu-card-footer{display:flex;align-items:center;justify-content:space-between}
+  .menu-price{font-family:sans-serif;font-size:1rem;font-weight:800;color:var(--gold)}
+  .menu-add{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#B8860B);border:none;color:#0D0500;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .2s}
+  .menu-add:hover{opacity:.8}
+
+  /* ── CHEF ── */
+  .chef-section{background:linear-gradient(135deg,var(--dark2) 0%,var(--dark) 100%)}
+  .chef-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+  .chef-portrait{width:100%;aspect-ratio:3/4;border-radius:2rem;position:relative;overflow:hidden;background:linear-gradient(135deg,#2D1000,#5C2800);display:flex;align-items:center;justify-content:center;font-size:6rem;border:1px solid rgba(201,168,76,.2)}
+  .chef-portrait::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 40% 30%,rgba(201,168,76,.15) 0%,transparent 60%)}
+  .chef-portrait-label{position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;background:rgba(9,5,10,.8);backdrop-filter:blur(10px);border:1px solid rgba(201,168,76,.2);border-radius:.875rem;padding:1rem 1.25rem}
+  .chef-name{font-size:1rem;color:var(--text);font-weight:600}
+  .chef-role{font-family:sans-serif;font-size:.7rem;color:var(--gold);letter-spacing:.06em;margin-top:.2rem}
+  .chef-text blockquote{font-size:1.5rem;line-height:1.5;color:var(--text);margin:1.5rem 0 2rem;border-left:3px solid var(--gold);padding-left:1.5rem;font-style:italic}
+  .chef-text p{font-family:sans-serif;font-size:.88rem;color:var(--text2);line-height:1.9;margin-bottom:1rem}
+  .chef-awards{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+  .chef-award{display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:.625rem;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.15);font-family:sans-serif;font-size:.72rem;color:var(--gold)}
+
+  /* ── GALERIE ── */
+  .galerie{background:var(--dark2)}
+  .galerie-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,220px);gap:1rem}
+  .galerie-item{border-radius:1rem;overflow:hidden;position:relative;cursor:pointer}
+  .galerie-item:first-child{grid-column:span 2;grid-row:span 2}
+  .galerie-img{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;transition:transform .3s}
+  .galerie-item:hover .galerie-img{transform:scale(1.05)}
+  .galerie-img::before{content:'';position:absolute;inset:0;background:var(--gg);opacity:.8}
+  .galerie-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.7))}
+  .g1{--gg:linear-gradient(135deg,#4D1200,#9C3200,#E05000)}
+  .g2{--gg:linear-gradient(135deg,#1A3000,#3A6000)}
+  .g3{--gg:linear-gradient(135deg,#3A0800,#7C1A00)}
+  .g4{--gg:linear-gradient(135deg,#001A3A,#003A7A)}
+  .g5{--gg:linear-gradient(135deg,#2A1A00,#6A4400)}
+  .galerie-label{position:absolute;bottom:1rem;left:1rem;right:1rem;z-index:2;font-family:sans-serif;font-size:.72rem;color:rgba(255,255,255,.7);font-weight:600}
+  .galerie-emoji{position:relative;z-index:1;opacity:.5}
+
+  /* ── TÉMOIGNAGES ── */
+  .temoignages{background:var(--dark)}
+  .temoignages-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+  .temoignage-card{background:var(--dark3);border:1px solid rgba(201,168,76,.1);border-radius:1.5rem;padding:2rem}
+  .temoignage-stars{display:flex;gap:.25rem;margin-bottom:1rem}
+  .star{color:var(--gold);font-size:.85rem}
+  .temoignage-text{font-style:italic;color:var(--text2);line-height:1.8;font-size:.88rem;margin-bottom:1.5rem}
+  .temoignage-author{display:flex;align-items:center;gap:.75rem}
+  .temoignage-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;border:2px solid rgba(201,168,76,.3);flex-shrink:0}
+  .av1{background:linear-gradient(135deg,#3D1500,#8B3000)}
+  .av2{background:linear-gradient(135deg,#001A3A,#003A7A)}
+  .av3{background:linear-gradient(135deg,#1A3000,#3A6000)}
+  .temoignage-name{font-family:sans-serif;font-size:.8rem;font-weight:700;color:var(--text)}
+  .temoignage-date{font-family:sans-serif;font-size:.65rem;color:var(--text3);margin-top:.15rem}
+
+  /* ── RESERVATION ── */
+  .reservation{background:linear-gradient(135deg,var(--dark2),var(--dark3))}
+  .reservation-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+  .reservation-info h2{font-size:2.5rem;letter-spacing:-.02em;margin-bottom:1rem;color:var(--text)}
+  .reservation-info h2 span{color:var(--gold)}
+  .reservation-info p{font-family:sans-serif;color:var(--text2);line-height:1.8;margin-bottom:2rem;font-size:.9rem}
+  .reservation-details{display:flex;flex-direction:column;gap:1.25rem}
+  .reservation-detail{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.25rem;background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.12);border-radius:.875rem}
+  .reservation-detail-icon{font-size:1.2rem;margin-top:.1rem}
+  .reservation-detail-title{font-family:sans-serif;font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:.05em;margin-bottom:.2rem}
+  .reservation-detail-text{font-family:sans-serif;font-size:.8rem;color:var(--text2);line-height:1.6}
+  .reservation-form{background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.15);border-radius:1.5rem;padding:2.5rem}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+  .form-group{display:flex;flex-direction:column;gap:.5rem}
+  .form-group.full{grid-column:span 2}
+  .form-label{font-family:sans-serif;font-size:.7rem;font-weight:700;color:var(--text3);letter-spacing:.05em}
+  .form-input{padding:.75rem 1rem;border-radius:.625rem;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.15);color:var(--text);font-family:sans-serif;font-size:.85rem;outline:none;transition:border-color .2s;width:100%}
+  .form-input:focus{border-color:rgba(201,168,76,.5)}
+  .form-input::placeholder{color:var(--text3)}
+  .form-select{padding:.75rem 1rem;border-radius:.625rem;background:rgba(30,18,8,.9);border:1px solid rgba(201,168,76,.15);color:var(--text);font-family:sans-serif;font-size:.85rem;outline:none;width:100%}
+  .form-select option{background:#1E1208}
+  .form-btn{width:100%;padding:1rem;border-radius:.875rem;background:linear-gradient(135deg,var(--gold),#B8860B);border:none;color:#0D0500;font-family:sans-serif;font-size:.9rem;font-weight:800;cursor:pointer;letter-spacing:.04em;margin-top:.5rem;transition:opacity .2s}
+  .form-btn:hover{opacity:.85}
+
+  /* ── FOOTER ── */
+  footer{background:var(--dark2);padding:4rem 0 2rem;border-top:1px solid rgba(201,168,76,.1)}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+  .footer-brand h3{font-size:1.2rem;color:var(--gold);margin-bottom:.75rem;letter-spacing:.05em}
+  .footer-brand p{font-family:sans-serif;font-size:.78rem;color:var(--text3);line-height:1.8;max-width:260px}
+  .footer-col h4{font-family:sans-serif;font-size:.7rem;font-weight:800;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.25rem}
+  .footer-links{list-style:none;display:flex;flex-direction:column;gap:.625rem}
+  .footer-links a{font-family:sans-serif;font-size:.78rem;color:var(--text3);text-decoration:none;transition:color .2s}
+  .footer-links a:hover{color:var(--gold)}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
+  .footer-copy{font-family:sans-serif;font-size:.72rem;color:var(--text3)}
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:768px){
+    nav{padding:.75rem 1.25rem}
+    .nav-links{display:none}
+    .hero h1{font-size:2.8rem}
+    .hero-stats{gap:1.5rem;flex-wrap:wrap}
+    .ambiance-grid,.chef-grid,.reservation-wrapper,.footer-grid{grid-template-columns:1fr}
+    .ambiance-photos{order:-1}
+    .galerie-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+    .galerie-item:first-child{grid-column:span 2;grid-row:span 1}
+    .galerie-img{height:180px}
+    .form-row{grid-template-columns:1fr}
+    .form-group.full{grid-column:span 1}
+  }
+</style>
+</head>
+<body>
+
+<!-- DEMO BAR -->
+<div class="demo-bar">
+  <div class="demo-bar-left">
+    <span class="demo-badge">DÉMO LIVE</span>
+    <span>Template <strong style="color:rgba(255,255,255,.75)">Le Gourmet</strong> — Restaurant Gastronomique</span>
+  </div>
+  <div class="demo-bar-right">
+    <a href="/templates/restaurant/le-gourmet" class="demo-order">← Retour au template</a>
+    <a href="/templates/commander?secteur=restaurant&formule=premium" class="demo-order">Commander ce template →</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">🍽️</div>
+    <span class="nav-logo-text">LE GOURMET</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#menu">Notre Carte</a></li>
+    <li><a href="#chef">Le Chef</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#reservation">Réservation</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#reservation" class="nav-cta">Réserver une table</a>
+</nav>
+
+<!-- HERO -->
+<section id="accueil" class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⭐ Restaurant Gastronomique · Abidjan</div>
+    <h1>L'Art de la <span>Table</span></h1>
+    <p class="hero-tagline">Une expérience culinaire inoubliable au cœur d'Abidjan</p>
+    <p class="hero-sub">Cuisine gastronomique franco-africaine · Vins d'exception · Cadre intimiste<br>Ouvert du Mardi au Dimanche · Déjeuner & Dîner</p>
+    <div class="hero-btns">
+      <a href="#reservation" class="btn-gold">Réserver une table</a>
+      <a href="#menu" class="btn-ghost">Découvrir la carte</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-n">15+</div><div class="hero-stat-l">Ans d'excellence</div></div>
+      <div><div class="hero-stat-n">4.9★</div><div class="hero-stat-l">Note Google</div></div>
+      <div><div class="hero-stat-n">2</div><div class="hero-stat-l">Étoiles culinaires</div></div>
+      <div><div class="hero-stat-n">3000+</div><div class="hero-stat-l">Clients satisfaits</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AMBIANCE -->
+<section class="ambiance">
+  <div class="container">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>Notre restaurant</span>
+      <div class="section-label-line r"></div>
+    </div>
+    <div class="ambiance-grid">
+      <div class="ambiance-photos">
+        <div class="ambiance-photo tall">
+          <div class="photo-box tall photo-restaurant-1"><span class="photo-emoji">🍷</span></div>
+        </div>
+        <div class="ambiance-photo">
+          <div class="photo-box photo-restaurant-2"><span class="photo-emoji">🕯️</span></div>
+        </div>
+        <div class="ambiance-photo">
+          <div class="photo-box photo-restaurant-3"><span class="photo-emoji">🌿</span></div>
+        </div>
+      </div>
+      <div class="ambiance-text">
+        <h2>Un lieu où chaque repas devient un souvenir</h2>
+        <p>Niché au cœur du Plateau, Le Gourmet vous accueille dans un écrin de luxe discret où l'art culinaire rencontre l'élégance africaine. Nos 45 couverts vous garantissent une expérience intime et personnalisée.</p>
+        <p>Chaque soir, notre équipe s'affaire pour transformer des produits locaux d'exception en créations gastronomiques qui racontent l'Afrique avec finesse et modernité.</p>
+        <ul class="ambiance-list">
+          <li>Salle climatisée & terrasse panoramique</li>
+          <li>Cave à vins avec 200+ références</li>
+          <li>Salon privé pour vos événements d'entreprise</li>
+          <li>Service traiteur pour vos grandes occasions</li>
+          <li>Menu végétarien & allergies pris en compte</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="menu">
+  <div class="container">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>Notre carte</span>
+      <div class="section-label-line r"></div>
+    </div>
+    <h2 class="section-title">Une cuisine qui raconte l'Afrique</h2>
+    <p class="section-sub">Des créations signatures revisitant les grandes saveurs d'Afrique de l'Ouest avec une touche gastronomique française</p>
+
+    <div class="menu-tabs">
+      <button class="menu-tab active">Entrées</button>
+      <button class="menu-tab">Plats</button>
+      <button class="menu-tab">Desserts</button>
+      <button class="menu-tab">Menu Dégustation</button>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="menu-card-img menu-img-1">
+          <span style="position:relative;z-index:1;font-size:3rem;opacity:.6">🥗</span>
+          <div class="menu-img-overlay"></div>
+          <span class="menu-card-badge badge-signature">Signature</span>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Carpaccio de thon jaune, vinaigrette gingembre & citronelle</div>
+          <div class="menu-card-desc">Thon frais de l'Atlantique, huile de coco vierge, citronelle du jardin, pickles de papaye verte</div>
+          <div class="menu-card-footer">
+            <div class="menu-price">7 500 FCFA</div>
+            <button class="menu-add">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-img menu-img-2">
+          <span style="position:relative;z-index:1;font-size:3rem;opacity:.6">🥬</span>
+          <div class="menu-img-overlay"></div>
+          <span class="menu-card-badge badge-new">Nouveau</span>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Velouté d'igname fumée, espuma de coco & huile de palme rouge</div>
+          <div class="menu-card-desc">Igname de Bouaké, lait de coco artisanal, huile de palme première pression, chips de plantain</div>
+          <div class="menu-card-footer">
+            <div class="menu-price">6 000 FCFA</div>
+            <button class="menu-add">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-img menu-img-3">
+          <span style="position:relative;z-index:1;font-size:3rem;opacity:.6">🍤</span>
+          <div class="menu-img-overlay"></div>
+          <span class="menu-card-badge badge-pop">Populaire</span>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Crevettes flambées au Baileys, mangue & piment d'Espelette</div>
+          <div class="menu-card-desc">Crevettes royales du littoral, mangue Amélie, crème fleurette, piment d'Espelette, ciboulette</div>
+          <div class="menu-card-footer">
+            <div class="menu-price">9 500 FCFA</div>
+            <button class="menu-add">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-img menu-img-4">
+          <span style="position:relative;z-index:1;font-size:3rem;opacity:.6">🐠</span>
+          <div class="menu-img-overlay"></div>
+          <span class="menu-card-badge badge-signature">Signature</span>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Tartare de bar sauvage, avocat & wasabi de feuilles de neem</div>
+          <div class="menu-card-desc">Bar de ligne de Grand-Lahou, avocat Hass, wasabi maison aux feuilles de neem, sésame grillé</div>
+          <div class="menu-card-footer">
+            <div class="menu-price">8 500 FCFA</div>
+            <button class="menu-add">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-img menu-img-5">
+          <span style="position:relative;z-index:1;font-size:3rem;opacity:.6">🥩</span>
+          <div class="menu-img-overlay"></div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Foie gras de canard poêlé, chutney d'ananas Victoria & brioche</div>
+          <div class="menu-card-desc">Foie gras de canard du Périgord, ananas Victoria de Côte d'Ivoire, pain brioché maison, fleur de sel</div>
+          <div class="menu-card-footer">
+            <div class="menu-price">12 000 FCFA</div>
+            <button class="menu-add">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-img menu-img-6">
+          <span style="position:relative;z-index:1;font-size:3rem;opacity:.6">🫙</span>
+          <div class="menu-img-overlay"></div>
+          <span class="menu-card-badge badge-new">Saison</span>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-name">Gazpacho de tomates locales, basilic & burrata crémeuse</div>
+          <div class="menu-card-desc">Tomates cœur de bœuf d'Anyama, basilic du jardin, burrata artisanale, huile d'olive sicilienne</div>
+          <div class="menu-card-footer">
+            <div class="menu-price">5 500 FCFA</div>
+            <button class="menu-add">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem">
+      <a href="#" class="btn-ghost" style="display:inline-flex;align-items:center;gap:.5rem;font-family:sans-serif;font-size:.82rem">Voir la carte complète →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CHEF -->
+<section id="chef" class="chef-section">
+  <div class="container">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>L'âme du restaurant</span>
+      <div class="section-label-line r"></div>
+    </div>
+    <div class="chef-grid">
+      <div>
+        <div class="chef-portrait">
+          <span style="position:relative;z-index:1;font-size:5rem;opacity:.4">👨‍🍳</span>
+          <div class="chef-portrait-label">
+            <div class="chef-name">Chef Kouassi Adou Emmanuel</div>
+            <div class="chef-role">CHEF EXÉCUTIF — LE GOURMET</div>
+          </div>
+        </div>
+      </div>
+      <div class="chef-text">
+        <div class="section-label" style="justify-content:flex-start">
+          <div class="section-label-line"></div>
+          <span>Notre Chef</span>
+        </div>
+        <h2 style="font-size:2.5rem;color:var(--text);margin-bottom:.5rem;letter-spacing:-.02em">Kouassi Adou<br><span style="color:var(--gold)">Emmanuel</span></h2>
+        <blockquote>"La cuisine africaine a une âme que peu de gastronomies peuvent égaler. Mon rôle est de la révéler au monde."</blockquote>
+        <p>Formé aux côtés des plus grands noms de la gastronomie française à Paris, Lyon et Bordeaux, Chef Kouassi a fait le chemin inverse : ramener en Afrique tout ce savoir-faire pour sublimer les produits de sa terre natale.</p>
+        <p>Après 8 ans passés en Europe et une étoile Michelin obtenue à Bordeaux, il fonde Le Gourmet en 2009 avec une conviction : la cuisine ivoirienne méritait une table gastronomique digne de ce nom.</p>
+        <div class="chef-awards">
+          <div class="chef-award">⭐ Étoile Michelin 2018</div>
+          <div class="chef-award">🏆 Meilleur Chef Afrique 2021</div>
+          <div class="chef-award">🎖️ Prix d'Excellence HORECA 2023</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie" class="galerie">
+  <div class="container">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>Galerie</span>
+      <div class="section-label-line r"></div>
+    </div>
+    <h2 class="section-title">L'expérience en images</h2>
+    <p class="section-sub">Laissez-vous séduire par l'ambiance et les créations de notre maison</p>
+    <div class="galerie-grid">
+      <div class="galerie-item">
+        <div class="galerie-img g1">
+          <span class="galerie-emoji">🍽️</span>
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.7));z-index:1"></div>
+        </div>
+        <div class="galerie-label">Plat signature — Bœuf Wellington aux épices locales</div>
+      </div>
+      <div class="galerie-item">
+        <div class="galerie-img g2">
+          <span class="galerie-emoji">🥂</span>
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.7));z-index:1"></div>
+        </div>
+        <div class="galerie-label">Salle principale</div>
+      </div>
+      <div class="galerie-item">
+        <div class="galerie-img g3">
+          <span class="galerie-emoji">🍰</span>
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.7));z-index:1"></div>
+        </div>
+        <div class="galerie-label">Desserts du jour</div>
+      </div>
+      <div class="galerie-item">
+        <div class="galerie-img g4">
+          <span class="galerie-emoji">🦞</span>
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.7));z-index:1"></div>
+        </div>
+        <div class="galerie-label">Créations marines</div>
+      </div>
+      <div class="galerie-item">
+        <div class="galerie-img g5">
+          <span class="galerie-emoji">🌿</span>
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.7));z-index:1"></div>
+        </div>
+        <div class="galerie-label">Jardin & terrasse</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="temoignages">
+  <div class="container">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>Ce qu'ils en pensent</span>
+      <div class="section-label-line r"></div>
+    </div>
+    <h2 class="section-title">L'avis de nos clients</h2>
+    <div class="temoignages-grid">
+      <div class="temoignage-card">
+        <div class="temoignage-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="temoignage-text">"Une expérience culinaire au-delà de toutes mes attentes. Le chef a su marier les saveurs africaines avec une technique française irréprochable. Le carpaccio de thon était tout simplement divin."</p>
+        <div class="temoignage-author">
+          <div class="temoignage-avatar av1">👩</div>
+          <div>
+            <div class="temoignage-name">Aminata Kouyaté</div>
+            <div class="temoignage-date">Abidjan — il y a 2 semaines</div>
+          </div>
+        </div>
+      </div>
+      <div class="temoignage-card">
+        <div class="temoignage-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="temoignage-text">"Nous avons organisé le dîner de mariage de notre fille au Gourmet. Service impeccable, cuisine sublime, cadre splendide. Tous nos invités ont été époustouflés. Merci à toute l'équipe !"</p>
+        <div class="temoignage-author">
+          <div class="temoignage-avatar av2">👨</div>
+          <div>
+            <div class="temoignage-name">Jean-Paul Assemian</div>
+            <div class="temoignage-date">Abidjan — il y a 1 mois</div>
+          </div>
+        </div>
+      </div>
+      <div class="temoignage-card">
+        <div class="temoignage-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="temoignage-text">"En visite professionnelle à Abidjan, mes collègues parisiens ne savaient pas à quoi s'attendre. Ils ont été complètement bluffés. Le meilleur repas gastronomique depuis bien longtemps."</p>
+        <div class="temoignage-author">
+          <div class="temoignage-avatar av3">👩</div>
+          <div>
+            <div class="temoignage-name">Sophie Marchand</div>
+            <div class="temoignage-date">Paris — il y a 3 semaines</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉSERVATION -->
+<section id="reservation" class="reservation">
+  <div class="container">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>Votre soirée</span>
+      <div class="section-label-line r"></div>
+    </div>
+    <div class="reservation-wrapper">
+      <div class="reservation-info">
+        <h2>Réservez votre <span>table</span></h2>
+        <p>Réservez en ligne ou appelez-nous directement. Pour les groupes de plus de 8 personnes ou les événements privés, contactez-nous pour un devis personnalisé.</p>
+        <div class="reservation-details">
+          <div class="reservation-detail">
+            <div class="reservation-detail-icon">🕐</div>
+            <div>
+              <div class="reservation-detail-title">HORAIRES D'OUVERTURE</div>
+              <div class="reservation-detail-text">Mardi – Vendredi : 12h–14h30 · 19h–23h<br>Samedi – Dimanche : 19h–23h30<br>Fermé le Lundi</div>
+            </div>
+          </div>
+          <div class="reservation-detail">
+            <div class="reservation-detail-icon">📍</div>
+            <div>
+              <div class="reservation-detail-title">ADRESSE</div>
+              <div class="reservation-detail-text">18, Avenue Terrasson de Fougères<br>Plateau, Abidjan — Côte d'Ivoire<br>Parking privé disponible</div>
+            </div>
+          </div>
+          <div class="reservation-detail">
+            <div class="reservation-detail-icon">📞</div>
+            <div>
+              <div class="reservation-detail-title">CONTACT</div>
+              <div class="reservation-detail-text">+225 07 07 07 07 07<br>reservation@le-gourmet-abidjan.ci<br>WhatsApp disponible</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reservation-form">
+        <h3 style="font-size:1.2rem;color:var(--gold);margin-bottom:1.75rem;letter-spacing:.04em">Réserver une table</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">PRÉNOM</label>
+            <input type="text" class="form-input" placeholder="Kofi">
+          </div>
+          <div class="form-group">
+            <label class="form-label">NOM</label>
+            <input type="text" class="form-input" placeholder="Mensah">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">TÉLÉPHONE</label>
+            <input type="tel" class="form-input" placeholder="+225 07 00 00 00 00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">E-MAIL</label>
+            <input type="email" class="form-input" placeholder="votre@email.ci">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">DATE</label>
+            <input type="date" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">HEURE</label>
+            <select class="form-select">
+              <option>19h00</option><option>19h30</option><option>20h00</option>
+              <option>20h30</option><option>21h00</option><option>21h30</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row" style="grid-template-columns:1fr 1fr">
+          <div class="form-group">
+            <label class="form-label">NOMBRE DE COUVERTS</label>
+            <select class="form-select">
+              <option>1 personne</option><option>2 personnes</option><option>3 personnes</option>
+              <option>4 personnes</option><option>5-8 personnes</option><option>8+ personnes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">OCCASION</label>
+            <select class="form-select">
+              <option>Dîner classique</option><option>Anniversaire</option><option>Mariage / Fiançailles</option>
+              <option>Repas d'affaires</option><option>Autre</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group full" style="margin-bottom:1rem">
+          <label class="form-label">DEMANDES PARTICULIÈRES</label>
+          <textarea class="form-input" rows="3" placeholder="Allergies, régime végétarien, décoration spéciale…" style="resize:vertical"></textarea>
+        </div>
+        <button class="form-btn">Confirmer ma réservation</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>LE GOURMET</h3>
+        <p>Restaurant gastronomique franco-africain. Une table d'exception au cœur du Plateau d'Abidjan depuis 2009.</p>
+        <div style="display:flex;gap:.75rem;margin-top:1.5rem">
+          <a href="#" style="width:36px;height:36px;border-radius:.5rem;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none">f</a>
+          <a href="#" style="width:36px;height:36px;border-radius:.5rem;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none">in</a>
+          <a href="#" style="width:36px;height:36px;border-radius:.5rem;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:.85rem;text-decoration:none">ig</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#menu">Notre carte</a></li>
+          <li><a href="#chef">Le Chef</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#reservation">Réservation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="#">Privatisation</a></li>
+          <li><a href="#">Traiteur</a></li>
+          <li><a href="#">Ateliers culinaires</a></li>
+          <li><a href="#">Bon cadeau</a></li>
+          <li><a href="#">Menu entreprise</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informations</h4>
+        <ul class="footer-links">
+          <li><a href="#">Horaires & accès</a></li>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique cookies</a></li>
+          <li><a href="#">Presse</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Le Gourmet — Tous droits réservés</span>
+      <span class="footer-copy">Site réalisé par <span style="color:var(--gold)">IBIG DIGITAL</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Simple menu tab interaction
+document.querySelectorAll('.menu-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.menu-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+// Smooth nav highlight
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 80) {
+    nav.style.background = 'rgba(9,5,10,.97)';
+  } else {
+    nav.style.background = 'rgba(9,5,10,.85)';
+  }
+});
+</script>
+</body>
+</html>

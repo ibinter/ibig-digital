@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belle Afrique Salon — Beauté & Bien-être</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--rose:#C2185B;--rose-light:#FCE4EC;--rose-mid:#F48FB1;--gold:#D4A574;--cream:#FEF9F5;--light:#FFF5F8;--gray:#78716C;--dark:#1C0A1A;--white:#FFFFFF}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:#292524;font-family:'Georgia','Times New Roman',serif;overflow-x:hidden}
+.demo-bar{position:fixed;top:0;left:0;right:0;z-index:1000;height:40px;background:linear-gradient(90deg,#1C0A1A,#3B0A2A);display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
+.demo-badge{background:rgba(194,24,91,.25);border:1px solid rgba(194,24,91,.5);color:#F48FB1;padding:.15rem .6rem;border-radius:9999px;font-size:.6rem;font-weight:700}
+.demo-bar-text{font-size:.7rem;color:rgba(255,255,255,.8);display:flex;align-items:center;gap:.75rem}
+.demo-btn{padding:.35rem 1.25rem;border-radius:4px;background:var(--rose);color:white;font-size:.68rem;font-weight:700;text-decoration:none}
+nav{position:fixed;top:40px;left:0;right:0;z-index:900;background:rgba(254,249,245,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(194,24,91,.1);display:flex;align-items:center;justify-content:space-between;padding:.875rem 3rem}
+.nav-logo{display:flex;flex-direction:column}
+.nav-logo-name{font-size:1.05rem;font-weight:700;color:var(--dark);letter-spacing:.04em}
+.nav-logo-sub{font-size:.5rem;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-family:Arial,sans-serif}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:#78716C;text-decoration:none;font-size:.75rem;font-weight:600;font-family:Arial,sans-serif}
+.nav-cta{padding:.6rem 1.625rem;background:var(--rose);color:white;font-size:.72rem;font-weight:700;font-family:Arial,sans-serif;text-decoration:none;border-radius:4px}
+/* HERO */
+.hero{padding-top:100px;background:linear-gradient(135deg,var(--light) 0%,#FFF0F5 40%,#FFF5F0 80%,var(--light) 100%);min-height:85vh;display:flex;align-items:center;overflow:hidden;position:relative}
+.hero-inner{max-width:1200px;margin:0 auto;padding:3rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.6rem;font-weight:700;letter-spacing:.18em;color:var(--rose);text-transform:uppercase;background:var(--rose-light);padding:.35rem 1rem;border-radius:9999px;margin-bottom:1.5rem;font-family:Arial,sans-serif;border:1px solid rgba(194,24,91,.2)}
+.hero h1{font-size:clamp(2.25rem,5vw,4.25rem);font-weight:400;line-height:1.1;color:var(--dark);margin-bottom:1.25rem;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--rose)}
+.hero-sub{font-size:.9rem;color:var(--gray);line-height:1.9;max-width:420px;margin-bottom:2.5rem;font-family:Arial,sans-serif}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn-rose{padding:.9rem 2.5rem;background:var(--rose);color:white;font-size:.78rem;font-weight:700;text-decoration:none;border-radius:4px;font-family:Arial,sans-serif;letter-spacing:.06em}
+.btn-outline{padding:.9rem 2.25rem;border:1.5px solid var(--rose);color:var(--rose);font-size:.78rem;font-weight:700;text-decoration:none;border-radius:4px;font-family:Arial,sans-serif;letter-spacing:.06em}
+.hero-badges{display:flex;gap:1.25rem;flex-wrap:wrap}
+.hb{font-size:.62rem;color:var(--gray);font-family:Arial,sans-serif;display:flex;align-items:center;gap:.3rem;font-weight:600}
+/* Hero image grid */
+.hero-photos{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.hp{border-radius:1.25rem;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:4rem}
+.hp1{height:240px;background:linear-gradient(135deg,#FCE4EC,#F8BBD9);grid-column:1/-1}
+.hp2{height:160px;background:linear-gradient(135deg,#F3E5F5,#E1BEE7)}
+.hp3{height:160px;background:linear-gradient(135deg,#FFF8E1,#FFE0B2)}
+/* STATS STRIP */
+.stats-strip{background:var(--rose);padding:2rem 0}
+.stats-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.sv{font-size:1.75rem;font-weight:700;color:white;font-family:Arial,sans-serif}
+.sl{font-size:.6rem;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:.12em;font-family:Arial,sans-serif}
+/* SERVICES */
+section{padding:5.5rem 0}
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+.sec-eyebrow{font-size:.58rem;font-weight:700;color:var(--rose);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.875rem;font-family:Arial,sans-serif}
+.sec-title{font-size:clamp(1.75rem,4vw,2.875rem);font-weight:400;color:var(--dark);letter-spacing:-.02em}
+.srv-tabs{display:flex;gap:.5rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.st{padding:.45rem 1.25rem;border-radius:9999px;font-size:.72rem;font-weight:700;border:1.5px solid #F3F4F6;color:var(--gray);background:white;cursor:pointer;font-family:Arial,sans-serif;transition:all .2s}
+.st.active{background:var(--rose);border-color:var(--rose);color:white}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.srv-card{background:white;border-radius:1.5rem;overflow:hidden;box-shadow:0 2px 15px rgba(0,0,0,.05);transition:all .2s}
+.srv-card:hover{box-shadow:0 10px 30px rgba(194,24,91,.1);transform:translateY(-3px)}
+.srv-head{height:80px;display:flex;align-items:center;padding:0 1.5rem;gap:1rem}
+.sh1{background:linear-gradient(135deg,#FCE4EC,#F8BBD9)}
+.sh2{background:linear-gradient(135deg,#F3E5F5,#E1BEE7)}
+.sh3{background:linear-gradient(135deg,#FFF8E1,#FFE0B2)}
+.sh4{background:linear-gradient(135deg,#E8F5E9,#C8E6C9)}
+.sh5{background:linear-gradient(135deg,#E3F2FD,#BBDEFB)}
+.sh6{background:linear-gradient(135deg,#FBE9E7,#FFCCBC)}
+.srv-emoji{font-size:2.25rem}
+.srv-cat{font-size:.62rem;font-weight:800;color:var(--rose);letter-spacing:.1em;text-transform:uppercase;font-family:Arial,sans-serif}
+.srv-body{padding:1.5rem}
+.srv-name{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:1rem}
+.srv-items{display:flex;flex-direction:column;gap:.5rem}
+.si{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px dashed #F3F4F6}
+.si-name{font-size:.75rem;color:#4B5563;font-family:Arial,sans-serif}
+.si-price{font-size:.78rem;font-weight:700;color:var(--dark);font-family:Arial,sans-serif}
+/* RÉSERVATION */
+.reservation{background:var(--light)}
+.res-inner{display:grid;grid-template-columns:1fr 1.25fr;gap:4rem;align-items:start}
+.res-left h2{margin-bottom:1rem}
+.res-left p{font-size:.85rem;color:var(--gray);line-height:1.9;font-family:Arial,sans-serif;margin-bottom:2rem}
+.res-info{display:flex;flex-direction:column;gap:1rem}
+.ri{display:flex;gap:.875rem;align-items:flex-start}
+.ri-icon{width:36px;height:36px;border-radius:9999px;background:var(--rose-light);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;margin-top:.1rem}
+.ri-title{font-size:.72rem;font-weight:800;color:var(--dark);font-family:Arial,sans-serif;margin-bottom:.15rem}
+.ri-text{font-size:.7rem;color:var(--gray);font-family:Arial,sans-serif;line-height:1.6}
+.res-form{background:white;border-radius:1.5rem;padding:2.5rem;box-shadow:0 4px 30px rgba(0,0,0,.07)}
+.res-form h3{font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:1.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{margin-bottom:1rem}
+.form-label{font-size:.6rem;font-weight:800;color:#9CA3AF;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:.4rem;font-family:Arial,sans-serif}
+.form-control{width:100%;padding:.75rem 1rem;border:1.5px solid #F3F4F6;border-radius:8px;font-size:.8rem;color:#374151;background:white;font-family:Arial,sans-serif}
+.form-control:focus{outline:none;border-color:var(--rose-mid)}
+.form-submit{width:100%;padding:1rem;background:var(--rose);color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:800;cursor:pointer;font-family:Arial,sans-serif;letter-spacing:.06em;margin-top:.5rem}
+/* ÉQUIPE */
+.equipe{background:white}
+.eq-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.eq-card{text-align:center}
+.eq-av{width:100px;height:100px;border-radius:50%;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;font-size:2.75rem;border:3px solid var(--rose-light)}
+.ea1{background:linear-gradient(135deg,#FCE4EC,#F8BBD9)}
+.ea2{background:linear-gradient(135deg,#F3E5F5,#E1BEE7)}
+.ea3{background:linear-gradient(135deg,#FFF8E1,#FFE0B2)}
+.ea4{background:linear-gradient(135deg,#E8F5E9,#C8E6C9)}
+.eq-name{font-size:.88rem;font-weight:700;color:var(--dark);margin-bottom:.2rem}
+.eq-spec{font-size:.6rem;color:var(--rose);font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-family:Arial,sans-serif}
+/* FOOTER */
+footer{background:var(--dark);color:white;padding:4rem 0 2rem}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.footer-logo-name{font-size:.95rem;font-weight:700;margin-bottom:.2rem}
+.footer-logo-sub{font-size:.5rem;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.875rem;font-family:Arial,sans-serif}
+.footer-desc{font-size:.73rem;color:#78716C;line-height:1.8;max-width:250px;font-family:Arial,sans-serif}
+.footer-col h4{font-size:.55rem;font-weight:700;color:var(--rose-mid);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.25rem;font-family:Arial,sans-serif}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.625rem}
+.footer-links a{font-size:.73rem;color:#78716C;text-decoration:none;font-family:Arial,sans-serif}
+.footer-bottom{border-top:1px solid #2D1B2A;padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.footer-copy{font-size:.68rem;color:#78716C;font-family:Arial,sans-serif}
+@media(max-width:768px){
+  nav{padding:.75rem 1.25rem}.nav-links{display:none}
+  .hero-inner,.res-inner{grid-template-columns:1fr}.hero-photos{display:none}
+  .srv-grid{grid-template-columns:1fr}
+  .eq-grid{grid-template-columns:1fr 1fr}
+  .stats-inner,.footer-top{grid-template-columns:1fr 1fr}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <div class="demo-bar-text"><span class="demo-badge">DÉMO LIVE</span><span>Template <strong>Belle Afrique Salon</strong> — Beauté & Bien-être</span></div>
+  <div style="display:flex;gap:.75rem">
+    <a href="/templates/beaute/salon-luxe" class="demo-btn">← Retour</a>
+    <a href="/templates/commander?secteur=beaute&formule=premium" class="demo-btn">Commander →</a>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-logo"><div class="nav-logo-name">Belle Afrique Salon</div><div class="nav-logo-sub">Beauté · Bien-être · Abidjan</div></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#equipe">Équipe</a></li>
+    <li><a href="#reservation">Réservation</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <a href="#reservation" class="nav-cta">Prendre RDV</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">✦ Salon de beauté haut de gamme</div>
+      <h1>L'art de la<br>beauté,<br><em>sublimé</em></h1>
+      <p class="hero-sub">Un espace dédié à votre bien-être et à votre beauté. Coiffure, soins du visage, onglerie et massages réalisés par des experts passionnés.</p>
+      <div class="hero-btns">
+        <a href="#reservation" class="btn-rose">Réserver maintenant</a>
+        <a href="#services" class="btn-outline">Voir nos soins</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hb">⭐ 4.9/5 · 650 avis</div>
+        <div class="hb">👩 12 experts</div>
+        <div class="hb">🕐 Ouvert 7j/7</div>
+      </div>
+    </div>
+    <div class="hero-photos">
+      <div class="hp hp1"><span>💆</span></div>
+      <div class="hp hp2"><span>💅</span></div>
+      <div class="hp hp3"><span>✂️</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div><div class="sv">8+</div><div class="sl">Années d'expertise</div></div>
+    <div><div class="sv">12</div><div class="sl">Experts beauté</div></div>
+    <div><div class="sv">5 000+</div><div class="sl">Clientes fidèles</div></div>
+    <div><div class="sv">4.9★</div><div class="sl">Note moyenne</div></div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <div class="sec-eyebrow">✦ Nos prestations</div>
+      <h2 class="sec-title">Chaque service,<br>une expérience unique</h2>
+    </div>
+    <div class="srv-tabs">
+      <button class="st active">Tous</button>
+      <button class="st">Coiffure</button>
+      <button class="st">Visage</button>
+      <button class="st">Onglerie</button>
+      <button class="st">Corps & Massage</button>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-card"><div class="srv-head sh1"><span class="srv-emoji">✂️</span><div><div class="srv-cat">Coiffure</div></div></div><div class="srv-body"><div class="srv-name">Coiffure Femme</div><div class="srv-items"><div class="si"><span class="si-name">Coupe + brushing</span><span class="si-price">15 000 F</span></div><div class="si"><span class="si-name">Coupe + mise en pli</span><span class="si-price">20 000 F</span></div><div class="si"><span class="si-name">Tressage (2h)</span><span class="si-price">25 000 F</span></div><div class="si"><span class="si-name">Extensions</span><span class="si-price">45 000 F+</span></div></div></div></div>
+      <div class="srv-card"><div class="srv-head sh2"><span class="srv-emoji">💆</span><div><div class="srv-cat">Visage</div></div></div><div class="srv-body"><div class="srv-name">Soins Visage</div><div class="srv-items"><div class="si"><span class="si-name">Soin hydratant (45min)</span><span class="si-price">22 000 F</span></div><div class="si"><span class="si-name">Peeling douceur</span><span class="si-price">28 000 F</span></div><div class="si"><span class="si-name">Soin anti-âge luxe</span><span class="si-price">45 000 F</span></div><div class="si"><span class="si-name">Modelage lifting</span><span class="si-price">35 000 F</span></div></div></div></div>
+      <div class="srv-card"><div class="srv-head sh3"><span class="srv-emoji">💅</span><div><div class="srv-cat">Onglerie</div></div></div><div class="srv-body"><div class="srv-name">Onglerie</div><div class="srv-items"><div class="si"><span class="si-name">Manucure classique</span><span class="si-price">8 000 F</span></div><div class="si"><span class="si-name">Pose gel / résine</span><span class="si-price">15 000 F</span></div><div class="si"><span class="si-name">Nail art (dessin)</span><span class="si-price">20 000 F</span></div><div class="si"><span class="si-name">Pédicure soin</span><span class="si-price">12 000 F</span></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="reservation" class="reservation">
+  <div class="container">
+    <div class="res-inner">
+      <div class="res-left">
+        <div class="sec-eyebrow">✦ Réservation</div>
+        <h2 class="sec-title" style="margin-bottom:1rem">Prenez<br>rendez-vous</h2>
+        <p>Réservez votre prestation en quelques clics. Notre équipe confirmera votre RDV dans les 2 heures.</p>
+        <div class="res-info">
+          <div class="ri"><div class="ri-icon">📍</div><div><div class="ri-title">Notre adresse</div><div class="ri-text">Cocody 2 Plateaux, Rue K49<br>Abidjan, Côte d'Ivoire</div></div></div>
+          <div class="ri"><div class="ri-icon">🕐</div><div><div class="ri-title">Horaires</div><div class="ri-text">Lundi-Samedi : 8h – 20h<br>Dimanche : 10h – 18h</div></div></div>
+          <div class="ri"><div class="ri-icon">📞</div><div><div class="ri-title">Téléphone & WhatsApp</div><div class="ri-text">+225 07 08 09 00 00</div></div></div>
+        </div>
+      </div>
+      <div class="res-form">
+        <h3>Réserver une prestation</h3>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Prénom</label><input class="form-control" type="text" placeholder="Votre prénom"></div>
+          <div class="form-group"><label class="form-label">Nom</label><input class="form-control" type="text" placeholder="Votre nom"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Téléphone / WhatsApp</label><input class="form-control" type="tel" placeholder="+225 XX XX XX XX"></div>
+        <div class="form-group"><label class="form-label">Prestation souhaitée</label><select class="form-control"><option>Choisissez une prestation</option><option>Coiffure</option><option>Soin visage</option><option>Onglerie</option><option>Massage</option></select></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Date souhaitée</label><input class="form-control" type="date"></div>
+          <div class="form-group"><label class="form-label">Heure préférée</label><select class="form-control"><option>08h00</option><option>09h00</option><option>10h00</option><option>11h00</option><option>14h00</option><option>15h00</option><option>16h00</option></select></div>
+        </div>
+        <button class="form-submit">Confirmer le rendez-vous →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="equipe" class="equipe">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="sec-eyebrow">✦ Notre équipe</div>
+      <h2 class="sec-title">Des experts passionnés</h2>
+    </div>
+    <div class="eq-grid">
+      <div class="eq-card"><div class="eq-av ea1">👩</div><div class="eq-name">Jocelyne Aké</div><div class="eq-spec">Directrice & Coiffeuse</div></div>
+      <div class="eq-card"><div class="eq-av ea2">👩</div><div class="eq-name">Mariama Bah</div><div class="eq-spec">Esthéticienne visage</div></div>
+      <div class="eq-card"><div class="eq-av ea3">👩</div><div class="eq-name">Sandrine Koné</div><div class="eq-spec">Ongliste certifiée</div></div>
+      <div class="eq-card"><div class="eq-av ea4">👩</div><div class="eq-name">Prisca Adou</div><div class="eq-spec">Masseuse & Kiné</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div><div class="footer-logo-name">Belle Afrique Salon</div><div class="footer-logo-sub">Beauté & Bien-être</div><p class="footer-desc">Un sanctuaire de beauté et de sérénité en plein cœur d'Abidjan. Votre beauté, notre passion depuis 2016.</p></div>
+      <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="#">Coiffure</a></li><li><a href="#">Soins visage</a></li><li><a href="#">Onglerie</a></li><li><a href="#">Massages</a></li></ul></div>
+      <div class="footer-col"><h4>Informations</h4><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#">Tarifs</a></li><li><a href="#">Galerie</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">© 2025 Belle Afrique Salon · Tous droits réservés</span><span class="footer-copy">Site par <span style="color:#F48FB1">IBIG DIGITAL</span></span></div>
+  </div>
+</footer>
+<script>document.querySelectorAll('.st').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.st').forEach(b=>b.classList.remove('active'));t.classList.add('active')})})</script>
+</body>
+</html>

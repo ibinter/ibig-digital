@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AfricaNews 24 — L'actualité africaine en direct</title>
+<style>
+:root{
+  --bg:#FFFFFF;
+  --primary:#DC2626;
+  --primary-dark:#B91C1C;
+  --text:#111827;
+  --text-light:#6B7280;
+  --border:#E5E7EB;
+  --dark:#0F172A;
+  --light:#F9FAFB;
+  --breaking:#DC2626;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
+.demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
+
+/* TOP BAR TICKER */
+.ticker-bar{background:var(--dark);color:#fff;display:flex;align-items:center;height:36px;overflow:hidden;margin-top:40px;}
+.ticker-label{background:var(--primary);color:#fff;padding:0 16px;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;height:100%;display:flex;align-items:center;flex-shrink:0;}
+.ticker-track{display:flex;overflow:hidden;flex:1;}
+.ticker-items{display:flex;gap:40px;animation:ticker 30s linear infinite;white-space:nowrap;padding-left:20px;}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{font-size:13px;color:rgba(255,255,255,0.8);}
+.ticker-item span{color:#F87171;font-weight:600;}
+
+nav{position:sticky;top:40px;background:#fff;border-bottom:2px solid var(--border);z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
+.nav-top{background:var(--dark);padding:8px 40px;display:flex;justify-content:space-between;align-items:center;}
+.nav-logo-big{font-size:28px;font-weight:900;color:#fff;letter-spacing:-1px;}
+.nav-logo-big span{color:var(--primary);}
+.nav-info{font-size:12px;color:rgba(255,255,255,0.5);}
+.nav-cats{max-width:1280px;margin:0 auto;padding:0 40px;display:flex;align-items:center;gap:4px;height:44px;overflow-x:auto;}
+.nav-cat{padding:6px 16px;font-size:13px;font-weight:600;color:var(--text-light);text-decoration:none;white-space:nowrap;border-radius:4px;transition:all 0.2s;}
+.nav-cat:hover,.nav-cat.active{background:var(--primary);color:#fff;}
+.nav-search{margin-left:auto;display:flex;align-items:center;gap:8px;background:#F1F5F9;border-radius:50px;padding:6px 14px;font-size:13px;color:var(--text-light);}
+
+/* HERO / UNE */
+.une-section{background:var(--bg);padding:24px 40px;border-bottom:1px solid var(--border);}
+.une-inner{max-width:1280px;margin:0 auto;}
+.une-grid{display:grid;grid-template-columns:2fr 1fr;gap:20px;}
+.une-main{position:relative;border-radius:12px;overflow:hidden;cursor:pointer;}
+.une-main-bg{height:460px;background:linear-gradient(160deg,#1E3A5F,#0891B2);display:flex;align-items:center;justify-content:center;font-size:80px;position:relative;}
+.une-main-overlay{position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.85));}
+.une-main-content{position:absolute;bottom:0;left:0;right:0;padding:28px;}
+.une-cat-badge{display:inline-block;background:var(--primary);color:#fff;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
+.une-main-title{font-size:26px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:8px;}
+.une-main-sub{color:rgba(255,255,255,0.75);font-size:14px;}
+.une-side{display:flex;flex-direction:column;gap:12px;}
+.une-side-article{display:flex;gap:12px;border-radius:8px;overflow:hidden;background:#F9FAFB;border:1px solid var(--border);cursor:pointer;transition:all 0.2s;}
+.une-side-article:hover{border-color:var(--primary);}
+.usa-img{width:100px;height:80px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:32px;}
+.usa-i1{background:linear-gradient(135deg,#166534,#16A34A);}
+.usa-i2{background:linear-gradient(135deg,#EA580C,#DC2626);}
+.usa-i3{background:linear-gradient(135deg,#7C3AED,#4C1D95);}
+.usa-body{padding:12px 12px 12px 0;flex:1;}
+.usa-cat{font-size:10px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;}
+.usa-title{font-size:14px;font-weight:700;line-height:1.3;margin-bottom:4px;}
+.usa-time{font-size:11px;color:var(--text-light);}
+
+/* SECTIONS */
+.si{max-width:1280px;margin:0 auto;}
+.section-pad{padding:40px 40px;}
+.cat-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:12px;border-bottom:3px solid var(--primary);}
+.cat-title{font-size:20px;font-weight:800;color:var(--text);}
+.cat-title::before{content:'';display:inline-block;width:4px;height:20px;background:var(--primary);margin-right:10px;vertical-align:middle;}
+.see-all{font-size:13px;color:var(--primary);text-decoration:none;font-weight:600;}
+.see-all:hover{text-decoration:underline;}
+
+/* GRILLES D'ARTICLES */
+.articles-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.article-card{cursor:pointer;transition:transform 0.2s;}
+.article-card:hover{transform:translateY(-3px);}
+.ac-img{border-radius:8px;overflow:hidden;margin-bottom:12px;}
+.ac-bg{display:flex;align-items:center;justify-content:center;font-size:36px;}
+.ac-bg.h150{height:150px;}
+.ac-bg.h200{height:200px;}
+.a1{background:linear-gradient(135deg,#166534,#16A34A);}
+.a2{background:linear-gradient(135deg,#1E3A5F,#2563EB);}
+.a3{background:linear-gradient(135deg,#EA580C,#B45309);}
+.a4{background:linear-gradient(135deg,#7C3AED,#0891B2);}
+.a5{background:linear-gradient(135deg,#0891B2,#065F46);}
+.a6{background:linear-gradient(135deg,#DC2626,#9B1C1C);}
+.a7{background:linear-gradient(135deg,#D97706,#92400E);}
+.a8{background:linear-gradient(135deg,#166534,#0891B2);}
+.ac-cat{font-size:10px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+.ac-title{font-size:15px;font-weight:700;line-height:1.35;margin-bottom:6px;color:var(--text);}
+.ac-meta{font-size:12px;color:var(--text-light);display:flex;align-items:center;gap:8px;}
+.ac-meta .dot{width:3px;height:3px;background:var(--border);border-radius:50%;}
+
+/* ARTICLES LARGE */
+.articles-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.articles-main-side{display:grid;grid-template-columns:2fr 1fr;gap:20px;}
+.ac-large .ac-bg.h250{height:250px;}
+
+/* LISTE D'ARTICLES */
+.articles-list{display:flex;flex-direction:column;gap:16px;}
+.al-item{display:flex;gap:14px;border-bottom:1px solid var(--border);padding-bottom:16px;}
+.al-img{width:100px;height:70px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;}
+.al-body{flex:1;}
+.al-cat{font-size:10px;font-weight:700;color:var(--primary);text-transform:uppercase;margin-bottom:4px;}
+.al-title{font-size:14px;font-weight:700;line-height:1.3;margin-bottom:4px;}
+.al-time{font-size:11px;color:var(--text-light);}
+
+/* VIDÉOS */
+.videos-section{padding:40px 40px;background:var(--dark);}
+.videos-inner .cat-title{color:#fff;}
+.videos-inner .cat-title::before{background:var(--primary);}
+.videos-inner .cat-header{border-bottom-color:var(--primary);}
+.videos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.video-card{border-radius:10px;overflow:hidden;cursor:pointer;position:relative;}
+.video-card:hover .v-play{transform:scale(1.1);}
+.v-thumb{height:150px;display:flex;align-items:center;justify-content:center;position:relative;}
+.v1{background:linear-gradient(135deg,#166534,#0891B2);}
+.v2{background:linear-gradient(135deg,#EA580C,#DC2626);}
+.v3{background:linear-gradient(135deg,#7C3AED,#1E3A5F);}
+.v4{background:linear-gradient(135deg,#D97706,#92400E);}
+.v-play{width:48px;height:48px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;backdrop-filter:blur(4px);transition:transform 0.2s;}
+.v-duration{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.7);color:#fff;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:700;}
+.v-body{background:#1F2937;padding:12px;}
+.v-cat{font-size:10px;color:#F87171;font-weight:700;text-transform:uppercase;margin-bottom:4px;}
+.v-title{font-size:13px;font-weight:700;color:#fff;line-height:1.3;}
+
+/* NEWSLETTER */
+.newsletter-section{padding:60px 40px;background:var(--primary);}
+.nl-inner{max-width:600px;margin:0 auto;text-align:center;}
+.nl-inner h2{font-size:30px;font-weight:800;color:#fff;margin-bottom:10px;}
+.nl-inner p{color:rgba(255,255,255,0.8);margin-bottom:28px;}
+.nl-form{display:flex;gap:10px;}
+.nl-form input{flex:1;border:none;border-radius:8px;padding:14px 16px;font-size:15px;outline:none;}
+.nl-btn{background:var(--dark);color:#fff;border:none;padding:14px 24px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background 0.2s;}
+.nl-btn:hover{background:#1E293B;}
+.nl-note{font-size:12px;color:rgba(255,255,255,0.6);margin-top:12px;}
+
+footer{background:var(--dark);padding:60px 40px 28px;}
+.fg{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.fl{font-size:24px;font-weight:900;color:#fff;margin-bottom:14px;letter-spacing:-1px;}
+.fl span{color:var(--primary);}
+footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:16px;}
+.f-socs{display:flex;gap:8px;}
+.f-soc{width:34px;height:34px;background:rgba(255,255,255,0.07);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;text-decoration:none;color:rgba(255,255,255,0.5);transition:all 0.2s;}
+.f-soc:hover{background:var(--primary);color:#fff;}
+.fc h5{color:rgba(255,255,255,0.6);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;}
+.fc ul{list-style:none;}
+.fc li{margin-bottom:9px;}
+.fc a{color:rgba(255,255,255,0.45);font-size:13px;text-decoration:none;transition:color 0.2s;}
+.fc a:hover{color:var(--primary);}
+.fb{max-width:1280px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.3);}
+.fb a{color:rgba(255,255,255,0.3);text-decoration:none;}
+
+@media(max-width:900px){
+  .une-grid,.articles-main-side{grid-template-columns:1fr;}
+  .articles-grid-4,.articles-grid-3,.videos-grid{grid-template-columns:1fr 1fr;}
+  .fg{grid-template-columns:1fr 1fr;}
+  .nl-form{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<div class="ticker-bar">
+  <div class="ticker-label">🔴 BREAKING</div>
+  <div class="ticker-track">
+    <div class="ticker-items">
+      <span class="ticker-item"><span>Économie ·</span> Le taux de croissance de la CI atteint 6,8% au T3 2025</span>
+      <span class="ticker-item"><span>Politique ·</span> Sommet de l'UA : les leaders africains réunis à Addis-Abeba</span>
+      <span class="ticker-item"><span>Tech ·</span> AfricTech 2025 : 500 startups levèrent 8 milliards FCFA</span>
+      <span class="ticker-item"><span>Sport ·</span> AFCON 2026 : le Sénégal qualifié après victoire 2-0 face au Maroc</span>
+      <span class="ticker-item"><span>Économie ·</span> Le taux de croissance de la CI atteint 6,8% au T3 2025</span>
+      <span class="ticker-item"><span>Politique ·</span> Sommet de l'UA : les leaders africains réunis à Addis-Abeba</span>
+      <span class="ticker-item"><span>Tech ·</span> AfricTech 2025 : 500 startups levèrent 8 milliards FCFA</span>
+      <span class="ticker-item"><span>Sport ·</span> AFCON 2026 : le Sénégal qualifié après victoire 2-0 face au Maroc</span>
+    </div>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-top">
+    <div class="nav-logo-big">Africa<span>News</span> 24</div>
+    <div class="nav-info">Samedi 13 septembre 2025 · 14h32 GMT · Abidjan, Côte d'Ivoire</div>
+  </div>
+  <div class="nav-cats">
+    <a href="#" class="nav-cat active">🏠 Accueil</a>
+    <a href="#" class="nav-cat">🌍 Afrique</a>
+    <a href="#" class="nav-cat">🇨🇮 Côte d'Ivoire</a>
+    <a href="#" class="nav-cat">💰 Économie</a>
+    <a href="#" class="nav-cat">🏛️ Politique</a>
+    <a href="#" class="nav-cat">⚽ Sport</a>
+    <a href="#" class="nav-cat">💻 Tech</a>
+    <a href="#" class="nav-cat">🎭 Culture</a>
+    <a href="#" class="nav-cat">🌿 Environnement</a>
+    <a href="#" class="nav-cat">🎙️ Podcasts</a>
+    <div class="nav-search">🔍 Rechercher...</div>
+  </div>
+</nav>
+
+<!-- UNE / HERO -->
+<section class="une-section">
+  <div class="une-inner">
+    <div class="une-grid">
+      <div class="une-main">
+        <div class="une-main-bg">🌍<div class="une-main-overlay"></div></div>
+        <div class="une-main-content">
+          <div class="une-cat-badge">🔴 Exclusif · Économie</div>
+          <div class="une-main-title">La Côte d'Ivoire devient la 2ème économie d'Afrique subsaharienne — une croissance historique de 8,2% en 2025</div>
+          <div class="une-main-sub">Rapport FMI · Publié il y a 2 heures · Par Koffi Bamba, correspondant économique</div>
+        </div>
+      </div>
+      <div class="une-side">
+        <div class="une-side-article">
+          <div class="usa-img usa-i1">🏛️</div>
+          <div class="usa-body"><div class="usa-cat">Politique</div><div class="usa-title">Sommet CEDEAO d'urgence à Abuja sur la sécurité au Sahel</div><div class="usa-time">Il y a 45 min</div></div>
+        </div>
+        <div class="une-side-article">
+          <div class="usa-img usa-i2">🔥</div>
+          <div class="usa-body"><div class="usa-cat">Urgent</div><div class="usa-title">Mali : les négociations de paix progressent après accord de cessez-le-feu</div><div class="usa-time">Il y a 1h</div></div>
+        </div>
+        <div class="une-side-article">
+          <div class="usa-img usa-i3">💻</div>
+          <div class="usa-body"><div class="usa-cat">Tech</div><div class="usa-title">PayAfrica lève 1,2 milliard FCFA et s'étend à 6 pays de la CEDEAO</div><div class="usa-time">Il y a 2h</div></div>
+        </div>
+        <div class="une-side-article">
+          <div class="usa-img" style="background:linear-gradient(135deg,#D97706,#92400E);width:100px;height:80px;display:flex;align-items:center;justify-content:center;font-size:32px;">⚽</div>
+          <div class="usa-body"><div class="usa-cat">Sport</div><div class="usa-title">AFCON 2026 : les Éléphants de CI remportent leur match de qualif' 3-1</div><div class="usa-time">Il y a 3h</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÉCONOMIE -->
+<section class="section-pad" style="background:#fff">
+  <div class="si">
+    <div class="cat-header">
+      <div class="cat-title">Économie & Business</div>
+      <a href="#" class="see-all">Voir tout →</a>
+    </div>
+    <div class="articles-grid-4">
+      <div class="article-card"><div class="ac-img"><div class="ac-bg a1 h150">📈</div></div><div class="ac-cat">Finance</div><div class="ac-title">La BCEAO maintient son taux directeur à 3,5% malgré les pressions inflationnistes</div><div class="ac-meta"><span>Il y a 2h</span><span class="dot"></span><span>Awa Koné</span></div></div>
+      <div class="article-card"><div class="ac-img"><div class="ac-bg a2 h150">🏭</div></div><div class="ac-cat">Industrie</div><div class="ac-title">Dangote Group annonce un investissement de 200 milliards FCFA en Afrique de l'Ouest</div><div class="ac-meta"><span>Il y a 3h</span><span class="dot"></span><span>Moussa Diallo</span></div></div>
+      <div class="article-card"><div class="ac-img"><div class="ac-bg a3 h150">🚢</div></div><div class="ac-cat">Commerce</div><div class="ac-title">Port d'Abidjan : le trafic de conteneurs augmente de 18% en 2025</div><div class="ac-meta"><span>Il y a 4h</span><span class="dot"></span><span>Rédaction</span></div></div>
+      <div class="article-card"><div class="ac-img"><div class="ac-bg a4 h150">☀️</div></div><div class="ac-cat">Énergie</div><div class="ac-title">L'Afrique verte : le solaire représente désormais 15% de la capacité électrique du continent</div><div class="ac-meta"><span>Il y a 5h</span><span class="dot"></span><span>Fatoumata Bah</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- POLITIQUE AFRIQUE -->
+<section class="section-pad" style="background:var(--light)">
+  <div class="si">
+    <div class="cat-header">
+      <div class="cat-title">Politique Afrique</div>
+      <a href="#" class="see-all">Voir tout →</a>
+    </div>
+    <div class="articles-main-side">
+      <div class="article-card ac-large">
+        <div class="ac-img"><div class="ac-bg a2 h250">🌍</div></div>
+        <div class="ac-cat">Diplomatie</div>
+        <div class="ac-title" style="font-size:22px;font-weight:800;margin-bottom:8px">Sommet UA : accord historique sur la zone de libre-échange continentale africaine</div>
+        <div style="font-size:14px;color:var(--text-light);margin-bottom:8px">Les 55 chefs d'État africains ont signé à Addis-Abeba un accord de mise en œuvre accélérée de la ZLECAF, ouvrant un marché de 1,4 milliard de personnes.</div>
+        <div class="ac-meta"><span>Il y a 1h</span><span class="dot"></span><span>Kofi Mensah · Correspondant UA</span></div>
+      </div>
+      <div class="articles-list">
+        <div class="al-item"><div class="al-img a1">🏛️</div><div class="al-body"><div class="al-cat">Élections</div><div class="al-title">Gabon : première élection présidentielle libre depuis le coup d'État de 2023</div><div class="al-time">Il y a 2h · Rédaction Libreville</div></div></div>
+        <div class="al-item"><div class="al-img a3">🤝</div><div class="al-body"><div class="al-cat">Diplomatie</div><div class="al-title">France-Afrique : Emmanuel Macron reçoit 8 présidents africains à l'Élysée</div><div class="al-time">Il y a 3h · Paris</div></div></div>
+        <div class="al-item"><div class="al-img a5">⚖️</div><div class="al-body"><div class="al-cat">Justice</div><div class="al-title">CPI : jugement attendu dans l'affaire de crimes de guerre en RDC</div><div class="al-time">Il y a 4h · La Haye</div></div></div>
+        <div class="al-item"><div class="al-img a6">🔒</div><div class="al-body"><div class="al-cat">Sécurité</div><div class="al-title">G5 Sahel : opération conjointe contre les groupes armés au Mali-Burkina</div><div class="al-time">Il y a 5h</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH & INNOVATION -->
+<section class="section-pad" style="background:#fff">
+  <div class="si">
+    <div class="cat-header">
+      <div class="cat-title">Tech & Innovation Afrique</div>
+      <a href="#" class="see-all">Voir tout →</a>
+    </div>
+    <div class="articles-grid-4">
+      <div class="article-card"><div class="ac-img"><div class="ac-bg a4 h150">🤖</div></div><div class="ac-cat">IA</div><div class="ac-title">L'IA en agriculture : les startups africaines révolutionnent les récoltes au Sahel</div><div class="ac-meta"><span>Il y a 1h</span><span class="dot"></span><span>Binta Sow</span></div></div>
+      <div class="article-card"><div class="ac-img"><div class="ac-bg a7 h150">📱</div></div><div class="ac-cat">Mobile</div><div class="ac-title">Transsion dépasse Samsung en Afrique : 4 téléphones sur 10 vendus sont Tecno ou Itel</div><div class="ac-meta"><span>Il y a 2h</span><span class="dot"></span><span>Osei Kwame</span></div></div>
+      <div class="article-card"><div class="ac-img"><div class="ac-bg a8 h150">💳</div></div><div class="ac-cat">Fintech</div><div class="ac-title">Orange Money franchit le cap de 100 millions d'utilisateurs actifs en Afrique</div><div class="ac-meta"><span>Il y a 3h</span><span class="dot"></span><span>Rédaction Abidjan</span></div></div>
+      <div class="article-card"><div class="ac-img"><div class="ac-bg a5 h150">🛸</div></div><div class="ac-cat">Innovation</div><div class="ac-title">Kenya Airways teste les drones cargo pour la livraison médicale dans les zones rurales</div><div class="ac-meta"><span>Il y a 5h</span><span class="dot"></span><span>Wanjiru Kimani</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDÉOS -->
+<section class="videos-section">
+  <div class="si">
+    <div class="videos-inner">
+      <div class="cat-header" style="color:#fff">
+        <div class="cat-title" style="color:#fff">📺 Vidéos & Reportages</div>
+        <a href="#" class="see-all">Voir tout →</a>
+      </div>
+    </div>
+    <div class="si">
+      <div class="videos-grid">
+        <div class="video-card"><div class="v-thumb v1"><div class="v-play">▶</div><div class="v-duration">12:34</div></div><div class="v-body"><div class="v-cat">Économie</div><div class="v-title">Croissance africaine 2025 : analyse avec l'économiste Mamadou Coulibaly</div></div></div>
+        <div class="video-card"><div class="v-thumb v2"><div class="v-play">▶</div><div class="v-duration">08:15</div></div><div class="v-body"><div class="v-cat">Environnement</div><div class="v-title">Le fleuve Volta en crise : l'eau, enjeu majeur pour le Sahel</div></div></div>
+        <div class="video-card"><div class="v-thumb v3"><div class="v-play">▶</div><div class="v-duration">25:48</div></div><div class="v-body"><div class="v-cat">Interview</div><div class="v-title">Entretien exclusif : le ministre de l'Économie de CI parle des réformes 2026</div></div></div>
+        <div class="video-card"><div class="v-thumb v4"><div class="v-play">▶</div><div class="v-duration">06:22</div></div><div class="v-body"><div class="v-cat">Culture</div><div class="v-title">Afrobeats à la conquête du monde : les artistes ivoiriens sur les scènes mondiales</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="nl-inner">
+    <h2>📰 La matinale AfricaNews</h2>
+    <p>L'essentiel de l'actualité africaine chaque matin à 7h dans votre boîte mail</p>
+    <div class="nl-form">
+      <input type="email" placeholder="Votre adresse email">
+      <button class="nl-btn">S'abonner gratuitement</button>
+    </div>
+    <div class="nl-note">Plus de 80 000 abonnés · Désabonnement en 1 clic · Aucun spam</div>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div>
+      <div class="fl">Africa<span>News</span> 24</div>
+      <p class="fp">Le premier média digital d'actualité africaine. Politique, économie, sport, tech, culture — l'Afrique en temps réel depuis Abidjan, Côte d'Ivoire. Fondé en 2014.</p>
+      <div class="f-socs"><a href="#" class="f-soc">f</a><a href="#" class="f-soc">tw</a><a href="#" class="f-soc">ig</a><a href="#" class="f-soc">yt</a><a href="#" class="f-soc">wa</a></div>
+    </div>
+    <div class="fc"><h5>Rubriques</h5><ul><li><a href="#">Afrique</a></li><li><a href="#">Économie</a></li><li><a href="#">Politique</a></li><li><a href="#">Sport</a></li><li><a href="#">Tech</a></li></ul></div>
+    <div class="fc"><h5>Médias</h5><ul><li><a href="#">Vidéos</a></li><li><a href="#">Podcasts</a></li><li><a href="#">Photos</a></li><li><a href="#">Infographies</a></li></ul></div>
+    <div class="fc"><h5>Contact</h5><ul><li><a href="#">📍 Plateau, Abidjan</a></li><li><a href="#">📞 +225 27 20 11 22 33</a></li><li><a href="#">✉️ redaction@africanews24.ci</a></li><li><a href="#">📰 Publicité</a></li></ul></div>
+  </div>
+  <div class="fb">
+    <span>© 2025 AfricaNews 24. Tous droits réservés.</span>
+    <div><a href="#">Mentions légales</a> · <a href="#">Charte éditoriale</a> · <a href="#">CGU</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

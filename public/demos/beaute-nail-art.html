@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nail Studio Accra — Nail Art & Ongles Premium</title>
+<style>
+:root{--bg:#F5F3FF;--bg2:#fff;--bg3:#EDE9FE;--purple:#7C3AED;--purple2:#6D28D9;--purple-light:#DDD6FE;--pink:#EC4899;--pink-light:#FBCFE8;--dark:#1E1B4B;--gray:#6B7280;--gray2:#9CA3AF;--cream:#FEFCE8;--gold:#D97706}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--dark);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
+.demo-bar strong{color:#7C3AED}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600}
+nav{position:sticky;top:40px;z-index:999;background:rgba(255,255,255,0.96);backdrop-filter:blur(10px);border-bottom:2px solid var(--purple-light);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.brand-gem{font-size:26px}
+.brand-nm{font-size:20px;font-weight:800;color:var(--purple)}
+.brand-sub{font-size:11px;color:var(--gray);letter-spacing:1px}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{color:var(--dark);text-decoration:none;font-size:14px;transition:color .2s}
+.nav-links a:hover{color:var(--purple)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.rdv-btn{background:var(--purple);color:#fff;padding:10px 22px;border-radius:24px;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:all .2s}
+.rdv-btn:hover{background:var(--purple2);transform:translateY(-1px)}
+/* HERO */
+.hero{background:linear-gradient(135deg,#F5F3FF 0%,#EDE9FE 50%,#FDF2F8 100%);padding:80px 32px 60px}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--purple-light);color:var(--purple2);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:56px;font-weight:800;line-height:1.05;color:var(--dark);margin-bottom:18px;font-family:Georgia,serif}
+.hero h1 em{color:var(--purple)}
+.hero-p{font-size:16px;color:var(--gray);line-height:1.75;margin-bottom:28px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-purple{background:var(--purple);color:#fff;padding:14px 28px;border-radius:30px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-purple:hover{background:var(--purple2);transform:translateY(-2px)}
+.btn-pink{background:var(--pink);color:#fff;padding:14px 28px;border-radius:30px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-pink:hover{transform:translateY(-2px)}
+.hero-stats{display:flex;gap:24px;margin-top:32px}
+.h-stat{text-align:center}
+.h-stat-num{font-size:26px;font-weight:800;color:var(--purple)}
+.h-stat-label{font-size:11px;color:var(--gray);margin-top:2px}
+.hero-visual{}
+.nail-showcase{background:white;border-radius:20px;padding:28px;box-shadow:0 16px 48px rgba(124,58,237,0.15)}
+.ns-title{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:20px;display:flex;align-items:center;justify-content:space-between}
+.ns-badge{background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px}
+.nail-gallery-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.nail-mini-item{background:var(--bg);border-radius:12px;padding:16px;text-align:center;cursor:pointer;transition:all .2s;border:2px solid transparent}
+.nail-mini-item:hover,.nail-mini-item.active{border-color:var(--purple)}
+.nail-mini-emoji{font-size:36px}
+.nail-mini-name{font-size:11px;font-weight:600;color:var(--dark);margin-top:6px}
+.nail-mini-price{font-size:12px;color:var(--purple);font-weight:700;margin-top:2px}
+.nail-main-preview{background:var(--bg3);border-radius:14px;padding:24px;text-align:center}
+.nm-emoji{font-size:64px}
+.nm-name{font-size:17px;font-weight:700;color:var(--dark);margin-top:10px}
+.nm-price{font-size:22px;font-weight:800;color:var(--purple);margin-top:6px}
+.nm-duration{font-size:12px;color:var(--gray);margin-top:4px}
+/* STRIP */
+.strip{background:var(--purple);padding:13px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:8px}
+.strip span{color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
+/* SERVICES */
+.section{padding:60px 32px;max-width:1200px;margin:0 auto}
+.s-title{text-align:center;margin-bottom:40px}
+.s-title h2{font-size:36px;font-weight:700}
+.s-title h2 em{color:var(--purple)}
+.s-title p{color:var(--gray);margin-top:8px;font-size:15px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc-card{background:white;border-radius:16px;padding:28px;box-shadow:0 4px 20px rgba(124,58,237,0.08);cursor:pointer;transition:all .3s;border:2px solid transparent}
+.svc-card:hover{border-color:var(--purple);transform:translateY(-6px);box-shadow:0 16px 40px rgba(124,58,237,0.15)}
+.svc-icon{font-size:44px;margin-bottom:14px}
+.svc-name{font-size:18px;font-weight:700;color:var(--dark)}
+.svc-desc{font-size:13px;color:var(--gray);line-height:1.6;margin-top:8px;margin-bottom:14px}
+.svc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.svc-tag{background:var(--bg3);color:var(--purple2);font-size:11px;padding:3px 10px;border-radius:12px;font-weight:600}
+.svc-price{font-size:22px;font-weight:800;color:var(--purple)}
+.svc-duration{font-size:12px;color:var(--gray);margin-top:4px}
+.btn-book{width:100%;background:var(--bg3);color:var(--purple);border:1.5px solid var(--purple-light);padding:10px;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;margin-top:14px;transition:all .2s}
+.btn-book:hover{background:var(--purple);color:#fff}
+/* GALLERY */
+.gallery-section{background:var(--dark);padding:60px 32px}
+.gallery-inner{max-width:1200px;margin:0 auto}
+.gallery-filter{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap;justify-content:center}
+.gf-btn{background:rgba(124,58,237,0.15);color:var(--purple-light);padding:8px 18px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid rgba(124,58,237,0.2);transition:all .2s}
+.gf-btn:hover,.gf-btn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gallery-item{background:#2D2B4E;border-radius:14px;overflow:hidden;cursor:pointer;transition:all .3s;border:1px solid rgba(124,58,237,0.2)}
+.gallery-item:hover{transform:scale(1.03);border-color:var(--purple)}
+.gi-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:64px}
+.gi-body{padding:14px}
+.gi-style{font-size:10px;color:var(--purple-light);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.gi-name{font-size:14px;font-weight:700;color:#fff;margin-top:3px}
+.gi-price{font-size:14px;font-weight:700;color:var(--purple-light);margin-top:4px}
+/* ARTISTS */
+.artists-section{padding:60px 32px;max-width:1200px;margin:0 auto}
+.artists-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:36px}
+.artist-card{background:white;border-radius:16px;padding:24px;text-align:center;box-shadow:0 4px 20px rgba(124,58,237,0.08);transition:all .3s}
+.artist-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(124,58,237,0.15)}
+.artist-emoji{font-size:48px;margin-bottom:12px}
+.artist-name{font-size:16px;font-weight:700}
+.artist-spec{font-size:12px;color:var(--purple);margin-top:4px;font-weight:600}
+.artist-exp{font-size:12px;color:var(--gray);margin-top:4px}
+.artist-stars{color:#F59E0B;font-size:12px;margin-top:6px}
+.artist-badge{background:var(--purple-light);color:var(--purple2);font-size:10px;padding:3px 10px;border-radius:10px;font-weight:700;margin-top:8px;display:inline-block}
+/* PRICING */
+.pricing-section{background:var(--bg3);padding:60px 32px}
+.pricing-inner{max-width:1200px;margin:0 auto}
+.pricing-table{background:white;border-radius:16px;overflow:hidden;margin-top:36px;box-shadow:0 4px 20px rgba(124,58,237,0.08)}
+.pt-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:16px 24px;align-items:center;border-bottom:1px solid var(--bg3)}
+.pt-row:last-child{border-bottom:none}
+.pt-header{background:var(--purple);color:#fff;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.pt-service{font-size:14px;font-weight:600}
+.pt-duration{font-size:13px;color:var(--gray)}
+.pt-price{font-size:16px;font-weight:800;color:var(--purple)}
+.pt-btn{background:var(--purple);color:#fff;border:none;padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;width:fit-content}
+/* TESTI */
+.testis{padding:60px 32px;max-width:1200px;margin:0 auto}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.testi-card{background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(124,58,237,0.08)}
+.testi-rating{color:#F59E0B;margin-bottom:10px}
+.testi-text{font-size:14px;color:var(--gray);line-height:1.7;font-style:italic;margin-bottom:16px}
+.testi-au{display:flex;align-items:center;gap:10px}
+.testi-av{width:38px;height:38px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.testi-nm{font-size:13px;font-weight:700}
+.testi-lo{font-size:11px;color:var(--gray)}
+/* FOOTER */
+footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-desc{color:#6B7280;font-size:13px;line-height:1.7;margin:12px 0}
+.fh{font-size:12px;font-weight:700;margin-bottom:14px;color:var(--purple-light);letter-spacing:2px;text-transform:uppercase}
+.ful{list-style:none}
+.ful li{margin-bottom:9px}
+.ful li a{color:#6B7280;text-decoration:none;font-size:13px;transition:color .2s}
+.ful li a:hover{color:var(--purple-light)}
+.foot-bottom{border-top:1px solid rgba(124,58,237,0.15);padding-top:20px;display:flex;justify-content:space-between;color:#4B5563;font-size:12px}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <span>Démo IBIG Digital — <strong>Nail Studio Accra</strong> — Commander ce template :</span>
+  <strong>25 000 FCFA</strong>
+  <a href="#">Commander</a>
+</div>
+<nav>
+  <div class="nav-brand">
+    <span class="brand-gem">💎</span>
+    <div>
+      <div class="brand-nm">Nail Studio Accra</div>
+      <div class="brand-sub">NAIL ART · ONGLES · BEAUTÉ</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Nail Art</a></li>
+    <li><a href="#">Pose Ongles</a></li>
+    <li><a href="#">Gel & Acrylique</a></li>
+    <li><a href="#">Manucure</a></li>
+    <li><a href="#">Galerie</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="rdv-btn">💅 Réserver</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">💅 Studio Premium · Accra · Ghana</div>
+      <h1>Vos ongles,<br>votre <em>art</em></h1>
+      <p class="hero-p">Nail art de haute couture, poses ongles gel et acrylique, manucures luxe — notre studio transforme vos ongles en véritables œuvres d'art.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-purple">💎 Réserver une Pose</a>
+        <a href="#" class="btn-pink">📸 Voir la Galerie</a>
+      </div>
+      <div class="hero-stats">
+        <div class="h-stat"><div class="h-stat-num">6 200+</div><div class="h-stat-label">Clientes</div></div>
+        <div class="h-stat"><div class="h-stat-num">4.9/5</div><div class="h-stat-label">Satisfaction</div></div>
+        <div class="h-stat"><div class="h-stat-num">5 ans</div><div class="h-stat-label">d'expérience</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="nail-showcase">
+        <div class="ns-title">
+          <span>Styles du Moment</span>
+          <span class="ns-badge">NOUVEAUX</span>
+        </div>
+        <div class="nail-gallery-mini">
+          <div class="nail-mini-item active">
+            <div class="nail-mini-emoji">✨</div>
+            <div class="nail-mini-name">Glitter Art</div>
+            <div class="nail-mini-price">35 000 FCFA</div>
+          </div>
+          <div class="nail-mini-item">
+            <div class="nail-mini-emoji">🌸</div>
+            <div class="nail-mini-name">Floral Art</div>
+            <div class="nail-mini-price">42 000 FCFA</div>
+          </div>
+          <div class="nail-mini-item">
+            <div class="nail-mini-emoji">💜</div>
+            <div class="nail-mini-name">Ombre Gel</div>
+            <div class="nail-mini-price">38 000 FCFA</div>
+          </div>
+        </div>
+        <div class="nail-main-preview">
+          <div class="nm-emoji">💅</div>
+          <div class="nm-name">Nail Art Glitter Africain</div>
+          <div class="nm-price">35 000 FCFA</div>
+          <div class="nm-duration">⏰ 2h30 · Durée 3 semaines</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <span>💅 Résultats durables 3-4 semaines</span>
+  <span>🌿 Produits non toxiques</span>
+  <span>✨ Pose sans douleur</span>
+  <span>📸 Photo avant livraison</span>
+</div>
+
+<div class="section">
+  <div class="s-title"><h2>Nos <em>Services</em></h2><p>Du nail art décontracté au glamour absolu</p></div>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon">💅</div>
+      <div class="svc-name">Pose Gel Premium</div>
+      <div class="svc-desc">Pose complète en gel UV de haute qualité — ongles renforcés, brillance intense, durée 3 à 4 semaines.</div>
+      <div class="svc-tags"><span class="svc-tag">Gel UV</span><span class="svc-tag">Longue durée</span><span class="svc-tag">Personnalisé</span></div>
+      <div class="svc-price">32 000 FCFA</div>
+      <div class="svc-duration">⏰ 2 heures environ</div>
+      <button class="btn-book">💎 Réserver</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🎨</div>
+      <div class="svc-name">Nail Art Créatif</div>
+      <div class="svc-desc">Décors fleurs, géométriques, paillettes, motifs africains — chaque ongle est une toile de votre personnalité.</div>
+      <div class="svc-tags"><span class="svc-tag">Artisanal</span><span class="svc-tag">Sur mesure</span><span class="svc-tag">Unique</span></div>
+      <div class="svc-price">À partir de 35 000 FCFA</div>
+      <div class="svc-duration">⏰ 2h30 – 3h30</div>
+      <button class="btn-book">💎 Réserver</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🌸</div>
+      <div class="svc-name">Manucure Luxe</div>
+      <div class="svc-desc">Soin mains complet — bain, cuticules, limage, massage crème, finition vernis gel ou classique.</div>
+      <div class="svc-tags"><span class="svc-tag">Soin mains</span><span class="svc-tag">Vernis gel</span><span class="svc-tag">Hydratation</span></div>
+      <div class="svc-price">18 000 FCFA</div>
+      <div class="svc-duration">⏰ 1h15 environ</div>
+      <button class="btn-book">💎 Réserver</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">💎</div>
+      <div class="svc-name">Pose Acrylique</div>
+      <div class="svc-desc">Extension en acrylique pour des ongles longs et solides — forme carrée, amande, stiletto selon votre style.</div>
+      <div class="svc-tags"><span class="svc-tag">Acrylique</span><span class="svc-tag">Extension</span><span class="svc-tag">Sculptés</span></div>
+      <div class="svc-price">45 000 FCFA</div>
+      <div class="svc-duration">⏰ 3 heures environ</div>
+      <button class="btn-book">💎 Réserver</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">✨</div>
+      <div class="svc-name">Nail Art Mariage</div>
+      <div class="svc-desc">Création exclusive pour votre jour J — cristaux Swarovski, broderies délicates, motifs personnalisés.</div>
+      <div class="svc-tags"><span class="svc-tag">Mariée</span><span class="svc-tag">Cristaux</span><span class="svc-tag">Luxe</span></div>
+      <div class="svc-price">À partir de 65 000 FCFA</div>
+      <div class="svc-duration">⏰ 4 heures · Sur RDV</div>
+      <button class="btn-book">💎 Réserver</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🦶</div>
+      <div class="svc-name">Pédicure Complète</div>
+      <div class="svc-desc">Soin pieds complet — bain relaxant, gommage, massage, cuticules, vernis longue tenue gel UV.</div>
+      <div class="svc-tags"><span class="svc-tag">Soin pieds</span><span class="svc-tag">Relaxant</span><span class="svc-tag">Gel UV</span></div>
+      <div class="svc-price">25 000 FCFA</div>
+      <div class="svc-duration">⏰ 1h30 environ</div>
+      <button class="btn-book">💎 Réserver</button>
+    </div>
+  </div>
+</div>
+
+<div class="gallery-section">
+  <div class="gallery-inner">
+    <div class="s-title" style="color:#fff"><h2 style="color:#fff">Notre <em style="color:var(--purple-light)">Portfolio</em></h2><p style="color:var(--gray)">Les créations de nos artistes nail</p></div>
+    <div class="gallery-filter">
+      <button class="gf-btn on">Tous</button>
+      <button class="gf-btn">Nail Art</button>
+      <button class="gf-btn">Gel</button>
+      <button class="gf-btn">Acrylique</button>
+      <button class="gf-btn">Mariage</button>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item"><div class="gi-img">✨</div><div class="gi-body"><div class="gi-style">Nail Art</div><div class="gi-name">Glitter Galaxy</div><div class="gi-price">38 000 FCFA</div></div></div>
+      <div class="gallery-item"><div class="gi-img">🌸</div><div class="gi-body"><div class="gi-style">Gel</div><div class="gi-name">Floral Printemps</div><div class="gi-price">35 000 FCFA</div></div></div>
+      <div class="gallery-item"><div class="gi-img">💜</div><div class="gi-body"><div class="gi-style">Ombré</div><div class="gi-name">Purple Ombré</div><div class="gi-price">40 000 FCFA</div></div></div>
+      <div class="gallery-item"><div class="gi-img">👰</div><div class="gi-body"><div class="gi-style">Mariage</div><div class="gi-name">Cristaux Mariée</div><div class="gi-price">65 000 FCFA</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="artists-section">
+  <div class="s-title"><h2>Nos <em>Artistes</em> Nail</h2><p>Des expertes passionnées par leur art</p></div>
+  <div class="artists-grid">
+    <div class="artist-card"><div class="artist-emoji">💅</div><div class="artist-name">Abena Mensah</div><div class="artist-spec">Nail Art Avancé</div><div class="artist-exp">7 ans · Certifiée CND</div><div class="artist-stars">★★★★★ (840)</div><div class="artist-badge">🏆 Master Artist</div></div>
+    <div class="artist-card"><div class="artist-emoji">💎</div><div class="artist-name">Akosua Asante</div><div class="artist-spec">Pose Gel & Acrylique</div><div class="artist-exp">5 ans · Spécialiste extension</div><div class="artist-stars">★★★★★ (612)</div><div class="artist-badge">⭐ Senior Artist</div></div>
+    <div class="artist-card"><div class="artist-emoji">🌸</div><div class="artist-name">Efua Darko</div><div class="artist-spec">Nail Art Floral</div><div class="artist-exp">4 ans · Artiste florale</div><div class="artist-stars">★★★★★ (489)</div><div class="artist-badge">🌸 Floral Expert</div></div>
+    <div class="artist-card"><div class="artist-emoji">✨</div><div class="artist-name">Serwa Boateng</div><div class="artist-spec">Mariage & Événements</div><div class="artist-exp">6 ans · Expert mariages</div><div class="artist-stars">★★★★★ (967)</div><div class="artist-badge">👰 Wedding Expert</div></div>
+  </div>
+</div>
+
+<div class="pricing-section">
+  <div class="pricing-inner">
+    <div class="s-title"><h2>Grille <em>Tarifaire</em></h2><p>Transparence et qualité garanties</p></div>
+    <div class="pricing-table">
+      <div class="pt-row pt-header"><span>Service</span><span>Durée</span><span>Prix</span><span>Action</span></div>
+      <div class="pt-row"><span class="pt-service">Pose Gel Simple</span><span class="pt-duration">1h30</span><span class="pt-price">25 000 FCFA</span><button class="pt-btn">RDV</button></div>
+      <div class="pt-row"><span class="pt-service">Pose Gel + Nail Art</span><span class="pt-duration">2h30</span><span class="pt-price">38 000 FCFA</span><button class="pt-btn">RDV</button></div>
+      <div class="pt-row"><span class="pt-service">Pose Acrylique</span><span class="pt-duration">3h</span><span class="pt-price">45 000 FCFA</span><button class="pt-btn">RDV</button></div>
+      <div class="pt-row"><span class="pt-service">Nail Art Créatif</span><span class="pt-duration">2h30-3h</span><span class="pt-price">35 000+ FCFA</span><button class="pt-btn">RDV</button></div>
+      <div class="pt-row"><span class="pt-service">Manucure Luxe</span><span class="pt-duration">1h15</span><span class="pt-price">18 000 FCFA</span><button class="pt-btn">RDV</button></div>
+      <div class="pt-row"><span class="pt-service">Nail Art Mariage</span><span class="pt-duration">4h</span><span class="pt-price">65 000+ FCFA</span><button class="pt-btn">RDV</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="testis">
+  <div class="s-title"><h2>Ce qu'elles <em>Disent</em></h2></div>
+  <div class="testis-grid">
+    <div class="testi-card">
+      <div class="testi-rating">★★★★★</div>
+      <div class="testi-text">"Le nail art floral que j'ai eu pour mon anniversaire était extraordinaire. Chaque ongle était différent, un vrai travail d'artiste. Ils ont tenu 4 semaines !"</div>
+      <div class="testi-au"><div class="testi-av">AO</div><div><div class="testi-nm">Ama Owusu</div><div class="testi-lo">East Legon, Accra</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-rating">★★★★★</div>
+      <div class="testi-text">"Serwa a créé des ongles de mariée incroyables avec des cristaux Swarovski. Mes invités n'arrêtaient pas de regarder mes mains. Perfection absolue !"</div>
+      <div class="testi-au"><div class="testi-av">EK</div><div><div class="testi-nm">Esther Kojo</div><div class="testi-lo">Osu, Accra</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-rating">★★★★★</div>
+      <div class="testi-text">"Je reviens chaque mois pour mes ongles gel. Abena est une vraie magicienne — elle comprend exactement ce que je veux rien qu'avec une photo."</div>
+      <div class="testi-au"><div class="testi-av">YN</div><div><div class="testi-nm">Yaa Nimoh</div><div class="testi-lo">Adabraka, Accra</div></div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:24px">💎</div>
+        <h2 style="font-size:18px;font-weight:800;color:var(--purple-light);margin-top:8px">Nail Studio Accra</h2>
+        <p class="footer-desc">Le studio nail art premium d'Accra depuis 2020. Pose gel, acrylique, nail art créatif et soins mains luxe pour la femme africaine moderne.</p>
+      </div>
+      <div><div class="fh">Services</div><ul class="ful"><li><a href="#">Pose Gel</a></li><li><a href="#">Nail Art</a></li><li><a href="#">Acrylique</a></li><li><a href="#">Manucure</a></li><li><a href="#">Mariage</a></li></ul></div>
+      <div><div class="fh">Infos</div><ul class="ful"><li><a href="#">Nos Artistes</a></li><li><a href="#">Tarifs</a></li><li><a href="#">Galerie</a></li><li><a href="#">Carte Cadeau</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Osu, Accra, Ghana</a></li><li><a href="#">📞 +233 24 000 000</a></li><li><a href="#">💬 WhatsApp</a></li><li><a href="#">Mar–Dim 9h–19h</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2025 Nail Studio Accra — Tous droits réservés</span><span>CGV · Confidentialité</span></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.gf-btn').forEach(b=>{b.addEventListener('click',function(){document.querySelectorAll('.gf-btn').forEach(x=>x.classList.remove('on'));this.classList.add('on')})});
+document.querySelectorAll('.nail-mini-item').forEach(b=>{b.addEventListener('click',function(){document.querySelectorAll('.nail-mini-item').forEach(x=>x.classList.remove('active'));this.classList.add('active')})});
+</script>
+</body>
+</html>

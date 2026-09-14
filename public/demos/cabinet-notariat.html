@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Étude Notariale Maître Diallo — Notaire</title>
+<style>
+:root{--cream:#FEFCF8;--navy:#0C1B33;--gold:#B8963E;--gold-light:#D4A843;--text:#2C2416;--gray:#7A6E5F;--border:#E8E0D0;--light:#FAF7F0;--shadow:0 4px 24px rgba(12,27,51,0.08);--white:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Georgia',serif;color:var(--text);background:var(--cream);padding-top:40px}
+#demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500;font-family:'Segoe UI',sans-serif}
+#demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px;font-family:'Segoe UI',sans-serif}
+
+nav{position:sticky;top:40px;background:var(--navy);z-index:100;box-shadow:0 2px 20px rgba(12,27,51,0.3)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:16px;text-decoration:none}
+.logo-seal{width:52px;height:52px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;border:3px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:22px;font-family:'Georgia',serif;font-weight:700;color:var(--navy)}
+.logo-text{color:var(--white)}
+.logo-name{font-size:16px;font-weight:700;letter-spacing:1px;font-family:'Georgia',serif}
+.logo-title{font-size:11px;color:rgba(255,255,255,0.5);font-family:'Segoe UI',sans-serif;letter-spacing:2px;text-transform:uppercase;margin-top:3px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;font-weight:400;transition:color .2s;font-family:'Segoe UI',sans-serif;letter-spacing:0.5px}
+.nav-links a:hover{color:var(--gold-light)}
+.nav-phone{color:rgba(255,255,255,0.7);font-size:13px;font-family:'Segoe UI',sans-serif}
+.nav-cta{background:var(--gold);color:var(--navy);padding:10px 20px;border-radius:4px;text-decoration:none;font-weight:700;font-size:13px;transition:all .2s;font-family:'Segoe UI',sans-serif;margin-left:12px}
+.nav-cta:hover{background:var(--gold-light)}
+
+.hero{background:linear-gradient(180deg,var(--navy) 0%,#131d2f 100%);padding:96px 24px 80px;position:relative;overflow:hidden}
+.hero-ornament{position:absolute;inset:0;background-image:radial-gradient(rgba(184,150,62,0.04) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-divider{width:60px;height:2px;background:var(--gold);margin-bottom:20px}
+.hero-subtitle{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);font-family:'Segoe UI',sans-serif;margin-bottom:16px}
+.hero h1{font-size:50px;font-weight:700;color:var(--white);line-height:1.15;margin-bottom:18px;letter-spacing:-0.5px}
+.hero h1 em{font-style:italic;color:var(--gold-light)}
+.hero-desc{font-size:16px;color:rgba(255,255,255,0.65);line-height:1.8;margin-bottom:36px;font-family:'Segoe UI',sans-serif}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:var(--navy);padding:14px 32px;border-radius:4px;text-decoration:none;font-weight:700;font-size:14px;transition:all .2s;font-family:'Segoe UI',sans-serif}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);padding:14px 32px;border-radius:4px;text-decoration:none;font-weight:500;font-size:14px;transition:all .2s;font-family:'Segoe UI',sans-serif}
+.btn-outline:hover{border-color:var(--gold-light);color:var(--gold-light)}
+.hero-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:32px}
+.hero-card h3{font-size:15px;font-weight:700;color:var(--gold-light);margin-bottom:20px;text-transform:uppercase;letter-spacing:2px;font-family:'Segoe UI',sans-serif;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.acte-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.acte-item:last-child{border-bottom:none}
+.acte-info{display:flex;align-items:center;gap:12px}
+.acte-icon{font-size:20px;flex-shrink:0}
+.acte-name{font-size:14px;color:rgba(255,255,255,0.85);font-family:'Segoe UI',sans-serif}
+.acte-delai{font-size:12px;color:var(--gold-light);font-family:'Segoe UI',sans-serif}
+
+.bandeau{background:var(--gold);padding:20px 24px}
+.bandeau-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.bandeau-text{font-family:'Georgia',serif;font-size:16px;color:var(--navy);font-style:italic}
+.bandeau-items{display:flex;gap:32px;font-family:'Segoe UI',sans-serif;font-size:13px;color:var(--navy);font-weight:600}
+.bandeau-items span::before{content:'✓ ';font-weight:700}
+
+section{padding:72px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;font-family:'Segoe UI',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:4px;margin-bottom:16px}
+.section-title{font-size:38px;font-weight:700;color:var(--navy);margin-bottom:14px}
+.section-sub{font-size:16px;color:var(--gray);line-height:1.8;max-width:580px;font-family:'Segoe UI',sans-serif}
+
+.services{background:var(--light)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.svc-card{background:var(--white);border-radius:12px;padding:32px;box-shadow:var(--shadow);transition:transform .3s;border-bottom:3px solid var(--gold)}
+.svc-card:hover{transform:translateY(-6px)}
+.svc-icon{font-size:44px;margin-bottom:16px}
+.svc-title{font-size:21px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.svc-desc{font-family:'Segoe UI',sans-serif;font-size:14px;color:var(--gray);line-height:1.6;margin-bottom:20px}
+.svc-list{list-style:none;font-family:'Segoe UI',sans-serif}
+.svc-list li{padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px}
+.svc-list li::before{content:'◆';color:var(--gold);font-size:8px}
+.svc-list li:last-child{border-bottom:none}
+
+.maitre{background:var(--white)}
+.maitre-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.maitre-photo{background:linear-gradient(135deg,var(--navy),#1a2d50);border-radius:16px;height:480px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.maitre-photo-emoji{font-size:120px;opacity:0.2}
+.maitre-photo-badge{position:absolute;bottom:24px;left:24px;right:24px;background:rgba(184,150,62,0.9);border-radius:8px;padding:16px 20px}
+.maitre-photo-badge .name{font-size:18px;font-weight:700;color:var(--navy);font-family:'Georgia',serif}
+.maitre-photo-badge .title{font-size:12px;color:rgba(12,27,51,0.75);font-family:'Segoe UI',sans-serif;margin-top:3px}
+.maitre-content .section-sub{max-width:100%;margin-bottom:24px}
+.maitre-credentials{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.cred-item{background:var(--light);border-radius:8px;padding:16px;border-left:3px solid var(--gold)}
+.cred-label{font-family:'Segoe UI',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:4px}
+.cred-val{font-size:14px;font-weight:600;color:var(--navy);font-family:'Segoe UI',sans-serif}
+.maitre-quote{background:var(--light);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:20px 24px;font-style:italic;font-size:16px;color:var(--text);line-height:1.7;margin-top:8px}
+
+.associes{background:var(--light)}
+.assoc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.assoc-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s}
+.assoc-card:hover{transform:translateY(-4px)}
+.assoc-top{height:160px;display:flex;align-items:center;justify-content:center;font-size:64px}
+.assoc-body{padding:22px}
+.assoc-name{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.assoc-title{font-family:'Segoe UI',sans-serif;font-size:12px;font-weight:600;color:var(--gold);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px}
+.assoc-bio{font-family:'Segoe UI',sans-serif;font-size:13px;color:var(--gray);line-height:1.5}
+
+.tarifs{background:var(--white)}
+.tarifs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.tarif-card{background:var(--light);border-radius:12px;padding:28px;border:1px solid var(--border);transition:all .2s}
+.tarif-card:hover{border-color:var(--gold);box-shadow:var(--shadow);transform:translateY(-4px)}
+.tarif-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.tarif-desc{font-family:'Segoe UI',sans-serif;font-size:13px;color:var(--gray);line-height:1.5;margin-bottom:16px}
+.tarif-items{list-style:none;font-family:'Segoe UI',sans-serif}
+.tarif-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.tarif-item:last-child{border-bottom:none}
+.tarif-item-label{color:var(--text)}
+.tarif-item-price{font-weight:700;color:var(--gold)}
+
+.process{background:var(--light)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+.proc-card{background:var(--white);border-radius:12px;padding:28px;text-align:center;box-shadow:0 2px 8px rgba(12,27,51,0.06)}
+.proc-roman{font-size:24px;font-weight:700;color:var(--gold);margin-bottom:12px;letter-spacing:2px}
+.proc-icon{font-size:40px;margin-bottom:12px}
+.proc-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.proc-desc{font-family:'Segoe UI',sans-serif;font-size:13px;color:var(--gray);line-height:1.5}
+
+.testi{background:var(--navy);padding:80px 24px}
+.testi .section-title{color:var(--white)}
+.testi .section-tag{color:var(--gold-light);border-color:var(--gold-light)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.testi-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:28px}
+.testi-ornament{font-size:36px;color:rgba(184,150,62,0.3);margin-bottom:8px;line-height:1;font-family:'Georgia',serif}
+.testi-text{color:rgba(255,255,255,0.77);font-size:14px;line-height:1.8;font-style:italic;margin-bottom:20px;font-family:'Georgia',serif}
+.testi-author{display:flex;align-items:center;gap:12px;font-family:'Segoe UI',sans-serif}
+.testi-av{width:44px;height:44px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--navy);font-size:16px}
+.testi-name{font-size:14px;font-weight:700;color:var(--white)}
+.testi-info{font-size:12px;color:rgba(255,255,255,0.4)}
+
+.cta-section{background:var(--gold);padding:72px 24px;text-align:center}
+.cta-section h2{font-size:42px;font-weight:700;color:var(--navy);margin-bottom:14px;font-family:'Georgia',serif}
+.cta-section p{font-size:17px;color:rgba(12,27,51,0.75);margin-bottom:32px;font-family:'Segoe UI',sans-serif}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-navy{background:var(--navy);color:var(--white);padding:16px 40px;border-radius:4px;text-decoration:none;font-weight:700;font-size:16px;font-family:'Segoe UI',sans-serif;transition:all .2s}
+.btn-navy:hover{background:#0a1525;transform:translateY(-2px)}
+.btn-outline-navy{border:2px solid var(--navy);color:var(--navy);padding:16px 40px;border-radius:4px;text-decoration:none;font-weight:600;font-size:16px;font-family:'Segoe UI',sans-serif;transition:all .2s}
+.btn-outline-navy:hover{background:rgba(12,27,51,0.06)}
+
+footer{background:var(--navy);padding:56px 24px 24px;color:rgba(255,255,255,0.55);font-family:'Segoe UI',sans-serif}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-heading{font-size:12px;font-weight:700;color:var(--white);margin-bottom:18px;text-transform:uppercase;letter-spacing:2px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:9px}
+.footer-links a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-links a:hover{color:var(--gold-light)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:10px}
+.footer-bottom a{color:var(--gold-light);text-decoration:none}
+
+@media(max-width:768px){
+  .hero-inner,.maitre-grid,.footer-grid{grid-template-columns:1fr}
+  .hero h1{font-size:36px}
+  .services-grid,.assoc-grid,.testi-grid,.tarifs-grid,.process-steps{grid-template-columns:1fr}
+  .maitre-credentials{grid-template-columns:1fr}
+  .nav-links,.nav-cta,.nav-phone{display:none}
+}
+</style>
+</head>
+<body>
+<div id="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="#">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-seal">⚖</div>
+      <div class="logo-text">
+        <div class="logo-name">Maître Diallo & Associés</div>
+        <div class="logo-title">Étude Notariale · Abidjan</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Immobilier</a></li>
+      <li><a href="#">Successions</a></li>
+      <li><a href="#">Entreprises</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div style="display:flex;align-items:center">
+      <span class="nav-phone">📞 +225 20 21 20 00</span>
+      <a href="#" class="nav-cta">Prendre rendez-vous</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-ornament"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-divider"></div>
+      <div class="hero-subtitle">Notaire · Officier Ministériel</div>
+      <h1>L'Authenticité<br>et la <em>Sécurité Juridique</em><br>à Votre Service</h1>
+      <p class="hero-desc">L'Étude Notariale Maître Diallo & Associés vous accompagne dans tous vos actes notariés avec discrétion, rigueur et expertise : vente immobilière, succession, mariage, création d'entreprise.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-gold">Prendre rendez-vous</a>
+        <a href="#" class="btn-outline">Nos actes notariés</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Actes courants — Délais indicatifs</h3>
+      <div class="acte-item"><div class="acte-info"><span class="acte-icon">🏠</span><div class="acte-name">Vente immobilière</div></div><span class="acte-delai">3 à 6 semaines</span></div>
+      <div class="acte-item"><div class="acte-info"><span class="acte-icon">💍</span><div class="acte-name">Contrat de mariage</div></div><span class="acte-delai">1 semaine</span></div>
+      <div class="acte-item"><div class="acte-info"><span class="acte-icon">📜</span><div class="acte-name">Testament</div></div><span class="acte-delai">48 heures</span></div>
+      <div class="acte-item"><div class="acte-info"><span class="acte-icon">🏢</span><div class="acte-name">Création SARL/SA</div></div><span class="acte-delai">1 à 2 semaines</span></div>
+      <div class="acte-item"><div class="acte-info"><span class="acte-icon">👨‍👩‍👧</span><div class="acte-name">Succession</div></div><span class="acte-delai">2 à 8 semaines</span></div>
+      <div class="acte-item"><div class="acte-info"><span class="acte-icon">📋</span><div class="acte-name">Procuration</div></div><span class="acte-delai">Même jour</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="bandeau">
+  <div class="bandeau-inner">
+    <div class="bandeau-text">« La parole s'envole, l'acte notarié reste. »</div>
+    <div class="bandeau-items">
+      <span>Actes authentiques</span>
+      <span>Confidentialité absolue</span>
+      <span>Conservation 100 ans</span>
+      <span>Force exécutoire immédiate</span>
+    </div>
+  </div>
+</div>
+
+<section class="services">
+  <div class="section-inner">
+    <div class="section-tag">Nos Actes</div>
+    <h2 class="section-title">Une Étude Complète à Votre Écoute</h2>
+    <p class="section-sub" style="font-family:'Segoe UI',sans-serif">De l'immobilier à la création d'entreprise, nous instrumentons tous les actes nécessitant l'authenticité notariale.</p>
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-icon">🏠</div>
+        <div class="svc-title">Droit Immobilier</div>
+        <p class="svc-desc">La sécurisation de vos transactions immobilières est notre priorité. Achat, vente, donation, hypothèque — nous protégeons vos investissements fonciers et immobiliers.</p>
+        <ul class="svc-list">
+          <li>Actes de vente et VEFA</li>
+          <li>Donations immobilières</li>
+          <li>Prêts hypothécaires</li>
+          <li>Baux commerciaux notariés</li>
+          <li>Divisions en lots</li>
+        </ul>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">👨‍👩‍👧</div>
+        <div class="svc-title">Droit de la Famille</div>
+        <p class="svc-desc">Accompagnement personnalisé dans tous les actes familiaux qui nécessitent la force de l'authenticité notariale et la protection de l'officier public.</p>
+        <ul class="svc-list">
+          <li>Contrats de mariage</li>
+          <li>Testaments authentiques</li>
+          <li>Donations entre époux</li>
+          <li>Règlements successoraux</li>
+          <li>Tutelles et curatelles</li>
+        </ul>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🏢</div>
+        <div class="svc-title">Droit des Sociétés</div>
+        <p class="svc-desc">Création, modification et transmission de vos structures sociétaires dans le respect du droit OHADA et du droit ivoirien des sociétés.</p>
+        <ul class="svc-list">
+          <li>Constitution SARL/SA/SAS</li>
+          <li>Augmentation de capital</li>
+          <li>Cessions de parts sociales</li>
+          <li>Fusions et acquisitions</li>
+          <li>Actes de liquidation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="maitre">
+  <div class="section-inner">
+    <div class="maitre-grid">
+      <div class="maitre-photo">
+        <div class="maitre-photo-emoji">⚖️</div>
+        <div class="maitre-photo-badge">
+          <div class="name">Maître Ibrahim Diallo</div>
+          <div class="title">Notaire — Officier Ministériel · Abidjan</div>
+        </div>
+      </div>
+      <div class="maitre-content">
+        <div class="section-tag">Maître de l'Étude</div>
+        <h2 class="section-title">Maître Ibrahim Diallo</h2>
+        <p class="section-sub">Notaire diplômé d'État, Maître Ibrahim Diallo exerce depuis 1999 à Abidjan. Fort d'une double formation en droit notarial français et OHADA, il a instrumenté plus de 8 000 actes au service de particuliers, entreprises et collectivités publiques ivoiriennes.</p>
+        <div class="maitre-credentials">
+          <div class="cred-item"><div class="cred-label">Formation</div><div class="cred-val">Master Notariat — Paris II Panthéon-Assas</div></div>
+          <div class="cred-item"><div class="cred-label">En exercice depuis</div><div class="cred-val">1999 · 26 ans d'activité</div></div>
+          <div class="cred-item"><div class="cred-label">Chambre notariale</div><div class="cred-val">Chambre des Notaires CI</div></div>
+          <div class="cred-item"><div class="cred-label">Actes instrumentés</div><div class="cred-val">8 000+ actes authentiques</div></div>
+        </div>
+        <blockquote class="maitre-quote">
+          « Mon rôle est d'apporter la paix juridique. Un acte notarié bien rédigé, c'est l'assurance de ne jamais avoir à se retrouver en justice. »
+          <footer style="margin-top:10px;font-size:13px;color:var(--gray);font-style:normal;font-family:'Segoe UI',sans-serif">— Maître Ibrahim Diallo, Notaire</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="associes">
+  <div class="section-inner">
+    <div class="section-tag">Nos Collaborateurs</div>
+    <h2 class="section-title">Une Équipe Dévouée</h2>
+    <p class="section-sub" style="font-family:'Segoe UI',sans-serif">Notaires collaborateurs et clercs expérimentés, notre équipe traite votre dossier avec la même attention que le Maître de l'étude.</p>
+    <div class="assoc-grid">
+      <div class="assoc-card">
+        <div class="assoc-top" style="background:linear-gradient(135deg,var(--navy),#1a2d50)">👩‍⚖️</div>
+        <div class="assoc-body">
+          <div class="assoc-name">Maître Aya Kouakou</div>
+          <div class="assoc-title">Notaire Collaborateur</div>
+          <p class="assoc-bio" style="font-family:'Segoe UI',sans-serif">Spécialiste droit immobilier et successions complexes. Master 2 Notariat Abidjan. 8 ans en étude notariale.</p>
+        </div>
+      </div>
+      <div class="assoc-card">
+        <div class="assoc-top" style="background:linear-gradient(135deg,var(--gold),#92400e)">👨‍💼</div>
+        <div class="assoc-body">
+          <div class="assoc-name">Maître Seydou Barro</div>
+          <div class="assoc-title">Notaire Collaborateur</div>
+          <p class="assoc-bio" style="font-family:'Segoe UI',sans-serif">Expert droit des sociétés OHADA. Spécialiste transactions commerciales et fusions-acquisitions en Côte d'Ivoire.</p>
+        </div>
+      </div>
+      <div class="assoc-card">
+        <div class="assoc-top" style="background:linear-gradient(135deg,#1e40af,var(--navy))">👩‍🏫</div>
+        <div class="assoc-body">
+          <div class="assoc-name">Mme Fatou Traoré</div>
+          <div class="assoc-title">Première Clerc de Notaire</div>
+          <p class="assoc-bio" style="font-family:'Segoe UI',sans-serif">15 ans d'expérience en étude notariale. Gestion des formalités, publication foncière et suivi des dossiers immobiliers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tarifs">
+  <div class="section-inner">
+    <div class="section-tag">Honoraires</div>
+    <h2 class="section-title">Des Honoraires Transparents</h2>
+    <p class="section-sub" style="font-family:'Segoe UI',sans-serif">Les émoluments notariaux sont en grande partie réglementés par le décret tarifaire. Voici une indication des actes courants.</p>
+    <div class="tarifs-grid">
+      <div class="tarif-card">
+        <div class="tarif-title">🏠 Actes Immobiliers</div>
+        <p class="tarif-desc">Frais indicatifs hors droits d'enregistrement et de publication foncière</p>
+        <ul class="tarif-items">
+          <li class="tarif-item"><span class="tarif-item-label">Acte de vente (€200M)</span><span class="tarif-item-price">180 000 FCFA</span></li>
+          <li class="tarif-item"><span class="tarif-item-label">Donation immobilière</span><span class="tarif-item-price">120 000 FCFA</span></li>
+          <li class="tarif-item"><span class="tarif-item-label">Constitution hypothèque</span><span class="tarif-item-price">95 000 FCFA</span></li>
+          <li class="tarif-item"><span class="tarif-item-label">Bail commercial notarié</span><span class="tarif-item-price">75 000 FCFA</span></li>
+        </ul>
+      </div>
+      <div class="tarif-card">
+        <div class="tarif-title">👨‍👩‍👧 Actes Familiaux</div>
+        <p class="tarif-desc">Tarifs indicatifs, une estimation précise vous sera fournie lors du RDV</p>
+        <ul class="tarif-items">
+          <li class="tarif-item"><span class="tarif-item-label">Contrat de mariage</span><span class="tarif-item-price">45 000 FCFA</span></li>
+          <li class="tarif-item"><span class="tarif-item-label">Testament authentique</span><span class="tarif-item-price">35 000 FCFA</span></li>
+          <li class="tarif-item"><span class="tarif-item-label">Succession simple</span><span class="tarif-item-price">85 000 FCFA</span></li>
+          <li class="tarif-item"><span class="tarif-item-label">Procuration générale</span><span class="tarif-item-price">25 000 FCFA</span></li>
+        </ul>
+      </div>
+      <div class="tarif-card">
+        <div class="tarif-title">🏢 Actes Sociétaires</div>
+        <p class="tarif-desc">Émoluments pour les actes de droit des sociétés OHADA</p>
+        <ul class="tarif-items">
+          <li class="tarif-item"><span class="tarif-item-label">Constitution SARL</span><span class="tarif-item-price">120 000 FCFA</span></li>
+          <li class="tarif-item"><span class="tarif-item-label">Cession de parts</span><span class="tarif-item-price">75 000 FCFA</span></li>
+          <li class="tarif-item"><span class="tarif-item-label">Augmentation capital</span><span class="tarif-item-price">95 000 FCFA</span></li>
+          <li class="tarif-item"><span class="tarif-item-label">Statuts SA</span><span class="tarif-item-price">180 000 FCFA</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="section-inner">
+    <div class="section-tag">Notre Processus</div>
+    <h2 class="section-title">Du Rendez-Vous à la Signature</h2>
+    <div class="process-steps">
+      <div class="proc-card"><div class="proc-roman">I</div><div class="proc-icon">☎️</div><div class="proc-title">Prise de rendez-vous</div><div class="proc-desc">Contact téléphonique ou email pour planifier votre consultation avec le Maître ou ses collaborateurs.</div></div>
+      <div class="proc-card"><div class="proc-roman">II</div><div class="proc-icon">💬</div><div class="proc-title">Consultation</div><div class="proc-desc">Analyse de votre dossier, conseil juridique et remise de la liste des pièces nécessaires à l'acte.</div></div>
+      <div class="proc-card"><div class="proc-roman">III</div><div class="proc-icon">📝</div><div class="proc-title">Rédaction de l'acte</div><div class="proc-desc">Nos clercs spécialisés rédigent l'acte en conformité avec la loi. Vérification des droits et formalités.</div></div>
+      <div class="proc-card"><div class="proc-roman">IV</div><div class="proc-icon">✍️</div><div class="proc-title">Signature & Conservation</div><div class="proc-desc">Lecture, signature authentique devant le Notaire. Conservation au rang des minutes pour 100 ans.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testi">
+  <div class="section-inner">
+    <div class="section-tag">Confiance Clients</div>
+    <h2 class="section-title">Ils Nous Ont Fait Confiance</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-ornament">"</div>
+        <p class="testi-text">Maître Diallo a géré la succession de notre père avec une humanité et une expertise remarquables. Un dossier complexe (plusieurs héritiers, immeubles) réglé en 6 semaines. Famille apaisée.</p>
+        <div class="testi-author"><div class="testi-av">K</div><div><div class="testi-name">Famille Kouassi</div><div class="testi-info">Succession complexe · Abidjan/Yamoussoukro</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-ornament">"</div>
+        <p class="testi-text">Notre acquisition d'immeuble de bureaux s'est faite sans encombre grâce à la rigueur de l'étude. Maître Aya Kouakou a sécurisé chaque clause. Nous travaillons avec eux exclusivement.</p>
+        <div class="testi-author"><div class="testi-av">A</div><div><div class="testi-name">DG — Groupe AMCI Abidjan</div><div class="testi-info">Acte de vente immeuble commercial 2024</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-ornament">"</div>
+        <p class="testi-text">Pour la création de notre SA et la rédaction de nos statuts OHADA, Maître Barro a été précis, rapide et pédagogue. Notre banque a immédiatement accepté notre dossier. Merci !</p>
+        <div class="testi-author"><div class="testi-av">O</div><div><div class="testi-name">Ousmane Koné</div><div class="testi-info">Fondateur — TechAfrik SA · Abidjan</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="section-inner">
+    <h2>Sécurisez vos Actes Importants</h2>
+    <p>L'authenticité notariale, c'est la garantie ultime de vos droits. Prenez rendez-vous dès aujourd'hui.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-navy">Prendre rendez-vous</a>
+      <a href="#" class="btn-outline-navy">Appeler le +225 20 21 20 00</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:var(--white);margin-bottom:14px;font-family:'Georgia',serif">Maître Diallo & Associés</div>
+        <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,0.35);margin-bottom:18px">Étude Notariale à Abidjan. Officiers ministériels au service des particuliers, entreprises et collectivités en Côte d'Ivoire depuis 1999. Membres Chambre des Notaires CI.</p>
+        <div style="font-size:14px;line-height:2;color:rgba(255,255,255,0.4)">📍 Immeuble Nour Al Hayat, Avenue Lamblin, Plateau, Abidjan<br>📞 +225 20 21 20 00<br>✉️ contact@etude-diallo-abidjan.ci</div>
+      </div>
+      <div><div class="footer-heading">Services</div><ul class="footer-links"><li><a href="#">Actes immobiliers</a></li><li><a href="#">Successions</a></li><li><a href="#">Droit famille</a></li><li><a href="#">Droit sociétés</a></li><li><a href="#">Procurations</a></li></ul></div>
+      <div><div class="footer-heading">Étude</div><ul class="footer-links"><li><a href="#">Le Maître</a></li><li><a href="#">L'équipe</a></li><li><a href="#">Honoraires</a></li><li><a href="#">Actualités OHADA</a></li></ul></div>
+      <div><div class="footer-heading">Pratique</div><ul class="footer-links"><li><a href="#">Prendre RDV</a></li><li><a href="#">Pièces requises</a></li><li><a href="#">Délais actes</a></li><li><a href="#">Plan d'accès</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Étude Notariale Maître Diallo & Associés · Chambre des Notaires CI</span>
+      <span>Site créé avec <a href="#">IBIG Digital</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

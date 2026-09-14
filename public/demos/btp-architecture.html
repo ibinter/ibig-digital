@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Architecture Africa</title>
+  <style>
+    :root {
+      --black: #111827;
+      --black-pure: #000000;
+      --near-black: #1F2937;
+      --gray-700: #374151;
+      --gray-600: #4B5563;
+      --gray-400: #9CA3AF;
+      --gray-200: #E5E7EB;
+      --gray-100: #F3F4F6;
+      --white: #FFFFFF;
+      --accent: #F59E0B;
+      --accent-dark: #D97706;
+      --shadow: 0 8px 32px rgba(0,0,0,0.12);
+      --shadow-dark: 0 16px 48px rgba(0,0,0,0.25);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: system-ui,-apple-system,sans-serif; background:var(--white); color:var(--gray-700); }
+
+    .demo-bar { position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px; }
+    .demo-bar a { background:#22C55E;color:#fff;padding:5px 14px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700; }
+
+    nav {
+      position:sticky; top:40px; z-index:100;
+      background:rgba(255,255,255,0.97); backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--gray-100);
+      padding:0 60px; display:flex; align-items:center; justify-content:space-between; height:70px;
+    }
+    .nav-logo { display:flex; align-items:center; gap:4px; }
+    .logo-mark { font-size:28px; font-weight:900; color:var(--black-pure); letter-spacing:-2px; font-family:'Georgia',serif; }
+    .logo-mark span { color:var(--accent); }
+    .logo-separator { width:1px; height:30px; background:var(--gray-200); margin:0 14px; }
+    .logo-tagline { font-size:12px; color:var(--gray-600); letter-spacing:2px; text-transform:uppercase; }
+    .nav-links { display:flex; gap:36px; }
+    .nav-links a { text-decoration:none; color:var(--gray-600); font-size:13px; letter-spacing:0.5px; transition:color 0.2s; font-weight:500; }
+    .nav-links a:hover { color:var(--black); }
+    .btn-cta {
+      background:var(--black); color:#fff; padding:10px 22px;
+      font-size:13px; font-weight:600; text-decoration:none; letter-spacing:0.5px;
+      transition:background 0.2s;
+    }
+    .btn-cta:hover { background:var(--near-black); }
+
+    /* HERO */
+    .hero {
+      background:var(--black); color:#fff;
+      padding:100px 60px 80px; min-height:600px;
+      display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+      position:relative; overflow:hidden;
+    }
+    .hero-bg-grid {
+      position:absolute; top:0; left:0; right:0; bottom:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size:40px 40px;
+    }
+    .hero-content { position:relative; z-index:1; }
+    .hero-pre { display:flex; align-items:center; gap:12px; margin-bottom:24px; }
+    .hero-line { width:40px; height:1px; background:var(--accent); }
+    .hero-pre-text { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--accent); font-weight:600; }
+    .hero h1 { font-size:54px; font-weight:300; line-height:1.1; margin-bottom:24px; letter-spacing:-1px; }
+    .hero h1 strong { font-weight:900; display:block; }
+    .hero p { font-size:16px; color:#9CA3AF; line-height:1.8; margin-bottom:36px; max-width:440px; }
+    .hero-btns { display:flex; gap:14px; }
+    .btn-white { background:#fff; color:var(--black); padding:14px 28px; font-size:14px; font-weight:700; text-decoration:none; border:none; cursor:pointer; transition:all 0.2s; letter-spacing:0.5px; }
+    .btn-white:hover { background:var(--accent); transform:translateY(-2px); }
+    .btn-outline-w { background:transparent; color:#fff; padding:14px 28px; font-size:14px; font-weight:600; text-decoration:none; border:1px solid rgba(255,255,255,0.3); transition:all 0.2s; }
+    .btn-outline-w:hover { border-color:#fff; }
+    .hero-side { position:relative; z-index:1; }
+    .hero-numbers { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(255,255,255,0.1); }
+    .hero-num-box { background:var(--black); padding:32px 28px; }
+    .hero-num-box:hover { background:#1F2937; }
+    .hero-num-val { font-size:40px; font-weight:900; color:#fff; }
+    .hero-num-val span { color:var(--accent); }
+    .hero-num-label { font-size:12px; color:#6B7280; margin-top:4px; letter-spacing:1px; text-transform:uppercase; }
+
+    /* SERVICES */
+    .services { padding:100px 60px; }
+    .section-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:60px; }
+    .sh-left { }
+    .sh-tag { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:10px; }
+    .sh-h2 { font-size:40px; font-weight:900; color:var(--black); letter-spacing:-1px; }
+    .sh-p { font-size:14px; color:var(--gray-600); max-width:400px; line-height:1.7; margin-top:10px; }
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--gray-200); }
+    .svc {
+      background:#fff; padding:44px; position:relative; overflow:hidden; transition:background 0.3s; cursor:pointer;
+    }
+    .svc:hover { background:var(--black); }
+    .svc:hover h3, .svc:hover p, .svc:hover .svc-num { color:#fff; }
+    .svc:hover .svc-num { opacity:1; }
+    .svc:hover .svc-arrow { opacity:1; color:var(--accent); }
+    .svc-num { font-size:56px; font-weight:900; color:var(--gray-100); position:absolute; top:20px; right:24px; line-height:1; transition:all 0.3s; }
+    .svc-icon { font-size:32px; margin-bottom:20px; }
+    .svc h3 { font-size:18px; font-weight:800; color:var(--black); margin-bottom:12px; transition:color 0.3s; }
+    .svc p { font-size:13px; color:var(--gray-600); line-height:1.7; transition:color 0.3s; }
+    .svc-arrow { font-size:20px; margin-top:16px; opacity:0; transition:all 0.3s; color:var(--accent); }
+
+    /* PORTFOLIO */
+    .portfolio { background:var(--gray-100); padding:100px 60px; }
+    .portfolio-grid { display:grid; grid-template-columns:2fr 1fr; gap:2px; margin-top:60px; }
+    .portfolio-main { background:var(--black); height:440px; display:flex; align-items:center; justify-content:center; font-size:80px; position:relative; overflow:hidden; cursor:pointer; }
+    .portfolio-main:hover .proj-overlay { opacity:1; }
+    .portfolio-col { display:grid; gap:2px; }
+    .portfolio-item { background:var(--near-black); height:219px; display:flex; align-items:center; justify-content:center; font-size:48px; position:relative; overflow:hidden; cursor:pointer; }
+    .portfolio-item:hover .proj-overlay { opacity:1; }
+    .proj-overlay {
+      position:absolute; top:0; left:0; right:0; bottom:0;
+      background:rgba(245,158,11,0.9); display:flex; align-items:flex-end; padding:24px;
+      opacity:0; transition:opacity 0.3s;
+    }
+    .proj-info h4 { font-size:16px; font-weight:800; color:#fff; margin-bottom:4px; }
+    .proj-info p { font-size:12px; color:rgba(255,255,255,0.8); }
+    .portfolio-more { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:2px; grid-column:1/-1; }
+    .portfolio-sm { background:#374151; height:160px; display:flex; align-items:center; justify-content:center; font-size:40px; cursor:pointer; position:relative; overflow:hidden; }
+    .portfolio-sm:hover .proj-overlay { opacity:1; }
+
+    /* PROCESS */
+    .process { padding:100px 60px; background:#fff; }
+    .process-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; margin-top:60px; }
+    .step { border-top:2px solid var(--gray-200); padding-top:28px; transition:border-color 0.3s; }
+    .step:hover { border-color:var(--accent); }
+    .step-num { font-size:48px; font-weight:900; color:var(--gray-100); line-height:1; margin-bottom:12px; }
+    .step h3 { font-size:16px; font-weight:800; color:var(--black); margin-bottom:8px; }
+    .step p { font-size:13px; color:var(--gray-600); line-height:1.6; }
+
+    /* EQUIPE */
+    .equipe { background:var(--black); padding:100px 60px; color:#fff; }
+    .equipe-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:60px; }
+    .arch-card { border:1px solid rgba(255,255,255,0.1); transition:border-color 0.3s; }
+    .arch-card:hover { border-color:var(--accent); }
+    .arch-avatar { height:200px; display:flex; align-items:center; justify-content:center; font-size:64px; background:rgba(255,255,255,0.05); }
+    .arch-info { padding:20px; }
+    .arch-info h3 { font-size:15px; font-weight:800; color:#fff; margin-bottom:4px; }
+    .arch-role { font-size:11px; color:var(--accent); letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; }
+    .arch-info p { font-size:13px; color:#6B7280; line-height:1.5; }
+
+    /* CONTACT */
+    .contact-section { padding:100px 60px; background:var(--white); }
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; }
+    .contact-info h2 { font-size:40px; font-weight:900; color:var(--black); letter-spacing:-1px; margin-bottom:16px; }
+    .contact-info p { font-size:15px; color:var(--gray-600); line-height:1.8; margin-bottom:28px; }
+    .contact-details { display:flex; flex-direction:column; gap:16px; }
+    .cd { display:flex; gap:16px; align-items:flex-start; }
+    .cd-icon { font-size:20px; }
+    .cd-text h4 { font-size:13px; font-weight:700; color:var(--black); text-transform:uppercase; letter-spacing:1px; margin-bottom:2px; }
+    .cd-text p { font-size:14px; color:var(--gray-600); }
+    .contact-form {}
+    .contact-form h3 { font-size:22px; font-weight:800; color:var(--black); margin-bottom:24px; }
+    .fg { margin-bottom:18px; }
+    .fg label { display:block; font-size:11px; font-weight:700; color:var(--gray-700); letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; }
+    .fg input, .fg select, .fg textarea { width:100%; padding:12px 0; border:none; border-bottom:1.5px solid var(--gray-200); font-size:15px; color:var(--black); background:transparent; transition:border-color 0.2s; }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { outline:none; border-color:var(--black); }
+    .fg textarea { height:100px; resize:none; }
+    .fg-row { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .submit-btn { background:var(--black); color:#fff; padding:14px 36px; border:none; font-size:14px; font-weight:700; cursor:pointer; letter-spacing:1px; text-transform:uppercase; transition:background 0.2s; }
+    .submit-btn:hover { background:var(--accent); }
+
+    footer { background:var(--black-pure); color:#fff; padding:40px 60px 24px; }
+    .ft-inner { display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; }
+    .ft-logo { font-size:22px; font-weight:900; letter-spacing:-1px; font-family:Georgia,serif; }
+    .ft-logo span { color:var(--accent); }
+    .ft-links { display:flex; gap:32px; }
+    .ft-links a { color:#6B7280; text-decoration:none; font-size:12px; letter-spacing:0.5px; }
+    .ft-links a:hover { color:#fff; }
+    .ft-bottom { border-top:1px solid #1F2937; padding-top:20px; display:flex; justify-content:space-between; font-size:12px; color:#4B5563; }
+
+    @media(max-width:768px) {
+      .hero, .contact-grid { grid-template-columns:1fr; }
+      nav { padding:0 20px; }
+      .nav-links { display:none; }
+      .hero { padding:50px 20px; }
+      .hero h1 { font-size:36px; }
+      .services-grid { grid-template-columns:1fr; }
+      .portfolio-grid { grid-template-columns:1fr; }
+      .portfolio-more { grid-template-columns:1fr 1fr; }
+      .equipe-grid { grid-template-columns:1fr 1fr; }
+      .process-grid { grid-template-columns:1fr 1fr; }
+      .services, .portfolio, .process, .equipe, .contact-section { padding:60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="https://ibig-digital.com/commander" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-mark">SA<span>.</span></div>
+    <div class="logo-separator"></div>
+    <div class="logo-tagline">Studio Architecture Africa</div>
+  </div>
+  <div class="nav-links">
+    <a href="#portfolio">Portfolio</a>
+    <a href="#services">Services</a>
+    <a href="#equipe">Équipe</a>
+    <a href="#process">Notre Méthode</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="btn-cta">NOUS CONTACTER →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-content">
+    <div class="hero-pre">
+      <div class="hero-line"></div>
+      <div class="hero-pre-text">Architecture · Design · Ingénierie</div>
+    </div>
+    <h1>Concevoir<br><strong>l'Afrique<br>de Demain</strong></h1>
+    <p>Cabinet d'architecture de référence à Dakar. Projets résidentiels, commerciaux et industriels. De la vision à la réalité bâtie.</p>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn-white">VOIR LE PORTFOLIO</a>
+      <a href="#contact" class="btn-outline-w">NOUS CONFIER UN PROJET</a>
+    </div>
+  </div>
+  <div class="hero-side">
+    <div class="hero-numbers">
+      <div class="hero-num-box">
+        <div class="hero-num-val">15<span>+</span></div>
+        <div class="hero-num-label">Années d'expérience</div>
+      </div>
+      <div class="hero-num-box">
+        <div class="hero-num-val">180<span>+</span></div>
+        <div class="hero-num-label">Projets réalisés</div>
+      </div>
+      <div class="hero-num-box">
+        <div class="hero-num-val">12</div>
+        <div class="hero-num-label">Architectes diplômés</div>
+      </div>
+      <div class="hero-num-box">
+        <div class="hero-num-val">8<span></span></div>
+        <div class="hero-num-label">Pays africains</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="section-header">
+    <div class="sh-left">
+      <div class="sh-tag">Nos Services</div>
+      <h2 class="sh-h2">Ce que Nous<br>Concevons</h2>
+      <p class="sh-p">Du plan esquisse à la livraison des clés, nous pilotons vos projets avec rigueur et créativité.</p>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="svc">
+      <div class="svc-num">01</div>
+      <div class="svc-icon">🏛️</div>
+      <h3>Architecture Résidentielle</h3>
+      <p>Villas, maisons individuelles, appartements de luxe. Chaque espace conçu pour votre mode de vie africain.</p>
+      <div class="svc-arrow">→</div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">02</div>
+      <div class="svc-icon">🏢</div>
+      <h3>Architecture Commerciale</h3>
+      <p>Immeubles de bureaux, centres commerciaux, hôtels. Des espaces qui inspirent et performent.</p>
+      <div class="svc-arrow">→</div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">03</div>
+      <div class="svc-icon">🏭</div>
+      <h3>Architecture Industrielle</h3>
+      <p>Usines, entrepôts, centres logistiques. Fonctionnalité maximale dans des structures durables.</p>
+      <div class="svc-arrow">→</div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">04</div>
+      <div class="svc-icon">🖥️</div>
+      <h3>Conception BIM & 3D</h3>
+      <p>Modélisation 3D photo-réaliste, maquette numérique, visite virtuelle avant construction.</p>
+      <div class="svc-arrow">→</div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">05</div>
+      <div class="svc-icon">📋</div>
+      <h3>Études & Plans</h3>
+      <p>Plans d'exécution, dossiers de permis de construire, études de sol et structures.</p>
+      <div class="svc-arrow">→</div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">06</div>
+      <div class="svc-icon">🔍</div>
+      <h3>Maîtrise d'Œuvre</h3>
+      <p>Suivi et coordination complets du chantier pour livraison dans les délais et le budget.</p>
+      <div class="svc-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+  <div class="section-header">
+    <div class="sh-left">
+      <div class="sh-tag">Portfolio</div>
+      <h2 class="sh-h2">Nos Projets<br>Récents</h2>
+      <p class="sh-p">Sélection de projets réalisés à travers l'Afrique de l'Ouest.</p>
+    </div>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-main">
+      <span>🏛️</span>
+      <div class="proj-overlay">
+        <div class="proj-info">
+          <h4>Résidence Les Almadies</h4>
+          <p>Villa 450 m² · Dakar, Sénégal · 2025</p>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-col">
+      <div class="portfolio-item">
+        <span>🏢</span>
+        <div class="proj-overlay">
+          <div class="proj-info"><h4>Tour Marina Center</h4><p>R+12 · Abidjan · 2024</p></div>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <span>🏨</span>
+        <div class="proj-overlay">
+          <div class="proj-info"><h4>Hôtel Savane</h4><p>4 étoiles · Bamako · 2024</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-more">
+      <div class="portfolio-sm">
+        <span>🏪</span>
+        <div class="proj-overlay"><div class="proj-info"><h4>Centre Commercial</h4><p>Lomé · 2023</p></div></div>
+      </div>
+      <div class="portfolio-sm">
+        <span>🏫</span>
+        <div class="proj-overlay"><div class="proj-info"><h4>Université Privée</h4><p>Accra · 2023</p></div></div>
+      </div>
+      <div class="portfolio-sm">
+        <span>🏠</span>
+        <div class="proj-overlay"><div class="proj-info"><h4>Cité Résidentielle</h4><p>Ouagadougou · 2022</p></div></div>
+      </div>
+      <div class="portfolio-sm">
+        <span>🏗️</span>
+        <div class="proj-overlay"><div class="proj-info"><h4>Zone Industrielle</h4><p>Abidjan · 2022</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="section-header">
+    <div class="sh-left">
+      <div class="sh-tag">Notre Méthode</div>
+      <h2 class="sh-h2">De l'Idée à<br>la Réalisation</h2>
+    </div>
+  </div>
+  <div class="process-grid">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Brief & Analyse</h3>
+      <p>Compréhension approfondie de vos besoins, du site et des contraintes réglementaires locales.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Esquisse & Concept</h3>
+      <p>Proposition de concepts architecturaux innovants intégrant l'identité culturelle africaine.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Plans & Dossiers</h3>
+      <p>Plans d'exécution détaillés, 3D photoréaliste, dossier permis de construire complet.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>Chantier & Livraison</h3>
+      <p>Suivi quotidien du chantier, coordination des corps de métier, réception et remise des clés.</p>
+    </div>
+  </div>
+</section>
+
+<section class="equipe" id="equipe">
+  <div class="section-header" style="color:#fff;">
+    <div class="sh-left">
+      <div class="sh-tag">Notre Équipe</div>
+      <h2 class="sh-h2" style="color:#fff;">Architectes &<br>Ingénieurs</h2>
+      <p class="sh-p" style="color:#6B7280;">Une équipe multiculturelle de passionnés de l'architecture africaine contemporaine.</p>
+    </div>
+  </div>
+  <div class="equipe-grid">
+    <div class="arch-card">
+      <div class="arch-avatar">👨‍💼</div>
+      <div class="arch-info">
+        <h3>Moustapha Diallo</h3>
+        <div class="arch-role">Associé Fondateur</div>
+        <p>DPLG Paris. 20 ans d'expérience. Spécialiste architecture tropicale durable.</p>
+      </div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-avatar">👩‍💼</div>
+      <div class="arch-info">
+        <h3>Awa Touré</h3>
+        <div class="arch-role">Architecte Senior</div>
+        <p>Experte en architecture commerciale et hôtelière de luxe en Afrique de l'Ouest.</p>
+      </div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-avatar">👨‍💼</div>
+      <div class="arch-info">
+        <h3>Koffi Mensah</h3>
+        <div class="arch-role">Ingénieur Structures</div>
+        <p>Calculs de structures complexes. Certifié Eurocodes et normes africaines.</p>
+      </div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-avatar">👩‍💼</div>
+      <div class="arch-info">
+        <h3>Nadia Konaté</h3>
+        <div class="arch-role">Designer d'Intérieur</div>
+        <p>Création d'espaces intérieurs mêlant modernité internationale et esthétique africaine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="sh-tag">Contact</div>
+      <h2>Parlons de<br>Votre Projet</h2>
+      <p>Chaque grand bâtiment commence par une conversation. Racontez-nous votre vision, nous lui donnerons vie.</p>
+      <div class="contact-details">
+        <div class="cd">
+          <div class="cd-icon">📍</div>
+          <div class="cd-text">
+            <h4>Adresse</h4>
+            <p>Point E, Rue des Écoles — Dakar, Sénégal</p>
+          </div>
+        </div>
+        <div class="cd">
+          <div class="cd-icon">📞</div>
+          <div class="cd-text">
+            <h4>Téléphone</h4>
+            <p>+221 33 860 00 00</p>
+          </div>
+        </div>
+        <div class="cd">
+          <div class="cd-icon">✉️</div>
+          <div class="cd-text">
+            <h4>Email</h4>
+            <p>projets@studioarchitectureafrica.sn</p>
+          </div>
+        </div>
+        <div class="cd">
+          <div class="cd-icon">🕐</div>
+          <div class="cd-text">
+            <h4>Horaires</h4>
+            <p>Lun–Ven 8h–18h · Sam 9h–13h</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Décrire votre projet</h3>
+      <div class="fg-row">
+        <div class="fg"><label>Prénom</label><input type="text" placeholder="Ibrahim"></div>
+        <div class="fg"><label>Nom</label><input type="text" placeholder="Ndiaye"></div>
+      </div>
+      <div class="fg"><label>Email</label><input type="email" placeholder="ibrahim@example.com"></div>
+      <div class="fg">
+        <label>Type de projet</label>
+        <select>
+          <option>Résidentiel (villa/maison)</option>
+          <option>Immeuble de bureaux</option>
+          <option>Centre commercial</option>
+          <option>Hôtel / Resort</option>
+          <option>Industriel</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="fg"><label>Décrivez votre vision</label><textarea placeholder="Parlez-nous de votre projet, budget envisagé, localisation..."></textarea></div>
+      <button class="submit-btn" onclick="alert('Merci pour votre message. Notre équipe vous contactera dans les 24h pour discuter de votre projet.')">ENVOYER →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-logo">SA<span>.</span> Studio Architecture Africa</div>
+    <div class="ft-links">
+      <a href="#">Portfolio</a>
+      <a href="#">Services</a>
+      <a href="#">Équipe</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2026 Studio Architecture Africa · Dakar, Sénégal</span>
+    <span>Site réalisé par <a href="https://ibig-digital.com" style="color:#F59E0B;text-decoration:none;">IBIG Digital</a></span>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => { e.preventDefault(); const t = document.querySelector(a.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth'}); });
+  });
+</script>
+</body>
+</html>

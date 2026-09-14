@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ÉLARA — Boutique Mode Ivoirienne</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--rose:#E91E8C;--rose-light:#FFF0F7;--rose-mid:#FCCFE8;--black:#0A0A0A;--cream:#FEFAF6;--warm:#F8F0E8;--gray:#6B7280;--white:#FFFFFF}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:#1F2937;font-family:'Helvetica Neue',Arial,sans-serif;overflow-x:hidden}
+.demo-bar{position:fixed;top:0;left:0;right:0;z-index:1000;height:40px;background:linear-gradient(90deg,#0A0A0A,#1a0a12);display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
+.demo-badge{background:rgba(233,30,140,.25);border:1px solid rgba(233,30,140,.5);color:#F472B6;padding:.15rem .6rem;border-radius:9999px;font-size:.6rem;font-weight:700}
+.demo-bar-text{font-size:.7rem;color:rgba(255,255,255,.8);display:flex;align-items:center;gap:.75rem}
+.demo-btn{padding:.35rem 1.25rem;border-radius:9999px;background:var(--rose);color:white;font-size:.68rem;font-weight:700;text-decoration:none}
+/* ANNOUNCEMENT BAR */
+.announce{background:var(--rose);padding:.55rem;text-align:center;margin-top:40px}
+.announce p{font-size:.68rem;font-weight:700;color:white;letter-spacing:.08em}
+nav{background:white;border-bottom:1px solid #F3F4F6;display:flex;align-items:center;justify-content:space-between;padding:.875rem 3rem;box-shadow:0 1px 6px rgba(0,0,0,.04)}
+.nav-logo{font-size:1.3rem;font-weight:900;letter-spacing:.25em;color:var(--black);text-transform:uppercase}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:#374151;text-decoration:none;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--rose);transform:scaleX(0);transition:transform .2s}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-right{display:flex;gap:1.25rem;align-items:center}
+.nav-icon{font-size:1rem;cursor:pointer;position:relative}
+.nav-cart-count{position:absolute;top:-8px;right:-8px;width:16px;height:16px;background:var(--rose);border-radius:50%;font-size:.5rem;color:white;font-weight:800;display:flex;align-items:center;justify-content:center}
+/* HERO */
+.hero{background:linear-gradient(135deg,#FFF0F7 0%,#FFF5F0 50%,#F8F0FF 100%);overflow:hidden;position:relative}
+.hero-inner{max-width:1300px;margin:0 auto;padding:4rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;min-height:80vh}
+.hero-left{}
+.hero-tag{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .875rem;background:var(--rose-light);border:1px solid var(--rose-mid);border-radius:9999px;font-size:.62rem;font-weight:800;color:var(--rose);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.75rem,5vw,5rem);font-weight:900;line-height:1;letter-spacing:-.04em;color:var(--black);margin-bottom:1.25rem}
+.hero h1 span{color:var(--rose)}
+.hero-sub{font-size:.9rem;color:var(--gray);line-height:1.8;max-width:400px;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:.875rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn-rose{padding:.9rem 2.25rem;background:var(--rose);color:white;font-size:.8rem;font-weight:800;text-decoration:none;border-radius:9999px;letter-spacing:.06em}
+.btn-dark{padding:.9rem 2.25rem;background:var(--black);color:white;font-size:.8rem;font-weight:700;text-decoration:none;border-radius:9999px;letter-spacing:.06em}
+.hero-trust{display:flex;gap:2rem}
+.ht-item{display:flex;align-items:center;gap:.4rem;font-size:.65rem;color:var(--gray);font-weight:600}
+/* Hero visual — fashion illustration using CSS */
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+.dress-frame{width:340px;height:480px;border-radius:2rem;background:linear-gradient(160deg,#FFE8F5,#F0E8FF,#FFE8F5);position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(233,30,140,.15)}
+.dress-body{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:140px;height:240px;background:linear-gradient(180deg,#E91E8C,#C2185B,#880E4F);clip-path:polygon(25% 0%,75% 0%,90% 10%,100% 100%,0% 100%,10% 10%);border-radius:.5rem}
+.dress-top{position:absolute;top:120px;left:50%;transform:translateX(-50%);width:120px;height:100px;background:linear-gradient(180deg,#F06292,#E91E8C)}
+.dress-head{position:absolute;top:70px;left:50%;transform:translateX(-50%);width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#FDDBB4,#F5C28C)}
+.dress-hair{position:absolute;top:55px;left:50%;transform:translateX(-50%);width:68px;height:40px;border-radius:50% 50% 0 0;background:#2D1B00}
+.hero-tag2{position:absolute;top:1.5rem;right:-1rem;background:var(--rose);color:white;padding:.35rem .875rem;border-radius:9999px;font-size:.62rem;font-weight:800;box-shadow:0 4px 12px rgba(233,30,140,.3)}
+.hero-tag3{position:absolute;bottom:2rem;left:-1rem;background:white;color:var(--black);padding:.5rem 1.125rem;border-radius:9999px;font-size:.65rem;font-weight:800;box-shadow:0 4px 20px rgba(0,0,0,.12)}
+/* CATÉGORIES */
+section{padding:5rem 0}
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+.sec-eyebrow{font-size:.58rem;font-weight:800;color:var(--rose);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.875rem}
+.sec-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:900;letter-spacing:-.03em;color:var(--black);margin-bottom:.625rem}
+.cat-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.cc{border-radius:1.5rem;overflow:hidden;position:relative;cursor:pointer;transition:transform .2s}
+.cc:hover{transform:scale(1.02)}
+.cc-inner{height:240px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:1.5rem;text-align:center;position:relative}
+.cc1-bg{background:linear-gradient(160deg,#FCE4EC,#F8BBD9)}
+.cc2-bg{background:linear-gradient(160deg,#F3E5F5,#E1BEE7)}
+.cc3-bg{background:linear-gradient(160deg,#E8F5E9,#C8E6C9)}
+.cc4-bg{background:linear-gradient(160deg,#FFF8E1,#FFECB3)}
+.cc-emoji{font-size:3.5rem;margin-bottom:.75rem;display:block}
+.cc-name{font-size:.88rem;font-weight:800;color:var(--black);margin-bottom:.2rem}
+.cc-count{font-size:.62rem;color:var(--gray)}
+.cc-btn{position:absolute;bottom:1.25rem;right:1.25rem;width:36px;height:36px;border-radius:50%;background:var(--rose);color:white;display:flex;align-items:center;justify-content:center;font-size:.9rem;opacity:0;transition:opacity .2s}
+.cc:hover .cc-btn{opacity:1}
+/* PRODUITS */
+.produits{background:white}
+.prod-tabs{display:flex;gap:.5rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.pt{padding:.45rem 1.25rem;border-radius:9999px;font-size:.72rem;font-weight:700;border:1.5px solid #E5E7EB;color:#6B7280;background:transparent;cursor:pointer;transition:all .2s}
+.pt.active{background:var(--rose);border-color:var(--rose);color:white}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.prod-card{border-radius:1.25rem;overflow:hidden;background:var(--cream);cursor:pointer;transition:all .2s}
+.prod-card:hover{box-shadow:0 8px 25px rgba(233,30,140,.1);transform:translateY(-3px)}
+.prod-img{height:240px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative}
+.pimg1{background:linear-gradient(135deg,#FCE4EC,#F8BBD9)}
+.pimg2{background:linear-gradient(135deg,#F3E5F5,#E1BEE7)}
+.pimg3{background:linear-gradient(135deg,#E8F5E9,#C8E6C9)}
+.pimg4{background:linear-gradient(135deg,#FFF3E0,#FFCC80)}
+.pimg5{background:linear-gradient(135deg,#E3F2FD,#BBDEFB)}
+.pimg6{background:linear-gradient(135deg,#FFF8E1,#FFE082)}
+.pimg7{background:linear-gradient(135deg,#FCE4EC,#EF9A9A)}
+.pimg8{background:linear-gradient(135deg,#F3E5F5,#CE93D8)}
+.prod-wishlist{position:absolute;top:.75rem;right:.75rem;width:32px;height:32px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;font-size:.85rem;opacity:0;transition:opacity .2s;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.prod-card:hover .prod-wishlist{opacity:1}
+.prod-badge{position:absolute;top:.75rem;left:.75rem;padding:.2rem .55rem;border-radius:4px;font-size:.55rem;font-weight:800}
+.pb-new{background:var(--black);color:white}
+.pb-promo{background:var(--rose);color:white}
+.prod-body{padding:1rem}
+.prod-cat{font-size:.55rem;font-weight:800;color:var(--rose);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.2rem}
+.prod-title{font-size:.82rem;font-weight:700;color:var(--black);margin-bottom:.3rem}
+.prod-vars{display:flex;gap:.25rem;margin-bottom:.625rem}
+.pv{width:14px;height:14px;border-radius:50%}
+.prod-footer{display:flex;align-items:center;justify-content:space-between}
+.prod-price{font-size:.88rem;font-weight:800;color:var(--black)}
+.prod-price-old{font-size:.65rem;color:#9CA3AF;text-decoration:line-through;margin-right:.2rem}
+.prod-add{padding:.4rem .875rem;background:var(--rose);color:white;border-radius:9999px;font-size:.62rem;font-weight:800;text-decoration:none;border:none;cursor:pointer}
+/* NEWSLETTER */
+.newsletter{background:linear-gradient(135deg,#0A0A0A,#1a0a12);padding:5rem 0;text-align:center}
+.nl-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .875rem;background:rgba(233,30,140,.2);border:1px solid rgba(233,30,140,.4);border-radius:9999px;font-size:.62rem;font-weight:800;color:#F472B6;margin-bottom:1.5rem}
+.newsletter h2{font-size:clamp(1.875rem,4vw,3rem);font-weight:900;color:white;letter-spacing:-.03em;margin-bottom:.875rem}
+.newsletter p{font-size:.88rem;color:rgba(255,255,255,.6);margin-bottom:2.5rem}
+.nl-form{display:flex;gap:0;max-width:440px;margin:0 auto;overflow:hidden;border-radius:9999px;border:1.5px solid rgba(233,30,140,.4)}
+.nl-input{flex:1;padding:.875rem 1.5rem;background:rgba(255,255,255,.08);color:white;font-size:.8rem;border:none;outline:none}
+.nl-input::placeholder{color:rgba(255,255,255,.35)}
+.nl-btn{padding:.875rem 1.875rem;background:var(--rose);color:white;font-size:.78rem;font-weight:800;border:none;cursor:pointer}
+/* FOOTER */
+footer{background:#0A0A0A;color:white;padding:4rem 0 2rem}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-logo{font-size:1.25rem;font-weight:900;letter-spacing:.25em;text-transform:uppercase;margin-bottom:.875rem}
+.footer-desc{font-size:.73rem;color:#6B7280;line-height:1.8;max-width:230px;margin-bottom:1.25rem}
+.footer-col h4{font-size:.55rem;font-weight:800;color:#6B7280;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.25rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.625rem}
+.footer-links a{font-size:.75rem;color:#6B7280;text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:white}
+.footer-bottom{border-top:1px solid #1F2937;padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.footer-copy{font-size:.68rem;color:#4B5563}
+@media(max-width:768px){
+  nav{padding:.75rem 1.25rem}.nav-links{display:none}
+  .hero-inner{grid-template-columns:1fr}.hero-visual{display:none}
+  .cat-cards{grid-template-columns:1fr 1fr}
+  .prod-grid{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <div class="demo-bar-text"><span class="demo-badge">DÉMO LIVE</span><span>Template <strong>ÉLARA Boutique Mode</strong> — E-commerce fashion</span></div>
+  <div style="display:flex;gap:.75rem">
+    <a href="/templates/ecommerce/boutique-mode" class="demo-btn">← Retour</a>
+    <a href="/templates/commander?secteur=ecommerce&formule=premium" class="demo-btn">Commander →</a>
+  </div>
+</div>
+
+<div class="announce"><p>🎉 SOLDES D'ÉTÉ · Jusqu'à -40% sur la nouvelle collection · Livraison gratuite dès 25 000 FCFA</p></div>
+
+<nav>
+  <div class="nav-logo">Élara</div>
+  <ul class="nav-links">
+    <li><a href="#cats">Femme</a></li>
+    <li><a href="#cats">Homme</a></li>
+    <li><a href="#cats">Enfant</a></li>
+    <li><a href="#cats">Accessoires</a></li>
+    <li><a href="#">Soldes</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-icon">🔍</span>
+    <span class="nav-icon">♡</span>
+    <span class="nav-icon" style="position:relative">🛍<span class="nav-cart-count">3</span></span>
+  </div>
+</nav>
+
+<section class="hero" style="padding:0">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">🌟 Nouvelle Collection 2025</div>
+      <h1>La Mode<br><span>Africaine</span><br>Réinventée</h1>
+      <p class="hero-sub">Découvrez notre collection exclusive alliant l'élégance du wax ivoirien aux coupes contemporaines. Vêtements, accessoires et pièces uniques fabriqués à Abidjan.</p>
+      <div class="hero-btns">
+        <a href="#produits" class="btn-rose">Shopper maintenant →</a>
+        <a href="#cats" class="btn-dark">Voir la collection</a>
+      </div>
+      <div class="hero-trust">
+        <div class="ht-item"><span>🚚</span><span>Livraison rapide</span></div>
+        <div class="ht-item"><span>🔄</span><span>Retours 30j</span></div>
+        <div class="ht-item"><span>⭐</span><span>4.9/5 · 1 200 avis</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="dress-frame">
+        <div class="dress-hair"></div>
+        <div class="dress-head"></div>
+        <div class="dress-top"></div>
+        <div class="dress-body"></div>
+        <span style="position:absolute;top:1.5rem;left:1.5rem;font-size:3rem">👗</span>
+      </div>
+      <span class="hero-tag2">🔥 Bestseller</span>
+      <span class="hero-tag3">✨ Fait à Abidjan</span>
+    </div>
+  </div>
+</section>
+
+<section id="cats">
+  <div class="container">
+    <div class="sec-eyebrow">Catégories</div>
+    <h2 class="sec-title" style="margin-bottom:2rem">Explorez nos univers</h2>
+    <div class="cat-cards">
+      <div class="cc"><div class="cc-inner cc1-bg"><span class="cc-emoji">👗</span><div class="cc-name">Femme</div><div class="cc-count">245 articles</div></div><span class="cc-btn">→</span></div>
+      <div class="cc"><div class="cc-inner cc2-bg"><span class="cc-emoji">👔</span><div class="cc-name">Homme</div><div class="cc-count">168 articles</div></div><span class="cc-btn">→</span></div>
+      <div class="cc"><div class="cc-inner cc3-bg"><span class="cc-emoji">👶</span><div class="cc-name">Enfant</div><div class="cc-count">120 articles</div></div><span class="cc-btn">→</span></div>
+      <div class="cc"><div class="cc-inner cc4-bg"><span class="cc-emoji">👜</span><div class="cc-name">Accessoires</div><div class="cc-count">85 articles</div></div><span class="cc-btn">→</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="produits" class="produits">
+  <div class="container">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem">
+      <div><div class="sec-eyebrow">Tendances</div><h2 class="sec-title">Sélection du moment</h2></div>
+      <a href="#" style="font-size:.75rem;font-weight:700;color:var(--rose);text-decoration:none">Voir tout →</a>
+    </div>
+    <div class="prod-tabs">
+      <button class="pt active">Nouveautés</button>
+      <button class="pt">Bestsellers</button>
+      <button class="pt">Wax & Kente</button>
+      <button class="pt">Soldes</button>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card"><div class="prod-img pimg1"><span>👗</span><span class="prod-badge pb-new">Nouveau</span><span class="prod-wishlist">♡</span></div><div class="prod-body"><div class="prod-cat">Robe</div><div class="prod-title">Robe Wax Ankara Florale</div><div class="prod-vars"><div class="pv" style="background:#E91E8C"></div><div class="pv" style="background:#3F51B5"></div><div class="pv" style="background:#FF9800"></div></div><div class="prod-footer"><div class="prod-price">28 500 FCFA</div><button class="prod-add">+</button></div></div></div>
+      <div class="prod-card"><div class="prod-img pimg2"><span>👘</span><span class="prod-badge pb-promo">-30%</span><span class="prod-wishlist">♡</span></div><div class="prod-body"><div class="prod-cat">Ensemble</div><div class="prod-title">Set Boubou Moderne Dame</div><div class="prod-vars"><div class="pv" style="background:#9C27B0"></div><div class="pv" style="background:#4CAF50"></div></div><div class="prod-footer"><div class="prod-price"><span class="prod-price-old">42 000</span>29 400 FCFA</div><button class="prod-add">+</button></div></div></div>
+      <div class="prod-card"><div class="prod-img pimg3"><span>🧢</span><span class="prod-badge pb-new">Nouveau</span><span class="prod-wishlist">♡</span></div><div class="prod-body"><div class="prod-cat">Accessoire</div><div class="prod-title">Gele Mariage Luxe</div><div class="prod-vars"><div class="pv" style="background:#F44336"></div><div class="pv" style="background:#FF9800"></div><div class="pv" style="background:#FFEB3B"></div></div><div class="prod-footer"><div class="prod-price">15 000 FCFA</div><button class="prod-add">+</button></div></div></div>
+      <div class="prod-card"><div class="prod-img pimg4"><span>👔</span><span class="prod-wishlist">♡</span></div><div class="prod-body"><div class="prod-cat">Chemise Homme</div><div class="prod-title">Chemise Batik Safari</div><div class="prod-vars"><div class="pv" style="background:#795548"></div><div class="pv" style="background:#607D8B"></div></div><div class="prod-footer"><div class="prod-price">22 000 FCFA</div><button class="prod-add">+</button></div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="newsletter">
+  <div class="container">
+    <div class="nl-badge">✨ Newsletter ÉLARA</div>
+    <h2>Soyez les premières informées</h2>
+    <p>Nouveautés, promotions exclusives et tendances mode africaine — directement dans votre boîte.</p>
+    <div class="nl-form">
+      <input class="nl-input" type="email" placeholder="votre@email.com">
+      <button class="nl-btn">S'inscrire →</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div><div class="footer-logo">Élara</div><p class="footer-desc">La mode ivoirienne contemporaine. Collections exclusives fabriquées avec passion à Abidjan depuis 2019.</p><div style="font-size:.73rem;color:#6B7280;line-height:1.9"><div>📍 Cocody Attoban, Abidjan</div><div>📱 +225 07 00 00 00 00</div></div></div>
+      <div class="footer-col"><h4>Collections</h4><ul class="footer-links"><li><a href="#">Femme</a></li><li><a href="#">Homme</a></li><li><a href="#">Enfant</a></li><li><a href="#">Accessoires</a></li></ul></div>
+      <div class="footer-col"><h4>Service</h4><ul class="footer-links"><li><a href="#">Suivi commande</a></li><li><a href="#">Retours</a></li><li><a href="#">Guide des tailles</a></li><li><a href="#">FAQ</a></li></ul></div>
+      <div class="footer-col"><h4>Marque</h4><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#">Lookbook</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">© 2025 ÉLARA · Tous droits réservés</span><span class="footer-copy">Site par <span style="color:#E91E8C">IBIG DIGITAL</span></span></div>
+  </div>
+</footer>
+<script>document.querySelectorAll('.pt').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.pt').forEach(b=>b.classList.remove('active'));t.classList.add('active')})})</script>
+</body>
+</html>

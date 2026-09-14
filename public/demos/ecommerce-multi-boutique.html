@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AfriMall — Marketplace Africaine</title>
+<style>
+:root{--bg:#fff;--bg2:#F9FAFB;--bg3:#F3F4F6;--orange:#EA580C;--orange2:#C2410C;--orange-light:#FFEDD5;--dark:#111827;--gray:#6B7280;--gray2:#9CA3AF;--blue:#2563EB;--green:#16A34A;--yellow:#F59E0B;--purple:#7C3AED;--red:#DC2626}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg2);color:var(--dark);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
+.demo-bar strong{color:#EA580C}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600}
+/* TOP BAR */
+.top-bar{background:var(--orange);color:#fff;padding:8px 24px;display:flex;justify-content:space-between;align-items:center;font-size:12px;margin-top:40px}
+/* NAV */
+nav{position:sticky;top:40px;z-index:999;background:#fff;border-bottom:1px solid #E5E7EB;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.nav-brand{display:flex;align-items:center;gap:8px}
+.brand-logo{background:var(--orange);color:#fff;font-size:20px;font-weight:900;padding:6px 12px;border-radius:8px}
+.brand-suffix{font-size:20px;font-weight:700;color:var(--dark)}
+.nav-search{flex:1;max-width:500px;margin:0 32px;position:relative}
+.nav-search input{width:100%;background:var(--bg2);border:1.5px solid #E5E7EB;border-radius:8px;padding:10px 48px 10px 16px;font-size:14px;color:var(--dark);outline:none}
+.nav-search input:focus{border-color:var(--orange)}
+.search-btn{position:absolute;right:4px;top:50%;transform:translateY(-50%);background:var(--orange);color:#fff;border:none;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:13px}
+.nav-actions{display:flex;align-items:center;gap:16px}
+.nav-action-icon{display:flex;flex-direction:column;align-items:center;cursor:pointer;font-size:20px;position:relative}
+.nav-action-label{font-size:10px;color:var(--gray);margin-top:2px}
+.badge-dot{position:absolute;top:-4px;right:-6px;background:var(--red);color:#fff;font-size:9px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
+.sell-btn{background:var(--orange);color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:700;border:none;cursor:pointer;white-space:nowrap}
+/* CATEGORIES NAV */
+.cats-nav{background:#fff;border-bottom:1px solid #E5E7EB;padding:0 24px}
+.cats-nav-inner{display:flex;gap:4px;overflow-x:auto}
+.cats-nav-inner::-webkit-scrollbar{display:none}
+.cat-nav-item{display:flex;align-items:center;gap:6px;padding:12px 16px;font-size:13px;font-weight:600;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}
+.cat-nav-item:hover,.cat-nav-item.active{color:var(--orange);border-color:var(--orange)}
+/* HERO BANNER */
+.hero-banner{background:linear-gradient(135deg,var(--orange) 0%,var(--orange2) 100%);padding:50px 24px;margin:0}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.hero-text h1{font-size:44px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:14px}
+.hero-text p{color:rgba(255,255,255,0.85);font-size:16px;line-height:1.6;margin-bottom:24px}
+.hero-deals{display:flex;gap:12px;flex-wrap:wrap}
+.deal-pill{background:rgba(255,255,255,0.15);color:#fff;padding:8px 16px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid rgba(255,255,255,0.25)}
+.deal-pill:hover{background:rgba(255,255,255,0.25)}
+.btn-white{background:#fff;color:var(--orange);padding:14px 28px;border-radius:8px;font-size:15px;font-weight:700;border:none;cursor:pointer;margin-top:20px;display:inline-flex;align-items:center;gap:8px}
+.hero-stats-row{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+.hero-stat{color:#fff;text-align:center}
+.hero-stat-num{font-size:22px;font-weight:800}
+.hero-stat-label{font-size:11px;opacity:0.8;text-transform:uppercase;letter-spacing:1px}
+.hero-visual-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hero-card{background:rgba(255,255,255,0.12);border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;border:1px solid rgba(255,255,255,0.15)}
+.hero-card:hover{background:rgba(255,255,255,0.2)}
+.hc-emoji{font-size:40px}
+.hc-name{font-size:13px;font-weight:700;color:#fff;margin-top:8px}
+.hc-deal{font-size:12px;color:rgba(255,255,255,0.8);margin-top:2px}
+/* FLASH */
+.flash-row{background:#fff;padding:24px;border-bottom:1px solid #E5E7EB}
+.flash-inner{max-width:1200px;margin:0 auto}
+.flash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.flash-title-row{display:flex;align-items:center;gap:10px}
+.flash-label{font-size:18px;font-weight:800}
+.flash-dot{background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.countdown-inline{display:flex;gap:6px;align-items:center}
+.ci-box{background:var(--dark);color:#fff;border-radius:4px;padding:4px 8px;font-size:14px;font-weight:700}
+.ci-sep{font-size:14px;font-weight:700;color:var(--gray)}
+.flash-products{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.fp-card{background:var(--bg2);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:all .3s;border:1px solid transparent}
+.fp-card:hover{border-color:var(--orange);transform:translateY(-4px)}
+.fp-emoji{font-size:44px}
+.fp-name{font-size:12px;font-weight:600;color:var(--dark);margin-top:6px;line-height:1.3}
+.fp-price{font-size:14px;font-weight:800;color:var(--orange);margin-top:4px}
+.fp-old{font-size:11px;color:var(--gray2);text-decoration:line-through}
+.fp-discount{background:var(--red);color:#fff;font-size:9px;font-weight:700;padding:2px 5px;border-radius:3px}
+/* MAIN LAYOUT */
+.main-layout{max-width:1200px;margin:24px auto;padding:0 24px;display:grid;grid-template-columns:220px 1fr;gap:24px}
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:20px}
+.sidebar-card{background:#fff;border-radius:10px;padding:18px;border:1px solid #E5E7EB}
+.sidebar-title{font-size:14px;font-weight:700;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #E5E7EB}
+.filter-item{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:13px;cursor:pointer;color:var(--gray)}
+.filter-item:hover{color:var(--orange)}
+.filter-item input[type=checkbox]{accent-color:var(--orange)}
+.price-range{width:100%;accent-color:var(--orange);margin:8px 0}
+/* PRODUCTS MAIN */
+.products-main{}
+.sort-bar{background:#fff;border-radius:10px;padding:14px 18px;border:1px solid #E5E7EB;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.sort-label{font-size:13px;color:var(--gray)}
+.sort-select{background:var(--bg2);border:1px solid #E5E7EB;border-radius:6px;padding:6px 12px;font-size:13px;color:var(--dark);outline:none}
+.view-btns{display:flex;gap:4px}
+.view-btn{padding:6px 10px;background:var(--bg2);border:1px solid #E5E7EB;border-radius:4px;cursor:pointer;font-size:14px;transition:all .2s}
+.view-btn.active{background:var(--orange);color:#fff;border-color:var(--orange)}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.prod-card{background:#fff;border-radius:10px;overflow:hidden;cursor:pointer;transition:all .3s;border:1px solid #E5E7EB}
+.prod-card:hover{border-color:var(--orange);transform:translateY(-4px);box-shadow:0 10px 30px rgba(234,88,12,0.12)}
+.prod-img{height:180px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:60px;position:relative}
+.prod-tag{position:absolute;top:8px;left:8px;background:var(--orange);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px}
+.prod-tag-green{position:absolute;top:8px;left:8px;background:var(--green);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px}
+.prod-fav{position:absolute;top:8px;right:8px;background:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,0.12)}
+.prod-body{padding:12px}
+.prod-vendor{font-size:10px;color:var(--orange);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.prod-name{font-size:13px;font-weight:700;color:var(--dark);margin:4px 0;line-height:1.3}
+.prod-stars{color:#F59E0B;font-size:10px;margin-bottom:6px}
+.prod-row{display:flex;align-items:center;justify-content:space-between}
+.prod-price{font-size:16px;font-weight:800;color:var(--orange)}
+.prod-old{font-size:11px;color:var(--gray2);text-decoration:line-through}
+.btn-add{background:var(--orange);color:#fff;border:none;padding:7px 12px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-add:hover{background:var(--orange2)}
+/* VENDEURS */
+.vendeurs-section{background:#fff;border-radius:10px;padding:24px;border:1px solid #E5E7EB;margin-top:24px}
+.vendeurs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px}
+.vendeur-card{border:1px solid #E5E7EB;border-radius:10px;padding:16px;text-align:center;cursor:pointer;transition:all .3s}
+.vendeur-card:hover{border-color:var(--orange)}
+.vendeur-avatar{width:50px;height:50px;border-radius:50%;background:var(--orange);color:#fff;font-size:22px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.vendeur-name{font-size:14px;font-weight:700}
+.vendeur-type{font-size:11px;color:var(--gray);margin-top:2px}
+.vendeur-rating{color:#F59E0B;font-size:11px;margin-top:4px}
+.vendeur-items{font-size:11px;color:var(--orange);font-weight:600;margin-top:4px}
+/* FOOTER */
+footer{background:var(--dark);color:#fff;padding:50px 24px 20px;margin-top:40px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-desc{color:var(--gray2);font-size:13px;line-height:1.7;margin:12px 0}
+.fh{font-size:12px;font-weight:700;margin-bottom:12px;color:var(--orange);text-transform:uppercase;letter-spacing:1px}
+.ful{list-style:none}
+.ful li{margin-bottom:8px}
+.ful li a{color:var(--gray2);text-decoration:none;font-size:13px;transition:color .2s}
+.ful li a:hover{color:var(--orange)}
+.foot-bottom{border-top:1px solid #374151;padding-top:18px;display:flex;justify-content:space-between;color:var(--gray);font-size:12px}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <span>Démo IBIG Digital — <strong>AfriMall Marketplace</strong> — Commander ce template :</span>
+  <strong>25 000 FCFA</strong>
+  <a href="#">Commander</a>
+</div>
+
+<div class="top-bar">
+  <span>🎉 Vendredi Africain — Jusqu'à -70% sur des milliers d'articles !</span>
+  <span>📱 Téléchargez l'App · 💬 Service Client 24/7</span>
+</div>
+
+<nav>
+  <div class="nav-brand">
+    <div class="brand-logo">Afri</div>
+    <div class="brand-suffix">Mall</div>
+  </div>
+  <div class="nav-search">
+    <input placeholder="Rechercher produits, vendeurs, marques…">
+    <button class="search-btn">🔍</button>
+  </div>
+  <div class="nav-actions">
+    <div class="nav-action-icon">❤️<div class="nav-action-label">Favoris</div><span class="badge-dot">3</span></div>
+    <div class="nav-action-icon">👤<div class="nav-action-label">Compte</div></div>
+    <div class="nav-action-icon">🛒<div class="nav-action-label">Panier</div><span class="badge-dot">5</span></div>
+    <button class="sell-btn">+ Vendre ici</button>
+  </div>
+</nav>
+
+<div class="cats-nav">
+  <div class="cats-nav-inner">
+    <div class="cat-nav-item active">🛒 Tout</div>
+    <div class="cat-nav-item">👗 Mode</div>
+    <div class="cat-nav-item">📱 High-Tech</div>
+    <div class="cat-nav-item">🏠 Maison</div>
+    <div class="cat-nav-item">🥭 Alimentaire</div>
+    <div class="cat-nav-item">💄 Beauté</div>
+    <div class="cat-nav-item">⚽ Sports</div>
+    <div class="cat-nav-item">🏺 Artisanat</div>
+    <div class="cat-nav-item">📚 Culture</div>
+    <div class="cat-nav-item">🚗 Auto</div>
+    <div class="cat-nav-item">🌱 Agriculture</div>
+    <div class="cat-nav-item">🏗️ BTP</div>
+  </div>
+</div>
+
+<div class="hero-banner">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>Tout l'Afrique<br>dans un Mall</h1>
+      <p>Des milliers de vendeurs africains, des millions de produits — trouvez tout ce dont vous avez besoin au meilleur prix, livré rapidement.</p>
+      <div class="hero-deals">
+        <div class="deal-pill">🔥 Jusqu'à -70%</div>
+        <div class="deal-pill">🚚 Livraison gratuite</div>
+        <div class="deal-pill">💳 Paiement échelonné</div>
+        <div class="deal-pill">🔄 Retour 30j</div>
+      </div>
+      <button class="btn-white">🛒 Explorer les Promotions →</button>
+      <div class="hero-stats-row">
+        <div class="hero-stat"><div class="hero-stat-num">12 800+</div><div class="hero-stat-label">Vendeurs</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">2,4M+</div><div class="hero-stat-label">Produits</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">18 pays</div><div class="hero-stat-label">Afrique</div></div>
+      </div>
+    </div>
+    <div class="hero-visual-grid">
+      <div class="hero-card"><div class="hc-emoji">👗</div><div class="hc-name">Mode Africaine</div><div class="hc-deal">Jusqu'à -50%</div></div>
+      <div class="hero-card"><div class="hc-emoji">📱</div><div class="hc-name">High-Tech</div><div class="hc-deal">Flash ventes</div></div>
+      <div class="hero-card"><div class="hc-emoji">🏺</div><div class="hc-name">Artisanat</div><div class="hc-deal">Authentique</div></div>
+      <div class="hero-card"><div class="hc-emoji">🥭</div><div class="hc-name">Épicerie Bio</div><div class="hc-deal">Livraison 24h</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="flash-row">
+  <div class="flash-inner">
+    <div class="flash-header">
+      <div class="flash-title-row">
+        <span class="flash-label">⚡ Flash Deals</span>
+        <span class="flash-dot">EN DIRECT</span>
+      </div>
+      <div class="countdown-inline">
+        Fin dans : <div class="ci-box" id="fh">03</div><span class="ci-sep">:</span>
+        <div class="ci-box" id="fm">45</div><span class="ci-sep">:</span>
+        <div class="ci-box" id="fs">22</div>
+      </div>
+    </div>
+    <div class="flash-products">
+      <div class="fp-card">
+        <div class="fp-emoji">📱</div>
+        <div class="fp-name">Samsung A54 128Go</div>
+        <div class="fp-price">245 000 FCFA</div>
+        <div style="display:flex;gap:4px;justify-content:center;margin-top:4px"><span class="fp-old">380 000</span><span class="fp-discount">-35%</span></div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-emoji">👟</div>
+        <div class="fp-name">Nike Air Force Originale</div>
+        <div class="fp-price">58 000 FCFA</div>
+        <div style="display:flex;gap:4px;justify-content:center;margin-top:4px"><span class="fp-old">95 000</span><span class="fp-discount">-39%</span></div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-emoji">🧴</div>
+        <div class="fp-name">Beurre de Karité 500g</div>
+        <div class="fp-price">8 500 FCFA</div>
+        <div style="display:flex;gap:4px;justify-content:center;margin-top:4px"><span class="fp-old">12 000</span><span class="fp-discount">-29%</span></div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-emoji">🎧</div>
+        <div class="fp-name">JBL Tune 520BT</div>
+        <div class="fp-price">42 000 FCFA</div>
+        <div style="display:flex;gap:4px;justify-content:center;margin-top:4px"><span class="fp-old">68 000</span><span class="fp-discount">-38%</span></div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-emoji">👜</div>
+        <div class="fp-name">Sac Cuir Artisanal</div>
+        <div class="fp-price">28 000 FCFA</div>
+        <div style="display:flex;gap:4px;justify-content:center;margin-top:4px"><span class="fp-old">48 000</span><span class="fp-discount">-42%</span></div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-emoji">🏺</div>
+        <div class="fp-name">Set Vases Terracotta x3</div>
+        <div class="fp-price">22 000 FCFA</div>
+        <div style="display:flex;gap:4px;justify-content:center;margin-top:4px"><span class="fp-old">38 000</span><span class="fp-discount">-42%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-layout">
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">📂 Catégories</div>
+      <div class="filter-item">👗 Mode & Vêtements</div>
+      <div class="filter-item">📱 High-Tech</div>
+      <div class="filter-item">🏠 Maison & Déco</div>
+      <div class="filter-item">🥭 Alimentaire</div>
+      <div class="filter-item">💄 Beauté & Soins</div>
+      <div class="filter-item">⚽ Sports</div>
+      <div class="filter-item">🏺 Artisanat</div>
+      <div class="filter-item">📚 Culture</div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sidebar-title">💰 Prix</div>
+      <input type="range" class="price-range" min="0" max="500000" value="200000">
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--gray)"><span>0 FCFA</span><span>200 000 FCFA</span></div>
+      <div style="margin-top:10px;display:flex;flex-direction:column;gap:6px">
+        <label class="filter-item"><input type="checkbox"> Moins de 10 000 FCFA</label>
+        <label class="filter-item"><input type="checkbox"> 10 000 – 50 000 FCFA</label>
+        <label class="filter-item"><input type="checkbox"> 50 000 – 150 000 FCFA</label>
+        <label class="filter-item"><input type="checkbox"> Plus de 150 000 FCFA</label>
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sidebar-title">⭐ Note vendeur</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <label class="filter-item"><input type="checkbox"> ★★★★★ (5 étoiles)</label>
+        <label class="filter-item"><input type="checkbox"> ★★★★ (4+ étoiles)</label>
+        <label class="filter-item"><input type="checkbox"> ★★★ (3+ étoiles)</label>
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sidebar-title">🚚 Livraison</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <label class="filter-item"><input type="checkbox"> Livraison gratuite</label>
+        <label class="filter-item"><input type="checkbox"> Express 24h</label>
+        <label class="filter-item"><input type="checkbox"> Retrait en magasin</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="products-main">
+    <div class="sort-bar">
+      <span class="sort-label">2 847 produits trouvés</span>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="view-btns">
+          <button class="view-btn active">⊞</button>
+          <button class="view-btn">≡</button>
+        </div>
+        <select class="sort-select">
+          <option>Les plus populaires</option>
+          <option>Prix croissant</option>
+          <option>Prix décroissant</option>
+          <option>Meilleures notes</option>
+          <option>Nouveautés</option>
+        </select>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="prod-card">
+        <div class="prod-img">👗<span class="prod-tag">-40%</span><span class="prod-fav">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-vendor">Mode Abidjan</div>
+          <div class="prod-name">Robe Wax Africain — Taille M/L</div>
+          <div class="prod-stars">★★★★★ (234) · 1 240 vendus</div>
+          <div class="prod-row"><div><span class="prod-price">24 000 FCFA</span> <span class="prod-old">40 000</span></div><button class="btn-add">+ Panier</button></div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">📱<span class="prod-tag-green">Officiel</span><span class="prod-fav">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-vendor">TechShop Africa</div>
+          <div class="prod-name">Tecno Spark 20 Pro+ — 256Go</div>
+          <div class="prod-stars">★★★★☆ (456) · 3 120 vendus</div>
+          <div class="prod-row"><div><span class="prod-price">145 000 FCFA</span></div><button class="btn-add">+ Panier</button></div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">🏺<span class="prod-fav">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-vendor">Artisan Koffi</div>
+          <div class="prod-name">Masque Baoulé — Bois Ébène sculpté</div>
+          <div class="prod-stars">★★★★★ (89) · 245 vendus</div>
+          <div class="prod-row"><div><span class="prod-price">58 000 FCFA</span></div><button class="btn-add">+ Panier</button></div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">🧴<span class="prod-tag">BIO</span><span class="prod-fav">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-vendor">Beauté Naturelle</div>
+          <div class="prod-name">Huile d'Argan Pure — 100ml Certifié</div>
+          <div class="prod-stars">★★★★★ (678) · 5 890 vendus</div>
+          <div class="prod-row"><div><span class="prod-price">22 000 FCFA</span></div><button class="btn-add">+ Panier</button></div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">🧶<span class="prod-fav">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-vendor">Tisserands de Man</div>
+          <div class="prod-name">Tissu Kente — 3 yards Multicolore</div>
+          <div class="prod-stars">★★★★★ (134) · 890 vendus</div>
+          <div class="prod-row"><div><span class="prod-price">35 000 FCFA</span></div><button class="btn-add">+ Panier</button></div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">⚽<span class="prod-tag-green">Neuf</span><span class="prod-fav">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-vendor">SportGear CI</div>
+          <div class="prod-name">Maillot Officiel CAN 2025 — Côte d'Ivoire</div>
+          <div class="prod-stars">★★★★☆ (312) · 4 200 vendus</div>
+          <div class="prod-row"><div><span class="prod-price">28 000 FCFA</span></div><button class="btn-add">+ Panier</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vendeurs-section">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+        <h3 style="font-size:18px;font-weight:700">Vendeurs <span style="color:var(--orange)">Certifiés</span></h3>
+        <a href="#" style="color:var(--orange);font-size:13px;font-weight:600;text-decoration:none">Voir tous →</a>
+      </div>
+      <div class="vendeurs-grid">
+        <div class="vendeur-card">
+          <div class="vendeur-avatar">👗</div>
+          <div class="vendeur-name">Mode Abidjan</div>
+          <div class="vendeur-type">Mode & Vêtements</div>
+          <div class="vendeur-rating">★★★★★ (2 840)</div>
+          <div class="vendeur-items">1 240 produits</div>
+        </div>
+        <div class="vendeur-card">
+          <div class="vendeur-avatar">📱</div>
+          <div class="vendeur-name">TechShop Africa</div>
+          <div class="vendeur-type">High-Tech</div>
+          <div class="vendeur-rating">★★★★★ (5 120)</div>
+          <div class="vendeur-items">380 produits</div>
+        </div>
+        <div class="vendeur-card">
+          <div class="vendeur-avatar">🌿</div>
+          <div class="vendeur-name">Beauté Naturelle</div>
+          <div class="vendeur-type">Cosmétiques bio</div>
+          <div class="vendeur-rating">★★★★★ (8 960)</div>
+          <div class="vendeur-items">245 produits</div>
+        </div>
+        <div class="vendeur-card">
+          <div class="vendeur-avatar">🏺</div>
+          <div class="vendeur-name">Artisan Koffi</div>
+          <div class="vendeur-type">Artisanat traditionnel</div>
+          <div class="vendeur-rating">★★★★★ (1 230)</div>
+          <div class="vendeur-items">89 produits</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:8px"><div style="background:var(--orange);color:#fff;font-size:20px;font-weight:900;padding:5px 10px;border-radius:6px">Afri</div><span style="font-size:20px;font-weight:700">Mall</span></div>
+        <p class="footer-desc">La plus grande marketplace africaine. Des milliers de vendeurs, des millions de produits — tout l'Afrique dans votre poche.</p>
+      </div>
+      <div><div class="fh">Acheter</div><ul class="ful"><li><a href="#">Flash Deals</a></li><li><a href="#">Catégories</a></li><li><a href="#">Vendeurs certifiés</a></li><li><a href="#">Promotions</a></li></ul></div>
+      <div><div class="fh">Vendre</div><ul class="ful"><li><a href="#">Devenir vendeur</a></li><li><a href="#">Tarifs & commissions</a></li><li><a href="#">Formation vendeurs</a></li><li><a href="#">Centre vendeurs</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Abidjan, CI</a></li><li><a href="#">📞 +225 11 00 00 00</a></li><li><a href="#">💬 Chat 24/7</a></li><li><a href="#">✉️ support@afrimall.africa</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2025 AfriMall — La Marketplace de l'Afrique</span><span>CGV · Confidentialité · Cookie</span></div>
+  </div>
+</footer>
+<script>
+let t=3*3600+45*60+22;
+setInterval(()=>{if(t<=0)return;t--;document.getElementById('fh').textContent=String(Math.floor(t/3600)).padStart(2,'0');document.getElementById('fm').textContent=String(Math.floor((t%3600)/60)).padStart(2,'0');document.getElementById('fs').textContent=String(t%60).padStart(2,'0')},1000);
+document.querySelectorAll('.btn-add').forEach(b=>{b.addEventListener('click',function(){this.textContent='✅';this.style.background='#16A34A';setTimeout(()=>{this.textContent='+ Panier';this.style.background=''},2000)})});
+document.querySelectorAll('.cat-nav-item').forEach(b=>{b.addEventListener('click',function(){document.querySelectorAll('.cat-nav-item').forEach(x=>x.classList.remove('active'));this.classList.add('active')})});
+</script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prestige Habitat — Agence Immobilière de Luxe</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#B8860B;--gold-light:#F5F0E0;--dark:#0F1923;--cream:#FEFCF7;--warm:#F9F4E8;--gray:#6B7280;--white:#FFFFFF}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:#1F2937;font-family:'Georgia','Times New Roman',serif;overflow-x:hidden}
+.demo-bar{position:fixed;top:0;left:0;right:0;z-index:1000;height:40px;background:linear-gradient(90deg,#0F1923,#1a2940);display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
+.demo-badge{background:rgba(184,134,11,.3);border:1px solid rgba(184,134,11,.5);color:#F5C842;padding:.15rem .6rem;border-radius:9999px;font-size:.6rem;font-weight:700}
+.demo-bar-text{font-size:.7rem;color:rgba(255,255,255,.8);display:flex;align-items:center;gap:.75rem}
+.demo-btn{padding:.35rem 1.25rem;border-radius:4px;background:#B8860B;color:white;font-size:.68rem;font-weight:700;text-decoration:none}
+nav{position:fixed;top:40px;left:0;right:0;z-index:900;background:rgba(254,252,247,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,134,11,.2);display:flex;align-items:center;justify-content:space-between;padding:.875rem 3rem}
+.nav-logo{display:flex;flex-direction:column}
+.nav-logo-text{font-size:1.05rem;font-weight:700;color:var(--dark);letter-spacing:.05em;text-transform:uppercase}
+.nav-logo-sub{font-size:.5rem;color:var(--gold);letter-spacing:.2em;text-transform:uppercase}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:#4B5563;text-decoration:none;font-size:.78rem;font-weight:600;letter-spacing:.05em;font-family:Arial,sans-serif}
+.nav-right{display:flex;align-items:center;gap:1.25rem}
+.nav-phone{font-size:.72rem;color:var(--gold);font-family:Arial,sans-serif;font-weight:700}
+.nav-cta{padding:.6rem 1.625rem;background:var(--dark);color:white;font-size:.72rem;font-weight:700;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;font-family:Arial,sans-serif}
+/* HERO */
+.hero{padding-top:100px;background:var(--dark);position:relative;overflow:hidden;min-height:90vh}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0F1923 0%,#1a2940 40%,#2D3B52 60%,#1a2940 100%)}
+.hero-pattern{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFFFFF' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-inner{max-width:1200px;margin:0 auto;padding:5rem 2rem 3rem;position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.6rem;font-weight:700;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;border-bottom:1px solid rgba(184,134,11,.4);padding-bottom:.4rem;margin-bottom:1.875rem;font-family:Arial,sans-serif}
+.hero h1{font-size:clamp(2.5rem,5vw,4.5rem);font-weight:400;line-height:1.1;color:white;margin-bottom:1.25rem;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:.92rem;color:rgba(255,255,255,.6);line-height:1.9;max-width:520px;margin-bottom:3rem;font-family:Arial,sans-serif}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4rem}
+.btn-gold{padding:.9rem 2.5rem;background:var(--gold);color:white;font-size:.78rem;font-weight:700;text-decoration:none;letter-spacing:.1em;text-transform:uppercase;font-family:Arial,sans-serif}
+.btn-ghost{padding:.9rem 2.25rem;border:1px solid rgba(255,255,255,.3);color:white;font-size:.78rem;font-weight:600;text-decoration:none;font-family:Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;border-top:1px solid rgba(255,255,255,.1);padding-top:2.5rem;max-width:700px}
+.hs-val{font-size:1.75rem;font-weight:700;color:var(--gold);font-family:Arial,sans-serif}
+.hs-label{font-size:.6rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.12em;margin-top:.2rem;font-family:Arial,sans-serif}
+/* SEARCH BAR */
+.search-bar{background:white;border-top:3px solid var(--gold);box-shadow:0 4px 30px rgba(0,0,0,.12);padding:2rem 0}
+.sb-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;gap:1rem;align-items:flex-end;flex-wrap:wrap}
+.sb-label{font-size:.55rem;font-weight:700;color:#9CA3AF;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem;font-family:Arial,sans-serif}
+.sb-select{padding:.75rem 1.25rem;border:1.5px solid #E5E7EB;border-radius:0;font-size:.78rem;color:#374151;background:white;cursor:pointer;min-width:140px;font-family:Arial,sans-serif;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236B7280' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .75rem center}
+.sb-btn{padding:.75rem 2rem;background:var(--dark);color:white;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;font-family:Arial,sans-serif}
+/* BIENS */
+section{padding:6rem 0}
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+.sec-head{margin-bottom:3rem}
+.sec-eyebrow{font-size:.6rem;font-weight:700;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.875rem;font-family:Arial,sans-serif}
+.sec-title{font-size:clamp(1.875rem,4vw,3rem);font-weight:400;color:var(--dark);letter-spacing:-.02em;line-height:1.2}
+.sec-sub{font-size:.88rem;color:var(--gray);line-height:1.8;max-width:480px;margin-top:.625rem;font-family:Arial,sans-serif}
+.prop-filter{display:flex;gap:.5rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.pf{padding:.45rem 1.25rem;border:1.5px solid #E5E7EB;font-size:.7rem;font-weight:600;color:#6B7280;background:white;cursor:pointer;font-family:Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase;transition:all .2s}
+.pf.active{background:var(--dark);border-color:var(--dark);color:white}
+.prop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.prop-card{background:white;overflow:hidden;box-shadow:0 2px 15px rgba(0,0,0,.06);transition:all .25s}
+.prop-card:hover{box-shadow:0 8px 30px rgba(0,0,0,.12);transform:translateY(-4px)}
+.prop-img{height:220px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:4rem}
+.pi1{background:linear-gradient(135deg,#E8E0D0,#D4C9B5)}
+.pi2{background:linear-gradient(135deg,#D5E8E8,#C2D9D9)}
+.pi3{background:linear-gradient(135deg,#E8E0D0,#DDD0BD)}
+.prop-badge{position:absolute;top:1rem;left:1rem;padding:.25rem .75rem;font-size:.58rem;font-weight:800;font-family:Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.pb-vente{background:#0F1923;color:white}
+.pb-loc{background:var(--gold);color:white}
+.pb-excl{background:white;color:var(--dark);border:1px solid var(--gold)}
+.prop-fav{position:absolute;top:1rem;right:1rem;width:32px;height:32px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;cursor:pointer}
+.prop-body{padding:1.5rem}
+.prop-ref{font-size:.55rem;color:#9CA3AF;font-family:Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.375rem}
+.prop-title{font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:.3rem;line-height:1.3}
+.prop-loc{font-size:.72rem;color:var(--gray);margin-bottom:1rem;font-family:Arial,sans-serif}
+.prop-specs{display:flex;gap:1.25rem;padding:.875rem 0;border-top:1px solid #F3F4F6;border-bottom:1px solid #F3F4F6;margin-bottom:1.25rem}
+.ps-item{display:flex;flex-direction:column;align-items:center;gap:.2rem}
+.ps-icon{font-size:.9rem}
+.ps-val{font-size:.7rem;font-weight:700;color:var(--dark);font-family:Arial,sans-serif}
+.ps-lbl{font-size:.55rem;color:#9CA3AF;font-family:Arial,sans-serif}
+.prop-footer{display:flex;align-items:center;justify-content:space-between}
+.prop-price{font-size:1.05rem;font-weight:700;color:var(--dark);font-family:Arial,sans-serif}
+.prop-btn{padding:.5rem 1.25rem;background:transparent;border:1.5px solid var(--dark);color:var(--dark);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-family:Arial,sans-serif;text-decoration:none;transition:all .2s}
+.prop-btn:hover{background:var(--dark);color:white}
+/* SERVICES */
+.services{background:var(--warm)}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.srv-card{background:white;padding:2.5rem 2rem;border-bottom:3px solid transparent;transition:border-color .2s}
+.srv-card:hover{border-bottom-color:var(--gold)}
+.srv-num{font-size:2rem;font-weight:400;color:rgba(184,134,11,.3);font-family:Georgia,serif;margin-bottom:.875rem}
+.srv-title{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.625rem}
+.srv-text{font-size:.78rem;color:var(--gray);line-height:1.8;font-family:Arial,sans-serif}
+/* AGENTS */
+.agents{background:white}
+.ag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.ag-card{text-align:center}
+.ag-av{width:120px;height:120px;border-radius:50%;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;font-size:3rem;border:3px solid var(--gold-light)}
+.ag1{background:linear-gradient(135deg,#E8D9B5,#D4C4A0)}
+.ag2{background:linear-gradient(135deg,#C8D8D8,#B5C8C8)}
+.ag3{background:linear-gradient(135deg,#D8C8C8,#C8B8B8)}
+.ag-name{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.2rem}
+.ag-role{font-size:.62rem;color:var(--gold);font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.625rem;font-family:Arial,sans-serif}
+.ag-bio{font-size:.73rem;color:var(--gray);line-height:1.7;max-width:260px;margin:0 auto 1rem;font-family:Arial,sans-serif}
+.ag-langs{display:flex;justify-content:center;gap:.375rem}
+.ag-lang{padding:.2rem .55rem;background:#F3F4F6;border-radius:3px;font-size:.58rem;font-weight:700;color:#4B5563;font-family:Arial,sans-serif}
+/* CTA */
+.cta-section{background:var(--dark);padding:6rem 0;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(184,134,11,.1),transparent);pointer-events:none}
+.cta-section h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:400;color:white;letter-spacing:-.02em;margin-bottom:.875rem;position:relative}
+.cta-section h2 em{font-style:italic;color:var(--gold)}
+.cta-section p{font-size:.9rem;color:rgba(255,255,255,.6);margin-bottom:2.5rem;font-family:Arial,sans-serif;position:relative}
+.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;position:relative}
+.cta-gold{padding:1rem 3rem;background:var(--gold);color:white;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-family:Arial,sans-serif;text-decoration:none}
+.cta-outline{padding:1rem 2.5rem;border:1px solid rgba(255,255,255,.3);color:white;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-family:Arial,sans-serif;text-decoration:none}
+/* FOOTER */
+footer{background:#070F17;color:white;padding:4rem 0 2rem}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-logo-text{font-size:.875rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem}
+.footer-logo-sub{font-size:.5rem;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.875rem}
+.footer-desc{font-size:.73rem;color:#6B7280;line-height:1.8;max-width:230px;font-family:Arial,sans-serif;margin-bottom:1.25rem}
+.footer-col h4{font-size:.55rem;font-weight:700;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.25rem;font-family:Arial,sans-serif}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.625rem}
+.footer-links a{font-size:.75rem;color:#6B7280;text-decoration:none;font-family:Arial,sans-serif}
+.footer-bottom{border-top:1px solid #1F2937;padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.footer-copy{font-size:.68rem;color:#4B5563;font-family:Arial,sans-serif}
+@media(max-width:768px){
+  nav{padding:.75rem 1.25rem}.nav-links{display:none}
+  .prop-grid,.srv-grid,.ag-grid,.footer-top{grid-template-columns:1fr}
+  .sb-inner{flex-direction:column}.sb-btn{width:100%}
+  .hero-stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <div class="demo-bar-text"><span class="demo-badge">DÉMO LIVE</span><span>Template <strong>Prestige Habitat</strong> — Immobilier de luxe</span></div>
+  <div style="display:flex;gap:.75rem">
+    <a href="/templates/immobilier/prestige-habitat" class="demo-btn">← Retour</a>
+    <a href="/templates/commander?secteur=immobilier&formule=premium" class="demo-btn">Commander →</a>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-logo"><div class="nav-logo-text">Prestige Habitat</div><div class="nav-logo-sub">Agence Immobilière · Abidjan</div></div>
+  <ul class="nav-links">
+    <li><a href="#biens">Biens</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#agents">Agents</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-phone">+225 27 22 40 00 00</span>
+    <a href="#contact" class="nav-cta">Estimation gratuite</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">✦ Agence immobilière de prestige</div>
+    <h1>L'immobilier d'exception<br>à <em>Abidjan</em></h1>
+    <p class="hero-sub">Depuis 2008, nous accompagnons les particuliers et investisseurs dans l'acquisition et la gestion des biens d'exception en Côte d'Ivoire.</p>
+    <div class="hero-btns">
+      <a href="#biens" class="btn-gold">Découvrir nos biens</a>
+      <a href="#contact" class="btn-ghost">Estimation gratuite</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hs-val">480+</div><div class="hs-label">Biens vendus</div></div>
+      <div><div class="hs-val">15</div><div class="hs-label">Ans d'expertise</div></div>
+      <div><div class="hs-val">98%</div><div class="hs-label">Clients satisfaits</div></div>
+      <div><div class="hs-val">6</div><div class="hs-label">Quartiers couverts</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="search-bar">
+  <div class="sb-inner">
+    <div><div class="sb-label">Type de bien</div><select class="sb-select"><option>Appartement</option><option>Villa</option><option>Duplex</option><option>Immeuble</option><option>Terrain</option></select></div>
+    <div><div class="sb-label">Transaction</div><select class="sb-select"><option>Acheter</option><option>Louer</option></select></div>
+    <div><div class="sb-label">Quartier</div><select class="sb-select"><option>Tous les quartiers</option><option>Cocody</option><option>Marcory</option><option>Plateau</option><option>Riviera</option><option>Angré</option><option>2 Plateaux</option></select></div>
+    <div><div class="sb-label">Budget max</div><select class="sb-select"><option>Sans limite</option><option>50M FCFA</option><option>100M FCFA</option><option>250M FCFA</option><option>500M+ FCFA</option></select></div>
+    <button class="sb-btn">Rechercher →</button>
+  </div>
+</div>
+
+<section id="biens">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">✦ Sélection exclusive</div>
+      <h2 class="sec-title">Nos Propriétés<br>à la Une</h2>
+    </div>
+    <div class="prop-filter">
+      <button class="pf active">Tous</button>
+      <button class="pf">Vente</button>
+      <button class="pf">Location</button>
+      <button class="pf">Cocody</button>
+      <button class="pf">Riviera</button>
+      <button class="pf">Marcory</button>
+    </div>
+    <div class="prop-grid">
+      <div class="prop-card"><div class="prop-img pi1"><span>🏡</span><span class="prop-badge pb-vente">Vente</span><span class="prop-fav">♡</span></div><div class="prop-body"><div class="prop-ref">REF. PH-2024-001</div><div class="prop-title">Villa de Standing avec Piscine</div><div class="prop-loc">📍 Cocody Riviera Golf · Abidjan</div><div class="prop-specs"><div class="ps-item"><div class="ps-icon">🛏</div><div class="ps-val">5</div><div class="ps-lbl">Chambres</div></div><div class="ps-item"><div class="ps-icon">🚿</div><div class="ps-val">4</div><div class="ps-lbl">SDB</div></div><div class="ps-item"><div class="ps-icon">📐</div><div class="ps-val">420m²</div><div class="ps-lbl">Surface</div></div><div class="ps-item"><div class="ps-icon">🌿</div><div class="ps-val">1200m²</div><div class="ps-lbl">Terrain</div></div></div><div class="prop-footer"><div class="prop-price">285 000 000 FCFA</div><a href="#" class="prop-btn">Voir →</a></div></div></div>
+      <div class="prop-card"><div class="prop-img pi2"><span>🏢</span><span class="prop-badge pb-excl">Exclusivité</span><span class="prop-fav">♡</span></div><div class="prop-body"><div class="prop-ref">REF. PH-2024-002</div><div class="prop-title">Appartement Penthouse Vue Mer</div><div class="prop-loc">📍 Marcory Zone 4 · Abidjan</div><div class="prop-specs"><div class="ps-item"><div class="ps-icon">🛏</div><div class="ps-val">4</div><div class="ps-lbl">Chambres</div></div><div class="ps-item"><div class="ps-icon">🚿</div><div class="ps-val">3</div><div class="ps-lbl">SDB</div></div><div class="ps-item"><div class="ps-icon">📐</div><div class="ps-val">280m²</div><div class="ps-lbl">Surface</div></div><div class="ps-item"><div class="ps-icon">🅿</div><div class="ps-val">2</div><div class="ps-lbl">Parking</div></div></div><div class="prop-footer"><div class="prop-price">175 000 000 FCFA</div><a href="#" class="prop-btn">Voir →</a></div></div></div>
+      <div class="prop-card"><div class="prop-img pi3"><span>🏘</span><span class="prop-badge pb-loc">Location</span><span class="prop-fav">♡</span></div><div class="prop-body"><div class="prop-ref">REF. PH-2024-003</div><div class="prop-title">Duplex Moderne Meublé</div><div class="prop-loc">📍 2 Plateaux Vallons · Abidjan</div><div class="prop-specs"><div class="ps-item"><div class="ps-icon">🛏</div><div class="ps-val">3</div><div class="ps-lbl">Chambres</div></div><div class="ps-item"><div class="ps-icon">🚿</div><div class="ps-val">2</div><div class="ps-lbl">SDB</div></div><div class="ps-item"><div class="ps-icon">📐</div><div class="ps-val">185m²</div><div class="ps-lbl">Surface</div></div><div class="ps-item"><div class="ps-icon">🌿</div><div class="ps-val">Jardin</div><div class="ps-lbl">Extérieur</div></div></div><div class="prop-footer"><div class="prop-price">750 000 FCFA/mois</div><a href="#" class="prop-btn">Voir →</a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="services">
+  <div class="container">
+    <div class="sec-head" style="text-align:center">
+      <div class="sec-eyebrow">✦ Nos expertises</div>
+      <h2 class="sec-title">Un service<br>complet à 360°</h2>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-card"><div class="srv-num">01</div><h3 class="srv-title">Transaction Immobilière</h3><p class="srv-text">Accompagnement complet dans l'achat et la vente de votre bien : estimation gratuite, mise en marché, négociation, et suivi notarial jusqu'à la signature.</p></div>
+      <div class="srv-card"><div class="srv-num">02</div><h3 class="srv-title">Gestion Locative</h3><p class="srv-text">Confiez la gestion de votre patrimoine locatif à nos équipes : recherche de locataires, états des lieux, encaissement des loyers, suivi des travaux.</p></div>
+      <div class="srv-card"><div class="srv-num">03</div><h3 class="srv-title">Conseil en Investissement</h3><p class="srv-text">Nos experts vous orientent vers les opportunités les plus rentables : immeubles de rapport, programmes neufs, défiscalisation et optimisation patrimoniale.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="agents" class="agents">
+  <div class="container">
+    <div class="sec-head" style="text-align:center;margin-bottom:3.5rem">
+      <div class="sec-eyebrow">✦ Notre équipe</div>
+      <h2 class="sec-title">Des Conseillers<br>à votre écoute</h2>
+    </div>
+    <div class="ag-grid">
+      <div class="ag-card"><div class="ag-av ag1">👨</div><div class="ag-name">Marcel Assemian</div><div class="ag-role">Directeur Général</div><div class="ag-bio">20 ans d'expérience dans l'immobilier de luxe à Abidjan. Spécialiste des transactions à fort volume.</div><div class="ag-langs"><span class="ag-lang">Français</span><span class="ag-lang">Anglais</span></div></div>
+      <div class="ag-card"><div class="ag-av ag2">👩</div><div class="ag-name">Aïcha Coulibaly</div><div class="ag-role">Négociatrice Sénior</div><div class="ag-bio">Experte en location et gestion de patrimoine. Connaissance approfondie des quartiers huppés d'Abidjan.</div><div class="ag-langs"><span class="ag-lang">Français</span><span class="ag-lang">Dioula</span></div></div>
+      <div class="ag-card"><div class="ag-av ag3">👨</div><div class="ag-name">Jean-Luc Brou</div><div class="ag-role">Conseiller Investissements</div><div class="ag-bio">Ancien banquier, expert en financement immobilier. Accompagne les investisseurs nationaux et internationaux.</div><div class="ag-langs"><span class="ag-lang">Français</span><span class="ag-lang">Anglais</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <div class="container">
+    <h2>Votre projet<br><em>commence ici</em></h2>
+    <p>Obtenez une estimation gratuite de votre bien ou découvrez<br>notre portefeuille de propriétés d'exception.</p>
+    <div class="cta-btns">
+      <a href="#contact" class="cta-gold">Estimation gratuite</a>
+      <a href="#biens" class="cta-outline">Voir nos biens</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div><div class="footer-logo-text">Prestige Habitat</div><div class="footer-logo-sub">Agence Immobilière</div><p class="footer-desc">Votre partenaire de confiance pour tous vos projets immobiliers en Côte d'Ivoire depuis 2008.</p><div style="font-size:.73rem;color:#6B7280;font-family:Arial,sans-serif;line-height:1.9"><div>📍 Cocody, Rue des Jardins, Abidjan</div><div>📞 +225 27 22 40 00 00</div><div>✉️ contact@prestige-habitat.ci</div></div></div>
+      <div class="footer-col"><h4>Biens</h4><ul class="footer-links"><li><a href="#">Villas</a></li><li><a href="#">Appartements</a></li><li><a href="#">Terrains</a></li><li><a href="#">Immeubles</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="#">Transaction</a></li><li><a href="#">Gestion locative</a></li><li><a href="#">Estimation</a></li><li><a href="#">Investissement</a></li></ul></div>
+      <div class="footer-col"><h4>Agence</h4><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#">Nos agents</a></li><li><a href="#">Actualités</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">© 2025 Prestige Habitat · Tous droits réservés</span><span class="footer-copy">Site par <span style="color:#B8860B">IBIG DIGITAL</span></span></div>
+  </div>
+</footer>
+<script>document.querySelectorAll('.pf').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.pf').forEach(x=>x.classList.remove('active'));b.classList.add('active')})})</script>
+</body>
+</html>

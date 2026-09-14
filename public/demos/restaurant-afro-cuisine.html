@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saveurs d'Afrique — Cuisine Panafricaine</title>
+<style>
+:root{
+  --primary:#8B4513;
+  --accent:#A0522D;
+  --bg:#FFF8F0;
+  --bg2:#FFF3E6;
+  --text:#2C1810;
+  --text-muted:#7D5A4A;
+  --border:#E8D5C0;
+  --green:#2D6A4F;
+  --light-green:#D8F3DC;
+  --cream:#FFFBF5;
+  --terracotta:#C1440E;
+  --gold:#D4930A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:15px}
+
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#2C1810;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:12px}
+
+nav{position:sticky;top:40px;background:var(--cream);border-bottom:2px solid var(--border);z-index:100;padding:0 5%}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto}
+.logo{font-size:19px;font-weight:900;color:var(--primary)}
+.logo em{font-style:italic;font-size:12px;color:var(--text-muted);display:block;font-weight:400;letter-spacing:.5px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--primary)}
+.nav-cta{background:var(--primary);color:#fff;padding:9px 22px;border-radius:30px;font-weight:700;text-decoration:none;font-size:14px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:22px;height:2px;background:var(--primary);border-radius:2px}
+.mobile-menu{display:none;background:var(--cream);padding:16px 5%;border-top:1px solid var(--border)}
+.mobile-menu a{display:block;color:var(--text-muted);text-decoration:none;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+@media(max-width:768px){.nav-links,.nav-cta{display:none}.burger{display:flex}}
+
+/* HERO */
+.hero{background:linear-gradient(120deg,#2C1810 50%,#3D2314 100%);padding:72px 5%;position:relative;overflow:hidden}
+.hero-pattern{position:absolute;top:0;left:0;right:0;bottom:0;opacity:.05;background-image:repeating-linear-gradient(45deg,#D4930A 0,#D4930A 1px,transparent 0,transparent 50%);background-size:20px 20px}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(212,147,10,.15);border:1px solid rgba(212,147,10,.3);color:var(--gold);padding:7px 16px;border-radius:30px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:28px;font-size:16px}
+.hero-ctas{display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap}
+.btn-brown{background:var(--gold);color:#2C1810;padding:13px 28px;border-radius:30px;font-weight:800;text-decoration:none;font-size:15px;transition:.2s}
+.btn-brown:hover{background:#c8880a}
+.btn-ghost{background:transparent;color:rgba(255,255,255,.85);padding:13px 28px;border-radius:30px;font-weight:600;text-decoration:none;font-size:15px;border:1px solid rgba(255,255,255,.3)}
+.hero-origin{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;margin-top:16px}
+.origin-title{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.origin-flags{display:flex;gap:10px;flex-wrap:wrap}
+.flag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;padding:6px 12px;border-radius:8px;font-size:13px;font-weight:600}
+.hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dish-card{background:rgba(255,255,255,.08);border:1px solid rgba(212,147,10,.2);border-radius:14px;padding:18px;text-align:center;transition:.2s}
+.dish-card:hover{background:rgba(255,255,255,.12)}
+.dish-emoji{font-size:44px;margin-bottom:8px}
+.dish-name{color:#fff;font-weight:700;font-size:14px;margin-bottom:2px}
+.dish-origin{font-size:11px;color:var(--gold);font-weight:600}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr}.hero-visual{display:none}}
+
+/* SECTIONS */
+section{padding:72px 5%}
+.max-w{max-width:1200px;margin:0 auto}
+.stag{display:inline-block;background:rgba(139,69,19,.1);color:var(--primary);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.sh2{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;color:var(--text);margin-bottom:8px;line-height:1.2}
+.sh2 em{font-style:normal;color:var(--primary)}
+.ssub{color:var(--text-muted);font-size:15px;line-height:1.6;max-width:540px}
+
+/* PLATS RÉGIONS */
+.regions-section{background:var(--cream)}
+.regions-nav{display:flex;gap:6px;flex-wrap:wrap;margin:24px 0 32px}
+.reg-btn{padding:8px 18px;border-radius:20px;border:2px solid var(--border);background:transparent;cursor:pointer;font-size:13px;font-weight:700;color:var(--text-muted);transition:.2s}
+.reg-btn.active,.reg-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.plats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+.plat-card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:.2s}
+.plat-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(139,69,19,.12)}
+.plat-img{height:160px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:64px;position:relative}
+.plat-country{position:absolute;bottom:10px;left:12px;background:var(--primary);color:#fff;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700}
+.plat-body{padding:16px}
+.plat-name{font-weight:800;font-size:16px;margin-bottom:4px;color:var(--text)}
+.plat-desc{font-size:13px;color:var(--text-muted);line-height:1.4;margin-bottom:12px}
+.plat-footer{display:flex;align-items:center;justify-content:space-between}
+.plat-price{font-weight:900;font-size:17px;color:var(--primary)}
+.plat-info{font-size:12px;color:var(--text-muted)}
+
+/* NOTRE HISTOIRE */
+.histoire-section{background:var(--bg2)}
+.histoire-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.histoire-img{background:linear-gradient(135deg,var(--primary),#4a2400);border-radius:20px;height:420px;display:flex;align-items:center;justify-content:center;font-size:100px;position:relative;overflow:hidden}
+.histoire-img::before{content:'';position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,rgba(44,24,16,.5))}
+.histoire-content p{color:var(--text-muted);line-height:1.8;margin-bottom:16px;font-size:15px}
+.timeline{display:flex;flex-direction:column;gap:16px;margin-top:24px}
+.tl-item{display:flex;gap:14px;align-items:flex-start}
+.tl-year{background:var(--primary);color:#fff;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:800;white-space:nowrap;margin-top:2px}
+.tl-text{font-size:14px;color:var(--text-muted);line-height:1.5}
+@media(max-width:768px){.histoire-inner{grid-template-columns:1fr}}
+
+/* CHEFS */
+.chefs-section{background:var(--cream)}
+.chefs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.chef-card{text-align:center;padding:28px;background:#fff;border:1px solid var(--border);border-radius:16px;transition:.2s}
+.chef-card:hover{border-color:var(--primary);transform:translateY(-3px)}
+.chef-avatar{width:100px;height:100px;border-radius:50%;background:var(--bg2);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:52px;border:3px solid var(--border)}
+.chef-name{font-weight:800;font-size:17px;margin-bottom:4px}
+.chef-origin{font-size:13px;color:var(--primary);font-weight:700;margin-bottom:6px}
+.chef-bio{font-size:13px;color:var(--text-muted);line-height:1.5}
+@media(max-width:768px){.chefs-grid{grid-template-columns:1fr}}
+
+/* RESERVATION */
+.resa-section{background:var(--primary);padding:72px 5%}
+.resa-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;max-width:1100px;margin:0 auto;align-items:center}
+.resa-info h2{font-size:2rem;font-weight:900;color:#fff;margin-bottom:14px}
+.resa-info p{color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:24px}
+.resa-details{display:flex;flex-direction:column;gap:12px}
+.rd-item{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.85);font-size:14px}
+.rd-icon{font-size:20px}
+.resa-form{background:var(--cream);border-radius:16px;padding:32px}
+.resa-form h3{color:var(--text);font-size:18px;font-weight:800;margin-bottom:20px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.fg input,.fg select{width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:14px;outline:none;background:#fff;color:var(--text);transition:.2s}
+.fg input:focus,.fg select:focus{border-color:var(--primary)}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.resa-btn{width:100%;background:var(--primary);color:#fff;border:none;padding:13px;border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;transition:.2s}
+.resa-btn:hover{background:var(--accent)}
+@media(max-width:768px){.resa-inner{grid-template-columns:1fr}.fg-row{grid-template-columns:1fr}}
+
+footer{background:#2C1810;color:#fff;padding:48px 5% 24px}
+.fg-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;max-width:1200px;margin:0 auto 40px}
+.fbl p{color:rgba(255,255,255,.6);font-size:14px;line-height:1.6;margin-top:10px}
+.fc h4{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.fc a{display:block;color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;margin-bottom:8px}
+.fc a:hover{color:#fff}
+.fb-bot{border-top:1px solid rgba(255,255,255,.15);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.4);max-width:1200px;margin:0 auto}
+@media(max-width:768px){.fg-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Saveurs d'Afrique<em>Cuisine panafricaine authentique</em></div>
+    <ul class="nav-links">
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Notre histoire</a></li>
+      <li><a href="#">Nos chefs</a></li>
+      <li><a href="#">Événements</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Réserver</a>
+    <div class="burger" onclick="document.getElementById('mm').style.display=document.getElementById('mm').style.display==='block'?'none':'block'"><span></span><span></span><span></span></div>
+  </div>
+  <div class="mobile-menu" id="mm">
+    <a href="#">Menu</a><a href="#">Notre histoire</a><a href="#">Nos chefs</a><a href="#">Réserver</a>
+  </div>
+</nav>
+
+<section class="hero" style="padding:72px 5%">
+  <div class="hero-pattern"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">🌍 Voyage culinaire panafricain</div>
+      <h1>L'Afrique dans<br>toutes ses <em>saveurs</em></h1>
+      <p>Du thiéboudienne sénégalais au ndolé camerounais, du jollof rice nigérian au tibs éthiopien — découvrez la richesse culinaire de tout un continent réunie en un seul lieu à Accra.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-brown">🍽️ Découvrir le menu</a>
+        <a href="#" class="btn-ghost">Notre histoire</a>
+      </div>
+      <div class="hero-origin">
+        <div class="origin-title">🌍 Cuisines représentées</div>
+        <div class="origin-flags">
+          <span class="flag">🇸🇳 Sénégal</span>
+          <span class="flag">🇨🇲 Cameroun</span>
+          <span class="flag">🇳🇬 Nigeria</span>
+          <span class="flag">🇬🇭 Ghana</span>
+          <span class="flag">🇪🇹 Éthiopie</span>
+          <span class="flag">🇲🇦 Maroc</span>
+          <span class="flag">🇿🇦 Afrique du Sud</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="dish-card"><div class="dish-emoji">🍚</div><div class="dish-name">Thiéboudienne</div><div class="dish-origin">Sénégal</div></div>
+      <div class="dish-card"><div class="dish-emoji">🥬</div><div class="dish-name">Ndolé</div><div class="dish-origin">Cameroun</div></div>
+      <div class="dish-card"><div class="dish-emoji">🍲</div><div class="dish-name">Jollof Rice</div><div class="dish-origin">Nigeria</div></div>
+      <div class="dish-card"><div class="dish-emoji">🥩</div><div class="dish-name">Tibs</div><div class="dish-origin">Éthiopie</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="regions-section">
+  <div class="max-w">
+    <div class="stag">Notre menu</div>
+    <h2 class="sh2">Un voyage à travers <em>les 4 coins d'Afrique</em></h2>
+    <p class="ssub">Chaque plat est préparé selon la recette traditionnelle de sa région d'origine</p>
+    <div class="regions-nav">
+      <button class="reg-btn active">Tout le continent</button>
+      <button class="reg-btn">🌊 Afrique de l'Ouest</button>
+      <button class="reg-btn">🌿 Afrique Centrale</button>
+      <button class="reg-btn">☀️ Afrique de l'Est</button>
+      <button class="reg-btn">🏜️ Afrique du Nord</button>
+      <button class="reg-btn">🌺 Afrique Australe</button>
+    </div>
+    <div class="plats-grid">
+      <div class="plat-card"><div class="plat-img">🍚<div class="plat-country">🇸🇳 Sénégal</div></div><div class="plat-body"><div class="plat-name">Thiéboudienne Royale</div><div class="plat-desc">Le roi des plats sénégalais — riz à la tomate, poisson frais, légumes variés selon la recette de Dakar</div><div class="plat-footer"><span class="plat-price">8 500 FCFA</span><span class="plat-info">Pour 1 pers.</span></div></div></div>
+      <div class="plat-card"><div class="plat-img">🥬<div class="plat-country">🇨🇲 Cameroun</div></div><div class="plat-body"><div class="plat-name">Ndolé aux Crevettes</div><div class="plat-desc">Feuilles de ndolé (épinards amers), crevettes géantes, arachides pilées, épices de Douala</div><div class="plat-footer"><span class="plat-price">9 000 FCFA</span><span class="plat-info">Pour 1 pers.</span></div></div></div>
+      <div class="plat-card"><div class="plat-img">🍛<div class="plat-country">🇳🇬 Nigeria</div></div><div class="plat-body"><div class="plat-name">Jollof Rice Festif</div><div class="plat-desc">Le célèbre riz à la tomate nigérian, poulet épicé, plantains frits — recette de Lagos</div><div class="plat-footer"><span class="plat-price">7 500 FCFA</span><span class="plat-info">Pour 1 pers.</span></div></div></div>
+      <div class="plat-card"><div class="plat-img">🥩<div class="plat-country">🇪🇹 Éthiopie</div></div><div class="plat-body"><div class="plat-name">Tibs et Injera</div><div class="plat-desc">Sauté de bœuf aux épices berbéré, servi sur injera fraîche avec légumes et lentilles</div><div class="plat-footer"><span class="plat-price">10 500 FCFA</span><span class="plat-info">Pour 1 pers.</span></div></div></div>
+      <div class="plat-card"><div class="plat-img">🍖<div class="plat-country">🇬🇭 Ghana</div></div><div class="plat-body"><div class="plat-name">Fufu & Groundnut Soup</div><div class="plat-desc">Fufu de manioc pilé avec soupe aux arachides, chèvre et légumes — recette traditionnelle d'Accra</div><div class="plat-footer"><span class="plat-price">8 000 FCFA</span><span class="plat-info">Pour 1 pers.</span></div></div></div>
+      <div class="plat-card"><div class="plat-img">🍢<div class="plat-country">🇲🇦 Maroc</div></div><div class="plat-body"><div class="plat-name">Tajine d'Agneau Pruneaux</div><div class="plat-desc">Agneau fondant, pruneaux, amandes, cannelle, safran — tajine traditionnel de Fès</div><div class="plat-footer"><span class="plat-price">12 000 FCFA</span><span class="plat-info">Pour 1 pers.</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="histoire-section">
+  <div class="max-w">
+    <div class="histoire-inner">
+      <div class="histoire-img">🌍</div>
+      <div class="histoire-content">
+        <div class="stag">Notre histoire</div>
+        <h2 class="sh2">25 ans de passion pour <em>la cuisine africaine</em></h2>
+        <p>Fondée en 1999 par Abena Mensah, Saveurs d'Afrique est née d'un rêve simple : rassembler les richesses culinaires d'un continent entier sous un même toit à Accra.</p>
+        <p>Abena a voyagé pendant 3 ans à travers 15 pays africains, apprenant les recettes authentiques directement auprès des familles et des cuisinières traditionnelles.</p>
+        <div class="timeline">
+          <div class="tl-item"><span class="tl-year">1999</span><span class="tl-text">Ouverture du premier restaurant à Osu, Accra avec 6 plats de 4 pays</span></div>
+          <div class="tl-item"><span class="tl-year">2007</span><span class="tl-text">Expansion — 15 pays représentés, équipe de 8 chefs internationaux</span></div>
+          <div class="tl-item"><span class="tl-year">2015</span><span class="tl-text">Prix du Meilleur Restaurant Panafricain aux African Food Awards</span></div>
+          <div class="tl-item"><span class="tl-year">2024</span><span class="tl-text">25 ans d'excellence — 30 000 clients servis, 7 chefs de 7 pays différents</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chefs-section">
+  <div class="max-w">
+    <div style="text-align:center;margin-bottom:0">
+      <div class="stag">L'équipe</div>
+      <h2 class="sh2" style="text-align:center">Nos <em>chefs ambassadeurs</em></h2>
+      <p class="ssub" style="margin:8px auto;text-align:center">Chaque chef est originaire du pays dont il cuisine les spécialités</p>
+    </div>
+    <div class="chefs-grid">
+      <div class="chef-card"><div class="chef-avatar">👨‍🍳</div><div class="chef-name">Mamadou Diallo</div><div class="chef-origin">🇸🇳 Chef Sénégalais</div><div class="chef-bio">20 ans d'expérience en cuisine sénégalaise. Formé à Dakar et Paris, maître du thiéboudienne et du yassa poulet.</div></div>
+      <div class="chef-card"><div class="chef-avatar">👩‍🍳</div><div class="chef-name">Ngozi Adeyemi</div><div class="chef-origin">🇳🇬 Chef Nigériane</div><div class="chef-bio">Native de Lagos, Ngozi perpétue les recettes de sa grand-mère avec passion. Spécialiste du jollof rice et des soupes épicées.</div></div>
+      <div class="chef-card"><div class="chef-avatar">👨‍🍳</div><div class="chef-name">Tewodros Haile</div><div class="chef-origin">🇪🇹 Chef Éthiopien</div><div class="chef-bio">Maître de la cuisine éthiopienne, Tewodros prépare ses épices berbéré lui-même selon la recette ancestrale d'Addis-Abeba.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="resa-section">
+  <div class="resa-inner">
+    <div class="resa-info">
+      <h2>Réservez votre voyage culinaire</h2>
+      <p>Chaque repas chez Saveurs d'Afrique est une expérience. Réservez votre table et laissez-nous vous faire voyager à travers le continent.</p>
+      <div class="resa-details">
+        <div class="rd-item"><span class="rd-icon">📍</span><span>Osu, Accra, Ghana</span></div>
+        <div class="rd-item"><span class="rd-icon">🕐</span><span>Lundi–Dimanche : 12h00 – 22h30</span></div>
+        <div class="rd-item"><span class="rd-icon">📞</span><span>+233 20 XXX XXXX</span></div>
+        <div class="rd-item"><span class="rd-icon">✉️</span><span>contact@saveursafrique.com</span></div>
+        <div class="rd-item"><span class="rd-icon">🅿️</span><span>Parking gratuit, 50 places</span></div>
+      </div>
+    </div>
+    <div class="resa-form">
+      <h3>Réserver une table</h3>
+      <div class="fg-row">
+        <div class="fg"><label>Nom complet</label><input type="text" placeholder="Kofi Mensah"></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" placeholder="+233 XX XXX XXXX"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Date</label><input type="date"></div>
+        <div class="fg"><label>Heure</label><select><option>12h00</option><option>13h00</option><option>14h00</option><option>18h00</option><option>19h00</option><option>20h00</option></select></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Couverts</label><select><option>1</option><option>2</option><option>3-4</option><option>5-6</option><option>7-10</option><option>10+</option></select></div>
+        <div class="fg"><label>Menu préféré</label><select><option>Surprise du chef</option><option>Afrique de l'Ouest</option><option>Afrique Centrale</option><option>Menu complet</option></select></div>
+      </div>
+      <button class="resa-btn" onclick="alert('Réservation confirmée! Nous vous contactons pour personnaliser votre expérience.')">Confirmer la réservation 🌍</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fg-grid">
+    <div class="fbl">
+      <div style="font-size:19px;font-weight:900;color:var(--gold)">Saveurs d'Afrique</div>
+      <p>La cuisine panafricaine authentique au cœur d'Accra depuis 1999. Un voyage en 30 plats, 15 pays, 7 chefs.</p>
+    </div>
+    <div class="fc"><h4>Menu</h4><a href="#">Afrique de l'Ouest</a><a href="#">Afrique Centrale</a><a href="#">Afrique de l'Est</a><a href="#">Afrique du Nord</a></div>
+    <div class="fc"><h4>Restaurant</h4><a href="#">Notre histoire</a><a href="#">Nos chefs</a><a href="#">Galerie</a><a href="#">Événements</a></div>
+    <div class="fc"><h4>Contact</h4><a href="#">📍 Osu, Accra</a><a href="#">📞 +233 20 XXX XXXX</a><a href="#">🕐 12h–22h30</a></div>
+  </div>
+  <div class="fb-bot"><span>© 2024 Saveurs d'Afrique — Accra, Ghana</span><span>Site créé par IBIG Digital</span></div>
+</footer>
+
+<script>
+document.querySelectorAll('.reg-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.reg-btn').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

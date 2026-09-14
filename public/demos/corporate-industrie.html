@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Industrie Afrique SA — Groupe Industriel Panafricain</title>
+<style>
+:root{
+  --bg:#F8FAFC;
+  --primary:#1F2937;
+  --primary-dark:#111827;
+  --orange:#EA580C;
+  --orange-light:#FFF7ED;
+  --text:#1F2937;
+  --text-light:#6B7280;
+  --border:#E5E7EB;
+  --white:#FFFFFF;
+  --steel:#374151;
+  --light:#F1F5F9;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
+.demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
+
+/* TOP BAR CERTIFICATIONS */
+.certif-bar{background:var(--primary);color:rgba(255,255,255,0.7);font-size:12px;padding:7px 40px;margin-top:40px;display:flex;justify-content:space-between;align-items:center;}
+.certif-items{display:flex;gap:20px;}
+.certif-item{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,0.7);}
+.certif-item span{background:var(--orange);color:#fff;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;}
+
+nav{position:sticky;top:40px;background:var(--primary);z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.2);}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 40px;display:flex;align-items:center;gap:8px;height:64px;}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+.nl-icon{width:44px;height:44px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.nl-text .main{font-size:18px;font-weight:900;color:#fff;display:block;letter-spacing:-0.5px;}
+.nl-text .sub{font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px;}
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:auto;}
+.nav-link{padding:8px 14px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.6);text-decoration:none;border-radius:6px;transition:all 0.2s;}
+.nav-link:hover,.nav-link.active{background:rgba(255,255,255,0.1);color:#fff;}
+.nav-btn{background:var(--orange);color:#fff;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:700;text-decoration:none;margin-left:12px;transition:all 0.2s;}
+.nav-btn:hover{background:#C2410C;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 50%,#2D3748 100%);color:#fff;padding:80px 40px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:0;right:0;width:600px;height:100%;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,0.015) 10px,rgba(255,255,255,0.015) 20px);}
+.hero-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;position:relative;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;border-left:3px solid var(--orange);padding-left:12px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:18px;}
+.hero h1{font-size:44px;font-weight:900;line-height:1.15;margin-bottom:16px;}
+.hero h1 span{color:var(--orange);}
+.hero-intro{font-size:17px;color:rgba(255,255,255,0.7);margin-bottom:32px;max-width:520px;line-height:1.7;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;}
+.htag{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:50px;padding:6px 14px;font-size:13px;color:rgba(255,255,255,0.8);font-weight:600;}
+.hero-ctas{display:flex;gap:12px;}
+.hcta{padding:13px 26px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;transition:all 0.2s;}
+.hcta.prim{background:var(--orange);color:#fff;}
+.hcta.sec{background:rgba(255,255,255,0.06);color:#fff;border:1px solid rgba(255,255,255,0.2);}
+.hcta:hover{opacity:0.9;transform:translateY(-2px);}
+
+/* HERO STATS CARD */
+.hero-stats-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:32px;backdrop-filter:blur(8px);}
+.hsc-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.5);margin-bottom:20px;}
+.hsc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.hstat{background:rgba(255,255,255,0.05);border-radius:12px;padding:16px;text-align:center;}
+.hstat-num{font-size:30px;font-weight:900;color:#fff;line-height:1;}
+.hstat-num span{font-size:16px;color:var(--orange);}
+.hstat-lab{font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:600;}
+
+/* SECTIONS */
+.si{max-width:1280px;margin:0 auto;}
+.sec-pad{padding:60px 40px;}
+.sec-header{margin-bottom:40px;}
+.sec-eyebrow{font-size:12px;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:2px;display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.sec-eyebrow::before{content:'';display:inline-block;width:24px;height:2px;background:var(--orange);}
+.sec-title{font-size:32px;font-weight:900;color:var(--text);}
+.sec-sub{font-size:16px;color:var(--text-light);margin-top:8px;}
+
+/* SECTEURS D'ACTIVITÉ */
+.secteurs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.secteur-card{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;group;}
+.sc-bg{height:220px;display:flex;align-items:flex-end;padding:24px;position:relative;}
+.sc-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.8));}
+.sc-bg-1{background:linear-gradient(135deg,#374151,#1F2937);font-size:60px;display:flex;align-items:center;justify-content:center;}
+.sc-bg-2{background:linear-gradient(135deg,#92400E,#B45309);}
+.sc-bg-3{background:linear-gradient(135deg,#065F46,#166534);}
+.sc-bg-4{background:linear-gradient(135deg,#1E3A5F,#0891B2);}
+.sc-bg-5{background:linear-gradient(135deg,#4C1D95,#7C3AED);}
+.sc-bg-6{background:linear-gradient(135deg,#9B1C1C,#DC2626);}
+.sc-emoji{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:56px;z-index:1;}
+.sc-content{position:absolute;bottom:0;left:0;right:0;padding:20px;z-index:2;}
+.sc-name{font-size:18px;font-weight:800;color:#fff;margin-bottom:4px;}
+.sc-desc{font-size:13px;color:rgba(255,255,255,0.7);}
+.sc-arrow{position:absolute;top:16px;right:16px;z-index:2;width:32px;height:32px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;opacity:0;transition:opacity 0.2s;}
+.secteur-card:hover .sc-arrow{opacity:1;}
+
+/* USINES / SITES */
+.sites-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.site-card{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all 0.2s;}
+.site-card:hover{border-color:var(--orange);box-shadow:0 8px 24px rgba(234,88,12,0.1);}
+.site-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:44px;}
+.si-1{background:linear-gradient(135deg,#374151,#1F2937);}
+.si-2{background:linear-gradient(135deg,#065F46,#14532D);}
+.si-3{background:linear-gradient(135deg,#92400E,#7C2D12);}
+.si-4{background:linear-gradient(135deg,#1E3A5F,#1E40AF);}
+.site-body{padding:18px;}
+.site-country{font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;margin-bottom:4px;}
+.site-name{font-size:16px;font-weight:800;margin-bottom:6px;}
+.site-desc{font-size:13px;color:var(--text-light);margin-bottom:10px;line-height:1.5;}
+.site-cap{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-light);}
+.cap-dot{width:8px;height:8px;background:var(--orange);border-radius:50%;}
+
+/* PRODUITS */
+.produits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.produit-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center;transition:all 0.2s;cursor:pointer;}
+.produit-card:hover{border-color:var(--orange);transform:translateY(-4px);box-shadow:0 12px 30px rgba(234,88,12,0.1);}
+.pc-icon{font-size:40px;margin-bottom:14px;display:block;}
+.pc-name{font-size:16px;font-weight:800;margin-bottom:6px;}
+.pc-cat{font-size:11px;color:var(--orange);font-weight:700;text-transform:uppercase;margin-bottom:8px;}
+.pc-desc{font-size:13px;color:var(--text-light);line-height:1.5;}
+
+/* STATS BAND */
+.stats-band{background:var(--primary-dark);padding:50px 40px;}
+.sb-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:20px;text-align:center;}
+.sb-item .num{font-size:34px;font-weight:900;color:#fff;line-height:1;}
+.sb-item .num span{color:var(--orange);}
+.sb-item .lab{font-size:12px;color:rgba(255,255,255,0.5);margin-top:6px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
+.sb-item .icon{font-size:20px;margin-bottom:8px;display:block;}
+
+/* CSR */
+.csr-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+.csr-img-zone{background:linear-gradient(135deg,var(--primary),var(--steel));border-radius:20px;height:380px;display:flex;align-items:center;justify-content:center;font-size:100px;}
+.csr-pillars{display:flex;flex-direction:column;gap:20px;}
+.csr-pillar{display:flex;gap:16px;align-items:flex-start;}
+.cp-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.cp-i1{background:#DCFCE7;}
+.cp-i2{background:#FEF3C7;}
+.cp-i3{background:#EFF6FF;}
+.cp-i4{background:#FFF7ED;}
+.cp-body strong{font-size:16px;font-weight:800;display:block;margin-bottom:4px;}
+.cp-body p{font-size:14px;color:var(--text-light);line-height:1.6;}
+.cp-body .prog-bar{height:6px;background:var(--border);border-radius:3px;margin-top:8px;overflow:hidden;}
+.cp-body .prog-fill{height:100%;background:var(--orange);border-radius:3px;}
+
+/* RECRUTEMENT */
+.recru-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.job-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;transition:all 0.2s;cursor:pointer;}
+.job-card:hover{border-color:var(--orange);box-shadow:0 6px 20px rgba(234,88,12,0.08);}
+.jc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.jc-title{font-size:17px;font-weight:800;}
+.jc-badge{background:var(--orange-light);color:var(--orange);padding:4px 10px;border-radius:50px;font-size:11px;font-weight:700;white-space:nowrap;}
+.jc-company{font-size:13px;color:var(--text-light);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.jc-desc{font-size:13px;color:var(--text-light);margin-bottom:14px;line-height:1.6;}
+.jc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.jctag{background:var(--light);color:var(--steel);padding:4px 10px;border-radius:50px;font-size:11px;font-weight:600;}
+.jc-footer{display:flex;justify-content:space-between;align-items:center;}
+.jc-loc{font-size:12px;color:var(--text-light);}
+.jc-btn{background:var(--orange);color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.jc-btn:hover{background:#C2410C;}
+
+/* INVESTISSEURS */
+.invest-section{background:var(--primary);padding:60px 40px;}
+.inv-inner{max-width:1280px;margin:0 auto;}
+.invest-grid{display:grid;grid-template-columns:2fr 1fr;gap:50px;align-items:center;}
+.inv-info h3{font-size:30px;font-weight:900;color:#fff;margin-bottom:16px;}
+.inv-info h3 span{color:var(--orange);}
+.inv-info p{font-size:16px;color:rgba(255,255,255,0.65);margin-bottom:28px;line-height:1.7;}
+.inv-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.inv-list li{display:flex;align-items:center;gap:12px;font-size:15px;color:rgba(255,255,255,0.75);}
+.inv-list li::before{content:'→';color:var(--orange);font-weight:800;font-size:16px;}
+.inv-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:28px;}
+.ic-title{font-size:15px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:20px;text-transform:uppercase;letter-spacing:0.5px;}
+.ic-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);}
+.ic-row:last-child{border:none;}
+.ic-row .label{font-size:13px;color:rgba(255,255,255,0.5);}
+.ic-row .value{font-size:14px;font-weight:700;color:#fff;}
+.ic-row .value.orange{color:var(--orange);}
+
+/* CERTIFICATIONS */
+.certifs-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+.certif-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;transition:all 0.2s;}
+.certif-card:hover{border-color:var(--orange);}
+.certif-icon{font-size:32px;margin-bottom:10px;display:block;}
+.certif-name{font-size:13px;font-weight:800;margin-bottom:4px;}
+.certif-body{font-size:12px;color:var(--text-light);}
+
+footer{background:var(--primary-dark);padding:60px 40px 28px;}
+.fg{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.fl-zone{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.fl-ico{width:44px;height:44px;background:var(--orange);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.fl-name .main{font-size:18px;font-weight:900;color:#fff;display:block;}
+.fl-name .sub{font-size:10px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.5px;}
+footer p.fp{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;margin-bottom:16px;}
+.f-countries{display:flex;flex-wrap:wrap;gap:6px;}
+.f-country{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);padding:3px 8px;border-radius:4px;font-size:11px;}
+.fc h5{color:rgba(255,255,255,0.45);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;}
+.fc ul{list-style:none;}
+.fc li{margin-bottom:8px;}
+.fc a{color:rgba(255,255,255,0.4);font-size:13px;text-decoration:none;transition:color 0.2s;}
+.fc a:hover{color:var(--orange);}
+.fb{max-width:1280px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.25);}
+.fb a{color:rgba(255,255,255,0.25);text-decoration:none;}
+
+@media(max-width:900px){
+  .hero-inner,.csr-grid,.invest-grid{grid-template-columns:1fr;}
+  .secteurs-grid,.sites-grid,.produits-grid,.recru-grid{grid-template-columns:1fr 1fr;}
+  .sb-grid,.certifs-grid{grid-template-columns:repeat(3,1fr);}
+  .fg{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<div class="certif-bar">
+  <div class="certif-items">
+    <div class="certif-item"><span>ISO 9001</span> Qualité certifiée</div>
+    <div class="certif-item"><span>ISO 14001</span> Management environnemental</div>
+    <div class="certif-item"><span>OHSAS 18001</span> Sécurité au travail</div>
+    <div class="certif-item"><span>Coté Bourse</span> BRVM · Abidjan</div>
+  </div>
+  <span>+225 27 20 55 66 77</span>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nl-icon">⚙️</div>
+      <div class="nl-text"><span class="main">Industrie Afrique SA</span><span class="sub">Groupe Industriel Panafricain</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#" class="nav-link active">Accueil</a>
+      <a href="#" class="nav-link">Activités</a>
+      <a href="#" class="nav-link">Produits</a>
+      <a href="#" class="nav-link">Nos sites</a>
+      <a href="#" class="nav-link">RSE</a>
+      <a href="#" class="nav-link">Investisseurs</a>
+      <a href="#" class="nav-link">Carrières</a>
+      <a href="#" class="nav-btn">📞 Nous contacter</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Groupe industriel panafricain · Fondé en 1988</div>
+      <h1>Bâtir l'<span>industrie</span><br>de l'Afrique de demain</h1>
+      <p class="hero-intro">Industrie Afrique SA est le premier groupe industriel privé d'Afrique de l'Ouest. Présent dans 7 pays, nous façonnons des produits essentiels pour des millions de familles africaines depuis plus de 35 ans.</p>
+      <div class="hero-tags">
+        <div class="htag">🏭 Agro-industrie</div>
+        <div class="htag">⚡ Énergie</div>
+        <div class="htag">🧱 Matériaux de construction</div>
+        <div class="htag">🛢️ Chimie & Plasturgie</div>
+        <div class="htag">⚙️ Mécanique industrielle</div>
+        <div class="htag">♻️ Recyclage</div>
+      </div>
+      <div class="hero-ctas">
+        <a href="#" class="hcta prim">📄 Rapport annuel 2025</a>
+        <a href="#" class="hcta sec">📈 Espace investisseurs</a>
+      </div>
+    </div>
+    <div class="hero-stats-card">
+      <div class="hsc-title">Chiffres clés 2025</div>
+      <div class="hsc-grid">
+        <div class="hstat"><div class="hstat-num">7<span> pays</span></div><div class="hstat-lab">Présence africaine</div></div>
+        <div class="hstat"><div class="hstat-num">12<span>k</span></div><div class="hstat-lab">Employés</div></div>
+        <div class="hstat"><div class="hstat-num">340<span>Mds</span></div><div class="hstat-lab">CA en FCFA</div></div>
+        <div class="hstat"><div class="hstat-num">18</div><div class="hstat-lab">Sites de production</div></div>
+        <div class="hstat"><div class="hstat-num">+35<span>ans</span></div><div class="hstat-lab">D'expérience</div></div>
+        <div class="hstat"><div class="hstat-num">48<span>%</span></div><div class="hstat-lab">Croissance 5 ans</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTEURS -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="si">
+    <div class="sec-header">
+      <div class="sec-eyebrow">Nos activités</div>
+      <h2 class="sec-title">Secteurs d'activité</h2>
+      <p class="sec-sub">Six pôles industriels complémentaires qui structurent notre groupe</p>
+    </div>
+    <div class="secteurs-grid">
+      <div class="secteur-card"><div class="sc-bg sc-bg-1" style="height:220px;"><span class="sc-emoji">🌾</span><div style="position:relative;z-index:2;"><div class="sc-name">Agro-industrie</div><div class="sc-desc">Transformation de cacao, café, anacarde — Côte d'Ivoire & Ghana</div></div></div><div class="sc-arrow">→</div></div>
+      <div class="secteur-card"><div class="sc-bg sc-bg-2" style="height:220px;"><span class="sc-emoji">⚡</span><div style="position:relative;z-index:2;"><div class="sc-name">Énergie & Pétrochimie</div><div class="sc-desc">Raffinage, lubrifiants, GPL domestique — Sénégal & Côte d'Ivoire</div></div></div><div class="sc-arrow">→</div></div>
+      <div class="secteur-card"><div class="sc-bg sc-bg-3" style="height:220px;"><span class="sc-emoji">🧱</span><div style="position:relative;z-index:2;"><div class="sc-name">Matériaux de construction</div><div class="sc-desc">Ciment, briques, céramique — 5 pays d'Afrique de l'Ouest</div></div></div><div class="sc-arrow">→</div></div>
+      <div class="secteur-card"><div class="sc-bg sc-bg-4" style="height:220px;"><span class="sc-emoji">🛢️</span><div style="position:relative;z-index:2;"><div class="sc-name">Chimie & Plasturgie</div><div class="sc-desc">Emballages plastique, peintures industrielles, détergents</div></div></div><div class="sc-arrow">→</div></div>
+      <div class="secteur-card"><div class="sc-bg sc-bg-5" style="height:220px;"><span class="sc-emoji">⚙️</span><div style="position:relative;z-index:2;"><div class="sc-name">Mécanique & Métallurgie</div><div class="sc-desc">Fonderie, chaudronnerie, fabrication de pièces industrielles</div></div></div><div class="sc-arrow">→</div></div>
+      <div class="secteur-card"><div class="sc-bg sc-bg-6" style="height:220px;"><span class="sc-emoji">♻️</span><div style="position:relative;z-index:2;"><div class="sc-name">Recyclage & Économie circulaire</div><div class="sc-desc">Valorisation de déchets industriels, recyclage plastique & métal</div></div></div><div class="sc-arrow">→</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="sb-grid">
+    <div class="sb-item"><span class="icon">🌍</span><div class="num">7<span>+</span></div><div class="lab">Pays d'Afrique</div></div>
+    <div class="sb-item"><span class="icon">🏭</span><div class="num">18</div><div class="lab">Sites industriels</div></div>
+    <div class="sb-item"><span class="icon">👷</span><div class="num">12<span>000</span></div><div class="lab">Employés directs</div></div>
+    <div class="sb-item"><span class="icon">💰</span><div class="num">340<span>Mds</span></div><div class="lab">CA FCFA 2025</div></div>
+    <div class="sb-item"><span class="icon">📦</span><div class="num">380<span>+</span></div><div class="lab">Produits fabriqués</div></div>
+    <div class="sb-item"><span class="icon">🔬</span><div class="num">3</div><div class="lab">Centres R&D</div></div>
+  </div>
+</div>
+
+<!-- SITES INDUSTRIELS -->
+<section class="sec-pad" style="background:var(--white)">
+  <div class="si">
+    <div class="sec-header">
+      <div class="sec-eyebrow">Implantations</div>
+      <h2 class="sec-title">Nos sites de production</h2>
+      <p class="sec-sub">18 unités industrielles modernes à travers l'Afrique de l'Ouest</p>
+    </div>
+    <div class="sites-grid">
+      <div class="site-card"><div class="site-img si-1">🌾</div><div class="site-body"><div class="site-country">🇨🇮 Côte d'Ivoire · San-Pédro</div><div class="site-name">Complexe agro-industriel de San-Pédro</div><div class="site-desc">Transformation de cacao brut en beurre, poudre et liqueur de cacao. Capacité : 80 000 T/an.</div><div class="site-cap"><div class="cap-dot"></div>80 000 tonnes/an · 1 200 employés</div></div></div>
+      <div class="site-card"><div class="site-img si-2">⚡</div><div class="site-body"><div class="site-country">🇸🇳 Sénégal · Dakar</div><div class="site-name">Raffinerie & Centre énergétique de Dakar</div><div class="site-desc">Raffinage de pétrole brut, production de lubrifiants et de GPL domestique pour la sous-région.</div><div class="site-cap"><div class="cap-dot"></div>Capacité 2 500 T/jour · 800 employés</div></div></div>
+      <div class="site-card"><div class="site-img si-3">🧱</div><div class="site-body"><div class="site-country">🇧🇫 Burkina Faso · Ouagadougou</div><div class="site-name">Cimenterie Afrique Constructions</div><div class="site-desc">Production de ciment Portland et de briques préfabriquées pour la construction locale.</div><div class="site-cap"><div class="cap-dot"></div>500 000 T/an · 650 employés</div></div></div>
+      <div class="site-card"><div class="site-img si-4">♻️</div><div class="site-body"><div class="site-country">🇬🇭 Ghana · Accra</div><div class="site-name">Centre de recyclage & économie circulaire</div><div class="site-desc">Valorisation de déchets plastiques et métalliques industriels. Zéro déchet non valorisé.</div><div class="site-cap"><div class="cap-dot"></div>35 000 T/an recyclées · 420 employés</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUITS -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="si">
+    <div class="sec-header">
+      <div class="sec-eyebrow">Catalogue</div>
+      <h2 class="sec-title">Nos produits phares</h2>
+      <p class="sec-sub">380+ références couvrant les besoins essentiels des foyers et industries africains</p>
+    </div>
+    <div class="produits-grid">
+      <div class="produit-card"><span class="pc-icon">🍫</span><div class="pc-cat">Agro-industrie</div><div class="pc-name">Beurre de cacao Ivoire Gold</div><div class="pc-desc">Beurre de cacao certifié bio, exporté vers l'Europe et l'Asie. Qualité supérieure.</div></div>
+      <div class="produit-card"><span class="pc-icon">🛢️</span><div class="pc-cat">Énergie</div><div class="pc-name">Lubrifiants Industrial Pro</div><div class="pc-desc">Gamme complète de lubrifiants industriels et automobiles produits localement.</div></div>
+      <div class="produit-card"><span class="pc-icon">🧱</span><div class="pc-cat">Construction</div><div class="pc-name">Ciment AfriCim 52.5</div><div class="pc-desc">Ciment haute résistance pour la construction de bâtiments et d'infrastructures.</div></div>
+      <div class="produit-card"><span class="pc-icon">🧴</span><div class="pc-cat">Chimie</div><div class="pc-name">Peintures Afrique Colors</div><div class="pc-desc">Gamme de peintures acryliques et époxy pour usage industriel et domestique.</div></div>
+      <div class="produit-card"><span class="pc-icon">⚙️</span><div class="pc-cat">Métallurgie</div><div class="pc-name">Pièces industrielles sur mesure</div><div class="pc-desc">Fabrication de pièces mécaniques sur commande pour l'industrie lourde africaine.</div></div>
+      <div class="produit-card"><span class="pc-icon">♻️</span><div class="pc-cat">Recyclage</div><div class="pc-name">Granulés plastique recyclé</div><div class="pc-desc">Matière première recyclée pour la production de nouveaux emballages et objets plastique.</div></div>
+      <div class="produit-card"><span class="pc-icon">💡</span><div class="pc-cat">Énergie</div><div class="pc-name">GPL Afrique Gaz (bouteilles)</div><div class="pc-desc">Bouteilles de gaz domestique distribuées dans 6 pays d'Afrique de l'Ouest.</div></div>
+      <div class="produit-card"><span class="pc-icon">🌿</span><div class="pc-cat">Agro-industrie</div><div class="pc-name">Huile de palme raffinée</div><div class="pc-desc">Huile comestible de haute qualité produite en Côte d'Ivoire pour les marchés africains.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RSE -->
+<section class="sec-pad" style="background:var(--white)">
+  <div class="si">
+    <div class="csr-grid">
+      <div class="csr-img-zone">🌍</div>
+      <div>
+        <div class="sec-eyebrow">Responsabilité</div>
+        <h2 class="sec-title">Notre engagement RSE</h2>
+        <p class="sec-sub" style="margin-bottom:28px">Nous croyons qu'une industrie forte est une industrie responsable. Notre feuille de route RSE 2030 engage le groupe sur 4 piliers essentiels.</p>
+        <div class="csr-pillars">
+          <div class="csr-pillar"><div class="cp-icon cp-i1">🌿</div><div class="cp-body"><strong>Transition environnementale</strong><p>Réduction de nos émissions CO₂ de 40% d'ici 2030, passage à 60% d'énergie renouvelable, zéro rejet liquide non traité.</p><div class="prog-bar"><div class="prog-fill" style="width:62%"></div></div></div></div>
+          <div class="csr-pillar"><div class="cp-icon cp-i2">👷</div><div class="cp-body"><strong>Emploi local & formation</strong><p>95% de nos collaborateurs sont africains. Nos centres de formation professionnelle ont formé 4 500 jeunes en 5 ans.</p><div class="prog-bar"><div class="prog-fill" style="width:78%"></div></div></div></div>
+          <div class="csr-pillar"><div class="cp-icon cp-i3">🏘️</div><div class="cp-body"><strong>Développement communautaire</strong><p>1,2 milliard FCFA investis en 2025 dans les communautés riveraines : écoles, centres de santé, eau potable.</p><div class="prog-bar"><div class="prog-fill" style="width:54%"></div></div></div></div>
+          <div class="csr-pillar"><div class="cp-icon cp-i4">🛡️</div><div class="cp-body"><strong>Sécurité & Bien-être</strong><p>Zéro accident mortel depuis 2022. Programme "Safety First" déployé sur les 18 sites. 100% des employés couverts par une assurance santé.</p><div class="prog-bar"><div class="prog-fill" style="width:90%"></div></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECRUTEMENT -->
+<section class="sec-pad" style="background:var(--bg)">
+  <div class="si">
+    <div class="sec-header">
+      <div class="sec-eyebrow">Carrières</div>
+      <h2 class="sec-title">Rejoignez l'industrie africaine</h2>
+      <p class="sec-sub">Construisez votre carrière au sein du premier groupe industriel d'Afrique de l'Ouest</p>
+    </div>
+    <div class="recru-grid">
+      <div class="job-card"><div class="jc-header"><div class="jc-title">Ingénieur process agro-industrie</div><div class="jc-badge">CDI</div></div><div class="jc-company">🏭 Complexe San-Pédro · Côte d'Ivoire</div><div class="jc-desc">Optimisation des process de transformation du cacao. Amélioration continue des rendements et de la qualité.</div><div class="jc-tags"><span class="jctag">Ingénierie</span><span class="jctag">Agro-industrie</span><span class="jctag">Process</span></div><div class="jc-footer"><div class="jc-loc">📍 San-Pédro, CI</div><button class="jc-btn">Postuler</button></div></div>
+      <div class="job-card"><div class="jc-header"><div class="jc-title">Responsable HSE régional</div><div class="jc-badge">CDI</div></div><div class="jc-company">🌍 Siège groupe · Abidjan</div><div class="jc-desc">Supervision des politiques Hygiène Sécurité Environnement pour les 5 sites Côte d'Ivoire et Sénégal.</div><div class="jc-tags"><span class="jctag">HSE</span><span class="jctag">Réglementation</span><span class="jctag">Management</span></div><div class="jc-footer"><div class="jc-loc">📍 Abidjan / Dakar</div><button class="jc-btn">Postuler</button></div></div>
+      <div class="job-card"><div class="jc-header"><div class="jc-title">Analyste finance & investissements</div><div class="jc-badge">CDI</div></div><div class="jc-company">💼 Direction financière · Abidjan</div><div class="jc-desc">Analyse des projets d'investissement industriels, modélisation financière, reporting BRVM et relations investisseurs.</div><div class="jc-tags"><span class="jctag">Finance</span><span class="jctag">BRVM</span><span class="jctag">Analyse</span></div><div class="jc-footer"><div class="jc-loc">📍 Plateau, Abidjan</div><button class="jc-btn">Postuler</button></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTISSEURS -->
+<section class="invest-section">
+  <div class="inv-inner">
+    <div class="invest-grid">
+      <div class="inv-info">
+        <h3>Investir dans <span>Industrie Afrique SA</span></h3>
+        <p>Cotée à la Bourse Régionale des Valeurs Mobilières (BRVM) d'Abidjan depuis 2002, Industrie Afrique SA offre aux investisseurs institutionnels et individuels l'accès à la croissance industrielle de l'Afrique de l'Ouest.</p>
+        <ul class="inv-list">
+          <li>Dividende distribué chaque année depuis 12 ans</li>
+          <li>Croissance du chiffre d'affaires de +18% en 2025</li>
+          <li>Programme d'investissement 800 Mds FCFA 2025–2028</li>
+          <li>Expansion prévue au Mali et au Togo en 2026</li>
+          <li>Obligations vertes inscrites à la BRVM</li>
+        </ul>
+      </div>
+      <div class="inv-card">
+        <div class="ic-title">Données boursières · BRVM</div>
+        <div class="ic-row"><div class="label">Symbole</div><div class="value orange">IASA.CI</div></div>
+        <div class="ic-row"><div class="label">Cours au 12/09/2026</div><div class="value">4 850 FCFA</div></div>
+        <div class="ic-row"><div class="label">Variation sur 1 an</div><div class="value orange">+23,4% ↑</div></div>
+        <div class="ic-row"><div class="label">Capitalisation</div><div class="value">485 Mds FCFA</div></div>
+        <div class="ic-row"><div class="label">Dividende 2024</div><div class="value">220 FCFA/action</div></div>
+        <div class="ic-row"><div class="label">PER</div><div class="value">14,2x</div></div>
+        <div class="ic-row"><div class="label">Notation S&P</div><div class="value orange">BB+ · Stable</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="sec-pad" style="background:var(--white)">
+  <div class="si">
+    <div class="sec-header">
+      <div class="sec-eyebrow">Qualité & Conformité</div>
+      <h2 class="sec-title">Nos certifications</h2>
+      <p class="sec-sub">Standards de qualité internationaux appliqués sur l'ensemble de nos sites</p>
+    </div>
+    <div class="certifs-grid">
+      <div class="certif-card"><span class="certif-icon">🏅</span><div class="certif-name">ISO 9001:2015</div><div class="certif-body">Management de la qualité · Renouvellement 2025</div></div>
+      <div class="certif-card"><span class="certif-icon">🌿</span><div class="certif-name">ISO 14001:2015</div><div class="certif-body">Management environnemental · Tous sites certifiés</div></div>
+      <div class="certif-card"><span class="certif-icon">👷</span><div class="certif-name">ISO 45001:2018</div><div class="certif-body">Santé & sécurité au travail · 18 sites</div></div>
+      <div class="certif-card"><span class="certif-icon">🌱</span><div class="certif-name">Rainforest Alliance</div><div class="certif-body">Cacao durable & commerce équitable · San-Pédro</div></div>
+      <div class="certif-card"><span class="certif-icon">♻️</span><div class="certif-name">Label Économie Circulaire</div><div class="certif-body">Union Africaine · Niveau Or · Depuis 2023</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div>
+      <div class="fl-zone"><div class="fl-ico">⚙️</div><div class="fl-name"><span class="main">Industrie Afrique SA</span><span class="sub">Groupe industriel panafricain</span></div></div>
+      <p class="fp">Le premier groupe industriel privé d'Afrique de l'Ouest. Fondé en 1988 à Abidjan, nous sommes présents dans 7 pays et employons 12 000 personnes à travers le continent.</p>
+      <div class="f-countries"><span class="f-country">🇨🇮 Côte d'Ivoire</span><span class="f-country">🇸🇳 Sénégal</span><span class="f-country">🇧🇫 Burkina</span><span class="f-country">🇬🇭 Ghana</span><span class="f-country">🇲🇱 Mali</span><span class="f-country">🇧🇯 Bénin</span><span class="f-country">🇹🇬 Togo</span></div>
+    </div>
+    <div class="fc"><h5>Activités</h5><ul><li><a href="#">Agro-industrie</a></li><li><a href="#">Énergie</a></li><li><a href="#">Construction</a></li><li><a href="#">Chimie</a></li><li><a href="#">Métallurgie</a></li><li><a href="#">Recyclage</a></li></ul></div>
+    <div class="fc"><h5>Groupe</h5><ul><li><a href="#">Rapport annuel</a></li><li><a href="#">Investisseurs BRVM</a></li><li><a href="#">RSE 2030</a></li><li><a href="#">Actualités</a></li><li><a href="#">Carrières</a></li></ul></div>
+    <div class="fc"><h5>Contact</h5><ul><li><a href="#">📍 Zone Industrielle de Yopougon, Abidjan</a></li><li><a href="#">📞 +225 27 20 55 66 77</a></li><li><a href="#">✉️ contact@industrie-afrique.ci</a></li><li><a href="#">📈 ir@industrie-afrique.ci</a></li></ul></div>
+  </div>
+  <div class="fb">
+    <span>© 2026 Industrie Afrique SA · Tous droits réservés · RCCM Abidjan CI-ABJ-2002-B-00214</span>
+    <div><a href="#">Mentions légales</a> · <a href="#">Politique RSE</a> · <a href="#">CGU</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

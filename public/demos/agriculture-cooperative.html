@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coopérative Agri-Burkina — Agriculture Coopérative</title>
+<style>
+:root {
+  --primary: #2D6A4F;
+  --primary-light: #40916C;
+  --accent: #8B5E3C;
+  --accent-light: #D4A574;
+  --bg: #F5F0E8;
+  --bg2: #FEFCF8;
+  --bg3: #EDE8DC;
+  --text: #2C1810;
+  --text2: #5D4037;
+  --text3: #8D6E63;
+  --border: #D4C5B0;
+  --green-light: #D8F3DC;
+  --card-shadow: 0 4px 20px rgba(45,106,79,0.12);
+  --yellow: #F4A261;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', Georgia, sans-serif; background: var(--bg); color: var(--text); }
+
+.demo-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 40px; z-index: 9999;
+  background: #1B4332; color: #fff; display: flex; align-items: center;
+  justify-content: center; gap: 16px; font-size: 13px; padding: 0 16px;
+}
+.demo-bar a { background: #16A34A; color: #fff; padding: 4px 14px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 12px; }
+
+nav {
+  position: sticky; top: 40px; z-index: 100; background: var(--primary);
+  padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 68px;
+}
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-icon { width: 42px; height: 42px; background: rgba(255,255,255,.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.logo-text { color: #fff; font-size: 17px; font-weight: 800; line-height: 1.2; }
+.logo-sub { color: rgba(255,255,255,.7); font-size: 11px; }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a { text-decoration: none; color: rgba(255,255,255,.8); font-size: 14px; transition: color .2s; }
+.nav-links a:hover { color: #fff; }
+.nav-cta { background: var(--yellow); color: var(--primary); padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: all .2s; }
+.nav-cta:hover { background: #fff; }
+
+.hero {
+  background: var(--primary);
+  padding: 80px 5% 0; color: #fff; position: relative; overflow: hidden;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; padding-bottom: 60px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 18px; }
+.hero h1 { font-size: clamp(26px, 3.5vw, 48px); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+.hero h1 span { color: var(--yellow); }
+.hero p { font-size: 16px; opacity: .85; line-height: 1.8; margin-bottom: 28px; }
+.hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-yellow { background: var(--yellow); color: var(--primary); padding: 13px 26px; border-radius: 8px; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: all .2s; }
+.btn-yellow:hover { background: #fff; transform: translateY(-2px); }
+.btn-wh { background: rgba(255,255,255,.15); color: #fff; padding: 13px 26px; border-radius: 8px; font-weight: 600; font-size: 14px; border: 2px solid rgba(255,255,255,.3); cursor: pointer; transition: all .2s; }
+.btn-wh:hover { border-color: #fff; }
+.hero-right {}
+.hero-card {
+  background: rgba(255,255,255,0.12); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.2); border-radius: 16px; padding: 24px;
+}
+.hero-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 16px; opacity: .9; }
+.members-list { display: flex; flex-direction: column; gap: 12px; }
+.member-item { display: flex; align-items: center; gap: 10px; }
+.member-av { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.member-info { flex: 1; }
+.member-name { font-size: 13px; font-weight: 600; }
+.member-prod { font-size: 11px; opacity: .7; }
+.member-tons { background: rgba(255,255,255,.15); padding: 3px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+.hero-bottom { background: var(--bg3); padding: 20px 0 0; border-radius: 20px 20px 0 0; display: flex; justify-content: space-evenly; }
+.h-stat { text-align: center; padding: 20px 24px; }
+.h-stat-num { font-size: 28px; font-weight: 800; color: var(--primary); }
+.h-stat-lbl { font-size: 12px; color: var(--text3); margin-top: 4px; }
+
+.section { padding: 60px 5%; }
+.s-tag { display: inline-block; background: var(--green-light); color: var(--primary); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; border: 1px solid rgba(45,106,79,.2); }
+.s-title { font-size: clamp(20px, 2.5vw, 32px); font-weight: 800; margin-bottom: 8px; }
+.s-sub { color: var(--text3); font-size: 15px; }
+.s-header-row { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+.see-all { color: var(--primary); font-size: 14px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--border); padding: 8px 16px; border-radius: 8px; transition: all .2s; }
+.see-all:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+.productions-section { background: var(--bg2); }
+.prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.prod-card {
+  background: var(--bg); border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--border); box-shadow: var(--card-shadow); transition: all .25s; cursor: pointer;
+}
+.prod-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+.prod-header { padding: 20px 20px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+.prod-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.prod-info h3 { font-size: 15px; font-weight: 700; }
+.prod-info .qty { font-size: 13px; color: var(--text3); margin-top: 2px; }
+.prod-body { padding: 14px 20px; }
+.prod-price { font-size: 18px; font-weight: 800; color: var(--primary); margin-bottom: 6px; }
+.prod-price span { font-size: 12px; font-weight: 500; color: var(--text3); }
+.prod-desc { font-size: 13px; color: var(--text3); line-height: 1.6; margin-bottom: 12px; }
+.prod-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.prod-tag { background: var(--green-light); color: var(--primary); font-size: 11px; padding: 3px 8px; border-radius: 20px; font-weight: 600; }
+.prod-footer { padding: 12px 20px; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+.btn-acheter { flex: 1; background: var(--primary); color: #fff; padding: 8px; border-radius: 8px; font-size: 13px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
+.btn-acheter:hover { background: var(--primary-light); }
+.btn-info-prod { flex: 1; background: var(--bg3); color: var(--text2); padding: 8px; border-radius: 8px; font-size: 13px; border: 1px solid var(--border); cursor: pointer; transition: all .2s; }
+.btn-info-prod:hover { border-color: var(--primary); color: var(--primary); }
+
+.about-section { background: var(--bg3); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.about-content h2 { font-size: clamp(20px, 2.5vw, 30px); font-weight: 800; margin-bottom: 14px; }
+.about-content p { font-size: 15px; color: var(--text2); line-height: 1.8; margin-bottom: 12px; }
+.about-values { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.av-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px; background: var(--bg2); border-radius: 10px; border: 1px solid var(--border); }
+.av-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.av-text h4 { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+.av-text p { font-size: 12px; color: var(--text3); }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.as-card { background: var(--bg2); border-radius: 12px; padding: 20px; text-align: center; border: 1px solid var(--border); }
+.as-num { font-size: 28px; font-weight: 800; color: var(--primary); }
+.as-lbl { font-size: 12px; color: var(--text3); margin-top: 4px; }
+.as-icon { font-size: 24px; margin-bottom: 8px; }
+
+.formations-section { background: var(--bg2); }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.form-card {
+  background: var(--bg); border-radius: 14px; border: 1px solid var(--border);
+  overflow: hidden; transition: all .2s; box-shadow: var(--card-shadow);
+}
+.form-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+.form-header { padding: 16px 18px; border-bottom: 1px solid var(--border); }
+.form-date-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--green-light); color: var(--primary); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.form-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.form-card .formateur { font-size: 12px; color: var(--text3); }
+.form-body { padding: 14px 18px; }
+.form-meta { display: flex; gap: 14px; margin-bottom: 10px; flex-wrap: wrap; }
+.form-meta span { font-size: 12px; color: var(--text3); display: flex; align-items: center; gap: 4px; }
+.form-desc { font-size: 13px; color: var(--text3); line-height: 1.6; margin-bottom: 12px; }
+.form-price-row { display: flex; align-items: center; justify-content: space-between; }
+.form-price { font-size: 16px; font-weight: 800; color: var(--primary); }
+.btn-inscrire { background: var(--yellow); color: var(--primary); padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; border: none; cursor: pointer; transition: all .2s; }
+.btn-inscrire:hover { background: var(--accent-light); }
+
+.membres-section { }
+.membres-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; }
+.membre-card { background: var(--bg2); border-radius: 14px; padding: 20px; text-align: center; border: 1px solid var(--border); transition: all .2s; }
+.membre-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+.membre-av { width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: #fff; }
+.membre-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+.membre-card .village { font-size: 12px; color: var(--text3); margin-bottom: 8px; }
+.membre-card .prod-badge { display: inline-block; background: var(--green-light); color: var(--primary); font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; }
+
+.contact-section {
+  background: linear-gradient(135deg, var(--primary) 0%, #1B4332 100%);
+  color: #fff; padding: 70px 5%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+}
+.contact-left h2 { font-size: clamp(20px, 2.5vw, 32px); font-weight: 800; margin-bottom: 14px; }
+.contact-left p { opacity: .85; font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+.contact-info { display: flex; flex-direction: column; gap: 10px; }
+.ci { display: flex; align-items: center; gap: 10px; font-size: 14px; opacity: .9; }
+.contact-form { background: rgba(255,255,255,.1); backdrop-filter: blur(10px); border-radius: 16px; padding: 28px; border: 1px solid rgba(255,255,255,.2); }
+.cf-field { margin-bottom: 14px; }
+.cf-field label { display: block; font-size: 12px; opacity: .8; margin-bottom: 5px; }
+.cf-field input, .cf-field select, .cf-field textarea {
+  width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.1); color: #fff; font-size: 14px; outline: none; transition: border-color .2s;
+}
+.cf-field input::placeholder, .cf-field textarea::placeholder { color: rgba(255,255,255,.5); }
+.cf-field input:focus, .cf-field textarea:focus { border-color: var(--yellow); }
+.cf-field textarea { height: 80px; resize: none; }
+.btn-envoyer { width: 100%; background: var(--yellow); color: var(--primary); padding: 13px; border-radius: 10px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; transition: all .2s; margin-top: 4px; }
+
+footer { background: #1B4332; color: rgba(255,255,255,.65); padding: 50px 5% 24px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+.footer-logo { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.footer-brand p { font-size: 13px; line-height: 1.7; }
+.footer-col h4 { color: #fff; font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+.footer-col a { display: block; color: rgba(255,255,255,.6); text-decoration: none; font-size: 13px; margin-bottom: 8px; transition: color .2s; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.15); padding-top: 20px; display: flex; justify-content: space-between; font-size: 12px; flex-wrap: wrap; gap: 8px; }
+
+@media (max-width: 768px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .contact-section { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>🌾 Démo IBIG Digital — Commandez ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="logo">
+    <div class="logo-icon">🌾</div>
+    <div>
+      <div class="logo-text">Coopérative Agri-Burkina</div>
+      <div class="logo-sub">Ensemble, cultivons l'avenir</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Productions</a></li>
+    <li><a href="#">Vente groupée</a></li>
+    <li><a href="#">Formations</a></li>
+    <li><a href="#">Membres</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Rejoindre la coopérative</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge">🌍 Coopérative agricole depuis 2008 — Burkina Faso</div>
+      <h1>Cultivons ensemble, <span>vendons plus fort</span></h1>
+      <p>La Coopérative Agri-Burkina regroupe 340 agriculteurs de la région du Centre-Ouest. Semences améliorées, vente groupée, formations pratiques.</p>
+      <div class="hero-ctas">
+        <button class="btn-yellow">Voir nos productions</button>
+        <button class="btn-wh">Devenir membre</button>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>👨‍🌾 Membres récents</h3>
+      <div class="members-list">
+        <div class="member-item">
+          <div class="member-av">SK</div>
+          <div class="member-info">
+            <div class="member-name">Souleymane Kaboré</div>
+            <div class="member-prod">Maïs · Koudougou</div>
+          </div>
+          <div class="member-tons">12 t</div>
+        </div>
+        <div class="member-item">
+          <div class="member-av">FZ</div>
+          <div class="member-info">
+            <div class="member-name">Fatimata Zida</div>
+            <div class="member-prod">Sésame · Dédougou</div>
+          </div>
+          <div class="member-tons">8 t</div>
+        </div>
+        <div class="member-item">
+          <div class="member-av">BI</div>
+          <div class="member-info">
+            <div class="member-name">Boubacar Ilboudo</div>
+            <div class="member-prod">Mil · Boromo</div>
+          </div>
+          <div class="member-tons">15 t</div>
+        </div>
+        <div class="member-item">
+          <div class="member-av">AO</div>
+          <div class="member-info">
+            <div class="member-name">Aminata Ouédraogo</div>
+            <div class="member-prod">Haricot vert · Leo</div>
+          </div>
+          <div class="member-tons">5 t</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="h-stat"><div class="h-stat-num">340</div><div class="h-stat-lbl">Membres actifs</div></div>
+    <div class="h-stat"><div class="h-stat-num">1 200 t</div><div class="h-stat-lbl">Production annuelle</div></div>
+    <div class="h-stat"><div class="h-stat-num">8</div><div class="h-stat-lbl">Villages couverts</div></div>
+    <div class="h-stat"><div class="h-stat-num">+35%</div><div class="h-stat-lbl">Revenu moyen</div></div>
+  </div>
+</section>
+
+<section class="section productions-section">
+  <div class="s-header-row">
+    <div>
+      <div class="s-tag">Productions</div>
+      <div class="s-title">Nos produits disponibles</div>
+      <div class="s-sub">Directement des champs — vente groupée aux meilleures conditions</div>
+    </div>
+    <a href="#" class="see-all">Tout le catalogue →</a>
+  </div>
+  <div class="prod-grid">
+
+    <div class="prod-card">
+      <div class="prod-header">
+        <div class="prod-icon" style="background:#D8F3DC">🌽</div>
+        <div class="prod-info">
+          <h3>Maïs blanc local</h3>
+          <div class="qty">Stock: 80 000 kg disponibles</div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-price">145 FCFA <span>/ kg</span></div>
+        <div class="prod-desc">Maïs de qualité supérieure, récolte 2025. Séché naturellement, trié. Idéal pour transformation et consommation.</div>
+        <div class="prod-tags">
+          <span class="prod-tag">🌿 Bio</span>
+          <span class="prod-tag">📦 Sac 50 kg</span>
+          <span class="prod-tag">🚚 Livraison</span>
+        </div>
+      </div>
+      <div class="prod-footer">
+        <button class="btn-acheter">Commander</button>
+        <button class="btn-info-prod">Plus d'infos</button>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-header">
+        <div class="prod-icon" style="background:#FEF9C3">🌻</div>
+        <div class="prod-info">
+          <h3>Sésame blanc</h3>
+          <div class="qty">Stock: 12 000 kg disponibles</div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-price">620 FCFA <span>/ kg</span></div>
+        <div class="prod-desc">Sésame de haute qualité, certifié pour l'export. Faible taux d'impuretés. Prisé par les transformateurs internationaux.</div>
+        <div class="prod-tags">
+          <span class="prod-tag">🏆 Export</span>
+          <span class="prod-tag">📜 Certifié</span>
+          <span class="prod-tag">📦 Sac 25 kg</span>
+        </div>
+      </div>
+      <div class="prod-footer">
+        <button class="btn-acheter">Commander</button>
+        <button class="btn-info-prod">Plus d'infos</button>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-header">
+        <div class="prod-icon" style="background:#FCE7F3">🧅</div>
+        <div class="prod-info">
+          <h3>Oignon rouge sec</h3>
+          <div class="qty">Stock: 25 000 kg disponibles</div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-price">280 FCFA <span>/ kg</span></div>
+        <div class="prod-desc">Oignon rouge de Dori, calibre moyen, conservé en grange ventilée. Très apprécié des marchés de Ouagadougou et des pays voisins.</div>
+        <div class="prod-tags">
+          <span class="prod-tag">🧅 Premium</span>
+          <span class="prod-tag">🛒 Marché</span>
+        </div>
+      </div>
+      <div class="prod-footer">
+        <button class="btn-acheter">Commander</button>
+        <button class="btn-info-prod">Plus d'infos</button>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-header">
+        <div class="prod-icon" style="background:#FFFBEB">🫘</div>
+        <div class="prod-info">
+          <h3>Niébé (haricot)</h3>
+          <div class="qty">Stock: 40 000 kg disponibles</div>
+        </div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-price">310 FCFA <span>/ kg</span></div>
+        <div class="prod-desc">Niébé blanc, tricoté et lavé. Récolte de saison sèche. Très bonne conservation. Disponible en vrac ou en sacs de 50 kg.</div>
+        <div class="prod-tags">
+          <span class="prod-tag">🌿 Naturel</span>
+          <span class="prod-tag">📦 50 kg</span>
+          <span class="prod-tag">💰 Gros</span>
+        </div>
+      </div>
+      <div class="prod-footer">
+        <button class="btn-acheter">Commander</button>
+        <button class="btn-info-prod">Plus d'infos</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section about-section">
+  <div class="about-grid">
+    <div class="about-content">
+      <div class="s-tag">À propos</div>
+      <h2>Une coopérative construite sur la solidarité</h2>
+      <p>Fondée en 2008 par 18 agriculteurs de Koudougou, la Coopérative Agri-Burkina compte aujourd'hui 340 membres dans 8 villages du Centre-Ouest.</p>
+      <p>Notre modèle : mutualiser les ressources, partager les coûts d'intrants, vendre ensemble pour obtenir de meilleurs prix, et se former mutuellement.</p>
+      <div class="about-values">
+        <div class="av-item">
+          <div class="av-icon">🤝</div>
+          <div class="av-text"><h4>Vente groupée</h4><p>En vendant ensemble, nos membres obtiennent des prix 25% supérieurs au marché individuel.</p></div>
+        </div>
+        <div class="av-item">
+          <div class="av-icon">🌱</div>
+          <div class="av-text"><h4>Intrants partagés</h4><p>Semences, engrais et pesticides achetés en gros — économie de 30% sur les coûts.</p></div>
+        </div>
+        <div class="av-item">
+          <div class="av-icon">📚</div>
+          <div class="av-text"><h4>Formations pratiques</h4><p>Chaque saison, des formations agronomiques adaptées à notre région et nos cultures.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-stats">
+      <div class="as-card"><div class="as-icon">👨‍🌾</div><div class="as-num">340</div><div class="as-lbl">Membres</div></div>
+      <div class="as-card"><div class="as-icon">🏘️</div><div class="as-num">8</div><div class="as-lbl">Villages</div></div>
+      <div class="as-card"><div class="as-icon">🌾</div><div class="as-num">1 200t</div><div class="as-lbl">Production / an</div></div>
+      <div class="as-card"><div class="as-icon">📈</div><div class="as-num">+35%</div><div class="as-lbl">Revenu membres</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section formations-section">
+  <div class="s-header-row">
+    <div>
+      <div class="s-tag">Formations</div>
+      <div class="s-title">Prochaines formations agricoles</div>
+      <div class="s-sub">Renforcer vos compétences pour améliorer vos rendements</div>
+    </div>
+    <a href="#" class="see-all">Calendrier complet →</a>
+  </div>
+  <div class="form-grid">
+
+    <div class="form-card">
+      <div class="form-header">
+        <div class="form-date-badge">📅 15 Octobre 2025</div>
+        <h3>Maîtrise de l'irrigation goutte-à-goutte</h3>
+        <div class="formateur">Par : Ingénieur Sani Diabaté</div>
+      </div>
+      <div class="form-body">
+        <div class="form-meta">
+          <span>⏱ 2 jours</span>
+          <span>📍 Koudougou</span>
+          <span>👥 20 places</span>
+        </div>
+        <div class="form-desc">Maîtriser les techniques d'irrigation moderne pour optimiser la consommation d'eau et augmenter les rendements en saison sèche.</div>
+        <div class="form-price-row">
+          <div class="form-price">5 000 FCFA</div>
+          <button class="btn-inscrire">S'inscrire</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-header">
+        <div class="form-date-badge">📅 3 Novembre 2025</div>
+        <h3>Compostage et fertilisation naturelle</h3>
+        <div class="formateur">Par : Technicienne Aïssata Sanou</div>
+      </div>
+      <div class="form-body">
+        <div class="form-meta">
+          <span>⏱ 1 jour</span>
+          <span>📍 Boromo</span>
+          <span>👥 30 places</span>
+        </div>
+        <div class="form-desc">Préparer son propre compost, réduire les coûts d'engrais chimiques et améliorer durablement la fertilité des sols.</div>
+        <div class="form-price-row">
+          <div class="form-price">Gratuit</div>
+          <button class="btn-inscrire">S'inscrire</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-header">
+        <div class="form-date-badge">📅 20 Novembre 2025</div>
+        <h3>Gestion post-récolte et conservation</h3>
+        <div class="formateur">Par : Expert FAO Burkina</div>
+      </div>
+      <div class="form-body">
+        <div class="form-meta">
+          <span>⏱ 3 jours</span>
+          <span>📍 Dédougou</span>
+          <span>👥 15 places</span>
+        </div>
+        <div class="form-desc">Réduire les pertes post-récolte grâce aux bonnes pratiques de stockage, de séchage et de conditionnement pour l'export.</div>
+        <div class="form-price-row">
+          <div class="form-price">8 000 FCFA</div>
+          <button class="btn-inscrire">S'inscrire</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="s-header-row">
+    <div>
+      <div class="s-tag">Membres</div>
+      <div class="s-title">Quelques membres actifs</div>
+    </div>
+    <a href="#" class="see-all">Tous les membres →</a>
+  </div>
+  <div class="membres-grid">
+    <div class="membre-card">
+      <div class="membre-av" style="background:linear-gradient(135deg,#2D6A4F,#40916C)">SK</div>
+      <h3>Souleymane Kaboré</h3>
+      <div class="village">📍 Koudougou</div>
+      <div class="prod-badge">🌽 Maïs — 12 t</div>
+    </div>
+    <div class="membre-card">
+      <div class="membre-av" style="background:linear-gradient(135deg,#8B5E3C,#D4A574)">FZ</div>
+      <h3>Fatimata Zida</h3>
+      <div class="village">📍 Dédougou</div>
+      <div class="prod-badge">🌻 Sésame — 8 t</div>
+    </div>
+    <div class="membre-card">
+      <div class="membre-av" style="background:linear-gradient(135deg,#0369A1,#38BDF8)">BI</div>
+      <h3>Boubacar Ilboudo</h3>
+      <div class="village">📍 Boromo</div>
+      <div class="prod-badge">🌾 Mil — 15 t</div>
+    </div>
+    <div class="membre-card">
+      <div class="membre-av" style="background:linear-gradient(135deg,#9D174D,#EC4899)">AO</div>
+      <h3>Aminata Ouédraogo</h3>
+      <div class="village">📍 Leo</div>
+      <div class="prod-badge">🫘 Haricot — 5 t</div>
+    </div>
+    <div class="membre-card">
+      <div class="membre-av" style="background:linear-gradient(135deg,#92400E,#F59E0B)">DT</div>
+      <h3>Dramane Tall</h3>
+      <div class="village">📍 Tougan</div>
+      <div class="prod-badge">🧅 Oignon — 9 t</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="contact-left">
+    <h2>Rejoignez notre coopérative</h2>
+    <p>Que vous soyez agriculteur, transformateur ou acheteur en gros, contactez-nous pour découvrir comment travailler ensemble.</p>
+    <div class="contact-info">
+      <div class="ci">📞 +226 25 36 00 00</div>
+      <div class="ci">📱 +226 70 00 00 00 (WhatsApp)</div>
+      <div class="ci">📍 Koudougou, Burkina Faso</div>
+      <div class="ci">✉ contact@agri-burkina.bf</div>
+      <div class="ci">🕐 Lun–Sam : 7h–17h</div>
+    </div>
+  </div>
+  <div class="contact-form">
+    <div class="cf-field">
+      <label>Votre nom complet</label>
+      <input type="text" placeholder="Ex: Oumar Traoré">
+    </div>
+    <div class="cf-field">
+      <label>Téléphone</label>
+      <input type="tel" placeholder="+226 7X XX XX XX">
+    </div>
+    <div class="cf-field">
+      <label>Vous êtes</label>
+      <select style="color:var(--text2)">
+        <option>Agriculteur souhaitant adhérer</option>
+        <option>Acheteur en gros</option>
+        <option>Partenaire technique</option>
+        <option>Journaliste / ONG</option>
+        <option>Autre</option>
+      </select>
+    </div>
+    <div class="cf-field">
+      <label>Message</label>
+      <textarea placeholder="Votre message..."></textarea>
+    </div>
+    <button class="btn-envoyer">Envoyer le message</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">🌾 Coopérative Agri-Burkina</div>
+      <p>Regroupement d'agriculteurs du Centre-Ouest Burkina. Vente groupée, formations, semences améliorées depuis 2008.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Productions</h4>
+      <a href="#">Maïs et céréales</a>
+      <a href="#">Légumineuses</a>
+      <a href="#">Cultures de rente</a>
+      <a href="#">Maraîchage</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#">Vente groupée</a>
+      <a href="#">Semences subventionnées</a>
+      <a href="#">Formations</a>
+      <a href="#">Micro-crédit</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">📞 +226 25 36 00 00</a>
+      <a href="#">📱 +226 70 00 00 00</a>
+      <a href="#">📍 Koudougou, BF</a>
+      <a href="#">🕐 Lun–Sam 7h–17h</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Coopérative Agri-Burkina. Tous droits réservés.</span>
+    <span>Site créé avec <strong style="color:#40916C">IBIG Digital</strong></span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.btn-inscrire').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const orig = this.textContent;
+    this.textContent = '✅ Inscrit !';
+    this.style.background = '#2D6A4F';
+    this.style.color = '#fff';
+    setTimeout(() => {
+      this.textContent = orig;
+      this.style.background = '';
+      this.style.color = '';
+    }, 2000);
+  });
+});
+document.querySelector('.btn-envoyer').addEventListener('click', function() {
+  this.textContent = '✅ Message envoyé !';
+  setTimeout(() => { this.textContent = 'Envoyer le message'; }, 2500);
+});
+</script>
+</body>
+</html>

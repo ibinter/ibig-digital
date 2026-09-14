@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Villa Prestige Lagos — Villas de Luxe</title>
+<style>
+:root {
+  --primary: #C9A227;
+  --primary-light: #E8C547;
+  --bg: #0D1117;
+  --bg2: #161B22;
+  --bg3: #1C2333;
+  --text: #F0F6FC;
+  --text2: #8B949E;
+  --border: #30363D;
+  --card-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --gold: #C9A227;
+  --gold-light: rgba(201,162,39,0.15);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', Georgia, serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+.demo-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 40px; z-index: 9999;
+  background: #000; color: #fff; display: flex; align-items: center;
+  justify-content: center; gap: 16px; font-size: 13px; padding: 0 16px;
+  border-bottom: 1px solid var(--gold);
+}
+.demo-bar a {
+  background: #16A34A; color: #fff; padding: 4px 14px; border-radius: 20px;
+  text-decoration: none; font-weight: 600; font-size: 12px;
+}
+.demo-bar a:hover { background: #15803D; }
+
+nav {
+  position: sticky; top: 40px; z-index: 100; background: rgba(13,17,23,0.96);
+  backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
+  padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 70px;
+}
+.logo {
+  font-size: 20px; font-weight: 800; color: var(--gold); letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.logo span { color: var(--text2); font-weight: 300; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--text2); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; transition: color .2s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  background: transparent; color: var(--gold); padding: 10px 22px; border-radius: 4px;
+  font-weight: 600; font-size: 13px; cursor: pointer; letter-spacing: 1px;
+  border: 1px solid var(--gold); transition: all .2s; text-transform: uppercase;
+}
+.nav-cta:hover { background: var(--gold); color: var(--bg); }
+
+.hero {
+  min-height: 100vh; background: linear-gradient(180deg, rgba(13,17,23,.85) 0%, rgba(13,17,23,.6) 50%, var(--bg) 100%),
+    linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex; align-items: center; padding: 100px 5% 60px;
+  position: relative; overflow: hidden;
+}
+.hero-decor {
+  position: absolute; top: 0; right: 0; width: 55%; height: 100%;
+  background: linear-gradient(135deg, rgba(201,162,39,0.08) 0%, transparent 60%);
+  border-left: 1px solid rgba(201,162,39,0.1);
+}
+.hero-decor::before {
+  content: ''; position: absolute; top: 20%; right: 10%;
+  width: 300px; height: 300px; border-radius: 50%;
+  border: 1px solid rgba(201,162,39,0.15);
+}
+.hero-content { max-width: 640px; z-index: 1; }
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+}
+.eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+.eyebrow-text { color: var(--gold); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; }
+.hero h1 {
+  font-size: clamp(32px, 4.5vw, 58px); font-weight: 800; line-height: 1.1;
+  margin-bottom: 20px; color: var(--text);
+}
+.hero h1 span { color: var(--gold); }
+.hero p { font-size: 17px; color: var(--text2); margin-bottom: 36px; max-width: 500px; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 50px; }
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold) 0%, #E8C547 100%);
+  color: var(--bg); padding: 14px 32px; border-radius: 4px;
+  font-weight: 700; font-size: 14px; cursor: pointer; border: none;
+  letter-spacing: 1px; text-transform: uppercase; transition: all .2s;
+}
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,162,39,0.3); }
+.btn-ghost {
+  background: transparent; color: var(--text); padding: 14px 32px; border-radius: 4px;
+  font-weight: 600; font-size: 14px; cursor: pointer; letter-spacing: 1px;
+  border: 1px solid var(--border); transition: all .2s; text-transform: uppercase;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.hero-badges { display: flex; gap: 20px; flex-wrap: wrap; }
+.hero-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bg2); border: 1px solid var(--border);
+  padding: 10px 16px; border-radius: 8px;
+}
+.hero-badge-icon { font-size: 20px; }
+.hero-badge-label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; }
+.hero-badge-val { font-size: 14px; font-weight: 700; color: var(--text); }
+
+.divider {
+  height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 5%;
+}
+
+.section { padding: 70px 5%; }
+.section-header { text-align: center; margin-bottom: 50px; }
+.section-eyebrow { color: var(--gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+.section-title { font-size: clamp(24px, 2.5vw, 36px); font-weight: 800; color: var(--text); margin-bottom: 12px; }
+.section-sub { color: var(--text2); font-size: 15px; max-width: 500px; margin: 0 auto; }
+
+.villas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px; }
+.villa-card {
+  background: var(--bg2); border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--border); transition: all .3s; cursor: pointer;
+  box-shadow: var(--card-shadow);
+}
+.villa-card:hover { border-color: var(--gold); transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+.villa-img {
+  height: 220px; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #0f3460, #16213e);
+  display: flex; align-items: center; justify-content: center;
+}
+.villa-img-pattern {
+  width: 100%; height: 100%; opacity: .15;
+  background-image: repeating-linear-gradient(45deg, rgba(201,162,39,.3) 0px, rgba(201,162,39,.3) 1px, transparent 1px, transparent 12px);
+}
+.villa-img-icon { position: absolute; font-size: 60px; opacity: .3; }
+.villa-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: linear-gradient(135deg, var(--gold), #E8C547);
+  color: var(--bg); padding: 4px 12px; border-radius: 4px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+}
+.villa-photos {
+  position: absolute; bottom: 14px; right: 14px;
+  background: rgba(0,0,0,.6); color: #fff; padding: 4px 10px;
+  border-radius: 4px; font-size: 12px;
+}
+.villa-body { padding: 20px 22px; }
+.villa-price { font-size: 22px; font-weight: 800; color: var(--gold); margin-bottom: 8px; }
+.villa-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.villa-location { font-size: 13px; color: var(--text2); margin-bottom: 14px; }
+.villa-feats { display: flex; gap: 16px; padding-top: 14px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.feat { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+.villa-actions { display: flex; gap: 8px; margin-top: 16px; }
+.btn-tour { flex: 1; background: var(--gold-light); color: var(--gold); padding: 9px; border-radius: 6px; font-size: 13px; font-weight: 600; border: 1px solid rgba(201,162,39,.3); cursor: pointer; transition: all .2s; }
+.btn-tour:hover { background: var(--gold); color: var(--bg); }
+.btn-info { flex: 1; background: var(--bg3); color: var(--text); padding: 9px; border-radius: 6px; font-size: 13px; border: 1px solid var(--border); cursor: pointer; transition: all .2s; }
+.btn-info:hover { border-color: var(--gold); color: var(--gold); }
+
+.features-section { background: var(--bg2); }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+.feature-card {
+  padding: 28px; border-radius: 12px; border: 1px solid var(--border);
+  background: var(--bg); transition: all .2s;
+}
+.feature-card:hover { border-color: var(--gold); }
+.feature-number { font-size: 36px; font-weight: 800; color: var(--gold); opacity: .6; margin-bottom: 10px; }
+.feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+.feature-card p { font-size: 13px; color: var(--text2); }
+
+.process-section { }
+.process-steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; }
+.step {
+  text-align: center; padding: 32px 20px;
+  border: 1px solid var(--border); border-radius: 12px;
+  position: relative; transition: all .2s;
+}
+.step:hover { border-color: var(--gold); }
+.step-num {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), #E8C547);
+  color: var(--bg); font-size: 18px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.step h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+.step p { font-size: 13px; color: var(--text2); }
+
+.testimonials-section { background: var(--bg2); }
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+.testi-card {
+  padding: 28px; border-radius: 12px; border: 1px solid var(--border);
+  background: var(--bg); position: relative;
+}
+.testi-card::before { content: '"'; position: absolute; top: 16px; right: 20px; font-size: 80px; color: var(--gold); opacity: .15; font-family: Georgia; line-height: 1; }
+.testi-stars { color: var(--gold); margin-bottom: 14px; }
+.testi-card p { font-size: 14px; color: var(--text2); line-height: 1.7; font-style: italic; margin-bottom: 18px; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-av {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), #E8C547);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 14px; color: var(--bg);
+}
+.testi-name { font-weight: 700; font-size: 14px; color: var(--text); }
+.testi-loc { font-size: 12px; color: var(--text2); }
+
+.cta-section {
+  background: linear-gradient(135deg, var(--bg2) 0%, var(--bg) 100%);
+  border-top: 1px solid var(--border);
+  padding: 80px 5%; text-align: center;
+}
+.cta-section h2 { font-size: clamp(24px, 3vw, 40px); font-weight: 800; margin-bottom: 14px; }
+.cta-section h2 span { color: var(--gold); }
+.cta-section p { font-size: 15px; color: var(--text2); margin-bottom: 32px; }
+
+footer {
+  background: #000; border-top: 1px solid rgba(201,162,39,0.2);
+  padding: 50px 5% 24px; color: var(--text2);
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+.footer-brand { color: var(--text2); font-size: 13px; }
+.footer-logo { font-size: 18px; font-weight: 800; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+.footer-col h4 { color: var(--text); font-size: 12px; font-weight: 700; margin-bottom: 14px; letter-spacing: 2px; text-transform: uppercase; }
+.footer-col a { display: block; color: var(--text2); text-decoration: none; font-size: 13px; margin-bottom: 8px; transition: color .2s; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid var(--border); padding-top: 20px; display: flex; justify-content: space-between; font-size: 12px; flex-wrap: wrap; gap: 8px; }
+
+@media (max-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .hero-decor { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>🏛 Démo IBIG Digital — Commandez ce template luxe : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="logo">Villa<span>Prestige</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Propriétés</a></li>
+    <li><a href="#">Visites 360°</a></li>
+    <li><a href="#">Investir</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Visite privée</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-decor"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-text">L'excellence immobilière à Lagos</div>
+    </div>
+    <h1>Villas d'exception pour une vie <span>extraordinaire</span></h1>
+    <p>Découvrez notre collection exclusive de villas de prestige à Lagos, Lekki et Victoria Island. Architecture contemporaine, finitions haut de gamme.</p>
+    <div class="hero-btns">
+      <button class="btn-gold">Découvrir les propriétés</button>
+      <button class="btn-ghost">Visite virtuelle 360°</button>
+    </div>
+    <div class="hero-badges">
+      <div class="hero-badge">
+        <div class="hero-badge-icon">🏠</div>
+        <div>
+          <div class="hero-badge-label">Propriétés</div>
+          <div class="hero-badge-val">87 villas</div>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">💎</div>
+        <div>
+          <div class="hero-badge-label">Gamme prix</div>
+          <div class="hero-badge-val">180M – 2Md FCFA</div>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">⭐</div>
+        <div>
+          <div class="hero-badge-label">Satisfaction</div>
+          <div class="hero-badge-val">4.9 / 5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">Portfolio exclusif</div>
+    <div class="section-title">Nos propriétés d'exception</div>
+    <div class="section-sub">Sélectionnées pour leur architecture unique et leur emplacement privilégié</div>
+  </div>
+  <div class="villas-grid">
+
+    <div class="villa-card">
+      <div class="villa-img">
+        <div class="villa-img-pattern"></div>
+        <div class="villa-img-icon">🏰</div>
+        <span class="villa-badge">Exclusif</span>
+        <span class="villa-photos">📸 24 photos</span>
+      </div>
+      <div class="villa-body">
+        <div class="villa-price">850 000 000 FCFA</div>
+        <div class="villa-title">Résidence Oceanic — Villa Panoramique</div>
+        <div class="villa-location">📍 Victoria Island, Lagos</div>
+        <div class="villa-feats">
+          <div class="feat">🛏 6 chambres</div>
+          <div class="feat">🚿 5 SDB</div>
+          <div class="feat">📐 480 m²</div>
+          <div class="feat">🏊 Piscine</div>
+          <div class="feat">🏋 Salle sport</div>
+        </div>
+        <div class="villa-actions">
+          <button class="btn-tour">🎯 Visite 360°</button>
+          <button class="btn-info">Plus d'infos</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="villa-card">
+      <div class="villa-img" style="background:linear-gradient(135deg,#1a1a2e,#2d1b69)">
+        <div class="villa-img-pattern"></div>
+        <div class="villa-img-icon">🏡</div>
+        <span class="villa-badge">Nouveau</span>
+        <span class="villa-photos">📸 31 photos</span>
+      </div>
+      <div class="villa-body">
+        <div class="villa-price">1 200 000 000 FCFA</div>
+        <div class="villa-title">The Crown Estate — Villa Royale</div>
+        <div class="villa-location">📍 Banana Island, Lagos</div>
+        <div class="villa-feats">
+          <div class="feat">🛏 8 chambres</div>
+          <div class="feat">🚿 7 SDB</div>
+          <div class="feat">📐 750 m²</div>
+          <div class="feat">🏊 Piscine</div>
+          <div class="feat">🚗 Garage 4v</div>
+        </div>
+        <div class="villa-actions">
+          <button class="btn-tour">🎯 Visite 360°</button>
+          <button class="btn-info">Plus d'infos</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="villa-card">
+      <div class="villa-img" style="background:linear-gradient(135deg,#0f2027,#203a43)">
+        <div class="villa-img-pattern"></div>
+        <div class="villa-img-icon">🌊</div>
+        <span class="villa-badge" style="background:rgba(201,162,39,0.3);color:var(--gold);border:1px solid var(--gold)">Vendu</span>
+        <span class="villa-photos">📸 18 photos</span>
+      </div>
+      <div class="villa-body">
+        <div class="villa-price">480 000 000 FCFA</div>
+        <div class="villa-title">Lekki Pearl — Maison de Maître</div>
+        <div class="villa-location">📍 Lekki Phase 1, Lagos</div>
+        <div class="villa-feats">
+          <div class="feat">🛏 5 chambres</div>
+          <div class="feat">🚿 4 SDB</div>
+          <div class="feat">📐 380 m²</div>
+          <div class="feat">🌿 Jardin 800m²</div>
+        </div>
+        <div class="villa-actions">
+          <button class="btn-tour">📋 Voir similaires</button>
+          <button class="btn-info">Nous contacter</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section features-section">
+  <div class="section-header">
+    <div class="section-eyebrow">Pourquoi nous choisir</div>
+    <div class="section-title">L'excellence à chaque étape</div>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-number">01</div>
+      <h3>Sélection rigoureuse</h3>
+      <p>Chaque propriété est minutieusement inspectée et sélectionnée selon des critères d'excellence architecturale et de localisation.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-number">02</div>
+      <h3>Visites virtuelles 360°</h3>
+      <p>Explorez chaque villa depuis votre salon grâce à nos visites immersives en réalité augmentée avant de vous déplacer.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-number">03</div>
+      <h3>Discrétion absolue</h3>
+      <p>Confidentialité garantie pour chaque transaction. Notre service est adapté aux clients qui apprécient la discrétion.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-number">04</div>
+      <h3>Accompagnement complet</h3>
+      <p>Juridique, notaire, financement, décoration intérieure — nous coordonnons tout pour une expérience sans stress.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">Notre processus</div>
+    <div class="section-title">Acquérir votre villa en 4 étapes</div>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Consultation privée</h3>
+      <p>Rencontre confidentielle avec votre conseiller dédié pour définir vos critères et budget.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Sélection sur mesure</h3>
+      <p>Présentation d'une sélection exclusive de propriétés correspondant à vos exigences.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Visite & Négociation</h3>
+      <p>Visites organisées à votre convenance. Notre équipe négocie les meilleures conditions.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Acquisition sécurisée</h3>
+      <p>Accompagnement juridique et notarial complet pour finaliser votre acquisition en toute sécurité.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section testimonials-section">
+  <div class="section-header">
+    <div class="section-eyebrow">Témoignages</div>
+    <div class="section-title">Ils ont fait confiance à Villa Prestige</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p>« Une expérience d'acquisition exceptionnelle. L'équipe Villa Prestige a trouvé exactement ce que je cherchais à Victoria Island. Service 5 étoiles. »</p>
+      <div class="testi-author">
+        <div class="testi-av">EM</div>
+        <div><div class="testi-name">Emeka Mensah</div><div class="testi-loc">Lagos, entrepreneur tech</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p>« J'ai investi dans 3 propriétés via Villa Prestige en 2 ans. Chaque fois, le processus était fluide et le rendement conforme aux projections. »</p>
+      <div class="testi-author">
+        <div class="testi-av">CO</div>
+        <div><div class="testi-name">Chioma Okonkwo</div><div class="testi-loc">Lagos, PDG</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p>« La villa de mes rêves sur Banana Island. La visite virtuelle m'a permis de décider avant même de me déplacer depuis Abuja. Remarquable. »</p>
+      <div class="testi-author">
+        <div class="testi-av">AB</div>
+        <div><div class="testi-name">Abubakar Bello</div><div class="testi-loc">Abuja, investisseur</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Prêt à acquérir votre <span>villa de prestige</span> ?</h2>
+  <p>Rencontrez l'un de nos conseillers en privé pour une consultation personnalisée et confidentielle.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <button class="btn-gold">Consultation privée</button>
+    <button class="btn-ghost">+234 801 234 5678</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Villa Prestige</div>
+      <p>L'immobilier de luxe à Lagos depuis 2010. Sélection exclusive de propriétés d'exception pour une clientèle exigeante.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Propriétés</h4>
+      <a href="#">Villas à vendre</a>
+      <a href="#">Résidences haut de gamme</a>
+      <a href="#">Terrains premium</a>
+      <a href="#">Penthouse</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#">Conseil en investissement</a>
+      <a href="#">Gestion de patrimoine</a>
+      <a href="#">Décoration intérieure</a>
+      <a href="#">Évaluation</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">+234 801 234 5678</a>
+      <a href="#">prestige@villalagos.com</a>
+      <a href="#">Victoria Island, Lagos</a>
+      <a href="#">Sur rendez-vous uniquement</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Villa Prestige Lagos. Tous droits réservés.</span>
+    <span>Créé avec <strong style="color:var(--gold)">IBIG Digital</strong></span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.btn-tour').forEach(btn => {
+  if (btn.textContent.includes('360')) {
+    btn.addEventListener('click', () => {
+      btn.textContent = '⏳ Chargement...';
+      setTimeout(() => { btn.textContent = '🎯 Visite 360°'; }, 1800);
+    });
+  }
+});
+document.querySelectorAll('.villa-card').forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    card.style.transform = 'translateY(-8px)';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+</script>
+</body>
+</html>

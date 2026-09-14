@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pépinière Verte Cameroun — Plants & Jardinage</title>
+<style>
+:root {
+  --primary: #15803D;
+  --primary-light: #16A34A;
+  --primary-pale: #22C55E;
+  --accent: #84CC16;
+  --accent2: #65A30D;
+  --bg: #F0FDF4;
+  --bg2: #FFFFFF;
+  --bg3: #DCFCE7;
+  --text: #14532D;
+  --text2: #166534;
+  --text3: #6B7280;
+  --border: #BBF7D0;
+  --card-shadow: 0 4px 20px rgba(21,128,61,0.10);
+  --yellow: #FBBF24;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+
+.demo-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 40px; z-index: 9999;
+  background: #14532D; color: #fff; display: flex; align-items: center;
+  justify-content: center; gap: 16px; font-size: 13px; padding: 0 16px;
+}
+.demo-bar a { background: #16A34A; color: #fff; padding: 4px 14px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 12px; }
+
+nav {
+  position: sticky; top: 40px; z-index: 100; background: var(--bg2);
+  border-bottom: 2px solid var(--border);
+  padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 66px;
+  box-shadow: 0 2px 10px rgba(21,128,61,0.08);
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-leaf { font-size: 28px; }
+.logo-text { font-size: 18px; font-weight: 800; color: var(--primary); }
+.logo-text .sub { font-size: 11px; font-weight: 500; color: var(--text3); display: block; }
+.nav-links { display: flex; gap: 22px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--text3); font-size: 14px; font-weight: 500; transition: color .2s; }
+.nav-links a:hover { color: var(--primary); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-cart { display: flex; align-items: center; gap: 6px; background: var(--bg3); color: var(--primary); padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); transition: all .2s; }
+.nav-cart:hover { background: var(--primary); color: #fff; }
+.nav-cta { background: var(--primary); color: #fff; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: all .2s; }
+.nav-cta:hover { background: var(--primary-light); }
+
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, #166534 50%, #14532D 100%);
+  color: #fff; padding: 80px 5%; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '🌿'; position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+  font-size: 200px; opacity: .08; pointer-events: none; line-height: 1;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.hero-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.h-badge { display: inline-flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.15); padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.hero h1 { font-size: clamp(26px, 3.5vw, 46px); font-weight: 800; line-height: 1.2; margin-bottom: 14px; }
+.hero h1 span { color: #A3E635; }
+.hero p { font-size: 16px; opacity: .85; line-height: 1.8; margin-bottom: 28px; }
+.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+.btn-lime { background: #A3E635; color: var(--primary); padding: 12px 26px; border-radius: 8px; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: all .2s; }
+.btn-lime:hover { background: #BEF264; transform: translateY(-2px); }
+.btn-wh { background: rgba(255,255,255,.15); color: #fff; padding: 12px 26px; border-radius: 8px; font-weight: 600; font-size: 14px; border: 2px solid rgba(255,255,255,.3); cursor: pointer; transition: all .2s; }
+.btn-wh:hover { border-color: #fff; }
+.hero-facts { display: flex; gap: 28px; flex-wrap: wrap; }
+.h-fact { text-align: center; }
+.h-fact-num { font-size: 26px; font-weight: 800; color: #A3E635; }
+.h-fact-lbl { font-size: 11px; opacity: .7; margin-top: 2px; }
+.hero-search { background: rgba(255,255,255,.12); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.2); border-radius: 16px; padding: 20px 22px; }
+.hs-title { font-size: 14px; font-weight: 700; margin-bottom: 14px; opacity: .9; }
+.hs-cats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.hs-cat { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); border-radius: 8px; padding: 10px 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 13px; transition: all .2s; }
+.hs-cat:hover { background: rgba(255,255,255,.2); }
+.hs-cat.active { background: rgba(255,255,255,.25); border-color: rgba(255,255,255,.4); }
+.hs-input { display: flex; gap: 8px; }
+.hs-input input { flex: 1; padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.1); color: #fff; font-size: 14px; outline: none; }
+.hs-input input::placeholder { color: rgba(255,255,255,.5); }
+.hs-input button { background: #A3E635; color: var(--primary); padding: 10px 16px; border-radius: 8px; border: none; font-weight: 700; font-size: 13px; cursor: pointer; }
+
+.section { padding: 60px 5%; }
+.s-tag { display: inline-block; background: var(--bg3); color: var(--primary); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; border: 1px solid var(--border); }
+.s-title { font-size: clamp(20px, 2.5vw, 30px); font-weight: 800; margin-bottom: 8px; }
+.s-sub { color: var(--text3); font-size: 15px; }
+.s-header-row { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+.see-all { color: var(--primary); font-size: 14px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--border); padding: 8px 16px; border-radius: 8px; transition: all .2s; }
+.see-all:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+.catalogue-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.cf-btn { padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; border: 1.5px solid var(--border); cursor: pointer; transition: all .2s; background: var(--bg2); color: var(--text3); }
+.cf-btn.active, .cf-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+.plants-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+.plant-card {
+  background: var(--bg2); border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--border); box-shadow: var(--card-shadow); transition: all .25s; cursor: pointer;
+}
+.plant-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 12px 28px rgba(21,128,61,.18); }
+.plant-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 64px; position: relative; }
+.plant-badge { position: absolute; top: 10px; left: 10px; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+.pb-fruitier { background: var(--primary); color: #fff; }
+.pb-ornemental { background: #8B5CF6; color: #fff; }
+.pb-maraicher { background: var(--yellow); color: var(--primary); }
+.pb-promo { background: #EF4444; color: #fff; }
+.pb-medicinal { background: #0891B2; color: #fff; }
+.plant-fav { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,.9); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; cursor: pointer; }
+.plant-body { padding: 14px 16px; }
+.plant-name { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+.plant-sci { font-size: 11px; color: var(--text3); font-style: italic; margin-bottom: 8px; }
+.plant-price { font-size: 17px; font-weight: 800; color: var(--primary); margin-bottom: 6px; }
+.plant-info { font-size: 12px; color: var(--text3); line-height: 1.5; margin-bottom: 10px; }
+.plant-tags { display: flex; gap: 5px; flex-wrap: wrap; padding-top: 8px; border-top: 1px solid var(--border); margin-bottom: 10px; }
+.pt { background: var(--bg3); color: var(--primary); font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+.plant-footer { display: flex; gap: 6px; }
+.btn-panier { flex: 1; background: var(--primary); color: #fff; padding: 8px; border-radius: 8px; font-size: 13px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
+.btn-panier:hover { background: var(--primary-light); }
+.btn-detail { flex: 1; background: var(--bg3); color: var(--primary); padding: 8px; border-radius: 8px; font-size: 13px; border: 1px solid var(--border); cursor: pointer; transition: all .2s; }
+.btn-detail:hover { border-color: var(--primary); }
+
+.conseils-section { background: var(--bg2); }
+.conseils-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.conseil-card {
+  background: var(--bg); border-radius: 14px; padding: 22px; border: 1px solid var(--border); transition: all .2s;
+}
+.conseil-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+.conseil-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; }
+.conseil-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.conseil-card p { font-size: 13px; color: var(--text3); line-height: 1.6; }
+.conseil-tag { display: inline-block; background: var(--bg3); color: var(--primary); font-size: 11px; padding: 3px 8px; border-radius: 20px; margin-top: 10px; font-weight: 600; }
+
+.livraison-section { background: linear-gradient(135deg, var(--bg3) 0%, #F0FDF4 100%); }
+.livraison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.livraison-content h2 { font-size: clamp(20px, 2.5vw, 30px); font-weight: 800; margin-bottom: 14px; }
+.livraison-content p { font-size: 15px; color: var(--text3); line-height: 1.7; margin-bottom: 20px; }
+.livraison-steps { display: flex; flex-direction: column; gap: 12px; }
+.step { display: flex; align-items: flex-start; gap: 12px; }
+.step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+.step-content h4 { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+.step-content p { font-size: 13px; color: var(--text3); }
+.livraison-zones { background: var(--bg2); border-radius: 16px; padding: 24px; border: 1px solid var(--border); }
+.lz-title { font-size: 15px; font-weight: 700; margin-bottom: 16px; }
+.zone-list { display: flex; flex-direction: column; gap: 10px; }
+.zone { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--bg); border-radius: 8px; border: 1px solid var(--border); }
+.zone-name { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.zone-price { font-size: 13px; color: var(--primary); font-weight: 700; }
+.zone-delay { font-size: 12px; color: var(--text3); }
+
+.testi-section { }
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 20px; }
+.testi-card { background: var(--bg2); border-radius: 14px; padding: 22px; border: 1px solid var(--border); box-shadow: var(--card-shadow); }
+.testi-stars { color: var(--yellow); margin-bottom: 12px; }
+.testi-card p { font-size: 14px; color: var(--text3); line-height: 1.7; font-style: italic; margin-bottom: 14px; }
+.testi-author { display: flex; align-items: center; gap: 10px; }
+.tav { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: 14px; }
+.t-name { font-weight: 700; font-size: 14px; }
+.t-type { font-size: 12px; color: var(--text3); }
+
+.newsletter-section {
+  background: linear-gradient(135deg, var(--primary) 0%, #14532D 100%);
+  color: #fff; padding: 70px 5%; text-align: center;
+}
+.newsletter-section h2 { font-size: clamp(22px, 3vw, 36px); font-weight: 800; margin-bottom: 12px; }
+.newsletter-section p { opacity: .85; font-size: 15px; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.newsletter-form { display: flex; gap: 8px; max-width: 460px; margin: 0 auto; flex-wrap: wrap; }
+.newsletter-form input { flex: 1; padding: 13px 16px; border-radius: 8px; border: none; font-size: 14px; min-width: 200px; outline: none; color: var(--text); }
+.newsletter-form button { background: #A3E635; color: var(--primary); padding: 13px 20px; border-radius: 8px; border: none; font-weight: 700; font-size: 14px; cursor: pointer; white-space: nowrap; transition: all .2s; }
+.newsletter-form button:hover { background: #BEF264; }
+.newsletter-tip { font-size: 12px; opacity: .6; margin-top: 12px; }
+
+footer { background: #14532D; color: rgba(255,255,255,.65); padding: 50px 5% 24px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+.footer-logo { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.footer-brand p { font-size: 13px; line-height: 1.7; }
+.footer-col h4 { color: #fff; font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+.footer-col a { display: block; color: rgba(255,255,255,.6); text-decoration: none; font-size: 13px; margin-bottom: 8px; transition: color .2s; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.15); padding-top: 20px; display: flex; justify-content: space-between; font-size: 12px; flex-wrap: wrap; gap: 8px; }
+
+@media (max-width: 768px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .livraison-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>🌱 Démo IBIG Digital — Commandez ce template pépinière : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="logo">
+    <div class="logo-leaf">🌿</div>
+    <div>
+      <div class="logo-text">Pépinière Verte
+        <span class="sub">Yaoundé · Cameroun</span>
+      </div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Catalogue</a></li>
+    <li><a href="#">Fruits</a></li>
+    <li><a href="#">Ornementaux</a></li>
+    <li><a href="#">Conseils</a></li>
+    <li><a href="#">Livraison</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-cart">🛒 Panier <strong>(3)</strong></div>
+    <button class="nav-cta">Commander</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badges">
+        <span class="h-badge">🌍 Yaoundé, Cameroun</span>
+        <span class="h-badge">✅ Livraison 48h</span>
+        <span class="h-badge">🌱 Plants certifiés</span>
+      </div>
+      <h1>Votre pépinière en ligne, <span>des plants sains</span> livrés chez vous</h1>
+      <p>Fruitiers tropicaux, plantes ornementales, plants maraîchers, arbres médicinaux. 420+ espèces disponibles. Conseils d'experts inclus.</p>
+      <div class="hero-btns">
+        <button class="btn-lime">🛒 Voir le catalogue</button>
+        <button class="btn-wh">📞 Conseils gratuits</button>
+      </div>
+      <div class="hero-facts">
+        <div class="h-fact"><div class="h-fact-num">420+</div><div class="h-fact-lbl">Espèces</div></div>
+        <div class="h-fact"><div class="h-fact-num">12 ans</div><div class="h-fact-lbl">Expérience</div></div>
+        <div class="h-fact"><div class="h-fact-num">3 200</div><div class="h-fact-lbl">Clients</div></div>
+        <div class="h-fact"><div class="h-fact-num">48h</div><div class="h-fact-lbl">Livraison</div></div>
+      </div>
+    </div>
+    <div class="hero-search">
+      <div class="hs-title">🔍 Trouver votre plant</div>
+      <div class="hs-cats">
+        <div class="hs-cat active">🍋 Fruitiers</div>
+        <div class="hs-cat">🌸 Ornementaux</div>
+        <div class="hs-cat">🥦 Maraîchers</div>
+        <div class="hs-cat">🌿 Médicinaux</div>
+      </div>
+      <div class="hs-input">
+        <input type="text" placeholder="Rechercher une espèce...">
+        <button>🔍</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="s-header-row">
+    <div>
+      <div class="s-tag">Catalogue</div>
+      <div class="s-title">Nos plants disponibles</div>
+      <div class="s-sub">Tous cultivés dans nos serres à Yaoundé</div>
+    </div>
+    <a href="#" class="see-all">Tout le catalogue →</a>
+  </div>
+  <div class="catalogue-filters">
+    <button class="cf-btn active">Tout</button>
+    <button class="cf-btn">🍋 Fruitiers</button>
+    <button class="cf-btn">🌸 Ornementaux</button>
+    <button class="cf-btn">🥦 Maraîchers</button>
+    <button class="cf-btn">🌿 Médicinaux</button>
+    <button class="cf-btn">🌳 Forestiers</button>
+    <button class="cf-btn">💰 Promotions</button>
+  </div>
+  <div class="plants-grid">
+
+    <div class="plant-card">
+      <div class="plant-img" style="background:linear-gradient(135deg,#D1FAE5,#6EE7B7)">🥭
+        <span class="plant-badge pb-fruitier">Fruitier</span>
+        <span class="plant-fav">🤍</span>
+      </div>
+      <div class="plant-body">
+        <div class="plant-name">Manguier greffé Kent</div>
+        <div class="plant-sci">Mangifera indica cv. Kent</div>
+        <div class="plant-price">4 500 FCFA</div>
+        <div class="plant-info">Plant greffé de 60–80 cm, production en 2–3 ans. Mangue sucrée de grande taille, exportée en Europe.</div>
+        <div class="plant-tags">
+          <span class="pt">🌳 Grand arbre</span>
+          <span class="pt">🌞 Plein soleil</span>
+          <span class="pt">💧 Mod.</span>
+        </div>
+        <div class="plant-footer">
+          <button class="btn-panier">Ajouter au panier</button>
+          <button class="btn-detail">Détails</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="plant-img" style="background:linear-gradient(135deg,#FEF9C3,#FDE68A)">🍋
+        <span class="plant-badge pb-fruitier">Fruitier</span>
+        <span class="plant-fav">❤️</span>
+      </div>
+      <div class="plant-body">
+        <div class="plant-name">Citronnier de Menton</div>
+        <div class="plant-sci">Citrus limon</div>
+        <div class="plant-price">3 200 FCFA</div>
+        <div class="plant-info">Plant greffé, 40–60 cm. Production régulière toute l'année. Très adapté au climat camerounais.</div>
+        <div class="plant-tags">
+          <span class="pt">🏡 Jardin</span>
+          <span class="pt">🌞 Soleil</span>
+          <span class="pt">✂️ Taille facile</span>
+        </div>
+        <div class="plant-footer">
+          <button class="btn-panier">Ajouter au panier</button>
+          <button class="btn-detail">Détails</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="plant-img" style="background:linear-gradient(135deg,#FCE7F3,#F9A8D4)">🌺
+        <span class="plant-badge pb-ornemental">Ornemental</span>
+        <span class="plant-fav">🤍</span>
+      </div>
+      <div class="plant-body">
+        <div class="plant-name">Hibiscus rouge double</div>
+        <div class="plant-sci">Hibiscus rosa-sinensis</div>
+        <div class="plant-price">1 800 FCFA</div>
+        <div class="plant-info">Floraison spectaculaire, pot ou pleine terre. Entretien facile, pousse rapide. Idéal haie fleurie.</div>
+        <div class="plant-tags">
+          <span class="pt">🌸 Fleur</span>
+          <span class="pt">🏡 Haie</span>
+          <span class="pt">💪 Robuste</span>
+        </div>
+        <div class="plant-footer">
+          <button class="btn-panier">Ajouter au panier</button>
+          <button class="btn-detail">Détails</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="plant-img" style="background:linear-gradient(135deg,#D1FAE5,#A7F3D0)">🥬
+        <span class="plant-badge pb-maraicher">Maraîcher</span>
+        <span class="plant-fav">🤍</span>
+      </div>
+      <div class="plant-body">
+        <div class="plant-name">Tomate Mongal F1</div>
+        <div class="plant-sci">Lycopersicum esculentum</div>
+        <div class="plant-price">150 FCFA / plant</div>
+        <div class="plant-info">Plantule de 10–15 cm, variété hybride, résistante aux maladies. Production abondante en 60 jours.</div>
+        <div class="plant-tags">
+          <span class="pt">⚡ Rapide</span>
+          <span class="pt">🔬 Hybride</span>
+          <span class="pt">📦 Par 50</span>
+        </div>
+        <div class="plant-footer">
+          <button class="btn-panier">Ajouter au panier</button>
+          <button class="btn-detail">Détails</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="plant-img" style="background:linear-gradient(135deg,#E0F2FE,#BAE6FD)">🎋
+        <span class="plant-badge pb-medicinal">Médicinal</span>
+        <span class="plant-fav">🤍</span>
+      </div>
+      <div class="plant-body">
+        <div class="plant-name">Moringa oleifera</div>
+        <div class="plant-sci">Moringa oleifera Lam.</div>
+        <div class="plant-price">2 000 FCFA</div>
+        <div class="plant-info">Arbre aux multiples vertus nutritives et médicinales. Feuilles, graines et huile utilisables. Croissance très rapide.</div>
+        <div class="plant-tags">
+          <span class="pt">💊 Médicinal</span>
+          <span class="pt">⚡ Croissance</span>
+          <span class="pt">🌞 Soleil</span>
+        </div>
+        <div class="plant-footer">
+          <button class="btn-panier">Ajouter au panier</button>
+          <button class="btn-detail">Détails</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="plant-img" style="background:linear-gradient(135deg,#FFF7ED,#FED7AA)">🍊
+        <span class="plant-badge pb-promo">Promo -20%</span>
+        <span class="plant-fav">❤️</span>
+      </div>
+      <div class="plant-body">
+        <div class="plant-name">Oranger Washington Navel</div>
+        <div class="plant-sci">Citrus sinensis</div>
+        <div class="plant-price">3 600 FCFA <span style="text-decoration:line-through;font-size:12px;color:var(--text3)">4 500</span></div>
+        <div class="plant-info">Plant greffé 50–70 cm. Variété sans pépin, très sucrée. S'adapte parfaitement au Cameroun.</div>
+        <div class="plant-tags">
+          <span class="pt">🍊 Sans pépin</span>
+          <span class="pt">🌳 Arbre</span>
+          <span class="pt">💰 Promo</span>
+        </div>
+        <div class="plant-footer">
+          <button class="btn-panier">Ajouter au panier</button>
+          <button class="btn-detail">Détails</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section conseils-section">
+  <div style="text-align:center;margin-bottom:36px">
+    <div class="s-tag">Jardinage</div>
+    <div class="s-title">Conseils pratiques de jardinage</div>
+    <div class="s-sub">Nos experts partagent leurs astuces pour un jardin florissant</div>
+  </div>
+  <div class="conseils-grid">
+    <div class="conseil-card">
+      <div class="conseil-icon">💧</div>
+      <h3>Arrosage optimal</h3>
+      <p>Arrosez le matin, à la base des plantes. En saison sèche, un arrosage tous les 2 jours suffit pour la plupart des fruitiers.</p>
+      <span class="conseil-tag">🌞 Été</span>
+    </div>
+    <div class="conseil-card">
+      <div class="conseil-icon">🌱</div>
+      <h3>Sol et compost</h3>
+      <p>Un bon sol = 60% succès. Mélangez terre locale, compost bien décomposé et sable. Évitez les sols trop argileux pour les citrus.</p>
+      <span class="conseil-tag">🌿 Sol</span>
+    </div>
+    <div class="conseil-card">
+      <div class="conseil-icon">✂️</div>
+      <h3>Taille et entretien</h3>
+      <p>Taillez en début de saison sèche. Retirez les branches mortes. Une taille légère régulière vaut mieux qu'une taille sévère annuelle.</p>
+      <span class="conseil-tag">🌳 Entretien</span>
+    </div>
+    <div class="conseil-card">
+      <div class="conseil-icon">🐛</div>
+      <h3>Lutte naturelle</h3>
+      <p>Savon noir, décoction de neem, purins végétaux. Des solutions efficaces pour lutter contre les insectes sans produits chimiques.</p>
+      <span class="conseil-tag">🌿 Bio</span>
+    </div>
+  </div>
+</section>
+
+<section class="section livraison-section">
+  <div class="livraison-grid">
+    <div class="livraison-content">
+      <div class="s-tag">Livraison</div>
+      <h2>Livraison à Yaoundé et dans tout le Cameroun</h2>
+      <p>Vos plants sont conditionnés avec soin dans des emballages spéciaux pour voyager en parfait état. Suivi en temps réel disponible.</p>
+      <div class="livraison-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Commandez en ligne</h4>
+            <p>Choisissez vos plants, ajoutez au panier, validez votre commande.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Préparation de commande</h4>
+            <p>Nos équipes préparent vos plants avec emballage de protection spécial.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Livraison chez vous</h4>
+            <p>Livraison en 24–72h selon votre zone. Paiement à la livraison disponible.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="livraison-zones">
+      <div class="lz-title">📍 Zones et tarifs de livraison</div>
+      <div class="zone-list">
+        <div class="zone">
+          <div class="zone-name">🏙️ Yaoundé centre</div>
+          <div class="zone-price">Gratuit</div>
+          <div class="zone-delay">24h</div>
+        </div>
+        <div class="zone">
+          <div class="zone-name">🏘️ Yaoundé périphérie</div>
+          <div class="zone-price">1 000 FCFA</div>
+          <div class="zone-delay">48h</div>
+        </div>
+        <div class="zone">
+          <div class="zone-name">🌆 Douala</div>
+          <div class="zone-price">3 500 FCFA</div>
+          <div class="zone-delay">48h</div>
+        </div>
+        <div class="zone">
+          <div class="zone-name">🏙️ Bafoussam</div>
+          <div class="zone-price">4 000 FCFA</div>
+          <div class="zone-delay">48h</div>
+        </div>
+        <div class="zone">
+          <div class="zone-name">🌍 Autres villes</div>
+          <div class="zone-price">Sur devis</div>
+          <div class="zone-delay">2–5 jours</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div style="text-align:center;margin-bottom:36px">
+    <div class="s-tag">Avis</div>
+    <div class="s-title">Nos clients jardiniers témoignent</div>
+    <div class="s-sub">4.9/5 · Plus de 800 avis vérifiés</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p>« J'ai commandé 6 manguiers greffés. Livraison en 24h, plants parfaitement emballés et en excellente santé. Déjà 3 qui fleurissent après 8 mois ! »</p>
+      <div class="testi-author">
+        <div class="tav" style="background:linear-gradient(135deg,#15803D,#22C55E)">JN</div>
+        <div><div class="t-name">Jean Nguele</div><div class="t-type">🏡 Jardin familial · Yaoundé</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p>« Pépinière très professionnelle. Les conseils de M. Tchamba ont été précieux pour le plantation de mes citronniers. Je commande maintenant régulièrement. »</p>
+      <div class="testi-author">
+        <div class="tav" style="background:linear-gradient(135deg,#0891B2,#22D3EE)">GB</div>
+        <div><div class="t-name">Grace Biyong</div><div class="t-type">🌿 Jardin thérapeutique · Douala</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p>« J'ai équipé tout mon verger grâce à Pépinière Verte. 40 plants fruitiers commandés en 2 ans, taux de reprise exceptionnel, service client au top. »</p>
+      <div class="testi-author">
+        <div class="tav" style="background:linear-gradient(135deg,#92400E,#F59E0B)">PA</div>
+        <div><div class="t-name">Paul Atanga</div><div class="t-type">🏡 Agriculteur · Bafoussam</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter-section">
+  <h2>🌱 Restez connecté à la nature</h2>
+  <p>Recevez nos conseils saisonniers, nouveaux plants et promotions chaque semaine.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="votre@email.com">
+    <button>S'abonner</button>
+  </div>
+  <div class="newsletter-tip">Pas de spam. Désinscription en 1 clic. 3 200 abonnés.</div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">🌿 Pépinière Verte Cameroun</div>
+      <p>Votre partenaire jardinage depuis 2013. 420+ espèces de plants, livraison dans tout le Cameroun, conseils d'experts gratuits.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Catalogue</h4>
+      <a href="#">Fruitiers tropicaux</a>
+      <a href="#">Plantes ornementales</a>
+      <a href="#">Maraîchage</a>
+      <a href="#">Médicinaux</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#">Livraison express</a>
+      <a href="#">Conseils gratuits</a>
+      <a href="#">Aménagement jardin</a>
+      <a href="#">Programmes fidélité</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">📞 +237 22 00 00 00</a>
+      <a href="#">📱 +237 670 00 00 00</a>
+      <a href="#">📍 Yaoundé, Cameroun</a>
+      <a href="#">🕐 Lun–Sam 7h–18h</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Pépinière Verte Cameroun. Tous droits réservés.</span>
+    <span>Site créé avec <strong style="color:#4ADE80">IBIG Digital</strong></span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.cf-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cf-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+document.querySelectorAll('.hs-cat').forEach(cat => {
+  cat.addEventListener('click', () => {
+    document.querySelectorAll('.hs-cat').forEach(c => c.classList.remove('active'));
+    cat.classList.add('active');
+  });
+});
+document.querySelectorAll('.btn-panier').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const prev = this.textContent;
+    this.textContent = '✅ Ajouté !';
+    this.style.background = '#15803D';
+    setTimeout(() => {
+      this.textContent = prev;
+      this.style.background = '';
+    }, 1500);
+  });
+});
+document.querySelectorAll('.plant-fav').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    btn.textContent = btn.textContent === '🤍' ? '❤️' : '🤍';
+  });
+});
+</script>
+</body>
+</html>

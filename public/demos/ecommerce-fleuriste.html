@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jardin des Fleurs Dakar — Bouquets & Compositions Florales</title>
+<style>
+:root{--bg:#FFF5F7;--bg2:#fff;--bg3:#FDE8F0;--pink:#EC4899;--pink2:#DB2777;--pink-light:#FBCFE8;--green:#16A34A;--green2:#166534;--green-light:#D1FAE5;--dark:#1F2937;--gray:#6B7280;--gray2:#9CA3AF;--gold:#D97706}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--dark);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
+.demo-bar strong{color:#EC4899}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600}
+nav{position:sticky;top:40px;z-index:999;background:rgba(255,255,255,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--pink-light);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.brand-icon{font-size:28px}
+.brand-text .bn{font-size:19px;font-weight:700;color:var(--pink2);font-family:Georgia,serif}
+.brand-text .bs{font-size:11px;color:var(--green2);letter-spacing:1px}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{color:var(--dark);text-decoration:none;font-size:14px;transition:color .2s}
+.nav-links a:hover{color:var(--pink)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.search-box{background:var(--bg);border:1px solid var(--pink-light);border-radius:24px;padding:8px 16px;font-size:13px;color:var(--dark);outline:none;width:200px}
+.order-btn{background:var(--pink);color:#fff;padding:10px 20px;border-radius:24px;font-size:13px;font-weight:700;border:none;cursor:pointer}
+/* HERO */
+.hero{background:linear-gradient(to bottom right,#FFF5F7,#FDE8F0);padding:80px 32px 60px;overflow:hidden;position:relative}
+.hero-petals{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.petal{position:absolute;font-size:24px;opacity:0.12;animation:fall linear infinite}
+@keyframes fall{from{transform:translateY(-20px) rotate(0);opacity:0.12}to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--green-light);color:var(--green2);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:52px;font-weight:700;line-height:1.1;color:var(--dark);margin-bottom:18px;font-family:Georgia,'Times New Roman',serif}
+.hero h1 em{color:var(--pink)}
+.hero-p{font-size:16px;color:var(--gray);line-height:1.75;margin-bottom:28px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-pink{background:var(--pink);color:#fff;padding:14px 28px;border-radius:30px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-pink:hover{background:var(--pink2);transform:translateY(-2px)}
+.btn-green{background:var(--green);color:#fff;padding:14px 28px;border-radius:30px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-green:hover{background:var(--green2)}
+.hero-guarantees{display:flex;gap:20px;margin-top:28px;flex-wrap:wrap}
+.hg-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gray)}
+.hero-visual{}
+.flower-card{background:white;border-radius:20px;padding:28px;box-shadow:0 16px 48px rgba(236,72,153,0.15)}
+.fc-main{background:var(--bg);border-radius:14px;padding:28px;text-align:center;margin-bottom:16px}
+.fc-emoji{font-size:80px}
+.fc-name{font-size:17px;font-weight:700;color:var(--dark);margin-top:10px;font-family:Georgia,serif}
+.fc-price{font-size:22px;font-weight:800;color:var(--pink);margin-top:6px}
+.fc-avail{font-size:12px;color:var(--green);margin-top:4px;font-weight:600}
+.fc-occasions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;justify-content:center}
+.oc-tag{background:var(--pink-light);color:var(--pink2);font-size:11px;padding:3px 10px;border-radius:10px;font-weight:600}
+.fc-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.fc-mini-item{background:var(--bg);border-radius:10px;padding:12px;text-align:center}
+.fc-mi-emoji{font-size:32px}
+.fc-mi-name{font-size:11px;color:var(--gray);margin-top:4px}
+.fc-mi-price{font-size:12px;font-weight:700;color:var(--pink)}
+/* OCCASIONS */
+.section{padding:60px 32px;max-width:1200px;margin:0 auto}
+.s-title{text-align:center;margin-bottom:40px}
+.s-title h2{font-size:36px;font-weight:700;font-family:Georgia,serif}
+.s-title h2 em{color:var(--pink)}
+.s-title p{color:var(--gray);margin-top:8px;font-size:15px}
+.occasions-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.occ-card{background:white;border-radius:16px;padding:28px;text-align:center;box-shadow:0 4px 20px rgba(236,72,153,0.08);cursor:pointer;transition:all .3s}
+.occ-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(236,72,153,0.18)}
+.occ-icon{font-size:48px;margin-bottom:14px}
+.occ-name{font-size:17px;font-weight:700;color:var(--dark);font-family:Georgia,serif}
+.occ-desc{font-size:13px;color:var(--gray);margin-top:6px;line-height:1.5}
+.occ-price{font-size:16px;font-weight:700;color:var(--pink);margin-top:10px}
+/* BOUQUETS */
+.bouquets-section{background:white;padding:60px 32px}
+.bouquets-inner{max-width:1200px;margin:0 auto}
+.bouquets-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:36px}
+.bouquet-card{background:var(--bg);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .3s}
+.bouquet-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(236,72,153,0.15)}
+.bq-img{height:200px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:72px;position:relative}
+.bq-tag{position:absolute;top:10px;left:10px;background:var(--pink);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px}
+.bq-tag-green{position:absolute;top:10px;left:10px;background:var(--green);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px}
+.bq-fav{position:absolute;top:10px;right:10px;background:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center}
+.bq-body{padding:16px}
+.bq-type{font-size:11px;color:var(--pink);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.bq-name{font-size:15px;font-weight:700;color:var(--dark);margin:5px 0;font-family:Georgia,serif}
+.bq-flowers{font-size:12px;color:var(--gray);margin-bottom:8px}
+.bq-stars{color:#F59E0B;font-size:11px;margin-bottom:8px}
+.bq-row{display:flex;align-items:center;justify-content:space-between}
+.bq-price{font-size:18px;font-weight:800;color:var(--pink)}
+.btn-order{background:var(--pink);color:#fff;border:none;padding:9px 16px;border-radius:24px;font-size:12px;font-weight:700;cursor:pointer;transition:background .2s}
+.btn-order:hover{background:var(--pink2)}
+/* DELIVERY ZONES */
+.delivery-section{background:var(--bg);padding:60px 32px}
+.delivery-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.del-text h2{font-size:36px;font-weight:700;font-family:Georgia,serif;color:var(--dark);margin-bottom:16px}
+.del-text h2 em{color:var(--green)}
+.del-text p{color:var(--gray);font-size:15px;line-height:1.75;margin-bottom:20px}
+.del-zones{display:flex;flex-direction:column;gap:12px}
+.del-zone{background:white;border-radius:10px;padding:16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,0.04)}
+.dz-left{display:flex;align-items:center;gap:12px}
+.dz-icon{font-size:24px}
+.dz-name{font-size:14px;font-weight:700}
+.dz-time{font-size:12px;color:var(--gray)}
+.dz-price{font-size:14px;font-weight:700;color:var(--green)}
+.del-visual{display:flex;flex-direction:column;gap:16px}
+.del-card{background:white;border-radius:14px;padding:24px;box-shadow:0 4px 20px rgba(236,72,153,0.1);text-align:center}
+.del-emoji{font-size:56px}
+.del-title{font-size:16px;font-weight:700;margin-top:10px}
+.del-desc{font-size:13px;color:var(--gray);margin-top:6px}
+/* ATELIER */
+.atelier{padding:60px 32px;max-width:1200px;margin:0 auto}
+.atelier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.atelier-card{background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+.atelier-emoji{font-size:40px;margin-bottom:12px}
+.atelier-name{font-size:16px;font-weight:700;font-family:Georgia,serif}
+.atelier-desc{font-size:13px;color:var(--gray);line-height:1.6;margin-top:8px}
+.atelier-price{font-size:18px;font-weight:800;color:var(--pink);margin-top:12px}
+.btn-reserve{width:100%;background:var(--bg);border:1.5px solid var(--pink);color:var(--pink);padding:10px;border-radius:24px;font-size:13px;font-weight:700;cursor:pointer;margin-top:12px;transition:all .2s}
+.btn-reserve:hover{background:var(--pink);color:#fff}
+/* TESTIMONIALS */
+.testis{background:var(--bg3);padding:60px 32px}
+.testis-inner{max-width:1200px;margin:0 auto}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.testi-card{background:white;border-radius:16px;padding:24px}
+.testi-stars{color:#F59E0B;margin-bottom:10px}
+.testi-text{font-size:14px;color:var(--gray);line-height:1.7;font-style:italic;margin-bottom:16px}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-av{width:38px;height:38px;border-radius:50%;background:var(--pink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.testi-nm{font-size:13px;font-weight:700}
+.testi-lo{font-size:11px;color:var(--gray)}
+/* FOOTER */
+footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-desc{color:#9CA3AF;font-size:13px;line-height:1.7;margin:12px 0}
+.fh{font-size:13px;font-weight:700;margin-bottom:14px;color:var(--pink)}
+.ful{list-style:none}
+.ful li{margin-bottom:9px}
+.ful li a{color:#9CA3AF;text-decoration:none;font-size:13px;transition:color .2s}
+.ful li a:hover{color:var(--pink)}
+.foot-bottom{border-top:1px solid #374151;padding-top:20px;display:flex;justify-content:space-between;color:#6B7280;font-size:12px}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <span>Démo IBIG Digital — <strong>Jardin des Fleurs Dakar</strong> — Commander ce template :</span>
+  <strong>25 000 FCFA</strong>
+  <a href="#">Commander</a>
+</div>
+
+<div class="hero-petals">
+  <span class="petal" style="left:5%;animation-duration:8s;animation-delay:0s">🌸</span>
+  <span class="petal" style="left:20%;animation-duration:12s;animation-delay:2s">🌺</span>
+  <span class="petal" style="left:40%;animation-duration:10s;animation-delay:4s">🌹</span>
+  <span class="petal" style="left:65%;animation-duration:9s;animation-delay:1s">🌸</span>
+  <span class="petal" style="left:80%;animation-duration:11s;animation-delay:3s">🌷</span>
+  <span class="petal" style="left:90%;animation-duration:7s;animation-delay:0.5s">🌺</span>
+</div>
+
+<nav>
+  <div class="nav-brand">
+    <span class="brand-icon">🌸</span>
+    <div class="brand-text">
+      <div class="bn">Jardin des Fleurs</div>
+      <div class="bs">Dakar · Livraison 4h · Depuis 2016</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Bouquets</a></li>
+    <li><a href="#">Compositions</a></li>
+    <li><a href="#">Occasions</a></li>
+    <li><a href="#">Abonnements</a></li>
+    <li><a href="#">Ateliers</a></li>
+    <li><a href="#">Pro</a></li>
+  </ul>
+  <div class="nav-right">
+    <input class="search-box" placeholder="🔍 Roses, orchidées…">
+    <button class="order-btn">🌹 Commander</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">🌿 Fraîcheur Garantie · Livraison 4h Dakar</div>
+      <h1>Des fleurs fraîches<br>livrées avec <em>amour</em></h1>
+      <p class="hero-p">Bouquets artisanaux, compositions événementielles et abonnements fleuris — créés chaque matin par nos fleuristes passionnés et livrés dans tout Dakar.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-pink">🌹 Commander un Bouquet</a>
+        <a href="#" class="btn-green">📅 S'abonner</a>
+      </div>
+      <div class="hero-guarantees">
+        <div class="hg-item">🚀 Livraison 4h</div>
+        <div class="hg-item">🌿 Fleurs fraîches du jour</div>
+        <div class="hg-item">✋ Créées à la main</div>
+        <div class="hg-item">📸 Photo avant livraison</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="flower-card">
+        <div class="fc-main">
+          <div class="fc-emoji">💐</div>
+          <div class="fc-name">Bouquet Prestige Dakar</div>
+          <div class="fc-price">28 500 FCFA</div>
+          <div class="fc-avail">✅ Disponible aujourd'hui — Livraison avant 16h</div>
+          <div class="fc-occasions">
+            <span class="oc-tag">Mariage</span>
+            <span class="oc-tag">Anniversaire</span>
+            <span class="oc-tag">Amour</span>
+          </div>
+        </div>
+        <div class="fc-mini">
+          <div class="fc-mini-item"><div class="fc-mi-emoji">🌹</div><div class="fc-mi-name">Roses Rouges</div><div class="fc-mi-price">12 000 FCFA</div></div>
+          <div class="fc-mini-item"><div class="fc-mi-emoji">🌷</div><div class="fc-mi-name">Tulipes Rose</div><div class="fc-mi-price">15 000 FCFA</div></div>
+          <div class="fc-mini-item"><div class="fc-mi-emoji">🌻</div><div class="fc-mi-name">Tournesols</div><div class="fc-mi-price">9 500 FCFA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section">
+  <div class="s-title">
+    <h2>Pour toutes les <em>Occasions</em></h2>
+    <p>Un bouquet parfait pour chaque moment de vie</p>
+  </div>
+  <div class="occasions-grid">
+    <div class="occ-card">
+      <div class="occ-icon">💍</div>
+      <div class="occ-name">Mariages</div>
+      <div class="occ-desc">Bouquets de mariée, arches florales, décoration de salle — votre jour J sublimé</div>
+      <div class="occ-price">À partir de 85 000 FCFA</div>
+    </div>
+    <div class="occ-card">
+      <div class="occ-icon">🎂</div>
+      <div class="occ-name">Anniversaires</div>
+      <div class="occ-desc">Surprenez vos proches avec un bouquet livré à l'heure exacte de leur anniversaire</div>
+      <div class="occ-price">À partir de 12 000 FCFA</div>
+    </div>
+    <div class="occ-card">
+      <div class="occ-icon">🏢</div>
+      <div class="occ-name">Événements Pro</div>
+      <div class="occ-desc">Centres de table, compositions pour conférences, inaugurations et cérémonies</div>
+      <div class="occ-price">Sur devis</div>
+    </div>
+    <div class="occ-card">
+      <div class="occ-icon">💛</div>
+      <div class="occ-name">Deuil & Hommage</div>
+      <div class="occ-desc">Couronnes, gerbes et compositions florales pour accompagner avec dignité</div>
+      <div class="occ-price">À partir de 20 000 FCFA</div>
+    </div>
+  </div>
+</div>
+
+<div class="bouquets-section">
+  <div class="bouquets-inner">
+    <div class="s-title"><h2>Nos <em>Bouquets</em> du Moment</h2><p>Créations fraîches disponibles à la commande</p></div>
+    <div class="bouquets-grid">
+      <div class="bouquet-card">
+        <div class="bq-img">🌹<span class="bq-tag">⭐ Favori</span><span class="bq-fav">♡</span></div>
+        <div class="bq-body">
+          <div class="bq-type">Bouquet Romantique</div>
+          <div class="bq-name">Éclat de Rose Rouge</div>
+          <div class="bq-flowers">20 roses rouges · Feuillage vert · Ruban satin</div>
+          <div class="bq-stars">★★★★★ (189)</div>
+          <div class="bq-row"><span class="bq-price">18 500 FCFA</span><button class="btn-order">Commander</button></div>
+        </div>
+      </div>
+      <div class="bouquet-card">
+        <div class="bq-img">💐<span class="bq-tag-green">BIO LOCAL</span><span class="bq-fav">♡</span></div>
+        <div class="bq-body">
+          <div class="bq-type">Bouquet Printanier</div>
+          <div class="bq-name">Jardin Sénégalais</div>
+          <div class="bq-flowers">Fleurs locales de saison · Herbes aromatiques · Emballage kraft</div>
+          <div class="bq-stars">★★★★★ (134)</div>
+          <div class="bq-row"><span class="bq-price">14 000 FCFA</span><button class="btn-order">Commander</button></div>
+        </div>
+      </div>
+      <div class="bouquet-card">
+        <div class="bq-img">🌸<span class="bq-tag">Mariage</span><span class="bq-fav">♡</span></div>
+        <div class="bq-body">
+          <div class="bq-type">Bouquet de Mariée</div>
+          <div class="bq-name">Cascade Blanche Éternelle</div>
+          <div class="bq-flowers">Orchidées blanches · Lys · Stephanotis · Chrystal</div>
+          <div class="bq-stars">★★★★★ (67)</div>
+          <div class="bq-row"><span class="bq-price">45 000 FCFA</span><button class="btn-order">Commander</button></div>
+        </div>
+      </div>
+      <div class="bouquet-card">
+        <div class="bq-img">🌻<span class="bq-fav">♡</span></div>
+        <div class="bq-body">
+          <div class="bq-type">Bouquet Joyeux</div>
+          <div class="bq-name">Soleil d'Afrique</div>
+          <div class="bq-flowers">Tournesols · Dahlias orange · Chrysanthèmes jaunes</div>
+          <div class="bq-stars">★★★★☆ (98)</div>
+          <div class="bq-row"><span class="bq-price">16 000 FCFA</span><button class="btn-order">Commander</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="delivery-section">
+  <div class="delivery-inner">
+    <div class="del-text">
+      <h2>Livraison dans tout <em>Dakar</em></h2>
+      <p>Nos livreurs dédiés livrent vos bouquets dans les meilleurs délais, dans des emballages isothermes pour préserver la fraîcheur.</p>
+      <p>Toutes les commandes passées avant 14h sont livrées le jour même. Service de livraison express disponible 7j/7.</p>
+      <a href="#" class="btn-pink" style="margin-top:20px;display:inline-flex">📍 Vérifier ma zone</a>
+      <div class="del-zones" style="margin-top:24px">
+        <div class="del-zone"><div class="dz-left"><div class="dz-icon">🏙️</div><div><div class="dz-name">Plateau & Médina</div><div class="dz-time">Livraison en 2-3h</div></div></div><div class="dz-price">2 500 FCFA</div></div>
+        <div class="del-zone"><div class="dz-left"><div class="dz-icon">🏠</div><div><div class="dz-name">Almadies & Ngor</div><div class="dz-time">Livraison en 3-4h</div></div></div><div class="dz-price">3 500 FCFA</div></div>
+        <div class="del-zone"><div class="dz-left"><div class="dz-icon">🌆</div><div><div class="dz-name">Pikine & Guédiawaye</div><div class="dz-time">Livraison en 4-5h</div></div></div><div class="dz-price">5 000 FCFA</div></div>
+      </div>
+    </div>
+    <div class="del-visual">
+      <div class="del-card">
+        <div class="del-emoji">📱</div>
+        <div class="del-title">Suivi en Temps Réel</div>
+        <div class="del-desc">Suivez votre bouquet en direct sur notre app. Photo prise avant livraison envoyée par WhatsApp.</div>
+      </div>
+      <div class="del-card">
+        <div class="del-emoji">📸</div>
+        <div class="del-title">Message Personnalisé</div>
+        <div class="del-desc">Ajoutez un mot doux, une photo ou un audio WhatsApp à votre bouquet. Livré dans une enveloppe dorée.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="atelier">
+  <div class="s-title">
+    <h2>Nos <em>Ateliers</em> Fleuriste</h2>
+    <p>Apprenez l'art floral avec nos maîtresses fleuristes</p>
+  </div>
+  <div class="atelier-grid">
+    <div class="atelier-card">
+      <div class="atelier-emoji">💐</div>
+      <div class="atelier-name">Atelier Bouquet de Mariage</div>
+      <div class="atelier-desc">Créez votre bouquet de mariée avec notre maîtresse fleuriste. 2h30 · Matières incluses · Repartez avec votre création.</div>
+      <div class="atelier-price">35 000 FCFA / personne</div>
+      <button class="btn-reserve">📅 Réserver une place</button>
+    </div>
+    <div class="atelier-card">
+      <div class="atelier-emoji">🌿</div>
+      <div class="atelier-name">Initiation à la Botanique</div>
+      <div class="atelier-desc">Découvrez les plantes tropicales africaines et apprenez à créer des compositions végétales uniques.</div>
+      <div class="atelier-price">18 000 FCFA / personne</div>
+      <button class="btn-reserve">📅 Réserver une place</button>
+    </div>
+    <div class="atelier-card">
+      <div class="atelier-emoji">🎁</div>
+      <div class="atelier-name">Atelier EVJF Fleurs</div>
+      <div class="atelier-desc">Pour votre enterrement de vie de jeune fille — atelier privé jusqu'à 12 personnes, champagne et bonne humeur.</div>
+      <div class="atelier-price">À partir de 180 000 FCFA</div>
+      <button class="btn-reserve">📅 Réserver l'Atelier</button>
+    </div>
+  </div>
+</div>
+
+<div class="testis">
+  <div class="testis-inner">
+    <div class="s-title"><h2>Ils ont adoré <em>leurs Fleurs</em></h2></div>
+    <div class="testis-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"J'ai commandé le matin pour une livraison surprise à l'heure du déjeuner. Le bouquet était encore plus beau que sur la photo. Ma femme était aux anges !"</div>
+        <div class="testi-author"><div class="testi-av">MD</div><div><div class="testi-nm">Mamadou Diop</div><div class="testi-lo">Plateau, Dakar</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"Les bouquets de mariage étaient absolument magnifiques. L'arche florale a fait l'unanimité. Merci à toute l'équipe pour leur professionnalisme !"</div>
+        <div class="testi-author"><div class="testi-av">AF</div><div><div class="testi-nm">Aïda Fall</div><div class="testi-lo">Almadies, Dakar</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"L'abonnement hebdomadaire transforme mon bureau en jardin. Chaque lundi, un bouquet frais différent. Mes collègues adorent !"</div>
+        <div class="testi-author"><div class="testi-av">SK</div><div><div class="testi-nm">Souleymane Kouyaté</div><div class="testi-lo">Plateau, Dakar</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:24px">🌸</div>
+        <h2 style="font-size:18px;font-weight:700;color:var(--pink);margin-top:8px;font-family:Georgia,serif">Jardin des Fleurs Dakar</h2>
+        <p class="footer-desc">Fleuriste artisanale depuis 2016. Bouquets créés à la main chaque matin, livrés avec amour dans tout Dakar.</p>
+      </div>
+      <div><div class="fh">Nos Fleurs</div><ul class="ful"><li><a href="#">Roses</a></li><li><a href="#">Orchidées</a></li><li><a href="#">Fleurs locales</a></li><li><a href="#">Plantes vertes</a></li></ul></div>
+      <div><div class="fh">Occasions</div><ul class="ful"><li><a href="#">Mariages</a></li><li><a href="#">Anniversaires</a></li><li><a href="#">Événements pro</a></li><li><a href="#">Abonnements</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Mermoz, Dakar</a></li><li><a href="#">📞 +221 77 000 00 00</a></li><li><a href="#">💬 WhatsApp 7j/7</a></li><li><a href="#">Lun–Dim 7h–20h</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2025 Jardin des Fleurs Dakar — Tous droits réservés</span><span>CGV · Confidentialité</span></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.btn-order').forEach(b=>{b.addEventListener('click',function(){this.textContent='✅ Commandé';this.style.background='#16A34A';setTimeout(()=>{this.textContent='Commander';this.style.background=''},2000)})});
+</script>
+</body>
+</html>

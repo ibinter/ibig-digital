@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto-École Permis Facile Dakar</title>
+<style>
+:root{--red:#DC2626;--yellow:#FBBF24;--dark:#111827;--text:#374151;--gray:#6B7280;--light:#F9FAFB;--white:#fff;--border:#E5E7EB;--shadow:0 4px 24px rgba(220,38,38,0.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
+#demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
+#demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
+#demo-bar a:hover{background:#15803d}
+
+nav{position:sticky;top:40px;background:var(--white);border-bottom:3px solid var(--red);z-index:100;box-shadow:0 2px 16px rgba(0,0,0,0.08)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-icon{width:48px;height:48px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff}
+.logo-text{font-weight:800;font-size:18px;color:var(--dark);line-height:1.2}
+.logo-text span{color:var(--red);display:block;font-size:11px;font-weight:500;letter-spacing:0.5px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text);text-decoration:none;font-size:14px;font-weight:600;transition:color .2s}
+.nav-links a:hover{color:var(--red)}
+.nav-phone{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--red);font-size:15px}
+.nav-cta{background:var(--red);color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;transition:all .2s;margin-left:12px}
+.nav-cta:hover{background:#b91c1c}
+
+.hero{background:linear-gradient(135deg,var(--dark) 0%,#1f2937 100%);padding:80px 24px;position:relative;overflow:hidden}
+.road{position:absolute;bottom:0;left:0;right:0;height:80px;background:repeating-linear-gradient(90deg,#374151 0,#374151 60px,transparent 60px,transparent 80px);opacity:0.3}
+.road::after{content:'';position:absolute;top:50%;left:0;right:0;height:4px;background:var(--yellow);transform:translateY(-50%);background:repeating-linear-gradient(90deg,var(--yellow) 0,var(--yellow) 40px,transparent 40px,transparent 60px)}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,0.2);border:1px solid rgba(220,38,38,0.4);color:var(--red);padding:6px 16px;border-radius:4px;font-size:12px;font-weight:700;margin-bottom:24px;text-transform:uppercase;letter-spacing:1px}
+.hero h1{font-size:52px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:20px}
+.hero h1 span{color:var(--yellow)}
+.hero p{font-size:17px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:32px}
+.hero-features{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.feat-item{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.85);font-size:15px}
+.feat-item::before{content:'✓';width:24px;height:24px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-red{background:var(--red);color:#fff;padding:14px 32px;border-radius:6px;text-decoration:none;font-weight:700;font-size:15px;transition:all .2s;display:inline-block}
+.btn-red:hover{background:#b91c1c;transform:translateY(-2px);box-shadow:0 8px 24px rgba(220,38,38,0.4)}
+.btn-yellow{background:var(--yellow);color:var(--dark);padding:14px 32px;border-radius:6px;text-decoration:none;font-weight:700;font-size:15px;transition:all .2s}
+.btn-yellow:hover{background:#f59e0b;transform:translateY(-2px)}
+.hero-card{background:rgba(255,255,255,0.06);border:2px solid rgba(220,38,38,0.3);border-radius:16px;padding:32px;backdrop-filter:blur(10px)}
+.hero-card h3{color:#fff;font-size:20px;font-weight:700;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.perm-list{list-style:none}
+.perm-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.07)}
+.perm-item:last-child{border-bottom:none}
+.perm-name{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.9);font-weight:600;font-size:15px}
+.perm-badge{width:36px;height:36px;background:var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff}
+.perm-price{color:var(--yellow);font-weight:700;font-size:15px}
+
+section{padding:72px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;background:rgba(220,38,38,0.1);color:var(--red);padding:4px 14px;border-radius:4px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.section-title{font-size:36px;font-weight:800;color:var(--dark);margin-bottom:14px}
+.section-sub{font-size:16px;color:var(--gray);line-height:1.7;max-width:580px}
+
+.stats-strip{background:var(--red);padding:40px 24px}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat-item .num{font-size:44px;font-weight:900;color:#fff;line-height:1}
+.stat-item .label{color:rgba(255,255,255,0.75);font-size:14px;margin-top:6px}
+
+.formules{background:var(--light)}
+.formules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.form-card{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform .3s;border:2px solid transparent}
+.form-card.popular{border-color:var(--red)}
+.form-card:hover{transform:translateY(-6px)}
+.form-header{padding:24px;background:var(--dark);position:relative}
+.form-header.red{background:var(--red)}
+.popular-badge{position:absolute;top:16px;right:16px;background:var(--yellow);color:var(--dark);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase}
+.form-type{font-size:12px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.form-name{font-size:24px;font-weight:800;color:#fff;margin-bottom:8px}
+.form-price{font-size:28px;font-weight:900;color:var(--yellow)}
+.form-price span{font-size:14px;font-weight:400;color:rgba(255,255,255,0.6)}
+.form-body{padding:28px}
+.form-includes{list-style:none;margin-bottom:24px}
+.form-includes li{padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;display:flex;align-items:center;gap:8px}
+.form-includes li::before{content:'✓';color:var(--red);font-weight:700;font-size:13px}
+.form-includes li:last-child{border-bottom:none}
+.form-btn{display:block;background:var(--red);color:#fff;text-align:center;padding:12px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;transition:all .2s}
+.form-btn:hover{background:#b91c1c}
+
+.moniteurs{background:var(--white)}
+.moniteurs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.mon-card{background:var(--light);border-radius:16px;overflow:hidden;transition:all .2s;border:2px solid transparent}
+.mon-card:hover{border-color:var(--red);transform:translateY(-4px)}
+.mon-avatar{height:180px;background:linear-gradient(135deg,var(--red),#9b1c1c);display:flex;align-items:center;justify-content:center;font-size:64px}
+.mon-info{padding:24px}
+.mon-name{font-size:18px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.mon-exp{color:var(--red);font-size:14px;font-weight:600;margin-bottom:10px}
+.mon-spec{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.spec-tag{background:rgba(220,38,38,0.1);color:var(--red);padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600}
+.mon-rating{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--gray)}
+.mon-stars{color:var(--yellow)}
+
+.planning{background:var(--light)}
+.planning-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:40px}
+.day-header{background:var(--red);color:#fff;text-align:center;padding:10px;border-radius:8px 8px 0 0;font-size:12px;font-weight:700;text-transform:uppercase}
+.slot{background:var(--white);border-radius:4px;padding:8px;margin-bottom:4px;font-size:11px;border-left:3px solid var(--red)}
+.slot.free{border-left-color:#10b981;background:#f0fdf4}
+.slot.full{border-left-color:var(--gray);background:var(--border);color:var(--gray)}
+.slot-time{font-weight:700;color:var(--dark);font-size:10px}
+.slot-name{color:var(--gray)}
+.slot.free .slot-name{color:#059669}
+
+.testi{background:var(--dark);padding:80px 24px}
+.testi .section-title{color:#fff}
+.testi .section-tag{background:rgba(220,38,38,0.2);color:var(--red)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.testi-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px}
+.testi-stars{color:var(--yellow);font-size:16px;margin-bottom:14px}
+.testi-text{color:rgba(255,255,255,0.8);font-size:14px;line-height:1.7;font-style:italic;margin-bottom:20px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{width:44px;height:44px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:16px}
+.testi-name{font-size:14px;font-weight:700;color:#fff}
+.testi-info{font-size:12px;color:rgba(255,255,255,0.4)}
+
+.cta-section{background:linear-gradient(135deg,var(--red),#9b1c1c);padding:72px 24px;text-align:center}
+.cta-section h2{font-size:42px;font-weight:900;color:#fff;margin-bottom:14px}
+.cta-section p{font-size:17px;color:rgba(255,255,255,0.8);margin-bottom:32px}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--red);padding:16px 40px;border-radius:6px;text-decoration:none;font-weight:700;font-size:16px;transition:all .2s}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+.btn-outline-white{border:2px solid rgba(255,255,255,0.5);color:#fff;padding:16px 40px;border-radius:6px;text-decoration:none;font-weight:700;font-size:16px;transition:all .2s}
+.btn-outline-white:hover{border-color:#fff}
+
+footer{background:var(--dark);padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-heading{font-size:13px;font-weight:700;color:#fff;margin-bottom:18px;text-transform:uppercase;letter-spacing:1px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:9px}
+.footer-links a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-links a:hover{color:var(--red)}
+.footer-desc{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.45);margin-bottom:18px}
+.footer-contact{font-size:14px;line-height:2;color:rgba(255,255,255,0.5)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:10px}
+.footer-bottom a{color:var(--yellow);text-decoration:none}
+
+@media(max-width:768px){
+  .hero-inner,.footer-grid{grid-template-columns:1fr}
+  .hero h1{font-size:34px}
+  .formules-grid,.moniteurs-grid,.testi-grid{grid-template-columns:1fr}
+  .planning-grid{grid-template-columns:repeat(3,1fr)}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .nav-links,.nav-cta{display:none}
+}
+</style>
+</head>
+<body>
+<div id="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="#">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">P</div>
+      <div class="logo-text">Permis Facile<span>Auto-École · Dakar</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Permis</a></li>
+      <li><a href="#">Formules</a></li>
+      <li><a href="#">Moniteurs</a></li>
+      <li><a href="#">Planning</a></li>
+      <li><a href="#">Tarifs</a></li>
+    </ul>
+    <div style="display:flex;align-items:center">
+      <div class="nav-phone">📞 +221 33 820 00 00</div>
+      <a href="#" class="nav-cta">Réserver</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🏆 N°1 taux de réussite à Dakar</div>
+      <h1>Votre Permis de<br>Conduire en <span>Toute Confiance</span></h1>
+      <p>Depuis 15 ans, Permis Facile forme des conducteurs responsables et compétents avec des moniteurs agréés, un matériel moderne et la méthode la plus efficace de Dakar.</p>
+      <div class="hero-features">
+        <div class="feat-item">Taux de réussite 1ère présentation : 87%</div>
+        <div class="feat-item">Moniteurs certifiés Ministère des Transports</div>
+        <div class="feat-item">Cours code + conduite flexibles</div>
+        <div class="feat-item">Paiement en plusieurs tranches</div>
+      </div>
+      <div class="hero-btns">
+        <a href="#" class="btn-red">Commencer maintenant</a>
+        <a href="#" class="btn-yellow">Voir les tarifs</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>🚗 Choisissez votre permis</h3>
+      <ul class="perm-list">
+        <li class="perm-item"><div class="perm-name"><div class="perm-badge">A</div>Moto & Scooter</div><div class="perm-price">85 000 FCFA</div></li>
+        <li class="perm-item"><div class="perm-name"><div class="perm-badge">B</div>Voiture légère</div><div class="perm-price">150 000 FCFA</div></li>
+        <li class="perm-item"><div class="perm-name"><div class="perm-badge">C</div>Poids lourd</div><div class="perm-price">280 000 FCFA</div></li>
+        <li class="perm-item"><div class="perm-name"><div class="perm-badge">D</div>Transport en commun</div><div class="perm-price">320 000 FCFA</div></li>
+      </ul>
+    </div>
+  </div>
+  <div class="road"></div>
+</section>
+
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="num">8 500+</div><div class="label">Conducteurs formés</div></div>
+    <div class="stat-item"><div class="num">87%</div><div class="label">Taux de réussite</div></div>
+    <div class="stat-item"><div class="num">15</div><div class="label">Années d'expérience</div></div>
+    <div class="stat-item"><div class="num">24</div><div class="label">Moniteurs agréés</div></div>
+  </div>
+</div>
+
+<section class="formules">
+  <div class="section-inner">
+    <div class="section-tag">Nos Formules</div>
+    <h2 class="section-title">La Formule Faite Pour Vous</h2>
+    <p class="section-sub">Du code aux examens, tout est inclus. Choisissez selon votre rythme et votre budget.</p>
+    <div class="formules-grid">
+      <div class="form-card">
+        <div class="form-header">
+          <div class="form-type">Permis B</div>
+          <div class="form-name">Formule Essentielle</div>
+          <div class="form-price">150 000 <span>FCFA</span></div>
+        </div>
+        <div class="form-body">
+          <ul class="form-includes">
+            <li>30h de cours code en salle</li>
+            <li>20h de conduite (moniteur)</li>
+            <li>Manuel du code offert</li>
+            <li>2 passages code</li>
+            <li>1 passage conduite</li>
+          </ul>
+          <a href="#" class="form-btn">Choisir cette formule</a>
+        </div>
+      </div>
+      <div class="form-card popular">
+        <div class="form-header red">
+          <div class="popular-badge">⭐ Populaire</div>
+          <div class="form-type">Permis B</div>
+          <div class="form-name">Formule Confort</div>
+          <div class="form-price">220 000 <span>FCFA</span></div>
+        </div>
+        <div class="form-body">
+          <ul class="form-includes">
+            <li>40h de cours code (salle + app)</li>
+            <li>30h de conduite</li>
+            <li>Conduite sur autoroute</li>
+            <li>Passages illimités code</li>
+            <li>2 passages conduite</li>
+            <li>Accompagnement personnalisé</li>
+          </ul>
+          <a href="#" class="form-btn">Choisir cette formule</a>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="form-header">
+          <div class="form-type">Permis B</div>
+          <div class="form-name">Formule Premium</div>
+          <div class="form-price">350 000 <span>FCFA</span></div>
+        </div>
+        <div class="form-body">
+          <ul class="form-includes">
+            <li>Formation code accélérée 2 sem.</li>
+            <li>40h de conduite intensive</li>
+            <li>Conduite de nuit incluse</li>
+            <li>Passages illimités</li>
+            <li>Accompagnement jour J</li>
+            <li>Garantie succès ou remboursé</li>
+          </ul>
+          <a href="#" class="form-btn">Choisir cette formule</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="moniteurs">
+  <div class="section-inner">
+    <div class="section-tag">Notre Équipe</div>
+    <h2 class="section-title">Des Moniteurs Passionnés</h2>
+    <p class="section-sub">Nos 24 moniteurs agréés par le Ministère des Transports du Sénégal vous accompagnent avec patience et professionnalisme.</p>
+    <div class="moniteurs-grid">
+      <div class="mon-card">
+        <div class="mon-avatar">👨‍🏫</div>
+        <div class="mon-info">
+          <div class="mon-name">Mamadou Diallo</div>
+          <div class="mon-exp">12 ans d'expérience · Moniteur Principal</div>
+          <div class="mon-spec"><span class="spec-tag">Permis B</span><span class="spec-tag">Permis C</span></div>
+          <div class="mon-rating"><span class="mon-stars">★★★★★</span> 4.9/5 (328 avis)</div>
+        </div>
+      </div>
+      <div class="mon-card">
+        <div class="mon-avatar">👩‍🏫</div>
+        <div class="mon-info">
+          <div class="mon-name">Aïssatou Ndiaye</div>
+          <div class="mon-exp">8 ans · Spécialiste anxieux</div>
+          <div class="mon-spec"><span class="spec-tag">Permis B</span><span class="spec-tag">Code</span></div>
+          <div class="mon-rating"><span class="mon-stars">★★★★★</span> 4.8/5 (214 avis)</div>
+        </div>
+      </div>
+      <div class="mon-card">
+        <div class="mon-avatar">👨‍🔧</div>
+        <div class="mon-info">
+          <div class="mon-name">Ibrahima Faye</div>
+          <div class="mon-exp">6 ans · Expert poids lourds</div>
+          <div class="mon-spec"><span class="spec-tag">Permis C</span><span class="spec-tag">Permis D</span></div>
+          <div class="mon-rating"><span class="mon-stars">★★★★★</span> 4.7/5 (189 avis)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="planning">
+  <div class="section-inner">
+    <div class="section-tag">Planning de la Semaine</div>
+    <h2 class="section-title">Des Créneaux Disponibles Dès Demain</h2>
+    <p class="section-sub">Réservez en ligne votre créneau préféré. Matin, soir, week-end — nous nous adaptons à votre agenda.</p>
+    <div class="planning-grid">
+      <div><div class="day-header">Lun</div><div class="slot"><div class="slot-time">07h00</div><div class="slot-name">M. Diallo</div></div><div class="slot free"><div class="slot-time">09h00</div><div class="slot-name">Disponible</div></div><div class="slot full"><div class="slot-time">11h00</div><div class="slot-name">Complet</div></div></div>
+      <div><div class="day-header">Mar</div><div class="slot free"><div class="slot-time">07h30</div><div class="slot-name">Disponible</div></div><div class="slot"><div class="slot-time">10h00</div><div class="slot-name">A. Ndiaye</div></div><div class="slot free"><div class="slot-time">15h00</div><div class="slot-name">Disponible</div></div></div>
+      <div><div class="day-header">Mer</div><div class="slot full"><div class="slot-time">08h00</div><div class="slot-name">Complet</div></div><div class="slot free"><div class="slot-time">11h00</div><div class="slot-name">Disponible</div></div><div class="slot"><div class="slot-time">16h00</div><div class="slot-name">I. Faye</div></div></div>
+      <div><div class="day-header">Jeu</div><div class="slot free"><div class="slot-time">07h00</div><div class="slot-name">Disponible</div></div><div class="slot free"><div class="slot-time">14h00</div><div class="slot-name">Disponible</div></div><div class="slot full"><div class="slot-time">17h00</div><div class="slot-name">Complet</div></div></div>
+      <div><div class="day-header">Ven</div><div class="slot"><div class="slot-time">08h30</div><div class="slot-name">M. Diallo</div></div><div class="slot free"><div class="slot-time">12h00</div><div class="slot-name">Disponible</div></div><div class="slot free"><div class="slot-time">15h30</div><div class="slot-name">Disponible</div></div></div>
+      <div><div class="day-header">Sam</div><div class="slot free"><div class="slot-time">08h00</div><div class="slot-name">Disponible</div></div><div class="slot free"><div class="slot-time">10h00</div><div class="slot-name">Disponible</div></div><div class="slot full"><div class="slot-time">14h00</div><div class="slot-name">Complet</div></div></div>
+      <div><div class="day-header">Dim</div><div class="slot free"><div class="slot-time">09h00</div><div class="slot-name">Disponible</div></div><div class="slot full"><div class="slot-time">11h00</div><div class="slot-name">Complet</div></div><div class="slot full"><div class="slot-time">15h00</div><div class="slot-name">Complet</div></div></div>
+    </div>
+    <div style="text-align:center;margin-top:32px"><a href="#" class="btn-red">Réserver mon créneau en ligne</a></div>
+  </div>
+</section>
+
+<section class="testi">
+  <div class="section-inner">
+    <div class="section-tag">Avis Élèves</div>
+    <h2 class="section-title">Ils ont eu leur permis avec nous</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Monitrice Aïssatou est incroyable ! J'avais une phobie de la conduite et grâce à elle j'ai passé mon permis du premier coup. Merci infiniment !"</p>
+        <div class="testi-author"><div class="testi-av">K</div><div><div class="testi-name">Khady Sarr</div><div class="testi-info">Permis B · Dakar-Plateau</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Formule Confort au top ! Le simulateur de code m'a vraiment aidé. J'ai eu mon code 96/100 et la conduite en 1 essai. Je recommande à tous mes amis."</p>
+        <div class="testi-author"><div class="testi-av">M</div><div><div class="testi-name">Moussa Gueye</div><div class="testi-info">Permis B · Parcelles Assainies</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"J'ai pris la formule Premium pour mon permis poids lourd. Ibrahima est très professionnel. En 3 semaines j'avais mon permis C. Excellent investissement !"</p>
+        <div class="testi-author"><div class="testi-av">O</div><div><div class="testi-name">Omar Ba</div><div class="testi-info">Permis C · Pikine</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="section-inner">
+    <h2>Commencez Votre Formation Aujourd'hui</h2>
+    <p>Places limitées chaque mois. Inscrivez-vous maintenant et démarrez cette semaine.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-white">S'inscrire en ligne</a>
+      <a href="#" class="btn-outline-white">Appeler le +221 33 820 00 00</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-heading" style="font-size:20px;letter-spacing:0;text-transform:none;margin-bottom:12px">🚗 Auto-École Permis Facile</div>
+        <p class="footer-desc">Votre partenaire de confiance pour l'obtention du permis de conduire à Dakar depuis 2009. Moniteurs agréés, méthode éprouvée.</p>
+        <div class="footer-contact">📍 Avenue Cheikh Anta Diop, Dakar<br>📞 +221 33 820 00 00<br>📧 contact@permisfacile-dakar.sn</div>
+      </div>
+      <div>
+        <div class="footer-heading">Permis</div>
+        <ul class="footer-links"><li><a href="#">Permis A (Moto)</a></li><li><a href="#">Permis B (Voiture)</a></li><li><a href="#">Permis C (Camion)</a></li><li><a href="#">Permis D (Bus)</a></li></ul>
+      </div>
+      <div>
+        <div class="footer-heading">Formules</div>
+        <ul class="footer-links"><li><a href="#">Essentielle</a></li><li><a href="#">Confort</a></li><li><a href="#">Premium</a></li><li><a href="#">Financement</a></li></ul>
+      </div>
+      <div>
+        <div class="footer-heading">Pratique</div>
+        <ul class="footer-links"><li><a href="#">Réserver en ligne</a></li><li><a href="#">Planning moniteurs</a></li><li><a href="#">Quiz code gratuit</a></li><li><a href="#">Contact & Itinéraire</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Auto-École Permis Facile Dakar · Agrément N° MT-DKR-2009</span>
+      <span>Site créé avec <a href="#">IBIG Digital</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

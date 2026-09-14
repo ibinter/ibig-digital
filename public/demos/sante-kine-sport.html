@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiné Sport & Rééducation Abidjan</title>
+  <style>
+    :root {
+      --orange: #EA580C;
+      --orange-dark: #C2410C;
+      --orange-light: #FFF7ED;
+      --orange-mid: #FDBA74;
+      --white: #FFFFFF;
+      --gray-50: #F9FAFB;
+      --gray-100: #F3F4F6;
+      --gray-200: #E5E7EB;
+      --gray-600: #4B5563;
+      --gray-700: #374151;
+      --gray-900: #111827;
+      --green: #10B981;
+      --shadow: 0 4px 20px rgba(234,88,12,0.15);
+      --radius: 12px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: system-ui,-apple-system,sans-serif; background:var(--white); color:var(--gray-700); }
+
+    .demo-bar { position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px; }
+    .demo-bar a { background:#22C55E;color:#fff;padding:5px 14px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700; }
+
+    nav {
+      position:sticky; top:40px; z-index:100;
+      background:#fff; border-bottom:1px solid var(--gray-200);
+      padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:70px;
+    }
+    .nav-logo { display:flex; align-items:center; gap:10px; }
+    .logo-icon { width:44px; height:44px; background:linear-gradient(135deg,var(--orange),#FB923C); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; }
+    .logo-name { font-size:17px; font-weight:900; color:var(--gray-900); }
+    .logo-tag { font-size:11px; color:var(--orange); font-weight:700; }
+    .nav-links { display:flex; gap:28px; }
+    .nav-links a { text-decoration:none; color:var(--gray-600); font-size:14px; font-weight:500; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--orange); }
+    .btn-cta { background:var(--orange); color:#fff; padding:11px 24px; border-radius:10px; text-decoration:none; font-size:14px; font-weight:700; transition:all 0.2s; }
+    .btn-cta:hover { background:var(--orange-dark); transform:translateY(-1px); }
+
+    /* HERO — Split diagonal */
+    .hero {
+      min-height:540px; display:grid; grid-template-columns:1fr 1fr; position:relative; overflow:hidden;
+    }
+    .hero-left {
+      background:linear-gradient(135deg, var(--orange) 0%, #FB923C 100%);
+      padding:80px 60px 60px 48px; color:#fff; position:relative; z-index:1;
+      clip-path: polygon(0 0, 95% 0, 100% 100%, 0 100%);
+    }
+    .hero-badge { display:inline-block; background:rgba(255,255,255,0.2); padding:6px 16px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:20px; }
+    .hero h1 { font-size:44px; font-weight:900; line-height:1.1; margin-bottom:16px; }
+    .hero p { font-size:16px; opacity:0.9; line-height:1.7; margin-bottom:28px; max-width:400px; }
+    .hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-white { background:#fff; color:var(--orange); padding:13px 24px; border-radius:10px; font-size:14px; font-weight:700; text-decoration:none; border:none; cursor:pointer; transition:all 0.2s; }
+    .btn-white:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
+    .btn-outline-w { background:transparent; color:#fff; padding:13px 24px; border-radius:10px; font-size:14px; font-weight:700; text-decoration:none; border:2px solid rgba(255,255,255,0.6); }
+    .hero-stats { display:flex; gap:28px; margin-top:32px; }
+    .stat { text-align:center; }
+    .stat-num { font-size:30px; font-weight:900; }
+    .stat-label { font-size:11px; opacity:0.8; margin-top:2px; }
+    .hero-right {
+      background:var(--orange-light); padding:60px 48px 60px 60px;
+      display:flex; flex-direction:column; justify-content:center;
+    }
+    .hero-cards { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .mini-card {
+      background:#fff; border-radius:12px; padding:18px; text-align:center;
+      border:2px solid transparent; transition:all 0.3s; cursor:pointer;
+    }
+    .mini-card:hover { border-color:var(--orange); transform:translateY(-3px); box-shadow:var(--shadow); }
+    .mini-card .icon { font-size:28px; margin-bottom:8px; }
+    .mini-card h4 { font-size:13px; font-weight:800; color:var(--gray-900); margin-bottom:4px; }
+    .mini-card .price { font-size:14px; font-weight:900; color:var(--orange); }
+
+    /* SOINS */
+    .soins { padding:80px 48px; }
+    .section-title { margin-bottom:48px; }
+    .section-title .label { display:inline-block; background:var(--orange-light); color:var(--orange); padding:5px 14px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:10px; }
+    .section-title h2 { font-size:34px; font-weight:900; color:var(--gray-900); }
+    .section-title p { font-size:15px; color:var(--gray-600); margin-top:8px; max-width:520px; }
+    .soins-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .soin-card {
+      border:1px solid var(--gray-200); border-radius:16px; padding:28px;
+      transition:all 0.3s; position:relative; overflow:hidden;
+    }
+    .soin-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:4px;
+      background:linear-gradient(90deg,var(--orange),#FB923C);
+    }
+    .soin-card:hover { box-shadow:var(--shadow); transform:translateY(-4px); }
+    .soin-icon { width:52px; height:52px; background:var(--orange-light); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:16px; }
+    .soin-card h3 { font-size:17px; font-weight:800; color:var(--gray-900); margin-bottom:8px; }
+    .soin-card p { font-size:13px; color:var(--gray-600); line-height:1.6; margin-bottom:16px; }
+    .soin-meta { display:flex; justify-content:space-between; align-items:center; padding-top:16px; border-top:1px solid var(--gray-100); }
+    .soin-price { font-size:18px; font-weight:900; color:var(--orange); }
+    .soin-sessions { font-size:12px; color:var(--gray-600); background:var(--gray-100); padding:4px 10px; border-radius:20px; }
+
+    /* PLANNING */
+    .planning { background:var(--gray-900); padding:70px 48px; color:#fff; }
+    .planning h2 { font-size:32px; font-weight:900; margin-bottom:40px; }
+    .planning-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; }
+    .day-col { background:rgba(255,255,255,0.05); border-radius:10px; overflow:hidden; }
+    .day-header { background:var(--orange); padding:10px; text-align:center; font-size:13px; font-weight:700; }
+    .day-slots { padding:8px; display:flex; flex-direction:column; gap:6px; }
+    .slot {
+      background:rgba(255,255,255,0.08); border-radius:6px; padding:7px 8px;
+      font-size:11px; cursor:pointer; transition:background 0.2s; text-align:center;
+    }
+    .slot:hover { background:var(--orange); }
+    .slot.full { background:rgba(255,255,255,0.03); color:#4B5563; cursor:not-allowed; text-decoration:line-through; }
+    .slot.booked { background:#10B981; }
+
+    /* EQUIPE */
+    .equipe { padding:80px 48px; background:var(--orange-light); }
+    .equipe-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:40px; }
+    .kine-card {
+      background:#fff; border-radius:16px; overflow:hidden; box-shadow:var(--shadow);
+    }
+    .kine-avatar { height:180px; display:flex; align-items:center; justify-content:center; font-size:70px; }
+    .kine-card:nth-child(1) .kine-avatar { background:linear-gradient(135deg,#FFF7ED,#FDBA74); }
+    .kine-card:nth-child(2) .kine-avatar { background:linear-gradient(135deg,#ECFDF5,#6EE7B7); }
+    .kine-card:nth-child(3) .kine-avatar { background:linear-gradient(135deg,#EFF6FF,#BFDBFE); }
+    .kine-info { padding:22px; }
+    .kine-info h3 { font-size:16px; font-weight:800; color:var(--gray-900); margin-bottom:4px; }
+    .kine-role { font-size:12px; color:var(--orange); font-weight:700; margin-bottom:10px; }
+    .kine-info p { font-size:13px; color:var(--gray-600); line-height:1.5; margin-bottom:14px; }
+    .kine-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .tag { font-size:11px; background:var(--orange-light); color:var(--orange); padding:3px 10px; border-radius:20px; font-weight:600; }
+
+    /* RDVA */
+    .rdv { padding:80px 48px; }
+    .rdv-inner { background:linear-gradient(135deg,var(--orange),#FB923C); border-radius:24px; padding:60px; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; color:#fff; }
+    .rdv h2 { font-size:36px; font-weight:900; margin-bottom:14px; }
+    .rdv p { font-size:15px; opacity:0.9; line-height:1.7; margin-bottom:24px; }
+    .rdv-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .rdv-list li { display:flex; gap:10px; font-size:14px; align-items:center; }
+    .rdv-list li::before { content:"⚡"; font-size:16px; }
+    .rdv-form-box { background:#fff; border-radius:16px; padding:36px; }
+    .rdv-form-box h3 { font-size:18px; font-weight:800; color:var(--gray-900); margin-bottom:22px; }
+    .fg { margin-bottom:14px; }
+    .fg label { display:block; font-size:12px; font-weight:700; color:var(--gray-700); margin-bottom:5px; }
+    .fg input, .fg select { width:100%; padding:10px 14px; border:1.5px solid var(--gray-200); border-radius:8px; font-size:14px; color:var(--gray-900); }
+    .fg input:focus, .fg select:focus { outline:none; border-color:var(--orange); }
+    .frow { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .submit-btn { width:100%; background:var(--orange); color:#fff; padding:14px; border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; transition:background 0.2s; }
+    .submit-btn:hover { background:var(--orange-dark); }
+
+    /* TARIFS SEANCES */
+    .tarifs { padding:70px 48px; background:var(--gray-50); }
+    .tarifs-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:40px; }
+    .tarif-box {
+      background:#fff; border:2px solid var(--gray-200); border-radius:14px;
+      padding:24px; text-align:center; transition:all 0.3s;
+    }
+    .tarif-box:hover { border-color:var(--orange); transform:translateY(-3px); box-shadow:var(--shadow); }
+    .tarif-box .icon { font-size:32px; margin-bottom:10px; }
+    .tarif-box h4 { font-size:15px; font-weight:800; color:var(--gray-900); margin-bottom:6px; }
+    .tarif-box .prix { font-size:22px; font-weight:900; color:var(--orange); margin-bottom:4px; }
+    .tarif-box .detail { font-size:12px; color:var(--gray-600); }
+
+    footer { background:var(--gray-900); color:#fff; padding:50px 48px 24px; }
+    .fg-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:36px; }
+    .fb h3 { font-size:18px; font-weight:900; margin-bottom:8px; }
+    .fb p { font-size:13px; color:#94A3B8; line-height:1.6; margin-bottom:14px; }
+    .fb-contact { font-size:13px; color:#94A3B8; line-height:2; }
+    .fc h4 { font-size:13px; font-weight:700; margin-bottom:14px; color:#E2E8F0; }
+    .fc a { display:block; color:#94A3B8; text-decoration:none; font-size:13px; margin-bottom:8px; }
+    .fc a:hover { color:var(--orange); }
+    .footer-bottom { border-top:1px solid #1E293B; padding-top:20px; text-align:center; font-size:12px; color:#64748B; }
+
+    @media(max-width:768px) {
+      .hero, .rdv-inner { grid-template-columns:1fr; }
+      .hero-left { clip-path:none; }
+      nav { padding:0 20px; }
+      .nav-links { display:none; }
+      .soins-grid, .equipe-grid { grid-template-columns:1fr; }
+      .planning-grid { grid-template-columns:repeat(3,1fr); }
+      .tarifs-grid { grid-template-columns:1fr 1fr; }
+      .soins, .equipe, .tarifs, .rdv { padding-left:20px; padding-right:20px; }
+      .fg-grid { grid-template-columns:1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="https://ibig-digital.com/commander" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">🏃</div>
+    <div>
+      <div class="logo-name">KinéSport Abidjan</div>
+      <div class="logo-tag">Rééducation & Performance</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#soins">Soins Kiné</a>
+    <a href="#planning">Planning</a>
+    <a href="#equipe">L'Équipe</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="#rdv">Rendez-vous</a>
+  </div>
+  <a href="#rdv" class="btn-cta">📅 Réserver</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">🏆 Centre certifié · Abidjan</div>
+    <h1>Kiné Sport &<br>Rééducation<br>Abidjan</h1>
+    <p>Centre spécialisé en kinésithérapie sportive et rééducation fonctionnelle. Retrouvez mobilité, performance et bien-être.</p>
+    <div class="hero-btns">
+      <a href="#rdv" class="btn-white">📅 Prendre RDV</a>
+      <a href="#soins" class="btn-outline-w">Voir les soins</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">3 200+</div><div class="stat-label">Patients traités</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Kinés diplômés</div></div>
+      <div class="stat"><div class="stat-num">96%</div><div class="stat-label">Taux guérison</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div style="margin-bottom:20px;">
+      <div class="section-title" style="margin-bottom:0;">
+        <div class="label">Nos Spécialités</div>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <div class="mini-card">
+        <div class="icon">⚽</div>
+        <h4>Kiné Sportive</h4>
+        <div class="price">20 000 FCFA</div>
+      </div>
+      <div class="mini-card">
+        <div class="icon">🦵</div>
+        <h4>Rééducation</h4>
+        <div class="price">18 000 FCFA</div>
+      </div>
+      <div class="mini-card">
+        <div class="icon">💆</div>
+        <h4>Massage Thérap.</h4>
+        <div class="price">25 000 FCFA</div>
+      </div>
+      <div class="mini-card">
+        <div class="icon">🧘</div>
+        <h4>Rééd. Posturale</h4>
+        <div class="price">15 000 FCFA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="soins" id="soins">
+  <div class="section-title">
+    <div class="label">Nos Soins</div>
+    <h2>Kinésithérapie Complète</h2>
+    <p>Des traitements personnalisés pour chaque pathologie, réalisés par des kinésithérapeutes certifiés.</p>
+  </div>
+  <div class="soins-grid">
+    <div class="soin-card">
+      <div class="soin-icon">⚽</div>
+      <h3>Kinésithérapie Sportive</h3>
+      <p>Traitement des blessures sportives : entorses, déchirures musculaires, tendinites. Retour rapide à l'entraînement.</p>
+      <div class="soin-meta">
+        <span class="soin-price">20 000 FCFA</span>
+        <span class="soin-sessions">60 min / séance</span>
+      </div>
+    </div>
+    <div class="soin-card">
+      <div class="soin-icon">🦵</div>
+      <h3>Rééducation Post-Opératoire</h3>
+      <p>Programme de récupération après chirurgie orthopédique : LCA, prothèse de hanche, chirurgie rachis.</p>
+      <div class="soin-meta">
+        <span class="soin-price">18 000 FCFA</span>
+        <span class="soin-sessions">45 min / séance</span>
+      </div>
+    </div>
+    <div class="soin-card">
+      <div class="soin-icon">💆</div>
+      <h3>Massage Thérapeutique</h3>
+      <p>Massages professionnels pour soulager les contractures, lombalgies, cervicalgies et douleurs chroniques.</p>
+      <div class="soin-meta">
+        <span class="soin-price">25 000 FCFA</span>
+        <span class="soin-sessions">60 min / séance</span>
+      </div>
+    </div>
+    <div class="soin-card">
+      <div class="soin-icon">⚡</div>
+      <h3>Électrothérapie</h3>
+      <p>TENS, ultrasons, laser thérapeutique pour soulager la douleur et accélérer la cicatrisation tissulaire.</p>
+      <div class="soin-meta">
+        <span class="soin-price">15 000 FCFA</span>
+        <span class="soin-sessions">30 min / séance</span>
+      </div>
+    </div>
+    <div class="soin-card">
+      <div class="soin-icon">🧘</div>
+      <h3>Rééducation Posturale</h3>
+      <p>Correction des déséquilibres posturaux, scolioses, hypercyphoses. Méthode Mézières et RPG.</p>
+      <div class="soin-meta">
+        <span class="soin-price">15 000 FCFA</span>
+        <span class="soin-sessions">50 min / séance</span>
+      </div>
+    </div>
+    <div class="soin-card">
+      <div class="soin-icon">🤰</div>
+      <h3>Kiné Prénatale & Post-Natale</h3>
+      <p>Préparation à l'accouchement, rééducation périnéale et abdominale après naissance.</p>
+      <div class="soin-meta">
+        <span class="soin-price">18 000 FCFA</span>
+        <span class="soin-sessions">45 min / séance</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="planning" id="planning">
+  <h2>📅 Planning de la Semaine</h2>
+  <div class="planning-grid">
+    <div class="day-col">
+      <div class="day-header">Lundi</div>
+      <div class="day-slots">
+        <div class="slot booked">08h00 ✓</div>
+        <div class="slot">09h00</div>
+        <div class="slot">10h00</div>
+        <div class="slot full">11h00</div>
+        <div class="slot">14h00</div>
+        <div class="slot booked">15h00 ✓</div>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-header">Mardi</div>
+      <div class="day-slots">
+        <div class="slot">08h00</div>
+        <div class="slot booked">09h00 ✓</div>
+        <div class="slot full">10h00</div>
+        <div class="slot">11h00</div>
+        <div class="slot booked">14h00 ✓</div>
+        <div class="slot">15h00</div>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-header">Mercredi</div>
+      <div class="day-slots">
+        <div class="slot">08h00</div>
+        <div class="slot">09h00</div>
+        <div class="slot booked">10h00 ✓</div>
+        <div class="slot">11h00</div>
+        <div class="slot">14h00</div>
+        <div class="slot full">15h00</div>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-header">Jeudi</div>
+      <div class="day-slots">
+        <div class="slot full">08h00</div>
+        <div class="slot">09h00</div>
+        <div class="slot">10h00</div>
+        <div class="slot booked">11h00 ✓</div>
+        <div class="slot">14h00</div>
+        <div class="slot">15h00</div>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-header">Vendredi</div>
+      <div class="day-slots">
+        <div class="slot">08h00</div>
+        <div class="slot booked">09h00 ✓</div>
+        <div class="slot">10h00</div>
+        <div class="slot">11h00</div>
+        <div class="slot full">14h00</div>
+        <div class="slot">15h00</div>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-header">Samedi</div>
+      <div class="day-slots">
+        <div class="slot">08h00</div>
+        <div class="slot">09h00</div>
+        <div class="slot full">10h00</div>
+        <div class="slot full">11h00</div>
+        <div style="font-size:11px;color:#6B7280;text-align:center;padding:8px;">Fermé l'après-midi</div>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:20px;font-size:13px;color:#94A3B8;"><span style="background:#10B981;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;">Vert</span> = Réservé ·
+  <span style="background:rgba(255,255,255,0.08);padding:2px 8px;border-radius:4px;margin-right:8px;">Normal</span> = Disponible ·
+  <span style="background:rgba(255,255,255,0.03);color:#4B5563;padding:2px 8px;border-radius:4px;text-decoration:line-through;">Barré</span> = Complet</p>
+</section>
+
+<section class="equipe" id="equipe">
+  <div class="section-title">
+    <div class="label">Notre Équipe</div>
+    <h2>Kinésithérapeutes Certifiés</h2>
+    <p>Une équipe de professionnels passionnés par la rééducation et la performance sportive.</p>
+  </div>
+  <div class="equipe-grid">
+    <div class="kine-card">
+      <div class="kine-avatar">👨‍⚕️</div>
+      <div class="kine-info">
+        <h3>Dr. Bamba Ibrahim</h3>
+        <div class="kine-role">Directeur · Kiné Sportif Senior</div>
+        <p>12 ans d'expérience. A travaillé avec plusieurs clubs de football ivoiriens. Expert en biomécanique sportive.</p>
+        <div class="kine-tags">
+          <span class="tag">Foot</span><span class="tag">Rugby</span><span class="tag">LCA</span>
+        </div>
+      </div>
+    </div>
+    <div class="kine-card">
+      <div class="kine-avatar">👩‍⚕️</div>
+      <div class="kine-info">
+        <h3>Mme Adjoua Koffi</h3>
+        <div class="kine-role">Kiné Périnéale & Post-Natale</div>
+        <p>Spécialiste en rééducation féminine et périnéale. Formation au CHU de Lyon. 8 ans d'expérience.</p>
+        <div class="kine-tags">
+          <span class="tag">Grossesse</span><span class="tag">Post-natal</span><span class="tag">Pelvi</span>
+        </div>
+      </div>
+    </div>
+    <div class="kine-card">
+      <div class="kine-avatar">👨‍⚕️</div>
+      <div class="kine-info">
+        <h3>M. Seydou Coulibaly</h3>
+        <div class="kine-role">Kiné Orthopédique</div>
+        <p>Expert en rééducation post-opératoire et traumatologique. 10 ans d'expérience en orthopédie.</p>
+        <div class="kine-tags">
+          <span class="tag">Post-op</span><span class="tag">Colonne</span><span class="tag">Épaule</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tarifs" id="tarifs">
+  <div class="section-title">
+    <div class="label">Nos Tarifs</div>
+    <h2>Prix Clairs & Transparents</h2>
+    <p>Tarifs par séance ou en forfaits avantageux. Facilités de paiement disponibles.</p>
+  </div>
+  <div class="tarifs-grid">
+    <div class="tarif-box">
+      <div class="icon">🔍</div>
+      <h4>Bilan Initial</h4>
+      <div class="prix">12 000 FCFA</div>
+      <div class="detail">Évaluation complète, 60 min</div>
+    </div>
+    <div class="tarif-box">
+      <div class="icon">⚽</div>
+      <h4>Séance Kiné Sport</h4>
+      <div class="prix">20 000 FCFA</div>
+      <div class="detail">60 min, individualisée</div>
+    </div>
+    <div class="tarif-box">
+      <div class="icon">💆</div>
+      <h4>Massage Thérap.</h4>
+      <div class="prix">25 000 FCFA</div>
+      <div class="detail">60 min, sur prescription</div>
+    </div>
+    <div class="tarif-box">
+      <div class="icon">🎫</div>
+      <h4>Forfait 10 Séances</h4>
+      <div class="prix">160 000 FCFA</div>
+      <div class="detail">Économisez 40 000 FCFA</div>
+    </div>
+  </div>
+</section>
+
+<section class="rdv" id="rdv">
+  <div class="rdv-inner">
+    <div>
+      <h2>Réservez votre Séance de Kiné</h2>
+      <p>Formulaire en ligne, réponse sous 30 minutes. Séances disponibles 6j/7 de 7h à 20h.</p>
+      <ul class="rdv-list">
+        <li>Confirmation SMS immédiate</li>
+        <li>Rappel la veille de la séance</li>
+        <li>Annulation jusqu'à 2h avant</li>
+        <li>Parking gratuit sur place</li>
+        <li>Mutuelle et assurance acceptées</li>
+      </ul>
+    </div>
+    <div class="rdv-form-box">
+      <h3>📅 Réserver une Séance</h3>
+      <div class="frow">
+        <div class="fg"><label>Prénom *</label><input type="text" placeholder="Moussa"></div>
+        <div class="fg"><label>Nom *</label><input type="text" placeholder="Diabaté"></div>
+      </div>
+      <div class="fg"><label>Téléphone *</label><input type="tel" placeholder="+225 07 00 00 00 00"></div>
+      <div class="fg">
+        <label>Type de soin</label>
+        <select>
+          <option>Bilan kinésithérapique</option>
+          <option>Kiné sportive</option>
+          <option>Rééducation post-opératoire</option>
+          <option>Massage thérapeutique</option>
+          <option>Électrothérapie</option>
+          <option>Rééducation posturale</option>
+        </select>
+      </div>
+      <div class="frow">
+        <div class="fg"><label>Date</label><input type="date"></div>
+        <div class="fg"><label>Heure</label>
+          <select><option>07h00</option><option>08h00</option><option>09h00</option><option>10h00</option><option>14h00</option><option>16h00</option><option>18h00</option></select>
+        </div>
+      </div>
+      <button class="submit-btn" onclick="alert('✅ Votre séance est réservée ! SMS de confirmation envoyé.')">⚡ Confirmer la Séance</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fg-grid">
+    <div class="fb">
+      <h3>🏃 KinéSport Abidjan</h3>
+      <p>Centre de kinésithérapie sportive et rééducation fonctionnelle. Excellence clinique depuis 2015.</p>
+      <div class="fb-contact">📍 Plateau, Avenue de la République — Abidjan<br>📞 +225 07 07 11 22 33<br>✉️ contact@kinesport-abidjan.ci<br>🕐 Lun–Sam : 7h–20h</div>
+    </div>
+    <div class="fc"><h4>Nos Soins</h4><a href="#">Kiné Sportive</a><a href="#">Rééducation</a><a href="#">Massage</a><a href="#">Électrothérapie</a><a href="#">Kiné Prénatale</a></div>
+    <div class="fc"><h4>Informations</h4><a href="#">Tarifs & forfaits</a><a href="#">Prises en charge</a><a href="#">Notre équipe</a><a href="#">Avis patients</a></div>
+    <div class="fc"><h4>Localisation</h4><a href="#">Carte & accès</a><a href="#">Parking</a><a href="#">Horaires</a><a href="#">Urgences</a></div>
+  </div>
+  <div class="footer-bottom">© 2026 KinéSport Abidjan · Abidjan, Côte d'Ivoire | Site réalisé par <a href="https://ibig-digital.com" style="color:var(--orange);text-decoration:none;">IBIG Digital</a></div>
+</footer>
+
+<script>
+  document.querySelectorAll('.slot:not(.full):not(.booked)').forEach(s => {
+    s.addEventListener('click', function() {
+      document.querySelectorAll('.slot.selected').forEach(e => { e.classList.remove('selected'); e.style.background=''; });
+      this.style.background = 'var(--orange)';
+      this.classList.add('selected');
+    });
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => { e.preventDefault(); const t = document.querySelector(a.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth'}); });
+  });
+</script>
+</body>
+</html>

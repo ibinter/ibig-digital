@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StartupHub Africa — Incubateur Tech</title>
+<style>
+:root{
+  --bg:#0A0F1E;
+  --primary:#8B5CF6;
+  --primary-dark:#7C3AED;
+  --cyan:#06B6D4;
+  --green:#10B981;
+  --text:#F1F5F9;
+  --text-dim:#94A3B8;
+  --border:rgba(139,92,246,0.2);
+  --card-bg:#111827;
+  --card-border:rgba(139,92,246,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
+.demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
+
+nav{position:sticky;top:40px;background:rgba(10,15,30,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:100;}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.logo{font-size:20px;font-weight:800;color:#fff;letter-spacing:-0.5px;}
+.logo span{color:var(--primary);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--text-dim);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--primary);}
+.nav-btns{display:flex;gap:10px;}
+.btn-nav-o{border:1px solid var(--border);color:var(--primary);padding:9px 20px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;transition:all 0.2s;}
+.btn-nav-f{background:var(--primary);color:#fff;padding:9px 20px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;transition:background 0.2s;}
+.btn-nav-f:hover{background:var(--primary-dark);}
+
+/* HERO */
+.hero{min-height:92vh;position:relative;display:flex;align-items:center;overflow:hidden;background:var(--bg);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(139,92,246,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,0.05) 1px,transparent 1px);background-size:50px 50px;}
+.hero-glow-purple{position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(139,92,246,0.15),transparent 70%);border-radius:50%;}
+.hero-glow-cyan{position:absolute;bottom:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(6,182,212,0.1),transparent 70%);border-radius:50%;}
+.hero-content{max-width:1200px;margin:0 auto;padding:0 40px;width:100%;position:relative;z-index:1;text-align:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);color:var(--primary);padding:8px 20px;border-radius:50px;font-size:13px;font-weight:600;margin-bottom:32px;}
+.badge-dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{font-size:72px;font-weight:800;letter-spacing:-2px;line-height:1.05;margin-bottom:22px;}
+.hero h1 .grad{background:linear-gradient(135deg,var(--primary),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-desc{color:var(--text-dim);font-size:20px;max-width:680px;margin:0 auto 40px;line-height:1.6;}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:60px;}
+.btn-purple{background:var(--primary);color:#fff;padding:16px 40px;border-radius:50px;text-decoration:none;font-size:16px;font-weight:700;transition:all 0.2s;box-shadow:0 0 30px rgba(139,92,246,0.3);}
+.btn-purple:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 0 40px rgba(139,92,246,0.5);}
+.btn-ghost{border:2px solid rgba(255,255,255,0.15);color:#fff;padding:16px 40px;border-radius:50px;text-decoration:none;font-size:16px;transition:all 0.2s;}
+.btn-ghost:hover{background:rgba(255,255,255,0.05);}
+.hero-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;}
+.hs{text-align:center;}
+.hs-n{font-size:36px;font-weight:800;color:#fff;}
+.hs-n span{background:linear-gradient(135deg,var(--primary),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hs-l{font-size:13px;color:var(--text-dim);}
+
+/* SECTIONS */
+.si{max-width:1200px;margin:0 auto;}
+.stag{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.stag.purple{color:var(--primary);}
+.stag.cyan{color:var(--cyan);}
+.stag.green{color:var(--green);}
+.stitle{font-size:38px;font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:14px;}
+.ssub{color:var(--text-dim);font-size:16px;max-width:520px;line-height:1.6;}
+.sh{margin-bottom:48px;}
+.sh.center{text-align:center;}
+.sh.center .ssub{margin:0 auto;}
+
+/* STARTUPS TYPES */
+.startups-section{padding:80px 40px;background:var(--bg);}
+.startups-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.startup-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:28px;transition:all 0.3s;position:relative;overflow:hidden;}
+.startup-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,0.04),transparent);opacity:0;transition:opacity 0.3s;}
+.startup-card:hover{border-color:var(--primary);transform:translateY(-5px);}
+.startup-card:hover::before{opacity:1;}
+.sc-icon{font-size:44px;margin-bottom:16px;}
+.sc-sector{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--primary);margin-bottom:8px;}
+.sc-name{font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;}
+.sc-desc{font-size:14px;color:var(--text-dim);line-height:1.6;margin-bottom:16px;}
+.sc-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.sc-tag{background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.2);color:var(--primary);padding:3px 10px;border-radius:50px;font-size:11px;font-weight:600;}
+
+/* STATS */
+.stats-section{padding:60px 40px;background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(6,182,212,0.08));}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+.stat-n{font-size:48px;font-weight:800;}
+.stat-n.purple{color:var(--primary);}
+.stat-n.cyan{color:var(--cyan);}
+.stat-n.green{color:var(--green);}
+.stat-n.white{color:#fff;}
+.stat-l{font-size:14px;color:var(--text-dim);margin-top:4px;}
+
+/* PROGRAMME */
+.programme-section{padding:80px 40px;background:var(--card-bg);}
+.programme-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.prog-card{background:var(--bg);border:1px solid var(--card-border);border-radius:14px;padding:28px;transition:all 0.3s;}
+.prog-card:hover{border-color:var(--primary);}
+.prog-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+.prog-name{font-size:18px;font-weight:700;color:#fff;}
+.prog-duration{background:rgba(139,92,246,0.15);color:var(--primary);padding:4px 12px;border-radius:50px;font-size:12px;font-weight:700;}
+.prog-features{list-style:none;margin-bottom:20px;}
+.prog-features li{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px;color:var(--text-dim);}
+.prog-features li::before{content:'→';color:var(--primary);font-size:12px;}
+.prog-footer{display:flex;justify-content:space-between;align-items:center;}
+.prog-equity{font-size:22px;font-weight:800;color:var(--cyan);}
+.prog-equity small{font-size:12px;font-weight:400;color:var(--text-dim);}
+.btn-prog{background:var(--primary);color:#fff;padding:9px 20px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:700;transition:background 0.2s;}
+.btn-prog:hover{background:var(--primary-dark);}
+
+/* INVESTISSEURS */
+.invest-section{padding:80px 40px;background:var(--bg);}
+.invest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.inv-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:24px;text-align:center;transition:all 0.3s;}
+.inv-card:hover{border-color:var(--cyan);}
+.inv-logo{font-size:36px;margin-bottom:14px;}
+.inv-name{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;}
+.inv-type{font-size:12px;color:var(--text-dim);margin-bottom:10px;}
+.inv-ticket{font-size:13px;font-weight:700;color:var(--cyan);}
+
+/* ALUMNI */
+.alumni-section{padding:80px 40px;background:var(--card-bg);}
+.alumni-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.alumni-card{background:var(--bg);border:1px solid var(--card-border);border-radius:14px;padding:24px;transition:all 0.3s;}
+.alumni-card:hover{border-color:var(--green);}
+.al-header{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.al-logo{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.al-l1{background:linear-gradient(135deg,#7C3AED,#4C1D95);}
+.al-l2{background:linear-gradient(135deg,#065F46,#10B981);}
+.al-l3{background:linear-gradient(135deg,#1E3A5F,#2563EB);}
+.al-name{font-size:16px;font-weight:700;color:#fff;}
+.al-sector{font-size:12px;color:var(--primary);font-weight:600;}
+.al-desc{font-size:14px;color:var(--text-dim);margin-bottom:14px;line-height:1.5;}
+.al-metrics{display:flex;gap:16px;}
+.al-metric{text-align:center;}
+.al-m-val{font-size:16px;font-weight:800;color:var(--green);}
+.al-m-l{font-size:11px;color:var(--text-dim);}
+
+/* TEMOIGNAGES */
+.testis-section{padding:80px 40px;background:var(--bg);}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.testi-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:28px;transition:all 0.3s;}
+.testi-card:hover{border-color:var(--primary);}
+.t-stars{color:#FCD34D;font-size:14px;margin-bottom:14px;}
+.t-text{color:var(--text-dim);font-style:italic;font-size:15px;line-height:1.7;margin-bottom:20px;}
+.t-author{display:flex;align-items:center;gap:12px;}
+.ta{width:40px;height:40px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;}
+.tn{font-size:14px;font-weight:700;color:#fff;}
+.tr{font-size:12px;color:var(--text-dim);}
+
+/* CTA */
+.cta-section{padding:100px 40px;text-align:center;background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(6,182,212,0.1));position:relative;overflow:hidden;}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(139,92,246,0.2),transparent 70%);}
+.cta-section h2{font-size:52px;font-weight:800;color:#fff;letter-spacing:-1.5px;margin-bottom:16px;position:relative;}
+.cta-section h2 .grad{background:linear-gradient(135deg,var(--primary),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.cta-section p{color:var(--text-dim);font-size:18px;margin-bottom:40px;position:relative;}
+.cta-btns{display:flex;gap:14px;justify-content:center;position:relative;flex-wrap:wrap;}
+
+footer{background:#060810;padding:60px 40px 28px;border-top:1px solid var(--card-border);}
+.fg{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.fl{font-size:20px;font-weight:800;color:#fff;margin-bottom:14px;}
+.fl span{color:var(--primary);}
+footer p.fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16px;}
+.f-socs{display:flex;gap:8px;}
+.f-soc{width:34px;height:34px;background:rgba(139,92,246,0.1);border:1px solid var(--card-border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;text-decoration:none;color:var(--text-dim);transition:all 0.2s;}
+.f-soc:hover{background:var(--primary);color:#fff;}
+.fc h5{color:rgba(255,255,255,0.6);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;}
+.fc ul{list-style:none;}
+.fc li{margin-bottom:9px;}
+.fc a{color:var(--text-dim);font-size:13px;text-decoration:none;transition:color 0.2s;}
+.fc a:hover{color:var(--primary);}
+.fb{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.05);padding-top:24px;display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.3);}
+.fb a{color:rgba(255,255,255,0.3);text-decoration:none;}
+
+@media(max-width:900px){
+  .hero h1{font-size:44px;}
+  .startups-grid,.testis-grid{grid-template-columns:1fr;}
+  .programme-grid,.alumni-grid,.invest-grid{grid-template-columns:1fr 1fr;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .fg{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Startup<span>Hub</span> Africa</div>
+    <ul class="nav-links">
+      <li><a href="#">Programme</a></li>
+      <li><a href="#">Startups</a></li>
+      <li><a href="#">Investisseurs</a></li>
+      <li><a href="#">Alumni</a></li>
+      <li><a href="#">Événements</a></li>
+    </ul>
+    <div class="nav-btns">
+      <a href="#" class="btn-nav-o">En savoir plus</a>
+      <a href="#" class="btn-nav-f">Candidater</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow-purple"></div>
+  <div class="hero-glow-cyan"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><div class="badge-dot"></div>Candidatures ouvertes — Promotion 2026</div>
+    <h1>L'incubateur qui<br>propulse les<br><span class="grad">startups africaines</span></h1>
+    <p class="hero-desc">Financement, mentors, réseau d'investisseurs — nous transformons vos idées en entreprises technologiques qui changent l'Afrique.</p>
+    <div class="hero-cta">
+      <a href="#" class="btn-purple">Candidater maintenant</a>
+      <a href="#" class="btn-ghost">Notre programme</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-n"><span>120+</span></div><div class="hs-l">Startups incubées</div></div>
+      <div class="hs"><div class="hs-n"><span>4,8 Mds</span></div><div class="hs-l">FCFA levés</div></div>
+      <div class="hs"><div class="hs-n"><span>85%</span></div><div class="hs-l">Taux survie 3 ans</div></div>
+      <div class="hs"><div class="hs-n"><span>32</span></div><div class="hs-l">Investisseurs partenaires</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="startups-section">
+  <div class="si">
+    <div class="sh center">
+      <div class="stag purple">Secteurs ciblés</div>
+      <h2 class="stitle">Nous incubons les technologies qui transforment l'Afrique</h2>
+      <p class="ssub">Fintech, agri-tech, healthtech, edtech — les secteurs où le digital crée le plus d'impact sur le continent.</p>
+    </div>
+    <div class="startups-grid">
+      <div class="startup-card"><div class="sc-icon">💸</div><div class="sc-sector">Fintech</div><div class="sc-name">Finance & Paiements Digitaux</div><div class="sc-desc">Mobile money, prêts P2P, néobanques, crypto-monnaies, assurance paramétrique, BNPL africain.</div><div class="sc-tags"><span class="sc-tag">Mobile Money</span><span class="sc-tag">Crypto</span><span class="sc-tag">Microfinance</span></div></div>
+      <div class="startup-card"><div class="sc-icon">🌾</div><div class="sc-sector">AgriTech</div><div class="sc-name">Agriculture & Chaîne Alimentaire</div><div class="sc-desc">IoT agricole, marketplace paysans, traçabilité alimentaire, drones, financement agricole digital.</div><div class="sc-tags"><span class="sc-tag">IoT</span><span class="sc-tag">Marketplace</span><span class="sc-tag">Drones</span></div></div>
+      <div class="startup-card"><div class="sc-icon">🏥</div><div class="sc-sector">HealthTech</div><div class="sc-name">Santé & Télémédecine</div><div class="sc-desc">Téléconsultation, diagnostic IA, logistique médicaments, dossier patient digital, financement santé.</div><div class="sc-tags"><span class="sc-tag">IA Médicale</span><span class="sc-tag">Téléconsult.</span><span class="sc-tag">Pharma</span></div></div>
+      <div class="startup-card"><div class="sc-icon">🎓</div><div class="sc-sector">EdTech</div><div class="sc-name">Éducation & Formation</div><div class="sc-desc">E-learning adaptatif, formation professionnelle online, coaching, certifications africaines.</div><div class="sc-tags"><span class="sc-tag">E-learning</span><span class="sc-tag">Certification</span><span class="sc-tag">IA</span></div></div>
+      <div class="startup-card"><div class="sc-icon">🚚</div><div class="sc-sector">LogiTech</div><div class="sc-name">Logistique & Commerce</div><div class="sc-desc">Livraison last-mile, tracking temps réel, e-commerce B2B, optimisation chaîne froid.</div><div class="sc-tags"><span class="sc-tag">Last-mile</span><span class="sc-tag">B2B</span><span class="sc-tag">Cold Chain</span></div></div>
+      <div class="startup-card"><div class="sc-icon">⚡</div><div class="sc-sector">CleanTech</div><div class="sc-name">Énergie & Environnement</div><div class="sc-desc">Solaire off-grid, biogaz, eau potable, gestion déchets intelligente, finance verte.</div><div class="sc-tags"><span class="sc-tag">Solaire</span><span class="sc-tag">Eau</span><span class="sc-tag">Finance verte</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="stats-inner">
+    <div><div class="stat-n purple">120+</div><div class="stat-l">Startups incubées</div></div>
+    <div><div class="stat-n cyan">4,8 Mds FCFA</div><div class="stat-l">Levés par nos alumni</div></div>
+    <div><div class="stat-n green">85%</div><div class="stat-l">Survie à 3 ans</div></div>
+    <div><div class="stat-n white">32</div><div class="stat-l">Investisseurs partenaires</div></div>
+  </div>
+</section>
+
+<section class="programme-section">
+  <div class="si">
+    <div class="sh">
+      <div class="stag cyan">Nos programmes</div>
+      <h2 class="stitle">Choisissez votre trajectoire</h2>
+      <p class="ssub">De l'idée à la levée de fonds, un programme adapté à chaque stade de votre startup.</p>
+    </div>
+    <div class="programme-grid">
+      <div class="prog-card">
+        <div class="prog-header"><div class="prog-name">🌱 Seed Program</div><div class="prog-duration">3 mois</div></div>
+        <ul class="prog-features">
+          <li>Validation produit & marché (PMF)</li>
+          <li>Bootcamp tech et business 4 semaines</li>
+          <li>Financement amorçage 2 500 000 FCFA</li>
+          <li>10 mentors sectoriels dédiés</li>
+          <li>Accès espace de travail partagé</li>
+          <li>Connexion 500+ entrepreneurs</li>
+        </ul>
+        <div class="prog-footer"><div class="prog-equity">5% <small>equity</small></div><a href="#" class="btn-prog">Candidater</a></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-header"><div class="prog-name">🚀 Acceleration Program</div><div class="prog-duration">6 mois</div></div>
+        <ul class="prog-features">
+          <li>Mise à l'échelle régionale (CI, Sénégal, Ghana)</li>
+          <li>Financement croissance 10 000 000 FCFA</li>
+          <li>Mentor exécutif à temps partiel</li>
+          <li>Accès réseau 32 investisseurs</li>
+          <li>Préparation pitch Series A</li>
+          <li>Business development international</li>
+        </ul>
+        <div class="prog-footer"><div class="prog-equity">8% <small>equity</small></div><a href="#" class="btn-prog">Candidater</a></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-header"><div class="prog-name">💫 Scale-Up Program</div><div class="prog-duration">12 mois</div></div>
+        <ul class="prog-features">
+          <li>Expansion 5+ pays africains</li>
+          <li>Ticket investissement 50 000 000 FCFA</li>
+          <li>Comité exécutif dédié</li>
+          <li>Roadshow investisseurs Europe & USA</li>
+          <li>Levée Series A / B accompagnée</li>
+        </ul>
+        <div class="prog-footer"><div class="prog-equity">Sur mesure</div><a href="#" class="btn-prog">Candidater</a></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-header"><div class="prog-name">🎓 Corporate Innovation</div><div class="prog-duration">3 mois</div></div>
+        <ul class="prog-features">
+          <li>Partenariat startup × grande entreprise</li>
+          <li>Challenge d'innovation sponsorisé</li>
+          <li>Pilot commercial garanti</li>
+          <li>Financement POC 5 000 000 FCFA</li>
+          <li>Co-développement produit</li>
+        </ul>
+        <div class="prog-footer"><div class="prog-equity">Revenus partagés</div><a href="#" class="btn-prog">Découvrir</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="invest-section">
+  <div class="si">
+    <div class="sh">
+      <div class="stag green">Investisseurs partenaires</div>
+      <h2 class="stitle">Un réseau d'investisseurs engagés</h2>
+      <p class="ssub">32 fonds et business angels qui croient en l'avenir digital de l'Afrique.</p>
+    </div>
+    <div class="invest-grid">
+      <div class="inv-card"><div class="inv-logo">🦁</div><div class="inv-name">AfricInvest</div><div class="inv-type">Fonds PE Africain</div><div class="inv-ticket">Ticket : 50M-500M FCFA</div></div>
+      <div class="inv-card"><div class="inv-logo">🌍</div><div class="inv-name">Development Partners</div><div class="inv-type">Impact Investing</div><div class="inv-ticket">Ticket : 100M+ FCFA</div></div>
+      <div class="inv-card"><div class="inv-logo">⚡</div><div class="inv-name">TechStars Africa</div><div class="inv-type">Seed & Early Stage</div><div class="inv-ticket">Ticket : 5M-25M FCFA</div></div>
+      <div class="inv-card"><div class="inv-logo">🏦</div><div class="inv-name">BAD Venture</div><div class="inv-type">Banque Africaine Dev.</div><div class="inv-ticket">Ticket : 250M+ FCFA</div></div>
+      <div class="inv-card"><div class="inv-logo">📱</div><div class="inv-name">Orange Ventures</div><div class="inv-type">Corporate VC</div><div class="inv-ticket">Ticket : 25M-100M FCFA</div></div>
+      <div class="inv-card"><div class="inv-logo">🌱</div><div class="inv-name">Seedstars Africa</div><div class="inv-type">Emerging Markets</div><div class="inv-ticket">Ticket : 5M-50M FCFA</div></div>
+      <div class="inv-card"><div class="inv-logo">💎</div><div class="inv-name">Adenia Partners</div><div class="inv-type">Growth Equity</div><div class="inv-ticket">Ticket : 100M+ FCFA</div></div>
+      <div class="inv-card"><div class="inv-logo">🚀</div><div class="inv-name">50 Business Angels</div><div class="inv-type">Angels africains</div><div class="inv-ticket">Ticket : 1M-10M FCFA</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alumni-section">
+  <div class="si">
+    <div class="sh center">
+      <div class="stag purple">Nos alumni</div>
+      <h2 class="stitle">Des startups qui changent l'Afrique</h2>
+    </div>
+    <div class="alumni-grid">
+      <div class="alumni-card"><div class="al-header"><div class="al-logo al-l1">💸</div><div><div class="al-name">PayAfrica</div><div class="al-sector">Fintech · CI · SN · GH</div></div></div><div class="al-desc">Solution de paiement inter-CEDEAO en temps réel. Première néobanque panafricaine opérant dans 6 pays.</div><div class="al-metrics"><div class="al-metric"><div class="al-m-val">2,4 Mds</div><div class="al-m-l">FCFA levés</div></div><div class="al-metric"><div class="al-m-val">180K</div><div class="al-m-l">Utilisateurs</div></div><div class="al-metric"><div class="al-m-val">6</div><div class="al-m-l">Pays</div></div></div></div>
+      <div class="alumni-card"><div class="al-header"><div class="al-logo al-l2">🌾</div><div><div class="al-name">FarmerLink</div><div class="al-sector">AgriTech · CI · BF · ML</div></div></div><div class="al-desc">Marketplace connectant 45 000 agriculteurs aux acheteurs institutionnels. Traçabilité blockchain cacao et café.</div><div class="al-metrics"><div class="al-metric"><div class="al-m-val">850M</div><div class="al-m-l">FCFA levés</div></div><div class="al-metric"><div class="al-m-val">45K</div><div class="al-m-l">Agriculteurs</div></div><div class="al-metric"><div class="al-m-val">3</div><div class="al-m-l">Pays</div></div></div></div>
+      <div class="alumni-card"><div class="al-header"><div class="al-logo al-l3">🏥</div><div><div class="al-name">DocAfrique</div><div class="al-sector">HealthTech · Afrique W.</div></div></div><div class="al-desc">Téléconsultation médicale 24h/24 et livraison médicaments en 2h dans 4 capitales africaines.</div><div class="al-metrics"><div class="al-metric"><div class="al-m-val">1,2 Mds</div><div class="al-m-l">FCFA levés</div></div><div class="al-metric"><div class="al-m-val">120K</div><div class="al-m-l">Consultations</div></div><div class="al-metric"><div class="al-m-val">4</div><div class="al-m-l">Villes</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testis-section">
+  <div class="si">
+    <div class="sh center">
+      <div class="stag purple">Témoignages</div>
+      <h2 class="stitle">Ils ont réussi avec StartupHub</h2>
+    </div>
+    <div class="testis-grid">
+      <div class="testi-card"><div class="t-stars">★★★★★</div><p class="t-text">Le programme Acceleration de StartupHub nous a permis de lever 1,2 milliard FCFA en 8 mois. Leur réseau d'investisseurs et l'accompagnement business sont uniques en Afrique.</p><div class="t-author"><div class="ta">AK</div><div><div class="tn">Aminata Kouyaté</div><div class="tr">CEO · DocAfrique</div></div></div></div>
+      <div class="testi-card"><div class="t-stars">★★★★★</div><p class="t-text">De l'idée au MVP en 3 mois grâce au Seed Program. Les mentors m'ont évité des erreurs qui auraient pu tuer mon projet. StartupHub est l'écosystème qu'on attendait en CI.</p><div class="t-author"><div class="ta">KD</div><div><div class="tn">Kofi Diabaté</div><div class="tr">CTO · FarmerLink</div></div></div></div>
+      <div class="testi-card"><div class="t-stars">★★★★★</div><p class="t-text">L'accès au réseau de 32 investisseurs partenaires a changé la donne. Nous avons pitché devant AfricInvest le 3ème mois et bouclé notre Series A le 6ème. Incroyable.</p><div class="t-author"><div class="ta">OB</div><div><div class="tn">Ousmane Bamba</div><div class="tr">CEO · PayAfrica</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <h2>Votre startup mérite<br>l'<span class="grad">Afrique entière</span></h2>
+  <p>Candidatures Promotion 2026 ouvertes jusqu'au 31 Mars 2026</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-purple">Candidater maintenant</a>
+    <a href="#" class="btn-ghost">Prendre un RDV</a>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div>
+      <div class="fl">Startup<span>Hub</span> Africa</div>
+      <p class="fp">Le premier incubateur tech panafricain. Abidjan, Dakar, Lagos, Nairobi. 120+ startups incubées, 4,8 milliards FCFA levés depuis 2016.</p>
+      <div class="f-socs"><a href="#" class="f-soc">tw</a><a href="#" class="f-soc">in</a><a href="#" class="f-soc">ig</a><a href="#" class="f-soc">yt</a></div>
+    </div>
+    <div class="fc"><h5>Programmes</h5><ul><li><a href="#">Seed Program</a></li><li><a href="#">Acceleration</a></li><li><a href="#">Scale-Up</a></li><li><a href="#">Corporate Innovation</a></li></ul></div>
+    <div class="fc"><h5>Réseau</h5><ul><li><a href="#">Investisseurs</a></li><li><a href="#">Mentors</a></li><li><a href="#">Alumni</a></li><li><a href="#">Partenaires</a></li></ul></div>
+    <div class="fc"><h5>Contact</h5><ul><li><a href="#">📍 Cocody, Abidjan</a></li><li><a href="#">📞 +225 07 11 22 33 44</a></li><li><a href="#">✉️ apply@startuphub.africa</a></li></ul></div>
+  </div>
+  <div class="fb">
+    <span>© 2025 StartupHub Africa. Tous droits réservés.</span>
+    <div><a href="#">Mentions légales</a> · <a href="#">Politique cookies</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>École des Arts Créatifs Kigali</title>
+<style>
+:root{--bg:#111;--card:#1a1a1a;--border:#2a2a2a;--text:#f0f0f0;--muted:#888;--red:#FF3366;--yellow:#FFD700;--cyan:#00E5FF;--green:#39FF14;--purple:#BF5FFF;--orange:#FF6B35;--white:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--bg);padding-top:40px}
+#demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
+#demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
+
+nav{position:sticky;top:40px;background:rgba(17,17,17,0.95);border-bottom:1px solid var(--border);z-index:100;backdrop-filter:blur(12px)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--red),var(--purple));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.logo-text{font-weight:900;font-size:18px;color:var(--white);letter-spacing:-0.5px}
+.logo-text span{color:var(--muted);display:block;font-size:11px;font-weight:400;letter-spacing:1px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:linear-gradient(135deg,var(--red),var(--purple));color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;transition:all .2s}
+.nav-cta:hover{opacity:0.85;transform:translateY(-1px)}
+
+.hero{min-height:90vh;display:flex;align-items:center;background:var(--bg);position:relative;overflow:hidden;padding:80px 24px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 50%,rgba(191,95,255,0.12),transparent),radial-gradient(ellipse 40% 60% at 20% 80%,rgba(255,51,102,0.08),transparent),radial-gradient(ellipse 50% 50% at 80% 20%,rgba(0,229,255,0.06),transparent)}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,51,102,0.12);border:1px solid rgba(255,51,102,0.25);color:var(--red);padding:6px 16px;border-radius:4px;font-size:12px;font-weight:700;margin-bottom:24px;text-transform:uppercase;letter-spacing:2px}
+.hero h1{font-size:60px;font-weight:900;color:var(--white);line-height:1.05;margin-bottom:20px;letter-spacing:-2px}
+.hero h1 .r{color:var(--red)}
+.hero h1 .y{color:var(--yellow)}
+.hero h1 .c{color:var(--cyan)}
+.hero-desc{font-size:17px;color:var(--muted);line-height:1.7;margin-bottom:36px;max-width:480px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-grad{background:linear-gradient(135deg,var(--red),var(--purple));color:#fff;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:all .2s}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,51,102,0.3)}
+.btn-outline{border:1.5px solid rgba(255,255,255,0.2);color:var(--text);padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;transition:all .2s}
+.btn-outline:hover{border-color:rgba(255,255,255,0.5);color:var(--white)}
+.hero-portfolio{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.port-item{border-radius:12px;overflow:hidden;position:relative;aspect-ratio:1;cursor:pointer;transition:transform .3s}
+.port-item:hover{transform:scale(1.03)}
+.port-item:nth-child(1){background:linear-gradient(135deg,#FF3366 0%,#FF6B35 100%);grid-row:span 2}
+.port-item:nth-child(2){background:linear-gradient(135deg,#BF5FFF 0%,#00E5FF 100%)}
+.port-item:nth-child(3){background:linear-gradient(135deg,#FFD700 0%,#FF6B35 100%)}
+.port-item-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;background:linear-gradient(to top,rgba(0,0,0,0.5),transparent)}
+.port-item-emoji{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);font-size:48px;opacity:0.4}
+.port-tag{background:rgba(255,255,255,0.15);color:#fff;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;backdrop-filter:blur(4px);display:inline-block;margin-bottom:4px}
+.port-name{font-size:13px;font-weight:700;color:#fff}
+
+section{padding:72px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;background:rgba(255,51,102,0.1);color:var(--red);padding:4px 14px;border-radius:4px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.section-title{font-size:40px;font-weight:900;color:var(--white);margin-bottom:14px;letter-spacing:-1px}
+.section-sub{font-size:16px;color:var(--muted);line-height:1.7;max-width:560px}
+
+.disciplines{background:var(--bg)}
+.disc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:48px;border-radius:16px;overflow:hidden}
+.disc-card{background:var(--card);padding:40px 32px;transition:background .2s;cursor:pointer;position:relative;overflow:hidden}
+.disc-card::before{content:'';position:absolute;inset:0;background:var(--disc-color);opacity:0;transition:opacity .3s}
+.disc-card:hover::before{opacity:0.05}
+.disc-card:hover{background:#1f1f1f}
+.disc-icon{font-size:44px;margin-bottom:20px;position:relative;z-index:1}
+.disc-name{font-size:22px;font-weight:800;color:var(--white);margin-bottom:8px;position:relative;z-index:1}
+.disc-desc{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:20px;position:relative;z-index:1}
+.disc-tags{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1}
+.disc-tag{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid}
+.disc-tag.red{color:var(--red);border-color:rgba(255,51,102,0.3);background:rgba(255,51,102,0.07)}
+.disc-tag.yellow{color:var(--yellow);border-color:rgba(255,215,0,0.3);background:rgba(255,215,0,0.07)}
+.disc-tag.cyan{color:var(--cyan);border-color:rgba(0,229,255,0.3);background:rgba(0,229,255,0.07)}
+.disc-tag.green{color:var(--green);border-color:rgba(57,255,20,0.3);background:rgba(57,255,20,0.07)}
+.disc-tag.purple{color:var(--purple);border-color:rgba(191,95,255,0.3);background:rgba(191,95,255,0.07)}
+.disc-tag.orange{color:var(--orange);border-color:rgba(255,107,53,0.3);background:rgba(255,107,53,0.07)}
+
+.portfolio{background:#0d0d0d}
+.portfolio-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.port-card{border-radius:12px;overflow:hidden;position:relative;aspect-ratio:0.85;cursor:pointer;transition:transform .3s}
+.port-card:hover{transform:scale(1.04)}
+.port-card:hover .port-overlay{opacity:1}
+.port-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:80px;opacity:0.3}
+.port-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.7);display:flex;flex-direction:column;justify-content:flex-end;padding:20px;opacity:0;transition:opacity .3s}
+.port-student{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px}
+.port-work-title{font-size:12px;color:rgba(255,255,255,0.6)}
+
+.profs{background:var(--bg)}
+.profs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.prof-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .2s}
+.prof-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-4px)}
+.prof-header{height:180px;display:flex;align-items:center;justify-content:center;font-size:72px;position:relative}
+.prof-body{padding:24px}
+.prof-name{font-size:18px;font-weight:700;color:var(--white);margin-bottom:4px}
+.prof-title{font-size:13px;font-weight:600;margin-bottom:8px}
+.prof-title.red{color:var(--red)}
+.prof-title.cyan{color:var(--cyan)}
+.prof-title.yellow{color:var(--yellow)}
+.prof-bio{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:14px}
+.prof-skills{display:flex;gap:8px;flex-wrap:wrap}
+.prof-skill{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+
+.inscription{background:#0d0d0d;padding:80px 24px}
+.inscription-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.inscription-info h2{font-size:40px;font-weight:900;color:var(--white);margin-bottom:16px;letter-spacing:-1px}
+.inscription-info h2 span{color:var(--red)}
+.inscription-info p{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:32px}
+.rentrée-info{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;margin-bottom:24px}
+.ri-title{font-size:14px;font-weight:700;color:var(--yellow);margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.ri-item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+.ri-item:last-child{border-bottom:none}
+.ri-label{color:var(--muted)}
+.ri-val{color:var(--white);font-weight:600}
+.insc-form{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px}
+.insc-form h3{font-size:22px;font-weight:700;color:var(--white);margin-bottom:24px}
+.form-field{margin-bottom:18px}
+.form-field label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px}
+.form-field input,.form-field select,.form-field textarea{width:100%;padding:12px 16px;background:#111;border:1.5px solid var(--border);border-radius:8px;font-size:14px;color:var(--white);outline:none;transition:border-color .2s;font-family:inherit}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--red)}
+.form-field textarea{resize:vertical;min-height:80px}
+.form-field select option{background:#1a1a1a}
+.form-submit{width:100%;background:linear-gradient(135deg,var(--red),var(--purple));color:#fff;border:none;padding:16px;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit;letter-spacing:0.5px}
+.form-submit:hover{opacity:0.85;transform:translateY(-1px)}
+
+.testi{background:var(--bg);padding:80px 24px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.testi-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:border-color .2s}
+.testi-card:hover{border-color:rgba(255,255,255,0.15)}
+.testi-stars{font-size:16px;margin-bottom:14px}
+.testi-text{color:rgba(255,255,255,0.7);font-size:14px;line-height:1.7;font-style:italic;margin-bottom:20px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:16px}
+.testi-name{font-size:14px;font-weight:700;color:var(--white)}
+.testi-info{font-size:12px;color:var(--muted)}
+
+.cta-section{background:linear-gradient(135deg,#1a001a,#2a0011);padding:80px 24px;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(255,51,102,0.1),transparent);pointer-events:none}
+.cta-section h2{font-size:52px;font-weight:900;color:var(--white);margin-bottom:16px;letter-spacing:-2px;position:relative;z-index:1}
+.cta-section h2 span{color:var(--red)}
+.cta-section p{font-size:18px;color:var(--muted);margin-bottom:36px;position:relative;z-index:1}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.btn-big{background:linear-gradient(135deg,var(--red),var(--orange));color:#fff;padding:18px 48px;border-radius:8px;text-decoration:none;font-weight:700;font-size:17px;transition:all .2s}
+.btn-big:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,51,102,0.3)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,0.2);color:var(--text);padding:18px 48px;border-radius:8px;text-decoration:none;font-weight:600;font-size:17px;transition:all .2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.5);color:#fff}
+
+footer{background:#080808;border-top:1px solid var(--border);padding:56px 24px 24px;color:var(--muted)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-heading{font-size:12px;font-weight:700;color:var(--white);margin-bottom:18px;text-transform:uppercase;letter-spacing:2px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:10px}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-links a:hover{color:var(--red)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:10px}
+.footer-bottom a{color:var(--red);text-decoration:none}
+
+@media(max-width:768px){
+  .hero-inner,.inscription-inner,.footer-grid{grid-template-columns:1fr}
+  .hero h1{font-size:38px}
+  .disc-grid,.profs-grid{grid-template-columns:1fr}
+  .portfolio-grid{grid-template-columns:1fr 1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .nav-links,.nav-cta{display:none}
+}
+</style>
+</head>
+<body>
+<div id="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="#">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">🎨</div>
+      <div class="logo-text">EACK<span>École des Arts Créatifs · Kigali</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Disciplines</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">Professeurs</a></li>
+      <li><a href="#">Galerie</a></li>
+      <li><a href="#">Inscriptions</a></li>
+    </ul>
+    <a href="#" class="nav-cta">S'inscrire</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🎨 Kigali · Rwanda · Depuis 2015</div>
+      <h1>Créez.<br><span class="r">Exprimez.</span><br><span class="c">Inspirez.</span></h1>
+      <p class="hero-desc">L'École des Arts Créatifs Kigali forme les artistes africains de demain dans un environnement bienveillant, audacieux et professionnel. Peinture, musique, danse, photographie.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-grad">Rejoindre l'école</a>
+        <a href="#" class="btn-outline">Voir le portfolio</a>
+      </div>
+    </div>
+    <div class="hero-portfolio">
+      <div class="port-item"><div class="port-item-emoji">🎨</div><div class="port-item-content"><span class="port-tag">Peinture</span><div class="port-name">Série Afro-Futurisme</div></div></div>
+      <div class="port-item"><div class="port-item-emoji">📸</div><div class="port-item-content"><span class="port-tag">Photo</span><div class="port-name">Urban Rwanda</div></div></div>
+      <div class="port-item"><div class="port-item-emoji">🎵</div><div class="port-item-content"><span class="port-tag">Musique</span><div class="port-name">Fusion Afro-Jazz</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="disciplines">
+  <div class="section-inner">
+    <div class="section-tag">Disciplines</div>
+    <h2 class="section-title">6 Arts, Une Passion</h2>
+    <p class="section-sub">Chaque discipline est enseignée par des artistes professionnels avec une vision africaine et internationale.</p>
+    <div class="disc-grid">
+      <div class="disc-card" style="--disc-color:var(--red)"><div class="disc-icon">🎨</div><div class="disc-name">Peinture & Dessin</div><div class="disc-desc">Techniques classiques et contemporaines, de l'aquarelle à la peinture numérique. Exploration des traditions visuelles africaines.</div><div class="disc-tags"><span class="disc-tag red">Acrylique</span><span class="disc-tag red">Huile</span><span class="disc-tag red">Digital</span></div></div>
+      <div class="disc-card" style="--disc-color:var(--yellow)"><div class="disc-icon">🎵</div><div class="disc-name">Musique</div><div class="disc-desc">Guitare, piano, percussions africaines, chant, composition et théorie musicale. Du folklore au jazz contemporain.</div><div class="disc-tags"><span class="disc-tag yellow">Guitare</span><span class="disc-tag yellow">Percussions</span><span class="disc-tag yellow">Chant</span></div></div>
+      <div class="disc-card" style="--disc-color:var(--cyan)"><div class="disc-icon">💃</div><div class="disc-name">Danse</div><div class="disc-desc">Danse africaine traditionnelle, contemporaine et hip-hop. Chorégraphie, expression corporelle et performance scénique.</div><div class="disc-tags"><span class="disc-tag cyan">Afro</span><span class="disc-tag cyan">Contemporain</span><span class="disc-tag cyan">Hip-hop</span></div></div>
+      <div class="disc-card" style="--disc-color:var(--purple)"><div class="disc-icon">📸</div><div class="disc-name">Photographie</div><div class="disc-desc">Technique, composition, portrait, reportage urbain et retouche numérique. Vision documentaire de l'Afrique d'aujourd'hui.</div><div class="disc-tags"><span class="disc-tag purple">Portrait</span><span class="disc-tag purple">Reportage</span><span class="disc-tag purple">Numérique</span></div></div>
+      <div class="disc-card" style="--disc-color:var(--green)"><div class="disc-icon">🎭</div><div class="disc-name">Théâtre & Scène</div><div class="disc-desc">Jeu d'acteur, mise en scène, improvisation, théâtre de rue et dramaturgie africaine contemporaine.</div><div class="disc-tags"><span class="disc-tag green">Jeu</span><span class="disc-tag green">Mise en scène</span><span class="disc-tag green">Impro</span></div></div>
+      <div class="disc-card" style="--disc-color:var(--orange)"><div class="disc-icon">🏺</div><div class="disc-name">Sculpture & Céramique</div><div class="disc-desc">Arts plastiques tridimensionnels, poterie, sculpture sur bois et métal, installation artistique.</div><div class="disc-tags"><span class="disc-tag orange">Poterie</span><span class="disc-tag orange">Bois</span><span class="disc-tag orange">Installation</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio">
+  <div class="section-inner">
+    <div class="section-tag" style="color:var(--cyan);background:rgba(0,229,255,0.1)">Portfolio Élèves</div>
+    <h2 class="section-title">Leurs Œuvres Parlent</h2>
+    <p class="section-sub">Découvrez les créations de nos élèves actuels et diplômés. Chaque œuvre raconte une histoire africaine.</p>
+    <div class="portfolio-grid">
+      <div class="port-card" style="background:linear-gradient(135deg,#FF3366,#FF6B35)"><div class="port-bg">🌅</div><div class="port-overlay"><div class="port-student">Amina Uwase</div><div class="port-work-title">Série "Aurores Kigali" · Peinture acrylique</div></div></div>
+      <div class="port-card" style="background:linear-gradient(135deg,#1a0033,#BF5FFF)"><div class="port-bg">🌌</div><div class="port-overlay"><div class="port-student">Jean-Baptiste Habimana</div><div class="port-work-title">"Cosmos Africain" · Photographie</div></div></div>
+      <div class="port-card" style="background:linear-gradient(135deg,#004d00,#39FF14)"><div class="port-bg">🌿</div><div class="port-overlay"><div class="port-student">Clarisse Mukamana</div><div class="port-work-title">"Forêts Mémoire" · Sculpture bois</div></div></div>
+      <div class="port-card" style="background:linear-gradient(135deg,#002244,#00E5FF)"><div class="port-bg">🌊</div><div class="port-overlay"><div class="port-student">Eric Nkurunziza</div><div class="port-work-title">"Lac Kivu Blues" · Photographie</div></div></div>
+      <div class="port-card" style="background:linear-gradient(135deg,#330000,#FF3366)"><div class="port-bg">🔥</div><div class="port-overlay"><div class="port-student">Grace Ingabire</div><div class="port-work-title">"Flammes Rwandaises" · Performance</div></div></div>
+      <div class="port-card" style="background:linear-gradient(135deg,#1a1a00,#FFD700)"><div class="port-bg">⭐</div><div class="port-overlay"><div class="port-student">Samuel Ndayisaba</div><div class="port-work-title">"Nuit d'Étoiles" · Peinture huile</div></div></div>
+      <div class="port-card" style="background:linear-gradient(135deg,#1a0033,#FF6B35)"><div class="port-bg">🎭</div><div class="port-overlay"><div class="port-student">Marie-Claire Uwacu</div><div class="port-work-title">"Masques" · Céramique contemporaine</div></div></div>
+      <div class="port-card" style="background:linear-gradient(135deg,#001a1a,#0D9488)"><div class="port-bg">🌍</div><div class="port-overlay"><div class="port-student">Thierry Mutombo</div><div class="port-work-title">"Mère Afrique" · Dessin au fusain</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="profs">
+  <div class="section-inner">
+    <div class="section-tag" style="color:var(--yellow);background:rgba(255,215,0,0.1)">Corps Enseignant</div>
+    <h2 class="section-title">Artistes & Professeurs</h2>
+    <p class="section-sub">Nos enseignants sont avant tout des artistes reconnus sur la scène africaine et internationale.</p>
+    <div class="profs-grid">
+      <div class="prof-card"><div class="prof-header" style="background:linear-gradient(135deg,#FF3366,#c2185b)">🎨</div><div class="prof-body"><div class="prof-name">Kalisa Emmanuel</div><div class="prof-title red">Peinture · Directeur artistique</div><div class="prof-bio">Diplômé des Beaux-Arts de Paris. Expositions à Kigali, Nairobi, Paris. Chef du département arts visuels.</div><div class="prof-skills"><span class="prof-skill" style="background:rgba(255,51,102,0.15);color:var(--red)">Acrylique</span><span class="prof-skill" style="background:rgba(255,51,102,0.15);color:var(--red)">Huile</span></div></div></div>
+      <div class="prof-card"><div class="prof-header" style="background:linear-gradient(135deg,#00E5FF,#00838f)">📸</div><div class="prof-body"><div class="prof-name">Immaculée Igihozo</div><div class="prof-title cyan">Photographie · Vidéo</div><div class="prof-bio">Photographe documentaire primée. Travail publié dans le National Geographic Africa Edition.</div><div class="prof-skills"><span class="prof-skill" style="background:rgba(0,229,255,0.15);color:var(--cyan)">Portrait</span><span class="prof-skill" style="background:rgba(0,229,255,0.15);color:var(--cyan)">Doc</span></div></div></div>
+      <div class="prof-card"><div class="prof-header" style="background:linear-gradient(135deg,#FFD700,#f57f17)">🎵</div><div class="prof-body"><div class="prof-name">Robert Murangwa</div><div class="prof-title yellow">Musique · Composition</div><div class="prof-bio">Musicien professionnel, 3 albums solo. Professeur de guitare classique et de composition afro-jazz.</div><div class="prof-skills"><span class="prof-skill" style="background:rgba(255,215,0,0.15);color:var(--yellow)">Guitare</span><span class="prof-skill" style="background:rgba(255,215,0,0.15);color:var(--yellow)">Jazz</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="inscription">
+  <div class="inscription-inner">
+    <div class="inscription-info">
+      <div class="section-tag" style="color:var(--green);background:rgba(57,255,20,0.08)">Inscriptions</div>
+      <h2>Rejoignez l'<span>École</span><br>dès Octobre</h2>
+      <p>Les inscriptions pour le semestre d'octobre 2025 sont ouvertes. Places limitées à 15 élèves par atelier pour un suivi personnalisé.</p>
+      <div class="rentrée-info">
+        <div class="ri-title">📅 Rentrée Octobre 2025</div>
+        <div class="ri-item"><span class="ri-label">Début des cours</span><span class="ri-val">7 octobre 2025</span></div>
+        <div class="ri-item"><span class="ri-label">Durée du semestre</span><span class="ri-val">6 mois</span></div>
+        <div class="ri-item"><span class="ri-label">Frais d'inscription</span><span class="ri-val">50 000 FCFA</span></div>
+        <div class="ri-item"><span class="ri-label">Cours hebdomadaires</span><span class="ri-val">3h x 2 fois/semaine</span></div>
+        <div class="ri-item"><span class="ri-label">Places disponibles</span><span class="ri-val" style="color:var(--red)">8 places restantes</span></div>
+      </div>
+    </div>
+    <div class="insc-form">
+      <h3>✍️ Formulaire d'inscription</h3>
+      <div class="form-field"><label>Prénom & Nom</label><input type="text" placeholder="Ex: Amina Uwase"></div>
+      <div class="form-field"><label>Discipline choisie</label><select><option>Peinture & Dessin</option><option>Musique</option><option>Danse</option><option>Photographie</option><option>Théâtre</option><option>Sculpture & Céramique</option></select></div>
+      <div class="form-field"><label>Niveau actuel</label><select><option>Débutant (aucune expérience)</option><option>Intermédiaire</option><option>Avancé</option></select></div>
+      <div class="form-field"><label>Téléphone</label><input type="tel" placeholder="+250 7X XXX XXXX"></div>
+      <div class="form-field"><label>Motivation (optionnel)</label><textarea placeholder="Pourquoi souhaitez-vous rejoindre l'EACK ?"></textarea></div>
+      <button class="form-submit">Envoyer ma candidature</button>
+    </div>
+  </div>
+</section>
+
+<section class="testi">
+  <div class="section-inner">
+    <div class="section-tag">Témoignages</div>
+    <h2 class="section-title">Ce Qu'ils Disent</h2>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="testi-stars" style="color:var(--yellow)">★★★★★</div><p class="testi-text">"L'EACK a transformé ma vie. Je suis entrée comme comptable frustrée, je suis sortie artiste peintre. Mes tableaux s'exposent maintenant à la galerie nationale."</p><div class="testi-author"><div class="testi-av" style="background:linear-gradient(135deg,var(--red),var(--orange))">A</div><div><div class="testi-name">Aline Ntakirutimana</div><div class="testi-info">Peinture · Diplômée 2023</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars" style="color:var(--cyan)">★★★★★</div><p class="testi-text">"Robert m'a appris à écouter la musique différemment. Aujourd'hui je joue dans un groupe afro-jazz qui tourne dans toute l'Afrique de l'Est. Merci EACK !"</p><div class="testi-author"><div class="testi-av" style="background:linear-gradient(135deg,var(--cyan),var(--green))">P</div><div><div class="testi-name">Patrick Hakizimana</div><div class="testi-info">Musique · Promo 2022</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars" style="color:var(--purple)">★★★★★</div><p class="testi-text">"La photographie ici n'est pas qu'une technique — c'est une philosophie du regard africain. Immaculée nous apprend à voir et à témoigner. Expérience unique."</p><div class="testi-author"><div class="testi-av" style="background:linear-gradient(135deg,var(--purple),var(--red))">C</div><div><div class="testi-name">Clément Bizimana</div><div class="testi-info">Photographie · En cours</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="section-inner" style="position:relative;z-index:1">
+    <h2>Créez.<br><span>Maintenant.</span></h2>
+    <p>Les arts n'attendent pas. Rejoignez l'EACK et donnez vie à votre créativité africaine.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-big">Je m'inscris pour octobre</a>
+      <a href="#" class="btn-ghost">Visiter l'école</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:20px;font-weight:900;color:var(--white);margin-bottom:14px;letter-spacing:-0.5px">🎨 EACK — École des Arts</div>
+        <p style="font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:18px">Former les artistes africains qui portent et renouvellent le patrimoine culturel du continent tout en s'inscrivant dans la création contemporaine mondiale.</p>
+        <div style="font-size:14px;line-height:2;color:var(--muted)">📍 Quartier Kimihurura, Kigali, Rwanda<br>📞 +250 788 000 000<br>✉️ contact@eack-kigali.rw</div>
+      </div>
+      <div><div class="footer-heading">Disciplines</div><ul class="footer-links"><li><a href="#">Peinture & Dessin</a></li><li><a href="#">Musique</a></li><li><a href="#">Danse</a></li><li><a href="#">Photographie</a></li><li><a href="#">Théâtre</a></li></ul></div>
+      <div><div class="footer-heading">École</div><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#">Professeurs</a></li><li><a href="#">Portfolio</a></li><li><a href="#">Expositions</a></li><li><a href="#">Galerie</a></li></ul></div>
+      <div><div class="footer-heading">Pratique</div><ul class="footer-links"><li><a href="#">Inscriptions</a></li><li><a href="#">Tarifs</a></li><li><a href="#">Calendrier</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQ</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 École des Arts Créatifs Kigali</span>
+      <span>Site créé avec <a href="#">IBIG Digital</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

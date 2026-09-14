@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Académie Digital Africa — Formations en ligne</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--purple:#7C3AED;--purple-light:#EDE9FE;--purple-mid:#DDD6FE;--orange:#F97316;--orange-light:#FFF7ED;--yellow:#FBBF24;--dark:#1E1B4B;--gray:#6B7280;--bg:#FAFAFA;--white:#FFFFFF}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:#111827;font-family:'Helvetica Neue',Arial,sans-serif;overflow-x:hidden}
+.demo-bar{position:fixed;top:0;left:0;right:0;z-index:1000;height:40px;background:linear-gradient(90deg,var(--purple),#6D28D9);display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
+.demo-badge{background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.4);color:white;padding:.15rem .6rem;border-radius:9999px;font-size:.6rem;font-weight:800}
+.demo-bar-text{font-size:.7rem;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:.75rem}
+.demo-btn{padding:.35rem 1.25rem;border-radius:9999px;background:#FF6B00;color:white;font-size:.68rem;font-weight:800;text-decoration:none}
+nav{position:fixed;top:40px;left:0;right:0;z-index:900;background:white;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;justify-content:space-between;padding:.875rem 3rem;box-shadow:0 1px 8px rgba(0,0,0,.05)}
+.nav-logo{font-size:.95rem;font-weight:800;color:var(--dark)}
+.nav-logo em{color:var(--purple);font-style:normal}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:#6B7280;text-decoration:none;font-size:.8rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--purple)}
+.nav-right{display:flex;gap:.625rem}
+.nav-login{padding:.55rem 1.25rem;border:1.5px solid #E5E7EB;border-radius:6px;color:#374151;font-size:.75rem;font-weight:600;text-decoration:none}
+.nav-cta{padding:.6rem 1.5rem;background:var(--purple);color:white;border-radius:6px;font-size:.75rem;font-weight:700;text-decoration:none;box-shadow:0 2px 8px rgba(124,58,237,.3)}
+/* HERO */
+.hero{padding-top:100px;background:linear-gradient(160deg,#1E1B4B 0%,#312E81 40%,#4338CA 70%,#6D28D9 100%);position:relative;overflow:hidden;min-height:85vh;display:flex;align-items:center}
+.hero-blobs{position:absolute;inset:0;pointer-events:none}
+.blob1{position:absolute;top:-100px;right:-80px;width:500px;height:500px;border-radius:50%;background:rgba(167,139,250,.15)}
+.blob2{position:absolute;bottom:-100px;left:-50px;width:350px;height:350px;border-radius:50%;background:rgba(249,115,22,.12)}
+.hero-inner{max-width:1200px;margin:0 auto;padding:4rem 2rem;display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.hero-proof{display:inline-flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:9999px;padding:.5rem 1.25rem;margin-bottom:1.75rem}
+.proof-av{width:24px;height:24px;border-radius:50%;border:2px solid white;display:flex;align-items:center;justify-content:center;font-size:.7rem;background:rgba(255,255,255,.2)}
+.proof-av+.proof-av{margin-left:-8px}
+.proof-text{font-size:.7rem;color:rgba(255,255,255,.9);font-weight:600;margin-left:.25rem}
+.proof-stars{color:#FBBF24;font-size:.65rem}
+.hero h1{font-size:clamp(2.25rem,5vw,4rem);font-weight:900;line-height:1.05;letter-spacing:-.03em;color:white;margin-bottom:1.25rem}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#FCD34D,#F97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.8;max-width:440px;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:.875rem;flex-wrap:wrap;margin-bottom:2rem}
+.btn-orange{padding:.875rem 2.25rem;border-radius:8px;background:var(--orange);color:white;font-size:.85rem;font-weight:800;text-decoration:none;box-shadow:0 4px 20px rgba(249,115,22,.4)}
+.btn-white-ghost{padding:.875rem 1.875rem;border-radius:8px;background:rgba(255,255,255,.15);color:white;font-size:.85rem;font-weight:700;text-decoration:none;border:1.5px solid rgba(255,255,255,.3);backdrop-filter:blur(5px)}
+.hero-badges{display:flex;gap:.625rem;flex-wrap:wrap}
+.hb{padding:.3rem .75rem;border-radius:9999px;font-size:.62rem;font-weight:700;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85)}
+/* Featured course card */
+.fc-card{background:white;border-radius:1.5rem;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.25)}
+.fc-top{height:180px;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg,#EDE9FE,#DDD6FE)}
+.fc-body{padding:1.5rem}
+.fc-badge{display:inline-block;padding:.25rem .625rem;background:#FEF3C7;color:#92400E;border-radius:4px;font-size:.58rem;font-weight:800;margin-bottom:.75rem;border:1px solid #FDE68A}
+.fc-title{font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:.625rem;line-height:1.3}
+.fc-instructor{font-size:.68rem;color:var(--gray);margin-bottom:1rem;display:flex;align-items:center;gap:.4rem}
+.fc-stats{display:flex;gap:1rem;font-size:.65rem;color:var(--gray);padding:1rem 0;border-top:1px solid #F3F4F6;border-bottom:1px solid #F3F4F6;margin-bottom:1.25rem}
+.fc-footer{display:flex;align-items:center;justify-content:space-between}
+.fc-price{font-size:1.1rem;font-weight:900;color:var(--dark)}
+.fc-price-old{font-size:.7rem;color:#9CA3AF;text-decoration:line-through;margin-right:.3rem}
+.fc-btn{padding:.625rem 1.5rem;background:var(--purple);color:white;border-radius:6px;font-size:.75rem;font-weight:800;text-decoration:none}
+/* SECTIONS */
+section{padding:6rem 0}
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+.sec-eyebrow{display:inline-flex;align-items:center;gap:.4rem;font-size:.62rem;font-weight:800;letter-spacing:.1em;color:var(--purple);text-transform:uppercase;background:var(--purple-light);padding:.3rem .875rem;border-radius:9999px;margin-bottom:1.25rem}
+.sec-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:900;letter-spacing:-.03em;color:var(--dark);margin-bottom:.875rem}
+.sec-sub{font-size:.92rem;color:var(--gray);line-height:1.8;max-width:520px;margin-bottom:3rem}
+/* CATÉGORIES */
+.categories{background:white}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.cat-card{padding:2rem 1.5rem;border-radius:1.25rem;text-align:center;cursor:pointer;transition:all .2s;border:2px solid transparent}
+.cc1{background:#EDE9FE}.cc2{background:#FFF7ED}.cc3{background:#F0FDF4}.cc4{background:#EFF6FF}
+.cat-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.1)}
+.cc1:hover{border-color:#7C3AED}.cc2:hover{border-color:#F97316}.cc3:hover{border-color:#10B981}.cc4:hover{border-color:#3B82F6}
+.cat-icon{font-size:2.5rem;margin-bottom:1rem;display:block}
+.cat-name{font-size:.92rem;font-weight:800;color:var(--dark);margin-bottom:.3rem}
+.cat-count{font-size:.65rem;color:var(--gray)}
+/* COURS */
+.cours{background:linear-gradient(180deg,#F9FAFB,white)}
+.cat-tabs{display:flex;gap:.625rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.ct{padding:.45rem 1.125rem;border-radius:9999px;font-size:.75rem;font-weight:700;border:1.5px solid #E5E7EB;color:#6B7280;background:white;cursor:pointer;transition:all .2s}
+.ct.active{background:var(--purple);border-color:var(--purple);color:white;box-shadow:0 3px 12px rgba(124,58,237,.3)}
+.cours-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.cc-card{border-radius:1.25rem;overflow:hidden;background:white;border:1.5px solid #E5E7EB;transition:all .2s}
+.cc-card:hover{border-color:#7C3AED;transform:translateY(-3px);box-shadow:0 10px 30px rgba(124,58,237,.1)}
+.cc-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.ci1{background:linear-gradient(135deg,#EDE9FE,#C4B5FD)}
+.ci2{background:linear-gradient(135deg,#FFF7ED,#FED7AA)}
+.ci3{background:linear-gradient(135deg,#F0FDF4,#BBF7D0)}
+.cc-level{display:inline-block;padding:.2rem .55rem;border-radius:4px;font-size:.55rem;font-weight:800;margin-bottom:.625rem}
+.lv-d{background:#DCFCE7;color:#15803D}.lv-i{background:#FEF3C7;color:#92400E}.lv-a{background:#EDE9FE;color:#6D28D9}
+.cc-body{padding:1.25rem}
+.cc-cat{font-size:.55rem;font-weight:800;color:var(--purple);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.cc-title{font-size:.9rem;font-weight:800;color:var(--dark);margin-bottom:.35rem;line-height:1.3}
+.cc-by{font-size:.65rem;color:var(--gray);margin-bottom:.875rem}
+.cc-stats{display:flex;gap:.75rem;font-size:.62rem;color:var(--gray);padding:.875rem 0;border-top:1px solid #F3F4F6;border-bottom:1px solid #F3F4F6;margin:.875rem 0}
+.cc-footer{display:flex;align-items:center;justify-content:space-between}
+.cc-price{font-size:.95rem;font-weight:900;color:var(--dark)}
+.cc-btn{padding:.45rem 1rem;background:var(--purple-light);border:1.5px solid var(--purple-mid);color:var(--purple);border-radius:6px;font-size:.7rem;font-weight:800;text-decoration:none}
+/* FORMATEURS */
+.formateurs{background:#1E1B4B;padding:6rem 0}
+.form-header{text-align:center;margin-bottom:3rem}
+.form-eyebrow{display:inline-flex;align-items:center;gap:.4rem;font-size:.62rem;font-weight:800;letter-spacing:.1em;color:#A78BFA;text-transform:uppercase;background:rgba(167,139,250,.15);padding:.3rem .875rem;border-radius:9999px;margin-bottom:1.25rem}
+.form-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:900;color:white;letter-spacing:-.03em}
+.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.form-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:1.5rem;overflow:hidden;text-align:center;transition:background .2s}
+.form-card:hover{background:rgba(255,255,255,.08)}
+.form-bg{height:90px;background:linear-gradient(135deg,#312E81,#4C1D95)}
+.form-av{width:80px;height:80px;border-radius:50%;margin:-40px auto 1.25rem;border:3px solid #1E1B4B;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:linear-gradient(135deg,#4338CA,#7C3AED)}
+.form-name{font-size:.95rem;font-weight:800;color:white;margin-bottom:.2rem}
+.form-role{font-size:.62rem;color:#A78BFA;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.625rem}
+.form-bio{font-size:.72rem;color:rgba(255,255,255,.5);line-height:1.7;padding:0 1.5rem;margin-bottom:1.25rem}
+.form-stats-row{display:flex;justify-content:center;gap:1.5rem;padding:.75rem 0;border-top:1px solid rgba(255,255,255,.06);padding-bottom:1.5rem}
+.fs-val{font-size:.9rem;font-weight:800;color:white}
+.fs-lbl{font-size:.55rem;color:rgba(255,255,255,.4);margin-top:.1rem}
+/* CTA BANDE */
+.cta-band{background:linear-gradient(135deg,var(--orange),#EA580C);padding:5rem 0;text-align:center}
+.cta-band h2{font-size:clamp(1.75rem,4vw,3rem);font-weight:900;color:white;letter-spacing:-.03em;margin-bottom:.875rem}
+.cta-band p{font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:2rem}
+.cta-band-btn{display:inline-block;padding:1rem 3rem;background:white;color:var(--orange);border-radius:8px;font-size:.9rem;font-weight:900;text-decoration:none;box-shadow:0 8px 25px rgba(0,0,0,.2)}
+/* FOOTER */
+footer{background:#111827;color:white;padding:4rem 0 2rem}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-logo{font-size:.95rem;font-weight:800;margin-bottom:.875rem}
+.footer-logo em{color:#A78BFA;font-style:normal}
+.footer-desc{font-size:.75rem;color:#6B7280;line-height:1.8;max-width:230px;margin-bottom:1.25rem}
+.footer-info{font-size:.78rem;color:#6B7280;line-height:1.9}
+.footer-col h4{font-size:.58rem;font-weight:800;color:#6B7280;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.625rem}
+.footer-links a{font-size:.78rem;color:#6B7280;text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:white}
+.footer-bottom{border-top:1px solid #1F2937;padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.footer-copy{font-size:.7rem;color:#4B5563}
+@media(max-width:768px){
+  nav{padding:.75rem 1.25rem}.nav-links{display:none}
+  .hero-inner{grid-template-columns:1fr}.fc-card{display:none}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .cours-grid,.form-grid,.footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <div class="demo-bar-text"><span class="demo-badge">DÉMO LIVE</span><span>Template <strong>Académie Digital</strong> — Formation en ligne</span></div>
+  <div style="display:flex;gap:.75rem">
+    <a href="/templates/formation/academie-digital" class="demo-btn">← Retour</a>
+    <a href="/templates/commander?secteur=formation&formule=premium" class="demo-btn">Commander →</a>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-logo"><em>Académie</em> Digital Africa</div>
+  <ul class="nav-links">
+    <li><a href="#cours">Formations</a></li>
+    <li><a href="#formateurs">Formateurs</a></li>
+    <li><a href="#">Certifications</a></li>
+    <li><a href="#">Entreprises</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#" class="nav-login">Se connecter</a>
+    <a href="#cours" class="nav-cta">Commencer →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-blobs"><div class="blob1"></div><div class="blob2"></div></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-proof">
+        <div class="proof-av">👨</div><div class="proof-av">👩</div><div class="proof-av">🧑</div>
+        <span class="proof-text">+4 200 apprenants actifs</span>
+        <span class="proof-stars">★★★★★ 4.9</span>
+      </div>
+      <h1>Maîtrisez le<br><em>Digital</em> &amp;<br>boostez votre<br>carrière</h1>
+      <p class="hero-sub">Formations pratiques en Marketing Digital, Développement Web, Design & Business. Certifications reconnues, formateurs experts, 100% en ligne à votre rythme.</p>
+      <div class="hero-btns">
+        <a href="#cours" class="btn-orange">🚀 Voir toutes les formations</a>
+        <a href="#" class="btn-white-ghost">▶ Regarder la démo</a>
+      </div>
+      <div class="hero-badges">
+        <span class="hb">✅ Certifié CPF</span>
+        <span class="hb">🎓 Diplôme reconnu</span>
+        <span class="hb">📱 100% en ligne</span>
+        <span class="hb">🔁 Accès à vie</span>
+      </div>
+    </div>
+    <div>
+      <div class="fc-card">
+        <div class="fc-top">🎯</div>
+        <div class="fc-body">
+          <div class="fc-badge">🔥 BESTSELLER</div>
+          <div class="fc-title">Facebook & Instagram Ads — Niveau Expert 2025</div>
+          <div class="fc-instructor">👨 Par Ange Konan · Expert certifié Meta</div>
+          <div class="fc-stats"><span>⭐ 4.9 (847 avis)</span><span>👥 3 200 inscrits</span><span>🕐 24h</span></div>
+          <div class="fc-footer">
+            <div class="fc-price"><span class="fc-price-old">75 000</span>49 000 FCFA</div>
+            <a href="#cours" class="fc-btn">S'inscrire →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="categories" style="padding:4rem 0">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <div class="sec-eyebrow">Domaines</div>
+      <h2 class="sec-title">Choisissez votre domaine</h2>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card cc1"><span class="cat-icon">📱</span><div class="cat-name">Marketing Digital</div><div class="cat-count">24 formations</div></div>
+      <div class="cat-card cc2"><span class="cat-icon">💻</span><div class="cat-name">Développement Web</div><div class="cat-count">18 formations</div></div>
+      <div class="cat-card cc3"><span class="cat-icon">🎨</span><div class="cat-name">Design & Créativité</div><div class="cat-count">14 formations</div></div>
+      <div class="cat-card cc4"><span class="cat-icon">💼</span><div class="cat-name">Business & Gestion</div><div class="cat-count">16 formations</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="cours" class="cours">
+  <div class="container">
+    <div class="sec-eyebrow">📚 Catalogue</div>
+    <h2 class="sec-title">Formations populaires</h2>
+    <div class="cat-tabs">
+      <button class="ct active">Tous</button>
+      <button class="ct">Marketing Digital</button>
+      <button class="ct">Développement Web</button>
+      <button class="ct">Design</button>
+      <button class="ct">Business</button>
+    </div>
+    <div class="cours-grid">
+      <div class="cc-card"><div class="cc-img ci1"><span>📱</span></div><div class="cc-body"><span class="cc-level lv-d">Débutant</span><div class="cc-cat">Marketing Digital</div><div class="cc-title">Réseaux sociaux pour entreprises africaines</div><div class="cc-by">👩 Fatima Diallo · 12h · 48 leçons</div><div class="cc-stats"><span>⭐ 4.8</span><span>👥 1 850</span><span>📜 Certificat</span></div><div class="cc-footer"><div class="cc-price">25 000 FCFA</div><a href="#" class="cc-btn">Voir →</a></div></div></div>
+      <div class="cc-card"><div class="cc-img ci2"><span>💻</span></div><div class="cc-body"><span class="cc-level lv-i">Intermédiaire</span><div class="cc-cat">Développement Web</div><div class="cc-title">Créer un site complet avec React & Next.js</div><div class="cc-by">👨 Kouadio Stéphane · 38h · 120 leçons</div><div class="cc-stats"><span>⭐ 4.9</span><span>👥 920</span><span>📜 Certificat</span></div><div class="cc-footer"><div class="cc-price">65 000 FCFA</div><a href="#" class="cc-btn">Voir →</a></div></div></div>
+      <div class="cc-card"><div class="cc-img ci3"><span>🎨</span></div><div class="cc-body"><span class="cc-level lv-d">Débutant</span><div class="cc-cat">Design</div><div class="cc-title">Canva Pro & Figma pour les professionnels</div><div class="cc-by">👩 Amina Touré · 8h · 35 leçons</div><div class="cc-stats"><span>⭐ 4.7</span><span>👥 2 400</span><span>📜 Certificat</span></div><div class="cc-footer"><div class="cc-price">18 000 FCFA</div><a href="#" class="cc-btn">Voir →</a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="formateurs" class="formateurs">
+  <div class="container">
+    <div class="form-header">
+      <div class="form-eyebrow">🎤 Experts</div>
+      <h2 class="form-title">Nos Formateurs</h2>
+    </div>
+    <div class="form-grid">
+      <div class="form-card"><div class="form-bg"></div><div class="form-av">👨</div><div class="form-name">Ange Konan</div><div class="form-role">Expert Marketing Digital</div><div class="form-bio">Certifié Google, Meta et HubSpot. 8 ans d'expérience en agence à Paris et Abidjan.</div><div class="form-stats-row"><div style="text-align:center"><div class="fs-val">12</div><div class="fs-lbl">Formations</div></div><div style="text-align:center"><div class="fs-val">4.9★</div><div class="fs-lbl">Note</div></div><div style="text-align:center"><div class="fs-val">5 200</div><div class="fs-lbl">Étudiants</div></div></div></div>
+      <div class="form-card"><div class="form-bg" style="background:linear-gradient(135deg,#1E3A5F,#1E40AF)"></div><div class="form-av" style="background:linear-gradient(135deg,#1E3A5F,#3B82F6)">👩</div><div class="form-name">Fatima Diallo</div><div class="form-role">Stratégiste Social Media</div><div class="form-bio">Ex-community manager d'Orange CI et MTN. Spécialiste des stratégies de contenu africains.</div><div class="form-stats-row"><div style="text-align:center"><div class="fs-val">8</div><div class="fs-lbl">Formations</div></div><div style="text-align:center"><div class="fs-val">4.8★</div><div class="fs-lbl">Note</div></div><div style="text-align:center"><div class="fs-val">3 800</div><div class="fs-lbl">Étudiants</div></div></div></div>
+      <div class="form-card"><div class="form-bg" style="background:linear-gradient(135deg,#1A1A2E,#16213E)"></div><div class="form-av" style="background:linear-gradient(135deg,#16213E,#0F3460)">👨</div><div class="form-name">Kouadio Stéphane</div><div class="form-role">Développeur Full-Stack</div><div class="form-bio">Ingénieur informatique, 10 ans de développement. A travaillé pour des startups ivoiriennes et françaises.</div><div class="form-stats-row"><div style="text-align:center"><div class="fs-val">6</div><div class="fs-lbl">Formations</div></div><div style="text-align:center"><div class="fs-val">4.9★</div><div class="fs-lbl">Note</div></div><div style="text-align:center"><div class="fs-val">1 500</div><div class="fs-lbl">Étudiants</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container">
+    <h2>Commencez votre formation<br>dès aujourd'hui 🚀</h2>
+    <p>Rejoignez plus de 4 200 professionnels qui ont boosté leur carrière avec Académie Digital Africa</p>
+    <a href="#cours" class="cta-band-btn">Voir toutes les formations →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div><div class="footer-logo"><em>Académie</em> Digital Africa</div><p class="footer-desc">La plateforme de formation numérique leader en Afrique francophone. Apprenez, progressez, certifiez.</p><div class="footer-info"><div>📍 Marcory Zone 4, Abidjan</div><div>✉️ bonjour@academie-digital.africa</div></div></div>
+      <div class="footer-col"><h4>Formations</h4><ul class="footer-links"><li><a href="#">Marketing Digital</a></li><li><a href="#">Développement Web</a></li><li><a href="#">Design</a></li><li><a href="#">Business</a></li></ul></div>
+      <div class="footer-col"><h4>Apprenant</h4><ul class="footer-links"><li><a href="#">Mon tableau de bord</a></li><li><a href="#">Mes formations</a></li><li><a href="#">Mes certificats</a></li><li><a href="#">Forum</a></li></ul></div>
+      <div class="footer-col"><h4>Aide</h4><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#">Blog</a></li><li><a href="#">FAQ</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">© 2025 Académie Digital Africa</span><span class="footer-copy">Site par <span style="color:#A78BFA">IBIG DIGITAL</span></span></div>
+  </div>
+</footer>
+<script>document.querySelectorAll('.ct').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.ct').forEach(b=>b.classList.remove('active'));t.classList.add('active')})})</script>
+</body>
+</html>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agro-Industrie Mali SA — Transformation & Export</title>
+<style>
+:root {
+  --primary: #1E40AF;
+  --primary-light: #3B82F6;
+  --green: #16A34A;
+  --green-light: #22C55E;
+  --accent: #F59E0B;
+  --bg: #FFFFFF;
+  --bg2: #F8FAFF;
+  --bg3: #F0FDF4;
+  --text: #0F172A;
+  --text2: #334155;
+  --text3: #64748B;
+  --border: #E2E8F0;
+  --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+
+.demo-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 40px; z-index: 9999;
+  background: #0F172A; color: #fff; display: flex; align-items: center;
+  justify-content: center; gap: 16px; font-size: 13px; padding: 0 16px;
+}
+.demo-bar a { background: #16A34A; color: #fff; padding: 4px 14px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 12px; }
+
+nav {
+  position: sticky; top: 40px; z-index: 100; background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 68px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-mark { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, var(--primary), var(--green)); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.logo-name { font-size: 17px; font-weight: 800; color: var(--primary); }
+.logo-sub { font-size: 11px; color: var(--text3); }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--text3); font-size: 14px; transition: color .2s; }
+.nav-links a:hover { color: var(--primary); }
+.nav-actions { display: flex; gap: 8px; }
+.btn-nav { background: var(--primary); color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
+.btn-nav:hover { background: var(--primary-light); }
+.btn-nav-g { background: var(--green); color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
+.btn-nav-g:hover { background: var(--green-light); }
+
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, #1D4ED8 40%, var(--green) 100%);
+  color: #fff; padding: 80px 5%; position: relative; overflow: hidden;
+}
+.hero::before { content: ''; position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: rgba(255,255,255,.04); clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%); }
+.hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; position: relative; z-index: 1; }
+.hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.15); padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 18px; }
+.hero h1 { font-size: clamp(26px, 3.5vw, 48px); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+.hero p { font-size: 16px; opacity: .85; line-height: 1.8; margin-bottom: 28px; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-white { background: #fff; color: var(--primary); padding: 12px 26px; border-radius: 8px; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: all .2s; }
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.2); }
+.btn-outline { background: transparent; color: #fff; padding: 12px 26px; border-radius: 8px; font-weight: 600; font-size: 14px; border: 2px solid rgba(255,255,255,.4); cursor: pointer; transition: all .2s; }
+.btn-outline:hover { border-color: #fff; }
+.hero-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.hero-kpi { background: rgba(255,255,255,.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.2); border-radius: 12px; padding: 16px; }
+.kpi-val { font-size: 24px; font-weight: 800; margin-bottom: 4px; }
+.kpi-label { font-size: 12px; opacity: .75; }
+.kpi-change { display: inline-block; background: rgba(34,197,94,.25); color: #4ADE80; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-top: 4px; }
+
+.section { padding: 64px 5%; }
+.s-tag { display: inline-block; background: var(--bg2); color: var(--primary); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; border: 1px solid var(--border); }
+.s-title { font-size: clamp(22px, 2.5vw, 32px); font-weight: 800; margin-bottom: 8px; }
+.s-sub { color: var(--text3); font-size: 15px; }
+
+.units-section { background: var(--bg2); }
+.units-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
+.unit-card {
+  background: var(--bg); border-radius: 14px; border: 1px solid var(--border);
+  overflow: hidden; box-shadow: var(--card-shadow); transition: all .25s; cursor: pointer;
+}
+.unit-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+.unit-header { padding: 18px 20px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+.unit-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.unit-info h3 { font-size: 15px; font-weight: 700; }
+.unit-info .location { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.unit-status { margin-left: auto; display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.4} }
+.unit-body { padding: 16px 20px; }
+.unit-capacity { font-size: 14px; color: var(--text2); margin-bottom: 10px; }
+.unit-products { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.uprod { background: var(--bg3); color: var(--green); font-size: 11px; padding: 3px 8px; border-radius: 20px; font-weight: 600; border: 1px solid rgba(22,163,74,.2); }
+.unit-prog { margin-bottom: 12px; }
+.unit-prog-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--text3); margin-bottom: 5px; }
+.progress-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 3px; }
+.pf-blue { background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
+.pf-green { background: linear-gradient(90deg, var(--green), var(--green-light)); }
+.unit-footer { padding: 12px 20px; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+.btn-unit { flex: 1; padding: 8px; border-radius: 8px; font-size: 13px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
+.btn-b { background: var(--primary); color: #fff; }
+.btn-b:hover { background: var(--primary-light); }
+.btn-g { background: var(--bg2); color: var(--text2); border: 1px solid var(--border); }
+.btn-g:hover { border-color: var(--primary); color: var(--primary); }
+
+.products-section { }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.product-card {
+  background: var(--bg); border-radius: 14px; border: 1px solid var(--border);
+  box-shadow: var(--card-shadow); transition: all .2s; overflow: hidden;
+}
+.product-card:hover { transform: translateY(-4px); border-color: var(--green); }
+.prod-top { height: 140px; display: flex; align-items: center; justify-content: center; font-size: 56px; }
+.prod-body { padding: 14px 16px; }
+.prod-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.prod-category { font-size: 11px; color: var(--text3); margin-bottom: 8px; }
+.prod-price { font-size: 17px; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+.prod-description { font-size: 12px; color: var(--text3); line-height: 1.5; margin-bottom: 10px; }
+.prod-tags-row { display: flex; gap: 5px; flex-wrap: wrap; padding-top: 8px; border-top: 1px solid var(--border); }
+.p-tag { font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+.pt-blue { background: rgba(30,64,175,.1); color: var(--primary); }
+.pt-green { background: rgba(22,163,74,.1); color: var(--green); }
+
+.partenaires-section { background: var(--bg2); }
+.par-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+.par-card { background: var(--bg); border-radius: 14px; padding: 24px; border: 1px solid var(--border); transition: all .2s; }
+.par-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+.par-flag { font-size: 32px; margin-bottom: 12px; }
+.par-country { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+.par-volume { color: var(--green); font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.par-products { font-size: 13px; color: var(--text3); margin-bottom: 12px; }
+.par-since { display: inline-block; background: var(--bg2); color: var(--text3); padding: 3px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; border: 1px solid var(--border); }
+
+.testimonials-section { }
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.testi-card { background: var(--bg); border-radius: 14px; padding: 22px; border: 1px solid var(--border); box-shadow: var(--card-shadow); }
+.testi-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+.t-author { display: flex; align-items: center; gap: 10px; }
+.tav { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #fff; }
+.t-name { font-weight: 700; font-size: 14px; }
+.t-role { font-size: 12px; color: var(--text3); }
+.testi-stars { color: var(--accent); font-size: 13px; }
+.testi-card p { font-size: 14px; color: var(--text3); line-height: 1.7; font-style: italic; margin-bottom: 12px; }
+.testi-badge { display: inline-flex; align-items: center; gap: 5px; background: var(--bg2); color: var(--primary); padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; border: 1px solid var(--border); }
+
+.contact-section {
+  background: linear-gradient(135deg, var(--primary) 0%, #1D4ED8 50%, var(--green) 100%);
+  color: #fff; padding: 80px 5%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+}
+.contact-left h2 { font-size: clamp(22px, 2.5vw, 36px); font-weight: 800; margin-bottom: 14px; }
+.contact-left p { opacity: .85; font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+.contact-items { display: flex; flex-direction: column; gap: 10px; }
+.ci { display: flex; align-items: center; gap: 10px; font-size: 14px; opacity: .9; }
+.contact-form { background: rgba(255,255,255,.12); backdrop-filter: blur(10px); border-radius: 16px; padding: 28px; border: 1px solid rgba(255,255,255,.2); }
+.cf { margin-bottom: 14px; }
+.cf label { display: block; font-size: 12px; opacity: .8; margin-bottom: 5px; }
+.cf input, .cf select, .cf textarea { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.1); color: #fff; font-size: 14px; outline: none; }
+.cf input::placeholder, .cf textarea::placeholder { color: rgba(255,255,255,.5); }
+.cf input:focus, .cf textarea:focus { border-color: var(--accent); }
+.cf textarea { height: 80px; resize: none; }
+.btn-send { width: 100%; background: var(--accent); color: var(--primary); padding: 13px; border-radius: 10px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; transition: all .2s; }
+
+footer { background: #0F172A; color: rgba(255,255,255,.65); padding: 50px 5% 24px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+.f-logo { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.footer-brand p { font-size: 13px; line-height: 1.7; }
+.footer-col h4 { color: #fff; font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+.footer-col a { display: block; color: rgba(255,255,255,.6); text-decoration: none; font-size: 13px; margin-bottom: 8px; transition: color .2s; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 20px; display: flex; justify-content: space-between; font-size: 12px; flex-wrap: wrap; gap: 8px; }
+
+@media (max-width: 768px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .contact-section { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>🏭 Démo IBIG Digital — Commandez ce template agro-industrie : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="logo">
+    <div class="logo-mark">🏭</div>
+    <div>
+      <div class="logo-name">Agro-Industrie Mali SA</div>
+      <div class="logo-sub">Transformation · Export · Partenariats B2B</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Unités</a></li>
+    <li><a href="#">Produits</a></li>
+    <li><a href="#">Export</a></li>
+    <li><a href="#">Partenaires</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-nav-g">Catalogues PDF</button>
+    <button class="btn-nav">Partenariat B2B</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-tag">🌍 Bamako, Mali — Industries agroalimentaires</div>
+      <h1>De la matière brute au produit fini, exporté dans le monde</h1>
+      <p>Agro-Industrie Mali SA transforme les produits agricoles maliens en produits finis de haute valeur ajoutée. Huiles, farines, conserves, condiments. Depuis 2005.</p>
+      <div class="hero-btns">
+        <button class="btn-white">Voir nos produits</button>
+        <button class="btn-outline">Partenariat B2B</button>
+      </div>
+    </div>
+    <div class="hero-kpis">
+      <div class="hero-kpi">
+        <div class="kpi-val">12 000 t</div>
+        <div class="kpi-label">Transformées / an</div>
+        <div class="kpi-change">↑ +18% 2025</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="kpi-val">6 pays</div>
+        <div class="kpi-label">Marchés export</div>
+        <div class="kpi-change">↑ +2 en 2025</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="kpi-val">850</div>
+        <div class="kpi-label">Employés directs</div>
+        <div class="kpi-change">↑ +120 postes</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="kpi-val">20 ans</div>
+        <div class="kpi-label">D'expérience</div>
+        <div class="kpi-change">✅ ISO 22000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section units-section">
+  <div style="margin-bottom:36px">
+    <div class="s-tag">Unités de transformation</div>
+    <div class="s-title">Nos installations industrielles</div>
+    <div class="s-sub">Capacités certifiées et constamment modernisées</div>
+  </div>
+  <div class="units-grid">
+
+    <div class="unit-card">
+      <div class="unit-header">
+        <div class="unit-icon" style="background:#DBEAFE">🌻</div>
+        <div class="unit-info">
+          <h3>Unité Huilerie</h3>
+          <div class="location">📍 Zone industrielle Sotuba, Bamako</div>
+        </div>
+        <div class="unit-status"><div class="status-dot"></div><span style="color:#16A34A;font-size:12px">En production</span></div>
+      </div>
+      <div class="unit-body">
+        <div class="unit-capacity">⚙️ Capacité : 4 500 tonnes/an · Certifiée ISO 22000</div>
+        <div class="unit-products">
+          <span class="uprod">Huile de coton</span>
+          <span class="uprod">Huile de soja</span>
+          <span class="uprod">Huile de karité</span>
+          <span class="uprod">Tourteaux</span>
+        </div>
+        <div class="unit-prog">
+          <div class="unit-prog-row"><span>Charge actuelle</span><span>82%</span></div>
+          <div class="progress-bar"><div class="progress-fill pf-blue" style="width:82%"></div></div>
+        </div>
+      </div>
+      <div class="unit-footer">
+        <button class="btn-unit btn-b">Voir les produits</button>
+        <button class="btn-unit btn-g">Visite usine</button>
+      </div>
+    </div>
+
+    <div class="unit-card">
+      <div class="unit-header">
+        <div class="unit-icon" style="background:#D1FAE5">🌾</div>
+        <div class="unit-info">
+          <h3>Unité Minoterie</h3>
+          <div class="location">📍 Koutiala, Mali</div>
+        </div>
+        <div class="unit-status"><div class="status-dot"></div><span style="color:#16A34A;font-size:12px">En production</span></div>
+      </div>
+      <div class="unit-body">
+        <div class="unit-capacity">⚙️ Capacité : 3 200 tonnes/an · 2 lignes de production</div>
+        <div class="unit-products">
+          <span class="uprod">Farine de mil</span>
+          <span class="uprod">Farine de maïs</span>
+          <span class="uprod">Semoule</span>
+          <span class="uprod">Son enrichi</span>
+        </div>
+        <div class="unit-prog">
+          <div class="unit-prog-row"><span>Charge actuelle</span><span>68%</span></div>
+          <div class="progress-bar"><div class="progress-fill pf-green" style="width:68%"></div></div>
+        </div>
+      </div>
+      <div class="unit-footer">
+        <button class="btn-unit btn-b">Voir les produits</button>
+        <button class="btn-unit btn-g">Visite usine</button>
+      </div>
+    </div>
+
+    <div class="unit-card">
+      <div class="unit-header">
+        <div class="unit-icon" style="background:#FEF9C3">🥭</div>
+        <div class="unit-info">
+          <h3>Unité Conserverie</h3>
+          <div class="location">📍 Sikasso, Mali</div>
+        </div>
+        <div class="unit-status"><div class="status-dot" style="background:var(--accent)"></div><span style="color:var(--accent);font-size:12px">Saisonnière</span></div>
+      </div>
+      <div class="unit-body">
+        <div class="unit-capacity">⚙️ Capacité : 2 400 tonnes/an · Fruits tropicaux</div>
+        <div class="unit-products">
+          <span class="uprod">Jus de mangue</span>
+          <span class="uprod">Purée de tomate</span>
+          <span class="uprod">Concentré tamarind</span>
+          <span class="uprod">Séchés</span>
+        </div>
+        <div class="unit-prog">
+          <div class="unit-prog-row"><span>Charge actuelle (saison)</span><span>95%</span></div>
+          <div class="progress-bar"><div class="progress-fill pf-blue" style="width:95%"></div></div>
+        </div>
+      </div>
+      <div class="unit-footer">
+        <button class="btn-unit btn-b">Voir les produits</button>
+        <button class="btn-unit btn-g">Commande B2B</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div style="text-align:center;margin-bottom:36px">
+    <div class="s-tag">Catalogue</div>
+    <div class="s-title">Nos produits finis</div>
+    <div class="s-sub">Disponibles en vrac, semi-gros et conditionnés</div>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="prod-top" style="background:linear-gradient(135deg,#FEF9C3,#FDE68A)">🌻</div>
+      <div class="prod-body">
+        <div class="prod-title">Huile de coton raffinée</div>
+        <div class="prod-category">Huilerie · Conditionnement 1L, 5L, bidon 20L</div>
+        <div class="prod-price">2 800 FCFA / L</div>
+        <div class="prod-description">Huile raffinée de qualité alimentaire supérieure, sans cholestérol. Idéale cuisine et industrie alimentaire. Export possible.</div>
+        <div class="prod-tags-row">
+          <span class="p-tag pt-blue">Export</span>
+          <span class="p-tag pt-green">ISO 22000</span>
+          <span class="p-tag pt-blue">Vrac 1T</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="prod-top" style="background:linear-gradient(135deg,#F0FDF4,#BBF7D0)">🌾</div>
+      <div class="prod-body">
+        <div class="prod-title">Farine de mil fine</div>
+        <div class="prod-category">Minoterie · Sacs 5 kg, 25 kg, 50 kg</div>
+        <div class="prod-price">380 FCFA / kg</div>
+        <div class="prod-description">Farine de mil blanche, finement moulue, taux d'humidité contrôlé. Pour boulangeries, brasseries et particuliers.</div>
+        <div class="prod-tags-row">
+          <span class="p-tag pt-green">Naturel</span>
+          <span class="p-tag pt-blue">Gros</span>
+          <span class="p-tag pt-green">Non OGM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="prod-top" style="background:linear-gradient(135deg,#FFF7ED,#FED7AA)">🥭</div>
+      <div class="prod-body">
+        <div class="prod-title">Concentré de mangue</div>
+        <div class="prod-category">Conserverie · Bidon 5L, tonnelet 200L</div>
+        <div class="prod-price">3 200 FCFA / kg</div>
+        <div class="prod-description">Concentré de mangue Amélie et Lippens, °Brix 65, sans conservateur. Pour industries de boissons et pâtisseries.</div>
+        <div class="prod-tags-row">
+          <span class="p-tag pt-blue">Export UE</span>
+          <span class="p-tag pt-green">Sans additifs</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="prod-top" style="background:linear-gradient(135deg,#F0F9FF,#BAE6FD)">🧴</div>
+      <div class="prod-body">
+        <div class="prod-title">Beurre de karité brut</div>
+        <div class="prod-category">Huilerie · Fût 180 kg, conteneur</div>
+        <div class="prod-price">4 500 FCFA / kg</div>
+        <div class="prod-description">Beurre de karité 100% naturel, non raffiné. Grade A export. Très demandé par industrie cosmétique et chocolaterie.</div>
+        <div class="prod-tags-row">
+          <span class="p-tag pt-blue">Export</span>
+          <span class="p-tag pt-green">Grade A</span>
+          <span class="p-tag pt-blue">Cosmétique</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section partenaires-section">
+  <div style="text-align:center;margin-bottom:36px">
+    <div class="s-tag">Export B2B</div>
+    <div class="s-title">Nos marchés d'export</div>
+    <div class="s-sub">Présence commerciale dans 6 pays africains et européens</div>
+  </div>
+  <div class="par-grid">
+    <div class="par-card">
+      <div class="par-flag">🇸🇳</div>
+      <div class="par-country">Sénégal</div>
+      <div class="par-volume">480 tonnes / an</div>
+      <div class="par-products">Huile de coton · Farine de mil · Concentré tomate</div>
+      <span class="par-since">Partenaire depuis 2010</span>
+    </div>
+    <div class="par-card">
+      <div class="par-flag">🇨🇮</div>
+      <div class="par-country">Côte d'Ivoire</div>
+      <div class="par-volume">620 tonnes / an</div>
+      <div class="par-products">Beurre de karité · Huile végétale · Céréales transformées</div>
+      <span class="par-since">Partenaire depuis 2012</span>
+    </div>
+    <div class="par-card">
+      <div class="par-flag">🇬🇭</div>
+      <div class="par-country">Ghana</div>
+      <div class="par-volume">310 tonnes / an</div>
+      <div class="par-products">Concentré de mangue · Karité brut · Farine</div>
+      <span class="par-since">Partenaire depuis 2018</span>
+    </div>
+    <div class="par-card">
+      <div class="par-flag">🇫🇷</div>
+      <div class="par-country">France (UE)</div>
+      <div class="par-volume">85 tonnes / an</div>
+      <div class="par-products">Beurre de karité certifié · Concentré bio · Huile karité</div>
+      <span class="par-since">Partenaire depuis 2020</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div style="text-align:center;margin-bottom:36px">
+    <div class="s-tag">Témoignages</div>
+    <div class="s-title">Nos partenaires en parlent</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-header">
+        <div class="t-author">
+          <div class="tav" style="background:linear-gradient(135deg,#1E40AF,#3B82F6)">KD</div>
+          <div><div class="t-name">Kofi Danso</div><div class="t-role">Directeur, Danso Foods Ghana</div></div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+      </div>
+      <p>« Nous importons le concentré de mangue d'Agro-Industrie Mali depuis 2018. La régularité de la qualité et le respect des délais de livraison sont exemplaires. »</p>
+      <span class="testi-badge">🥭 Concentré mangue</span>
+    </div>
+    <div class="testi-card">
+      <div class="testi-header">
+        <div class="t-author">
+          <div class="tav" style="background:linear-gradient(135deg,#0F766E,#14B8A6)">MN</div>
+          <div><div class="t-name">Marie Ndiaye</div><div class="t-role">Acheteuse, Cosmetics SN</div></div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+      </div>
+      <p>« Le beurre de karité Grade A que nous achetons correspond parfaitement aux normes européennes. Partenariat fiable, communication transparente. »</p>
+      <span class="testi-badge">🧴 Beurre de karité</span>
+    </div>
+    <div class="testi-card">
+      <div class="testi-header">
+        <div class="t-author">
+          <div class="tav" style="background:linear-gradient(135deg,#92400E,#F59E0B)">ST</div>
+          <div><div class="t-name">Seydou Touré</div><div class="t-role">Gérant, Boulangerie Sikasso</div></div>
+        </div>
+        <div class="testi-stars">★★★★☆</div>
+      </div>
+      <p>« La farine de mil AIMS est la meilleure qualité que j'ai trouvée. Mes pains et gâteaux ont un goût authentique. Livraison ponctuelle chaque semaine. »</p>
+      <span class="testi-badge">🌾 Farine de mil</span>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="contact-left">
+    <h2>Établissons un partenariat durable</h2>
+    <p>Vous êtes importateur, distributeur, industriel ou revendeur ? Contactez notre direction commerciale pour un devis personnalisé.</p>
+    <div class="contact-items">
+      <div class="ci">📞 +223 20 22 00 00</div>
+      <div class="ci">📱 +223 76 00 00 00 (WhatsApp)</div>
+      <div class="ci">✉ commercial@aims.ml</div>
+      <div class="ci">📍 Zone Industrielle Sotuba, Bamako</div>
+      <div class="ci">🌐 Certifié ISO 22000 · HACCP</div>
+    </div>
+  </div>
+  <div class="contact-form">
+    <div class="cf">
+      <label>Société / Nom</label>
+      <input type="text" placeholder="Votre entreprise">
+    </div>
+    <div class="cf">
+      <label>Email professionnel</label>
+      <input type="email" placeholder="contact@votresociete.com">
+    </div>
+    <div class="cf">
+      <label>Produit d'intérêt</label>
+      <select style="color:rgba(255,255,255,0.9)">
+        <option>Huile de coton raffinée</option>
+        <option>Farine de mil</option>
+        <option>Concentré de mangue</option>
+        <option>Beurre de karité</option>
+        <option>Autre produit</option>
+      </select>
+    </div>
+    <div class="cf">
+      <label>Volume estimé (tonnes)</label>
+      <input type="text" placeholder="Ex: 50 tonnes / mois">
+    </div>
+    <button class="btn-send">Demander un devis B2B</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="f-logo">🏭 Agro-Industrie Mali SA</div>
+      <p>Transformation industrielle de produits agricoles maliens depuis 2005. ISO 22000, HACCP. Export dans 6 pays.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Produits</h4>
+      <a href="#">Huiles végétales</a>
+      <a href="#">Farines & céréales</a>
+      <a href="#">Conserves & concentrés</a>
+      <a href="#">Beurre de karité</a>
+    </div>
+    <div class="footer-col">
+      <h4>Entreprise</h4>
+      <a href="#">À propos</a>
+      <a href="#">Certifications</a>
+      <a href="#">Carrières</a>
+      <a href="#">RSE</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">+223 20 22 00 00</a>
+      <a href="#">commercial@aims.ml</a>
+      <a href="#">Bamako, Mali</a>
+      <a href="#">Lun–Ven 7h30–17h30</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Agro-Industrie Mali SA · ISO 22000 · HACCP</span>
+    <span>Créé avec <strong style="color:#3B82F6">IBIG Digital</strong></span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.btn-unit').forEach(btn => {
+  if(btn.classList.contains('btn-b')) {
+    btn.addEventListener('click', function() {
+      const prev = this.textContent;
+      this.textContent = '📋 Chargement...';
+      setTimeout(() => { this.textContent = prev; }, 1200);
+    });
+  }
+});
+document.querySelector('.btn-send').addEventListener('click', function() {
+  this.textContent = '✅ Demande envoyée !';
+  setTimeout(() => { this.textContent = 'Demander un devis B2B'; }, 2500);
+});
+</script>
+</body>
+</html>

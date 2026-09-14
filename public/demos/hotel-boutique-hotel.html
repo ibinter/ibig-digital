@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boutique Hôtel Akwaba — Abidjan</title>
+<style>
+:root {
+  --bg: #FEFCF0;
+  --primary: #166534;
+  --accent: #D97706;
+  --text: #1C1917;
+  --text-light: #57534E;
+  --white: #FFFFFF;
+  --cream: #FEF9E7;
+  --border: #E8E0C8;
+  --primary-light: #DCFCE7;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.6;}
+
+/* DEMO BAR */
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-family:system-ui,sans-serif;font-size:13px;}
+.demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;white-space:nowrap;}
+.demo-bar a:hover{background:#16a34a;}
+
+/* NAV */
+nav{position:sticky;top:40px;background:rgba(254,252,240,0.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:100;padding:0 40px;}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px;}
+.logo{font-size:22px;font-weight:700;color:var(--primary);letter-spacing:0.5px;}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{color:var(--text);text-decoration:none;font-family:system-ui,sans-serif;font-size:14px;letter-spacing:0.3px;transition:color 0.2s;}
+.nav-links a:hover{color:var(--primary);}
+.nav-cta{background:var(--primary);color:#fff;padding:10px 22px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:14px;font-weight:600;transition:background 0.2s;}
+.nav-cta:hover{background:#14532D;}
+
+/* HERO */
+.hero{min-height:92vh;background:linear-gradient(135deg,#1a4731 0%,#166534 40%,#14532d 100%);position:relative;display:flex;align-items:center;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+.hero-content{position:relative;max-width:1200px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%;}
+.hero-badge{display:inline-block;background:rgba(217,119,6,0.2);border:1px solid var(--accent);color:var(--accent);padding:6px 16px;border-radius:20px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px;font-family:system-ui,sans-serif;}
+.hero h1{font-size:56px;color:#fff;line-height:1.15;margin-bottom:20px;font-weight:400;}
+.hero h1 span{color:var(--accent);font-style:italic;}
+.hero-sub{color:rgba(255,255,255,0.75);font-size:18px;margin-bottom:36px;font-style:italic;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-primary{background:var(--accent);color:#fff;padding:14px 32px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:15px;font-weight:600;transition:all 0.2s;}
+.btn-primary:hover{background:#B45309;transform:translateY(-1px);}
+.btn-outline{border:2px solid rgba(255,255,255,0.6);color:#fff;padding:14px 32px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:15px;transition:all 0.2s;}
+.btn-outline:hover{background:rgba(255,255,255,0.1);}
+.hero-visual{display:flex;flex-direction:column;gap:16px;}
+.hero-card{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:24px;color:#fff;}
+.hero-card h4{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;font-family:system-ui,sans-serif;}
+.hero-card p{font-size:15px;color:rgba(255,255,255,0.85);}
+.stars{color:var(--accent);font-size:14px;letter-spacing:2px;}
+
+/* BOOKING WIDGET */
+.booking-section{background:var(--white);padding:0;display:flex;justify-content:center;}
+.booking-widget{background:var(--primary);max-width:900px;width:90%;margin:-30px auto 0;border-radius:12px;padding:28px 32px;display:flex;gap:16px;align-items:flex-end;box-shadow:0 20px 60px rgba(22,101,52,0.3);}
+.booking-field{flex:1;display:flex;flex-direction:column;gap:6px;}
+.booking-field label{color:rgba(255,255,255,0.7);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-family:system-ui,sans-serif;}
+.booking-field input,.booking-field select{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:12px 14px;border-radius:6px;font-size:15px;font-family:system-ui,sans-serif;outline:none;}
+.booking-field input::placeholder{color:rgba(255,255,255,0.4);}
+.booking-field select option{background:#166534;color:#fff;}
+.btn-book{background:var(--accent);color:#fff;border:none;padding:14px 28px;border-radius:6px;font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:system-ui,sans-serif;transition:background 0.2s;}
+.btn-book:hover{background:#B45309;}
+
+/* STATS */
+.stats-section{background:var(--bg);padding:80px 40px;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;}
+.stat-item{padding:32px 20px;border-radius:12px;background:var(--white);box-shadow:0 2px 20px rgba(0,0,0,0.06);}
+.stat-num{font-size:48px;font-weight:700;color:var(--primary);line-height:1;}
+.stat-unit{font-size:16px;color:var(--accent);margin-left:4px;}
+.stat-label{color:var(--text-light);font-size:13px;margin-top:8px;font-family:system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.5px;}
+
+/* SECTION TITLES */
+.section-tag{display:inline-block;color:var(--accent);font-family:system-ui,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.section-title{font-size:38px;font-weight:400;color:var(--text);margin-bottom:16px;line-height:1.2;}
+.section-sub{color:var(--text-light);font-size:17px;max-width:560px;font-style:italic;}
+.section-header{margin-bottom:48px;}
+.section-header.centered{text-align:center;}
+.section-header.centered .section-sub{margin:0 auto;}
+
+/* CHAMBRES */
+.rooms-section{padding:80px 40px;background:var(--white);}
+.rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.room-card{border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);transition:transform 0.3s,box-shadow 0.3s;}
+.room-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,0.15);}
+.room-img{height:220px;position:relative;display:flex;align-items:flex-end;}
+.room-img.deluxe{background:linear-gradient(160deg,#2D6A4F,#1B4332);}
+.room-img.suite{background:linear-gradient(160deg,#92400E,#78350F);}
+.room-img.presidential{background:linear-gradient(160deg,#1C1917,#292524);}
+.room-pattern{position:absolute;inset:0;opacity:0.15;background-image:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,0.1) 10px,rgba(255,255,255,0.1) 11px);}
+.room-badge{position:absolute;top:16px;right:16px;background:var(--accent);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;font-family:system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.5px;}
+.room-label{position:relative;z-index:1;padding:16px 20px;color:#fff;font-size:28px;font-weight:300;font-style:italic;}
+.room-body{padding:20px;background:var(--bg);}
+.room-features{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.room-feat{background:var(--primary-light);color:var(--primary);padding:4px 10px;border-radius:20px;font-size:11px;font-family:system-ui,sans-serif;}
+.room-price-row{display:flex;justify-content:space-between;align-items:center;}
+.room-price{font-size:22px;font-weight:700;color:var(--primary);}
+.room-price small{font-size:12px;color:var(--text-light);font-weight:400;font-family:system-ui,sans-serif;}/nuit/
+.btn-sm{background:var(--primary);color:#fff;padding:8px 18px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:13px;font-weight:600;transition:background 0.2s;}
+.btn-sm:hover{background:#14532D;}
+
+/* SERVICES */
+.services-section{padding:80px 40px;background:var(--bg);}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.service-card{background:var(--white);border-radius:12px;padding:28px 20px;text-align:center;border:1px solid var(--border);transition:all 0.3s;}
+.service-card:hover{border-color:var(--primary);box-shadow:0 8px 32px rgba(22,101,52,0.1);}
+.service-icon{width:60px;height:60px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px;}
+.service-name{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;}
+.service-desc{font-size:13px;color:var(--text-light);font-family:system-ui,sans-serif;line-height:1.5;}
+
+/* RESTAURANT */
+.restaurant-section{padding:80px 40px;background:var(--primary);overflow:hidden;}
+.restaurant-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.restaurant-text .section-title{color:#fff;}
+.restaurant-text .section-tag{color:var(--accent);}
+.restaurant-text .section-sub{color:rgba(255,255,255,0.75);}
+.menu-items{margin-top:32px;display:flex;flex-direction:column;gap:16px;}
+.menu-item{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;}
+.menu-name{color:#fff;font-size:16px;}
+.menu-desc{color:rgba(255,255,255,0.6);font-size:13px;font-family:system-ui,sans-serif;margin-top:4px;}
+.menu-price{color:var(--accent);font-size:18px;font-weight:700;font-family:system-ui,sans-serif;white-space:nowrap;margin-left:16px;}
+.restaurant-visual{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.rest-img{border-radius:10px;overflow:hidden;}
+.rest-img-1{height:180px;background:linear-gradient(135deg,#B45309,#92400E);}
+.rest-img-2{height:180px;background:linear-gradient(135deg,#166534,#14532D);}
+.rest-img-3{height:130px;grid-column:span 2;background:linear-gradient(135deg,#1C1917,#292524);}
+.rest-placeholder{height:100%;display:flex;align-items:center;justify-content:center;font-size:40px;}
+
+/* TESTIMONIALS */
+.testimonials-section{padding:80px 40px;background:var(--cream);}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.testimonial-card{background:var(--white);border-radius:12px;padding:28px;position:relative;box-shadow:0 2px 16px rgba(0,0,0,0.06);}
+.testimonial-card::before{content:'"';font-size:80px;color:var(--primary-light);position:absolute;top:0;left:16px;line-height:1;}
+.testimonial-text{font-style:italic;color:var(--text-light);margin-bottom:20px;margin-top:24px;font-size:15px;line-height:1.7;}
+.testimonial-author{display:flex;align-items:center;gap:12px;}
+.author-avatar{width:44px;height:44px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700;font-family:system-ui,sans-serif;}
+.author-name{font-weight:600;font-size:14px;}
+.author-origin{font-size:12px;color:var(--text-light);font-family:system-ui,sans-serif;}
+
+/* GALLERY */
+.gallery-section{padding:80px 40px;background:var(--white);}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:12px;}
+.gal-item{border-radius:10px;overflow:hidden;cursor:pointer;transition:transform 0.3s;}
+.gal-item:hover{transform:scale(1.02);}
+.gal-item.large{grid-column:span 2;grid-row:span 2;}
+.gal-img{width:100%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:36px;}
+.gal-img.h1{height:280px;}
+.gal-img.h2{height:130px;}
+.gal-img.h3{height:130px;}
+.gal-img.g1{background:linear-gradient(135deg,#2D6A4F,#1B4332);}
+.gal-img.g2{background:linear-gradient(135deg,#D97706,#B45309);}
+.gal-img.g3{background:linear-gradient(135deg,#1C1917,#44403C);}
+.gal-img.g4{background:linear-gradient(135deg,#166534,#14532D);}
+.gal-img.g5{background:linear-gradient(135deg,#78350F,#92400E);}
+
+/* CTA */
+.cta-section{padding:100px 40px;background:linear-gradient(135deg,#166534,#14532D);text-align:center;}
+.cta-section h2{font-size:44px;color:#fff;margin-bottom:16px;font-weight:400;}
+.cta-section h2 em{color:var(--accent);}
+.cta-section p{color:rgba(255,255,255,0.75);font-size:18px;margin-bottom:40px;font-style:italic;}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.btn-white{background:#fff;color:var(--primary);padding:16px 40px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:16px;font-weight:700;transition:all 0.2s;}
+.btn-white:hover{background:var(--cream);transform:translateY(-2px);}
+.btn-outline-white{border:2px solid rgba(255,255,255,0.6);color:#fff;padding:16px 40px;border-radius:4px;text-decoration:none;font-family:system-ui,sans-serif;font-size:16px;transition:all 0.2s;}
+.btn-outline-white:hover{background:rgba(255,255,255,0.1);}
+
+/* FOOTER */
+footer{background:#0F2218;color:rgba(255,255,255,0.6);padding:60px 40px 30px;}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+.footer-brand .logo{color:#fff;font-size:24px;margin-bottom:16px;display:block;}
+.footer-brand p{font-size:14px;line-height:1.7;margin-bottom:20px;}
+.footer-socials{display:flex;gap:10px;}
+.social-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:14px;text-decoration:none;color:rgba(255,255,255,0.6);transition:all 0.2s;}
+.social-btn:hover{background:var(--accent);color:#fff;}
+.footer-col h4{color:#fff;font-size:14px;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;font-family:system-ui,sans-serif;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:10px;}
+.footer-col ul a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:14px;font-family:system-ui,sans-serif;transition:color 0.2s;}
+.footer-col ul a:hover{color:var(--accent);}
+.footer-bottom{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-family:system-ui,sans-serif;}
+.footer-bottom a{color:rgba(255,255,255,0.4);text-decoration:none;}
+
+@media(max-width:900px){
+  .hero-content{grid-template-columns:1fr;}
+  .hero h1{font-size:38px;}
+  .stats-grid,.rooms-grid,.services-grid,.testimonials-grid{grid-template-columns:1fr 1fr;}
+  .booking-widget{flex-direction:column;}
+  .restaurant-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Akwaba <span>Hôtel</span></div>
+    <ul class="nav-links">
+      <li><a href="#">Chambres</a></li>
+      <li><a href="#">Restaurant</a></li>
+      <li><a href="#">Spa & Bien-être</a></li>
+      <li><a href="#">Événements</a></li>
+      <li><a href="#">À propos</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Réserver</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge">★ Hôtel 5 Étoiles — Abidjan</div>
+      <h1>L'excellence<br><span>africaine</span><br>au cœur d'Abidjan</h1>
+      <p class="hero-sub">Une expérience unique alliant luxe, authenticité et hospitalité ivoirienne.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">Réserver une chambre</a>
+        <a href="#" class="btn-outline">Découvrir l'hôtel</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <h4>Offre spéciale</h4>
+        <p>Séjour 2 nuits + Petit-déjeuner inclus<br>à partir de <strong>89 000 FCFA</strong></p>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="hero-card">
+        <h4>Emplacement privilégié</h4>
+        <p>Plateau – Cocody, Abidjan<br>Vue panoramique sur la lagune Ébrié</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="booking-section">
+  <div class="booking-widget">
+    <div class="booking-field">
+      <label>Arrivée</label>
+      <input type="date" value="2025-12-20">
+    </div>
+    <div class="booking-field">
+      <label>Départ</label>
+      <input type="date" value="2025-12-25">
+    </div>
+    <div class="booking-field">
+      <label>Adultes</label>
+      <select><option>1 adulte</option><option>2 adultes</option><option>3 adultes</option></select>
+    </div>
+    <div class="booking-field">
+      <label>Type de chambre</label>
+      <select><option>Chambre Deluxe</option><option>Suite Junior</option><option>Suite Présidentielle</option></select>
+    </div>
+    <button class="btn-book">Vérifier disponibilité →</button>
+  </div>
+</div>
+
+<section class="stats-section">
+  <div class="section-inner">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-num">42<span class="stat-unit">+</span></div><div class="stat-label">Chambres & Suites</div></div>
+      <div class="stat-item"><div class="stat-num">15<span class="stat-unit">ans</span></div><div class="stat-label">D'excellence</div></div>
+      <div class="stat-item"><div class="stat-num">98<span class="stat-unit">%</span></div><div class="stat-label">Clients satisfaits</div></div>
+      <div class="stat-item"><div class="stat-num">4<span class="stat-unit"></span></div><div class="stat-label">Restaurants & Bars</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="rooms-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Nos hébergements</div>
+      <h2 class="section-title">Des chambres d'exception</h2>
+      <p class="section-sub">Chaque espace a été pensé pour offrir confort, luxe et authenticité africaine.</p>
+    </div>
+    <div class="rooms-grid">
+      <div class="room-card">
+        <div class="room-img deluxe"><div class="room-pattern"></div><div class="room-badge">Populaire</div><div class="room-label">Chambre Deluxe</div></div>
+        <div class="room-body">
+          <div class="room-features"><span class="room-feat">32 m²</span><span class="room-feat">Vue lagune</span><span class="room-feat">King bed</span><span class="room-feat">Clim</span></div>
+          <div class="room-price-row"><div class="room-price">45 000 <small>FCFA / nuit</small></div><a href="#" class="btn-sm">Réserver</a></div>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img suite"><div class="room-pattern"></div><div class="room-badge">Premium</div><div class="room-label">Suite Junior</div></div>
+        <div class="room-body">
+          <div class="room-features"><span class="room-feat">58 m²</span><span class="room-feat">Salon privé</span><span class="room-feat">Jacuzzi</span><span class="room-feat">Minibar</span></div>
+          <div class="room-price-row"><div class="room-price">89 000 <small>FCFA / nuit</small></div><a href="#" class="btn-sm">Réserver</a></div>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-img presidential"><div class="room-pattern"></div><div class="room-badge">Exclusif</div><div class="room-label">Suite Présidentielle</div></div>
+        <div class="room-body">
+          <div class="room-features"><span class="room-feat">120 m²</span><span class="room-feat">Terrasse</span><span class="room-feat">Cuisine</span><span class="room-feat">Butler</span></div>
+          <div class="room-price-row"><div class="room-price">195 000 <small>FCFA / nuit</small></div><a href="#" class="btn-sm">Réserver</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services-section">
+  <div class="section-inner">
+    <div class="section-header centered">
+      <div class="section-tag">Services & Équipements</div>
+      <h2 class="section-title">Tout pour votre confort</h2>
+      <p class="section-sub">Des services pensés pour une expérience inoubliable au cœur d'Abidjan.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-icon">🏊</div><div class="service-name">Piscine Panoramique</div><div class="service-desc">Piscine chauffée avec vue sur la lagune Ébrié, ouverte 7j/7.</div></div>
+      <div class="service-card"><div class="service-icon">💆</div><div class="service-name">Spa Akwaba</div><div class="service-desc">Massages traditionnels africains, hammam, soins corps et visage.</div></div>
+      <div class="service-card"><div class="service-icon">🍽️</div><div class="service-name">Gastronomie</div><div class="service-desc">Restaurant Le Baobab : cuisine ivoirienne et internationale raffinée.</div></div>
+      <div class="service-card"><div class="service-icon">🏋️</div><div class="service-name">Fitness Center</div><div class="service-desc">Salle de sport moderne, équipements professionnels, coach personnel.</div></div>
+      <div class="service-card"><div class="service-icon">🎯</div><div class="service-name">Business Center</div><div class="service-desc">Salles de réunion, wifi haut débit, équipements de conférence.</div></div>
+      <div class="service-card"><div class="service-icon">🚗</div><div class="service-name">Transfert & Navette</div><div class="service-desc">Service voiture avec chauffeur, transferts aéroport disponibles 24h.</div></div>
+      <div class="service-card"><div class="service-icon">🍹</div><div class="service-name">Bar Panoramique</div><div class="service-desc">Cocktails signature, vins sélectionnés, vue imprenable sur Abidjan.</div></div>
+      <div class="service-card"><div class="service-icon">🌿</div><div class="service-name">Jardin Tropical</div><div class="service-desc">1 500 m² de verdure tropicale, espace détente et yoga matinal.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="restaurant-section">
+  <div class="section-inner">
+    <div class="restaurant-grid">
+      <div class="restaurant-text">
+        <div class="section-tag">Gastronomie</div>
+        <h2 class="section-title">Restaurant Le Baobab</h2>
+        <p class="section-sub">Une invitation aux saveurs d'Afrique de l'Ouest revisitées par nos chefs étoilés.</p>
+        <div class="menu-items">
+          <div class="menu-item"><div><div class="menu-name">Thiéboudienne Royal</div><div class="menu-desc">Riz au poisson façon dakaroise, légumes du jardin</div></div><div class="menu-price">12 500 FCFA</div></div>
+          <div class="menu-item"><div><div class="menu-name">Poulet Yassa Gastronomique</div><div class="menu-desc">Marinade citron-oignons caramélisés, riz parfumé</div></div><div class="menu-price">14 000 FCFA</div></div>
+          <div class="menu-item"><div><div class="menu-name">Attiéké Poisson Braisé</div><div class="menu-desc">Spécialité ivoirienne, poisson du jour, sauce tomate fraîche</div></div><div class="menu-price">10 500 FCFA</div></div>
+          <div class="menu-item"><div><div class="menu-name">Dessert Akwaba</div><div class="menu-desc">Tarte plantain caramélisé, glace vanille Bourbon</div></div><div class="menu-price">6 000 FCFA</div></div>
+        </div>
+      </div>
+      <div class="restaurant-visual">
+        <div class="rest-img rest-img-1"><div class="rest-placeholder">🍽️</div></div>
+        <div class="rest-img rest-img-2"><div class="rest-placeholder">🥘</div></div>
+        <div class="rest-img rest-img-3"><div class="rest-placeholder">🍷</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials-section">
+  <div class="section-inner">
+    <div class="section-header centered">
+      <div class="section-tag">Avis clients</div>
+      <h2 class="section-title">Ce que disent nos hôtes</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">Un séjour absolument merveilleux. L'accueil chaleureux et l'hospitalité ivoirienne authentique m'ont conquis dès le premier instant. Je recommande vivement la suite Junior.</p>
+        <div class="testimonial-author"><div class="author-avatar">AK</div><div><div class="author-name">Ama Koné</div><div class="author-origin">Abidjan, Côte d'Ivoire ⭐⭐⭐⭐⭐</div></div></div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">Le restaurant Le Baobab est une expérience gastronomique exceptionnelle. Les saveurs africaines revisitées avec talent, dans un cadre magnifique face à la lagune.</p>
+        <div class="testimonial-author"><div class="author-avatar">MN</div><div><div class="author-name">Moussa Ndiaye</div><div class="author-origin">Dakar, Sénégal ⭐⭐⭐⭐⭐</div></div></div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">Pour mes voyages d'affaires à Abidjan, je ne séjourne nulle part ailleurs. Le business center est parfaitement équipé et le service de conciergerie est irréprochable.</p>
+        <div class="testimonial-author"><div class="author-avatar">CB</div><div><div class="author-name">Claire Bamba</div><div class="author-origin">Lomé, Togo ⭐⭐⭐⭐⭐</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="section-inner">
+    <div class="section-header centered">
+      <div class="section-tag">Galerie</div>
+      <h2 class="section-title">Découvrez nos espaces</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gal-item large"><div class="gal-img h1 g1">🏨</div></div>
+      <div class="gal-item"><div class="gal-img h2 g2">🏊</div></div>
+      <div class="gal-item"><div class="gal-img h2 g3">🍽️</div></div>
+      <div class="gal-item"><div class="gal-img h3 g4">💆</div></div>
+      <div class="gal-item"><div class="gal-img h3 g5">🌿</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Vivez l'expérience <em>Akwaba</em></h2>
+  <p>Réservez dès maintenant et profitez de nos offres exclusives.</p>
+  <div class="cta-actions">
+    <a href="#" class="btn-white">Réserver maintenant</a>
+    <a href="#" class="btn-outline-white">Nous contacter</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Akwaba <span style="color:var(--accent)">Hôtel</span></div>
+      <p>Boutique Hôtel 5 étoiles au cœur d'Abidjan. Une expérience unique alliant luxe moderne et hospitalité africaine authentique depuis 2009.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">f</a>
+        <a href="#" class="social-btn">in</a>
+        <a href="#" class="social-btn">ig</a>
+        <a href="#" class="social-btn">yt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Hébergement</h4>
+      <ul>
+        <li><a href="#">Chambres Deluxe</a></li>
+        <li><a href="#">Suites Junior</a></li>
+        <li><a href="#">Suite Présidentielle</a></li>
+        <li><a href="#">Offres spéciales</a></li>
+        <li><a href="#">Réservation groupe</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Restaurant</a></li>
+        <li><a href="#">Spa & Wellness</a></li>
+        <li><a href="#">Business Center</a></li>
+        <li><a href="#">Piscine</a></li>
+        <li><a href="#">Mariages & Événements</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">📍 Plateau, Abidjan</a></li>
+        <li><a href="#">📞 +225 27 20 33 44 55</a></li>
+        <li><a href="#">✉️ info@akwaba-hotel.ci</a></li>
+        <li><a href="#">🕐 Réception 24h/24</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Boutique Hôtel Akwaba. Tous droits réservés.</span>
+    <div><a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

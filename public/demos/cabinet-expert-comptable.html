@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cabinet Koné & Associés — Expertise Comptable</title>
+<style>
+:root{--navy:#1E3A5F;--blue:#2563eb;--light:#F8FAFC;--white:#fff;--text:#1E293B;--gray:#64748B;--border:#E2E8F0;--gold:#D97706;--shadow:0 4px 24px rgba(30,58,95,0.10)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
+#demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
+#demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
+
+nav{position:sticky;top:40px;background:var(--navy);z-index:100;box-shadow:0 2px 16px rgba(30,58,95,0.3)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+.logo-monogram{width:46px;height:46px;background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;letter-spacing:-1px}
+.logo-text{color:#fff;font-size:16px;font-weight:700;line-height:1.3}
+.logo-text small{display:block;font-size:11px;font-weight:400;color:rgba(255,255,255,0.55);letter-spacing:1px;text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-phone{color:rgba(255,255,255,0.8);font-size:14px;font-weight:600}
+.nav-cta{background:var(--gold);color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;font-weight:700;font-size:13px;transition:all .2s;margin-left:12px}
+.nav-cta:hover{background:#b45309}
+
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#0f2040 100%);padding:88px 24px 72px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:0;top:0;width:40%;height:100%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 0 L100 0 L100 100 Z' fill='rgba(255,255,255,0.02)'/%3E%3C/svg%3E") center/cover;pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:56px;align-items:center;position:relative;z-index:1}
+.hero-since{display:inline-block;color:rgba(255,255,255,0.5);font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.hero h1{font-size:50px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:18px;letter-spacing:-1px}
+.hero h1 span{color:var(--gold)}
+.hero-desc{font-size:17px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:32px}
+.hero-expertise{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.exp-tag{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);padding:8px 16px;border-radius:6px;font-size:13px;font-weight:500}
+.hero-btns{display:flex;gap:12px}
+.btn-gold{background:var(--gold);color:#fff;padding:14px 32px;border-radius:6px;text-decoration:none;font-weight:700;font-size:15px;transition:all .2s}
+.btn-gold:hover{background:#b45309;transform:translateY(-2px);box-shadow:0 8px 24px rgba(217,119,6,0.3)}
+.btn-white{background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2);padding:14px 32px;border-radius:6px;text-decoration:none;font-weight:600;font-size:15px;transition:all .2s}
+.btn-white:hover{background:rgba(255,255,255,0.15)}
+.hero-trust{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:28px}
+.hero-trust h3{font-size:16px;font-weight:700;color:#fff;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.trust-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.trust-item:last-child{border-bottom:none}
+.trust-icon{font-size:22px;flex-shrink:0}
+.trust-text{font-size:14px;color:rgba(255,255,255,0.75);line-height:1.4}
+.trust-text strong{color:#fff;display:block;font-weight:600}
+
+section{padding:72px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;background:rgba(30,58,95,0.1);color:var(--navy);padding:4px 14px;border-radius:4px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.section-title{font-size:36px;font-weight:800;color:var(--navy);margin-bottom:14px}
+.section-sub{font-size:16px;color:var(--gray);line-height:1.7;max-width:580px}
+
+.chiffres{background:var(--navy);padding:44px 24px}
+.chiffres-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:24px}
+.chiffre-num{font-size:44px;font-weight:900;color:var(--gold);line-height:1}
+.chiffre-label{color:rgba(255,255,255,0.65);font-size:14px;margin-top:6px}
+
+.expertises{background:var(--light)}
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.exp-card{background:#fff;border-radius:16px;padding:32px;box-shadow:var(--shadow);transition:transform .3s;border-left:4px solid var(--navy)}
+.exp-card:hover{transform:translateY(-6px)}
+.exp-icon{font-size:44px;margin-bottom:16px}
+.exp-title{font-size:21px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.exp-desc{font-size:14px;color:var(--gray);line-height:1.6;margin-bottom:20px}
+.exp-services{list-style:none}
+.exp-services li{padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px}
+.exp-services li::before{content:'▸';color:var(--gold);font-weight:700}
+.exp-services li:last-child{border-bottom:none}
+
+.associes{background:#fff}
+.associes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.assoc-card{background:var(--light);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s}
+.assoc-card:hover{transform:translateY(-4px)}
+.assoc-header{height:180px;display:flex;align-items:center;justify-content:center;font-size:72px}
+.assoc-header.n{background:linear-gradient(135deg,var(--navy),#0f2040)}
+.assoc-header.b{background:linear-gradient(135deg,#2563eb,var(--navy))}
+.assoc-header.g{background:linear-gradient(135deg,var(--gold),#92400e)}
+.assoc-body{padding:24px}
+.assoc-name{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.assoc-title{font-size:13px;color:var(--gold);font-weight:600;margin-bottom:10px}
+.assoc-bio{font-size:13px;color:var(--gray);line-height:1.5;margin-bottom:14px}
+.assoc-credentials{display:flex;gap:8px;flex-wrap:wrap}
+.cred-badge{background:rgba(30,58,95,0.08);color:var(--navy);padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+
+.processus{background:var(--light)}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+.proc-card{background:#fff;border-radius:14px;padding:28px;box-shadow:0 2px 12px rgba(30,58,95,0.07);text-align:center;position:relative}
+.proc-step{width:40px;height:40px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;margin:0 auto 16px}
+.proc-icon{font-size:36px;margin-bottom:14px}
+.proc-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.proc-desc{font-size:13px;color:var(--gray);line-height:1.5}
+
+.testi{background:var(--navy);padding:80px 24px}
+.testi .section-title{color:#fff}
+.testi .section-tag{background:rgba(217,119,6,0.2);color:var(--gold)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.testi-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:28px}
+.testi-quote{font-size:36px;color:rgba(217,119,6,0.3);margin-bottom:8px;line-height:1}
+.testi-text{color:rgba(255,255,255,0.8);font-size:14px;line-height:1.7;font-style:italic;margin-bottom:20px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{width:44px;height:44px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:16px}
+.testi-name{font-size:14px;font-weight:700;color:#fff}
+.testi-info{font-size:12px;color:rgba(255,255,255,0.45)}
+
+.cta-section{background:linear-gradient(135deg,var(--gold),#b45309);padding:72px 24px;text-align:center}
+.cta-section h2{font-size:42px;font-weight:800;color:#fff;margin-bottom:14px}
+.cta-section p{font-size:17px;color:rgba(255,255,255,0.85);margin-bottom:32px}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-dark{background:var(--navy);color:#fff;padding:16px 40px;border-radius:6px;text-decoration:none;font-weight:700;font-size:16px;transition:all .2s}
+.btn-dark:hover{background:#0f2040;transform:translateY(-2px)}
+.btn-outline{border:2px solid rgba(255,255,255,0.5);color:#fff;padding:16px 40px;border-radius:6px;text-decoration:none;font-weight:600;font-size:16px;transition:all .2s}
+.btn-outline:hover{border-color:#fff}
+
+footer{background:#0a1520;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-heading{font-size:12px;font-weight:700;color:#fff;margin-bottom:18px;text-transform:uppercase;letter-spacing:2px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:9px}
+.footer-links a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:10px}
+.footer-bottom a{color:var(--gold);text-decoration:none}
+
+@media(max-width:768px){
+  .hero-inner,.footer-grid{grid-template-columns:1fr}
+  .hero h1{font-size:34px}
+  .exp-grid,.associes-grid,.testi-grid,.process-grid{grid-template-columns:1fr}
+  .chiffres-inner{grid-template-columns:repeat(2,1fr)}
+  .nav-links,.nav-cta,.nav-phone{display:none}
+}
+</style>
+</head>
+<body>
+<div id="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="#">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-monogram">K&A</div>
+      <div class="logo-text">Koné & Associés<small>Cabinet d'Expertise Comptable</small></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Expertise</a></li>
+      <li><a href="#">Audit</a></li>
+      <li><a href="#">Fiscalité</a></li>
+      <li><a href="#">Création</a></li>
+      <li><a href="#">L'équipe</a></li>
+    </ul>
+    <div style="display:flex;align-items:center">
+      <span class="nav-phone">📞 +225 20 31 20 00</span>
+      <a href="#" class="nav-cta">Consultation gratuite</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-since">Cabinet fondé en 1998 · Abidjan, Côte d'Ivoire</div>
+      <h1>Votre Partenaire<br>Comptable de <span>Confiance</span></h1>
+      <p class="hero-desc">Le cabinet Koné & Associés accompagne les entreprises ivoiriennes et africaines dans leur gestion comptable, fiscale et financière depuis 25 ans. Expertise, rigueur, confidentialité.</p>
+      <div class="hero-expertise">
+        <span class="exp-tag">📊 Comptabilité</span>
+        <span class="exp-tag">🔍 Audit</span>
+        <span class="exp-tag">📋 Fiscalité</span>
+        <span class="exp-tag">🏢 Création d'entreprise</span>
+        <span class="exp-tag">📈 Conseil financier</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#" class="btn-gold">Consultation gratuite</a>
+        <a href="#" class="btn-white">Nos services</a>
+      </div>
+    </div>
+    <div class="hero-trust">
+      <h3>✅ Pourquoi nous choisir</h3>
+      <div class="trust-item"><div class="trust-icon">🏅</div><div class="trust-text"><strong>Expert-comptable diplômé d'État</strong>Membres ONECCA Côte d'Ivoire</div></div>
+      <div class="trust-item"><div class="trust-icon">🔒</div><div class="trust-text"><strong>Secret professionnel absolu</strong>Confidentialité garantie par notre éthique</div></div>
+      <div class="trust-item"><div class="trust-icon">⚡</div><div class="trust-text"><strong>Réactivité 24h</strong>Réponse garantie sous 24 heures ouvrées</div></div>
+      <div class="trust-item"><div class="trust-icon">💻</div><div class="trust-text"><strong>Cabinet numérique</strong>Accès dossiers en ligne sécurisé 24h/24</div></div>
+      <div class="trust-item"><div class="trust-icon">🌍</div><div class="trust-text"><strong>Expertise OHADA</strong>Droit comptable OHADA et droit fiscal CI</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="chiffres">
+  <div class="chiffres-inner">
+    <div><div class="chiffre-num">25+</div><div class="chiffre-label">Années d'expérience</div></div>
+    <div><div class="chiffre-num">340+</div><div class="chiffre-label">Entreprises clientes</div></div>
+    <div><div class="chiffre-num">18</div><div class="chiffre-label">Experts-comptables</div></div>
+    <div><div class="chiffre-num">98%</div><div class="chiffre-label">Taux de satisfaction</div></div>
+  </div>
+</div>
+
+<section class="expertises">
+  <div class="section-inner">
+    <div class="section-tag">Nos Expertises</div>
+    <h2 class="section-title">Des Solutions Complètes pour Votre Entreprise</h2>
+    <p class="section-sub">Du quotidien comptable à la stratégie fiscale, nous couvrons tous vos besoins avec la même rigueur.</p>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-icon">📊</div>
+        <div class="exp-title">Comptabilité & Tenue de Comptes</div>
+        <p class="exp-desc">Nous assurons l'organisation et la tenue de votre comptabilité dans le strict respect du système comptable OHADA et des normes IAS/IFRS.</p>
+        <ul class="exp-services">
+          <li>Tenue des livres comptables</li>
+          <li>Rapprochements bancaires</li>
+          <li>États financiers annuels</li>
+          <li>Reporting mensuel/trimestriel</li>
+          <li>Déclarations statistiques</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🔍</div>
+        <div class="exp-title">Audit & Commissariat aux Comptes</div>
+        <p class="exp-desc">Nos experts-comptables certifiés procèdent à des audits légaux et contractuels pour sécuriser votre gestion et rassurer vos partenaires.</p>
+        <ul class="exp-services">
+          <li>Audit légal des comptes annuels</li>
+          <li>Audit interne et contrôle</li>
+          <li>Due diligence acquisition</li>
+          <li>Certification des comptes</li>
+          <li>Rapport aux assemblées</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">📋</div>
+        <div class="exp-title">Fiscalité & Optimisation</div>
+        <p class="exp-desc">Anticipez vos obligations fiscales et optimisez légalement votre charge fiscale grâce à nos spécialistes du droit fiscal ivoirien.</p>
+        <ul class="exp-services">
+          <li>Déclarations DGI mensuelles/annuelles</li>
+          <li>Optimisation TVA et IS</li>
+          <li>Contrôles fiscaux — assistance</li>
+          <li>Prix de transfert international</li>
+          <li>Contentieux fiscal</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">🏢</div>
+        <div class="exp-title">Création & Restructuration</div>
+        <p class="exp-desc">De la création de votre entreprise à sa restructuration, nous vous accompagnons dans toutes vos transformations juridiques et financières.</p>
+        <ul class="exp-services">
+          <li>Création SARL, SA, SAS</li>
+          <li>Rédaction statuts OHADA</li>
+          <li>Business plan et prévisionnel</li>
+          <li>Fusion-acquisition</li>
+          <li>Liquidation judiciaire</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">💼</div>
+        <div class="exp-title">Paie & Gestion Sociale</div>
+        <p class="exp-desc">Externalisation complète de votre paie et gestion de vos obligations sociales CNPS et Code du Travail ivoirien.</p>
+        <ul class="exp-services">
+          <li>Traitement des bulletins de paie</li>
+          <li>Déclarations CNPS mensuelles</li>
+          <li>Contrats de travail</li>
+          <li>Procédures disciplinaires</li>
+          <li>Bilan social annuel</li>
+        </ul>
+      </div>
+      <div class="exp-card">
+        <div class="exp-icon">📈</div>
+        <div class="exp-title">Conseil Financier & Gestion</div>
+        <p class="exp-desc">Tableau de bord, analyse de rentabilité, prévisions — nous vous donnons les outils pour piloter votre activité avec confiance.</p>
+        <ul class="exp-services">
+          <li>Tableau de bord mensuel</li>
+          <li>Analyse des coûts et marges</li>
+          <li>Prévisionnel de trésorerie</li>
+          <li>Financement bancaire — dossier</li>
+          <li>Évaluation d'entreprise</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="associes">
+  <div class="section-inner">
+    <div class="section-tag">L'Équipe Dirigeante</div>
+    <h2 class="section-title">Des Professionnels à Votre Service</h2>
+    <p class="section-sub">Nos associés cumulent plus de 60 ans d'expérience collective dans l'expertise comptable, l'audit et le conseil fiscal.</p>
+    <div class="associes-grid">
+      <div class="assoc-card">
+        <div class="assoc-header n">👨‍💼</div>
+        <div class="assoc-body">
+          <div class="assoc-name">Maître Ibrahima Koné</div>
+          <div class="assoc-title">Associé fondateur · Expert-Comptable</div>
+          <p class="assoc-bio">DESCF Université Paris 1. 25 ans d'expérience. Ancien auditeur PwC Abidjan. Spécialiste des groupes multinationaux opérant en Afrique subsaharienne.</p>
+          <div class="assoc-credentials"><span class="cred-badge">ONECCA</span><span class="cred-badge">FIDEF</span><span class="cred-badge">Expert DGI</span></div>
+        </div>
+      </div>
+      <div class="assoc-card">
+        <div class="assoc-header b">👩‍💼</div>
+        <div class="assoc-body">
+          <div class="assoc-name">Dr. Aïda Coulibaly-Yoro</div>
+          <div class="assoc-title">Associée · Spécialiste Fiscalité</div>
+          <p class="assoc-bio">Doctorat en Droit Fiscal (Abidjan). 18 ans d'expérience. Ex-inspectrice des impôts DGI. Représentante des clients lors des contrôles fiscaux depuis 15 ans.</p>
+          <div class="assoc-credentials"><span class="cred-badge">ONECCA</span><span class="cred-badge">Ex-DGI</span><span class="cred-badge">Contentieux</span></div>
+        </div>
+      </div>
+      <div class="assoc-card">
+        <div class="assoc-header g">👨‍🏫</div>
+        <div class="assoc-body">
+          <div class="assoc-name">Sébastien Brou Assié</div>
+          <div class="assoc-title">Associé · Audit & Commissariat</div>
+          <p class="assoc-bio">DESCOGEF. Commissaire aux comptes auprès du Tribunal de Commerce d'Abidjan. Spécialiste audit des PME et ONG. Expert ANRMP marchés publics.</p>
+          <div class="assoc-credentials"><span class="cred-badge">ONECCA</span><span class="cred-badge">CAC</span><span class="cred-badge">ANRMP</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="processus">
+  <div class="section-inner">
+    <div class="section-tag">Notre Approche</div>
+    <h2 class="section-title">Un Processus Transparent et Rigoureux</h2>
+    <div class="process-grid">
+      <div class="proc-card"><div class="proc-step">1</div><div class="proc-icon">🤝</div><div class="proc-title">Consultation initiale</div><div class="proc-desc">Rencontre gratuite pour analyser vos besoins spécifiques et proposer la meilleure solution.</div></div>
+      <div class="proc-card"><div class="proc-step">2</div><div class="proc-icon">📋</div><div class="proc-title">Lettre de mission</div><div class="proc-desc">Formalisation de la mission, des honoraires et du planning dans une lettre de mission claire.</div></div>
+      <div class="proc-card"><div class="proc-step">3</div><div class="proc-icon">⚙️</div><div class="proc-title">Exécution rigoureuse</div><div class="proc-desc">Nos équipes traitent votre dossier avec méthode, en respectant scrupuleusement les délais légaux.</div></div>
+      <div class="proc-card"><div class="proc-step">4</div><div class="proc-icon">📊</div><div class="proc-title">Restitution & suivi</div><div class="proc-desc">Remise des travaux avec explication détaillée et suivi continu de votre dossier tout au long de l'année.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testi">
+  <div class="section-inner">
+    <div class="section-tag">Avis Clients</div>
+    <h2 class="section-title">La Confiance de 340 Entreprises</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Le cabinet Koné & Associés gère notre comptabilité depuis 12 ans. Leur rigueur, leur disponibilité et leur expertise fiscale nous ont évité plusieurs redressements. Un partenaire indispensable.</p>
+        <div class="testi-author"><div class="testi-av">D</div><div><div class="testi-name">Directeur Général — SARL Diomandé BTP</div><div class="testi-info">Client depuis 2013 · Abidjan</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Lors d'un contrôle fiscal, Maître Koné a défendu notre dossier avec une telle maîtrise technique que le redressement initial de 45 millions a été ramené à zéro. Expertise remarquable.</p>
+        <div class="testi-author"><div class="testi-av">K</div><div><div class="testi-name">PDG — Groupe Kouassi Distribution</div><div class="testi-info">Client depuis 2018 · Yamoussoukro</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Ils ont structuré notre groupe de 3 sociétés en 6 mois avec une optimisation fiscale remarquable. Leur connaissance du droit OHADA et fiscal CI est au-dessus de tout ce que j'ai connu.</p>
+        <div class="testi-author"><div class="testi-av">A</div><div><div class="testi-name">Directeur Financier — Groupe AMCI</div><div class="testi-info">Client depuis 2020 · Abidjan Plateau</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="section-inner">
+    <h2>Consultez Nos Experts Gratuitement</h2>
+    <p>Première consultation gratuite de 45 minutes. Sans engagement. Par téléphone ou dans nos locaux.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-dark">Prendre rendez-vous</a>
+      <a href="#" class="btn-outline">Appeler le +225 20 31 20 00</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:14px">Koné & Associés</div>
+        <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,0.35);margin-bottom:18px">Cabinet d'expertise comptable, audit et conseil fiscal. Membres ONECCA Côte d'Ivoire. Agrément N°0042-ONECCA-CI.</p>
+        <div style="font-size:14px;line-height:2;color:rgba(255,255,255,0.4)">📍 Immeuble Le Centaure, Avenue Botreau-Roussel, Plateau, Abidjan<br>📞 +225 20 31 20 00<br>✉️ contact@kone-associes.ci</div>
+      </div>
+      <div><div class="footer-heading">Services</div><ul class="footer-links"><li><a href="#">Comptabilité</a></li><li><a href="#">Audit</a></li><li><a href="#">Fiscalité</a></li><li><a href="#">Paie sociale</a></li><li><a href="#">Création SARL</a></li></ul></div>
+      <div><div class="footer-heading">Cabinet</div><ul class="footer-links"><li><a href="#">Nos associés</a></li><li><a href="#">Notre approche</a></li><li><a href="#">Certifications</a></li><li><a href="#">Actualités DGI</a></li></ul></div>
+      <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="#">Consultation gratuite</a></li><li><a href="#">Espace client</a></li><li><a href="#">Itinéraire</a></li><li><a href="#">Recrutement</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Cabinet Koné & Associés · ONECCA N°0042 · Tous droits réservés</span>
+      <span>Site créé avec <a href="#">IBIG Digital</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

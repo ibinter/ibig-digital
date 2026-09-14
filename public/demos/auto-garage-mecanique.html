@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto Service Pro — Garage Mécanique Abidjan</title>
+<style>
+:root{
+  --primary:#F59E0B;
+  --accent:#D97706;
+  --bg:#111827;
+  --bg2:#1F2937;
+  --bg3:#374151;
+  --text:#fff;
+  --text-muted:rgba(255,255,255,.6);
+  --border:rgba(255,255,255,.1);
+  --red:#EF4444;
+  --green:#10B981;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
+
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;border-bottom:2px solid var(--primary)}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:20px;text-decoration:none;font-weight:700;font-size:12px}
+
+nav{position:sticky;top:40px;background:rgba(17,24,39,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;padding:0 5%}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto}
+.logo{font-size:20px;font-weight:900;letter-spacing:-0.5px}
+.logo span{color:var(--primary)}
+.logo em{font-style:normal;font-size:10px;display:block;color:var(--text-muted);font-weight:400;letter-spacing:1px;text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--primary)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.nav-tel{font-size:14px;color:var(--primary);font-weight:700}
+.nav-cta{background:var(--primary);color:#000;padding:9px 20px;border-radius:6px;font-weight:800;text-decoration:none;font-size:13px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:22px;height:2px;background:var(--primary);border-radius:2px}
+.mob-menu{display:none;background:var(--bg2);padding:16px 5%;border-top:1px solid var(--border)}
+.mob-menu a{display:block;color:var(--text-muted);text-decoration:none;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+@media(max-width:768px){.nav-links,.nav-tel{display:none}.burger{display:flex}}
+
+/* HERO */
+.hero{min-height:90vh;background:linear-gradient(160deg,#000 0%,var(--bg) 100%);display:flex;align-items:center;padding:80px 5%;position:relative;overflow:hidden}
+.hero-bg-pattern{position:absolute;top:0;left:0;right:0;bottom:0;background-image:repeating-linear-gradient(0deg,rgba(245,158,11,.04) 0,rgba(245,158,11,.04) 1px,transparent 0,transparent 60px),repeating-linear-gradient(90deg,rgba(245,158,11,.04) 0,rgba(245,158,11,.04) 1px,transparent 0,transparent 60px)}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--primary);padding:7px 16px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.05;margin-bottom:16px;letter-spacing:-1px}
+.hero h1 span{color:var(--primary)}
+.hero p{color:var(--text-muted);font-size:16px;line-height:1.7;margin-bottom:28px;max-width:460px}
+.hero-ctas{display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap}
+.btn-yellow{background:var(--primary);color:#000;padding:13px 28px;border-radius:6px;font-weight:800;text-decoration:none;font-size:15px;transition:.2s}
+.btn-yellow:hover{background:var(--accent)}
+.btn-outline{background:transparent;color:var(--text);padding:13px 28px;border-radius:6px;font-weight:600;text-decoration:none;font-size:15px;border:1px solid var(--border);transition:.2s}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+.hero-nums{display:flex;gap:28px;padding-top:28px;border-top:1px solid var(--border)}
+.hn{text-align:left}
+.hn strong{display:block;font-size:26px;font-weight:900;color:var(--primary)}
+.hn span{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+.hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hv-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center;transition:.2s}
+.hv-card:hover{border-color:var(--primary)}
+.hv-icon{font-size:36px;margin-bottom:8px}
+.hv-name{font-size:13px;font-weight:700;color:var(--text)}
+.hv-price{font-size:12px;color:var(--primary);font-weight:600;margin-top:4px}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr}.hero-visual{display:none}}
+
+/* SERVICES */
+section{padding:72px 5%}
+.max-w{max-width:1200px;margin:0 auto}
+.stag{display:inline-block;color:var(--primary);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;padding:5px 14px;border:1px solid rgba(245,158,11,.3);border-radius:4px}
+.sh2{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;margin-bottom:8px;letter-spacing:-0.5px}
+.sh2 em{font-style:normal;color:var(--primary)}
+.ssub{color:var(--text-muted);font-size:15px;max-width:520px;line-height:1.6}
+
+.services-section{background:var(--bg2)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:36px}
+.service-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:28px;transition:.3s}
+.service-card:hover{border-color:var(--primary);transform:translateY(-3px)}
+.sc-icon{font-size:36px;margin-bottom:14px}
+.sc-name{font-size:17px;font-weight:800;margin-bottom:8px;color:var(--primary)}
+.sc-desc{color:var(--text-muted);font-size:14px;line-height:1.6;margin-bottom:14px}
+.sc-price{font-size:14px;font-weight:700;color:var(--text)}
+.sc-price span{color:var(--primary);font-size:18px;font-weight:900}
+
+/* DEVIS */
+.devis-section{background:var(--bg);padding:72px 5%}
+.devis-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:1100px;margin:0 auto;align-items:start}
+.devis-info h2{font-size:2rem;font-weight:900;margin-bottom:14px;letter-spacing:-.5px}
+.devis-info h2 em{font-style:normal;color:var(--primary)}
+.devis-info p{color:var(--text-muted);line-height:1.7;margin-bottom:20px;font-size:15px}
+.urgency-banner{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:10px;font-size:14px}
+.urgency-banner span:first-child{font-size:20px}
+.process-steps{display:flex;flex-direction:column;gap:12px}
+.ps{display:flex;gap:12px;align-items:flex-start}
+.ps-num{width:32px;height:32px;background:var(--primary);color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0;margin-top:2px}
+.ps-text h4{font-size:14px;font-weight:700;margin-bottom:2px}
+.ps-text p{font-size:13px;color:var(--text-muted)}
+.devis-form{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px}
+.df-title{font-size:18px;font-weight:800;margin-bottom:20px;color:var(--primary)}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.fg input,.fg select,.fg textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border);color:#fff;padding:10px 14px;border-radius:8px;font-size:14px;outline:none;transition:.2s;font-family:inherit}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--primary)}
+.fg select option{background:#1F2937;color:#fff}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.devis-btn{width:100%;background:var(--primary);color:#000;border:none;padding:13px;border-radius:8px;font-size:15px;font-weight:900;cursor:pointer;transition:.2s}
+.devis-btn:hover{background:var(--accent)}
+@media(max-width:768px){.devis-inner{grid-template-columns:1fr}.fg-row{grid-template-columns:1fr}}
+
+/* ÉQUIPE */
+.team-section{background:var(--bg2)}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.team-card{text-align:center;padding:24px 16px;background:var(--bg);border:1px solid var(--border);border-radius:12px;transition:.2s}
+.team-card:hover{border-color:var(--primary)}
+.team-av{width:80px;height:80px;border-radius:50%;background:var(--bg2);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:38px;border:3px solid var(--border)}
+.team-name{font-weight:800;font-size:15px;margin-bottom:4px}
+.team-role{font-size:12px;color:var(--primary);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.team-exp{font-size:12px;color:var(--text-muted)}
+@media(max-width:768px){.team-grid{grid-template-columns:1fr 1fr}}
+
+/* TEMOIGNAGES */
+.testi-section{background:var(--bg)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+.testi-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px}
+.tc-stars{color:var(--primary);font-size:16px;margin-bottom:10px}
+.tc-text{font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:14px;font-style:italic}
+.tc-by{display:flex;align-items:center;gap:10px}
+.tc-av{width:36px;height:36px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--primary)}
+.tc-name{font-weight:700;font-size:13px}
+.tc-info{font-size:12px;color:var(--text-muted)}
+@media(max-width:768px){.testi-grid{grid-template-columns:1fr}}
+
+footer{background:#000;padding:48px 5% 24px;border-top:1px solid var(--border)}
+.fg-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;max-width:1200px;margin:0 auto 40px}
+.fbl p{color:var(--text-muted);font-size:14px;line-height:1.6;margin-top:10px}
+.fc h4{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.fc a{display:block;color:var(--text-muted);text-decoration:none;font-size:14px;margin-bottom:8px;transition:color .2s}
+.fc a:hover{color:#fff}
+.fb-bot{border-top:1px solid #111;padding-top:20px;display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.3);max-width:1200px;margin:0 auto}
+@media(max-width:768px){.fg-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Auto<span>Service</span> Pro<em>Garage & Mécanique Abidjan</em></div>
+    <ul class="nav-links">
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Devis</a></li>
+      <li><a href="#">Notre équipe</a></li>
+      <li><a href="#">Témoignages</a></li>
+    </ul>
+    <div class="nav-actions">
+      <span class="nav-tel">📞 +225 07 XX XX XX</span>
+      <a href="#" class="nav-cta">Devis gratuit</a>
+      <div class="burger" onclick="document.getElementById('mm').style.display=document.getElementById('mm').style.display==='block'?'none':'block'"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+  <div class="mob-menu" id="mm"><a href="#">Services</a><a href="#">Devis gratuit</a><a href="#">Notre équipe</a><a href="#">Contact</a></div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🔧 Yopougon · Abidjan · Depuis 2008</div>
+      <h1>Votre voiture entre <span>les meilleures mains</span></h1>
+      <p>Révision, réparation moteur, carrosserie, vidange express — Auto Service Pro est le garage de référence à Abidjan. Techniciens certifiés, pièces authentiques.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-yellow">🔧 Demander un devis</a>
+        <a href="#" class="btn-outline">📞 Nous appeler</a>
+      </div>
+      <div class="hero-nums">
+        <div class="hn"><strong>15+</strong><span>Années d'expérience</span></div>
+        <div class="hn"><strong>8 000+</strong><span>Véhicules réparés</span></div>
+        <div class="hn"><strong>4.9★</strong><span>Satisfaction client</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hv-card"><div class="hv-icon">🔧</div><div class="hv-name">Révision complète</div><div class="hv-price">Dès 35 000 F</div></div>
+      <div class="hv-card"><div class="hv-icon">🛞</div><div class="hv-name">Pneus & Jantes</div><div class="hv-price">Dès 15 000 F</div></div>
+      <div class="hv-card"><div class="hv-icon">🔩</div><div class="hv-name">Vidange express</div><div class="hv-price">Dès 8 000 F</div></div>
+      <div class="hv-card"><div class="hv-icon">⚡</div><div class="hv-name">Électronique auto</div><div class="hv-price">Devis gratuit</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="services-section">
+  <div class="max-w">
+    <div class="stag">Nos services</div>
+    <h2 class="sh2">Tout pour votre <em>véhicule</em></h2>
+    <p class="ssub">Équipement de pointe, pièces d'origine, techniciens formés et certifiés par les constructeurs</p>
+    <div class="services-grid">
+      <div class="service-card"><div class="sc-icon">🔧</div><div class="sc-name">Révision complète</div><div class="sc-desc">Inspection complète de votre véhicule, vidange, filtres, bougies, courroie de distribution selon carnet d'entretien.</div><div class="sc-price">À partir de <span>35 000</span> FCFA</div></div>
+      <div class="service-card"><div class="sc-icon">⚙️</div><div class="sc-name">Réparation moteur</div><div class="sc-desc">Diagnostic électronique OBD, réparation culasse, distribution, joints, turbo. Garantie 3 mois pièces et main d'œuvre.</div><div class="sc-price">Devis <span>gratuit</span></div></div>
+      <div class="service-card"><div class="sc-icon">🛞</div><div class="sc-name">Pneus & Géométrie</div><div class="sc-desc">Montage-démontage pneus, équilibrage, géométrie laser. Toutes marques en stock : Michelin, Bridgestone, Pirelli.</div><div class="sc-price">À partir de <span>15 000</span> FCFA</div></div>
+      <div class="service-card"><div class="sc-icon">💧</div><div class="sc-name">Vidange express</div><div class="sc-desc">Vidange huile moteur, remplacement filtre à huile, vérification niveaux. Service en 30 minutes sans rendez-vous.</div><div class="sc-price">À partir de <span>8 000</span> FCFA</div></div>
+      <div class="service-card"><div class="sc-icon">🚗</div><div class="sc-name">Carrosserie & Peinture</div><div class="sc-desc">Débosselage, redressage, peinture teintée à l'identique. Restauration carrosserie après accidents ou chocs.</div><div class="sc-price">Devis <span>gratuit</span></div></div>
+      <div class="service-card"><div class="sc-icon">❄️</div><div class="sc-name">Climatisation</div><div class="sc-desc">Recharge climatisation, remplacement compresseur, détection fuite, nettoyage circuit. Habilitation F-gaz.</div><div class="sc-price">À partir de <span>20 000</span> FCFA</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="devis-section">
+  <div class="devis-inner">
+    <div class="devis-info">
+      <h2>Devis <em>gratuit</em> en 2h</h2>
+      <p>Décrivez le problème de votre véhicule, nos techniciens examinent votre demande et vous proposent un devis précis et transparent, sans surprise.</p>
+      <div class="urgency-banner">
+        <span>🚨</span>
+        <span>Panne urgente? Nous intervenons aussi à domicile dans Abidjan. Appelez le <strong style="color:#EF4444">+225 07 XX XX XX</strong></span>
+      </div>
+      <div class="process-steps">
+        <div class="ps"><div class="ps-num">1</div><div class="ps-text"><h4>Soumettez votre demande</h4><p>Formulaire ci-contre ou par WhatsApp</p></div></div>
+        <div class="ps"><div class="ps-num">2</div><div class="ps-text"><h4>Diagnostic gratuit</h4><p>Nos techniciens examinent votre véhicule</p></div></div>
+        <div class="ps"><div class="ps-num">3</div><div class="ps-text"><h4>Devis détaillé</h4><p>Prix fixé à l'avance, pas de mauvaises surprises</p></div></div>
+        <div class="ps"><div class="ps-num">4</div><div class="ps-text"><h4>Réparation & Restitution</h4><p>Travaux effectués, véhicule restitué propre</p></div></div>
+      </div>
+    </div>
+    <div class="devis-form">
+      <div class="df-title">🔧 Demande de devis</div>
+      <div class="fg-row">
+        <div class="fg"><label>Votre nom</label><input type="text" placeholder="Bouaké Koffi"></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" placeholder="+225 XX XX XX XX"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Marque du véhicule</label><select><option>Toyota</option><option>Peugeot</option><option>Renault</option><option>Honda</option><option>Mercedes</option><option>Volkswagen</option><option>Autre</option></select></div>
+        <div class="fg"><label>Modèle / Année</label><input type="text" placeholder="Ex: Corolla 2018"></div>
+      </div>
+      <div class="fg"><label>Type de panne</label>
+        <select><option>Révision / Entretien</option><option>Problème moteur</option><option>Freins</option><option>Climatisation</option><option>Carrosserie</option><option>Électronique</option><option>Autre</option></select>
+      </div>
+      <div class="fg"><label>Description du problème</label><textarea rows="3" placeholder="Décrivez les symptômes, bruits, voyants allumés..."></textarea></div>
+      <button class="devis-btn" onclick="alert('Demande envoyée! Un technicien vous rappelle dans les 2 heures pour fixer un rendez-vous.')">Envoyer la demande de devis</button>
+    </div>
+  </div>
+</section>
+
+<section class="team-section">
+  <div class="max-w">
+    <div class="stag">Notre équipe</div>
+    <h2 class="sh2">Des techniciens <em>certifiés</em></h2>
+    <p class="ssub">Formés par les constructeurs et expérimentés sur toutes les marques</p>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-av">👨‍🔧</div><div class="team-name">Kouamé Brou</div><div class="team-role">Chef mécanicien</div><div class="team-exp">18 ans d'expérience · Certifié Toyota</div></div>
+      <div class="team-card"><div class="team-av">👨‍🔧</div><div class="team-name">Lamine Coulibaly</div><div class="team-role">Électronicien auto</div><div class="team-exp">12 ans · Diagnostic OBD II expert</div></div>
+      <div class="team-card"><div class="team-av">👨‍🔧</div><div class="team-name">Assi Kouassi</div><div class="team-role">Carrossier-peintre</div><div class="team-exp">10 ans · Peinture teintée professionnelle</div></div>
+      <div class="team-card"><div class="team-av">👩‍💼</div><div class="team-name">Mariam Traoré</div><div class="team-role">Accueil & Devis</div><div class="team-exp">Experte en relation client · Devis express</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testi-section">
+  <div class="max-w">
+    <div class="stag">Avis clients</div>
+    <h2 class="sh2">Ce qu'ils disent de <em>nous</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="tc-stars">★★★★★</div><p class="tc-text">"Révision complète de ma Corolla en 3h. Devis respecté à la lettre. Propre et professionnel, je ne vais nulle part ailleurs."</p><div class="tc-by"><div class="tc-av">A</div><div><div class="tc-name">Adjoua Menzan</div><div class="tc-info">Toyota Corolla 2019</div></div></div></div>
+      <div class="testi-card"><div class="tc-stars">★★★★★</div><p class="tc-text">"Problème de boîte de vitesses résolu en 2 jours avec garantie. Prix honnête, équipe professionnelle. Très satisfait!"</p><div class="tc-by"><div class="tc-av">B</div><div><div class="tc-name">Bamba Diarra</div><div class="tc-info">Peugeot 307 2015</div></div></div></div>
+      <div class="testi-card"><div class="tc-stars">★★★★★</div><p class="tc-text">"Carrosserie réparée après accident, peinture identique parfaite. On ne voit rien! Service impeccable du début à la fin."</p><div class="tc-by"><div class="tc-av">N</div><div><div class="tc-name">Nanou Ouattara</div><div class="tc-info">Honda Civic 2020</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fg-grid">
+    <div class="fbl">
+      <div style="font-size:19px;font-weight:900">Auto<span style="color:var(--primary)">Service</span> Pro</div>
+      <p>Le garage de confiance à Yopougon depuis 2008. Techniciens certifiés, pièces d'origine, satisfaction garantie.</p>
+    </div>
+    <div class="fc"><h4>Services</h4><a href="#">Révision</a><a href="#">Moteur</a><a href="#">Carrosserie</a><a href="#">Pneus</a><a href="#">Climatisation</a></div>
+    <div class="fc"><h4>Garage</h4><a href="#">Notre équipe</a><a href="#">Certifications</a><a href="#">Galerie</a><a href="#">Témoignages</a></div>
+    <div class="fc"><h4>Contact</h4><a href="#">📍 Yopougon, Abidjan</a><a href="#">📞 +225 07 XX XX XX</a><a href="#">🕐 Lun-Sam: 7h-19h</a></div>
+  </div>
+  <div class="fb-bot"><span>© 2024 Auto Service Pro — Abidjan</span><span>Site créé par IBIG Digital</span></div>
+</footer>
+</body>
+</html>

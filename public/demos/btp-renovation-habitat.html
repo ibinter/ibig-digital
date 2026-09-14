@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rénov'Habitat Côte d'Ivoire</title>
+  <style>
+    :root {
+      --orange: #EA580C;
+      --orange-dark: #C2410C;
+      --orange-light: #FFF7ED;
+      --slate: #475569;
+      --slate-dark: #334155;
+      --slate-light: #F1F5F9;
+      --white: #FFFFFF;
+      --gray-50: #F8F9FA;
+      --gray-200: #E2E8F0;
+      --gray-600: #475569;
+      --gray-900: #0F172A;
+      --green: #16A34A;
+      --shadow: 0 4px 24px rgba(71,85,105,0.12);
+      --radius: 10px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: system-ui,-apple-system,sans-serif; background:var(--gray-50); color:var(--gray-600); }
+
+    .demo-bar { position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px; }
+    .demo-bar a { background:#22C55E;color:#fff;padding:5px 14px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:700; }
+
+    nav {
+      position:sticky; top:40px; z-index:100;
+      background:#fff; border-bottom:1px solid var(--gray-200);
+      padding:0 48px; display:flex; align-items:center; justify-content:space-between; height:70px;
+    }
+    .nav-logo { display:flex; align-items:center; gap:10px; }
+    .logo-icon { width:44px; height:44px; background:var(--orange); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px; color:#fff; }
+    .logo-name { font-size:17px; font-weight:800; color:var(--gray-900); }
+    .logo-tag { font-size:11px; color:var(--orange); font-weight:700; }
+    .nav-links { display:flex; gap:28px; }
+    .nav-links a { text-decoration:none; color:var(--gray-600); font-size:14px; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--orange); }
+    .btn-cta { background:var(--orange); color:#fff; padding:11px 24px; border-radius:10px; text-decoration:none; font-size:14px; font-weight:700; transition:all 0.2s; }
+    .btn-cta:hover { background:var(--orange-dark); }
+
+    /* HERO */
+    .hero {
+      background:var(--gray-900);
+      padding:80px 48px 70px; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+      position:relative; overflow:hidden;
+    }
+    .hero::after {
+      content:''; position:absolute; top:0; right:0; width:50%; height:100%;
+      background:linear-gradient(135deg, #1E293B, #0F172A); z-index:0;
+    }
+    .hero-content { position:relative; z-index:1; color:#fff; }
+    .hero-badge { display:inline-block; background:var(--orange); color:#fff; padding:6px 16px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:20px; }
+    .hero h1 { font-size:44px; font-weight:900; line-height:1.15; margin-bottom:16px; }
+    .hero h1 span { color:var(--orange); }
+    .hero p { font-size:16px; color:#94A3B8; line-height:1.7; margin-bottom:28px; }
+    .hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-primary { background:var(--orange); color:#fff; padding:13px 24px; border-radius:10px; font-size:15px; font-weight:700; text-decoration:none; border:none; cursor:pointer; transition:all 0.2s; }
+    .btn-primary:hover { background:var(--orange-dark); transform:translateY(-2px); }
+    .btn-outline-w { background:transparent; color:#fff; padding:13px 24px; border-radius:10px; font-size:15px; font-weight:700; text-decoration:none; border:2px solid rgba(255,255,255,0.3); }
+    .hero-trust { display:flex; gap:24px; margin-top:28px; }
+    .trust { font-size:13px; color:#94A3B8; display:flex; gap:6px; align-items:center; }
+    .hero-form-box { position:relative; z-index:1; background:#fff; border-radius:16px; padding:32px; box-shadow:0 20px 60px rgba(0,0,0,0.3); }
+    .hero-form-box h3 { font-size:18px; font-weight:800; color:var(--gray-900); margin-bottom:6px; }
+    .hero-form-box p { font-size:13px; color:var(--gray-600); margin-bottom:20px; }
+    .fg { margin-bottom:14px; }
+    .fg label { display:block; font-size:12px; font-weight:700; color:var(--slate-dark); margin-bottom:5px; }
+    .fg input, .fg select { width:100%; padding:10px 14px; border:1.5px solid var(--gray-200); border-radius:8px; font-size:14px; color:var(--gray-900); }
+    .fg input:focus, .fg select:focus { outline:none; border-color:var(--orange); }
+    .devis-btn { width:100%; background:var(--orange); color:#fff; padding:14px; border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; transition:background 0.2s; }
+    .devis-btn:hover { background:var(--orange-dark); }
+    .form-note { font-size:11px; color:var(--gray-600); text-align:center; margin-top:10px; }
+
+    /* SERVICES */
+    .services { padding:80px 48px; background:#fff; }
+    .sect-badge { display:inline-block; background:var(--orange-light); color:var(--orange); padding:5px 14px; border-radius:20px; font-size:12px; font-weight:700; margin-bottom:10px; }
+    .sect-h2 { font-size:34px; font-weight:900; color:var(--gray-900); margin-bottom:10px; }
+    .sect-p { font-size:15px; color:var(--gray-600); max-width:540px; line-height:1.7; margin-bottom:48px; }
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .svc { background:var(--gray-50); border-radius:14px; padding:28px; border:1.5px solid var(--gray-200); transition:all 0.3s; }
+    .svc:hover { border-color:var(--orange); background:#fff; box-shadow:var(--shadow); transform:translateY(-4px); }
+    .svc-icon { width:52px; height:52px; background:var(--orange-light); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:16px; }
+    .svc h3 { font-size:16px; font-weight:800; color:var(--gray-900); margin-bottom:8px; }
+    .svc p { font-size:13px; color:var(--gray-600); line-height:1.6; margin-bottom:14px; }
+    .svc-price { font-size:13px; color:var(--orange); font-weight:700; background:var(--orange-light); padding:4px 10px; border-radius:6px; display:inline-block; }
+
+    /* AVANT APRES */
+    .avant-apres { padding:80px 48px; background:var(--gray-50); }
+    .aa-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
+    .aa-card { background:#fff; border-radius:14px; overflow:hidden; box-shadow:var(--shadow); }
+    .aa-images { display:grid; grid-template-columns:1fr 1fr; }
+    .aa-side { height:160px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; font-size:40px; position:relative; }
+    .aa-side.avant { background:linear-gradient(135deg,#6B7280,#9CA3AF); }
+    .aa-side.apres { background:linear-gradient(135deg,var(--orange),#FB923C); }
+    .aa-label { font-size:11px; font-weight:800; color:#fff; background:rgba(0,0,0,0.4); padding:3px 10px; border-radius:20px; position:absolute; bottom:8px; }
+    .aa-info { padding:18px; }
+    .aa-info h3 { font-size:14px; font-weight:800; color:var(--gray-900); margin-bottom:4px; }
+    .aa-info p { font-size:12px; color:var(--gray-600); }
+    .aa-meta { display:flex; justify-content:space-between; margin-top:10px; font-size:12px; }
+    .aa-loc { color:var(--gray-600); }
+    .aa-cost { color:var(--orange); font-weight:700; }
+
+    /* PROCESSUS */
+    .process { background:linear-gradient(135deg,var(--slate-dark),var(--gray-900)); padding:70px 48px; color:#fff; }
+    .process h2 { font-size:32px; font-weight:900; text-align:center; margin-bottom:48px; }
+    .process-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:20px; }
+    .ps { text-align:center; }
+    .ps-num { width:52px; height:52px; background:var(--orange); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900; margin:0 auto 14px; }
+    .ps h3 { font-size:13px; font-weight:700; margin-bottom:6px; }
+    .ps p { font-size:12px; color:#94A3B8; line-height:1.4; }
+    .ps-arrow { display:flex; align-items:center; justify-content:flex-end; color:#475569; font-size:24px; margin-top:26px; }
+
+    /* TARIFS */
+    .tarifs { padding:80px 48px; background:#fff; }
+    .tarifs-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:48px; }
+    .tarif-row { display:flex; align-items:center; justify-content:space-between; padding:18px 22px; background:var(--gray-50); border-radius:10px; border:1.5px solid var(--gray-200); transition:all 0.2s; }
+    .tarif-row:hover { border-color:var(--orange); background:var(--orange-light); }
+    .tarif-left { display:flex; align-items:center; gap:14px; }
+    .tarif-icon { font-size:24px; }
+    .tarif-name { font-size:14px; font-weight:700; color:var(--gray-900); }
+    .tarif-desc { font-size:12px; color:var(--gray-600); }
+    .tarif-price { font-size:16px; font-weight:900; color:var(--orange); white-space:nowrap; }
+
+    /* EQUIPE & GARANTIES */
+    .garanties { padding:70px 48px; background:var(--gray-50); }
+    .g-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:40px; }
+    .g-card { background:#fff; border-radius:var(--radius); padding:24px; text-align:center; border:1.5px solid var(--gray-200); }
+    .g-icon { font-size:36px; margin-bottom:12px; }
+    .g-num { font-size:28px; font-weight:900; color:var(--orange); }
+    .g-label { font-size:13px; color:var(--gray-600); margin-top:4px; }
+
+    footer { background:var(--gray-900); color:#fff; padding:50px 48px 24px; }
+    .ft-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:36px; }
+    .fb h3 { font-size:18px; font-weight:900; margin-bottom:8px; }
+    .fb p { font-size:13px; color:#94A3B8; line-height:1.6; margin-bottom:14px; }
+    .fb-c { font-size:13px; color:#94A3B8; line-height:2; }
+    .fc h4 { font-size:13px; font-weight:700; margin-bottom:14px; color:#E2E8F0; }
+    .fc a { display:block; color:#94A3B8; text-decoration:none; font-size:13px; margin-bottom:8px; }
+    .fc a:hover { color:var(--orange); }
+    .ft-bottom { border-top:1px solid #1E293B; padding-top:20px; font-size:12px; color:#64748B; text-align:center; }
+
+    @media(max-width:768px) {
+      .hero, .ft-grid { grid-template-columns:1fr; }
+      .hero { padding:40px 20px; }
+      .services-grid, .aa-grid { grid-template-columns:1fr; }
+      .process-grid { grid-template-columns:1fr 1fr; }
+      .tarifs-grid, .g-grid { grid-template-columns:1fr 1fr; }
+      nav { padding:0 20px; }
+      .nav-links { display:none; }
+      .services, .avant-apres, .tarifs, .garanties { padding-left:20px; padding-right:20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="https://ibig-digital.com/commander" target="_blank">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">🏠</div>
+    <div>
+      <div class="logo-name">Rénov'Habitat CI</div>
+      <div class="logo-tag">Côte d'Ivoire · Rénovation & Construction</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#realisations">Réalisations</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="#devis">Devis Gratuit</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#devis" class="btn-cta">📋 Devis Gratuit</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🏆 N°1 Rénovation habitat en Côte d'Ivoire</div>
+    <h1>Transformez Votre<br><span>Maison</span> en<br>Espace de Rêve</h1>
+    <p>Rénovation complète, extension, décoration intérieure et peinture professionnelle. 200+ projets réalisés avec satisfaction garantie.</p>
+    <div class="hero-btns">
+      <a href="#devis" class="btn-primary">📋 Devis Gratuit</a>
+      <a href="#realisations" class="btn-outline-w">🖼️ Nos Réalisations</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust"><span>✅</span> Devis gratuit sous 48h</div>
+      <div class="trust"><span>🛡️</span> Garantie 5 ans</div>
+      <div class="trust"><span>⭐</span> 200+ projets</div>
+    </div>
+  </div>
+  <div class="hero-form-box">
+    <h3>📋 Devis Gratuit & Sans Engagement</h3>
+    <p>Réponse sous 48h. Visite technique offerte.</p>
+    <div class="fg"><label>Votre nom complet</label><input type="text" placeholder="Kouamé Jean-Baptiste"></div>
+    <div class="fg"><label>Téléphone</label><input type="tel" placeholder="+225 07 00 00 00 00"></div>
+    <div class="fg">
+      <label>Type de travaux</label>
+      <select>
+        <option>Rénovation complète</option>
+        <option>Peinture intérieure/extérieure</option>
+        <option>Extension de maison</option>
+        <option>Carrelage & revêtements</option>
+        <option>Plomberie & électricité</option>
+        <option>Clôture & portail</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label>Superficie approximative</label>
+      <select>
+        <option>Moins de 50 m²</option>
+        <option>50 – 100 m²</option>
+        <option>100 – 200 m²</option>
+        <option>Plus de 200 m²</option>
+      </select>
+    </div>
+    <button class="devis-btn" onclick="alert('✅ Votre demande de devis est enregistrée ! Nous vous rappelons sous 48h pour fixer la visite technique.')">🏠 Obtenir Mon Devis Gratuit</button>
+    <p class="form-note">🛡️ Devis sans engagement · Visite technique offerte</p>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="sect-badge">Nos Services</div>
+  <h2 class="sect-h2">Tout pour Rénover Votre Habitat</h2>
+  <p class="sect-p">Des travaux de finition aux grandes rénovations, nos équipes qualifiées transforment votre espace de vie.</p>
+  <div class="services-grid">
+    <div class="svc">
+      <div class="svc-icon">🎨</div>
+      <h3>Peinture Professionnelle</h3>
+      <p>Peinture intérieure et extérieure, enduits décoratifs, venezia, béton ciré. Finitions impeccables garanties.</p>
+      <span class="svc-price">Dès 2 500 FCFA/m²</span>
+    </div>
+    <div class="svc">
+      <div class="svc-icon">🏗️</div>
+      <h3>Extension & Surélévation</h3>
+      <p>Agrandissez votre maison avec une extension au sol ou une surélévation. Plans architecturaux inclus.</p>
+      <span class="svc-price">Devis gratuit</span>
+    </div>
+    <div class="svc">
+      <div class="svc-icon">🪵</div>
+      <h3>Carrelage & Revêtements</h3>
+      <p>Pose de carrelage, parquet, mosaïque. Large choix de matériaux importés et locaux de qualité.</p>
+      <span class="svc-price">Dès 4 000 FCFA/m²</span>
+    </div>
+    <div class="svc">
+      <div class="svc-icon">🪟</div>
+      <h3>Menuiserie & Aluminium</h3>
+      <p>Fabrication et pose de portes, fenêtres, volets en aluminium, PVC ou bois. Sur mesure.</p>
+      <span class="svc-price">Sur devis</span>
+    </div>
+    <div class="svc">
+      <div class="svc-icon">🛁</div>
+      <h3>Rénovation Salle de Bain</h3>
+      <p>Remplacement de baignoire, douche à l'italienne, lavabo, WC. Plomberie et carrelage compris.</p>
+      <span class="svc-price">Dès 350 000 FCFA</span>
+    </div>
+    <div class="svc">
+      <div class="svc-icon">🌿</div>
+      <h3>Aménagement Extérieur</h3>
+      <p>Clôture, portail électrique, terrasse, dallage. Transformation complète de vos espaces extérieurs.</p>
+      <span class="svc-price">Sur devis</span>
+    </div>
+  </div>
+</section>
+
+<section class="avant-apres" id="realisations">
+  <div class="sect-badge">Nos Réalisations</div>
+  <h2 class="sect-h2">Avant / Après — Nos Transformations</h2>
+  <p class="sect-p">Découvrez nos dernières réalisations à Abidjan, Yamoussoukro et San Pedro.</p>
+  <div class="aa-grid">
+    <div class="aa-card">
+      <div class="aa-images">
+        <div class="aa-side avant"><span>🏚️</span><span class="aa-label">AVANT</span></div>
+        <div class="aa-side apres"><span>🏡</span><span class="aa-label">APRÈS</span></div>
+      </div>
+      <div class="aa-info">
+        <h3>Villa Yopougon — Rénovation totale</h3>
+        <p>Transformation complète d'une villa de 180 m² : peinture, carrelage, menuiserie.</p>
+        <div class="aa-meta">
+          <span class="aa-loc">📍 Yopougon, Abidjan</span>
+          <span class="aa-cost">4 800 000 FCFA</span>
+        </div>
+      </div>
+    </div>
+    <div class="aa-card">
+      <div class="aa-images">
+        <div class="aa-side avant"><span>🧱</span><span class="aa-label">AVANT</span></div>
+        <div class="aa-side apres"><span>🏘️</span><span class="aa-label">APRÈS</span></div>
+      </div>
+      <div class="aa-info">
+        <h3>Immeuble Plateau — Ravalement de façade</h3>
+        <p>Ravalement complet d'un immeuble R+4 avec enduit gratté et peinture microcement.</p>
+        <div class="aa-meta">
+          <span class="aa-loc">📍 Plateau, Abidjan</span>
+          <span class="aa-cost">12 000 000 FCFA</span>
+        </div>
+      </div>
+    </div>
+    <div class="aa-card">
+      <div class="aa-images">
+        <div class="aa-side avant"><span>🚿</span><span class="aa-label">AVANT</span></div>
+        <div class="aa-side apres"><span>🛁</span><span class="aa-label">APRÈS</span></div>
+      </div>
+      <div class="aa-info">
+        <h3>Cocody — Salle de bain moderne</h3>
+        <p>Rénovation complète salle de bain avec douche italienne, carrelage marbre et meuble vasque.</p>
+        <div class="aa-meta">
+          <span class="aa-loc">📍 Cocody, Abidjan</span>
+          <span class="aa-cost">780 000 FCFA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="devis">
+  <h2>🔨 Comment ça Marche ?</h2>
+  <div class="process-grid">
+    <div class="ps">
+      <div class="ps-num">1</div>
+      <h3>Devis Gratuit</h3>
+      <p>Remplissez le formulaire ou appelez-nous.</p>
+    </div>
+    <div class="ps">
+      <div class="ps-num">2</div>
+      <h3>Visite Technique</h3>
+      <p>Nos experts viennent évaluer vos travaux.</p>
+    </div>
+    <div class="ps">
+      <div class="ps-num">3</div>
+      <h3>Devis Détaillé</h3>
+      <p>Proposition précise avec délais et tarifs.</p>
+    </div>
+    <div class="ps">
+      <div class="ps-num">4</div>
+      <h3>Travaux</h3>
+      <p>Nos équipes interviennent selon planning.</p>
+    </div>
+    <div class="ps">
+      <div class="ps-num">5</div>
+      <h3>Réception & Garantie</h3>
+      <p>Validation finale + garantie 5 ans offerte.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tarifs" id="tarifs">
+  <div class="sect-badge">Tarifs</div>
+  <h2 class="sect-h2">Grille de Prix Transparente</h2>
+  <p class="sect-p">Des tarifs honnêtes affichés clairement. Devis gratuit et personnalisé pour votre projet.</p>
+  <div class="tarifs-grid">
+    <div class="tarif-row">
+      <div class="tarif-left"><div class="tarif-icon">🎨</div><div><div class="tarif-name">Peinture intérieure</div><div class="tarif-desc">Matériaux et main d'œuvre inclus</div></div></div>
+      <div class="tarif-price">2 500 FCFA/m²</div>
+    </div>
+    <div class="tarif-row">
+      <div class="tarif-left"><div class="tarif-icon">🏠</div><div><div class="tarif-name">Peinture extérieure façade</div><div class="tarif-desc">Ravalement + peinture</div></div></div>
+      <div class="tarif-price">3 500 FCFA/m²</div>
+    </div>
+    <div class="tarif-row">
+      <div class="tarif-left"><div class="tarif-icon">🪵</div><div><div class="tarif-name">Pose carrelage</div><div class="tarif-desc">Hors fourniture carrelage</div></div></div>
+      <div class="tarif-price">4 000 FCFA/m²</div>
+    </div>
+    <div class="tarif-row">
+      <div class="tarif-left"><div class="tarif-icon">🛁</div><div><div class="tarif-name">Rénovation salle de bain</div><div class="tarif-desc">Plomberie + carrelage + équipement</div></div></div>
+      <div class="tarif-price">Dès 350 000 FCFA</div>
+    </div>
+    <div class="tarif-row">
+      <div class="tarif-left"><div class="tarif-icon">🪟</div><div><div class="tarif-name">Fenêtre aluminium</div><div class="tarif-desc">Fourniture et pose incluses</div></div></div>
+      <div class="tarif-price">Dès 85 000 FCFA</div>
+    </div>
+    <div class="tarif-row">
+      <div class="tarif-left"><div class="tarif-icon">🏗️</div><div><div class="tarif-name">Extension maison</div><div class="tarif-desc">Gros œuvre + finitions</div></div></div>
+      <div class="tarif-price">Sur devis</div>
+    </div>
+  </div>
+</section>
+
+<section class="garanties">
+  <div class="sect-badge">Nos Engagements</div>
+  <h2 class="sect-h2">La Confiance, Notre Fondation</h2>
+  <p class="sect-p">Des engagements concrets qui font notre réputation depuis 2010.</p>
+  <div class="g-grid">
+    <div class="g-card"><div class="g-icon">🏆</div><div class="g-num">200+</div><div class="g-label">Projets réalisés</div></div>
+    <div class="g-card"><div class="g-icon">🛡️</div><div class="g-num">5 ans</div><div class="g-label">Garantie travaux</div></div>
+    <div class="g-card"><div class="g-icon">⭐</div><div class="g-num">4.8/5</div><div class="g-label">Note clients</div></div>
+    <div class="g-card"><div class="g-icon">👷</div><div class="g-num">45</div><div class="g-label">Artisans qualifiés</div></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="ft-grid">
+    <div class="fb">
+      <h3>🏠 Rénov'Habitat CI</h3>
+      <p>Votre partenaire rénovation habitat depuis 2010 en Côte d'Ivoire. Qualité, délais respectés et garantie 5 ans.</p>
+      <div class="fb-c">📍 Riviera Palmeraie, Cocody — Abidjan<br>📞 +225 07 07 55 66 77<br>✉️ contact@renovhabitat-ci.com<br>🕐 Lun–Sam : 7h–18h</div>
+    </div>
+    <div class="fc"><h4>Services</h4><a href="#">Peinture</a><a href="#">Extension</a><a href="#">Carrelage</a><a href="#">Menuiserie</a><a href="#">Salle de bain</a></div>
+    <div class="fc"><h4>Zones</h4><a href="#">Abidjan</a><a href="#">Yamoussoukro</a><a href="#">San Pedro</a><a href="#">Bouaké</a></div>
+    <div class="fc"><h4>Infos</h4><a href="#">Devis gratuit</a><a href="#">Garanties</a><a href="#">Réalisations</a><a href="#">Témoignages</a></div>
+  </div>
+  <div class="ft-bottom">© 2026 Rénov'Habitat CI · Abidjan, Côte d'Ivoire | Site réalisé par <a href="https://ibig-digital.com" style="color:var(--orange);text-decoration:none;">IBIG Digital</a></div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => { e.preventDefault(); const t = document.querySelector(a.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth'}); });
+  });
+</script>
+</body>
+</html>

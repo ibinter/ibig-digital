@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parfums d'Afrique — Maison de Parfumerie Exclusive</title>
+<style>
+:root{--bg:#0A0A0A;--bg2:#111111;--bg3:#181818;--gold:#D4AF37;--gold2:#C9A027;--gold-light:#F0D060;--gold-dim:rgba(212,175,55,0.15);--white:#fff;--cream:#FAF6E8;--gray:#9CA3AF;--gray2:#6B7280;--dark2:#222}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#050505;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff;border-bottom:1px solid rgba(212,175,55,0.2)}
+.demo-bar strong{color:var(--gold)}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600}
+nav{position:sticky;top:40px;z-index:999;background:rgba(10,10,10,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(212,175,55,0.2);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-brand{display:flex;align-items:center;gap:14px}
+.brand-seal{width:44px;height:44px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}
+.brand-nm{font-size:18px;font-weight:700;color:var(--gold);letter-spacing:3px;text-transform:uppercase;font-family:Georgia,serif}
+.brand-sub{font-size:9px;color:var(--gray2);letter-spacing:4px;text-transform:uppercase;margin-top:3px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.boutique-btn{background:transparent;color:var(--gold);padding:10px 22px;border:1px solid var(--gold);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.boutique-btn:hover{background:var(--gold);color:#000}
+/* HERO */
+.hero{min-height:600px;background:radial-gradient(ellipse at 60% 40%,rgba(212,175,55,0.08) 0%,transparent 70%),linear-gradient(135deg,#0A0A0A 0%,#111 100%);display:flex;align-items:center;padding:80px 32px 60px;position:relative;overflow:hidden}
+.hero::before{content:"✦ ✦ ✦";position:absolute;top:50%;right:10%;color:rgba(212,175,55,0.08);font-size:120px;letter-spacing:30px;transform:translateY(-50%)}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;position:relative;z-index:1}
+.hero-eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before,.hero-eyebrow::after{content:"";height:1px;width:40px;background:var(--gold);opacity:.4}
+.hero h1{font-size:60px;font-weight:700;line-height:1.05;font-family:Georgia,serif;margin-bottom:20px}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero-p{font-size:16px;color:var(--gray);line-height:1.8;margin-bottom:32px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:#000;padding:14px 32px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-ol{background:transparent;color:var(--gold);padding:14px 32px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--gold);cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-ol:hover{background:var(--gold-dim)}
+.hero-stats{display:flex;gap:36px;margin-top:38px;border-top:1px solid rgba(212,175,55,0.15);padding-top:28px}
+.h-stat-num{font-size:28px;font-weight:700;color:var(--gold);font-family:Georgia,serif}
+.h-stat-label{font-size:9px;color:var(--gray2);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+/* Hero visual */
+.flacon-display{border:1px solid rgba(212,175,55,0.2);background:linear-gradient(135deg,#111,#181818);padding:32px}
+.fd-row1{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;border-bottom:1px solid rgba(212,175,55,0.1);padding-bottom:18px}
+.fd-title{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold)}
+.fd-badge{background:var(--gold);color:#000;font-size:9px;padding:3px 10px;font-weight:700;letter-spacing:1px}
+.fd-main{text-align:center;padding:20px 0;border-bottom:1px solid rgba(212,175,55,0.1);margin-bottom:20px}
+.fd-emoji{font-size:80px}
+.fd-name{font-size:20px;font-weight:700;color:var(--gold);font-family:Georgia,serif;margin-top:14px;letter-spacing:2px}
+.fd-origin{font-size:11px;color:var(--gray2);letter-spacing:2px;text-transform:uppercase;margin-top:6px}
+.fd-desc{font-size:12px;color:var(--gray);font-style:italic;margin-top:10px;line-height:1.6;padding:0 12px}
+.fd-notes{display:flex;justify-content:space-around;margin-bottom:20px}
+.note-item{text-align:center}
+.note-label{font-size:9px;color:var(--gray2);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.note-val{font-size:13px;color:var(--gold);font-weight:700}
+.fd-footer{display:flex;align-items:center;justify-content:space-between}
+.fd-price{font-size:28px;font-weight:700;color:var(--gold);font-family:Georgia,serif}
+.fd-size{font-size:11px;color:var(--gray2);margin-top:2px}
+.btn-fd{background:var(--gold);color:#000;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s}
+.btn-fd:hover{background:var(--gold-light)}
+/* DIVIDER */
+.gold-divider{text-align:center;padding:28px;color:var(--gold);font-size:18px;letter-spacing:16px;opacity:.4;border-top:1px solid rgba(212,175,55,0.1);border-bottom:1px solid rgba(212,175,55,0.1)}
+/* COLLECTIONS */
+.coll-section{padding:70px 32px;max-width:1200px;margin:0 auto}
+.sec-eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:10px;display:flex;align-items:center;gap:12px;justify-content:center}
+.sec-eyebrow::before,.sec-eyebrow::after{content:"";height:1px;width:50px;background:var(--gold);opacity:.3}
+.sec-h{font-size:42px;font-weight:700;font-family:Georgia,serif;text-align:center;margin-bottom:8px}
+.sec-h em{color:var(--gold);font-style:italic}
+.sec-p{font-size:14px;color:var(--gray);text-align:center;margin-bottom:44px;letter-spacing:1px}
+.coll-tabs{display:flex;gap:0;margin-bottom:36px;border:1px solid rgba(212,175,55,0.2);width:fit-content;margin-left:auto;margin-right:auto}
+.ctab{background:transparent;color:var(--gray);padding:10px 24px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:none;border-right:1px solid rgba(212,175,55,0.2);transition:all .2s}
+.ctab:last-child{border-right:none}
+.ctab:hover,.ctab.on{background:var(--gold);color:#000}
+.parfums-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.p-card{background:var(--bg2);border:1px solid rgba(212,175,55,0.12);cursor:pointer;transition:all .3s;overflow:hidden}
+.p-card:hover{border-color:var(--gold);transform:translateY(-8px)}
+.p-img{height:220px;display:flex;align-items:center;justify-content:center;font-size:80px;background:radial-gradient(ellipse at 50% 60%,rgba(212,175,55,0.08),transparent);border-bottom:1px solid rgba(212,175,55,0.1)}
+.p-body{padding:20px}
+.p-family{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.p-name{font-size:16px;font-weight:700;font-family:Georgia,serif;margin-bottom:6px}
+.p-notes{font-size:11px;color:var(--gray2);margin-bottom:14px;font-style:italic}
+.p-footer{display:flex;align-items:center;justify-content:space-between}
+.p-price{font-size:18px;font-weight:700;color:var(--gold);font-family:Georgia,serif}
+.p-size{font-size:10px;color:var(--gray2);margin-top:2px}
+.btn-panier{background:var(--gold-dim);color:var(--gold);border:1px solid rgba(212,175,55,0.3);padding:7px 14px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.btn-panier:hover{background:var(--gold);color:#000}
+/* MATIERES */
+.matieres-section{background:var(--bg2);padding:70px 32px;border-top:1px solid rgba(212,175,55,0.1);border-bottom:1px solid rgba(212,175,55,0.1)}
+.matieres-inner{max-width:1200px;margin:0 auto}
+.matieres-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px}
+.mat-card{background:var(--bg);border:1px solid rgba(212,175,55,0.1);padding:28px;text-align:center;transition:all .3s}
+.mat-card:hover{border-color:var(--gold);background:linear-gradient(135deg,#111,#181818)}
+.mat-icon{font-size:48px;margin-bottom:16px}
+.mat-name{font-size:16px;font-weight:700;font-family:Georgia,serif;color:var(--gold);margin-bottom:8px}
+.mat-origin{font-size:11px;color:var(--gray2);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.mat-desc{font-size:13px;color:var(--gray);line-height:1.65}
+/* COMPO */
+.compo-section{padding:70px 32px;max-width:1200px;margin:0 auto}
+.compo-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.compo-text{}
+.compo-text h2{font-size:40px;font-weight:700;font-family:Georgia,serif;margin-bottom:16px;line-height:1.2}
+.compo-text h2 em{color:var(--gold);font-style:italic}
+.compo-text p{font-size:14px;color:var(--gray);line-height:1.8;margin-bottom:24px}
+.compo-steps{display:flex;flex-direction:column;gap:16px;margin-bottom:28px}
+.compo-step{display:flex;gap:16px;align-items:flex-start}
+.cs-num{width:32px;height:32px;border:1px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;font-family:Georgia,serif}
+.cs-text strong{font-size:14px;font-weight:700;display:block;margin-bottom:4px}
+.cs-text span{font-size:13px;color:var(--gray)}
+.compo-visual{background:var(--bg2);border:1px solid rgba(212,175,55,0.2);padding:36px;text-align:center}
+.cv-big{font-size:100px;margin-bottom:20px}
+.cv-title{font-size:18px;font-weight:700;font-family:Georgia,serif;color:var(--gold);letter-spacing:3px}
+.cv-subtitle{font-size:11px;color:var(--gray2);letter-spacing:3px;text-transform:uppercase;margin-top:8px;margin-bottom:24px}
+.cv-price{font-size:42px;font-weight:700;color:var(--gold);font-family:Georgia,serif}
+.cv-note{font-size:11px;color:var(--gray2);letter-spacing:1px;margin-top:6px;margin-bottom:24px}
+/* TESTI */
+.testis-section{background:var(--bg2);padding:70px 32px;border-top:1px solid rgba(212,175,55,0.1)}
+.testis-inner{max-width:1200px;margin:0 auto}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.testi-card{background:var(--bg);border:1px solid rgba(212,175,55,0.12);padding:32px;transition:all .3s}
+.testi-card:hover{border-color:var(--gold)}
+.t-big-q{font-size:48px;font-family:Georgia,serif;color:var(--gold);opacity:.3;line-height:1}
+.t-stars{color:var(--gold);font-size:12px;margin:8px 0 12px}
+.t-text{font-size:14px;color:var(--gray);line-height:1.7;font-style:italic;margin-bottom:20px}
+.t-line{height:1px;background:rgba(212,175,55,0.15);margin-bottom:16px}
+.t-au{display:flex;align-items:center;gap:12px}
+.t-av{width:40px;height:40px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--gold);font-family:Georgia,serif}
+.t-nm{font-size:13px;font-weight:700}
+.t-lo{font-size:11px;color:var(--gray2);margin-top:2px;letter-spacing:1px}
+/* FOOTER */
+footer{background:#050505;color:#fff;padding:70px 32px 28px;border-top:1px solid rgba(212,175,55,0.15)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{text-align:center;padding-bottom:50px;border-bottom:1px solid rgba(212,175,55,0.1);margin-bottom:50px}
+.ft-big{font-size:48px;font-weight:700;font-family:Georgia,serif;color:var(--gold);letter-spacing:6px;text-transform:uppercase}
+.ft-line{font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--gray2);margin-top:10px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px}
+.footer-desc{font-size:13px;color:var(--gray2);line-height:1.8;margin:12px 0}
+.fh{font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.ful{list-style:none}
+.ful li{margin-bottom:10px}
+.ful li a{color:var(--gray2);text-decoration:none;font-size:12px;letter-spacing:1px;transition:color .2s}
+.ful li a:hover{color:var(--gold)}
+.foot-bottom{border-top:1px solid rgba(212,175,55,0.1);padding-top:22px;display:flex;justify-content:space-between;color:#374151;font-size:11px;letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <span>Démo IBIG Digital — <strong>Parfums d'Afrique</strong> — Commander ce template :</span>
+  <strong>25 000 FCFA</strong>
+  <a href="#">Commander</a>
+</div>
+<nav>
+  <div class="nav-brand">
+    <div class="brand-seal">🌹</div>
+    <div>
+      <div class="brand-nm">Parfums d'Afrique</div>
+      <div class="brand-sub">Maison de Parfumerie · Fondée 2012</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Collections</a></li>
+    <li><a href="#">Oud & Bois</a></li>
+    <li><a href="#">Floraux</a></li>
+    <li><a href="#">Sur Mesure</a></li>
+    <li><a href="#">Maison</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="boutique-btn">✦ Boutique</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Maison Fondée en 2012</div>
+      <h1>L'essence<br>de l'<em>Afrique</em><br>en flacon</h1>
+      <p class="hero-p">Des parfums d'exception inspirés des matières précieuses africaines — oud du Cameroun, musc du Maroc, rose de Damas, vétiver d'Haïti — créés pour sublimer l'identité africaine.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-gold">✦ Découvrir la Collection</a>
+        <a href="#" class="btn-ol">Composition Personnalisée</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="h-stat-num">48</div><div class="h-stat-label">Créations exclusives</div></div>
+        <div><div class="h-stat-num">12 000+</div><div class="h-stat-label">Clients fidèles</div></div>
+        <div><div class="h-stat-num">8 pays</div><div class="h-stat-label">de présence</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="flacon-display">
+        <div class="fd-row1">
+          <span class="fd-title">Création Signature</span>
+          <span class="fd-badge">EXCLUSIVITÉ</span>
+        </div>
+        <div class="fd-main">
+          <div class="fd-emoji">🌹</div>
+          <div class="fd-name">Nuit du Sahel</div>
+          <div class="fd-origin">Rose · Oud · Musc · Encens</div>
+          <div class="fd-desc">Un voyage olfactif du coucher de soleil sahelien — bois précieux, épices dorées et fleurs nocturnes.</div>
+        </div>
+        <div class="fd-notes">
+          <div class="note-item"><div class="note-label">Tête</div><div class="note-val">Bergamote</div></div>
+          <div class="note-item"><div class="note-label">Cœur</div><div class="note-val">Rose · Jasmin</div></div>
+          <div class="note-item"><div class="note-label">Fond</div><div class="note-val">Oud · Musc</div></div>
+        </div>
+        <div class="fd-footer">
+          <div><div class="fd-price">95 000 FCFA</div><div class="fd-size">50 ml · Édition limitée</div></div>
+          <button class="btn-fd">Commander</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider">✦ · ✦ · ✦</div>
+
+<div class="coll-section">
+  <div class="sec-eyebrow">Notre Univers</div>
+  <h2 class="sec-h">Les <em>Collections</em></h2>
+  <p class="sec-p">Chaque flacon est une invitation au voyage dans les terres parfumées d'Afrique</p>
+  <div class="coll-tabs">
+    <button class="ctab on">Tout Voir</button>
+    <button class="ctab">Oud & Bois</button>
+    <button class="ctab">Floraux</button>
+    <button class="ctab">Musqués</button>
+    <button class="ctab">Orientaux</button>
+  </div>
+  <div class="parfums-grid">
+    <div class="p-card">
+      <div class="p-img">🌹</div>
+      <div class="p-body">
+        <div class="p-family">Oriental · Boisé</div>
+        <div class="p-name">Nuit du Sahel</div>
+        <div class="p-notes">Rose · Oud · Musc · Encens</div>
+        <div class="p-footer"><div><div class="p-price">95 000 FCFA</div><div class="p-size">50 ml</div></div><button class="btn-panier">Ajouter</button></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-img">🪵</div>
+      <div class="p-body">
+        <div class="p-family">Boisé · Fumé</div>
+        <div class="p-name">Forêt d'Ébène</div>
+        <div class="p-notes">Oud du Cameroun · Cèdre · Ambre</div>
+        <div class="p-footer"><div><div class="p-price">120 000 FCFA</div><div class="p-size">50 ml</div></div><button class="btn-panier">Ajouter</button></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-img">🌺</div>
+      <div class="p-body">
+        <div class="p-family">Floral · Fruité</div>
+        <div class="p-name">Fleur du Congo</div>
+        <div class="p-notes">Ylang-Ylang · Magnolia · Vétiver</div>
+        <div class="p-footer"><div><div class="p-price">75 000 FCFA</div><div class="p-size">50 ml</div></div><button class="btn-panier">Ajouter</button></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-img">🌿</div>
+      <div class="p-body">
+        <div class="p-family">Musqué · Frais</div>
+        <div class="p-name">Musc du Désert</div>
+        <div class="p-notes">Musc blanc · Iris · Santal</div>
+        <div class="p-footer"><div><div class="p-price">85 000 FCFA</div><div class="p-size">50 ml</div></div><button class="btn-panier">Ajouter</button></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-img">🌙</div>
+      <div class="p-body">
+        <div class="p-family">Oriental · Épicé</div>
+        <div class="p-name">Caravane de Dakar</div>
+        <div class="p-notes">Safran · Encens · Oud · Vanille</div>
+        <div class="p-footer"><div><div class="p-price">110 000 FCFA</div><div class="p-size">50 ml</div></div><button class="btn-panier">Ajouter</button></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-img">🌸</div>
+      <div class="p-body">
+        <div class="p-family">Floral · Rose</div>
+        <div class="p-name">Rose de Casablanca</div>
+        <div class="p-notes">Rose absolue · Jasmin · Musc</div>
+        <div class="p-footer"><div><div class="p-price">90 000 FCFA</div><div class="p-size">50 ml</div></div><button class="btn-panier">Ajouter</button></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-img">⭐</div>
+      <div class="p-body">
+        <div class="p-family">Boisé · Cuiré</div>
+        <div class="p-name">Pharaon d'Abuja</div>
+        <div class="p-notes">Cuir · Oud · Cèdre · Ambre gris</div>
+        <div class="p-footer"><div><div class="p-price">130 000 FCFA</div><div class="p-size">50 ml</div></div><button class="btn-panier">Ajouter</button></div>
+      </div>
+    </div>
+    <div class="p-card">
+      <div class="p-img">🫀</div>
+      <div class="p-body">
+        <div class="p-family">Chypré · Fruité</div>
+        <div class="p-name">Soleil de Lagos</div>
+        <div class="p-notes">Bergamote · Pêche · Santal · Moss</div>
+        <div class="p-footer"><div><div class="p-price">80 000 FCFA</div><div class="p-size">50 ml</div></div><button class="btn-panier">Ajouter</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="matieres-section">
+  <div class="matieres-inner">
+    <div class="sec-eyebrow">Nos Ingrédients</div>
+    <h2 class="sec-h">Matières <em>Précieuses</em></h2>
+    <p class="sec-p">Nous sourcions les matières premières les plus nobles directement auprès des producteurs africains</p>
+    <div class="matieres-grid">
+      <div class="mat-card">
+        <div class="mat-icon">🪵</div>
+        <div class="mat-name">Oud Africain</div>
+        <div class="mat-origin">Cameroun · Éthiopie</div>
+        <div class="mat-desc">L'or liquide de la parfumerie — notre oud est sélectionné parmi les meilleurs bois d'agar sauvages d'Afrique centrale.</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">🌹</div>
+        <div class="mat-name">Rose de Damas</div>
+        <div class="mat-origin">Maroc · Tunisie</div>
+        <div class="mat-desc">Cueillie à l'aube, distillée à froid — notre rose absolue est parmi les plus pures du monde musulman.</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">🌿</div>
+        <div class="mat-name">Vétiver Naturel</div>
+        <div class="mat-origin">Haïti · Madagascar</div>
+        <div class="mat-desc">Les racines séchées de vétiver donnent à nos créations une profondeur terreuse, fumée et inoubliable.</div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon">✨</div>
+        <div class="mat-name">Musc Éthique</div>
+        <div class="mat-origin">Afrique du Nord</div>
+        <div class="mat-desc">Musc blanc et ambre naturel — aucun musc animal, uniquement des alternatives éthiques de haute qualité.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="compo-section">
+  <div class="compo-inner">
+    <div class="compo-text">
+      <div class="sec-eyebrow" style="justify-content:flex-start">Service Unique</div>
+      <h2>Votre Parfum<br><em>Sur Mesure</em></h2>
+      <p>Nous créons votre signature olfactive personnelle — un parfum unique qui raconte votre histoire, vos origines, vos souvenirs les plus précieux.</p>
+      <div class="compo-steps">
+        <div class="compo-step">
+          <div class="cs-num">01</div>
+          <div class="cs-text"><strong>Consultation Olfactive</strong><span>2 heures avec notre parfumeur — nous explorons votre univers sensible et vos préférences profondes.</span></div>
+        </div>
+        <div class="compo-step">
+          <div class="cs-num">02</div>
+          <div class="cs-text"><strong>Sélection des Matières</strong><span>Choix des ingrédients parmi notre bibliothèque de 200+ matières premières africaines et mondiales.</span></div>
+        </div>
+        <div class="compo-step">
+          <div class="cs-num">03</div>
+          <div class="cs-text"><strong>Création & Ajustements</strong><span>3 à 5 essais sur 4 semaines jusqu'à l'accord parfait — votre signature unique.</span></div>
+        </div>
+        <div class="compo-step">
+          <div class="cs-num">04</div>
+          <div class="cs-text"><strong>Mise en Flacon Exclusive</strong><span>Flacon gravé à votre nom, emballage cadeau luxe — votre parfum pour toujours.</span></div>
+        </div>
+      </div>
+      <a href="#" class="btn-gold">✦ Prendre RDV</a>
+    </div>
+    <div class="compo-visual">
+      <div class="cv-big">✦</div>
+      <div class="cv-title">COMPOSITION SUR MESURE</div>
+      <div class="cv-subtitle">Service Haute Parfumerie</div>
+      <div class="cv-price">À partir de 250 000 FCFA</div>
+      <div class="cv-note">Flacon 50ml exclusif · Consultation incluse</div>
+      <button class="btn-gold" style="width:100%;justify-content:center">Créer mon Parfum</button>
+    </div>
+  </div>
+</div>
+
+<div class="testis-section">
+  <div class="testis-inner">
+    <div class="sec-eyebrow">Témoignages</div>
+    <h2 class="sec-h">L'avis de nos <em>Connaisseurs</em></h2>
+    <div class="testis-grid">
+      <div class="testi-card">
+        <div class="t-big-q">"</div>
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">Nuit du Sahel est le parfum que je cherchais depuis des années. Profond, mystérieux, avec une persistance extraordinaire. La qualité rivalise avec les meilleures maisons parisiennes.</div>
+        <div class="t-line"></div>
+        <div class="t-au"><div class="t-av">KM</div><div><div class="t-nm">Kofi Mensah</div><div class="t-lo">Accra · Ghana</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="t-big-q">"</div>
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">J'ai commandé un parfum sur mesure pour mon mariage. Le résultat était absolument magique — tous mes invités m'ont demandé quel parfum je portais. Un souvenir olfactif inoubliable.</div>
+        <div class="t-line"></div>
+        <div class="t-au"><div class="t-av">AM</div><div><div class="t-nm">Aïcha Maïga</div><div class="t-lo">Bamako · Mali</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="t-big-q">"</div>
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">Forêt d'Ébène m'a transporté dans les forêts de mon enfance au Cameroun. C'est plus qu'un parfum — c'est de la mémoire liquide. Parfums d'Afrique capture l'âme de notre continent.</div>
+        <div class="t-line"></div>
+        <div class="t-au"><div class="t-av">JN</div><div><div class="t-nm">Jean-Paul Nkeng</div><div class="t-lo">Douala · Cameroun</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="ft-big">Parfums d'Afrique</div>
+      <div class="ft-line">✦ · Maison de Parfumerie Africaine · Fondée 2012 · ✦</div>
+    </div>
+    <div class="footer-grid">
+      <div>
+        <p class="footer-desc">Maison de parfumerie de luxe inspirée par les trésors olfactifs de l'Afrique. Chaque création est une ode à la richesse naturelle et culturelle de notre continent.</p>
+      </div>
+      <div><div class="fh">Collections</div><ul class="ful"><li><a href="#">Oud & Bois Précieux</a></li><li><a href="#">Floraux Africains</a></li><li><a href="#">Musqués & Ambrés</a></li><li><a href="#">Orientaux</a></li><li><a href="#">Sur Mesure</a></li></ul></div>
+      <div><div class="fh">Maison</div><ul class="ful"><li><a href="#">Notre Histoire</a></li><li><a href="#">Notre Parfumeur</a></li><li><a href="#">Matières Premières</a></li><li><a href="#">Éthique & Durabilité</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Dakar, Sénégal</a></li><li><a href="#">📞 +221 33 000 00 00</a></li><li><a href="#">✉ contact@parfums-afrique.com</a></li><li><a href="#">Mar–Sam · 10h–19h</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2025 Parfums d'Afrique — Tous droits réservés</span><span>CGV · Politique de confidentialité</span></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.ctab').forEach(b=>{b.addEventListener('click',function(){document.querySelectorAll('.ctab').forEach(x=>x.classList.remove('on'));this.classList.add('on')})});
+document.querySelectorAll('.btn-panier').forEach(b=>{b.addEventListener('click',function(){const orig=this.textContent;this.textContent='✓ Ajouté';this.style.background='var(--gold)';this.style.color='#000';setTimeout(()=>{this.textContent=orig;this.style.background='';this.style.color=''},1800)})});
+</script>
+</body>
+</html>

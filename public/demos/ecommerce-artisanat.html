@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artisanat d'Afrique — Boutique de Créations Traditionnelles</title>
+<style>
+:root{--bg:#FDF6EC;--bg2:#FFF8F0;--bg3:#FEF3C7;--brown:#92400E;--brown2:#78350F;--dark-brown:#451A03;--gold:#D97706;--gold2:#B45309;--gold-light:#FEF3C7;--cream:#FFFBEB;--terracotta:#C2410C;--dark:#1C1917;--gray:#78716C;--gray2:#A8A29E;--green:#15803D}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--dark);font-family:Georgia,'Times New Roman',serif}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff;font-family:-apple-system,sans-serif}
+.demo-bar strong{color:#D97706}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600;font-family:-apple-system,sans-serif}
+nav{position:sticky;top:40px;z-index:999;background:var(--bg2);border-bottom:2px solid var(--gold-light);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:70px;font-family:-apple-system,sans-serif}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.brand-icon{width:42px;height:42px;background:var(--brown);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}
+.brand-text h1{font-size:20px;font-weight:700;color:var(--brown);font-family:Georgia,serif}
+.brand-text span{font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{color:var(--dark);text-decoration:none;font-size:14px;transition:color .2s}
+.nav-links a:hover{color:var(--brown)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.search-input{background:var(--bg3);border:1.5px solid var(--gold-light);border-radius:8px;padding:8px 14px;font-size:13px;color:var(--dark);outline:none;width:200px}
+.cart-btn{background:var(--brown);color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer}
+/* HERO */
+.hero{background:linear-gradient(135deg,#FDF6EC,#FEF3C7);padding:80px 32px 60px;overflow:hidden;position:relative}
+.hero-ornament{position:absolute;right:-50px;top:-50px;font-size:200px;opacity:0.05;transform:rotate(20deg)}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-label{display:inline-flex;align-items:center;gap:8px;background:var(--gold-light);color:var(--gold2);padding:6px 16px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;font-family:-apple-system,sans-serif;border-left:3px solid var(--gold)}
+.hero h1{font-size:54px;font-weight:700;line-height:1.1;color:var(--dark-brown);margin-bottom:20px}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero-p{font-size:16px;color:var(--gray);line-height:1.8;margin-bottom:32px;font-family:-apple-system,sans-serif}
+.hero-btns{display:flex;gap:14px}
+.btn-brown{background:var(--brown);color:#fff;padding:14px 28px;border-radius:4px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .2s;font-family:-apple-system,sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-brown:hover{background:var(--brown2);transform:translateY(-2px)}
+.btn-gold-outline{background:transparent;color:var(--gold2);padding:14px 28px;border-radius:4px;font-size:15px;font-weight:700;border:2px solid var(--gold);cursor:pointer;transition:all .2s;font-family:-apple-system,sans-serif;text-decoration:none}
+.btn-gold-outline:hover{background:var(--gold-light)}
+.hero-crafts{display:flex;gap:24px;margin-top:32px}
+.craft-mini{text-align:center;font-family:-apple-system,sans-serif}
+.craft-num{font-size:28px;font-weight:800;color:var(--brown)}
+.craft-label{font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:1px}
+.hero-showcase{position:relative}
+.showcase-main{background:white;border-radius:12px;padding:30px;box-shadow:0 16px 48px rgba(146,64,14,0.15);text-align:center}
+.showcase-emoji{font-size:80px}
+.showcase-artisan{background:var(--bg3);border-radius:8px;padding:12px;margin-top:16px;display:flex;align-items:center;gap:12px;font-family:-apple-system,sans-serif}
+.artisan-av{width:36px;height:36px;background:var(--brown);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+.artisan-name{font-size:13px;font-weight:700}
+.artisan-origin{font-size:11px;color:var(--gray)}
+.showcase-price{font-size:28px;font-weight:800;color:var(--brown);margin-top:12px}
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.sg-item{background:var(--bg);border-radius:8px;padding:14px;text-align:center;font-family:-apple-system,sans-serif}
+.sg-emoji{font-size:36px}
+.sg-name{font-size:12px;color:var(--gray);margin-top:4px}
+.sg-price{font-size:13px;font-weight:700;color:var(--gold2)}
+/* SAVOIR-FAIRE */
+.sf-strip{background:var(--brown);padding:16px 32px}
+.sf-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-around;flex-wrap:wrap;gap:12px}
+.sf-item{color:#fff;font-size:13px;font-family:-apple-system,sans-serif;display:flex;align-items:center;gap:8px}
+/* CATS */
+.section{padding:60px 32px;max-width:1200px;margin:0 auto}
+.s-title{text-align:center;margin-bottom:40px}
+.s-title h2{font-size:36px;font-weight:700;color:var(--dark-brown)}
+.s-title h2 em{color:var(--gold);font-style:italic}
+.s-title p{color:var(--gray);margin-top:8px;font-size:15px;font-family:-apple-system,sans-serif}
+.cats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat-card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(146,64,14,0.08);cursor:pointer;transition:all .3s;font-family:-apple-system,sans-serif}
+.cat-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(146,64,14,0.18)}
+.cat-img{height:180px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:72px;border-bottom:2px solid var(--gold-light)}
+.cat-info{padding:16px}
+.cat-name{font-size:16px;font-weight:700;color:var(--brown)}
+.cat-desc{font-size:12px;color:var(--gray);margin-top:4px;line-height:1.5}
+.cat-count{font-size:12px;color:var(--gold2);font-weight:600;margin-top:8px}
+/* PRODUITS VEDETTES */
+.products-section{background:white;padding:60px 32px}
+.products-inner{max-width:1200px;margin:0 auto}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:36px}
+.prod-card{background:var(--bg);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .3s;font-family:-apple-system,sans-serif;border:1.5px solid var(--bg3)}
+.prod-card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 16px 40px rgba(217,119,6,0.15)}
+.prod-img{height:220px;background:white;display:flex;align-items:center;justify-content:center;font-size:80px;position:relative;border-bottom:2px solid var(--gold-light)}
+.prod-origin-tag{position:absolute;bottom:10px;left:10px;background:var(--brown);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px}
+.prod-wish{position:absolute;top:10px;right:10px;background:white;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+.prod-body{padding:16px}
+.prod-cat{font-size:10px;color:var(--gold2);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.prod-name{font-size:15px;font-weight:700;color:var(--brown);margin:6px 0;line-height:1.3}
+.prod-artisan{font-size:12px;color:var(--gray);margin-bottom:8px}
+.prod-desc{font-size:12px;color:var(--gray);line-height:1.5;margin-bottom:10px}
+.prod-stars{color:#F59E0B;font-size:11px;margin-bottom:10px}
+.prod-row{display:flex;align-items:center;justify-content:space-between}
+.prod-price{font-size:20px;font-weight:800;color:var(--brown)}
+.prod-old{font-size:12px;color:var(--gray2);text-decoration:line-through}
+.btn-buy{background:var(--brown);color:#fff;border:none;padding:9px 16px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-buy:hover{background:var(--brown2)}
+/* HISTOIRE ARTISANS */
+.artisans-section{padding:60px 32px;background:var(--bg)}
+.artisans-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.artisans-text h2{font-size:36px;font-weight:700;color:var(--dark-brown);margin-bottom:16px}
+.artisans-text h2 em{color:var(--gold);font-style:italic}
+.artisans-text p{color:var(--gray);font-size:15px;line-height:1.8;margin-bottom:16px;font-family:-apple-system,sans-serif}
+.artisan-cards{display:flex;flex-direction:column;gap:16px}
+.artisan-card{background:white;border-radius:12px;padding:20px;display:flex;align-items:center;gap:16px;box-shadow:0 4px 16px rgba(146,64,14,0.08)}
+.ac-avatar{width:60px;height:60px;border-radius:50%;background:var(--brown);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.ac-info{}
+.ac-name{font-size:15px;font-weight:700;color:var(--brown);font-family:-apple-system,sans-serif}
+.ac-role{font-size:12px;color:var(--gold2);font-family:-apple-system,sans-serif;margin:2px 0}
+.ac-story{font-size:12px;color:var(--gray);font-family:-apple-system,sans-serif;line-height:1.5}
+/* TEMOIGNAGES */
+.testis{background:white;padding:60px 32px}
+.testis-inner{max-width:1200px;margin:0 auto}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.testi-card{background:var(--bg);border-radius:12px;padding:28px;position:relative}
+.testi-quote-mark{font-size:48px;color:var(--gold-light);position:absolute;top:12px;right:16px;font-family:Georgia,serif}
+.testi-text{font-size:14px;color:var(--gray);line-height:1.7;font-style:italic;margin-bottom:20px;font-family:-apple-system,sans-serif}
+.testi-au{display:flex;align-items:center;gap:12px}
+.testi-av{width:40px;height:40px;border-radius:50%;background:var(--brown);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:-apple-system,sans-serif}
+.testi-nm{font-size:14px;font-weight:700;font-family:-apple-system,sans-serif}
+.testi-lo{font-size:11px;color:var(--gray);font-family:-apple-system,sans-serif}
+.testi-st{color:#F59E0B;font-size:12px}
+/* FOOTER */
+footer{background:var(--dark-brown);color:#fff;padding:60px 32px 24px;font-family:-apple-system,sans-serif}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-desc{color:#9CA3AF;font-size:13px;line-height:1.7;margin-top:12px}
+.footer-socials{display:flex;gap:10px;margin-top:16px}
+.s-btn{width:34px;height:34px;background:rgba(255,255,255,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.s-btn:hover{background:var(--gold)}
+.fh{font-size:13px;font-weight:700;margin-bottom:14px;color:var(--gold)}
+.ful{list-style:none}
+.ful li{margin-bottom:9px}
+.ful li a{color:#9CA3AF;text-decoration:none;font-size:13px;transition:color .2s}
+.ful li a:hover{color:var(--gold)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;display:flex;justify-content:space-between;color:#6B7280;font-size:12px}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <span>Démo IBIG Digital — <strong>Artisanat d'Afrique</strong> — Commander ce template :</span>
+  <strong>25 000 FCFA</strong>
+  <a href="#">Commander</a>
+</div>
+<nav>
+  <div class="nav-brand">
+    <div class="brand-icon">🏺</div>
+    <div class="brand-text">
+      <h1>Artisanat d'Afrique</h1>
+      <span>Créations traditionnelles authentiques</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Tissus & Kente</a></li>
+    <li><a href="#">Bijoux</a></li>
+    <li><a href="#">Sculptures</a></li>
+    <li><a href="#">Poteries</a></li>
+    <li><a href="#">Nos Artisans</a></li>
+  </ul>
+  <div class="nav-actions">
+    <input class="search-input" placeholder="🔍 Kente, bronze, masque…">
+    <button class="cart-btn">🛒 Panier (2)</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-ornament">🏺</div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-label">🌍 Savoir-Faire Ancestral · Authenticité Garantie</div>
+      <h1>L'Art Africain<br>dans toute sa<br><em>Splendeur</em></h1>
+      <p class="hero-p">Chaque pièce raconte une histoire. Tissus kente du Ghana, bronzes du Bénin, poteries de Côte d'Ivoire — créations authentiques directement des mains des artisans.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-brown">🏺 Découvrir la Boutique</a>
+        <a href="#" class="btn-gold-outline">📜 Histoire des Artisans</a>
+      </div>
+      <div class="hero-crafts">
+        <div class="craft-mini"><div class="craft-num">480+</div><div class="craft-label">Artisans</div></div>
+        <div class="craft-mini"><div class="craft-num">12 pays</div><div class="craft-label">d'Afrique</div></div>
+        <div class="craft-mini"><div class="craft-num">8 500+</div><div class="craft-label">Créations</div></div>
+        <div class="craft-mini"><div class="craft-num">15 000+</div><div class="craft-label">Clients</div></div>
+      </div>
+    </div>
+    <div class="hero-showcase">
+      <div class="showcase-main">
+        <div class="showcase-emoji">🧶</div>
+        <div style="font-size:18px;font-weight:700;margin-top:12px;color:var(--dark-brown)">Tissu Kente Ghana — 6 yards</div>
+        <div class="showcase-artisan">
+          <div class="artisan-av">KB</div>
+          <div>
+            <div class="artisan-name">Kofi Boateng</div>
+            <div class="artisan-origin">Maître tisserand · Kumasi, Ghana · 30 ans d'expérience</div>
+          </div>
+        </div>
+        <div class="showcase-price">145 000 FCFA</div>
+        <div class="showcase-grid">
+          <div class="sg-item"><div class="sg-emoji">🗿</div><div class="sg-name">Masque Baoulé</div><div class="sg-price">85 000 FCFA</div></div>
+          <div class="sg-item"><div class="sg-emoji">📿</div><div class="sg-name">Bijoux Tuareg</div><div class="sg-price">38 000 FCFA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sf-strip">
+  <div class="sf-inner">
+    <div class="sf-item">✋ Fait Main — 100% Artisanal</div>
+    <div class="sf-item">🌍 Provenance Certifiée</div>
+    <div class="sf-item">📜 Histoire de chaque pièce incluse</div>
+    <div class="sf-item">🚚 Livraison soignée monde entier</div>
+    <div class="sf-item">💰 Commerce équitable</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="s-title">
+    <h2>Nos <em>Collections</em></h2>
+    <p>Des trésors artistiques de chaque région d'Afrique</p>
+  </div>
+  <div class="cats-grid">
+    <div class="cat-card">
+      <div class="cat-img">🧶</div>
+      <div class="cat-info">
+        <div class="cat-name">Tissus & Kente</div>
+        <div class="cat-desc">Tissus traditionnels tissés à la main — kente ghanéen, kita malien, kanga tanzanien</div>
+        <div class="cat-count">→ 284 créations</div>
+      </div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-img">📿</div>
+      <div class="cat-info">
+        <div class="cat-name">Bijoux Traditionnels</div>
+        <div class="cat-desc">Colliers Masaï, bracelets Tuareg en argent, boucles krobo en perle de verre</div>
+        <div class="cat-count">→ 512 créations</div>
+      </div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-img">🗿</div>
+      <div class="cat-info">
+        <div class="cat-name">Sculptures & Masques</div>
+        <div class="cat-desc">Masques baoulé, bronzes du Bénin, sculptures en bois d'ébène taillé</div>
+        <div class="cat-count">→ 198 créations</div>
+      </div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-img">🏺</div>
+      <div class="cat-info">
+        <div class="cat-name">Poteries & Céramiques</div>
+        <div class="cat-desc">Poteries de Koro, jarres en terre cuite, plats décoratifs peints à la main</div>
+        <div class="cat-count">→ 156 créations</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="products-section">
+  <div class="products-inner">
+    <div class="s-title">
+      <h2>Pièces <em>Vedettes</em></h2>
+      <p>Sélection de nos créations les plus exceptionnelles</p>
+    </div>
+    <div class="products-grid">
+      <div class="prod-card">
+        <div class="prod-img">🧶<span class="prod-origin-tag">Ghana</span><span class="prod-wish">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-cat">Tissus</div>
+          <div class="prod-name">Kente Royal Asante — 6 yards Multicolore</div>
+          <div class="prod-artisan">✋ Kofi Boateng, Kumasi</div>
+          <div class="prod-desc">Tissé en 3 semaines, fils de soie et coton. Motif Adinkra symbolisant la royauté.</div>
+          <div class="prod-stars">★★★★★ (89)</div>
+          <div class="prod-row">
+            <div><div class="prod-price">145 000 FCFA</div></div>
+            <button class="btn-buy">Commander</button>
+          </div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">🗿<span class="prod-origin-tag">Bénin</span><span class="prod-wish">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-cat">Sculptures</div>
+          <div class="prod-name">Bronze Royal du Bénin — Tête d'Oba</div>
+          <div class="prod-artisan">✋ Emeka Alade, Cotonou</div>
+          <div class="prod-desc">Moulage à la cire perdue, technique ancestrale du XIVe siècle. Certificat d'authenticité.</div>
+          <div class="prod-stars">★★★★★ (34)</div>
+          <div class="prod-row">
+            <div><div class="prod-price">380 000 FCFA</div></div>
+            <button class="btn-buy">Commander</button>
+          </div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">📿<span class="prod-origin-tag">Mali</span><span class="prod-wish">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-cat">Bijoux</div>
+          <div class="prod-name">Parure Touareg — Argent 925 & Turquoise</div>
+          <div class="prod-artisan">✋ Fatima Ag Saddek, Tombouctou</div>
+          <div class="prod-desc">Collier + boucles + bracelet. Argent massif 925, turquoises naturelles d'Afghanistan.</div>
+          <div class="prod-stars">★★★★★ (67)</div>
+          <div class="prod-row">
+            <div><div class="prod-price">92 000 FCFA</div><div class="prod-old">115 000 FCFA</div></div>
+            <button class="btn-buy">Commander</button>
+          </div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">🏺<span class="prod-origin-tag">Côte d'Ivoire</span><span class="prod-wish">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-cat">Poteries</div>
+          <div class="prod-name">Jarre Baoulé en Terre Cuite — 50cm</div>
+          <div class="prod-artisan">✋ Adjoua Koffi, Yamoussoukro</div>
+          <div class="prod-desc">Modelée à la main, cuite au bois, décorée de motifs géométriques traditionnels baoulé.</div>
+          <div class="prod-stars">★★★★☆ (42)</div>
+          <div class="prod-row">
+            <div><div class="prod-price">58 000 FCFA</div></div>
+            <button class="btn-buy">Commander</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="artisans-section">
+  <div class="artisans-inner">
+    <div class="artisans-text">
+      <h2>Les Mains qui <em>Créent</em></h2>
+      <p>Derrière chaque objet, il y a un artisan qui perpétue un savoir-faire ancestral. Artisanat d'Afrique s'engage à valoriser ces talents et à assurer un commerce équitable.</p>
+      <p>En achetant sur notre boutique, vous soutenez directement les familles d'artisans africains et contribuez à la préservation des traditions culturelles millénaires.</p>
+      <a href="#" class="btn-brown">Rencontrer nos Artisans →</a>
+    </div>
+    <div class="artisan-cards">
+      <div class="artisan-card">
+        <div class="ac-avatar">🧶</div>
+        <div class="ac-info">
+          <div class="ac-name">Kofi Boateng</div>
+          <div class="ac-role">Maître tisserand · Kumasi, Ghana · 30 ans</div>
+          <div class="ac-story">Héritier d'une tradition familiale de tisserand kente, Kofi forme aujourd'hui 12 apprentis dans son atelier de Kumasi.</div>
+        </div>
+      </div>
+      <div class="artisan-card">
+        <div class="ac-avatar">🗿</div>
+        <div class="ac-info">
+          <div class="ac-name">Emeka Alade</div>
+          <div class="ac-role">Fondeur de bronze · Cotonou, Bénin · 22 ans</div>
+          <div class="ac-story">Descendant des bronziers royaux du Bénin, Emeka perpétue la technique ancestrale de la cire perdue, inscrite au patrimoine de l'UNESCO.</div>
+        </div>
+      </div>
+      <div class="artisan-card">
+        <div class="ac-avatar">📿</div>
+        <div class="ac-info">
+          <div class="ac-name">Fatima Ag Saddek</div>
+          <div class="ac-role">Bijoutière Touareg · Tombouctou, Mali · 18 ans</div>
+          <div class="ac-story">Fatima crée des bijoux en argent massif selon les traditions Touareg. Chaque pièce porte les symboles de protection de sa tribu.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="testis">
+  <div class="testis-inner">
+    <div class="s-title">
+      <h2>Ils ont choisi <em>l'Authenticité</em></h2>
+    </div>
+    <div class="testis-grid">
+      <div class="testi-card">
+        <div class="testi-quote-mark">"</div>
+        <div class="testi-text">Le tissu kente que j'ai commandé pour le mariage de mon fils était absolument magnifique. La qualité est irréprochable et l'histoire de l'artisan incluse dans le colis était très émouvante.</div>
+        <div class="testi-au">
+          <div class="testi-av">YS</div>
+          <div>
+            <div class="testi-nm">Yaa Serwaa</div>
+            <div class="testi-lo">Accra, Ghana</div>
+            <div class="testi-st">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote-mark">"</div>
+        <div class="testi-text">J'ai offert la parure Touareg à mon épouse pour notre anniversaire. Elle est tombée sous le charme. Le certificat d'authenticité et l'histoire de Fatima ont rendu le cadeau encore plus précieux.</div>
+        <div class="testi-au">
+          <div class="testi-av">MB</div>
+          <div>
+            <div class="testi-nm">Mamadou Bah</div>
+            <div class="testi-lo">Dakar, Sénégal</div>
+            <div class="testi-st">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote-mark">"</div>
+        <div class="testi-text">Je décore mon cabinet avec des pièces africaines authentiques. La jarre baoulé trône fièrement dans mon bureau. Mes clients sont toujours impressionnés par son histoire.</div>
+        <div class="testi-au">
+          <div class="testi-av">NE</div>
+          <div>
+            <div class="testi-nm">Nadia El-Amin</div>
+            <div class="testi-lo">Abidjan, Plateau</div>
+            <div class="testi-st">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:28px">🏺</div>
+        <h2 style="font-size:18px;font-weight:700;color:#D97706;margin-top:8px;font-family:Georgia,serif">Artisanat d'Afrique</h2>
+        <p class="footer-desc">Valoriser et préserver le patrimoine artisanal africain depuis Abidjan. Commerce équitable, authenticité certifiée.</p>
+        <div class="footer-socials">
+          <div class="s-btn">📸</div><div class="s-btn">📘</div><div class="s-btn">▶️</div>
+        </div>
+      </div>
+      <div>
+        <div class="fh">Collections</div>
+        <ul class="ful">
+          <li><a href="#">Tissus & Kente</a></li>
+          <li><a href="#">Bijoux Africains</a></li>
+          <li><a href="#">Sculptures & Masques</a></li>
+          <li><a href="#">Poteries</a></li>
+          <li><a href="#">Peintures</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fh">À Propos</div>
+        <ul class="ful">
+          <li><a href="#">Nos Artisans</a></li>
+          <li><a href="#">Commerce Équitable</a></li>
+          <li><a href="#">Authenticité</a></li>
+          <li><a href="#">Notre Mission</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fh">Contact</div>
+        <ul class="ful">
+          <li><a href="#">📍 Treichville, Abidjan</a></li>
+          <li><a href="#">📞 +225 08 00 00 00</a></li>
+          <li><a href="#">✉️ info@artisanatafrique.ci</a></li>
+          <li><a href="#">Lun–Sam 9h–18h</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2025 Artisanat d'Afrique — Tous droits réservés</span>
+      <span>CGV · Politique d'authenticité · Contact</span>
+    </div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.btn-buy').forEach(b=>{b.addEventListener('click',function(){this.textContent='✅ Commandé';this.style.background='#15803D';setTimeout(()=>{this.textContent='Commander';this.style.background=''},2000)})});
+</script>
+</body>
+</html>

@@ -3,6 +3,123 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowRight, ArrowLeft, CheckCircle, Star, Zap } from 'lucide-react'
 import { SECTORS_MAP } from '../../templates-data'
+import TemplatePreviewClient from './TemplatePreviewClient'
+
+/* ── Démo par template (ID exact: secteur-templateId) ── */
+const DEMO_FILES: Record<string, string> = {
+  /* ── Restaurant ── */
+  'restaurant-le-gourmet':       'restaurant-le-gourmet.html',
+  'restaurant-street-food':      'restaurant-street-food.html',
+  'restaurant-traiteur':         'restaurant-traiteur.html',
+  'restaurant-brasserie':        'restaurant-brasserie.html',
+  'restaurant-pizza-express':    'restaurant-pizza-express.html',
+  'restaurant-afro-cuisine':     'restaurant-afro-cuisine.html',
+  'restaurant-cafe-bistro':      'restaurant-cafe-bistro.html',
+  'restaurant-food-delivery':    'restaurant-food-delivery.html',
+  /* ── Immobilier ── */
+  'immobilier-premium-realty':   'immobilier-prestige-habitat.html',
+  'immobilier-urban-habitat':    'immobilier-urban-habitat.html',
+  'immobilier-villa-prestige':   'immobilier-villa-prestige.html',
+  'immobilier-agence-locale':    'immobilier-agence-locale.html',
+  'immobilier-invest-immo':      'immobilier-invest-immo.html',
+  'immobilier-location-vacances':'immobilier-location-vacances.html',
+  /* ── Santé ── */
+  'sante-clinique-sante':        'sante-clinique-sante-plus.html',
+  'sante-dentaire-pro':          'sante-dentaire-pro.html',
+  'sante-pharmacie-plus':        'sante-pharmacie-plus.html',
+  'sante-kine-sport':            'sante-kine-sport.html',
+  'sante-maternite':             'sante-maternite.html',
+  'sante-labo-analyse':          'sante-labo-analyse.html',
+  'sante-medecine-naturelle':    'sante-medecine-naturelle.html',
+  /* ── Formation ── */
+  'formation-formation-digitale':'formation-academie-digital.html',
+  'formation-ecole-business':    'formation-ecole-business.html',
+  'formation-formation-pro':     'formation-formation-pro.html',
+  'formation-auto-ecole':        'formation-auto-ecole.html',
+  'formation-universite-privee': 'formation-universite-privee.html',
+  'formation-tutorat-scolaire':  'formation-tutorat-scolaire.html',
+  'formation-academie-langues':  'formation-academie-langues.html',
+  'formation-ecole-art':         'formation-ecole-art.html',
+  'formation-coaching-carriere': 'formation-coaching-carriere.html',
+  /* ── E-commerce ── */
+  'ecommerce-boutique-mode':     'ecommerce-boutique-mode.html',
+  'ecommerce-tech-store':        'ecommerce-tech-store.html',
+  'ecommerce-cosmetique-shop':   'ecommerce-cosmetique-shop.html',
+  'ecommerce-alimentaire':       'ecommerce-alimentaire.html',
+  'ecommerce-artisanat':         'ecommerce-artisanat.html',
+  'ecommerce-sport-fitness':     'ecommerce-sport-fitness.html',
+  'ecommerce-maison-deco':       'ecommerce-maison-deco.html',
+  'ecommerce-fleuriste':         'ecommerce-fleuriste.html',
+  'ecommerce-livres-culture':    'ecommerce-livres-culture.html',
+  'ecommerce-multi-boutique':    'ecommerce-multi-boutique.html',
+  /* ── BTP ── */
+  'btp-construction-elite':      'btp-construction-pro.html',
+  'btp-renovation-habitat':      'btp-renovation-habitat.html',
+  'btp-architecture':            'btp-architecture.html',
+  'btp-electricite-plomberie':   'btp-electricite-plomberie.html',
+  'btp-paysagiste':              'btp-paysagiste.html',
+  /* ── Cabinet ── */
+  'cabinet-cabinet-avocat':      'cabinet-avocat-expert.html',
+  'cabinet-expert-comptable':    'cabinet-expert-comptable.html',
+  'cabinet-consultant-rh':       'cabinet-consultant-rh.html',
+  'cabinet-agence-com':          'cabinet-agence-com.html',
+  'cabinet-bureau-etudes':       'cabinet-bureau-etudes.html',
+  'cabinet-notariat':            'cabinet-notariat.html',
+  /* ── Hôtel ── */
+  'hotel-hotel-prestige':        'hotel-prestige.html',
+  'hotel-boutique-hotel':        'hotel-boutique-hotel.html',
+  'hotel-resort-tropical':       'hotel-resort-tropical.html',
+  'hotel-residence-affaires':    'hotel-residence-affaires.html',
+  'hotel-agence-voyage':         'hotel-agence-voyage.html',
+  'hotel-gite-auberge':          'hotel-gite-auberge.html',
+  'hotel-safari-lodge':          'hotel-safari-lodge.html',
+  /* ── Beauté ── */
+  'beaute-salon-coiffure':       'beaute-salon-coiffure.html',
+  'beaute-institut-beaute':      'beaute-salon-luxe.html',
+  'beaute-spa-luxe':             'beaute-spa-luxe.html',
+  'beaute-barbershop':           'beaute-barbershop.html',
+  'beaute-nail-art':             'beaute-nail-art.html',
+  'beaute-make-up-studio':       'beaute-make-up-studio.html',
+  'beaute-centre-bien-etre':     'beaute-centre-bien-etre.html',
+  'beaute-parfumerie':           'beaute-parfumerie.html',
+  /* ── Auto ── */
+  'auto-concessionnaire':        'auto-garage-elite.html',
+  'auto-garage-mecanique':       'auto-garage-mecanique.html',
+  'auto-location-vehicules':     'auto-location-vehicules.html',
+  'auto-transport-taxi':         'auto-transport-taxi.html',
+  'auto-pieces-auto':            'auto-pieces-auto.html',
+  /* ── Agriculture ── */
+  'agriculture-ferme-bio':       'agriculture-ferme-bio.html',
+  'agriculture-cooperative':     'agriculture-cooperative.html',
+  'agriculture-agro-industrie':  'agriculture-agro-industrie.html',
+  'agriculture-pepiniere':       'agriculture-pepiniere.html',
+  /* ── Corporate ── */
+  'corporate-holding-finance':   'corporate-groupe-excellence.html',
+  'corporate-banque-microfinance':'corporate-banque-microfinance.html',
+  'corporate-assurance':         'corporate-assurance.html',
+  'corporate-audit-conseil':     'corporate-audit-conseil.html',
+  'corporate-startup-tech':      'corporate-startup-tech.html',
+  'corporate-ong-association':   'corporate-ong-association.html',
+  'corporate-media-presse':      'corporate-media-presse.html',
+  'corporate-institution-pub':   'corporate-institution-pub.html',
+  'corporate-industrie':         'corporate-industrie.html',
+}
+
+/* ── Démo de secours par secteur — tous les autres templates l'utilisent ── */
+const SECTOR_DEMOS: Record<string, string> = {
+  restaurant:  'restaurant-le-gourmet.html',
+  immobilier:  'immobilier-prestige-habitat.html',
+  sante:       'sante-clinique-sante-plus.html',
+  formation:   'formation-academie-digital.html',
+  ecommerce:   'ecommerce-boutique-mode.html',
+  btp:         'btp-construction-pro.html',
+  cabinet:     'cabinet-avocat-expert.html',
+  hotel:       'hotel-prestige.html',
+  beaute:      'beaute-salon-luxe.html',
+  auto:        'auto-garage-elite.html',
+  agriculture: 'agriculture-ferme-bio.html',
+  corporate:   'corporate-groupe-excellence.html',
+}
 
 const FORMULES = [
   { id: 'standard', name: 'Standard', desc: 'Besoins essentiels', supplement: 0, color: '#64748B', gradient: 'linear-gradient(135deg,rgba(30,41,59,.9),rgba(51,65,85,.9))', features: ['Template de base complet', 'Design responsive mobile', 'Contenu administrable', '5 pages incluses', 'Formulaire de contact', 'SEO de base'] },
@@ -106,84 +223,19 @@ export default async function TemplatePage({ params }: { params: Promise<{ secte
               </div>
             </div>
 
-            {/* Right: Mock Browser grand */}
-            <div style={{ position: 'relative' }}>
-              <div style={{ borderRadius: '1.5rem', overflow: 'hidden', border: '1px solid rgba(255,255,255,.1)', boxShadow: '0 40px 100px rgba(0,0,0,.65)', background: tpl.bgDark }}>
-                {/* Browser chrome */}
-                <div style={{ padding: '.875rem 1.25rem', background: 'rgba(255,255,255,.04)', borderBottom: '1px solid rgba(255,255,255,.07)', display: 'flex', alignItems: 'center', gap: '.75rem' }}>
-                  <div style={{ display: 'flex', gap: '.4rem' }}>
-                    {['#EF4444','#F59E0B','#22C55E'].map((c) => <div key={c} style={{ width: '11px', height: '11px', borderRadius: '50%', background: c, opacity: .7 }} />)}
-                  </div>
-                  <div style={{ flex: 1, background: 'rgba(255,255,255,.06)', borderRadius: '.4rem', padding: '.3rem .875rem', fontSize: '.62rem', color: 'rgba(255,255,255,.25)', fontFamily: 'monospace' }}>
-                    www.{tpl.id}.com
-                  </div>
-                </div>
-
-                {/* Contenu détaillé */}
-                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '.875rem', position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ position: 'absolute', top: '-20%', right: '-10%', width: '350px', height: '350px', borderRadius: '50%', background: `radial-gradient(circle,${tpl.primaryColor}25 0%,transparent 65%)`, pointerEvents: 'none' }} />
-
-                  {/* Nav */}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '.75rem', borderBottom: `2px solid ${tpl.primaryColor}30`, position: 'relative', zIndex: 1 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
-                      <div style={{ width: '28px', height: '28px', borderRadius: '.4rem', background: `${tpl.primaryColor}40`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '.75rem' }}>{s.icon}</div>
-                      <div style={{ width: '55px', height: '6px', borderRadius: '3px', background: `${tpl.primaryColor}70` }} />
-                    </div>
-                    <div style={{ display: 'flex', gap: '.5rem' }}>
-                      {tpl.pages.slice(0, 4).map((p, i) => <div key={i} style={{ height: '5px', borderRadius: '2px', background: 'rgba(255,255,255,.15)', width: `${25 + (i % 3) * 10}px` }} />)}
-                    </div>
-                    <div style={{ width: '65px', height: '24px', borderRadius: '.4rem', background: tpl.primaryColor }} />
-                  </div>
-
-                  {/* Hero banner */}
-                  <div style={{ background: `linear-gradient(135deg,${tpl.primaryColor}22,transparent)`, borderRadius: '.875rem', padding: '1.5rem', border: `1px solid ${tpl.primaryColor}20`, position: 'relative', zIndex: 1 }}>
-                    <div style={{ width: '72%', height: '10px', borderRadius: '5px', background: 'rgba(255,255,255,.55)', marginBottom: '.6rem' }} />
-                    <div style={{ width: '50%', height: '7px', borderRadius: '3.5px', background: `${tpl.accentColor}80`, marginBottom: '.5rem' }} />
-                    <div style={{ width: '85%', height: '5px', borderRadius: '2.5px', background: 'rgba(255,255,255,.15)', marginBottom: '.25rem' }} />
-                    <div style={{ width: '70%', height: '5px', borderRadius: '2.5px', background: 'rgba(255,255,255,.1)', marginBottom: '1rem' }} />
-                    <div style={{ display: 'flex', gap: '.625rem' }}>
-                      <div style={{ width: '90px', height: '28px', borderRadius: '.4rem', background: tpl.primaryColor }} />
-                      <div style={{ width: '75px', height: '28px', borderRadius: '.4rem', background: 'rgba(255,255,255,.1)', border: '1px solid rgba(255,255,255,.15)' }} />
-                    </div>
-                  </div>
-
-                  {/* Features grid */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '.625rem', position: 'relative', zIndex: 1 }}>
-                    {[0,1,2,3].map((i) => (
-                      <div key={i} style={{ background: 'rgba(255,255,255,.04)', borderRadius: '.625rem', padding: '.875rem', border: '1px solid rgba(255,255,255,.07)' }}>
-                        <div style={{ width: '32px', height: '32px', borderRadius: '.4rem', background: `${tpl.primaryColor}25`, marginBottom: '.5rem' }} />
-                        <div style={{ width: '75%', height: '5px', borderRadius: '2.5px', background: 'rgba(255,255,255,.35)', marginBottom: '.3rem' }} />
-                        <div style={{ width: '90%', height: '4px', borderRadius: '2px', background: 'rgba(255,255,255,.12)', marginBottom: '.2rem' }} />
-                        <div style={{ width: '60%', height: '4px', borderRadius: '2px', background: 'rgba(255,255,255,.08)' }} />
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* CTA bar */}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '.875rem', background: `${tpl.primaryColor}15`, borderRadius: '.75rem', border: `1px solid ${tpl.primaryColor}25`, position: 'relative', zIndex: 1 }}>
-                    <div>
-                      <div style={{ width: '100px', height: '5px', borderRadius: '2.5px', background: 'rgba(255,255,255,.45)', marginBottom: '.3rem' }} />
-                      <div style={{ width: '70px', height: '4px', borderRadius: '2px', background: 'rgba(255,255,255,.2)' }} />
-                    </div>
-                    <div style={{ width: '85px', height: '28px', borderRadius: '.4rem', background: tpl.primaryColor }} />
-                  </div>
-                </div>
-              </div>
-
-              {/* Badge livraison */}
-              <div style={{ position: 'absolute', bottom: '-1rem', left: '-1rem', padding: '.75rem 1.25rem', borderRadius: '1rem', background: '#0B1120', border: '1px solid rgba(255,255,255,.12)', boxShadow: '0 12px 30px rgba(0,0,0,.5)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
-                  <Zap size={14} style={{ color: '#4ADE80' }} />
-                  <div>
-                    <div style={{ fontSize: '.7rem', fontWeight: 800, color: 'white' }}>Livré en 3-7 jours</div>
-                    <div style={{ fontSize: '.58rem', color: 'rgba(255,255,255,.3)' }}>Personnalisé à votre image</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Badge style */}
-              <div style={{ position: 'absolute', top: '4.5rem', right: '-1rem', padding: '.5rem 1rem', borderRadius: '.875rem', background: `${tpl.primaryColor}20`, border: `1px solid ${tpl.primaryColor}40`, fontSize: '.65rem', fontWeight: 800, color: tpl.primaryColor, backdropFilter: 'blur(8px)' }}>
-                Style {tpl.style}
+            {/* Right: VRAI APERÇU LIVE avec iframe */}
+            <div>
+              <TemplatePreviewClient
+                demoFile={DEMO_FILES[`${s.id}-${tpl.id}`] ?? SECTOR_DEMOS[s.id]}
+                primaryColor={tpl.primaryColor}
+                tplName={tpl.name}
+                sectorId={s.id}
+                tplId={tpl.id}
+              />
+              {/* Badge livraison sous l'iframe */}
+              <div style={{ marginTop: '1rem', display: 'flex', alignItems: 'center', gap: '.5rem', padding: '.625rem 1rem', borderRadius: '.75rem', background: 'rgba(74,222,128,.06)', border: '1px solid rgba(74,222,128,.15)', width: 'fit-content' }}>
+                <Zap size={13} style={{ color: '#4ADE80' }} />
+                <span style={{ fontSize: '.68rem', fontWeight: 700, color: '#4ADE80' }}>Livré en 3-7 jours · Personnalisé à votre image</span>
               </div>
             </div>
           </div>

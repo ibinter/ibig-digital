@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Groupe Excellence Africa — Holding Panafricain</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1E40AF;--blue-light:#EFF6FF;--blue-mid:#BFDBFE;--red:#DC2626;--dark:#0F172A;--gray:#6B7280;--bg:#F8FAFC;--white:#FFFFFF}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:#1F2937;font-family:'Helvetica Neue',Arial,sans-serif;overflow-x:hidden}
+.demo-bar{position:fixed;top:0;left:0;right:0;z-index:1000;height:40px;background:linear-gradient(90deg,var(--dark),#1a2a50);display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
+.demo-badge{background:rgba(30,64,175,.4);border:1px solid rgba(59,130,246,.5);color:#93C5FD;padding:.15rem .6rem;border-radius:9999px;font-size:.6rem;font-weight:700}
+.demo-bar-text{font-size:.7rem;color:rgba(255,255,255,.8);display:flex;align-items:center;gap:.75rem}
+.demo-btn{padding:.35rem 1.25rem;border-radius:4px;background:var(--blue);color:white;font-size:.68rem;font-weight:700;text-decoration:none}
+nav{position:fixed;top:40px;left:0;right:0;z-index:900;background:white;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;justify-content:space-between;padding:.875rem 3rem;box-shadow:0 1px 8px rgba(0,0,0,.05)}
+.nav-logo{display:flex;align-items:center;gap:.75rem}
+.nav-logo-icon{width:36px;height:36px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:.8rem;font-weight:800}
+.nav-logo-text{font-size:.88rem;font-weight:800;color:var(--dark)}
+.nav-logo-sub{font-size:.5rem;color:var(--gray);letter-spacing:.1em;text-transform:uppercase;display:block}
+.nav-links{display:flex;gap:2.25rem;list-style:none}
+.nav-links a{color:#4B5563;text-decoration:none;font-size:.75rem;font-weight:600}
+.nav-right{display:flex;gap:.75rem}
+.nav-btn-light{padding:.55rem 1.25rem;border:1.5px solid #E5E7EB;border-radius:6px;color:#374151;font-size:.72rem;font-weight:600;text-decoration:none}
+.nav-btn-blue{padding:.6rem 1.5rem;background:var(--blue);color:white;border-radius:6px;font-size:.72rem;font-weight:700;text-decoration:none}
+/* HERO */
+.hero{padding-top:100px;background:white;overflow:hidden;position:relative}
+.hero-bg-strip{position:absolute;top:0;right:0;width:50%;height:100%;background:linear-gradient(135deg,#EFF6FF,#DBEAFE);clip-path:polygon(10% 0,100% 0,100% 100%,0 100%)}
+.hero-inner{max-width:1200px;margin:0 auto;padding:5rem 2rem;display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.4rem;font-size:.58rem;font-weight:800;letter-spacing:.18em;color:var(--blue);text-transform:uppercase;background:var(--blue-light);border:1px solid var(--blue-mid);padding:.3rem .875rem;border-radius:9999px;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.25rem,5vw,4rem);font-weight:900;line-height:1.05;letter-spacing:-.03em;color:var(--dark);margin-bottom:1.25rem}
+.hero h1 span{color:var(--blue)}
+.hero-sub{font-size:.9rem;color:var(--gray);line-height:1.9;max-width:440px;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:.875rem;flex-wrap:wrap;margin-bottom:3rem}
+.btn-blue{padding:.9rem 2.25rem;background:var(--blue);color:white;font-size:.82rem;font-weight:800;text-decoration:none;border-radius:6px;box-shadow:0 4px 15px rgba(30,64,175,.25)}
+.btn-light{padding:.9rem 2rem;border:1.5px solid #E5E7EB;color:var(--dark);font-size:.8rem;font-weight:700;text-decoration:none;border-radius:6px}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.hs-card{background:white;border:1.5px solid #E5E7EB;border-radius:1rem;padding:1.5rem 1.25rem;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.hs-val{font-size:1.5rem;font-weight:900;color:var(--blue)}
+.hs-lbl{font-size:.6rem;color:var(--gray);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem}
+/* CHIFFRES CLÉS */
+.kpi-strip{background:var(--dark);padding:3.5rem 0}
+.kpi-inner{max-width:1100px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:2rem}
+.kv{font-size:2rem;font-weight:900;color:white}
+.kl{font-size:.6rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.12em;margin-top:.25rem}
+.kd{display:inline-block;padding:.25rem .625rem;background:rgba(30,64,175,.4);color:#93C5FD;border-radius:4px;font-size:.58rem;font-weight:800;margin-top:.375rem}
+/* ACTIVITÉS */
+section{padding:6rem 0}
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+.sec-eyebrow{display:inline-flex;align-items:center;gap:.4rem;font-size:.58rem;font-weight:800;letter-spacing:.18em;color:var(--blue);text-transform:uppercase;background:var(--blue-light);padding:.3rem .875rem;border-radius:9999px;margin-bottom:1.25rem}
+.sec-title{font-size:clamp(1.75rem,4vw,2.875rem);font-weight:900;letter-spacing:-.03em;color:var(--dark);margin-bottom:.625rem}
+.sec-sub{font-size:.88rem;color:var(--gray);line-height:1.8;max-width:500px}
+.act-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.act-card{background:white;border-radius:1.25rem;overflow:hidden;border:1.5px solid #E5E7EB;transition:all .2s}
+.act-card:hover{border-color:var(--blue-mid);box-shadow:0 8px 25px rgba(30,64,175,.08);transform:translateY(-3px)}
+.act-head{height:90px;display:flex;align-items:center;padding:0 1.75rem;gap:1rem}
+.ah1{background:linear-gradient(135deg,#EFF6FF,#DBEAFE)}
+.ah2{background:linear-gradient(135deg,#F0FDF4,#DCFCE7)}
+.ah3{background:linear-gradient(135deg,#FFF7ED,#FED7AA)}
+.ah4{background:linear-gradient(135deg,#FDF2F8,#FBCFE8)}
+.ah5{background:linear-gradient(135deg,#FEFCE8,#FEF08A)}
+.ah6{background:linear-gradient(135deg,#F0F9FF,#BAE6FD)}
+.act-emoji{font-size:2rem}
+.act-body{padding:1.5rem}
+.act-name{font-size:.95rem;font-weight:800;color:var(--dark);margin-bottom:.5rem}
+.act-text{font-size:.75rem;color:var(--gray);line-height:1.8}
+.act-number{font-size:.58rem;font-weight:800;color:var(--blue);background:var(--blue-light);padding:.2rem .55rem;border-radius:4px;margin-bottom:.375rem;display:inline-block}
+/* MANAGEMENT */
+.management{background:var(--dark);padding:6rem 0}
+.mgt-header{text-align:center;margin-bottom:3.5rem}
+.mgt-eyebrow{display:inline-flex;align-items:center;gap:.4rem;font-size:.58rem;font-weight:800;letter-spacing:.18em;color:#93C5FD;text-transform:uppercase;background:rgba(147,197,253,.1);padding:.3rem .875rem;border-radius:9999px;margin-bottom:1.25rem}
+.mgt-title{font-size:clamp(1.75rem,4vw,2.875rem);font-weight:900;color:white;letter-spacing:-.03em}
+.mgt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.mgt-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1.5rem;padding:2rem;display:flex;gap:1.25rem;align-items:flex-start;transition:background .2s}
+.mgt-card:hover{background:rgba(255,255,255,.07)}
+.mgt-av{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0}
+.ma1{background:linear-gradient(135deg,#1E3A8A,#1E40AF)}
+.ma2{background:linear-gradient(135deg,#064E3B,#065F46)}
+.ma3{background:linear-gradient(135deg,#7C2D12,#9A3412)}
+.mgt-name{font-size:.9rem;font-weight:800;color:white;margin-bottom:.2rem}
+.mgt-role{font-size:.6rem;color:#93C5FD;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.mgt-bio{font-size:.72rem;color:rgba(255,255,255,.5);line-height:1.7}
+/* ACTUALITÉS */
+.actus{background:var(--bg)}
+.actu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.actu-card{background:white;border-radius:1.25rem;overflow:hidden;border:1.5px solid #E5E7EB;transition:all .2s}
+.actu-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.08);transform:translateY(-2px)}
+.actu-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.ai1{background:linear-gradient(135deg,#EFF6FF,#BFDBFE)}
+.ai2{background:linear-gradient(135deg,#F0FDF4,#BBF7D0)}
+.ai3{background:linear-gradient(135deg,#FFFBEB,#FEF3C7)}
+.actu-body{padding:1.5rem}
+.actu-cat{display:inline-block;padding:.2rem .55rem;border-radius:4px;font-size:.55rem;font-weight:800;background:var(--blue-light);color:var(--blue);margin-bottom:.625rem}
+.actu-title{font-size:.9rem;font-weight:800;color:var(--dark);margin-bottom:.5rem;line-height:1.3}
+.actu-date{font-size:.65rem;color:var(--gray)}
+/* CTA */
+.cta-band{background:linear-gradient(135deg,var(--blue),#1D4ED8);padding:5rem 0;text-align:center}
+.cta-band h2{font-size:clamp(1.875rem,4vw,3rem);font-weight:900;color:white;letter-spacing:-.03em;margin-bottom:.875rem}
+.cta-band p{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:2.5rem}
+.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.cta-white{padding:.9rem 2.5rem;background:white;color:var(--blue);border-radius:6px;font-size:.82rem;font-weight:800;text-decoration:none}
+.cta-ghost{padding:.9rem 2.25rem;border:1.5px solid rgba(255,255,255,.4);color:white;border-radius:6px;font-size:.8rem;font-weight:600;text-decoration:none}
+/* FOOTER */
+footer{background:var(--dark);color:white;padding:4rem 0 2rem}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-logo-row{display:flex;align-items:center;gap:.625rem;margin-bottom:.875rem}
+.footer-logo-icon{width:32px;height:32px;background:var(--blue);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-size:.7rem;font-weight:800}
+.footer-logo-name{font-size:.88rem;font-weight:800}
+.footer-desc{font-size:.73rem;color:#6B7280;line-height:1.8;max-width:230px;margin-bottom:1.25rem}
+.footer-col h4{font-size:.55rem;font-weight:800;color:#6B7280;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.25rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.625rem}
+.footer-links a{font-size:.75rem;color:#6B7280;text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:white}
+.footer-bottom{border-top:1px solid #1F2937;padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.footer-copy{font-size:.68rem;color:#4B5563}
+@media(max-width:768px){
+  nav{padding:.75rem 1.25rem}.nav-links{display:none}
+  .hero-inner{grid-template-columns:1fr}.hero-bg-strip{display:none}
+  .hero-stats,.kpi-inner,.act-grid,.mgt-grid,.actu-grid,.footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <div class="demo-bar-text"><span class="demo-badge">DÉMO LIVE</span><span>Template <strong>Groupe Excellence Africa</strong> — Corporate</span></div>
+  <div style="display:flex;gap:.75rem">
+    <a href="/templates/corporate/groupe-excellence" class="demo-btn">← Retour</a>
+    <a href="/templates/commander?secteur=corporate&formule=premium" class="demo-btn">Commander →</a>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-logo"><div class="nav-logo-icon">GE</div><div><div class="nav-logo-text">Groupe Excellence Africa</div><span class="nav-logo-sub">Holding Panafricain</span></div></div>
+  <ul class="nav-links">
+    <li><a href="#activites">Activités</a></li>
+    <li><a href="#management">Direction</a></li>
+    <li><a href="#actus">Actualités</a></li>
+    <li><a href="#">Investisseurs</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#" class="nav-btn-light">Espace investisseur</a>
+    <a href="#contact" class="nav-btn-blue">Nous contacter →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-strip"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">🌍 Groupe panafricain diversifié</div>
+      <h1>Construire<br>l'Afrique de<br><span>demain</span></h1>
+      <p class="hero-sub">Groupe Excellence Africa est un holding panafricain présent dans 8 pays. Nous investissons dans les secteurs stratégiques pour accélérer le développement économique du continent.</p>
+      <div class="hero-btns">
+        <a href="#activites" class="btn-blue">Découvrir nos activités</a>
+        <a href="#management" class="btn-light">Notre direction →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hs-card"><div class="hs-val">8</div><div class="hs-lbl">Pays africains</div></div>
+        <div class="hs-card"><div class="hs-val">2 800</div><div class="hs-lbl">Collaborateurs</div></div>
+        <div class="hs-card"><div class="hs-val">185Md</div><div class="hs-lbl">FCFA CA 2024</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1rem">
+      <div style="background:white;border-radius:1.5rem;padding:2rem;box-shadow:0 4px 20px rgba(30,64,175,.08);border:1.5px solid #E5E7EB">
+        <div style="font-size:.58rem;font-weight:800;color:var(--gray);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.875rem">Performance 2024</div>
+        <div style="display:flex;flex-direction:column;gap:.625rem">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:.78rem;color:#374151">Chiffre d'affaires</span><span style="font-size:.82rem;font-weight:800;color:var(--dark)">+18%</span></div>
+          <div style="height:6px;background:#E5E7EB;border-radius:3px"><div style="height:6px;background:var(--blue);border-radius:3px;width:78%"></div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:.78rem;color:#374151">EBITDA</span><span style="font-size:.82rem;font-weight:800;color:var(--dark)">+24%</span></div>
+          <div style="height:6px;background:#E5E7EB;border-radius:3px"><div style="height:6px;background:#10B981;border-radius:3px;width:64%"></div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:.78rem;color:#374151">Effectifs</span><span style="font-size:.82rem;font-weight:800;color:var(--dark)">+9%</span></div>
+          <div style="height:6px;background:#E5E7EB;border-radius:3px"><div style="height:6px;background:#F59E0B;border-radius:3px;width:49%"></div></div>
+        </div>
+      </div>
+      <div style="background:var(--blue);border-radius:1.25rem;padding:1.5rem;color:white;text-align:center">
+        <div style="font-size:1.5rem;font-weight:900;margin-bottom:.3rem">Notation AAA+</div>
+        <div style="font-size:.62rem;color:rgba(255,255,255,.7)">Agence Panafricaine de Notation · 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="kpi-strip">
+  <div class="kpi-inner">
+    <div><div class="kv">185Md</div><div class="kl">FCFA Chiffre d'affaires</div><span class="kd">+18% vs 2023</span></div>
+    <div><div class="kv">2 800</div><div class="kl">Collaborateurs</div><span class="kd">+9% vs 2023</span></div>
+    <div><div class="kv">8</div><div class="kl">Pays africains</div><span class="kd">CI · SN · ML · BF · TG · BJ · GH · CM</span></div>
+    <div><div class="kv">28</div><div class="kl">Années d'existence</div><span class="kd">Fondé en 1996</span></div>
+  </div>
+</div>
+
+<section id="activites">
+  <div class="container">
+    <div class="sec-eyebrow">🏗 Nos pôles</div>
+    <h2 class="sec-title">Nos domaines d'activité</h2>
+    <p class="sec-sub">Six pôles complémentaires pour construire un modèle économique diversifié et résilient sur le continent africain.</p>
+    <div class="act-grid">
+      <div class="act-card"><div class="act-head ah1"><span class="act-emoji">🏗</span></div><div class="act-body"><div class="act-number">01</div><div class="act-name">BTP & Génie Civil</div><div class="act-text">Construction d'infrastructures publiques et privées, routes, ponts, immeubles de prestige en Côte d'Ivoire et au Sénégal.</div></div></div>
+      <div class="act-card"><div class="act-head ah2"><span class="act-emoji">🌾</span></div><div class="act-body"><div class="act-number">02</div><div class="act-name">Agro-industrie</div><div class="act-text">Transformation et export de cacao, café, anacarde. 3 unités de transformation à Abidjan et San Pédro.</div></div></div>
+      <div class="act-card"><div class="act-head ah3"><span class="act-emoji">⚡</span></div><div class="act-body"><div class="act-number">03</div><div class="act-name">Énergie & Utilities</div><div class="act-text">Production d'énergie solaire et distribution d'eau. Projets d'électrification rurale dans 4 pays.</div></div></div>
+      <div class="act-card"><div class="act-head ah4"><span class="act-emoji">🏦</span></div><div class="act-body"><div class="act-number">04</div><div class="act-name">Services Financiers</div><div class="act-text">Microfinance, assurances et transferts d'argent. 180 000 clients actifs dans 5 pays d'Afrique de l'Ouest.</div></div></div>
+      <div class="act-card"><div class="act-head ah5"><span class="act-emoji">📱</span></div><div class="act-body"><div class="act-number">05</div><div class="act-name">Télécoms & Digital</div><div class="act-text">Solutions de connectivité pour entreprises, fibre optique en Côte d'Ivoire et plateformes Fintech.</div></div></div>
+      <div class="act-card"><div class="act-head ah6"><span class="act-emoji">🏥</span></div><div class="act-body"><div class="act-number">06</div><div class="act-name">Santé & Pharmacie</div><div class="act-text">Cliniques privées, distribution pharmaceutique et équipements médicaux dans 3 pays de la sous-région.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="management" class="management">
+  <div class="container">
+    <div class="mgt-header">
+      <div class="mgt-eyebrow">👥 Gouvernance</div>
+      <h2 class="mgt-title">Notre Direction Générale</h2>
+    </div>
+    <div class="mgt-grid">
+      <div class="mgt-card"><div class="mgt-av ma1">👨</div><div><div class="mgt-name">Fernand Koffi Assi</div><div class="mgt-role">PDG — Fondateur</div><div class="mgt-bio">Fondateur du groupe en 1996. Économiste de formation, ancien conseiller au Ministère de l'Économie ivoirien. Vision et stratégie du groupe.</div></div></div>
+      <div class="mgt-card"><div class="mgt-av ma2">👩</div><div><div class="mgt-name">Aminata Traoré</div><div class="mgt-role">Directrice Générale</div><div class="mgt-bio">MBA HEC Paris. 20 ans d'expérience dans la gestion de holdings multinationaux en Afrique francophone.</div></div></div>
+      <div class="mgt-card"><div class="mgt-av ma3">👨</div><div><div class="mgt-name">Parfait Brou</div><div class="mgt-role">DAF — Finance</div><div class="mgt-bio">Expert-comptable certifié. Pilote la stratégie financière du groupe et supervise les relations avec les investisseurs institutionnels.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="actus" class="actus">
+  <div class="container">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2.5rem">
+      <div><div class="sec-eyebrow">📰 Presse</div><h2 class="sec-title">Actualités du Groupe</h2></div>
+      <a href="#" style="font-size:.75rem;font-weight:700;color:var(--blue);text-decoration:none">Toutes les news →</a>
+    </div>
+    <div class="actu-grid">
+      <div class="actu-card"><div class="actu-img ai1">🏗</div><div class="actu-body"><div class="actu-cat">BTP</div><div class="actu-title">Groupe Excellence remporte l'appel d'offres du pont de Grand Lahou</div><div class="actu-date">15 Juillet 2025</div></div></div>
+      <div class="actu-card"><div class="actu-img ai2">🌾</div><div class="actu-body"><div class="actu-cat">Agro-industrie</div><div class="actu-title">Inauguration de la nouvelle unité de transformation du cacao à San Pédro</div><div class="actu-date">3 Juin 2025</div></div></div>
+      <div class="actu-card"><div class="actu-img ai3">⚡</div><div class="actu-body"><div class="actu-cat">Énergie</div><div class="actu-title">Partenariat avec la Banque Mondiale pour l'électrification rurale au Burkina</div><div class="actu-date">28 Mai 2025</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container">
+    <h2>Devenez partenaire<br>de l'excellence africaine</h2>
+    <p>Investisseurs, partenaires stratégiques et talents — rejoignez notre vision pour l'Afrique de demain.</p>
+    <div class="cta-btns">
+      <a href="#" class="cta-white">Espace investisseur →</a>
+      <a href="#" class="cta-ghost">Nous contacter</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div><div class="footer-logo-row"><div class="footer-logo-icon">GE</div><div class="footer-logo-name">Groupe Excellence Africa</div></div><p class="footer-desc">Holding panafricain fondé en 1996. Présent dans 8 pays, 6 secteurs d'activité, 2 800 collaborateurs.</p><div style="font-size:.73rem;color:#6B7280;line-height:1.9"><div>📍 Tour Excellence, Plateau, Abidjan</div><div>✉️ contact@groupeexcellence.africa</div></div></div>
+      <div class="footer-col"><h4>Groupe</h4><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#">Gouvernance</a></li><li><a href="#">RSE</a></li><li><a href="#">Rapports annuels</a></li></ul></div>
+      <div class="footer-col"><h4>Activités</h4><ul class="footer-links"><li><a href="#">BTP</a></li><li><a href="#">Agro-industrie</a></li><li><a href="#">Énergie</a></li><li><a href="#">Services financiers</a></li></ul></div>
+      <div class="footer-col"><h4>Relations</h4><ul class="footer-links"><li><a href="#">Investisseurs</a></li><li><a href="#">Presse</a></li><li><a href="#">Recrutement</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">© 2025 Groupe Excellence Africa · Tous droits réservés</span><span class="footer-copy">Site par <span style="color:#93C5FD">IBIG DIGITAL</span></span></div>
+  </div>
+</footer>
+</body>
+</html>

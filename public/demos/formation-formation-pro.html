@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FormaPro CI — Formations Professionnelles</title>
+<style>
+:root{--green:#166534;--light-green:#16a34a;--mint:#f0fdf4;--emerald:#059669;--text:#111827;--gray:#6B7280;--light:#F9FAFB;--white:#fff;--border:#E5E7EB;--shadow:0 4px 24px rgba(22,101,52,0.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
+#demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
+#demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
+
+nav{position:sticky;top:40px;background:var(--white);border-bottom:3px solid var(--green);z-index:100;box-shadow:0 2px 16px rgba(22,101,52,0.08)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-icon{width:46px;height:46px;background:linear-gradient(135deg,var(--green),var(--light-green));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.logo-text{font-weight:900;font-size:18px;color:var(--text)}
+.logo-text span{color:var(--green);display:block;font-size:11px;font-weight:500}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+.nav-cta{background:var(--green);color:#fff;padding:10px 22px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;transition:all .2s}
+.nav-cta:hover{background:#0f5126;transform:translateY(-1px)}
+
+.hero{background:linear-gradient(135deg,var(--green) 0%,#0d3d20 60%,#052010 100%);padding:88px 24px 72px;position:relative;overflow:hidden}
+.hero-pattern{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:48px 48px}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:56px;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:6px 16px;border-radius:4px;font-size:12px;font-weight:700;margin-bottom:24px;text-transform:uppercase;letter-spacing:1px}
+.hero h1{font-size:52px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:20px}
+.hero h1 span{color:#86efac}
+.hero-desc{font-size:17px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:32px}
+.hero-guarantees{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.guarantee{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.9);font-size:15px;font-weight:500}
+.guarantee-icon{width:32px;height:32px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.hero-btns{display:flex;gap:12px}
+.btn-green{background:#fff;color:var(--green);padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:all .2s}
+.btn-green:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+.btn-outline{border:2px solid rgba(255,255,255,0.4);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;transition:all .2s}
+.btn-outline:hover{border-color:#fff}
+.hero-certification{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:32px}
+.hero-certification h3{font-size:17px;font-weight:700;color:#fff;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.cert-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.cert-item:last-child{border-bottom:none}
+.cert-logo{width:44px;height:44px;background:rgba(255,255,255,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.cert-name{font-size:14px;font-weight:600;color:#fff}
+.cert-field{font-size:12px;color:rgba(255,255,255,0.5)}
+
+section{padding:72px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;background:rgba(22,101,52,0.1);color:var(--green);padding:4px 14px;border-radius:4px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.section-title{font-size:36px;font-weight:800;color:var(--text);margin-bottom:14px}
+.section-sub{font-size:16px;color:var(--gray);line-height:1.7;max-width:580px}
+
+.impact-strip{background:var(--green);padding:40px 24px}
+.impact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:24px}
+.impact-num{font-size:44px;font-weight:900;color:#fff;line-height:1}
+.impact-label{color:rgba(255,255,255,0.7);font-size:14px;margin-top:6px}
+
+.formations{background:var(--mint)}
+.forma-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.forma-card{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform .3s;border:2px solid transparent}
+.forma-card:hover{transform:translateY(-6px);border-color:var(--emerald)}
+.forma-header{padding:24px;position:relative;overflow:hidden}
+.forma-header.green1{background:linear-gradient(135deg,var(--green),#0d3d20)}
+.forma-header.green2{background:linear-gradient(135deg,var(--emerald),var(--green))}
+.forma-header.green3{background:linear-gradient(135deg,#0d9488,var(--green))}
+.forma-header.green4{background:linear-gradient(135deg,#1d4ed8,var(--green))}
+.forma-header.green5{background:linear-gradient(135deg,#7c3aed,var(--green))}
+.forma-header.green6{background:linear-gradient(135deg,#d97706,var(--green))}
+.forma-icon{font-size:40px;margin-bottom:12px}
+.forma-domain{font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.forma-name{font-size:19px;font-weight:800;color:#fff;line-height:1.3}
+.forma-duration-badge{display:inline-block;background:rgba(255,255,255,0.15);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;margin-top:8px}
+.forma-body{padding:24px}
+.forma-desc{font-size:14px;color:var(--gray);line-height:1.5;margin-bottom:16px}
+.forma-modules{list-style:none;margin-bottom:20px}
+.forma-modules li{padding:6px 0;font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.forma-modules li::before{content:'✓';color:var(--green);font-weight:700;font-size:13px}
+.forma-modules li:last-child{border-bottom:none}
+.forma-footer{padding:0 24px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.forma-price{font-size:17px;font-weight:700;color:var(--green)}
+.certif-label{font-size:12px;background:rgba(22,101,52,0.1);color:var(--green);padding:4px 10px;border-radius:20px;font-weight:600}
+.forma-btn{background:var(--green);color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;transition:all .2s}
+.forma-btn:hover{background:#0f5126}
+
+.financement{background:var(--white)}
+.financement-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.financement-content .section-sub{max-width:100%;margin-bottom:32px}
+.financement-options{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fin-card{background:var(--mint);border-radius:12px;padding:20px;border-left:4px solid var(--green)}
+.fin-icon{font-size:32px;margin-bottom:10px}
+.fin-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
+.fin-desc{font-size:13px;color:var(--gray);line-height:1.4}
+.emploi-card{background:linear-gradient(135deg,var(--green),#0d3d20);border-radius:20px;padding:36px;color:#fff}
+.emploi-card h3{font-size:24px;font-weight:800;margin-bottom:16px}
+.emploi-list{list-style:none}
+.emploi-list li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1);font-size:15px;display:flex;align-items:center;gap:12px}
+.emploi-list li:last-child{border-bottom:none}
+.emploi-list li::before{content:'→';color:#86efac;font-weight:700}
+.emploi-rate{margin-top:24px;text-align:center;background:rgba(255,255,255,0.1);border-radius:12px;padding:20px}
+.emploi-rate-num{font-size:48px;font-weight:900;color:#86efac}
+.emploi-rate-label{font-size:14px;color:rgba(255,255,255,0.7);margin-top:4px}
+
+.temoignages{background:var(--mint)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.testi-card{background:var(--white);border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(22,101,52,0.07);border:2px solid transparent;transition:all .2s}
+.testi-card:hover{border-color:var(--emerald);transform:translateY(-4px)}
+.testi-stars{color:#f59e0b;font-size:16px;margin-bottom:14px}
+.testi-text{color:var(--gray);font-size:15px;line-height:1.7;font-style:italic;margin-bottom:20px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{width:48px;height:48px;background:linear-gradient(135deg,var(--green),var(--light-green));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:18px}
+.testi-name{font-size:15px;font-weight:700;color:var(--text)}
+.testi-info{font-size:12px;color:var(--gray)}
+.testi-result{display:inline-block;background:rgba(22,101,52,0.1);color:var(--green);padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-top:4px}
+
+.cta-section{background:linear-gradient(135deg,var(--green),#0d3d20);padding:80px 24px;text-align:center}
+.cta-section h2{font-size:44px;font-weight:900;color:#fff;margin-bottom:16px}
+.cta-section p{font-size:17px;color:rgba(255,255,255,0.75);margin-bottom:36px}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--green);padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;transition:all .2s}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+.btn-outline-w{border:2px solid rgba(255,255,255,0.4);color:#fff;padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:600;font-size:16px;transition:all .2s}
+.btn-outline-w:hover{border-color:#fff}
+
+footer{background:#052010;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-heading{font-size:13px;font-weight:700;color:#fff;margin-bottom:18px;text-transform:uppercase;letter-spacing:1px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:9px}
+.footer-links a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-links a:hover{color:#86efac}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:10px}
+.footer-bottom a{color:#86efac;text-decoration:none}
+
+@media(max-width:768px){
+  .hero-inner,.financement-grid,.footer-grid{grid-template-columns:1fr}
+  .hero h1{font-size:34px}
+  .forma-grid,.testi-grid{grid-template-columns:1fr}
+  .impact-inner{grid-template-columns:repeat(2,1fr)}
+  .financement-options{grid-template-columns:1fr}
+  .nav-links,.nav-cta{display:none}
+}
+</style>
+</head>
+<body>
+<div id="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : 25 000 FCFA</span>
+  <a href="#">Commander</a>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">🎯</div>
+      <div class="logo-text">FormaPro CI<span>Formations Professionnelles & Certifiantes</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Formations</a></li>
+      <li><a href="#">Certifications</a></li>
+      <li><a href="#">Financement</a></li>
+      <li><a href="#">Emploi garanti</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="nav-cta">S'inscrire</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">✅ Emploi garanti ou remboursé · Certifications reconnues</div>
+      <h1>Formez-Vous. Certifiez-Vous.<br><span>Employez-Vous.</span></h1>
+      <p class="hero-desc">FormaPro CI propose des formations professionnelles courtes et certifiantes dans les métiers les plus demandés en Côte d'Ivoire et en Afrique. Financements disponibles.</p>
+      <div class="hero-guarantees">
+        <div class="guarantee"><div class="guarantee-icon">💼</div>Emploi garanti dans les 3 mois ou remboursement intégral</div>
+        <div class="guarantee"><div class="guarantee-icon">🏅</div>Certifications reconnues par les entreprises africaines</div>
+        <div class="guarantee"><div class="guarantee-icon">💰</div>Financements FDFP, IPR et paiements échelonnés disponibles</div>
+        <div class="guarantee"><div class="guarantee-icon">⚡</div>Formations courtes : 1 à 6 semaines selon le niveau</div>
+      </div>
+      <div class="hero-btns">
+        <a href="#" class="btn-green">Voir les formations</a>
+        <a href="#" class="btn-outline">Financement FDFP</a>
+      </div>
+    </div>
+    <div class="hero-certification">
+      <h3>🏅 Certifications délivrées</h3>
+      <div class="cert-item"><div class="cert-logo">📊</div><div><div class="cert-name">Comptabilité & Gestion</div><div class="cert-field">Logiciels SAARI, CEGID, Sage</div></div></div>
+      <div class="cert-item"><div class="cert-logo">💻</div><div><div class="cert-name">Informatique bureautique</div><div class="cert-field">Microsoft Office, Google Workspace</div></div></div>
+      <div class="cert-item"><div class="cert-logo">🏗️</div><div><div class="cert-name">Sécurité au travail</div><div class="cert-field">Habilitation électrique, CACES</div></div></div>
+      <div class="cert-item"><div class="cert-logo">🤝</div><div><div class="cert-name">Management d'équipe</div><div class="cert-field">Leadership, conduite de projet</div></div></div>
+      <div class="cert-item"><div class="cert-logo">📢</div><div><div class="cert-name">Marketing Digital</div><div class="cert-field">Google Ads, Meta, Réseaux sociaux</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="impact-strip">
+  <div class="impact-inner">
+    <div><div class="impact-num">6 200+</div><div class="impact-label">Professionnels formés</div></div>
+    <div><div class="impact-num">94%</div><div class="impact-label">Taux d'emploi à 3 mois</div></div>
+    <div><div class="impact-num">48</div><div class="impact-label">Formations certifiantes</div></div>
+    <div><div class="impact-num">200+</div><div class="impact-label">Entreprises partenaires</div></div>
+  </div>
+</div>
+
+<section class="formations">
+  <div class="section-inner">
+    <div class="section-tag">Nos Formations</div>
+    <h2 class="section-title">48 Formations Certifiantes</h2>
+    <p class="section-sub">Des formations courtes et intensives alignées sur les besoins réels du marché africain. 100% pratiques.</p>
+    <div class="forma-grid">
+      <div class="forma-card">
+        <div class="forma-header green1"><div class="forma-icon">📊</div><div class="forma-domain">Finance · Comptabilité</div><div class="forma-name">Comptabilité Informatisée Sage</div><span class="forma-duration-badge">4 semaines</span></div>
+        <div class="forma-body">
+          <p class="forma-desc">Maîtrisez les logiciels comptables les plus utilisés par les entreprises ivoiriennes.</p>
+          <ul class="forma-modules">
+            <li>Sage 100 Comptabilité</li>
+            <li>SAARI paie et gestion</li>
+            <li>Déclarations fiscales</li>
+            <li>Clôture comptable</li>
+          </ul>
+        </div>
+        <div class="forma-footer"><div><div class="forma-price">85 000 FCFA</div><span class="certif-label">Certifié Sage</span></div><a href="#" class="forma-btn">S'inscrire</a></div>
+      </div>
+      <div class="forma-card">
+        <div class="forma-header green2"><div class="forma-icon">💻</div><div class="forma-domain">Informatique</div><div class="forma-name">Bureautique Avancée & Digital</div><span class="forma-duration-badge">3 semaines</span></div>
+        <div class="forma-body">
+          <p class="forma-desc">Maîtrisez les outils bureautiques professionnels et la productivité numérique.</p>
+          <ul class="forma-modules">
+            <li>Excel avancé & Power BI</li>
+            <li>Word professionnel</li>
+            <li>Google Workspace</li>
+            <li>Outils collaboratifs</li>
+          </ul>
+        </div>
+        <div class="forma-footer"><div><div class="forma-price">65 000 FCFA</div><span class="certif-label">Microsoft Certif.</span></div><a href="#" class="forma-btn">S'inscrire</a></div>
+      </div>
+      <div class="forma-card">
+        <div class="forma-header green3"><div class="forma-icon">📢</div><div class="forma-domain">Marketing</div><div class="forma-name">Marketing Digital & Réseaux Sociaux</div><span class="forma-duration-badge">5 semaines</span></div>
+        <div class="forma-body">
+          <p class="forma-desc">Gérez et développez la présence digitale d'une entreprise africaine sur les plateformes clés.</p>
+          <ul class="forma-modules">
+            <li>Google Ads & Analytics</li>
+            <li>Facebook & Instagram Ads</li>
+            <li>Content Marketing</li>
+            <li>Mesure des ROI</li>
+          </ul>
+        </div>
+        <div class="forma-footer"><div><div class="forma-price">95 000 FCFA</div><span class="certif-label">Google Certified</span></div><a href="#" class="forma-btn">S'inscrire</a></div>
+      </div>
+      <div class="forma-card">
+        <div class="forma-header green4"><div class="forma-icon">🏗️</div><div class="forma-domain">BTP · Sécurité</div><div class="forma-name">Sécurité au Travail & Habilitations</div><span class="forma-duration-badge">1 semaine</span></div>
+        <div class="forma-body">
+          <p class="forma-desc">Formations réglementaires obligatoires pour les chantiers et sites industriels en CI.</p>
+          <ul class="forma-modules">
+            <li>Habilitation électrique B0-B1</li>
+            <li>SST Secouriste au travail</li>
+            <li>CACES catégorie R372</li>
+            <li>Incendie & évacuation</li>
+          </ul>
+        </div>
+        <div class="forma-footer"><div><div class="forma-price">45 000 FCFA</div><span class="certif-label">INRS Reconnu</span></div><a href="#" class="forma-btn">S'inscrire</a></div>
+      </div>
+      <div class="forma-card">
+        <div class="forma-header green5"><div class="forma-icon">🤝</div><div class="forma-domain">Management</div><div class="forma-name">Leadership & Management d'Équipe</div><span class="forma-duration-badge">3 semaines</span></div>
+        <div class="forma-body">
+          <p class="forma-desc">Développez vos compétences managériales pour encadrer et motiver efficacement vos équipes.</p>
+          <ul class="forma-modules">
+            <li>Styles de management</li>
+            <li>Conduite de réunion</li>
+            <li>Gestion des conflits</li>
+            <li>Communication assertive</li>
+          </ul>
+        </div>
+        <div class="forma-footer"><div><div class="forma-price">75 000 FCFA</div><span class="certif-label">PMP Aligned</span></div><a href="#" class="forma-btn">S'inscrire</a></div>
+      </div>
+      <div class="forma-card">
+        <div class="forma-header green6"><div class="forma-icon">📦</div><div class="forma-domain">Logistique</div><div class="forma-name">Supply Chain & Logistique Afrique</div><span class="forma-duration-badge">4 semaines</span></div>
+        <div class="forma-body">
+          <p class="forma-desc">Gérez efficacement les flux de marchandises dans le contexte des corridors commerciaux africains.</p>
+          <ul class="forma-modules">
+            <li>Gestion des stocks</li>
+            <li>Import-Export CEDEAO</li>
+            <li>Incoterms et douanes</li>
+            <li>Outils ERP logistique</li>
+          </ul>
+        </div>
+        <div class="forma-footer"><div><div class="forma-price">90 000 FCFA</div><span class="certif-label">CILF Certifié</span></div><a href="#" class="forma-btn">S'inscrire</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="financement">
+  <div class="section-inner">
+    <div class="financement-grid">
+      <div class="financement-content">
+        <div class="section-tag">Financement</div>
+        <h2 class="section-title">Ne Laissez Pas l'Argent Freiner Votre Formation</h2>
+        <p class="section-sub">Plusieurs options de financement s'offrent à vous pour accéder à nos formations certifiantes, quel que soit votre situation professionnelle.</p>
+        <div class="financement-options">
+          <div class="fin-card"><div class="fin-icon">🏛️</div><div class="fin-title">FDFP Côte d'Ivoire</div><div class="fin-desc">Fonds pour le Développement de la Formation Professionnelle. Prise en charge jusqu'à 100% pour les salariés.</div></div>
+          <div class="fin-card"><div class="fin-icon">💳</div><div class="fin-title">Paiement en 3x</div><div class="fin-desc">Étalez le paiement de votre formation sur 3 mois sans frais ni intérêts.</div></div>
+          <div class="fin-card"><div class="fin-icon">🏢</div><div class="fin-title">Plan de formation</div><div class="fin-desc">Votre entreprise finance votre formation dans le cadre de son plan de développement RH.</div></div>
+          <div class="fin-card"><div class="fin-icon">🎓</div><div class="fin-title">Bourse FormaPro</div><div class="fin-desc">Bourses partielles (50%) pour demandeurs d'emploi et jeunes diplômés sur dossier.</div></div>
+        </div>
+      </div>
+      <div class="emploi-card">
+        <h3>💼 Emploi Garanti</h3>
+        <p style="font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:20px;line-height:1.6">Notre réseau de 200+ entreprises partenaires recrute en priorité nos certifiés dans ces secteurs :</p>
+        <ul class="emploi-list">
+          <li>Banques & assurances ivoiriennes</li>
+          <li>Industries agroalimentaires</li>
+          <li>Télécommunications (Orange, MTN)</li>
+          <li>Groupes de distribution</li>
+          <li>Cabinets d'audit et conseil</li>
+          <li>Entreprises BTP & Génie Civil</li>
+        </ul>
+        <div class="emploi-rate">
+          <div class="emploi-rate-num">94%</div>
+          <div class="emploi-rate-label">de nos certifiés trouvent un emploi en moins de 3 mois</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="temoignages">
+  <div class="section-inner">
+    <div class="section-tag">Témoignages</div>
+    <h2 class="section-title">Ils Ont Changé de Trajectoire</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"J'étais au chômage depuis 8 mois. La formation comptabilité Sage en 4 semaines a tout changé. Dès la semaine suivante la fin de formation, j'avais un CDI en cabinet comptable."</p>
+        <div class="testi-author"><div class="testi-av">N</div><div><div class="testi-name">Née Akissi Touré</div><div class="testi-info">Abidjan · Comptable · Promo sept. 2024</div><span class="testi-result">CDI obtenu</span></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Mon entreprise a financé ma formation marketing digital via le FDFP. En 5 semaines j'ai complètement transformé notre stratégie digitale. +300% d'engagement sur nos réseaux."</p>
+        <div class="testi-author"><div class="testi-av">A</div><div><div class="testi-name">Arnaud Brou</div><div class="testi-info">Chef marketing · PME Abidjan</div><span class="testi-result">ROI digital x3</span></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"La formation leadership a transformé ma manière de manager. Mon équipe est plus soudée, productive. J'ai été promu Directeur d'agence 4 mois après la formation. Merci FormaPro CI !"</p>
+        <div class="testi-author"><div class="testi-av">S</div><div><div class="testi-name">Silas Kouassi</div><div class="testi-info">Directeur d'agence bancaire</div><span class="testi-result">Promotion obtenue</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="section-inner">
+    <h2>Votre Carrière Mérite le Meilleur</h2>
+    <p>Rejoignez les 6 200 professionnels qui ont transformé leur vie grâce à nos formations certifiantes.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-white">Voir toutes les formations</a>
+      <a href="#" class="btn-outline-w">Demander un financement FDFP</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:14px">🎯 FormaPro CI</div>
+        <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,0.4);margin-bottom:18px">Centre de formation professionnelle certifié par l'AGEFOP et agréé FDFP. 48 formations courtes et certifiantes pour les métiers en demande en Côte d'Ivoire.</p>
+        <div style="font-size:14px;line-height:2;color:rgba(255,255,255,0.4)">📍 Plateau, Abidjan, Côte d'Ivoire<br>📞 +225 20 31 00 00<br>✉️ inscription@formapro-ci.com</div>
+      </div>
+      <div><div class="footer-heading">Formations</div><ul class="footer-links"><li><a href="#">Comptabilité</a></li><li><a href="#">Informatique</a></li><li><a href="#">Marketing digital</a></li><li><a href="#">Management</a></li><li><a href="#">BTP & Sécurité</a></li></ul></div>
+      <div><div class="footer-heading">Financement</div><ul class="footer-links"><li><a href="#">FDFP CI</a></li><li><a href="#">Plan formation</a></li><li><a href="#">Paiement 3x</a></li><li><a href="#">Bourses</a></li></ul></div>
+      <div><div class="footer-heading">Centre</div><ul class="footer-links"><li><a href="#">Emploi garanti</a></li><li><a href="#">Partenaires</a></li><li><a href="#">Témoignages</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 FormaPro CI · Agréé AGEFOP & FDFP Côte d'Ivoire</span>
+      <span>Site créé avec <a href="#">IBIG Digital</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

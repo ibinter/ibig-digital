@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Déco Maison Africaine — Meubles, Textiles & Design d'Intérieur</title>
+<style>
+:root{--bg:#FFFEF9;--bg2:#FFF8F2;--bg3:#FEF3E8;--terra:#C2410C;--terra2:#9A3412;--terra-light:#FFEDD5;--dark:#1C1917;--gray:#78716C;--gray2:#A8A29E;--gold:#D97706;--green:#15803D;--white:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--dark);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
+.demo-bar strong{color:#C2410C}
+.demo-bar a{background:#16A34A;color:#fff;padding:6px 14px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600}
+nav{position:sticky;top:40px;z-index:999;background:#fff;border-bottom:1px solid var(--terra-light);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:68px;box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.brand-symbol{font-size:24px}
+.brand-name{font-size:20px;font-weight:700;color:var(--terra);font-family:Georgia,serif}
+.brand-sub{font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--dark);text-decoration:none;font-size:14px;transition:color .2s}
+.nav-links a:hover{color:var(--terra)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.search-box{background:var(--bg2);border:1px solid var(--terra-light);border-radius:8px;padding:8px 14px;font-size:13px;color:var(--dark);outline:none;width:200px}
+.wishlist-btn{background:var(--bg2);border:1px solid var(--terra-light);color:var(--terra);padding:9px 14px;border-radius:8px;font-size:13px;cursor:pointer;border:none}
+.cart-btn{background:var(--terra);color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer}
+/* HERO */
+.hero{background:linear-gradient(135deg,#FFFEF9 0%,#FFF4ED 100%);padding:80px 32px 60px}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--terra-light);color:var(--terra2);padding:6px 16px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:52px;font-weight:700;line-height:1.1;color:var(--dark);margin-bottom:18px;font-family:Georgia,serif}
+.hero h1 em{color:var(--terra)}
+.hero-p{font-size:16px;color:var(--gray);line-height:1.75;margin-bottom:28px}
+.hero-btns{display:flex;gap:14px}
+.btn-terra{background:var(--terra);color:#fff;padding:14px 28px;border-radius:6px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-terra:hover{background:var(--terra2);transform:translateY(-2px)}
+.btn-outline-terra{background:transparent;color:var(--terra);padding:14px 28px;border-radius:6px;font-size:15px;font-weight:700;border:2px solid var(--terra);cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-outline-terra:hover{background:var(--terra-light)}
+.hero-badges{display:flex;gap:16px;margin-top:28px;flex-wrap:wrap}
+.hero-badge{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray)}
+.hero-badge span{color:var(--terra);font-weight:600}
+.hero-visual{position:relative}
+.room-card{background:white;border-radius:16px;padding:28px;box-shadow:0 12px 40px rgba(194,65,12,0.12)}
+.room-main{background:var(--bg3);border-radius:12px;padding:28px;text-align:center;margin-bottom:16px}
+.room-emoji{font-size:72px}
+.room-name{font-size:16px;font-weight:700;color:var(--dark);margin-top:10px;font-family:Georgia,serif}
+.room-price{font-size:22px;font-weight:800;color:var(--terra);margin-top:6px}
+.room-tag-row{display:flex;gap:8px;margin-top:8px;justify-content:center;flex-wrap:wrap}
+.room-tag{background:white;color:var(--terra);font-size:11px;padding:3px 10px;border-radius:10px;font-weight:600}
+.room-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.room-mini{background:var(--bg3);border-radius:8px;padding:14px;text-align:center}
+.room-mini-emoji{font-size:36px}
+.room-mini-name{font-size:11px;color:var(--gray);margin-top:5px}
+.room-mini-price{font-size:13px;font-weight:700;color:var(--terra);margin-top:2px}
+/* STRIP */
+.strip{background:var(--terra);padding:12px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:8px}
+.strip-item{color:#fff;font-size:13px;display:flex;align-items:center;gap:6px}
+/* INSPIRATIONS */
+.section{padding:60px 32px;max-width:1200px;margin:0 auto}
+.s-title{text-align:center;margin-bottom:40px}
+.s-title h2{font-size:36px;font-weight:700;color:var(--dark);font-family:Georgia,serif}
+.s-title h2 em{color:var(--terra)}
+.s-title p{color:var(--gray);margin-top:8px;font-size:15px}
+.inspi-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.inspi-card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.06);cursor:pointer;transition:all .3s}
+.inspi-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(194,65,12,0.15)}
+.inspi-img{height:200px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:80px}
+.inspi-body{padding:20px}
+.inspi-style{font-size:11px;color:var(--terra);font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.inspi-name{font-size:18px;font-weight:700;color:var(--dark);margin:6px 0;font-family:Georgia,serif}
+.inspi-desc{font-size:13px;color:var(--gray);line-height:1.5}
+.inspi-count{font-size:12px;color:var(--gold);font-weight:600;margin-top:8px}
+/* PRODUCTS */
+.products-section{background:white;padding:60px 32px}
+.products-inner{max-width:1200px;margin:0 auto}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:36px}
+.prod-card{background:var(--bg);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .3s;border:1.5px solid transparent}
+.prod-card:hover{border-color:var(--terra);transform:translateY(-5px);box-shadow:0 16px 40px rgba(194,65,12,0.12)}
+.prod-img{height:220px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:80px;position:relative}
+.prod-tag{position:absolute;top:10px;left:10px;background:var(--terra);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px}
+.prod-fav{position:absolute;top:10px;right:10px;background:white;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
+.prod-body{padding:16px}
+.prod-cat{font-size:10px;color:var(--terra);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.prod-name{font-size:15px;font-weight:700;color:var(--dark);margin:5px 0;line-height:1.3;font-family:Georgia,serif}
+.prod-material{font-size:12px;color:var(--gray);margin-bottom:8px}
+.prod-stars{color:#F59E0B;font-size:11px;margin-bottom:8px}
+.prod-row{display:flex;align-items:center;justify-content:space-between}
+.prod-price{font-size:18px;font-weight:800;color:var(--terra)}
+.prod-old{font-size:12px;color:var(--gray2);text-decoration:line-through}
+.btn-add{background:var(--terra);color:#fff;border:none;padding:9px 16px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-add:hover{background:var(--terra2)}
+/* BANNER */
+.promo-banner{background:linear-gradient(135deg,var(--dark) 0%,#292524 100%);margin:0 32px;border-radius:16px;padding:50px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.pb-text h2{font-size:36px;font-weight:700;color:#fff;margin-bottom:12px;font-family:Georgia,serif}
+.pb-text h2 em{color:var(--terra)}
+.pb-text p{color:#9CA3AF;font-size:15px;line-height:1.7}
+.pb-cta{margin-top:24px}
+.btn-white{background:#fff;color:var(--terra);padding:14px 28px;border-radius:6px;font-size:15px;font-weight:700;border:none;cursor:pointer}
+.pb-features{display:flex;flex-direction:column;gap:16px}
+.pb-feat{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,0.05);border-radius:10px;padding:16px}
+.pb-feat-icon{font-size:24px;flex-shrink:0}
+.pb-feat-title{font-size:14px;font-weight:700;color:#fff}
+.pb-feat-desc{font-size:12px;color:#9CA3AF;margin-top:2px}
+/* TESTIMONIALS */
+.testis{background:var(--bg2);padding:60px 32px}
+.testis-inner{max-width:1200px;margin:0 auto}
+.testis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.testi-card{background:white;border-radius:12px;padding:28px;box-shadow:0 4px 16px rgba(0,0,0,0.05)}
+.testi-rating{margin-bottom:12px}
+.testi-text{font-size:14px;color:var(--gray);line-height:1.7;font-style:italic;margin-bottom:18px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{width:40px;height:40px;border-radius:50%;background:var(--terra);color:white;display:flex;align-items:center;justify-content:center;font-weight:700}
+.testi-nm{font-size:14px;font-weight:700}
+.testi-lo{font-size:11px;color:var(--gray)}
+/* FOOTER */
+footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-desc{color:#9CA3AF;font-size:13px;line-height:1.7;margin:12px 0}
+.fh{font-size:13px;font-weight:700;margin-bottom:14px;color:var(--terra)}
+.ful{list-style:none}
+.ful li{margin-bottom:9px}
+.ful li a{color:#9CA3AF;text-decoration:none;font-size:13px;transition:color .2s}
+.ful li a:hover{color:var(--terra)}
+.foot-bottom{border-top:1px solid #374151;padding-top:20px;display:flex;justify-content:space-between;color:#6B7280;font-size:12px}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <span>Démo IBIG Digital — <strong>Déco Maison Africaine</strong> — Commander ce template :</span>
+  <strong>25 000 FCFA</strong>
+  <a href="#">Commander</a>
+</div>
+<nav>
+  <div class="nav-brand">
+    <span class="brand-symbol">🏡</span>
+    <div>
+      <div class="brand-name">Déco Maison Africaine</div>
+      <div class="brand-sub">Design & Art de vivre</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Meubles</a></li>
+    <li><a href="#">Textiles</a></li>
+    <li><a href="#">Luminaires</a></li>
+    <li><a href="#">Décoration</a></li>
+    <li><a href="#">Sur Mesure</a></li>
+    <li><a href="#">Inspirations</a></li>
+  </ul>
+  <div class="nav-right">
+    <input class="search-box" placeholder="🔍 Canapé, tapis, lampe…">
+    <button class="wishlist-btn">♡ Favoris</button>
+    <button class="cart-btn">🛒 Panier (1)</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">🏠 Design Africain Contemporain</div>
+      <h1>Votre intérieur,<br>votre <em>identité</em><br>africaine</h1>
+      <p class="hero-p">Meubles artisanaux, textiles ethniques et luminaires uniques — créez un intérieur qui célèbre le patrimoine africain avec une élégance moderne.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-terra">🛒 Découvrir la Boutique</a>
+        <a href="#" class="btn-outline-terra">🎨 Inspirations Déco</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge"><span>🚚</span> Livraison offerte dès 150 000 FCFA</div>
+        <div class="hero-badge"><span>🔄</span> Retour 30 jours</div>
+        <div class="hero-badge"><span>📐</span> Sur mesure disponible</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="room-card">
+        <div class="room-main">
+          <div class="room-emoji">🛋️</div>
+          <div class="room-name">Canapé Teck & Lin — Savane</div>
+          <div class="room-price">485 000 FCFA</div>
+          <div class="room-tag-row">
+            <span class="room-tag">Fait main</span>
+            <span class="room-tag">Teck massif</span>
+            <span class="room-tag">Made in Africa</span>
+          </div>
+        </div>
+        <div class="room-grid">
+          <div class="room-mini"><div class="room-mini-emoji">🪑</div><div class="room-mini-name">Chaise Bambou</div><div class="room-mini-price">45 000 FCFA</div></div>
+          <div class="room-mini"><div class="room-mini-emoji">🪔</div><div class="room-mini-name">Lampe Kénaf</div><div class="room-mini-price">38 000 FCFA</div></div>
+          <div class="room-mini"><div class="room-mini-emoji">🏺</div><div class="room-mini-name">Vase Terracotta</div><div class="room-mini-price">22 000 FCFA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-item">🚚 Livraison et installation incluses</div>
+  <div class="strip-item">📐 Sur mesure en 4 semaines</div>
+  <div class="strip-item">🏺 Artisanat africain certifié</div>
+  <div class="strip-item">💳 Paiement en 3 fois</div>
+</div>
+
+<div class="section">
+  <div class="s-title">
+    <h2>Styles <em>d'Intérieur</em></h2>
+    <p>Trois univers déco pour exprimer votre personnalité africaine</p>
+  </div>
+  <div class="inspi-grid">
+    <div class="inspi-card">
+      <div class="inspi-img">🪵</div>
+      <div class="inspi-body">
+        <div class="inspi-style">Afrique Contemporaine</div>
+        <div class="inspi-name">Savane Moderne</div>
+        <div class="inspi-desc">Bois naturel, lin écru, touches terracotta et or — un espace aéré, chaleureux et élégamment africain.</div>
+        <div class="inspi-count">→ 284 pièces dans cette ambiance</div>
+      </div>
+    </div>
+    <div class="inspi-card">
+      <div class="inspi-img">🏺</div>
+      <div class="inspi-body">
+        <div class="inspi-style">Ethnique Chic</div>
+        <div class="inspi-name">Héritage & Luxe</div>
+        <div class="inspi-desc">Tissus kente, bronzes anciens, coussins brodés à la main — célébrez la richesse des traditions africaines.</div>
+        <div class="inspi-count">→ 196 pièces dans cette ambiance</div>
+      </div>
+    </div>
+    <div class="inspi-card">
+      <div class="inspi-img">🌿</div>
+      <div class="inspi-body">
+        <div class="inspi-style">Tropical Zen</div>
+        <div class="inspi-name">Nature Intérieure</div>
+        <div class="inspi-desc">Bambou, raphia, plantes tropicales, céramiques terreuses — la sérénité de la nature africaine chez vous.</div>
+        <div class="inspi-count">→ 312 pièces dans cette ambiance</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="products-section">
+  <div class="products-inner">
+    <div class="s-title"><h2>Nos <em>Best-Sellers</em></h2><p>Les pièces préférées de nos clients décorateurs</p></div>
+    <div class="products-grid">
+      <div class="prod-card">
+        <div class="prod-img">🛋️<span class="prod-tag">Best-Seller</span><span class="prod-fav">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-cat">Meubles</div>
+          <div class="prod-name">Canapé 3 Places — Teck & Lin Naturel</div>
+          <div class="prod-material">Bois de teck massif · Tissu lin écru</div>
+          <div class="prod-stars">★★★★★ (89)</div>
+          <div class="prod-row"><div><div class="prod-price">485 000 FCFA</div></div><button class="btn-add">Ajouter</button></div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">🪔<span class="prod-fav">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-cat">Luminaires</div>
+          <div class="prod-name">Suspension Kénaf Tressé — Ø50cm</div>
+          <div class="prod-material">Fibres végétales naturelles · Ampoule E27</div>
+          <div class="prod-stars">★★★★★ (134)</div>
+          <div class="prod-row"><div><div class="prod-price">68 000 FCFA</div><div class="prod-old">85 000 FCFA</div></div><button class="btn-add">Ajouter</button></div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">🧶<span class="prod-tag">Nouveau</span><span class="prod-fav">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-cat">Textiles</div>
+          <div class="prod-name">Coussin Kente Multicolore — 50×50cm</div>
+          <div class="prod-material">Tissu kente ghanéen · Rembourrage coton</div>
+          <div class="prod-stars">★★★★☆ (67)</div>
+          <div class="prod-row"><div><div class="prod-price">18 500 FCFA</div></div><button class="btn-add">Ajouter</button></div>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img">🏺<span class="prod-fav">♡</span></div>
+        <div class="prod-body">
+          <div class="prod-cat">Décoration</div>
+          <div class="prod-name">Set 3 Vases Terracotta — Hauteur 20/30/40cm</div>
+          <div class="prod-material">Terre cuite artisanale · Patine naturelle</div>
+          <div class="prod-stars">★★★★★ (201)</div>
+          <div class="prod-row"><div><div class="prod-price">48 000 FCFA</div></div><button class="btn-add">Ajouter</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:40px 32px">
+  <div class="promo-banner">
+    <div class="pb-text">
+      <h2>Service <em>Décoration</em><br>sur Mesure</h2>
+      <p>Nos designers africains créent l'intérieur de vos rêves. Consultation gratuite, projet sous 2 semaines, installation incluse.</p>
+      <div class="pb-cta">
+        <button class="btn-white">🎨 Consultation Gratuite →</button>
+      </div>
+    </div>
+    <div class="pb-features">
+      <div class="pb-feat">
+        <div class="pb-feat-icon">📐</div>
+        <div><div class="pb-feat-title">Étude personnalisée</div><div class="pb-feat-desc">Plan 3D de votre espace inclus gratuitement</div></div>
+      </div>
+      <div class="pb-feat">
+        <div class="pb-feat-icon">🏺</div>
+        <div><div class="pb-feat-title">Fabrication artisanale</div><div class="pb-feat-desc">Meubles sur mesure en 3-4 semaines</div></div>
+      </div>
+      <div class="pb-feat">
+        <div class="pb-feat-icon">🚚</div>
+        <div><div class="pb-feat-title">Livraison & Installation</div><div class="pb-feat-desc">Notre équipe installe tout chez vous</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="testis">
+  <div class="testis-inner">
+    <div class="s-title"><h2>Ils aiment leur <em>Intérieur</em></h2></div>
+    <div class="testis-grid">
+      <div class="testi-card">
+        <div class="testi-rating">★★★★★</div>
+        <div class="testi-text">"Le canapé teck & lin est une pure merveille. Nos invités demandent tous où nous l'avons trouvé. La qualité artisanale est évidente, chaque détail est soigné."</div>
+        <div class="testi-author"><div class="testi-av">SA</div><div><div class="testi-nm">Seydou Ag</div><div class="testi-lo">Bamako, Mali</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-rating">★★★★★</div>
+        <div class="testi-text">"Le service décoration sur mesure est exceptionnel. La designer qui s'est occupée de mon salon a parfaitement compris mon style. Résultat bluffant !"</div>
+        <div class="testi-author"><div class="testi-av">GN</div><div><div class="testi-nm">Grace Nkosi</div><div class="testi-lo">Abidjan, Cocody</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-rating">★★★★★</div>
+        <div class="testi-text">"Les suspensions kénaf ont complètement transformé notre restaurant. Les clients sont sous le charme. Nous avons commandé 15 pièces supplémentaires !"</div>
+        <div class="testi-author"><div class="testi-av">KK</div><div><div class="testi-nm">Kojo Kwame</div><div class="testi-lo">Accra, Ghana</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:24px">🏡</div>
+        <h2 style="font-size:18px;font-weight:700;color:var(--terra);margin-top:8px;font-family:Georgia,serif">Déco Maison Africaine</h2>
+        <p class="footer-desc">Design d'intérieur africain contemporain — meubles, textiles, luminaires et déco ethnique chic depuis Abidjan.</p>
+      </div>
+      <div><div class="fh">Collections</div><ul class="ful"><li><a href="#">Meubles</a></li><li><a href="#">Textiles</a></li><li><a href="#">Luminaires</a></li><li><a href="#">Décoration</a></li><li><a href="#">Jardin & Terrasse</a></li></ul></div>
+      <div><div class="fh">Services</div><ul class="ful"><li><a href="#">Décoration sur mesure</a></li><li><a href="#">Consultation design</a></li><li><a href="#">Fabrication artisanale</a></li><li><a href="#">Installation</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Cocody, Abidjan</a></li><li><a href="#">📞 +225 06 00 00 00</a></li><li><a href="#">✉️ hello@decoma.ci</a></li><li><a href="#">Lun–Sam 9h–18h</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2025 Déco Maison Africaine — Tous droits réservés</span><span>CGV · Confidentialité</span></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.btn-add').forEach(b=>{b.addEventListener('click',function(){this.textContent='✅';this.style.background='#15803D';setTimeout(()=>{this.textContent='Ajouter';this.style.background=''},2000)})});
+</script>
+</body>
+</html>

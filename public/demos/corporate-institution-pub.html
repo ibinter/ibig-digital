@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mairie de Cocody — Services aux Citoyens</title>
+<style>
+:root{
+  --bg:#FFFFFF;
+  --primary:#1D4ED8;
+  --primary-dark:#1E40AF;
+  --primary-light:#EFF6FF;
+  --text:#111827;
+  --text-light:#6B7280;
+  --border:#E5E7EB;
+  --dark:#0F172A;
+  --gold:#D97706;
+  --green:#16A34A;
+  --red:#DC2626;
+  --light:#F8FAFC;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+.demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
+.demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
+
+/* BANDE TRICOLORE CI */
+.tricolor{height:6px;background:linear-gradient(to right, #F97316 33.33%, #FFFFFF 33.33% 66.66%, #16A34A 66.66%);margin-top:40px;}
+
+/* TOP BAR OFFICIELLE */
+.topbar{background:var(--dark);color:rgba(255,255,255,0.7);font-size:12px;padding:6px 40px;display:flex;justify-content:space-between;align-items:center;}
+.topbar a{color:rgba(255,255,255,0.6);text-decoration:none;margin-left:16px;}
+.topbar a:hover{color:#fff;}
+
+nav{position:sticky;top:40px;background:#fff;border-bottom:3px solid var(--primary);z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.07);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;gap:24px;}
+.nav-logo-zone{display:flex;align-items:center;gap:16px;padding:14px 0;}
+.logo-circle{width:56px;height:56px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;flex-shrink:0;}
+.logo-text{display:flex;flex-direction:column;}
+.logo-main{font-size:18px;font-weight:800;color:var(--primary);line-height:1.1;}
+.logo-sub{font-size:11px;color:var(--text-light);font-weight:500;text-transform:uppercase;letter-spacing:0.5px;}
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:auto;}
+.nav-link{padding:8px 14px;font-size:13px;font-weight:600;color:var(--text-light);text-decoration:none;border-radius:6px;transition:all 0.2s;}
+.nav-link:hover,.nav-link.active{background:var(--primary-light);color:var(--primary);}
+.nav-btn{background:var(--primary);color:#fff;padding:8px 18px;border-radius:6px;font-size:13px;font-weight:700;text-decoration:none;margin-left:8px;transition:background 0.2s;}
+.nav-btn:hover{background:var(--primary-dark);}
+
+/* HERO INSTITUTIONNEL */
+.hero{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 60%,#0C1A40 100%);color:#fff;padding:70px 40px;}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:60px;align-items:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:6px 14px;font-size:13px;font-weight:600;margin-bottom:20px;}
+.hero h1{font-size:42px;font-weight:900;line-height:1.2;margin-bottom:16px;}
+.hero-intro{font-size:17px;color:rgba(255,255,255,0.8);margin-bottom:28px;max-width:520px;}
+.hero-stats{display:flex;gap:32px;margin-bottom:32px;}
+.hs{text-align:center;}
+.hs-num{font-size:28px;font-weight:900;color:#fff;display:block;}
+.hs-lab{font-size:12px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.5px;}
+.hero-ctas{display:flex;gap:12px;}
+.hero-cta{padding:12px 24px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;transition:all 0.2s;}
+.hero-cta.prim{background:#fff;color:var(--primary);}
+.hero-cta.sec{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.4);}
+.hero-cta:hover{opacity:0.9;transform:translateY(-1px);}
+
+/* CARD URGENCES */
+.urgences-card{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:16px;padding:28px;backdrop-filter:blur(8px);}
+.uc-title{font-size:16px;font-weight:800;color:#fff;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.uc-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.1);}
+.uc-item:last-child{border:none;padding-bottom:0;}
+.uc-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.uc-body{flex:1;}
+.uc-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px;}
+.uc-num{font-size:15px;font-weight:900;color:#FCD34D;}
+
+/* SERVICES RAPIDES */
+.quick-services{background:var(--primary-light);padding:32px 40px;border-bottom:1px solid var(--border);}
+.qs-inner{max-width:1200px;margin:0 auto;}
+.qs-title{font-size:14px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.qs-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:12px;}
+.qs-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 8px;text-align:center;cursor:pointer;transition:all 0.2s;text-decoration:none;}
+.qs-item:hover{border-color:var(--primary);background:var(--primary);color:#fff;}
+.qs-item:hover .qi-icon,.qs-item:hover .qi-label{color:#fff;}
+.qi-icon{font-size:22px;margin-bottom:6px;display:block;}
+.qi-label{font-size:11px;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:0.3px;display:block;}
+
+/* SECTIONS */
+.section-pad{padding:50px 40px;}
+.sec-inner{max-width:1200px;margin:0 auto;}
+.sec-header{margin-bottom:36px;}
+.sec-tag{display:inline-block;background:var(--primary-light);color:var(--primary);padding:4px 12px;border-radius:50px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
+.sec-title{font-size:30px;font-weight:800;color:var(--text);}
+.sec-title span{color:var(--primary);}
+.sec-sub{font-size:16px;color:var(--text-light);margin-top:6px;}
+.divider{width:50px;height:4px;background:var(--primary);border-radius:2px;margin-top:14px;}
+
+/* SERVICES GRILLE */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.service-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px;transition:all 0.2s;cursor:pointer;}
+.service-card:hover{border-color:var(--primary);box-shadow:0 8px 24px rgba(29,78,216,0.1);transform:translateY(-3px);}
+.sc-icon{width:52px;height:52px;border-radius:12px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;}
+.sc-title{font-size:17px;font-weight:700;margin-bottom:8px;}
+.sc-desc{font-size:14px;color:var(--text-light);line-height:1.6;margin-bottom:14px;}
+.sc-tag{display:inline-flex;align-items:center;gap:4px;background:var(--primary-light);color:var(--primary);padding:4px 10px;border-radius:50px;font-size:11px;font-weight:700;}
+.sc-tag.online{background:#DCFCE7;color:#16A34A;}
+.sc-tag.partial{background:#FEF3C7;color:#D97706;}
+
+/* ACTUALITÉS */
+.actu-grid{display:grid;grid-template-columns:2fr 1fr;gap:28px;}
+.actu-main{border-radius:16px;overflow:hidden;background:var(--light);border:1px solid var(--border);}
+.am-img{height:240px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));display:flex;align-items:center;justify-content:center;font-size:70px;}
+.am-body{padding:24px;}
+.am-cat{display:inline-block;background:var(--primary-light);color:var(--primary);padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700;margin-bottom:10px;}
+.am-title{font-size:20px;font-weight:800;margin-bottom:8px;line-height:1.3;}
+.am-excerpt{font-size:14px;color:var(--text-light);margin-bottom:12px;line-height:1.6;}
+.am-meta{font-size:12px;color:var(--text-light);}
+.actu-side{display:flex;flex-direction:column;gap:14px;}
+.as-item{display:flex;gap:14px;background:var(--light);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:all 0.2s;}
+.as-item:hover{border-color:var(--primary);}
+.asi-img{width:80px;height:70px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;}
+.asi-i1{background:linear-gradient(135deg,#16A34A,#065F46);}
+.asi-i2{background:linear-gradient(135deg,#D97706,#92400E);}
+.asi-i3{background:linear-gradient(135deg,#7C3AED,#4C1D95);}
+.asi-body{padding:12px;flex:1;}
+.asi-cat{font-size:10px;color:var(--primary);font-weight:700;text-transform:uppercase;margin-bottom:4px;}
+.asi-title{font-size:13px;font-weight:700;line-height:1.3;margin-bottom:4px;}
+.asi-date{font-size:11px;color:var(--text-light);}
+
+/* DÉMARCHES EN LIGNE */
+.demarches{background:var(--dark);padding:50px 40px;}
+.dem-inner{max-width:1200px;margin:0 auto;}
+.dem-inner .sec-title{color:#fff;}
+.dem-inner .sec-tag{background:rgba(29,78,216,0.3);color:#93C5FD;}
+.dem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.dem-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:24px;transition:all 0.2s;cursor:pointer;}
+.dem-card:hover{background:rgba(29,78,216,0.2);border-color:rgba(29,78,216,0.5);}
+.dc-icon{font-size:32px;margin-bottom:14px;display:block;}
+.dc-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;}
+.dc-desc{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:14px;line-height:1.5;}
+.dc-steps{font-size:12px;color:#93C5FD;font-weight:600;}
+.dc-status{display:inline-flex;align-items:center;gap:4px;margin-top:10px;padding:4px 10px;border-radius:50px;font-size:11px;font-weight:700;}
+.dc-status.online{background:rgba(22,163,74,0.2);color:#4ADE80;}
+.dc-status.rdv{background:rgba(217,119,6,0.2);color:#FCD34D;}
+
+/* CHIFFRES CLÉ */
+.stats-band{background:var(--primary);padding:50px 40px;}
+.sb-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:20px;text-align:center;}
+.stat-item .si-num{font-size:38px;font-weight:900;color:#fff;line-height:1;}
+.stat-item .si-label{font-size:13px;color:rgba(255,255,255,0.7);margin-top:6px;font-weight:600;}
+.si-icon{font-size:22px;margin-bottom:8px;display:block;}
+
+/* ÉLUS / ÉQUIPE */
+.elus-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.elu-card{text-align:center;padding:28px 20px;background:var(--light);border:1px solid var(--border);border-radius:14px;transition:all 0.2s;}
+.elu-card:hover{border-color:var(--primary);transform:translateY(-3px);}
+.elu-avatar{width:80px;height:80px;border-radius:50%;margin:0 auto 14px;border:3px solid var(--primary);display:flex;align-items:center;justify-content:center;font-size:36px;background:var(--primary-light);}
+.elu-name{font-size:16px;font-weight:800;margin-bottom:4px;}
+.elu-role{font-size:13px;color:var(--text-light);}
+.elu-role strong{color:var(--primary);}
+
+/* AGENDA */
+.agenda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.agenda-item{display:flex;gap:16px;background:var(--light);border:1px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.2s;}
+.agenda-item:hover{border-color:var(--primary);}
+.ag-date{text-align:center;min-width:52px;background:var(--primary);color:#fff;border-radius:10px;padding:10px;}
+.agd-day{font-size:26px;font-weight:900;line-height:1;}
+.agd-month{font-size:11px;text-transform:uppercase;font-weight:700;}
+.ag-body{flex:1;}
+.ag-cat{font-size:11px;color:var(--primary);font-weight:700;text-transform:uppercase;margin-bottom:4px;}
+.ag-title{font-size:14px;font-weight:700;margin-bottom:4px;}
+.ag-time{font-size:12px;color:var(--text-light);}
+
+/* CONTACT */
+.contact-section{padding:50px 40px;background:var(--primary-light);}
+.contact-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+.contact-info h3{font-size:24px;font-weight:800;margin-bottom:20px;color:var(--primary);}
+.ci-item{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;}
+.ci-icon{width:44px;height:44px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;flex-shrink:0;}
+.ci-body strong{font-size:14px;font-weight:700;display:block;margin-bottom:2px;}
+.ci-body span{font-size:14px;color:var(--text-light);}
+.contact-form{background:#fff;border-radius:16px;padding:32px;border:1px solid var(--border);}
+.contact-form h3{font-size:20px;font-weight:800;margin-bottom:20px;color:var(--text);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.form-group{margin-bottom:14px;}
+.form-group label{font-size:13px;font-weight:700;color:var(--text);display:block;margin-bottom:6px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:14px;outline:none;transition:border-color 0.2s;font-family:inherit;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary);}
+.form-group textarea{height:100px;resize:vertical;}
+.submit-btn{width:100%;background:var(--primary);color:#fff;border:none;padding:13px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:background 0.2s;}
+.submit-btn:hover{background:var(--primary-dark);}
+
+footer{background:var(--dark);padding:60px 40px 24px;}
+.fg{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.fl{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.fl-icon{width:46px;height:46px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.fl-text .main{font-size:17px;font-weight:800;color:#fff;display:block;}
+.fl-text .sub{font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px;}
+footer p.fp{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:14px;}
+.f-tricolor{height:4px;background:linear-gradient(to right,#F97316 33%,#fff 33% 66%,#16A34A 66%);border-radius:2px;margin-bottom:14px;}
+.fc h5{color:rgba(255,255,255,0.5);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;}
+.fc ul{list-style:none;}
+.fc li{margin-bottom:8px;}
+.fc a{color:rgba(255,255,255,0.4);font-size:13px;text-decoration:none;transition:color 0.2s;}
+.fc a:hover{color:var(--primary);}
+.fb{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.06);padding-top:20px;display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.25);}
+.fb a{color:rgba(255,255,255,0.25);text-decoration:none;}
+
+@media(max-width:900px){
+  .hero-inner,.actu-grid,.contact-grid{grid-template-columns:1fr;}
+  .services-grid,.dem-grid,.elus-grid,.agenda-grid{grid-template-columns:1fr 1fr;}
+  .qs-grid,.sb-inner{grid-template-columns:repeat(4,1fr);}
+  .fg{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Démo IBIG Digital — Commander ce template : <strong>25 000 FCFA</strong></span>
+  <a href="https://ibig.digital" target="_blank">Commander</a>
+</div>
+
+<div class="tricolor"></div>
+<div class="topbar">
+  <span>🇨🇮 République de Côte d'Ivoire · District d'Abidjan · Commune de Cocody</span>
+  <div><a href="#">Accès agent</a><a href="#">Déclarations</a><a href="#">Bulletin officiel</a></div>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo-zone">
+      <div class="logo-circle">🏛️</div>
+      <div class="logo-text">
+        <div class="logo-main">Mairie de Cocody</div>
+        <div class="logo-sub">Commune de Cocody · Abidjan</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#" class="nav-link active">Accueil</a>
+      <a href="#" class="nav-link">Services</a>
+      <a href="#" class="nav-link">Actualités</a>
+      <a href="#" class="nav-link">Agenda</a>
+      <a href="#" class="nav-link">Élus</a>
+      <a href="#" class="nav-link">Marchés publics</a>
+      <a href="#" class="nav-btn">🖥️ Espace citoyen</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🏛️ Commune de Cocody — Abidjan, Côte d'Ivoire</div>
+      <h1>Au service des 600 000 citoyens de Cocody</h1>
+      <p class="hero-intro">La mairie de Cocody œuvre pour un cadre de vie moderne, sécurisé et harmonieux. Retrouvez tous vos services municipaux, démarches administratives et informations locales ici.</p>
+      <div class="hero-stats">
+        <div class="hs"><span class="hs-num">600K</span><span class="hs-lab">Habitants</span></div>
+        <div class="hs"><span class="hs-num">47km²</span><span class="hs-lab">Superficie</span></div>
+        <div class="hs"><span class="hs-num">32</span><span class="hs-lab">Quartiers</span></div>
+        <div class="hs"><span class="hs-num">24/7</span><span class="hs-lab">Services en ligne</span></div>
+      </div>
+      <div class="hero-ctas">
+        <a href="#" class="hero-cta prim">📋 Mes démarches en ligne</a>
+        <a href="#" class="hero-cta sec">📞 Contacter la mairie</a>
+      </div>
+    </div>
+    <div class="urgences-card">
+      <div class="uc-title">🚨 Numéros d'urgence</div>
+      <div class="uc-item"><div class="uc-icon" style="background:rgba(220,38,38,0.2)">🚒</div><div class="uc-body"><div class="uc-name">Pompiers</div><div class="uc-num">180</div></div></div>
+      <div class="uc-item"><div class="uc-icon" style="background:rgba(29,78,216,0.2)">🚓</div><div class="uc-body"><div class="uc-name">Police nationale</div><div class="uc-num">111</div></div></div>
+      <div class="uc-item"><div class="uc-icon" style="background:rgba(22,163,74,0.2)">🚑</div><div class="uc-body"><div class="uc-name">SAMU</div><div class="uc-num">185</div></div></div>
+      <div class="uc-item"><div class="uc-icon" style="background:rgba(217,119,6,0.2)">💡</div><div class="uc-body"><div class="uc-name">CIE urgence</div><div class="uc-num">185</div></div></div>
+      <div class="uc-item"><div class="uc-icon" style="background:rgba(124,58,237,0.2)">📞</div><div class="uc-body"><div class="uc-name">Mairie (standard)</div><div class="uc-num">27 22 44 56 00</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES RAPIDES -->
+<div class="quick-services">
+  <div class="qs-inner">
+    <div class="qs-title">⚡ Accès rapide aux services</div>
+    <div class="qs-grid">
+      <a href="#" class="qs-item"><span class="qi-icon">📄</span><span class="qi-label">Extrait naissance</span></a>
+      <a href="#" class="qs-item"><span class="qi-icon">💒</span><span class="qi-label">Acte mariage</span></a>
+      <a href="#" class="qs-item"><span class="qi-icon">🏠</span><span class="qi-label">Permis construire</span></a>
+      <a href="#" class="qs-item"><span class="qi-icon">⚖️</span><span class="qi-label">Légalisation</span></a>
+      <a href="#" class="qs-item"><span class="qi-icon">🗳️</span><span class="qi-label">Liste électorale</span></a>
+      <a href="#" class="qs-item"><span class="qi-icon">🌿</span><span class="qi-label">Espaces verts</span></a>
+      <a href="#" class="qs-item"><span class="qi-icon">🚮</span><span class="qi-label">Collecte déchets</span></a>
+      <a href="#" class="qs-item"><span class="qi-icon">📍</span><span class="qi-label">Adresse postale</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES MUNICIPAUX -->
+<section class="section-pad">
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="sec-tag">Services</div>
+      <h2 class="sec-title">Nos <span>services municipaux</span></h2>
+      <p class="sec-sub">L'ensemble des services de la commune à votre disposition</p>
+      <div class="divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card"><div class="sc-icon">📋</div><div class="sc-title">État civil</div><div class="sc-desc">Actes de naissance, mariage, décès. Livret de famille. Légalisation de documents officiels auprès des agents de l'état civil.</div><div class="sc-tag online">✓ En ligne</div></div>
+      <div class="service-card"><div class="sc-icon">🏗️</div><div class="sc-title">Urbanisme & Construction</div><div class="sc-desc">Permis de construire, permis de démolir, certificats d'urbanisme. Plans d'occupation des sols et règlement local d'urbanisme.</div><div class="sc-tag partial">Rendez-vous</div></div>
+      <div class="service-card"><div class="sc-icon">🌿</div><div class="sc-title">Environnement & Propreté</div><div class="sc-desc">Gestion des espaces verts, collecte des ordures ménagères, assainissement, lutte contre les nuisances environnementales.</div><div class="sc-tag online">✓ Signalement en ligne</div></div>
+      <div class="service-card"><div class="sc-icon">🏫</div><div class="sc-title">Éducation & Jeunesse</div><div class="sc-desc">Inscription scolaire dans les écoles primaires municipales, centres de loisirs, soutien scolaire, bourses communales.</div><div class="sc-tag online">✓ Inscription en ligne</div></div>
+      <div class="service-card"><div class="sc-icon">💧</div><div class="sc-title">Eau & Assainissement</div><div class="sc-desc">Réseau d'eau potable, canalisations, points d'eau communaux, gestion des eaux pluviales et des inondations.</div><div class="sc-tag">Guichet</div></div>
+      <div class="service-card"><div class="sc-icon">🛣️</div><div class="sc-title">Voirie & Infrastructures</div><div class="sc-desc">Entretien des routes communales, éclairage public, signalisation, travaux de voirie et aménagements urbains.</div><div class="sc-tag online">✓ Signaler un dommage</div></div>
+      <div class="service-card"><div class="sc-icon">🏥</div><div class="sc-title">Santé & Social</div><div class="sc-desc">Centres de santé communautaires, aides sociales, programmes de soutien aux personnes vulnérables, logements d'urgence.</div><div class="sc-tag partial">Rendez-vous</div></div>
+      <div class="service-card"><div class="sc-icon">🎭</div><div class="sc-title">Culture & Sport</div><div class="sc-desc">Médiathèque municipale, centres culturels, stades et terrains de sport communaux, associations, festivals locaux.</div><div class="sc-tag online">✓ Réservation en ligne</div></div>
+      <div class="service-card"><div class="sc-icon">💰</div><div class="sc-title">Finances & Taxes</div><div class="sc-desc">Patentes commerciales, taxes foncières locales, impôts communaux, aides aux commerçants et micro-entrepreneurs locaux.</div><div class="sc-tag partial">Guichet sur RDV</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHIFFRES -->
+<div class="stats-band">
+  <div class="sb-inner">
+    <div class="stat-item"><span class="si-icon">👥</span><span class="si-num">600 000</span><span class="si-label">Habitants</span></div>
+    <div class="stat-item"><span class="si-icon">🏗️</span><span class="si-num">142</span><span class="si-label">Projets en cours</span></div>
+    <div class="stat-item"><span class="si-icon">📋</span><span class="si-num">18 000+</span><span class="si-label">Actes/an délivrés</span></div>
+    <div class="stat-item"><span class="si-icon">💼</span><span class="si-num">850</span><span class="si-label">Agents communaux</span></div>
+    <div class="stat-item"><span class="si-icon">🌿</span><span class="si-num">240ha</span><span class="si-label">Espaces verts</span></div>
+  </div>
+</div>
+
+<!-- ACTUALITÉS -->
+<section class="section-pad" style="background:var(--light)">
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="sec-tag">Actualités</div>
+      <h2 class="sec-title">Vie de la <span>commune</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="actu-grid">
+      <div class="actu-main">
+        <div class="am-img">🏗️</div>
+        <div class="am-body">
+          <div class="am-cat">Infrastructure</div>
+          <div class="am-title">Inauguration du nouveau complexe sportif de la Riviera 2</div>
+          <p class="am-excerpt">Le maire de Cocody, M. Jean-Marc Yacé, a inauguré ce lundi le nouveau complexe sportif municipal de 2 500 places, doté d'une piscine olympique, d'un gymnase et de terrains de football en gazon synthétique.</p>
+          <div class="am-meta">📅 12 septembre 2026 · Mairie de Cocody</div>
+        </div>
+      </div>
+      <div class="actu-side">
+        <div class="as-item"><div class="asi-img asi-i1">🌿</div><div class="asi-body"><div class="asi-cat">Environnement</div><div class="asi-title">Campagne de reboisement : 10 000 arbres plantés dans les quartiers de Cocody</div><div class="asi-date">8 septembre 2026</div></div></div>
+        <div class="as-item"><div class="asi-img asi-i2">📋</div><div class="asi-body"><div class="asi-cat">État civil</div><div class="asi-title">Extension des horaires du guichet état civil : ouvert de 7h30 à 18h30</div><div class="asi-date">5 septembre 2026</div></div></div>
+        <div class="as-item"><div class="asi-img asi-i3">💡</div><div class="asi-body"><div class="asi-cat">Éclairage public</div><div class="asi-title">Nouveau réseau LED dans Angré : 1 200 lampadaires installés</div><div class="asi-date">2 septembre 2026</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DÉMARCHES EN LIGNE -->
+<section class="demarches">
+  <div class="dem-inner">
+    <div class="sec-header">
+      <div class="sec-tag">Numérique</div>
+      <h2 class="sec-title" style="color:#fff">Vos démarches en <span>ligne</span></h2>
+      <p class="sec-sub" style="color:rgba(255,255,255,0.5)">Effectuez vos démarches administratives depuis chez vous, 24h/24</p>
+      <div class="divider"></div>
+    </div>
+    <div class="dem-grid">
+      <div class="dem-card"><span class="dc-icon">📄</span><div class="dc-title">Extrait de naissance</div><div class="dc-desc">Obtenez votre extrait d'acte de naissance certifié conforme en ligne en moins de 48 heures.</div><div class="dc-steps">3 étapes simples</div><div class="dc-status online">● Disponible en ligne</div></div>
+      <div class="dem-card"><span class="dc-icon">🏠</span><div class="dc-title">Permis de construire</div><div class="dc-desc">Déposez votre demande de permis de construire et suivez son avancement en ligne.</div><div class="dc-steps">Dépôt + suivi en ligne</div><div class="dc-status online">● Disponible en ligne</div></div>
+      <div class="dem-card"><span class="dc-icon">🗳️</span><div class="dc-title">Inscription électorale</div><div class="dc-desc">Inscrivez-vous sur les listes électorales communales ou vérifiez votre inscription.</div><div class="dc-steps">En ligne + bureau de vote</div><div class="dc-status rdv">⏳ Périodes électorales</div></div>
+      <div class="dem-card"><span class="dc-icon">💼</span><div class="dc-title">Patente commerciale</div><div class="dc-desc">Demandez ou renouvelez votre patente commerciale auprès de la trésorerie municipale.</div><div class="dc-steps">Avec paiement en ligne</div><div class="dc-status online">● Disponible en ligne</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="section-pad">
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="sec-tag">Agenda</div>
+      <h2 class="sec-title">Événements <span>à venir</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="agenda-grid">
+      <div class="agenda-item"><div class="ag-date"><div class="agd-day">18</div><div class="agd-month">Sept</div></div><div class="ag-body"><div class="ag-cat">Conseil municipal</div><div class="ag-title">Séance ordinaire du Conseil Municipal de Cocody</div><div class="ag-time">🕐 9h00 · Salle des délibérations</div></div></div>
+      <div class="agenda-item"><div class="ag-date"><div class="agd-day">22</div><div class="agd-month">Sept</div></div><div class="ag-body"><div class="ag-cat">Éducation</div><div class="ag-title">Forum emploi jeune — Cocody Innovation Hub</div><div class="ag-time">🕐 8h00 – 17h00 · Palais des congrès</div></div></div>
+      <div class="agenda-item"><div class="ag-date"><div class="agd-day">28</div><div class="agd-month">Sept</div></div><div class="ag-body"><div class="ag-cat">Environnement</div><div class="ag-title">Journée de propreté communautaire — Quartier Riviera</div><div class="ag-time">🕐 7h30 – 12h00 · Stade Riviera</div></div></div>
+      <div class="agenda-item"><div class="ag-date"><div class="agd-day">05</div><div class="agd-month">Oct</div></div><div class="ag-body"><div class="ag-cat">Culture</div><div class="ag-title">Festival des arts de Cocody — 10ème édition</div><div class="ag-time">🕐 10h00 · Centre culturel Angré</div></div></div>
+      <div class="agenda-item"><div class="ag-date"><div class="agd-day">12</div><div class="agd-month">Oct</div></div><div class="ag-body"><div class="ag-cat">Infrastructure</div><div class="ag-title">Inauguration du marché modernisé de Cocody-Centre</div><div class="ag-time">🕐 10h00 · Marché de Cocody</div></div></div>
+      <div class="agenda-item"><div class="ag-date"><div class="agd-day">18</div><div class="agd-month">Oct</div></div><div class="ag-body"><div class="ag-cat">Social</div><div class="ag-title">Forum des associations et ONG communautaires</div><div class="ag-time">🕐 9h00 · Maison des associations</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ÉLUS -->
+<section class="section-pad" style="background:var(--light)">
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="sec-tag">Gouvernance</div>
+      <h2 class="sec-title">Les <span>élus de Cocody</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="elus-grid">
+      <div class="elu-card"><div class="elu-avatar">👨‍💼</div><div class="elu-name">Jean-Marc Yacé</div><div class="elu-role"><strong>Maire</strong> de Cocody</div></div>
+      <div class="elu-card"><div class="elu-avatar">👩‍💼</div><div class="elu-name">Aminata Konaté</div><div class="elu-role"><strong>1ère Adjointe</strong> au Maire</div></div>
+      <div class="elu-card"><div class="elu-avatar">👨‍💼</div><div class="elu-name">Mamadou Ouattara</div><div class="elu-role"><strong>2ème Adjoint</strong> — Finances</div></div>
+      <div class="elu-card"><div class="elu-avatar">👩‍💼</div><div class="elu-name">Bintou Traoré</div><div class="elu-role"><strong>3ème Adjointe</strong> — Affaires sociales</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Nous contacter</h3>
+      <div class="ci-item"><div class="ci-icon">📍</div><div class="ci-body"><strong>Adresse</strong><span>Boulevard Lagunaire, Cocody, Abidjan, Côte d'Ivoire</span></div></div>
+      <div class="ci-item"><div class="ci-icon">📞</div><div class="ci-body"><strong>Téléphone Standard</strong><span>+225 27 22 44 56 00</span></div></div>
+      <div class="ci-item"><div class="ci-icon">✉️</div><div class="ci-body"><strong>Email</strong><span>contact@mairie-cocody.ci</span></div></div>
+      <div class="ci-item"><div class="ci-icon">🕐</div><div class="ci-body"><strong>Horaires d'ouverture</strong><span>Lun – Ven : 7h30 à 18h30 · Sam : 8h à 12h30</span></div></div>
+      <div class="ci-item"><div class="ci-icon">🌐</div><div class="ci-body"><strong>Site officiel</strong><span>www.mairie-cocody.ci</span></div></div>
+    </div>
+    <div class="contact-form">
+      <h3>📩 Envoyer un message</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Prénom et nom</label><input type="text" placeholder="Ex : Adjoua Koffi"></div>
+        <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="+225 07 …"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="votre@email.com"></div>
+      <div class="form-group"><label>Service concerné</label><select><option>État civil</option><option>Urbanisme</option><option>Finance</option><option>Environnement</option><option>Autre</option></select></div>
+      <div class="form-group"><label>Votre message</label><textarea placeholder="Décrivez votre demande ou question…"></textarea></div>
+      <button class="submit-btn">Envoyer le message</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div>
+      <div class="fl"><div class="fl-icon">🏛️</div><div class="fl-text"><span class="main">Mairie de Cocody</span><span class="sub">Commune de Cocody · Abidjan</span></div></div>
+      <div class="f-tricolor"></div>
+      <p class="fp">La commune de Cocody, au cœur d'Abidjan, est l'une des communes les plus dynamiques de Côte d'Ivoire. Nous travaillons chaque jour pour améliorer votre cadre de vie.</p>
+    </div>
+    <div class="fc"><h5>Services</h5><ul><li><a href="#">État civil</a></li><li><a href="#">Urbanisme</a></li><li><a href="#">Environnement</a></li><li><a href="#">Éducation</a></li><li><a href="#">Finances</a></li></ul></div>
+    <div class="fc"><h5>Mairie</h5><ul><li><a href="#">Le maire</a></li><li><a href="#">Conseil municipal</a></li><li><a href="#">Délibérations</a></li><li><a href="#">Marchés publics</a></li></ul></div>
+    <div class="fc"><h5>Contact</h5><ul><li><a href="#">📍 Bd Lagunaire, Cocody</a></li><li><a href="#">📞 27 22 44 56 00</a></li><li><a href="#">✉️ contact@mairie-cocody.ci</a></li><li><a href="#">🕐 Lun–Ven : 7h30–18h30</a></li></ul></div>
+  </div>
+  <div class="fb">
+    <span>© 2026 Mairie de Cocody · Commune de Cocody · Abidjan, Côte d'Ivoire · Tous droits réservés.</span>
+    <div><a href="#">Mentions légales</a> · <a href="#">Accessibilité</a> · <a href="#">Plan du site</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

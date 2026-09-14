@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BÂTIR CI — Construction & BTP Abidjan</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--orange:#EA580C;--orange2:#FB923C;--dark:#080804;--dark2:#100E06;--dark3:#181404;--text:#FFFBF0;--text2:rgba(255,251,240,.6);--text3:rgba(255,251,240,.3)}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:'Helvetica Neue',Arial,sans-serif;overflow-x:hidden}
+.demo-bar{position:fixed;top:0;left:0;right:0;z-index:1000;height:40px;background:#080804;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;border-bottom:1px solid rgba(234,88,12,.25)}
+.demo-badge{background:rgba(234,88,12,.15);border:1px solid rgba(251,146,60,.35);color:var(--orange2);padding:.15rem .6rem;border-radius:9999px;font-size:.6rem;font-weight:800;letter-spacing:.05em}
+.demo-bar-text{font-size:.7rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:.75rem}
+.demo-btn{padding:.35rem 1.25rem;border-radius:9999px;background:linear-gradient(135deg,#FF6B00,#FF4500);color:white;font-size:.68rem;font-weight:800;text-decoration:none}
+nav{position:fixed;top:40px;left:0;right:0;z-index:900;background:rgba(8,8,4,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(234,88,12,.2);display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem}
+.nav-logo{display:flex;align-items:center;gap:.875rem}
+.nav-logo-badge{background:var(--orange);color:white;padding:.35rem .75rem;font-size:.7rem;font-weight:900;letter-spacing:.12em;border-radius:4px}
+.nav-logo-text{font-size:.8rem;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.78rem;transition:color .2s}
+.nav-links a:hover{color:var(--orange2)}
+.nav-cta{padding:.6rem 1.5rem;background:var(--orange);color:white;border-radius:4px;font-size:.75rem;font-weight:800;text-decoration:none}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:88px;position:relative;overflow:hidden;background:var(--dark)}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero-grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:60px 60px}
+.hero-glow{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,rgba(234,88,12,.06),transparent)}
+.hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.2fr .8fr;gap:4rem;align-items:center}
+.hero-eyebrow{font-size:.6rem;font-weight:800;letter-spacing:.2em;color:var(--orange2);text-transform:uppercase;margin-bottom:1.25rem}
+.hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:.95;letter-spacing:-.04em;margin-bottom:1.5rem;text-transform:uppercase}
+.hero h1 span{color:var(--orange)}
+.hero-sub{font-size:.92rem;color:var(--text2);line-height:1.8;max-width:420px;margin-bottom:3rem}
+.hero-certifs{display:flex;gap:.75rem;margin-bottom:3rem;flex-wrap:wrap}
+.certif{padding:.35rem .875rem;border-radius:4px;font-size:.62rem;font-weight:700;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:var(--text2)}
+.hero-btns{display:flex;gap:.875rem;flex-wrap:wrap}
+.btn-orange{padding:.875rem 2.25rem;border-radius:4px;background:var(--orange);color:white;font-size:.82rem;font-weight:800;text-decoration:none}
+.btn-outline{padding:.875rem 1.875rem;border-radius:4px;border:1px solid rgba(234,88,12,.3);color:var(--orange2);font-size:.82rem;font-weight:600;text-decoration:none}
+.hero-right{display:flex;flex-direction:column;gap:1rem}
+.hero-stat-card{background:rgba(255,255,255,.025);border:1px solid rgba(234,88,12,.15);border-radius:1rem;padding:1.5rem;display:flex;align-items:center;gap:1.25rem}
+.hsc-icon{font-size:2.5rem;flex-shrink:0;opacity:.8}
+.hsc-val{font-size:1.5rem;font-weight:900;color:var(--text);line-height:1}
+.hsc-lbl{font-size:.6rem;color:var(--text3);margin-top:.2rem;letter-spacing:.06em}
+/* SERVICES */
+section{padding:6rem 0}
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+.sec-eyebrow{font-size:.58rem;font-weight:800;letter-spacing:.18em;color:var(--orange2);text-transform:uppercase;margin-bottom:.75rem}
+.sec-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:900;letter-spacing:-.03em;margin-bottom:.75rem;text-transform:uppercase}
+.sec-sub{font-size:.88rem;color:var(--text2);line-height:1.8;max-width:500px;margin-bottom:3rem}
+.services{background:var(--dark2)}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:3rem}
+.srv-card{padding:2rem 1.75rem;border-radius:1.25rem;background:rgba(255,255,255,.025);border:1px solid rgba(234,88,12,.1);transition:border-color .2s,background .2s}
+.srv-card:hover{border-color:rgba(234,88,12,.3);background:rgba(234,88,12,.04)}
+.srv-icon{font-size:2.5rem;margin-bottom:1.25rem;display:block}
+.srv-name{font-size:1rem;font-weight:800;color:var(--text);margin-bottom:.5rem;letter-spacing:.01em}
+.srv-desc{font-size:.75rem;color:var(--text3);line-height:1.7}
+.srv-tag{display:inline-block;margin-top:1rem;padding:.25rem .625rem;border-radius:4px;font-size:.58rem;font-weight:800;background:rgba(234,88,12,.12);color:var(--orange2)}
+/* RÉALISATIONS */
+.real{background:var(--dark)}
+.real-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.real-card{border-radius:1.25rem;overflow:hidden;background:var(--dark2);border:1px solid rgba(255,255,255,.05)}
+.rc-img{height:240px;position:relative;display:flex;align-items:center;justify-content:center}
+.ri-1{background:linear-gradient(135deg,#0A0804,#20180A)}
+.ri-2{background:linear-gradient(135deg,#0A0A04,#181804)}
+.ri-3{background:linear-gradient(135deg,#04080A,#0A1820)}
+.ri-4{background:linear-gradient(135deg,#06040A,#14081C)}
+.rc-emoji{font-size:4rem;opacity:.35;position:relative;z-index:1}
+.rc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8),transparent 50%)}
+.rc-status{position:absolute;top:.875rem;left:.875rem;padding:.25rem .7rem;border-radius:4px;font-size:.58rem;font-weight:800;z-index:2}
+.status-done{background:rgba(5,150,105,.8);color:white}
+.status-progress{background:rgba(234,88,12,.8);color:white}
+.rc-body{padding:1.5rem}
+.rc-name{font-size:1rem;font-weight:800;color:var(--text);margin-bottom:.3rem}
+.rc-loc{font-size:.68rem;color:var(--text3);margin-bottom:.875rem}
+.rc-specs{display:flex;gap:.875rem;flex-wrap:wrap}
+.rc-spec{font-size:.65rem;color:var(--text2);background:rgba(255,255,255,.04);border-radius:4px;padding:.2rem .55rem}
+/* DEVIS */
+.devis{background:var(--dark2)}
+.devis-inner{max-width:700px;margin:0 auto;text-align:center}
+.devis-form{background:var(--dark3);border:1px solid rgba(234,88,12,.2);border-radius:1.5rem;padding:2.5rem;text-align:left;margin-top:2.5rem}
+.drow{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+.dg{display:flex;flex-direction:column;gap:.4rem}
+.dg label{font-size:.58rem;font-weight:800;color:var(--text3);letter-spacing:.1em;text-transform:uppercase}
+.di{padding:.7rem 1rem;background:rgba(255,255,255,.05);border:1px solid rgba(234,88,12,.15);border-radius:6px;color:var(--text);font-size:.82rem;outline:none;width:100%}
+.ds{background-color:#100E06}
+.dsubmit{width:100%;padding:1rem;background:var(--orange);color:white;border:none;border-radius:6px;font-size:.88rem;font-weight:800;cursor:pointer;margin-top:.5rem}
+footer{background:var(--dark);padding:4rem 0 2rem;border-top:1px solid rgba(234,88,12,.12)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-logo{display:flex;align-items:center;gap:.75rem;margin-bottom:.875rem}
+.fl-badge{background:var(--orange);color:white;padding:.3rem .6rem;font-size:.65rem;font-weight:900;border-radius:4px}
+.fl-text{font-size:.85rem;font-weight:700;color:var(--text3);letter-spacing:.06em}
+.footer-desc{font-size:.75rem;color:var(--text3);line-height:1.8;max-width:230px;margin-bottom:1.25rem}
+.footer-col h4{font-size:.58rem;font-weight:800;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.625rem}
+.footer-links a{font-size:.78rem;color:var(--text3);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--orange2)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.04);padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.footer-copy{font-size:.7rem;color:var(--text3)}
+@media(max-width:768px){
+  nav{padding:.75rem 1.25rem}.nav-links{display:none}
+  .hero-content{grid-template-columns:1fr}.hero-right{display:none}
+  .srv-grid,.real-grid,.footer-top{grid-template-columns:1fr}
+  .drow{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <div class="demo-bar-text"><span class="demo-badge">DÉMO LIVE</span><span>Template <strong style="color:rgba(255,255,255,.8)">Construction Pro</strong> — BTP</span></div>
+  <div style="display:flex;gap:.75rem">
+    <a href="/templates/btp/construction-pro" class="demo-btn">← Retour</a>
+    <a href="/templates/commander?secteur=btp&formule=premium" class="demo-btn">Commander →</a>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-logo"><div class="nav-logo-badge">BÂTIR CI</div><div class="nav-logo-text">Construction & BTP</div></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#real">Réalisations</a></li>
+    <li><a href="#devis">Devis gratuit</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#devis" class="nav-cta">Devis gratuit</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"><div class="hero-grid-overlay"></div><div class="hero-glow"></div></div>
+  <div class="hero-content">
+    <div>
+      <p class="hero-eyebrow">Entreprise de BTP — Abidjan, Côte d'Ivoire</p>
+      <h1>Bâtir<br>l'Afrique<br><span>de demain</span></h1>
+      <p class="hero-sub">Construction neuve, rénovation, second œuvre, aménagement intérieur. 15 ans d'expérience au service de vos projets en Côte d'Ivoire et en Afrique de l'Ouest.</p>
+      <div class="hero-certifs">
+        <span class="certif">🏅 Certifié CAPCI</span>
+        <span class="certif">✅ Assurance décennale</span>
+        <span class="certif">📋 150+ chantiers livrés</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#devis" class="btn-orange">Obtenir un devis gratuit</a>
+        <a href="#real" class="btn-outline">Voir nos réalisations</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat-card"><div class="hsc-icon">🏗️</div><div><div class="hsc-val">150+</div><div class="hsc-lbl">Chantiers livrés depuis 2010</div></div></div>
+      <div class="hero-stat-card"><div class="hsc-icon">👷</div><div><div class="hsc-val">85</div><div class="hsc-lbl">Techniciens et ingénieurs qualifiés</div></div></div>
+      <div class="hero-stat-card"><div class="hsc-icon">⭐</div><div><div class="hsc-val">4.8/5</div><div class="hsc-lbl">Note de satisfaction clients</div></div></div>
+      <div class="hero-stat-card"><div class="hsc-icon">⏱️</div><div><div class="hsc-val">97%</div><div class="hsc-lbl">Des chantiers livrés dans les délais</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="services">
+  <div class="container">
+    <p class="sec-eyebrow">Notre expertise</p>
+    <h2 class="sec-title">Nos Services BTP</h2>
+    <div class="srv-grid">
+      <div class="srv-card"><span class="srv-icon">🏠</span><div class="srv-name">Construction neuve</div><div class="srv-desc">Villas, immeubles résidentiels, bâtiments commerciaux et industriels. Maîtrise totale de l'ouvrage de la fondation à la livraison clé en main.</div><span class="srv-tag">Clé en main</span></div>
+      <div class="srv-card"><span class="srv-icon">🔨</span><div class="srv-name">Rénovation & Extension</div><div class="srv-desc">Réhabilitation complète ou partielle d'immeubles existants, surélévation, extension de surfaces habitables et professionnelles.</div><span class="srv-tag">Devis sous 48h</span></div>
+      <div class="srv-card"><span class="srv-icon">🎨</span><div class="srv-name">Aménagement intérieur</div><div class="srv-desc">Décoration d'intérieur, pose de revêtements sol et mur, menuiserie, plomberie, électricité, plâtrerie, peinture.</div><span class="srv-tag">Artisans certifiés</span></div>
+      <div class="srv-card"><span class="srv-icon">🚧</span><div class="srv-name">Travaux publics</div><div class="srv-desc">Voirie, assainissement, terrassement, infrastructures routières et ouvrages d'art pour collectivités et entreprises privées.</div><span class="srv-tag">Marchés publics</span></div>
+      <div class="srv-card"><span class="srv-icon">📐</span><div class="srv-name">Architecture & Plans</div><div class="srv-desc">Bureau d'études intégré : architectes et ingénieurs structures pour la conception, les plans d'exécution et le permis de construire.</div><span class="srv-tag">Bureau d'études</span></div>
+      <div class="srv-card"><span class="srv-icon">🔍</span><div class="srv-name">Expertise & Contrôle</div><div class="srv-desc">Diagnostic structurel, expertise bâtimentaire, suivi de chantier, contrôle qualité et réception de travaux.</div><span class="srv-tag">Experts agréés</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="real" class="real">
+  <div class="container">
+    <p class="sec-eyebrow">Portfolio</p>
+    <h2 class="sec-title">Nos Réalisations</h2>
+    <div class="real-grid">
+      <div class="real-card"><div class="rc-img ri-1"><span class="rc-emoji">🏢</span><div class="rc-overlay"></div><span class="rc-status status-done">LIVRÉ</span></div><div class="rc-body"><div class="rc-name">Résidence Les Palmiers — 24 appartements</div><div class="rc-loc">📍 Cocody Riviera, Abidjan · 2024</div><div class="rc-specs"><span class="rc-spec">2 800 m²</span><span class="rc-spec">G+5</span><span class="rc-spec">18 mois</span><span class="rc-spec">1,8 Md FCFA</span></div></div></div>
+      <div class="real-card"><div class="rc-img ri-2"><span class="rc-emoji">🏪</span><div class="rc-overlay"></div><span class="rc-status status-progress">EN COURS</span></div><div class="rc-body"><div class="rc-name">Centre commercial Marcory — Phase 2</div><div class="rc-loc">📍 Marcory Zone 4, Abidjan · 2025</div><div class="rc-specs"><span class="rc-spec">5 400 m²</span><span class="rc-spec">G+3</span><span class="rc-spec">24 mois</span><span class="rc-spec">3,5 Md FCFA</span></div></div></div>
+      <div class="real-card"><div class="rc-img ri-3"><span class="rc-emoji">🏭</span><div class="rc-overlay"></div><span class="rc-status status-done">LIVRÉ</span></div><div class="rc-body"><div class="rc-name">Entrepôt logistique SOGEMAR</div><div class="rc-loc">📍 Zone industrielle de Yopougon · 2023</div><div class="rc-specs"><span class="rc-spec">8 000 m²</span><span class="rc-spec">RDC</span><span class="rc-spec">12 mois</span><span class="rc-spec">950 M FCFA</span></div></div></div>
+      <div class="real-card"><div class="rc-img ri-4"><span class="rc-emoji">🏡</span><div class="rc-overlay"></div><span class="rc-status status-done">LIVRÉ</span></div><div class="rc-body"><div class="rc-name">Villa de standing — Duplex 6 pièces</div><div class="rc-loc">📍 Angré 7ème tranche, Abidjan · 2024</div><div class="rc-specs"><span class="rc-spec">450 m²</span><span class="rc-spec">R+1</span><span class="rc-spec">10 mois</span><span class="rc-spec">280 M FCFA</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="devis" class="devis">
+  <div class="container">
+    <div class="devis-inner">
+      <p class="sec-eyebrow" style="text-align:center">Contactez-nous</p>
+      <h2 class="sec-title" style="text-align:center;font-size:2rem">Devis Gratuit en 48h</h2>
+      <p class="sec-sub" style="margin:0 auto 0;text-align:center;max-width:500px">Décrivez votre projet et recevez une estimation précise et gratuite de nos ingénieurs</p>
+      <div class="devis-form">
+        <div class="drow"><div class="dg"><label>Votre nom</label><input class="di" type="text" placeholder="Nom complet"></div><div class="dg"><label>Téléphone</label><input class="di" type="tel" placeholder="+225 00 00 00 00"></div></div>
+        <div class="drow"><div class="dg"><label>Type de projet</label><select class="di ds"><option>Construction neuve</option><option>Rénovation</option><option>Extension</option><option>Aménagement intérieur</option><option>Travaux publics</option></select></div><div class="dg"><label>Budget estimé</label><select class="di ds"><option>Moins de 10M FCFA</option><option>10 – 50M FCFA</option><option>50 – 200M FCFA</option><option>Plus de 200M FCFA</option></select></div></div>
+        <div class="dg" style="margin-bottom:1.25rem"><label>Description du projet</label><textarea class="di" style="min-height:100px;resize:vertical;font-family:inherit" placeholder="Décrivez votre projet : type de bâtiment, superficie souhaitée, localisation, spécifications particulières…"></textarea></div>
+        <button class="dsubmit">OBTENIR MON DEVIS GRATUIT →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="footer-top">
+      <div><div class="footer-logo"><div class="fl-badge">BÂTIR CI</div><div class="fl-text">Construction & BTP</div></div><p class="footer-desc">Entreprise de construction leader en Côte d'Ivoire. Expertise, rigueur, qualité depuis 2010.</p>
+      <div style="font-size:.78rem;color:var(--text3);line-height:1.9"><div>📍 Plateau, Avenue Chardy, Abidjan</div><div>📞 +225 27 22 55 55 55</div><div>✉️ contact@batirci.com</div></div></div>
+      <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="#">Construction</a></li><li><a href="#">Rénovation</a></li><li><a href="#">Architecture</a></li><li><a href="#">Travaux publics</a></li></ul></div>
+      <div class="footer-col"><h4>L'entreprise</h4><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#">Réalisations</a></li><li><a href="#">Certifications</a></li><li><a href="#">Partenaires</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><a href="#">Devis gratuit</a></li><li><a href="#">Nos agences</a></li><li><a href="#">Recrutement</a></li><li><a href="#">Actualités</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">© 2025 BÂTIR CI — Tous droits réservés</span><span class="footer-copy">Site par <span style="color:var(--orange2)">IBIG DIGITAL</span></span></div>
+  </div>
+</footer>
+</body>
+</html>
