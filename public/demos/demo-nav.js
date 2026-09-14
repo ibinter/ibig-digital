@@ -18,7 +18,7 @@
   });
 
   /* ── 2. Fix demo bar : liens "Retour" et "Commander" dynamiques via URL ── */
-  var demoBar = document.getElementById('demo-bar');
+  var demoBar = document.getElementById('demo-bar') || document.querySelector('.demo-bar');
   if (demoBar) {
     var filename = window.location.pathname.split('/').pop().replace('.html', '');
     var dashIdx  = filename.indexOf('-');
