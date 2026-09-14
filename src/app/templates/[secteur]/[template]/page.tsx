@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ArrowRight, ArrowLeft, CheckCircle, Star, Zap } from 'lucide-react'
 import { SECTORS_MAP } from '../../templates-data'
 import TemplatePreviewClient from './TemplatePreviewClient'
+import { getDemoFile } from '@/lib/demo-files'
 
 /* ── Démo par template (ID exact: secteur-templateId) ── */
 const DEMO_FILES: Record<string, string> = {

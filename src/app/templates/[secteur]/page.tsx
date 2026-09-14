@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowRight, ArrowLeft, Star, Zap } from 'lucide-react'
 import { SECTORS_MAP } from '../templates-data'
+import { getDemoFile } from '@/lib/demo-files'
+import TemplateCardIframe from './TemplateCardIframe'
 
 const fmt = (n: number) => n.toLocaleString('fr-FR') + ' FCFA'
 
@@ -89,57 +91,14 @@ export default async function SecteurPage({ params }: { params: Promise<{ secteu
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(320px,1fr))', gap: '1.5rem' }}>
           {s.templates.map((tpl) => (
             <Link key={tpl.id} href={`/templates/${s.id}/${tpl.id}`} className="tpl-card" style={{ textDecoration: 'none', display: 'block' }}>
-              {/* Mock Browser */}
-              <div style={{ background: tpl.bgDark, position: 'relative', overflow: 'hidden', height: '200px', borderBottom: '1px solid rgba(255,255,255,.07)' }}>
-                {/* Glow */}
-                <div style={{ position: 'absolute', top: '-30%', left: '10%', width: '300px', height: '300px', borderRadius: '50%', background: `radial-gradient(circle,${tpl.primaryColor}30 0%,transparent 65%)`, pointerEvents: 'none' }} />
-
-                {/* Browser chrome */}
-                <div style={{ padding: '.5rem .75rem', background: 'rgba(255,255,255,.04)', borderBottom: '1px solid rgba(255,255,255,.06)', display: 'flex', alignItems: 'center', gap: '.4rem' }}>
-                  <div style={{ display: 'flex', gap: '.25rem' }}>
-                    {['#EF4444','#F59E0B','#22C55E'].map((c) => <div key={c} style={{ width: '7px', height: '7px', borderRadius: '50%', background: c, opacity: .6 }} />)}
-                  </div>
-                  <div style={{ flex: 1, background: 'rgba(255,255,255,.05)', borderRadius: '.25rem', padding: '.2rem .5rem', fontSize: '.5rem', color: 'rgba(255,255,255,.2)', fontFamily: 'monospace' }}>
-                    {tpl.id}.votre-site.com
-                  </div>
-                </div>
-
-                {/* Contenu mock */}
-                <div style={{ padding: '.875rem', display: 'flex', flexDirection: 'column', gap: '.5rem', position: 'relative', zIndex: 1 }}>
-                  {/* Nav */}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '.25rem' }}>
-                    <div style={{ width: '45px', height: '5px', borderRadius: '3px', background: `${tpl.primaryColor}80` }} />
-                    <div style={{ display: 'flex', gap: '.4rem' }}>
-                      {[28,22,32,20].map((w,i) => <div key={i} style={{ width: `${w}px`, height: '4px', borderRadius: '2px', background: 'rgba(255,255,255,.12)' }} />)}
-                    </div>
-                    <div style={{ width: '40px', height: '16px', borderRadius: '3px', background: tpl.primaryColor, opacity: .8 }} />
-                  </div>
-                  {/* Hero */}
-                  <div style={{ background: `${tpl.primaryColor}18`, borderRadius: '.5rem', padding: '.75rem', border: `1px solid ${tpl.primaryColor}25` }}>
-                    <div style={{ width: '65%', height: '6px', borderRadius: '3px', background: 'rgba(255,255,255,.5)', marginBottom: '.35rem' }} />
-                    <div style={{ width: '45%', height: '4px', borderRadius: '2px', background: 'rgba(255,255,255,.25)', marginBottom: '.5rem' }} />
-                    <div style={{ display: 'flex', gap: '.4rem' }}>
-                      <div style={{ width: '55px', height: '16px', borderRadius: '3px', background: tpl.primaryColor }} />
-                      <div style={{ width: '45px', height: '16px', borderRadius: '3px', background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.12)' }} />
-                    </div>
-                  </div>
-                  {/* Cards */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '.4rem' }}>
-                    {[0,1,2].map((i) => (
-                      <div key={i} style={{ background: 'rgba(255,255,255,.04)', borderRadius: '.375rem', padding: '.5rem', border: '1px solid rgba(255,255,255,.06)' }}>
-                        <div style={{ width: '100%', height: '18px', borderRadius: '.25rem', background: `${tpl.primaryColor}30`, marginBottom: '.3rem' }} />
-                        <div style={{ width: '80%', height: '3px', borderRadius: '2px', background: 'rgba(255,255,255,.2)', marginBottom: '.15rem' }} />
-                        <div style={{ width: '60%', height: '3px', borderRadius: '2px', background: 'rgba(255,255,255,.1)' }} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Badge style */}
-                <div style={{ position: 'absolute', bottom: '.75rem', right: '.75rem', padding: '.25rem .625rem', borderRadius: '.4rem', background: 'rgba(0,0,0,.6)', border: '1px solid rgba(255,255,255,.12)', fontSize: '.55rem', fontWeight: 700, color: 'rgba(255,255,255,.5)', backdropFilter: 'blur(4px)' }}>
-                  {tpl.style.toUpperCase()}
-                </div>
-              </div>
+              {/* Aperçu réel iframe */}
+              <TemplateCardIframe
+                demoFile={getDemoFile(s.id, tpl.id)}
+                bgDark={tpl.bgDark}
+                primaryColor={tpl.primaryColor}
+                tplId={tpl.id}
+                style={tpl.style}
+              />
 
               {/* Info carte */}
               <div style={{ padding: '1.25rem 1.5rem' }}>
