@@ -50,28 +50,26 @@ export default async function SecteurPage({ params }: { params: Promise<{ secteu
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px)', backgroundSize: '64px 64px' }} />
         </div>
 
-        <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }}>
+        <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem', textAlign: 'center' }}>
           <Link href="/templates" style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', color: 'rgba(255,255,255,.3)', fontSize: '.78rem', textDecoration: 'none', marginBottom: '2rem' }}>
             <ArrowLeft size={13} /> Retour aux templates
           </Link>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-            <div style={{ fontSize: '2.5rem', animation: 'float 3s ease-in-out infinite' }}>{s.icon}</div>
-            <div>
-              <div style={{ display: 'inline-flex', alignItems: 'center', padding: '.3rem .8rem', borderRadius: '9999px', background: `${s.color}15`, border: `1px solid ${s.color}30`, fontSize: '.65rem', fontWeight: 800, color: s.color, letterSpacing: '.08em', marginBottom: '.4rem' }}>
-                {s.templates.length} TEMPLATES DISPONIBLES
-              </div>
-              <h1 style={{ fontSize: 'clamp(1.75rem,4vw,3rem)', fontWeight: 900, color: 'white', letterSpacing: '-.03em', lineHeight: 1.1, margin: 0 }}>
-                {s.label}
-              </h1>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.75rem', marginBottom: '1.5rem' }}>
+            <div style={{ fontSize: '3rem', animation: 'float 3s ease-in-out infinite' }}>{s.icon}</div>
+            <div style={{ display: 'inline-flex', alignItems: 'center', padding: '.3rem .8rem', borderRadius: '9999px', background: `${s.color}15`, border: `1px solid ${s.color}30`, fontSize: '.65rem', fontWeight: 800, color: s.color, letterSpacing: '.08em' }}>
+              {s.templates.length} TEMPLATES DISPONIBLES
             </div>
+            <h1 style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 900, color: 'white', letterSpacing: '-.03em', lineHeight: 1.1, margin: 0 }}>
+              {s.label}
+            </h1>
           </div>
 
-          <p style={{ fontSize: '.95rem', color: 'rgba(255,255,255,.45)', maxWidth: '600px', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+          <p style={{ fontSize: '.95rem', color: 'rgba(255,255,255,.45)', maxWidth: '600px', lineHeight: 1.8, marginBottom: '2rem', margin: '0 auto 2rem' }}>
             {s.description}
           </p>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', padding: '.6rem 1.25rem', borderRadius: '1rem', background: `${s.color}10`, border: `1px solid ${s.color}25` }}>
               <Zap size={14} style={{ color: s.color }} />
               <span style={{ fontSize: '.78rem', color: 'rgba(255,255,255,.6)', fontWeight: 600 }}>
