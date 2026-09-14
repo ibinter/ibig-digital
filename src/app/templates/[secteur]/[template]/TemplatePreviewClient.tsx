@@ -195,7 +195,7 @@ export default function TemplatePreviewClient({ demoFile, primaryColor, tplName,
           {demoUrl ? (
             <div style={{ width: viewportWidth[viewport], maxWidth: '100%', height: '100%', transition: 'width .3s ease', overflow: 'hidden', position: 'relative' }}>
               {/* Scale wrapper */}
-              <div style={{ width: `${100/SCALE}%`, height: `${100/SCALE}%`, transformOrigin: 'top left', transform: `scale(${SCALE})`, position: 'absolute', top: 0, left: 0 }}>
+              <div style={{ width: `${100/SCALE}%`, height: `${100/SCALE}%`, transformOrigin: 'top left', transform: `scale(${SCALE})`, position: 'absolute', top: 0, left: 0, cursor: 'pointer' }}>
                 <iframe
                   key={key}
                   ref={iframeRef}
@@ -203,7 +203,7 @@ export default function TemplatePreviewClient({ demoFile, primaryColor, tplName,
                   onLoad={handleLoad}
                   style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
                   title={`Démo ${tplName}`}
-                  sandbox="allow-same-origin allow-scripts"
+                  sandbox="allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
                 />
               </div>
             </div>
@@ -223,7 +223,7 @@ export default function TemplatePreviewClient({ demoFile, primaryColor, tplName,
       {/* Caption */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '.625rem .875rem', borderRadius: '.625rem', background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.06)' }}>
         <span style={{ fontSize: '.6rem', color: 'rgba(255,255,255,.3)' }}>
-          👁 Aperçu live — le site réel sera personnalisé à vos couleurs et contenu
+          👁 Aperçu live · Pour naviguer dans le site cliquez <strong style={{color:'rgba(255,255,255,.55)'}}>Plein écran</strong> →
         </span>
         {demoUrl && (
           <a href={demoUrl} target="_blank" rel="noopener noreferrer"
