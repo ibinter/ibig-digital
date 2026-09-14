@@ -1,56 +1,67 @@
 import { NextResponse } from 'next/server'
+import { createHmac } from 'crypto'
 import sql from '@/lib/db'
 
-const CINETPAY_VERIFY = 'https://api-checkout.cinetpay.com/v2/payment/check'
+const MONEROO_VERIFY = 'https://api.moneroo.io/v1/payments'
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json()
-    const { cpm_trans_id } = body
+    const rawBody = await request.text()
+    const signature = request.headers.get('x-moneroo-signature') ?? ''
 
-    if (!cpm_trans_id) {
-      return NextResponse.json({ error: 'transaction_id manquant' }, { status: 400 })
+    /* ── Vérification signature HMAC-SHA256 ── */
+    const webhookSecret = process.env.MONEROO_WEBHOOK_SECRET
+    if (webhookSecret) {
+      const expected = createHmac('sha256', webhookSecret).update(rawBody).digest('hex')
+      if (expected !== signature) {
+        console.warn('Webhook Moneroo: signature invalide')
+        return NextResponse.json({ error: 'Signature invalide.' }, { status: 403 })
+      }
     }
 
-    /* Vérification auprès de CinetPay */
-    const res = await fetch(CINETPAY_VERIFY, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        apikey:         process.env.CINETPAY_API_KEY,
-        site_id:        process.env.CINETPAY_SITE_ID,
-        transaction_id: cpm_trans_id,
-      }),
+    const body = JSON.parse(rawBody)
+    const { event, data: payment } = body
+
+    if (!payment?.id) {
+      return NextResponse.json({ error: 'Payload invalide.' }, { status: 400 })
+    }
+
+    /* ── Re-vérification auprès de Moneroo ── */
+    const verifyRes = await fetch(`${MONEROO_VERIFY}/${payment.id}/verify`, {
+      headers: {
+        'Authorization': `Bearer ${process.env.MONEROO_SECRET_KEY}`,
+        'Accept':        'application/json',
+      },
     })
+    const verifyData = await verifyRes.json()
+    const verified = verifyData?.data
 
-    const data = await res.json()
-    const payment = data?.data
-
-    if (!payment) {
+    if (!verified) {
       return NextResponse.json({ error: 'Impossible de vérifier le paiement.' }, { status: 502 })
     }
 
-    const statut = payment.status === 'ACCEPTED' ? 'paye' : 'echec'
+    const statut = verified.status === 'success' ? 'paye' : 'echec'
+    const transactionId = verified.metadata?.transaction_id ?? payment.id
 
     await sql`
       UPDATE commandes
       SET
-        statut              = ${statut},
-        moyen_paiement      = ${payment.payment_method || null},
-        cinetpay_status     = ${payment.status || null},
-        date_paiement       = ${statut === 'paye' ? new Date().toISOString() : null},
-        updated_at          = NOW()
-      WHERE transaction_cinetpay = ${cpm_trans_id}
+        statut          = ${statut},
+        moyen_paiement  = ${verified.capture?.gateway ?? null},
+        cinetpay_status = ${verified.status ?? null},
+        date_paiement   = ${statut === 'paye' ? new Date().toISOString() : null},
+        updated_at      = NOW()
+      WHERE reference = ${transactionId}
+         OR transaction_cinetpay = ${transactionId}
     `
 
     if (statut === 'paye') {
-      /* Notifier par email (best-effort) */
-      notifyAdmin(cpm_trans_id, payment).catch(console.error)
+      notifyAdmin(transactionId, verified).catch(console.error)
     }
 
     return NextResponse.json({ success: true, statut })
   } catch (err) {
-    console.error('Webhook CinetPay error:', err)
+    console.error('Webhook Moneroo error:', err)
     return NextResponse.json({ error: 'Erreur serveur.' }, { status: 500 })
   }
 }
@@ -59,25 +70,26 @@ async function notifyAdmin(transactionId: string, payment: Record<string, unknow
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) return
 
+  const customer = payment.customer as Record<string, string> | undefined
+
   await fetch('https://api.resend.com/emails', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
     body: JSON.stringify({
-      from: 'IBIG DIGITAL <noreply@ibig-digital.com>',
-      to:   ['contact@ibig-digital.com'],
+      from:    'IBIG DIGITAL <noreply@ibig-digital.com>',
+      to:      ['contact@ibig-digital.com'],
       subject: `✅ Paiement reçu — ${transactionId}`,
       html: `<h2>Nouveau paiement confirmé</h2>
         <p><strong>Référence :</strong> ${transactionId}</p>
         <p><strong>Montant :</strong> ${payment.amount} XOF</p>
-        <p><strong>Méthode :</strong> ${payment.payment_method}</p>
-        <p><strong>Client :</strong> ${payment.customer_name} ${payment.customer_surname}</p>
-        <p><strong>Email :</strong> ${payment.customer_email}</p>
-        <p><strong>Téléphone :</strong> ${payment.customer_phone_number}</p>`,
+        <p><strong>Méthode :</strong> ${(payment.capture as Record<string, unknown>)?.gateway ?? 'N/A'}</p>
+        <p><strong>Client :</strong> ${customer?.first_name} ${customer?.last_name}</p>
+        <p><strong>Email :</strong> ${customer?.email}</p>
+        <p><strong>Téléphone :</strong> ${customer?.phone ?? 'N/A'}</p>`,
     }),
   })
 }
 
-/* CinetPay peut aussi envoyer un GET pour vérifier que le endpoint existe */
 export async function GET() {
   return NextResponse.json({ status: 'ok' })
 }
