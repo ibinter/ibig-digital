@@ -421,5 +421,6 @@ footer{background:#050505;color:#fff;padding:70px 32px 28px;border-top:1px solid
 document.querySelectorAll('.ctab').forEach(b=>{b.addEventListener('click',function(){document.querySelectorAll('.ctab').forEach(x=>x.classList.remove('on'));this.classList.add('on')})});
 document.querySelectorAll('.btn-panier').forEach(b=>{b.addEventListener('click',function(){const orig=this.textContent;this.textContent='✓ Ajouté';this.style.background='var(--gold)';this.style.color='#000';setTimeout(()=>{this.textContent=orig;this.style.background='';this.style.color=''},1800)})});
 </script>
+<script src="/demos/demo-nav.js"></script>
 </body>
 </html>
