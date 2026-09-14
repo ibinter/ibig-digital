@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Mail, Phone, MapPin, ArrowRight, Facebook, Instagram, Linkedin, Youtube } from 'lucide-react'
+import { Mail, Phone, MapPin, ArrowRight, Facebook, Instagram, Linkedin, Twitter } from 'lucide-react'
 import { SITE } from '@/lib/constants'
 
 const SERVICES = [
@@ -35,7 +35,7 @@ const SOCIAL = [
   { icon: Facebook,  href: 'https://www.facebook.com/ibigdigital',  label: 'Facebook' },
   { icon: Instagram, href: 'https://www.instagram.com/ibigdigital', label: 'Instagram' },
   { icon: Linkedin,  href: 'https://www.linkedin.com/company/ibig-digital', label: 'LinkedIn' },
-  { icon: Youtube,   href: 'https://www.youtube.com/@ibigdigital',  label: 'YouTube' },
+  { icon: Twitter,   href: 'https://x.com/ibigdigital',             label: 'X (Twitter)' },
 ]
 
 export default function Footer() {
