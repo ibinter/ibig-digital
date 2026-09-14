@@ -56,13 +56,13 @@ export default function Header() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden xl:flex items-center gap-0.5">
+          <nav className="hidden lg:flex items-center gap-0">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  'px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap',
+                  'px-2.5 py-1.5 rounded-lg text-[13px] font-medium transition-all whitespace-nowrap',
                   scrolled
                     ? 'text-gray-700 hover:text-blue-900 hover:bg-blue-50'
                     : 'text-blue-50 hover:text-white hover:bg-white/10'
@@ -74,7 +74,7 @@ export default function Header() {
           </nav>
 
           {/* CTA */}
-          <div className="hidden xl:flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-2">
             {/* Bouton Kits */}
             <a
               href="https://kits.intermark-business.com/"
