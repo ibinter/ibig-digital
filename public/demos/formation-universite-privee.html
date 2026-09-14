@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -7,6 +7,7 @@
 <style>
 :root{--blue:#1D4ED8;--navy:#0F2B5B;--gold:#D97706;--light:#F0F4FF;--white:#fff;--text:#1E293B;--gray:#64748B;--border:#E2E8F0;--shadow:0 4px 24px rgba(29,78,216,0.12)}
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
 #demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
 #demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
@@ -166,14 +167,14 @@ footer{background:#06111f;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
     </a>
     <ul class="nav-links">
       <li><a href="#">Facultés</a></li>
-      <li><a href="#">Admissions</a></li>
-      <li><a href="#">Recherche</a></li>
+      <li><a href="#admissions">Admissions</a></li>
+      <li><a href="#recherche">Recherche</a></li>
       <li><a href="#">Vie étudiante</a></li>
-      <li><a href="#">International</a></li>
+      <li><a href="#testi">International</a></li>
     </ul>
     <div class="nav-actions">
       <a href="#" class="nav-login">Espace étudiant</a>
-      <a href="#" class="nav-apply">Candidater</a>
+      <a href="#admissions" class="nav-apply">Candidater</a>
     </div>
   </div>
 </nav>
@@ -199,7 +200,7 @@ footer{background:#06111f;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="faculties">
+<section id="faculties" class="faculties">
   <div class="faculties-inner">
     <div class="section-tag">Nos Facultés</div>
     <h2 class="section-title">6 Facultés d'Excellence</h2>
@@ -275,7 +276,7 @@ footer{background:#06111f;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="admissions">
+<section id="admissions" class="admissions">
   <div class="admissions-inner">
     <div>
       <div class="section-tag">Admissions 2025</div>
@@ -300,7 +301,7 @@ footer{background:#06111f;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="vie_etudiante" style="background:var(--navy);padding:80px 24px">
+<section id="vie-etudiante" class="vie_etudiante" style="background:var(--navy);padding:80px 24px">
   <div style="max-width:1200px;margin:0 auto">
     <div style="display:inline-block;background:rgba(217,119,6,0.2);color:var(--gold);padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Vie Étudiante</div>
     <h2 style="font-size:38px;font-weight:800;color:#fff;margin-bottom:14px">Un Campus Vivant, Une Communauté</h2>
@@ -313,7 +314,7 @@ footer{background:#06111f;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="recherche">
+<section id="recherche" class="recherche">
   <div class="section-inner">
     <div class="section-tag">Recherche & Innovation</div>
     <h2 class="section-title">À la Frontière du Savoir</h2>
@@ -327,7 +328,7 @@ footer{background:#06111f;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="testi">
+<section id="testi" class="testi">
   <div class="section-inner">
     <div class="section-tag">Témoignages</div>
     <h2 class="section-title">La Voix de Nos Étudiants</h2>
@@ -351,7 +352,7 @@ footer{background:#06111f;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="cta-section">
+<section id="contact" class="cta-section">
   <h2>Votre Avenir Commence Ici</h2>
   <p>Candidatures 2025-2026 ouvertes. Rejoignez 12 400 étudiants de 24 nationalités.</p>
   <div class="cta-btns">
@@ -369,8 +370,8 @@ footer{background:#06111f;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
         <div class="footer-contact">📍 Boulevard du 13 Janvier, Lomé, Togo<br>📞 +228 22 20 00 00<br>✉️ admissions@upe-afrika.tg</div>
       </div>
       <div><div class="footer-heading">Facultés</div><ul class="footer-links"><li><a href="#">Droit</a></li><li><a href="#">Médecine</a></li><li><a href="#">Ingénierie</a></li><li><a href="#">Gestion</a></li><li><a href="#">Lettres</a></li><li><a href="#">Sciences</a></li></ul></div>
-      <div><div class="footer-heading">Admissions</div><ul class="footer-links"><li><a href="#">Candidater</a></li><li><a href="#">Conditions d'accès</a></li><li><a href="#">Bourses</a></li><li><a href="#">Frais de scolarité</a></li><li><a href="#">International</a></li></ul></div>
-      <div><div class="footer-heading">Université</div><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#">Gouvernance</a></li><li><a href="#">Recherche</a></li><li><a href="#">Alumni</a></li><li><a href="#">Presse</a></li></ul></div>
+      <div><div class="footer-heading">Admissions</div><ul class="footer-links"><li><a href="#">Candidater</a></li><li><a href="#">Conditions d'accès</a></li><li><a href="#">Bourses</a></li><li><a href="#">Frais de scolarité</a></li><li><a href="#testi">International</a></li></ul></div>
+      <div><div class="footer-heading">Université</div><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#">Gouvernance</a></li><li><a href="#recherche">Recherche</a></li><li><a href="#">Alumni</a></li><li><a href="#">Presse</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <span>© 2025 Université Privée d'Excellence Afrika · Accrédité MESRS Togo</span>

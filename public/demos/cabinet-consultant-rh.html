@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -7,6 +7,7 @@
 <style>
 :root{--violet:#6D28D9;--purple:#7C3AED;--light:#F5F3FF;--white:#fff;--text:#1F2937;--gray:#6B7280;--border:#E5E7EB;--dark:#0f0621;--pink:#EC4899;--shadow:0 4px 24px rgba(109,40,217,0.12)}
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
 #demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
 #demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
@@ -156,13 +157,13 @@ footer{background:#0a0118;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
       <div class="logo-text">RH Consulting Africa<span>Conseil en Ressources Humaines</span></div>
     </a>
     <ul class="nav-links">
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Recrutement</a></li>
-      <li><a href="#">Formation</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#services">Recrutement</a></li>
+      <li><a href="#services">Formation</a></li>
       <li><a href="#">Notre équipe</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#" class="nav-cta">Audit RH gratuit</a>
+    <a href="#contact" class="nav-cta">Audit RH gratuit</a>
   </div>
 </nav>
 
@@ -194,7 +195,7 @@ footer{background:#0a0118;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </section>
 
-<section class="services">
+<section id="services" class="services">
   <div class="section-inner">
     <div class="section-tag">Nos Services</div>
     <h2 class="section-title">Une Offre RH Complète</h2>
@@ -262,7 +263,7 @@ footer{background:#0a0118;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </section>
 
-<section class="equipe">
+<section id="equipe" class="equipe">
   <div class="section-inner">
     <div class="section-tag">Notre Équipe</div>
     <h2 class="section-title">Des Consultants RH Expérimentés</h2>
@@ -321,7 +322,7 @@ footer{background:#0a0118;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </section>
 
-<section class="testi">
+<section id="testi" class="testi">
   <div class="section-inner">
     <div class="section-tag">Témoignages Clients</div>
     <h2 class="section-title">Ils Nous Font Confiance</h2>
@@ -345,7 +346,7 @@ footer{background:#0a0118;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </section>
 
-<section class="cta-section">
+<section id="contact" class="cta-section">
   <div class="section-inner">
     <h2>Auditez vos RH Gratuitement</h2>
     <p>Notre audit RH flash (2h) identifie vos points d'amélioration prioritaires. Gratuit, sans engagement.</p>
@@ -364,9 +365,9 @@ footer{background:#0a0118;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
         <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,0.35);margin-bottom:18px">Cabinet de conseil en Ressources Humaines présent en Côte d'Ivoire, Sénégal, Mali, Burkina Faso et Cameroun depuis 2007. 580+ entreprises clientes.</p>
         <div style="font-size:14px;line-height:2;color:rgba(255,255,255,0.4)">📍 Cocody, Abidjan, Côte d'Ivoire<br>📞 +225 20 30 00 00<br>✉️ contact@rhconsulting-africa.ci</div>
       </div>
-      <div><div class="footer-heading">Services</div><ul class="footer-links"><li><a href="#">Recrutement</a></li><li><a href="#">Gestion paie</a></li><li><a href="#">Formation</a></li><li><a href="#">Droit du travail</a></li><li><a href="#">Transformation RH</a></li></ul></div>
+      <div><div class="footer-heading">Services</div><ul class="footer-links"><li><a href="#services">Recrutement</a></li><li><a href="#">Gestion paie</a></li><li><a href="#services">Formation</a></li><li><a href="#">Droit du travail</a></li><li><a href="#">Transformation RH</a></li></ul></div>
       <div><div class="footer-heading">Cabinet</div><ul class="footer-links"><li><a href="#">Notre équipe</a></li><li><a href="#">Secteurs</a></li><li><a href="#">Références</a></li><li><a href="#">Actualités RH</a></li></ul></div>
-      <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="#">Audit gratuit</a></li><li><a href="#">Devis en ligne</a></li><li><a href="#">Espace client</a></li><li><a href="#">Recrutement</a></li></ul></div>
+      <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="#">Audit gratuit</a></li><li><a href="#">Devis en ligne</a></li><li><a href="#">Espace client</a></li><li><a href="#services">Recrutement</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <span>© 2025 RH Consulting Africa · 18 ans d'expertise RH en Afrique</span>

@@ -18,6 +18,7 @@
   --dark-orange: #CC5500;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
 
 /* DEMO BAR */
@@ -149,25 +150,25 @@ footer{background:#1A1A1A;color:#fff;padding:48px 5% 24px}
   <div class="nav-inner">
     <div class="logo">Chez <span>Fatou</span></div>
     <ul class="nav-links">
-      <li><a href="#">Menu</a></li>
-      <li><a href="#">À emporter</a></li>
-      <li><a href="#">Livraison</a></li>
-      <li><a href="#">Galerie</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#livraison">À emporter</a></li>
+      <li><a href="#livraison">Livraison</a></li>
+      <li><a href="#temoignages">Galerie</a></li>
+      <li><a href="#livraison">Contact</a></li>
     </ul>
-    <a href="#" class="nav-cta">Commander</a>
+    <a href="#livraison" class="nav-cta">Commander</a>
     <div class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#">Menu</a>
-    <a href="#">À emporter</a>
-    <a href="#">Livraison</a>
-    <a href="#">Galerie</a>
-    <a href="#">Commander maintenant</a>
+    <a href="#menu">Menu</a>
+    <a href="#livraison">À emporter</a>
+    <a href="#livraison">Livraison</a>
+    <a href="#temoignages">Galerie</a>
+    <a href="#livraison">Commander maintenant</a>
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="hero">
   <div class="hero-inner">
     <div>
       <div class="hero-badge">🔥 Ouvert 7j/7 · Abidjan Cocody</div>
@@ -192,7 +193,7 @@ footer{background:#1A1A1A;color:#fff;padding:48px 5% 24px}
   </div>
 </section>
 
-<section class="menu-section">
+<section class="menu-section" id="menu">
   <div style="max-width:1100px;margin:0 auto">
     <div class="section-tag">Notre Menu</div>
     <h2 class="section-title">Choisissez votre <span>délice</span></h2>
@@ -219,7 +220,7 @@ footer{background:#1A1A1A;color:#fff;padding:48px 5% 24px}
   <p>Plat + Boisson + Dessert à seulement <strong>3 500 FCFA</strong> de 12h à 14h</p>
 </div>
 
-<section class="testimonials-section">
+<section class="testimonials-section" id="temoignages">
   <div style="max-width:1100px;margin:0 auto">
     <div class="section-tag">Avis clients</div>
     <h2 class="section-title">Ils adorent <span>Chez Fatou</span></h2>
@@ -231,7 +232,7 @@ footer{background:#1A1A1A;color:#fff;padding:48px 5% 24px}
   </div>
 </section>
 
-<section class="delivery-section">
+<section class="delivery-section" id="livraison">
   <div class="delivery-inner">
     <div>
       <h2>Commandez, on livre chez vous! 🛵</h2>

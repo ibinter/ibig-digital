@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -17,6 +17,7 @@
   --dark:#0A1F12;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
 .demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
@@ -194,20 +195,20 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   <div class="nav-inner">
     <div class="logo">MicroFinance<span>Plus</span></div>
     <ul class="nav-links">
-      <li><a href="#">Épargne</a></li>
-      <li><a href="#">Crédit</a></li>
-      <li><a href="#">Mobile Money</a></li>
-      <li><a href="#">Agences</a></li>
-      <li><a href="#">À propos</a></li>
+      <li><a href="#epargne">Épargne</a></li>
+      <li><a href="#credit">Crédit</a></li>
+      <li><a href="#mobile-money">Mobile Money</a></li>
+      <li><a href="#agences">Agences</a></li>
+      <li><a href="#a-propos">À propos</a></li>
     </ul>
     <div class="nav-btns">
-      <a href="#" class="btn-outline">Se connecter</a>
-      <a href="#" class="btn-fill">Ouvrir un compte</a>
+      <a href="#connexion" class="btn-outline">Se connecter</a>
+      <a href="#ouverture" class="btn-fill">Ouvrir un compte</a>
     </div>
   </div>
 </nav>
 
-<section class="hero">
+<section id="connexion" class="hero">
   <div class="hero-pattern"></div>
   <div class="hero-circle"></div>
   <div class="hero-circle2"></div>
@@ -250,7 +251,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="stats-section">
+<section id="mobile-money" class="stats-section">
   <div class="stats-grid">
     <div><div class="stat-n">85 000+</div><div class="stat-l">Clients actifs</div></div>
     <div><div class="stat-n">28 Mds</div><div class="stat-l">FCFA décaissés</div></div>
@@ -259,7 +260,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="produits-section">
+<section id="epargne" class="produits-section">
   <div class="si">
     <div class="sh">
       <div class="stag">Nos produits financiers</div>
@@ -314,7 +315,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="services-section">
+<section id="credit" class="services-section">
   <div class="si">
     <div class="sh center">
       <div class="stag">Nos services</div>
@@ -333,7 +334,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="agences-section">
+<section id="agences" class="agences-section">
   <div class="si">
     <div class="sh">
       <div class="stag">Réseau d'agences</div>
@@ -353,7 +354,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="testis-section">
+<section id="a-propos" class="testis-section">
   <div class="si">
     <div class="sh center">
       <div class="stag">Témoignages clients</div>
@@ -367,7 +368,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="cta-section">
+<section id="ouverture" class="cta-section">
   <h2>Votre projet mérite un <span>financement</span></h2>
   <p>Rejoignez 85 000 clients qui font confiance à MicroFinance Plus</p>
   <div class="cta-btns">
@@ -384,7 +385,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
       <div class="agrément">🏦 Agréé BCEAO N°2019/CI/001</div>
       <div class="f-socs" style="margin-top:12px"><a href="#" class="f-soc">f</a><a href="#" class="f-soc">in</a><a href="#" class="f-soc">ig</a></div>
     </div>
-    <div class="fc"><h5>Produits</h5><ul><li><a href="#">Crédit PME</a></li><li><a href="#">Épargne dynamique</a></li><li><a href="#">Mobile Money</a></li><li><a href="#">Crédit logement</a></li></ul></div>
+    <div class="fc"><h5>Produits</h5><ul><li><a href="#">Crédit PME</a></li><li><a href="#">Épargne dynamique</a></li><li><a href="#mobile-money">Mobile Money</a></li><li><a href="#">Crédit logement</a></li></ul></div>
     <div class="fc"><h5>Services</h5><ul><li><a href="#">Crédit agricole</a></li><li><a href="#">Crédit éducation</a></li><li><a href="#">Transfert international</a></li><li><a href="#">Conseil financier</a></li></ul></div>
     <div class="fc"><h5>Contact</h5><ul><li><a href="#">📍 Plateau, Abidjan</a></li><li><a href="#">📞 +225 27 30 44 55 66</a></li><li><a href="#">✉️ contact@microfinanceplus.ci</a></li><li><a href="#">📱 Application Mobile</a></li></ul></div>
   </div>

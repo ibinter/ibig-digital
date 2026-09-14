@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -7,6 +7,7 @@
 <style>
 :root{--green:#059669;--orange:#EA580C;--teal:#0D9488;--white:#fff;--light:#F0FDF4;--text:#111827;--gray:#6B7280;--border:#E5E7EB;--shadow:0 4px 24px rgba(5,150,105,0.12)}
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
 #demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
 #demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
@@ -179,15 +180,15 @@ footer{background:#0d1f17;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
       <div class="logo-text">Alliance Langues Africa<span>Centre de langues certifié · Abidjan</span></div>
     </a>
     <ul class="nav-links">
-      <li><a href="#">Langues</a></li>
-      <li><a href="#">Certifications</a></li>
-      <li><a href="#">Cours en ligne</a></li>
-      <li><a href="#">Professeurs</a></li>
-      <li><a href="#">Tarifs</a></li>
+      <li><a href="#langues">Langues</a></li>
+      <li><a href="#certif">Certifications</a></li>
+      <li><a href="#modes">Cours en ligne</a></li>
+      <li><a href="#profs">Professeurs</a></li>
+      <li><a href="#testi">Tarifs</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="#" class="nav-login">Mon espace</a>
-      <a href="#" class="nav-cta">Cours d'essai gratuit</a>
+      <a href="#contact" class="nav-login">Mon espace</a>
+      <a href="#contact" class="nav-cta">Cours d'essai gratuit</a>
     </div>
   </div>
 </nav>
@@ -231,7 +232,7 @@ footer{background:#0d1f17;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </div>
 
-<section class="langues">
+<section id="langues" class="langues">
   <div class="section-inner">
     <div class="section-tag">Nos Langues</div>
     <h2 class="section-title">6 Langues, des Dizaines de Niveaux</h2>
@@ -274,7 +275,7 @@ footer{background:#0d1f17;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="certif">
+<section id="certif" class="certif">
   <div class="section-inner">
     <div class="section-tag">Certifications</div>
     <h2 class="section-title">Certifications Internationales Reconnues</h2>
@@ -288,7 +289,7 @@ footer{background:#0d1f17;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="modes">
+<section id="modes" class="modes">
   <div class="section-inner">
     <div class="section-tag">Modalités</div>
     <h2 class="section-title">Apprenez où Vous Voulez</h2>
@@ -300,7 +301,7 @@ footer{background:#0d1f17;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="profs">
+<section id="profs" class="profs">
   <div class="section-inner">
     <div class="section-tag">Notre Équipe</div>
     <h2 class="section-title">Professeurs Natifs & Certifiés</h2>
@@ -314,7 +315,7 @@ footer{background:#0d1f17;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="testi">
+<section id="testi" class="testi">
   <div class="section-inner">
     <div class="section-tag">Avis Apprenants</div>
     <h2 class="section-title">Ils Parlent, Ils Témoignent</h2>
@@ -338,7 +339,7 @@ footer{background:#0d1f17;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="cta-section">
+<section id="contact" class="cta-section">
   <div class="section-inner">
     <h2>Un Cours d'Essai 100% Gratuit !</h2>
     <p>Commencez votre aventure linguistique aujourd'hui. Premier cours offert, sans engagement.</p>
@@ -359,7 +360,7 @@ footer{background:#0d1f17;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
       </div>
       <div><div class="footer-heading">Langues</div><ul class="footer-links"><li><a href="#">Anglais</a></li><li><a href="#">Mandarin</a></li><li><a href="#">Arabe</a></li><li><a href="#">Espagnol</a></li><li><a href="#">Portugais</a></li></ul></div>
       <div><div class="footer-heading">Certifications</div><ul class="footer-links"><li><a href="#">IELTS</a></li><li><a href="#">TOEFL</a></li><li><a href="#">HSK</a></li><li><a href="#">DELE</a></li><li><a href="#">DELF/DALF</a></li></ul></div>
-      <div><div class="footer-heading">Centre</div><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#">Cours en ligne</a></li><li><a href="#">Entreprises</a></li><li><a href="#">Recrutement</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><div class="footer-heading">Centre</div><ul class="footer-links"><li><a href="#">À propos</a></li><li><a href="#modes">Cours en ligne</a></li><li><a href="#">Entreprises</a></li><li><a href="#">Recrutement</a></li><li><a href="#">Contact</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <span>© 2025 Alliance Langues Africa · Agréé Ministère de l'Éducation CI</span>

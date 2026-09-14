@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -17,6 +17,7 @@
   --light-bg:#F0FBFF;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{font-family:'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
@@ -196,15 +197,15 @@ footer p{font-size:14px;line-height:1.7;margin-bottom:20px;}
   <div class="nav-inner">
     <div class="logo">Paradise<span>Resort</span></div>
     <ul class="nav-links">
-      <li><a href="#">Bungalows</a></li>
-      <li><a href="#">Activités</a></li>
-      <li><a href="#">Packages</a></li>
-      <li><a href="#">Restaurant</a></li>
-      <li><a href="#">Galerie</a></li>
+      <li><a href="#bungalows">Bungalows</a></li>
+      <li><a href="#activites">Activités</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#restaurant">Restaurant</a></li>
+      <li><a href="#galerie">Galerie</a></li>
     </ul>
     <div class="nav-right">
-      <a href="#" class="btn-nav btn-nav-outline">Brochure</a>
-      <a href="#" class="btn-nav btn-nav-fill">Réserver</a>
+      <a href="#reservation" class="btn-nav btn-nav-outline">Brochure</a>
+      <a href="#reservation" class="btn-nav btn-nav-fill">Réserver</a>
     </div>
   </div>
 </nav>
@@ -253,7 +254,7 @@ footer p{font-size:14px;line-height:1.7;margin-bottom:20px;}
   <div class="hero-waves"><svg viewBox="0 0 1440 120" class="wave-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z"/></svg></div>
 </section>
 
-<section class="packages-section">
+<section id="packages" class="packages-section">
   <div class="section-inner">
     <div class="section-header centered">
       <div class="section-eyebrow">Nos offres</div>
@@ -314,7 +315,7 @@ footer p{font-size:14px;line-height:1.7;margin-bottom:20px;}
   </div>
 </section>
 
-<section class="activities-section">
+<section id="activites" class="activities-section">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-eyebrow">Activités</div>
@@ -330,7 +331,7 @@ footer p{font-size:14px;line-height:1.7;margin-bottom:20px;}
   </div>
 </section>
 
-<section class="bungalows-section">
+<section id="bungalows" class="bungalows-section">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-eyebrow">Hébergements</div>
@@ -378,7 +379,7 @@ footer p{font-size:14px;line-height:1.7;margin-bottom:20px;}
   </div>
 </section>
 
-<section class="gallery-section">
+<section id="galerie" class="gallery-section">
   <div class="section-inner">
     <div class="section-header centered">
       <div class="section-eyebrow">Galerie</div>
@@ -395,7 +396,7 @@ footer p{font-size:14px;line-height:1.7;margin-bottom:20px;}
   </div>
 </section>
 
-<section class="included-section">
+<section id="restaurant" class="included-section">
   <div class="section-inner">
     <div class="section-header centered">
       <div class="section-eyebrow">All-Inclusive</div>
@@ -413,7 +414,7 @@ footer p{font-size:14px;line-height:1.7;margin-bottom:20px;}
   </div>
 </section>
 
-<section class="cta-section">
+<section id="reservation" class="cta-section">
   <h2>Partez au paradis dès aujourd'hui</h2>
   <p>Offres limitées — réservez maintenant et économisez jusqu'à 20%</p>
   <div class="cta-btns">

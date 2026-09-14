@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -7,6 +7,7 @@
 <style>
 :root{--orange:#EA580C;--dark-orange:#C2410C;--black:#0A0A0A;--dark:#111827;--text:#1F2937;--gray:#6B7280;--light:#FFF7ED;--white:#fff;--border:#E5E7EB;--shadow:0 4px 24px rgba(234,88,12,0.14)}
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
 #demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
 #demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
@@ -157,10 +158,10 @@ footer{background:var(--black);padding:56px 24px 24px;color:rgba(255,255,255,0.6
       <div class="logo-text">CoachPro Africa<span>Orientation & Développement Carrière</span></div>
     </a>
     <ul class="nav-links">
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Coachs</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#coachs">Coachs</a></li>
       <li><a href="#">Méthode</a></li>
-      <li><a href="#">Tarifs</a></li>
+      <li><a href="#services">Tarifs</a></li>
       <li><a href="#">Témoignages</a></li>
     </ul>
     <a href="#" class="nav-cta">Séance gratuite</a>
@@ -205,7 +206,7 @@ footer{background:var(--black);padding:56px 24px 24px;color:rgba(255,255,255,0.6
   </div>
 </div>
 
-<section class="services">
+<section id="services" class="services">
   <div class="section-inner">
     <div class="section-tag">Nos Services</div>
     <h2 class="section-title">Un Accompagnement Sur-Mesure</h2>
@@ -254,7 +255,7 @@ footer{background:var(--black);padding:56px 24px 24px;color:rgba(255,255,255,0.6
   </div>
 </section>
 
-<section class="process">
+<section id="process" class="process">
   <div class="section-inner">
     <div class="section-tag">Notre Méthode</div>
     <h2 class="section-title">La Méthode CoachPro 5 Étapes</h2>
@@ -269,7 +270,7 @@ footer{background:var(--black);padding:56px 24px 24px;color:rgba(255,255,255,0.6
   </div>
 </section>
 
-<section class="coachs">
+<section id="coachs" class="coachs">
   <div class="section-inner">
     <div class="section-tag">Nos Coachs</div>
     <h2 class="section-title">Des Experts de Votre Réussite</h2>
@@ -309,7 +310,7 @@ footer{background:var(--black);padding:56px 24px 24px;color:rgba(255,255,255,0.6
   </div>
 </section>
 
-<section class="temoignages">
+<section id="temoignages" class="temoignages">
   <div class="section-inner">
     <div class="section-tag">Témoignages</div>
     <h2 class="section-title">Leurs Succès, Notre Fierté</h2>
@@ -334,7 +335,7 @@ footer{background:var(--black);padding:56px 24px 24px;color:rgba(255,255,255,0.6
   </div>
 </section>
 
-<section class="cta-section">
+<section id="contact" class="cta-section">
   <div class="cta-inner">
     <h2>Votre Prochaine Étape Commence Ici</h2>
     <p>Première séance de 30 minutes 100% gratuite, sans engagement. Découvrez comment nous pouvons transformer votre carrière.</p>

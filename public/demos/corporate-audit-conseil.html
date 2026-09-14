@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -17,6 +17,7 @@
   --white:#FFFFFF;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
 .demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
@@ -185,13 +186,13 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   <div class="nav-inner">
     <div class="logo">CASA <span>Africa</span> Conseil</div>
     <ul class="nav-links">
-      <li><a href="#">Audit & Finance</a></li>
-      <li><a href="#">Conseil Stratégique</a></li>
-      <li><a href="#">Digital</a></li>
-      <li><a href="#">Études</a></li>
-      <li><a href="#">À propos</a></li>
+      <li><a href="#services">Audit & Finance</a></li>
+      <li><a href="#conseil">Conseil Stratégique</a></li>
+      <li><a href="#digital">Digital</a></li>
+      <li><a href="#etudes">Études</a></li>
+      <li><a href="#a-propos">À propos</a></li>
     </ul>
-    <a href="#" class="btn-nav">Prendre RDV</a>
+    <a href="#rdv" class="btn-nav">Prendre RDV</a>
   </div>
 </nav>
 
@@ -232,7 +233,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="services-section">
+<section id="services" class="services-section">
   <div class="si">
     <div class="sh">
       <div class="stag">Nos expertises</div>
@@ -250,7 +251,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="approche-section">
+<section id="conseil" class="approche-section">
   <div class="si">
     <div class="approche-grid">
       <div>
@@ -280,7 +281,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="secteurs-section">
+<section id="digital" class="secteurs-section">
   <div class="si">
     <div class="sh center">
       <div class="stag">Secteurs</div>
@@ -299,7 +300,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="refs-section">
+<section id="etudes" class="refs-section">
   <div class="si">
     <div class="sh center">
       <div class="stag">Références clients</div>
@@ -321,7 +322,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="testis-section">
+<section id="a-propos" class="testis-section">
   <div class="si">
     <div class="sh center">
       <div class="stag">Témoignages</div>
@@ -335,7 +336,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="cta-section">
+<section id="rdv" class="cta-section">
   <h2>Parlons de <span>votre projet</span></h2>
   <p>Premier entretien gratuit · Réponse sous 24h</p>
   <div class="cta-btns">

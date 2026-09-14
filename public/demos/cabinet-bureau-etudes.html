@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -7,6 +7,7 @@
 <style>
 :root{--blue:#1E40AF;--navy:#0F1F4A;--sky:#0EA5E9;--light:#F0F6FF;--white:#fff;--text:#0F172A;--gray:#64748B;--border:#CBD5E1;--shadow:0 4px 24px rgba(14,32,74,0.10);--accent:#F59E0B}
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
 #demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
 #demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
@@ -166,13 +167,13 @@ footer{background:#050d1a;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
       <div class="logo-text">BET Afrique<small>Bureau d'Études Techniques</small></div>
     </a>
     <ul class="nav-links">
-      <li><a href="#">Domaines</a></li>
-      <li><a href="#">Projets</a></li>
+      <li><a href="#expertises">Domaines</a></li>
+      <li><a href="#projets">Projets</a></li>
       <li><a href="#">Ingénieurs</a></li>
-      <li><a href="#">Certifications</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#process">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#" class="nav-cta">Demander un devis</a>
+    <a href="#contact" class="nav-cta">Demander un devis</a>
   </div>
 </nav>
 
@@ -219,7 +220,7 @@ footer{background:#050d1a;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </div>
 
-<section class="expertises">
+<section id="expertises" class="expertises">
   <div class="section-inner">
     <div class="section-tag">Domaines d'Expertise</div>
     <h2 class="section-title">6 Pôles Techniques d'Excellence</h2>
@@ -295,7 +296,7 @@ footer{background:#050d1a;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </section>
 
-<section class="projets">
+<section id="projets" class="projets">
   <div class="section-inner">
     <div class="section-tag">Références Projets</div>
     <h2 class="section-title">280+ Projets Réalisés en Afrique</h2>
@@ -344,7 +345,7 @@ footer{background:#050d1a;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </section>
 
-<section class="ingenieur">
+<section id="ingenieur" class="ingenieur">
   <div class="section-inner">
     <div class="section-tag">Direction Technique</div>
     <h2 class="section-title">Des Ingénieurs d'Expérience</h2>
@@ -381,7 +382,7 @@ footer{background:#050d1a;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </section>
 
-<section class="process">
+<section id="process" class="process">
   <div class="section-inner">
     <div class="section-tag">Notre Démarche</div>
     <h2 class="section-title">Rigueur et Méthode à Chaque Étape</h2>
@@ -394,7 +395,7 @@ footer{background:#050d1a;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </section>
 
-<section class="testi">
+<section id="testi" class="testi">
   <div class="section-inner">
     <div class="section-tag">Témoignages Maîtres d'Ouvrage</div>
     <h2 class="section-title">Ce Que Disent Nos Clients</h2>
@@ -418,7 +419,7 @@ footer{background:#050d1a;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </section>
 
-<section class="cta-section">
+<section id="contact" class="cta-section">
   <div class="section-inner">
     <h2>Votre Projet d'Infrastructure Commence Ici</h2>
     <p>Expertise technique certifiée, 280+ références, 22 ans d'expérience africaine. Demandez votre devis sous 48h.</p>
@@ -438,7 +439,7 @@ footer{background:#050d1a;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
         <div style="font-size:14px;line-height:2;color:rgba(255,255,255,0.4)">📍 Plateau, Abidjan, Côte d'Ivoire<br>📞 +225 20 22 00 00<br>✉️ contact@bet-afrique.ci</div>
       </div>
       <div><div class="footer-heading">Domaines</div><ul class="footer-links"><li><a href="#">Génie Civil</a></li><li><a href="#">Énergie</a></li><li><a href="#">Hydraulique</a></li><li><a href="#">Architecture</a></li><li><a href="#">Environnement</a></li></ul></div>
-      <div><div class="footer-heading">Cabinet</div><ul class="footer-links"><li><a href="#">Projets références</a></li><li><a href="#">Certifications</a></li><li><a href="#">L'équipe</a></li><li><a href="#">Partenaires</a></li></ul></div>
+      <div><div class="footer-heading">Cabinet</div><ul class="footer-links"><li><a href="#">Projets références</a></li><li><a href="#process">Certifications</a></li><li><a href="#">L'équipe</a></li><li><a href="#">Partenaires</a></li></ul></div>
       <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="#">Demande de devis</a></li><li><a href="#">Offres d'emploi</a></li><li><a href="#">Sous-traitance</a></li><li><a href="#">Plan d'accès</a></li></ul></div>
     </div>
     <div class="footer-bottom">

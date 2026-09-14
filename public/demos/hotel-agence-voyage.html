@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -17,6 +17,7 @@
   --light:#FFF7ED;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
 .demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
@@ -195,13 +196,13 @@ footer p.fp{font-size:14px;line-height:1.7;margin-bottom:18px;}
   <div class="nav-inner">
     <div class="logo">Voyages <span>Découverte Africa</span></div>
     <ul class="nav-links">
-      <li><a href="#">Destinations</a></li>
-      <li><a href="#">Circuits</a></li>
-      <li><a href="#">Safaris</a></li>
-      <li><a href="#">Vols</a></li>
-      <li><a href="#">Packages</a></li>
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#circuits">Circuits</a></li>
+      <li><a href="#safaris">Safaris</a></li>
+      <li><a href="#vols">Vols</a></li>
+      <li><a href="#packages">Packages</a></li>
     </ul>
-    <a href="#" class="nav-cta">Devis gratuit</a>
+    <a href="#devis" class="nav-cta">Devis gratuit</a>
   </div>
 </nav>
 
@@ -239,7 +240,7 @@ footer p.fp{font-size:14px;line-height:1.7;margin-bottom:18px;}
   </div>
 </section>
 
-<section class="dest-section">
+<section id="destinations" class="dest-section">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-tag">Destinations phares</div>
@@ -256,7 +257,7 @@ footer p.fp{font-size:14px;line-height:1.7;margin-bottom:18px;}
   </div>
 </section>
 
-<section class="packages-section">
+<section id="safaris" class="packages-section">
   <div class="section-inner">
     <div class="section-header centered">
       <div class="section-tag">Packages tout compris</div>
@@ -313,7 +314,7 @@ footer p.fp{font-size:14px;line-height:1.7;margin-bottom:18px;}
   </div>
 </section>
 
-<section class="stats-section">
+<section id="vols" class="stats-section">
   <div class="stats-inner">
     <div><div class="stat-n">15 000+</div><div class="stat-l">Voyageurs satisfaits</div></div>
     <div><div class="stat-n">32</div><div class="stat-l">Destinations Afrique</div></div>
@@ -322,7 +323,7 @@ footer p.fp{font-size:14px;line-height:1.7;margin-bottom:18px;}
   </div>
 </section>
 
-<section class="circuits-section">
+<section id="circuits" class="circuits-section">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-tag">Circuits guidés</div>
@@ -374,7 +375,7 @@ footer p.fp{font-size:14px;line-height:1.7;margin-bottom:18px;}
   </div>
 </section>
 
-<section class="testi-section">
+<section id="packages" class="testi-section">
   <div class="section-inner">
     <div class="section-header centered">
       <div class="section-tag">Avis voyageurs</div>
@@ -388,7 +389,7 @@ footer p.fp{font-size:14px;line-height:1.7;margin-bottom:18px;}
   </div>
 </section>
 
-<section class="cta-section">
+<section id="devis" class="cta-section">
   <h2>Votre prochain voyage commence ici</h2>
   <p>Consultation gratuite avec nos experts — Devis en 24h</p>
   <div class="cta-btns">

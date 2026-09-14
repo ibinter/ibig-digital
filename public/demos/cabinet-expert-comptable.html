@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -7,6 +7,7 @@
 <style>
 :root{--navy:#1E3A5F;--blue:#2563eb;--light:#F8FAFC;--white:#fff;--text:#1E293B;--gray:#64748B;--border:#E2E8F0;--gold:#D97706;--shadow:0 4px 24px rgba(30,58,95,0.10)}
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
 #demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
 #demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
@@ -146,15 +147,15 @@ footer{background:#0a1520;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
       <div class="logo-text">Koné & Associés<small>Cabinet d'Expertise Comptable</small></div>
     </a>
     <ul class="nav-links">
-      <li><a href="#">Expertise</a></li>
-      <li><a href="#">Audit</a></li>
+      <li><a href="#expertises">Expertise</a></li>
+      <li><a href="#expertises">Audit</a></li>
       <li><a href="#">Fiscalité</a></li>
       <li><a href="#">Création</a></li>
       <li><a href="#">L'équipe</a></li>
     </ul>
     <div style="display:flex;align-items:center">
       <span class="nav-phone">📞 +225 20 31 20 00</span>
-      <a href="#" class="nav-cta">Consultation gratuite</a>
+      <a href="#contact" class="nav-cta">Consultation gratuite</a>
     </div>
   </div>
 </nav>
@@ -197,7 +198,7 @@ footer{background:#0a1520;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </div>
 
-<section class="expertises">
+<section id="expertises" class="expertises">
   <div class="section-inner">
     <div class="section-tag">Nos Expertises</div>
     <h2 class="section-title">Des Solutions Complètes pour Votre Entreprise</h2>
@@ -279,7 +280,7 @@ footer{background:#0a1520;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </section>
 
-<section class="associes">
+<section id="associes" class="associes">
   <div class="section-inner">
     <div class="section-tag">L'Équipe Dirigeante</div>
     <h2 class="section-title">Des Professionnels à Votre Service</h2>
@@ -316,7 +317,7 @@ footer{background:#0a1520;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </section>
 
-<section class="processus">
+<section id="processus" class="processus">
   <div class="section-inner">
     <div class="section-tag">Notre Approche</div>
     <h2 class="section-title">Un Processus Transparent et Rigoureux</h2>
@@ -329,7 +330,7 @@ footer{background:#0a1520;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </section>
 
-<section class="testi">
+<section id="testi" class="testi">
   <div class="section-inner">
     <div class="section-tag">Avis Clients</div>
     <h2 class="section-title">La Confiance de 340 Entreprises</h2>
@@ -353,7 +354,7 @@ footer{background:#0a1520;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
   </div>
 </section>
 
-<section class="cta-section">
+<section id="contact" class="cta-section">
   <div class="section-inner">
     <h2>Consultez Nos Experts Gratuitement</h2>
     <p>Première consultation gratuite de 45 minutes. Sans engagement. Par téléphone ou dans nos locaux.</p>
@@ -372,7 +373,7 @@ footer{background:#0a1520;padding:56px 24px 24px;color:rgba(255,255,255,0.55)}
         <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,0.35);margin-bottom:18px">Cabinet d'expertise comptable, audit et conseil fiscal. Membres ONECCA Côte d'Ivoire. Agrément N°0042-ONECCA-CI.</p>
         <div style="font-size:14px;line-height:2;color:rgba(255,255,255,0.4)">📍 Immeuble Le Centaure, Avenue Botreau-Roussel, Plateau, Abidjan<br>📞 +225 20 31 20 00<br>✉️ contact@kone-associes.ci</div>
       </div>
-      <div><div class="footer-heading">Services</div><ul class="footer-links"><li><a href="#">Comptabilité</a></li><li><a href="#">Audit</a></li><li><a href="#">Fiscalité</a></li><li><a href="#">Paie sociale</a></li><li><a href="#">Création SARL</a></li></ul></div>
+      <div><div class="footer-heading">Services</div><ul class="footer-links"><li><a href="#">Comptabilité</a></li><li><a href="#expertises">Audit</a></li><li><a href="#">Fiscalité</a></li><li><a href="#">Paie sociale</a></li><li><a href="#">Création SARL</a></li></ul></div>
       <div><div class="footer-heading">Cabinet</div><ul class="footer-links"><li><a href="#">Nos associés</a></li><li><a href="#">Notre approche</a></li><li><a href="#">Certifications</a></li><li><a href="#">Actualités DGI</a></li></ul></div>
       <div><div class="footer-heading">Contact</div><ul class="footer-links"><li><a href="#">Consultation gratuite</a></li><li><a href="#">Espace client</a></li><li><a href="#">Itinéraire</a></li><li><a href="#">Recrutement</a></li></ul></div>
     </div>

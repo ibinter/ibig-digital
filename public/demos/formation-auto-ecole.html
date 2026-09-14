@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -7,6 +7,7 @@
 <style>
 :root{--red:#DC2626;--yellow:#FBBF24;--dark:#111827;--text:#374151;--gray:#6B7280;--light:#F9FAFB;--white:#fff;--border:#E5E7EB;--shadow:0 4px 24px rgba(220,38,38,0.12)}
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
 #demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
 #demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
@@ -161,11 +162,11 @@ footer{background:var(--dark);padding:56px 24px 24px;color:rgba(255,255,255,0.6)
       <div class="logo-text">Permis Facile<span>Auto-École · Dakar</span></div>
     </a>
     <ul class="nav-links">
-      <li><a href="#">Permis</a></li>
-      <li><a href="#">Formules</a></li>
-      <li><a href="#">Moniteurs</a></li>
-      <li><a href="#">Planning</a></li>
-      <li><a href="#">Tarifs</a></li>
+      <li><a href="#formules">Permis</a></li>
+      <li><a href="#formules">Formules</a></li>
+      <li><a href="#moniteurs">Moniteurs</a></li>
+      <li><a href="#planning">Planning</a></li>
+      <li><a href="#formules">Tarifs</a></li>
     </ul>
     <div style="display:flex;align-items:center">
       <div class="nav-phone">📞 +221 33 820 00 00</div>
@@ -213,7 +214,7 @@ footer{background:var(--dark);padding:56px 24px 24px;color:rgba(255,255,255,0.6)
   </div>
 </div>
 
-<section class="formules">
+<section id="formules" class="formules">
   <div class="section-inner">
     <div class="section-tag">Nos Formules</div>
     <h2 class="section-title">La Formule Faite Pour Vous</h2>
@@ -277,7 +278,7 @@ footer{background:var(--dark);padding:56px 24px 24px;color:rgba(255,255,255,0.6)
   </div>
 </section>
 
-<section class="moniteurs">
+<section id="moniteurs" class="moniteurs">
   <div class="section-inner">
     <div class="section-tag">Notre Équipe</div>
     <h2 class="section-title">Des Moniteurs Passionnés</h2>
@@ -314,7 +315,7 @@ footer{background:var(--dark);padding:56px 24px 24px;color:rgba(255,255,255,0.6)
   </div>
 </section>
 
-<section class="planning">
+<section id="planning" class="planning">
   <div class="section-inner">
     <div class="section-tag">Planning de la Semaine</div>
     <h2 class="section-title">Des Créneaux Disponibles Dès Demain</h2>
@@ -332,7 +333,7 @@ footer{background:var(--dark);padding:56px 24px 24px;color:rgba(255,255,255,0.6)
   </div>
 </section>
 
-<section class="testi">
+<section id="testi" class="testi">
   <div class="section-inner">
     <div class="section-tag">Avis Élèves</div>
     <h2 class="section-title">Ils ont eu leur permis avec nous</h2>
@@ -356,7 +357,7 @@ footer{background:var(--dark);padding:56px 24px 24px;color:rgba(255,255,255,0.6)
   </div>
 </section>
 
-<section class="cta-section">
+<section id="contact" class="cta-section">
   <div class="section-inner">
     <h2>Commencez Votre Formation Aujourd'hui</h2>
     <p>Places limitées chaque mois. Inscrivez-vous maintenant et démarrez cette semaine.</p>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <title>Nail Studio Accra — Nail Art & Ongles Premium</title>
 <style>
 :root{--bg:#F5F3FF;--bg2:#fff;--bg3:#EDE9FE;--purple:#7C3AED;--purple2:#6D28D9;--purple-light:#DDD6FE;--pink:#EC4899;--pink-light:#FBCFE8;--dark:#1E1B4B;--gray:#6B7280;--gray2:#9CA3AF;--cream:#FEFCE8;--gold:#D97706}
-*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}*{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--dark);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
 .demo-bar strong{color:#7C3AED}
@@ -148,18 +148,18 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
     </div>
   </div>
   <ul class="nav-links">
-    <li><a href="#">Nail Art</a></li>
-    <li><a href="#">Pose Ongles</a></li>
-    <li><a href="#">Gel & Acrylique</a></li>
-    <li><a href="#">Manucure</a></li>
-    <li><a href="#">Galerie</a></li>
+    <li><a href="#services">Nail Art</a></li>
+    <li><a href="#services">Pose Ongles</a></li>
+    <li><a href="#services">Gel & Acrylique</a></li>
+    <li><a href="#services">Manucure</a></li>
+    <li><a href="#galerie">Galerie</a></li>
   </ul>
   <div class="nav-right">
     <button class="rdv-btn">💅 Réserver</button>
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="accueil">
   <div class="hero-inner">
     <div>
       <div class="hero-badge">💅 Studio Premium · Accra · Ghana</div>
@@ -216,7 +216,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   <span>📸 Photo avant livraison</span>
 </div>
 
-<div class="section">
+<div class="section" id="services">
   <div class="s-title"><h2>Nos <em>Services</em></h2><p>Du nail art décontracté au glamour absolu</p></div>
   <div class="services-grid">
     <div class="svc-card">
@@ -276,7 +276,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </div>
 
-<div class="gallery-section">
+<div class="gallery-section" id="galerie">
   <div class="gallery-inner">
     <div class="s-title" style="color:#fff"><h2 style="color:#fff">Notre <em style="color:var(--purple-light)">Portfolio</em></h2><p style="color:var(--gray)">Les créations de nos artistes nail</p></div>
     <div class="gallery-filter">
@@ -295,7 +295,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </div>
 
-<div class="artists-section">
+<div class="artists-section" id="artistes">
   <div class="s-title"><h2>Nos <em>Artistes</em> Nail</h2><p>Des expertes passionnées par leur art</p></div>
   <div class="artists-grid">
     <div class="artist-card"><div class="artist-emoji">💅</div><div class="artist-name">Abena Mensah</div><div class="artist-spec">Nail Art Avancé</div><div class="artist-exp">7 ans · Certifiée CND</div><div class="artist-stars">★★★★★ (840)</div><div class="artist-badge">🏆 Master Artist</div></div>
@@ -305,7 +305,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </div>
 
-<div class="pricing-section">
+<div class="pricing-section" id="tarifs">
   <div class="pricing-inner">
     <div class="s-title"><h2>Grille <em>Tarifaire</em></h2><p>Transparence et qualité garanties</p></div>
     <div class="pricing-table">
@@ -341,7 +341,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </div>
 
-<footer>
+<footer id="contact">
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
@@ -349,9 +349,9 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
         <h2 style="font-size:18px;font-weight:800;color:var(--purple-light);margin-top:8px">Nail Studio Accra</h2>
         <p class="footer-desc">Le studio nail art premium d'Accra depuis 2020. Pose gel, acrylique, nail art créatif et soins mains luxe pour la femme africaine moderne.</p>
       </div>
-      <div><div class="fh">Services</div><ul class="ful"><li><a href="#">Pose Gel</a></li><li><a href="#">Nail Art</a></li><li><a href="#">Acrylique</a></li><li><a href="#">Manucure</a></li><li><a href="#">Mariage</a></li></ul></div>
-      <div><div class="fh">Infos</div><ul class="ful"><li><a href="#">Nos Artistes</a></li><li><a href="#">Tarifs</a></li><li><a href="#">Galerie</a></li><li><a href="#">Carte Cadeau</a></li></ul></div>
-      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Osu, Accra, Ghana</a></li><li><a href="#">📞 +233 24 000 000</a></li><li><a href="#">💬 WhatsApp</a></li><li><a href="#">Mar–Dim 9h–19h</a></li></ul></div>
+      <div><div class="fh">Services</div><ul class="ful"><li><a href="#services">Pose Gel</a></li><li><a href="#services">Nail Art</a></li><li><a href="#services">Acrylique</a></li><li><a href="#services">Manucure</a></li><li><a href="#services">Mariage</a></li></ul></div>
+      <div><div class="fh">Infos</div><ul class="ful"><li><a href="#artistes">Nos Artistes</a></li><li><a href="#tarifs">Tarifs</a></li><li><a href="#galerie">Galerie</a></li><li><a href="#contact">Carte Cadeau</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#contact">📍 Osu, Accra, Ghana</a></li><li><a href="#contact">📞 +233 24 000 000</a></li><li><a href="#contact">💬 WhatsApp</a></li><li><a href="#contact">Mar–Dim 9h–19h</a></li></ul></div>
     </div>
     <div class="foot-bottom"><span>© 2025 Nail Studio Accra — Tous droits réservés</span><span>CGV · Confidentialité</span></div>
   </div>

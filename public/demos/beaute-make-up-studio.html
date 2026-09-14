@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <title>Make-Up Pro Studio Kigali — Maquillage Artistique</title>
 <style>
 :root{--bg:#1A1A1A;--bg2:#222222;--bg3:#2A2A2A;--rose-gold:#C9A096;--rose-gold2:#B8887D;--rose-light:#F0DDD9;--cream:#FAF6F5;--gray:#9CA3AF;--dark:#111;--gold:#D4AF37;--accent:#E8C5BD;--white:#fff}
-*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}*{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
 .demo-bar strong{color:var(--rose-gold)}
@@ -151,18 +151,18 @@ footer{background:#111;padding:60px 32px 24px;border-top:1px solid rgba(201,160,
     </div>
   </div>
   <ul class="nav-links">
-    <li><a href="#">Services</a></li>
-    <li><a href="#">Portfolio</a></li>
-    <li><a href="#">Formations</a></li>
-    <li><a href="#">Artistes</a></li>
-    <li><a href="#">Contact</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#formations">Formations</a></li>
+    <li><a href="#artistes">Artistes</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
     <button class="book-btn">💄 Réserver</button>
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="accueil">
   <div class="hero-inner">
     <div>
       <div class="hero-tag">💄 Studio Professionnel · Kigali · Rwanda</div>
@@ -210,7 +210,7 @@ footer{background:#111;padding:60px 32px 24px;border-top:1px solid rgba(201,160,
   <span>🎓 Formations certifiées</span>
 </div>
 
-<div class="services-section">
+<div class="services-section" id="services">
   <div class="sec-label">Ce que nous offrons</div>
   <h2 class="sec-h">Nos <span style="color:var(--rose-gold)">Prestations</span></h2>
   <p class="sec-p">Du maquillage quotidien au glamour absolu — chaque prestation est réalisée avec des produits professionnels</p>
@@ -302,7 +302,7 @@ footer{background:#111;padding:60px 32px 24px;border-top:1px solid rgba(201,160,
   </div>
 </div>
 
-<div class="portfolio-section">
+<div class="portfolio-section" id="portfolio">
   <div class="portfolio-inner">
     <div class="sec-label">Nos créations</div>
     <h2 class="sec-h" style="font-family:Georgia,serif">Portfolio <span style="color:var(--rose-gold)">d'Excellence</span></h2>
@@ -322,7 +322,7 @@ footer{background:#111;padding:60px 32px 24px;border-top:1px solid rgba(201,160,
   </div>
 </div>
 
-<div class="formations-section">
+<div class="formations-section" id="formations">
   <div class="sec-label">Nos formations</div>
   <h2 class="sec-h" style="font-family:Georgia,serif">Devenez <span style="color:var(--rose-gold)">Maquilleur Pro</span></h2>
   <p class="sec-p" style="color:var(--gray)">Des formations intensives pour lancer votre carrière de maquilleur professionnel</p>
@@ -382,7 +382,7 @@ footer{background:#111;padding:60px 32px 24px;border-top:1px solid rgba(201,160,
   </div>
 </div>
 
-<div class="artistes-section">
+<div class="artistes-section" id="artistes">
   <div class="artistes-inner">
     <div class="sec-label">Notre équipe</div>
     <h2 class="sec-h" style="font-family:Georgia,serif">Nos <span style="color:var(--rose-gold)">Maquilleurs</span></h2>
@@ -417,7 +417,7 @@ footer{background:#111;padding:60px 32px 24px;border-top:1px solid rgba(201,160,
   </div>
 </div>
 
-<footer>
+<footer id="contact">
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
@@ -425,9 +425,9 @@ footer{background:#111;padding:60px 32px 24px;border-top:1px solid rgba(201,160,
         <h2 style="font-size:18px;font-weight:800;color:var(--rose-gold);margin-top:10px;letter-spacing:2px">MAKE-UP PRO STUDIO</h2>
         <p class="footer-desc">Le studio de maquillage professionnel de Kigali depuis 2016. Mariage, shooting, événements et formations certifiées pour la beauté africaine contemporaine.</p>
       </div>
-      <div><div class="fh">Prestations</div><ul class="ful"><li><a href="#">Maquillage Mariage</a></li><li><a href="#">Shooting Photo</a></li><li><a href="#">Soirée Glamour</a></li><li><a href="#">Maquillage Artistique</a></li></ul></div>
-      <div><div class="fh">Formations</div><ul class="ful"><li><a href="#">Niveau Débutant</a></li><li><a href="#">Formation Pro</a></li><li><a href="#">Maquillage Artistique</a></li><li><a href="#">Calendrier</a></li></ul></div>
-      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Kiyovu, Kigali, Rwanda</a></li><li><a href="#">📞 +250 78 000 000</a></li><li><a href="#">💬 WhatsApp</a></li><li><a href="#">Lun–Sam 9h–19h</a></li></ul></div>
+      <div><div class="fh">Prestations</div><ul class="ful"><li><a href="#services">Maquillage Mariage</a></li><li><a href="#services">Shooting Photo</a></li><li><a href="#services">Soirée Glamour</a></li><li><a href="#services">Maquillage Artistique</a></li></ul></div>
+      <div><div class="fh">Formations</div><ul class="ful"><li><a href="#formations">Niveau Débutant</a></li><li><a href="#formations">Formation Pro</a></li><li><a href="#services">Maquillage Artistique</a></li><li><a href="#formations">Calendrier</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#contact">📍 Kiyovu, Kigali, Rwanda</a></li><li><a href="#contact">📞 +250 78 000 000</a></li><li><a href="#contact">💬 WhatsApp</a></li><li><a href="#contact">Lun–Sam 9h–19h</a></li></ul></div>
     </div>
     <div class="foot-bottom"><span>© 2025 Make-Up Pro Studio Kigali — Tous droits réservés</span><span>CGV · Politique de confidentialité</span></div>
   </div>

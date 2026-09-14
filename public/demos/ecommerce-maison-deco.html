@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <title>Déco Maison Africaine — Meubles, Textiles & Design d'Intérieur</title>
 <style>
 :root{--bg:#FFFEF9;--bg2:#FFF8F2;--bg3:#FEF3E8;--terra:#C2410C;--terra2:#9A3412;--terra-light:#FFEDD5;--dark:#1C1917;--gray:#78716C;--gray2:#A8A29E;--gold:#D97706;--green:#15803D;--white:#fff}
-*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}*{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--dark);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
 .demo-bar strong{color:#C2410C}
@@ -139,12 +139,12 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
     </div>
   </div>
   <ul class="nav-links">
-    <li><a href="#">Meubles</a></li>
-    <li><a href="#">Textiles</a></li>
-    <li><a href="#">Luminaires</a></li>
-    <li><a href="#">Décoration</a></li>
-    <li><a href="#">Sur Mesure</a></li>
-    <li><a href="#">Inspirations</a></li>
+    <li><a href="#produits">Meubles</a></li>
+    <li><a href="#produits">Textiles</a></li>
+    <li><a href="#produits">Luminaires</a></li>
+    <li><a href="#produits">Décoration</a></li>
+    <li><a href="#inspirations">Sur Mesure</a></li>
+    <li><a href="#inspirations">Inspirations</a></li>
   </ul>
   <div class="nav-right">
     <input class="search-box" placeholder="🔍 Canapé, tapis, lampe…">
@@ -153,7 +153,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="accueil">
   <div class="hero-inner">
     <div>
       <div class="hero-tag">🏠 Design Africain Contemporain</div>
@@ -198,7 +198,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   <div class="strip-item">💳 Paiement en 3 fois</div>
 </div>
 
-<div class="section">
+<div class="section" id="inspirations">
   <div class="s-title">
     <h2>Styles <em>d'Intérieur</em></h2>
     <p>Trois univers déco pour exprimer votre personnalité africaine</p>
@@ -234,7 +234,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </div>
 
-<div class="products-section">
+<div class="products-section" id="produits">
   <div class="products-inner">
     <div class="s-title"><h2>Nos <em>Best-Sellers</em></h2><p>Les pièces préférées de nos clients décorateurs</p></div>
     <div class="products-grid">
@@ -331,7 +331,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </div>
 
-<footer>
+<footer id="contact">
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
@@ -339,9 +339,9 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
         <h2 style="font-size:18px;font-weight:700;color:var(--terra);margin-top:8px;font-family:Georgia,serif">Déco Maison Africaine</h2>
         <p class="footer-desc">Design d'intérieur africain contemporain — meubles, textiles, luminaires et déco ethnique chic depuis Abidjan.</p>
       </div>
-      <div><div class="fh">Collections</div><ul class="ful"><li><a href="#">Meubles</a></li><li><a href="#">Textiles</a></li><li><a href="#">Luminaires</a></li><li><a href="#">Décoration</a></li><li><a href="#">Jardin & Terrasse</a></li></ul></div>
-      <div><div class="fh">Services</div><ul class="ful"><li><a href="#">Décoration sur mesure</a></li><li><a href="#">Consultation design</a></li><li><a href="#">Fabrication artisanale</a></li><li><a href="#">Installation</a></li></ul></div>
-      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Cocody, Abidjan</a></li><li><a href="#">📞 +225 06 00 00 00</a></li><li><a href="#">✉️ hello@decoma.ci</a></li><li><a href="#">Lun–Sam 9h–18h</a></li></ul></div>
+      <div><div class="fh">Collections</div><ul class="ful"><li><a href="#produits">Meubles</a></li><li><a href="#produits">Textiles</a></li><li><a href="#produits">Luminaires</a></li><li><a href="#produits">Décoration</a></li><li><a href="#produits">Jardin & Terrasse</a></li></ul></div>
+      <div><div class="fh">Services</div><ul class="ful"><li><a href="#inspirations">Décoration sur mesure</a></li><li><a href="#inspirations">Consultation design</a></li><li><a href="#produits">Fabrication artisanale</a></li><li><a href="#contact">Installation</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#contact">📍 Cocody, Abidjan</a></li><li><a href="#contact">📞 +225 06 00 00 00</a></li><li><a href="#contact">✉️ hello@decoma.ci</a></li><li><a href="#contact">Lun–Sam 9h–18h</a></li></ul></div>
     </div>
     <div class="foot-bottom"><span>© 2025 Déco Maison Africaine — Tous droits réservés</span><span>CGV · Confidentialité</span></div>
   </div>

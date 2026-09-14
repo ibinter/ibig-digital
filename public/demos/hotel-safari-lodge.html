@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -17,6 +17,7 @@
   --card-border:rgba(201,162,39,0.15);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.7;}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-family:system-ui,sans-serif;font-size:13px;}
 .demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
@@ -200,13 +201,13 @@ footer .fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16
   <div class="nav-inner">
     <div class="logo">MASAI <em>Safari Lodge</em></div>
     <ul class="nav-links">
-      <li><a href="#">Safaris</a></li>
-      <li><a href="#">Lodges</a></li>
-      <li><a href="#">Galerie</a></li>
-      <li><a href="#">Packages</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#safaris">Safaris</a></li>
+      <li><a href="#lodges">Lodges</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#" class="btn-nav">Réserver un Safari</a>
+    <a href="#reservation" class="btn-nav">Réserver un Safari</a>
   </div>
 </nav>
 
@@ -270,7 +271,7 @@ footer .fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16
   </div>
 </div>
 
-<section class="safaris-section">
+<section id="safaris" class="safaris-section">
   <div class="section-inner">
     <div class="s-header">
       <div class="s-eyebrow">Nos Safaris</div>
@@ -309,7 +310,7 @@ footer .fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16
   </div>
 </section>
 
-<section class="lodges-section">
+<section id="lodges" class="lodges-section">
   <div class="section-inner">
     <div class="s-header">
       <div class="s-eyebrow">Hébergements</div>
@@ -357,7 +358,7 @@ footer .fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16
   </div>
 </section>
 
-<section class="wildlife-section">
+<section id="packages" class="wildlife-section">
   <div class="section-inner">
     <div class="s-header center">
       <div class="s-eyebrow">Faune</div>
@@ -379,7 +380,7 @@ footer .fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16
   </div>
 </section>
 
-<section class="gallery-section">
+<section id="galerie" class="gallery-section">
   <div class="section-inner">
     <div class="s-header center">
       <div class="s-eyebrow">Galerie</div>
@@ -395,7 +396,7 @@ footer .fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16
   </div>
 </section>
 
-<section class="testis-section">
+<section id="contact" class="testis-section">
   <div class="section-inner">
     <div class="s-header center">
       <div class="s-eyebrow">Témoignages</div>
@@ -409,7 +410,7 @@ footer .fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16
   </div>
 </section>
 
-<section class="cta-section">
+<section id="reservation" class="cta-section">
   <h2>Vivez <em>l'Afrique sauvage</em></h2>
   <p>Places limitées — réservez votre safari avant la grande migration de juillet</p>
   <div class="cta-btns">

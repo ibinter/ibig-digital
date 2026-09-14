@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -7,6 +7,7 @@
 <style>
 :root{--cream:#FEFCF8;--navy:#0C1B33;--gold:#B8963E;--gold-light:#D4A843;--text:#2C2416;--gray:#7A6E5F;--border:#E8E0D0;--light:#FAF7F0;--shadow:0 4px 24px rgba(12,27,51,0.08);--white:#fff}
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:'Georgia',serif;color:var(--text);background:var(--cream);padding-top:40px}
 #demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500;font-family:'Segoe UI',sans-serif}
 #demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px;font-family:'Segoe UI',sans-serif}
@@ -172,15 +173,15 @@ footer{background:var(--navy);padding:56px 24px 24px;color:rgba(255,255,255,0.55
       </div>
     </a>
     <ul class="nav-links">
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Immobilier</a></li>
-      <li><a href="#">Successions</a></li>
-      <li><a href="#">Entreprises</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#services">Immobilier</a></li>
+      <li><a href="#services">Successions</a></li>
+      <li><a href="#services">Entreprises</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <div style="display:flex;align-items:center">
       <span class="nav-phone">📞 +225 20 21 20 00</span>
-      <a href="#" class="nav-cta">Prendre rendez-vous</a>
+      <a href="#contact" class="nav-cta">Prendre rendez-vous</a>
     </div>
   </div>
 </nav>
@@ -222,7 +223,7 @@ footer{background:var(--navy);padding:56px 24px 24px;color:rgba(255,255,255,0.55
   </div>
 </div>
 
-<section class="services">
+<section id="services" class="services">
   <div class="section-inner">
     <div class="section-tag">Nos Actes</div>
     <h2 class="section-title">Une Étude Complète à Votre Écoute</h2>
@@ -268,7 +269,7 @@ footer{background:var(--navy);padding:56px 24px 24px;color:rgba(255,255,255,0.55
   </div>
 </section>
 
-<section class="maitre">
+<section id="maitre" class="maitre">
   <div class="section-inner">
     <div class="maitre-grid">
       <div class="maitre-photo">
@@ -297,7 +298,7 @@ footer{background:var(--navy);padding:56px 24px 24px;color:rgba(255,255,255,0.55
   </div>
 </section>
 
-<section class="associes">
+<section id="associes" class="associes">
   <div class="section-inner">
     <div class="section-tag">Nos Collaborateurs</div>
     <h2 class="section-title">Une Équipe Dévouée</h2>
@@ -331,7 +332,7 @@ footer{background:var(--navy);padding:56px 24px 24px;color:rgba(255,255,255,0.55
   </div>
 </section>
 
-<section class="tarifs">
+<section id="tarifs" class="tarifs">
   <div class="section-inner">
     <div class="section-tag">Honoraires</div>
     <h2 class="section-title">Des Honoraires Transparents</h2>
@@ -384,7 +385,7 @@ footer{background:var(--navy);padding:56px 24px 24px;color:rgba(255,255,255,0.55
   </div>
 </section>
 
-<section class="testi">
+<section id="testi" class="testi">
   <div class="section-inner">
     <div class="section-tag">Confiance Clients</div>
     <h2 class="section-title">Ils Nous Ont Fait Confiance</h2>
@@ -408,7 +409,7 @@ footer{background:var(--navy);padding:56px 24px 24px;color:rgba(255,255,255,0.55
   </div>
 </section>
 
-<section class="cta-section">
+<section id="contact" class="cta-section">
   <div class="section-inner">
     <h2>Sécurisez vos Actes Importants</h2>
     <p>L'authenticité notariale, c'est la garantie ultime de vos droits. Prenez rendez-vous dès aujourd'hui.</p>
@@ -427,7 +428,7 @@ footer{background:var(--navy);padding:56px 24px 24px;color:rgba(255,255,255,0.55
         <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,0.35);margin-bottom:18px">Étude Notariale à Abidjan. Officiers ministériels au service des particuliers, entreprises et collectivités en Côte d'Ivoire depuis 1999. Membres Chambre des Notaires CI.</p>
         <div style="font-size:14px;line-height:2;color:rgba(255,255,255,0.4)">📍 Immeuble Nour Al Hayat, Avenue Lamblin, Plateau, Abidjan<br>📞 +225 20 21 20 00<br>✉️ contact@etude-diallo-abidjan.ci</div>
       </div>
-      <div><div class="footer-heading">Services</div><ul class="footer-links"><li><a href="#">Actes immobiliers</a></li><li><a href="#">Successions</a></li><li><a href="#">Droit famille</a></li><li><a href="#">Droit sociétés</a></li><li><a href="#">Procurations</a></li></ul></div>
+      <div><div class="footer-heading">Services</div><ul class="footer-links"><li><a href="#">Actes immobiliers</a></li><li><a href="#services">Successions</a></li><li><a href="#">Droit famille</a></li><li><a href="#">Droit sociétés</a></li><li><a href="#">Procurations</a></li></ul></div>
       <div><div class="footer-heading">Étude</div><ul class="footer-links"><li><a href="#">Le Maître</a></li><li><a href="#">L'équipe</a></li><li><a href="#">Honoraires</a></li><li><a href="#">Actualités OHADA</a></li></ul></div>
       <div><div class="footer-heading">Pratique</div><ul class="footer-links"><li><a href="#">Prendre RDV</a></li><li><a href="#">Pièces requises</a></li><li><a href="#">Délais actes</a></li><li><a href="#">Plan d'accès</a></li></ul></div>
     </div>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -17,6 +17,7 @@
   --breaking:#DC2626;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
 .demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
@@ -190,22 +191,22 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
     <div class="nav-info">Samedi 13 septembre 2025 · 14h32 GMT · Abidjan, Côte d'Ivoire</div>
   </div>
   <div class="nav-cats">
-    <a href="#" class="nav-cat active">🏠 Accueil</a>
-    <a href="#" class="nav-cat">🌍 Afrique</a>
-    <a href="#" class="nav-cat">🇨🇮 Côte d'Ivoire</a>
-    <a href="#" class="nav-cat">💰 Économie</a>
-    <a href="#" class="nav-cat">🏛️ Politique</a>
-    <a href="#" class="nav-cat">⚽ Sport</a>
-    <a href="#" class="nav-cat">💻 Tech</a>
-    <a href="#" class="nav-cat">🎭 Culture</a>
-    <a href="#" class="nav-cat">🌿 Environnement</a>
-    <a href="#" class="nav-cat">🎙️ Podcasts</a>
+    <a href="#accueil" class="nav-cat active">🏠 Accueil</a>
+    <a href="#accueil" class="nav-cat">🌍 Afrique</a>
+    <a href="#accueil" class="nav-cat">🇨🇮 Côte d'Ivoire</a>
+    <a href="#economie" class="nav-cat">💰 Économie</a>
+    <a href="#politique" class="nav-cat">🏛️ Politique</a>
+    <a href="#sport" class="nav-cat">⚽ Sport</a>
+    <a href="#tech" class="nav-cat">💻 Tech</a>
+    <a href="#newsletter" class="nav-cat">🎭 Culture</a>
+    <a href="#newsletter" class="nav-cat">🌿 Environnement</a>
+    <a href="#newsletter" class="nav-cat">🎙️ Podcasts</a>
     <div class="nav-search">🔍 Rechercher...</div>
   </div>
 </nav>
 
 <!-- UNE / HERO -->
-<section class="une-section">
+<section id="accueil" class="une-section">
   <div class="une-inner">
     <div class="une-grid">
       <div class="une-main">
@@ -239,7 +240,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
 </section>
 
 <!-- ÉCONOMIE -->
-<section class="section-pad" style="background:#fff">
+<section id="economie" class="section-pad" style="background:#fff">
   <div class="si">
     <div class="cat-header">
       <div class="cat-title">Économie & Business</div>
@@ -255,7 +256,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
 </section>
 
 <!-- POLITIQUE AFRIQUE -->
-<section class="section-pad" style="background:var(--light)">
+<section id="politique" class="section-pad" style="background:var(--light)">
   <div class="si">
     <div class="cat-header">
       <div class="cat-title">Politique Afrique</div>
@@ -280,7 +281,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
 </section>
 
 <!-- TECH & INNOVATION -->
-<section class="section-pad" style="background:#fff">
+<section id="economie" class="section-pad" style="background:#fff">
   <div class="si">
     <div class="cat-header">
       <div class="cat-title">Tech & Innovation Afrique</div>
@@ -296,7 +297,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
 </section>
 
 <!-- VIDÉOS -->
-<section class="videos-section">
+<section id="sport" class="videos-section">
   <div class="si">
     <div class="videos-inner">
       <div class="cat-header" style="color:#fff">
@@ -316,7 +317,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
 </section>
 
 <!-- NEWSLETTER -->
-<section class="newsletter-section">
+<section id="newsletter" class="newsletter-section">
   <div class="nl-inner">
     <h2>📰 La matinale AfricaNews</h2>
     <p>L'essentiel de l'actualité africaine chaque matin à 7h dans votre boîte mail</p>

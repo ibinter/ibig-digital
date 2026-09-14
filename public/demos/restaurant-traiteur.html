@@ -17,6 +17,7 @@
   --border:rgba(212,175,55,.25);
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
 
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;border-bottom:1px solid var(--primary)}
@@ -148,17 +149,17 @@ footer{background:#0a0a16;color:#fff;padding:56px 5% 24px;border-top:1px solid v
   <div class="nav-inner">
     <div class="logo">TRAITEUR <span>ROYAL</span></div>
     <ul class="nav-links">
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Formules</a></li>
-      <li><a href="#">Galerie</a></li>
-      <li><a href="#">Témoignages</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#formules">Formules</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#contact">Témoignages</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#" class="nav-cta">Devis gratuit</a>
+    <a href="#contact" class="nav-cta">Devis gratuit</a>
     <div class="burger" onclick="document.getElementById('mm').style.display=document.getElementById('mm').style.display==='block'?'none':'block'"><span></span><span></span><span></span></div>
   </div>
   <div class="mobile-menu" id="mm">
-    <a href="#">Services</a><a href="#">Formules</a><a href="#">Galerie</a><a href="#">Devis gratuit</a>
+    <a href="#services">Services</a><a href="#formules">Formules</a><a href="#galerie">Galerie</a><a href="#contact">Devis gratuit</a>
   </div>
 </nav>
 
@@ -169,8 +170,8 @@ footer{background:#0a0a16;color:#fff;padding:56px 5% 24px;border-top:1px solid v
       <h1>Vos événements méritent<br>une cuisine <em>d'exception</em></h1>
       <p>Traiteur haut de gamme spécialisé dans les mariages, les réceptions d'entreprise et les grandes cérémonies. Excellence sénégalaise depuis 20 ans.</p>
       <div class="hero-btns">
-        <a href="#" class="btn-gold">Demander un devis</a>
-        <a href="#" class="btn-outline">Voir nos réalisations</a>
+        <a href="#contact" class="btn-gold">Demander un devis</a>
+        <a href="#galerie" class="btn-outline">Voir nos réalisations</a>
       </div>
       <div class="hero-numbers">
         <div class="hero-num"><strong>500+</strong><span>Événements réalisés</span></div>
@@ -186,7 +187,7 @@ footer{background:#0a0a16;color:#fff;padding:56px 5% 24px;border-top:1px solid v
   </div>
 </section>
 
-<section class="services-section">
+<section class="services-section" id="services">
   <div class="section-header">
     <div class="gold-tag">Nos prestations</div>
     <h2 class="section-title">Services <em>sur mesure</em></h2>
@@ -202,7 +203,7 @@ footer{background:#0a0a16;color:#fff;padding:56px 5% 24px;border-top:1px solid v
   </div>
 </section>
 
-<section class="formules-section">
+<section class="formules-section" id="formules">
   <div style="max-width:1200px;margin:0 auto">
     <div class="section-header">
       <div class="gold-tag">Nos formules</div>
@@ -257,7 +258,7 @@ footer{background:#0a0a16;color:#fff;padding:56px 5% 24px;border-top:1px solid v
   </div>
 </section>
 
-<section class="gallery-section">
+<section class="gallery-section" id="galerie">
   <div style="max-width:1200px;margin:0 auto">
     <div class="section-header">
       <div class="gold-tag">Galerie</div>
@@ -274,7 +275,7 @@ footer{background:#0a0a16;color:#fff;padding:56px 5% 24px;border-top:1px solid v
   </div>
 </section>
 
-<section class="booking-section">
+<section class="booking-section" id="contact">
   <div class="booking-inner">
     <div class="gold-tag">Demande de devis</div>
     <h2>Planifions votre<br><em>événement ensemble</em></h2>

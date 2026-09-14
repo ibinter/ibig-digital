@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <title>Jardin des Fleurs Dakar — Bouquets & Compositions Florales</title>
 <style>
 :root{--bg:#FFF5F7;--bg2:#fff;--bg3:#FDE8F0;--pink:#EC4899;--pink2:#DB2777;--pink-light:#FBCFE8;--green:#16A34A;--green2:#166534;--green-light:#D1FAE5;--dark:#1F2937;--gray:#6B7280;--gray2:#9CA3AF;--gold:#D97706}
-*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}*{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--dark);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
 .demo-bar strong{color:#EC4899}
@@ -162,12 +162,12 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
     </div>
   </div>
   <ul class="nav-links">
-    <li><a href="#">Bouquets</a></li>
-    <li><a href="#">Compositions</a></li>
-    <li><a href="#">Occasions</a></li>
-    <li><a href="#">Abonnements</a></li>
-    <li><a href="#">Ateliers</a></li>
-    <li><a href="#">Pro</a></li>
+    <li><a href="#bouquets">Bouquets</a></li>
+    <li><a href="#bouquets">Compositions</a></li>
+    <li><a href="#occasions">Occasions</a></li>
+    <li><a href="#occasions">Abonnements</a></li>
+    <li><a href="#occasions">Ateliers</a></li>
+    <li><a href="#contact">Pro</a></li>
   </ul>
   <div class="nav-right">
     <input class="search-box" placeholder="🔍 Roses, orchidées…">
@@ -175,7 +175,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="accueil">
   <div class="hero-inner">
     <div>
       <div class="hero-eyebrow">🌿 Fraîcheur Garantie · Livraison 4h Dakar</div>
@@ -215,7 +215,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </section>
 
-<div class="section">
+<div class="section" id="occasions">
   <div class="s-title">
     <h2>Pour toutes les <em>Occasions</em></h2>
     <p>Un bouquet parfait pour chaque moment de vie</p>
@@ -248,7 +248,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </div>
 
-<div class="bouquets-section">
+<div class="bouquets-section" id="bouquets">
   <div class="bouquets-inner">
     <div class="s-title"><h2>Nos <em>Bouquets</em> du Moment</h2><p>Créations fraîches disponibles à la commande</p></div>
     <div class="bouquets-grid">
@@ -377,7 +377,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </div>
 
-<footer>
+<footer id="contact">
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
@@ -385,9 +385,9 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
         <h2 style="font-size:18px;font-weight:700;color:var(--pink);margin-top:8px;font-family:Georgia,serif">Jardin des Fleurs Dakar</h2>
         <p class="footer-desc">Fleuriste artisanale depuis 2016. Bouquets créés à la main chaque matin, livrés avec amour dans tout Dakar.</p>
       </div>
-      <div><div class="fh">Nos Fleurs</div><ul class="ful"><li><a href="#">Roses</a></li><li><a href="#">Orchidées</a></li><li><a href="#">Fleurs locales</a></li><li><a href="#">Plantes vertes</a></li></ul></div>
-      <div><div class="fh">Occasions</div><ul class="ful"><li><a href="#">Mariages</a></li><li><a href="#">Anniversaires</a></li><li><a href="#">Événements pro</a></li><li><a href="#">Abonnements</a></li></ul></div>
-      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Mermoz, Dakar</a></li><li><a href="#">📞 +221 77 000 00 00</a></li><li><a href="#">💬 WhatsApp 7j/7</a></li><li><a href="#">Lun–Dim 7h–20h</a></li></ul></div>
+      <div><div class="fh">Nos Fleurs</div><ul class="ful"><li><a href="#bouquets">Roses</a></li><li><a href="#bouquets">Orchidées</a></li><li><a href="#bouquets">Fleurs locales</a></li><li><a href="#bouquets">Plantes vertes</a></li></ul></div>
+      <div><div class="fh">Occasions</div><ul class="ful"><li><a href="#occasions">Mariages</a></li><li><a href="#occasions">Anniversaires</a></li><li><a href="#occasions">Événements pro</a></li><li><a href="#occasions">Abonnements</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#contact">📍 Mermoz, Dakar</a></li><li><a href="#contact">📞 +221 77 000 00 00</a></li><li><a href="#contact">💬 WhatsApp 7j/7</a></li><li><a href="#contact">Lun–Dim 7h–20h</a></li></ul></div>
     </div>
     <div class="foot-bottom"><span>© 2025 Jardin des Fleurs Dakar — Tous droits réservés</span><span>CGV · Confidentialité</span></div>
   </div>

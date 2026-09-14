@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -17,6 +17,7 @@
   --primary-light: #DCFCE7;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.6;}
 
 /* DEMO BAR */
@@ -207,13 +208,13 @@ footer{background:#0F2218;color:rgba(255,255,255,0.6);padding:60px 40px 30px;}
   <div class="nav-inner">
     <div class="logo">Akwaba <span>Hôtel</span></div>
     <ul class="nav-links">
-      <li><a href="#">Chambres</a></li>
-      <li><a href="#">Restaurant</a></li>
-      <li><a href="#">Spa & Bien-être</a></li>
-      <li><a href="#">Événements</a></li>
-      <li><a href="#">À propos</a></li>
+      <li><a href="#chambres">Chambres</a></li>
+      <li><a href="#restaurant">Restaurant</a></li>
+      <li><a href="#spa">Spa & Bien-être</a></li>
+      <li><a href="#evenements">Événements</a></li>
+      <li><a href="#a-propos">À propos</a></li>
     </ul>
-    <a href="#" class="nav-cta">Réserver</a>
+    <a href="#reservation" class="nav-cta">Réserver</a>
   </div>
 </nav>
 
@@ -275,7 +276,7 @@ footer{background:#0F2218;color:rgba(255,255,255,0.6);padding:60px 40px 30px;}
   </div>
 </section>
 
-<section class="rooms-section">
+<section id="chambres" class="rooms-section">
   <div class="section-inner">
     <div class="section-header">
       <div class="section-tag">Nos hébergements</div>
@@ -308,7 +309,7 @@ footer{background:#0F2218;color:rgba(255,255,255,0.6);padding:60px 40px 30px;}
   </div>
 </section>
 
-<section class="services-section">
+<section id="spa" class="services-section">
   <div class="section-inner">
     <div class="section-header centered">
       <div class="section-tag">Services & Équipements</div>
@@ -328,7 +329,7 @@ footer{background:#0F2218;color:rgba(255,255,255,0.6);padding:60px 40px 30px;}
   </div>
 </section>
 
-<section class="restaurant-section">
+<section id="restaurant" class="restaurant-section">
   <div class="section-inner">
     <div class="restaurant-grid">
       <div class="restaurant-text">
@@ -351,7 +352,7 @@ footer{background:#0F2218;color:rgba(255,255,255,0.6);padding:60px 40px 30px;}
   </div>
 </section>
 
-<section class="testimonials-section">
+<section id="a-propos" class="testimonials-section">
   <div class="section-inner">
     <div class="section-header centered">
       <div class="section-tag">Avis clients</div>
@@ -374,7 +375,7 @@ footer{background:#0F2218;color:rgba(255,255,255,0.6);padding:60px 40px 30px;}
   </div>
 </section>
 
-<section class="gallery-section">
+<section id="evenements" class="gallery-section">
   <div class="section-inner">
     <div class="section-header centered">
       <div class="section-tag">Galerie</div>
@@ -390,7 +391,7 @@ footer{background:#0F2218;color:rgba(255,255,255,0.6);padding:60px 40px 30px;}
   </div>
 </section>
 
-<section class="cta-section">
+<section id="reservation" class="cta-section">
   <h2>Vivez l'expérience <em>Akwaba</em></h2>
   <p>Réservez dès maintenant et profitez de nos offres exclusives.</p>
   <div class="cta-actions">
@@ -424,8 +425,8 @@ footer{background:#0F2218;color:rgba(255,255,255,0.6);padding:60px 40px 30px;}
     <div class="footer-col">
       <h4>Services</h4>
       <ul>
-        <li><a href="#">Restaurant</a></li>
-        <li><a href="#">Spa & Wellness</a></li>
+        <li><a href="#restaurant">Restaurant</a></li>
+        <li><a href="#spa">Spa & Wellness</a></li>
         <li><a href="#">Business Center</a></li>
         <li><a href="#">Piscine</a></li>
         <li><a href="#">Mariages & Événements</a></li>

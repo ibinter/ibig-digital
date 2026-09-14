@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -19,6 +19,7 @@
   --light:#F1F5F9;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
 .demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
@@ -232,20 +233,20 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;margin-bo
       <div class="nl-text"><span class="main">Industrie Afrique SA</span><span class="sub">Groupe Industriel Panafricain</span></div>
     </a>
     <div class="nav-links">
-      <a href="#" class="nav-link active">Accueil</a>
-      <a href="#" class="nav-link">Activités</a>
-      <a href="#" class="nav-link">Produits</a>
-      <a href="#" class="nav-link">Nos sites</a>
-      <a href="#" class="nav-link">RSE</a>
-      <a href="#" class="nav-link">Investisseurs</a>
-      <a href="#" class="nav-link">Carrières</a>
-      <a href="#" class="nav-btn">📞 Nous contacter</a>
+      <a href="#accueil" class="nav-link active">Accueil</a>
+      <a href="#activites" class="nav-link">Activités</a>
+      <a href="#produits" class="nav-link">Produits</a>
+      <a href="#nos-sites" class="nav-link">Nos sites</a>
+      <a href="#rse" class="nav-link">RSE</a>
+      <a href="#investisseurs" class="nav-link">Investisseurs</a>
+      <a href="#carrieres" class="nav-link">Carrières</a>
+      <a href="#contact" class="nav-btn">📞 Nous contacter</a>
     </div>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section id="accueil" class="hero">
   <div class="hero-inner">
     <div>
       <div class="hero-eyebrow">Groupe industriel panafricain · Fondé en 1988</div>
@@ -279,7 +280,7 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;margin-bo
 </section>
 
 <!-- SECTEURS -->
-<section class="sec-pad" style="background:var(--bg)">
+<section id="activites" class="sec-pad" style="background:var(--bg)">
   <div class="si">
     <div class="sec-header">
       <div class="sec-eyebrow">Nos activités</div>
@@ -310,7 +311,7 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;margin-bo
 </div>
 
 <!-- SITES INDUSTRIELS -->
-<section class="sec-pad" style="background:var(--white)">
+<section id="nos-sites" class="sec-pad" style="background:var(--white)">
   <div class="si">
     <div class="sec-header">
       <div class="sec-eyebrow">Implantations</div>
@@ -327,7 +328,7 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;margin-bo
 </section>
 
 <!-- PRODUITS -->
-<section class="sec-pad" style="background:var(--bg)">
+<section id="activites" class="sec-pad" style="background:var(--bg)">
   <div class="si">
     <div class="sec-header">
       <div class="sec-eyebrow">Catalogue</div>
@@ -348,7 +349,7 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;margin-bo
 </section>
 
 <!-- RSE -->
-<section class="sec-pad" style="background:var(--white)">
+<section id="nos-sites" class="sec-pad" style="background:var(--white)">
   <div class="si">
     <div class="csr-grid">
       <div class="csr-img-zone">🌍</div>
@@ -368,7 +369,7 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;margin-bo
 </section>
 
 <!-- RECRUTEMENT -->
-<section class="sec-pad" style="background:var(--bg)">
+<section id="activites" class="sec-pad" style="background:var(--bg)">
   <div class="si">
     <div class="sec-header">
       <div class="sec-eyebrow">Carrières</div>
@@ -384,7 +385,7 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;margin-bo
 </section>
 
 <!-- INVESTISSEURS -->
-<section class="invest-section">
+<section id="investisseurs" class="invest-section">
   <div class="inv-inner">
     <div class="invest-grid">
       <div class="inv-info">
@@ -413,7 +414,7 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;margin-bo
 </section>
 
 <!-- CERTIFICATIONS -->
-<section class="sec-pad" style="background:var(--white)">
+<section id="nos-sites" class="sec-pad" style="background:var(--white)">
   <div class="si">
     <div class="sec-header">
       <div class="sec-eyebrow">Qualité & Conformité</div>

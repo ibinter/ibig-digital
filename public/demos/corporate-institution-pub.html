@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -20,6 +20,7 @@
   --light:#F8FAFC;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
 .demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
@@ -234,19 +235,19 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-b
       </div>
     </div>
     <div class="nav-links">
-      <a href="#" class="nav-link active">Accueil</a>
-      <a href="#" class="nav-link">Services</a>
-      <a href="#" class="nav-link">Actualités</a>
-      <a href="#" class="nav-link">Agenda</a>
-      <a href="#" class="nav-link">Élus</a>
-      <a href="#" class="nav-link">Marchés publics</a>
-      <a href="#" class="nav-btn">🖥️ Espace citoyen</a>
+      <a href="#accueil" class="nav-link active">Accueil</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#actualites" class="nav-link">Actualités</a>
+      <a href="#agenda" class="nav-link">Agenda</a>
+      <a href="#elus" class="nav-link">Élus</a>
+      <a href="#marches" class="nav-link">Marchés publics</a>
+      <a href="#espace-citoyen" class="nav-btn">🖥️ Espace citoyen</a>
     </div>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section id="accueil" class="hero">
   <div class="hero-inner">
     <div>
       <div class="hero-badge">🏛️ Commune de Cocody — Abidjan, Côte d'Ivoire</div>
@@ -292,7 +293,7 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-b
 </div>
 
 <!-- SERVICES MUNICIPAUX -->
-<section class="section-pad">
+<section id="services" class="section-pad">
   <div class="sec-inner">
     <div class="sec-header">
       <div class="sec-tag">Services</div>
@@ -326,7 +327,7 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-b
 </div>
 
 <!-- ACTUALITÉS -->
-<section class="section-pad" style="background:var(--light)">
+<section id="actualites" class="section-pad" style="background:var(--light)">
   <div class="sec-inner">
     <div class="sec-header">
       <div class="sec-tag">Actualités</div>
@@ -353,7 +354,7 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-b
 </section>
 
 <!-- DÉMARCHES EN LIGNE -->
-<section class="demarches">
+<section id="marches" class="demarches">
   <div class="dem-inner">
     <div class="sec-header">
       <div class="sec-tag">Numérique</div>
@@ -371,7 +372,7 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-b
 </section>
 
 <!-- AGENDA -->
-<section class="section-pad">
+<section id="services" class="section-pad">
   <div class="sec-inner">
     <div class="sec-header">
       <div class="sec-tag">Agenda</div>
@@ -390,7 +391,7 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-b
 </section>
 
 <!-- ÉLUS -->
-<section class="section-pad" style="background:var(--light)">
+<section id="actualites" class="section-pad" style="background:var(--light)">
   <div class="sec-inner">
     <div class="sec-header">
       <div class="sec-tag">Gouvernance</div>
@@ -407,7 +408,7 @@ footer p.fp{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-b
 </section>
 
 <!-- CONTACT -->
-<section class="contact-section">
+<section id="espace-citoyen" class="contact-section">
   <div class="contact-grid">
     <div class="contact-info">
       <h3>Nous contacter</h3>

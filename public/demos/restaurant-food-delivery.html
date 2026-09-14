@@ -19,6 +19,7 @@
   --red:#DC2626;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
 
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px}
@@ -163,7 +164,7 @@ footer{background:#111;color:#fff;padding:48px 5% 24px}
     </div>
     <div class="nav-actions">
       <div class="nav-addr">📍 Cocody, Abidjan</div>
-      <a href="#" class="cart-btn">🛒 Panier <span class="cart-count">3</span></a>
+      <a href="#restaurants" class="cart-btn">🛒 Panier <span class="cart-count">3</span></a>
       <div class="burger"><span></span><span></span><span></span></div>
     </div>
   </div>
@@ -195,7 +196,7 @@ footer{background:#111;color:#fff;padding:48px 5% 24px}
   </div>
 </section>
 
-<section class="cats-section">
+<section class="cats-section" id="categories">
   <div class="max-w">
     <h3 style="font-size:18px;font-weight:800;margin-bottom:0">Que voulez-vous manger?</h3>
     <div class="cats-grid">
@@ -212,7 +213,7 @@ footer{background:#111;color:#fff;padding:48px 5% 24px}
   </div>
 </section>
 
-<section class="restaurants-section">
+<section class="restaurants-section" id="restaurants">
   <div class="max-w">
     <div class="section-header-row">
       <div>
@@ -274,7 +275,7 @@ footer{background:#111;color:#fff;padding:48px 5% 24px}
   </div>
 </section>
 
-<section class="tracking-section">
+<section class="tracking-section" id="suivi">
   <div class="track-inner">
     <div class="track-left">
       <h2>📍 Suivez votre commande en temps réel</h2>
@@ -302,7 +303,7 @@ footer{background:#111;color:#fff;padding:48px 5% 24px}
   </div>
 </section>
 
-<section class="app-section">
+<section class="app-section" id="app">
   <div class="app-inner">
     <div class="app-left">
       <h2>Téléchargez l'app QuickDeliv</h2>

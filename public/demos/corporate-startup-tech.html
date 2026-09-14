@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -18,6 +18,7 @@
   --card-border:rgba(139,92,246,0.15);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
 .demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
@@ -195,15 +196,15 @@ footer p.fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:1
   <div class="nav-inner">
     <div class="logo">Startup<span>Hub</span> Africa</div>
     <ul class="nav-links">
-      <li><a href="#">Programme</a></li>
-      <li><a href="#">Startups</a></li>
-      <li><a href="#">Investisseurs</a></li>
-      <li><a href="#">Alumni</a></li>
-      <li><a href="#">Événements</a></li>
+      <li><a href="#programme">Programme</a></li>
+      <li><a href="#startups">Startups</a></li>
+      <li><a href="#investisseurs">Investisseurs</a></li>
+      <li><a href="#alumni">Alumni</a></li>
+      <li><a href="#evenements">Événements</a></li>
     </ul>
     <div class="nav-btns">
-      <a href="#" class="btn-nav-o">En savoir plus</a>
-      <a href="#" class="btn-nav-f">Candidater</a>
+      <a href="#a-propos" class="btn-nav-o">En savoir plus</a>
+      <a href="#candidature" class="btn-nav-f">Candidater</a>
     </div>
   </div>
 </nav>
@@ -229,7 +230,7 @@ footer p.fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:1
   </div>
 </section>
 
-<section class="startups-section">
+<section id="startups" class="startups-section">
   <div class="si">
     <div class="sh center">
       <div class="stag purple">Secteurs ciblés</div>
@@ -247,7 +248,7 @@ footer p.fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:1
   </div>
 </section>
 
-<section class="stats-section">
+<section id="a-propos" class="stats-section">
   <div class="stats-inner">
     <div><div class="stat-n purple">120+</div><div class="stat-l">Startups incubées</div></div>
     <div><div class="stat-n cyan">4,8 Mds FCFA</div><div class="stat-l">Levés par nos alumni</div></div>
@@ -256,7 +257,7 @@ footer p.fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:1
   </div>
 </section>
 
-<section class="programme-section">
+<section id="programme" class="programme-section">
   <div class="si">
     <div class="sh">
       <div class="stag cyan">Nos programmes</div>
@@ -314,7 +315,7 @@ footer p.fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:1
   </div>
 </section>
 
-<section class="invest-section">
+<section id="investisseurs" class="invest-section">
   <div class="si">
     <div class="sh">
       <div class="stag green">Investisseurs partenaires</div>
@@ -334,7 +335,7 @@ footer p.fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:1
   </div>
 </section>
 
-<section class="alumni-section">
+<section id="alumni" class="alumni-section">
   <div class="si">
     <div class="sh center">
       <div class="stag purple">Nos alumni</div>
@@ -348,7 +349,7 @@ footer p.fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:1
   </div>
 </section>
 
-<section class="testis-section">
+<section id="evenements" class="testis-section">
   <div class="si">
     <div class="sh center">
       <div class="stag purple">Témoignages</div>
@@ -362,7 +363,7 @@ footer p.fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:1
   </div>
 </section>
 
-<section class="cta-section">
+<section id="candidature" class="cta-section">
   <div class="cta-glow"></div>
   <h2>Votre startup mérite<br>l'<span class="grad">Afrique entière</span></h2>
   <p>Candidatures Promotion 2026 ouvertes jusqu'au 31 Mars 2026</p>
@@ -380,7 +381,7 @@ footer p.fp{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:1
       <div class="f-socs"><a href="#" class="f-soc">tw</a><a href="#" class="f-soc">in</a><a href="#" class="f-soc">ig</a><a href="#" class="f-soc">yt</a></div>
     </div>
     <div class="fc"><h5>Programmes</h5><ul><li><a href="#">Seed Program</a></li><li><a href="#">Acceleration</a></li><li><a href="#">Scale-Up</a></li><li><a href="#">Corporate Innovation</a></li></ul></div>
-    <div class="fc"><h5>Réseau</h5><ul><li><a href="#">Investisseurs</a></li><li><a href="#">Mentors</a></li><li><a href="#">Alumni</a></li><li><a href="#">Partenaires</a></li></ul></div>
+    <div class="fc"><h5>Réseau</h5><ul><li><a href="#investisseurs">Investisseurs</a></li><li><a href="#">Mentors</a></li><li><a href="#alumni">Alumni</a></li><li><a href="#">Partenaires</a></li></ul></div>
     <div class="fc"><h5>Contact</h5><ul><li><a href="#">📍 Cocody, Abidjan</a></li><li><a href="#">📞 +225 07 11 22 33 44</a></li><li><a href="#">✉️ apply@startuphub.africa</a></li></ul></div>
   </div>
   <div class="fb">

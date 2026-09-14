@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -17,6 +17,7 @@
   --dark:#0C0A09;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;}
 .demo-bar a{background:#22c55e;color:#fff;padding:4px 14px;border-radius:4px;text-decoration:none;font-weight:600;font-size:12px;}
@@ -188,13 +189,13 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   <div class="nav-inner">
     <div class="logo">ONG <span>Solidarité Africa</span></div>
     <ul class="nav-links">
-      <li><a href="#">Nos projets</a></li>
-      <li><a href="#">Notre impact</a></li>
-      <li><a href="#">Bénévolat</a></li>
-      <li><a href="#">Actualités</a></li>
-      <li><a href="#">À propos</a></li>
+      <li><a href="#projets">Nos projets</a></li>
+      <li><a href="#impact">Notre impact</a></li>
+      <li><a href="#benevolat">Bénévolat</a></li>
+      <li><a href="#actualites">Actualités</a></li>
+      <li><a href="#a-propos">À propos</a></li>
     </ul>
-    <a href="#" class="btn-don">❤️ Faire un don</a>
+    <a href="#don" class="btn-don">❤️ Faire un don</a>
   </div>
 </nav>
 
@@ -237,7 +238,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="projets-section">
+<section id="projets" class="projets-section">
   <div class="si">
     <div class="sh">
       <div class="stag orange">Nos projets actifs</div>
@@ -279,7 +280,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="impact-section">
+<section id="impact" class="impact-section">
   <div class="si">
     <div class="sh center">
       <div class="stag orange">Notre impact</div>
@@ -294,7 +295,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="testis-section">
+<section id="actualites" class="testis-section">
   <div class="si">
     <div class="sh center">
       <div class="stag orange">Témoignages</div>
@@ -308,7 +309,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="partenaires-section">
+<section id="a-propos" class="partenaires-section">
   <div class="si">
     <div class="stag orange" style="text-align:center">Partenaires</div>
     <h2 class="stitle" style="text-align:center">Ils soutiennent nos actions</h2>
@@ -325,7 +326,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="benevoles-section">
+<section id="benevolat" class="benevoles-section">
   <div class="si">
     <div class="benv-grid">
       <div>
@@ -352,7 +353,7 @@ footer p.fp{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bo
   </div>
 </section>
 
-<section class="cta-section">
+<section id="don" class="cta-section">
   <h2>Donnez de l'<span>espoir</span> aujourd'hui</h2>
   <p>Chaque don, aussi petit soit-il, change une vie</p>
   <div class="cta-btns">

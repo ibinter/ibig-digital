@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <title>SportGear Africa — Équipements Sport & Fitness</title>
 <style>
 :root{--bg:#111827;--bg2:#1F2937;--bg3:#374151;--yellow:#F59E0B;--yellow2:#D97706;--yellow-light:rgba(245,158,11,0.12);--white:#F9FAFB;--gray:#9CA3AF;--gray2:#6B7280;--red:#EF4444;--green:#22C55E}
-*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}*{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
 .demo-bar strong{color:#F59E0B}
@@ -139,12 +139,12 @@ footer{background:#000;padding:60px 24px 24px;border-top:1px solid var(--bg3)}
     <div class="logo-text">Sport<em>Gear</em> Africa</div>
   </div>
   <ul class="nav-links">
-    <li><a href="#">Gym & Fitness</a></li>
-    <li><a href="#">Running</a></li>
-    <li><a href="#">Football</a></li>
-    <li><a href="#">Nutrition</a></li>
-    <li><a href="#">Vêtements</a></li>
-    <li><a href="#">Clubs</a></li>
+    <li><a href="#catalogue">Gym & Fitness</a></li>
+    <li><a href="#catalogue">Running</a></li>
+    <li><a href="#catalogue">Football</a></li>
+    <li><a href="#produits">Nutrition</a></li>
+    <li><a href="#produits">Vêtements</a></li>
+    <li><a href="#catalogue">Clubs</a></li>
   </ul>
   <div class="nav-right">
     <input class="search-box" placeholder="🔍 Haltères, protéines…">
@@ -152,7 +152,7 @@ footer{background:#000;padding:60px 24px 24px;border-top:1px solid var(--bg3)}
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="accueil">
   <div class="hero-lines"></div>
   <div class="hero-inner">
     <div>
@@ -189,7 +189,7 @@ footer{background:#000;padding:60px 24px 24px;border-top:1px solid var(--bg3)}
 
 <div class="energy-strip">⚡ Livraison gratuite dès 50 000 FCFA · Paiement Wave & Orange Money · SAV 7j/7 · Remise professionnelle gyms ⚡</div>
 
-<div class="section">
+<div class="section" id="catalogue">
   <div class="s-h">
     <h2>Nos <em>Catégories</em></h2>
     <p>Tout l'équipement pour chaque discipline sportive</p>
@@ -204,7 +204,7 @@ footer{background:#000;padding:60px 24px 24px;border-top:1px solid var(--bg3)}
   </div>
 </div>
 
-<div class="products-section">
+<div class="products-section" id="produits">
   <div class="products-inner">
     <div class="s-h"><h2>Top <em>Ventes</em></h2><p>Les produits plébiscités par les athlètes africains</p></div>
     <div class="prod-filters">
@@ -335,7 +335,7 @@ footer{background:#000;padding:60px 24px 24px;border-top:1px solid var(--bg3)}
   </div>
 </div>
 
-<footer>
+<footer id="contact">
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
@@ -346,29 +346,29 @@ footer{background:#000;padding:60px 24px 24px;border-top:1px solid var(--bg3)}
       <div>
         <div class="fh">Catégories</div>
         <ul class="ful">
-          <li><a href="#">Musculation</a></li>
-          <li><a href="#">Running</a></li>
-          <li><a href="#">Football</a></li>
-          <li><a href="#">Boxe & Arts Martiaux</a></li>
-          <li><a href="#">Nutrition</a></li>
+          <li><a href="#catalogue">Musculation</a></li>
+          <li><a href="#catalogue">Running</a></li>
+          <li><a href="#catalogue">Football</a></li>
+          <li><a href="#catalogue">Boxe & Arts Martiaux</a></li>
+          <li><a href="#produits">Nutrition</a></li>
         </ul>
       </div>
       <div>
         <div class="fh">Services</div>
         <ul class="ful">
-          <li><a href="#">Devis Gyms Pro</a></li>
-          <li><a href="#">Coaching en ligne</a></li>
-          <li><a href="#">Programme livraison</a></li>
-          <li><a href="#">Garantie & SAV</a></li>
+          <li><a href="#contact">Devis Gyms Pro</a></li>
+          <li><a href="#contact">Coaching en ligne</a></li>
+          <li><a href="#contact">Programme livraison</a></li>
+          <li><a href="#contact">Garantie & SAV</a></li>
         </ul>
       </div>
       <div>
         <div class="fh">Contact</div>
         <ul class="ful">
-          <li><a href="#">📍 Yopougon, Abidjan</a></li>
-          <li><a href="#">📞 +225 09 00 00 00</a></li>
-          <li><a href="#">💬 WhatsApp 7j/7</a></li>
-          <li><a href="#">✉️ contact@sportgear.africa</a></li>
+          <li><a href="#contact">📍 Yopougon, Abidjan</a></li>
+          <li><a href="#contact">📞 +225 09 00 00 00</a></li>
+          <li><a href="#contact">💬 WhatsApp 7j/7</a></li>
+          <li><a href="#contact">✉️ contact@sportgear.africa</a></li>
         </ul>
       </div>
     </div>

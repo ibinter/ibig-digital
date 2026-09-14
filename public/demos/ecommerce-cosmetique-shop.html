@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -20,6 +20,7 @@
   --green: #16A34A;
   --white: #fff;
 }
+html { scroll-behavior: smooth; }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { background:var(--bg); color:var(--dark); font-family: Georgia, 'Times New Roman', serif; }
 .demo-bar {
@@ -265,11 +266,11 @@ footer { background:var(--dark); color:white; padding:60px 32px 24px; font-famil
     </div>
   </div>
   <ul class="nav-links">
-    <li><a href="#">Soins Visage</a></li>
-    <li><a href="#">Corps & Beurres</a></li>
-    <li><a href="#">Cheveux</a></li>
-    <li><a href="#">Huiles Essentielles</a></li>
-    <li><a href="#">Coffrets</a></li>
+    <li><a href="#catalogue">Soins Visage</a></li>
+    <li><a href="#catalogue">Corps & Beurres</a></li>
+    <li><a href="#catalogue">Cheveux</a></li>
+    <li><a href="#catalogue">Huiles Essentielles</a></li>
+    <li><a href="#produits">Coffrets</a></li>
   </ul>
   <div class="nav-right">
     <input class="search-box" placeholder="🔍 Rechercher…">
@@ -277,7 +278,7 @@ footer { background:var(--dark); color:white; padding:60px 32px 24px; font-famil
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="accueil">
   <div class="hero-inner">
     <div>
       <div class="hero-tag">🌿 100% Naturel · Made in Africa</div>
@@ -332,7 +333,7 @@ footer { background:var(--dark); color:white; padding:60px 32px 24px; font-famil
   </div>
 </div>
 
-<div class="section">
+<div class="section" id="catalogue">
   <div class="section-inner">
     <div class="section-title">
       <h2>Nos <em>Catégories</em></h2>
@@ -368,7 +369,7 @@ footer { background:var(--dark); color:white; padding:60px 32px 24px; font-famil
   </div>
 </div>
 
-<div class="featured-section">
+<div class="featured-section" id="produits">
   <div style="max-width:1200px;margin:0 auto;padding:0 0 0 0">
     <div class="section-title">
       <h2>Produits <em>Best-Sellers</em></h2>
@@ -460,7 +461,7 @@ footer { background:var(--dark); color:white; padding:60px 32px 24px; font-famil
   </div>
 </div>
 
-<div class="story-section">
+<div class="story-section" id="apropos">
   <div class="story-inner">
     <div class="story-visual">
       <div class="story-card-big">🌺<div class="story-label">Botaniques africains</div></div>
@@ -547,7 +548,7 @@ footer { background:var(--dark); color:white; padding:60px 32px 24px; font-famil
   </div>
 </div>
 
-<footer>
+<footer id="contact">
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
@@ -569,30 +570,30 @@ footer { background:var(--dark); color:white; padding:60px 32px 24px; font-famil
       <div>
         <div class="foot-h">Gammes</div>
         <ul class="foot-ul">
-          <li><a href="#">Soins Corps</a></li>
-          <li><a href="#">Soins Visage</a></li>
-          <li><a href="#">Soins Cheveux</a></li>
-          <li><a href="#">Huiles Essentielles</a></li>
-          <li><a href="#">Coffrets Cadeaux</a></li>
+          <li><a href="#catalogue">Soins Corps</a></li>
+          <li><a href="#catalogue">Soins Visage</a></li>
+          <li><a href="#catalogue">Soins Cheveux</a></li>
+          <li><a href="#catalogue">Huiles Essentielles</a></li>
+          <li><a href="#produits">Coffrets Cadeaux</a></li>
         </ul>
       </div>
       <div>
         <div class="foot-h">Service Client</div>
         <ul class="foot-ul">
-          <li><a href="#">Suivi Commande</a></li>
-          <li><a href="#">Retours</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Programme Fidélité</a></li>
+          <li><a href="#contact">Suivi Commande</a></li>
+          <li><a href="#contact">Retours</a></li>
+          <li><a href="#contact">FAQ</a></li>
+          <li><a href="#contact">Programme Fidélité</a></li>
         </ul>
       </div>
       <div>
         <div class="foot-h">Contact</div>
         <ul class="foot-ul">
-          <li><a href="#">📍 Abidjan, Côte d'Ivoire</a></li>
-          <li><a href="#">📞 +225 05 00 00 00</a></li>
-          <li><a href="#">💬 WhatsApp</a></li>
-          <li><a href="#">✉️ info@beautenaturelle.ci</a></li>
-          <li><a href="#">Lun–Sam 8h–18h</a></li>
+          <li><a href="#contact">📍 Abidjan, Côte d'Ivoire</a></li>
+          <li><a href="#contact">📞 +225 05 00 00 00</a></li>
+          <li><a href="#contact">💬 WhatsApp</a></li>
+          <li><a href="#contact">✉️ info@beautenaturelle.ci</a></li>
+          <li><a href="#contact">Lun–Sam 8h–18h</a></li>
         </ul>
       </div>
     </div>

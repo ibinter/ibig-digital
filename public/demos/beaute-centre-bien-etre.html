@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <title>Centre Bien-Être Harmonie — Yoga, Méditation & Massages</title>
 <style>
 :root{--bg:#F0FDF4;--bg2:#fff;--bg3:#DCFCE7;--green:#166534;--green2:#15803D;--green-light:#BBF7D0;--beige:#F5F0E8;--beige2:#E8DFD0;--brown:#78350F;--dark:#1A2E1A;--gray:#6B7280;--warm:#92400E;--gold:#D97706}
-*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}*{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--dark);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
 .demo-bar strong{color:#4ADE80}
@@ -156,18 +156,18 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
     </div>
   </div>
   <ul class="nav-links">
-    <li><a href="#">Yoga</a></li>
-    <li><a href="#">Méditation</a></li>
-    <li><a href="#">Massages</a></li>
-    <li><a href="#">Nutrition</a></li>
-    <li><a href="#">Programmes</a></li>
+    <li><a href="#services">Yoga</a></li>
+    <li><a href="#services">Méditation</a></li>
+    <li><a href="#services">Massages</a></li>
+    <li><a href="#services">Nutrition</a></li>
+    <li><a href="#programmes">Programmes</a></li>
   </ul>
   <div class="nav-right">
     <button class="rdv-btn">🌿 Essai Gratuit</button>
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="accueil">
   <div class="hero-inner">
     <div>
       <div class="hero-tag">🌿 Centre Certifié · Abidjan · Côte d'Ivoire</div>
@@ -230,7 +230,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   <span>🥗 Nutrition intégrative</span>
 </div>
 
-<div class="services-wrap">
+<div class="services-wrap" id="services">
   <div class="sec-center">
     <div class="sec-label">Nos disciplines</div>
     <h2 class="sec-h">Soins pour le <em>Corps & l'Esprit</em></h2>
@@ -318,7 +318,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </div>
 
-<div class="programs-wrap">
+<div class="programs-wrap" id="programmes">
   <div class="programs-inner">
     <div class="sec-center">
       <div class="sec-label">Nos abonnements</div>
@@ -386,7 +386,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </div>
 
-<div class="team-wrap">
+<div class="team-wrap" id="equipe">
   <div class="sec-center">
     <div class="sec-label">Notre équipe</div>
     <h2 class="sec-h">Experts <em>Certifiés</em></h2>
@@ -399,7 +399,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </div>
 
-<div class="schedule-wrap">
+<div class="schedule-wrap" id="horaires">
   <div class="schedule-inner">
     <div class="sec-center">
       <div class="sec-label" style="color:var(--green-light)">Planning hebdomadaire</div>
@@ -442,7 +442,7 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
   </div>
 </div>
 
-<footer>
+<footer id="contact">
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
@@ -450,9 +450,9 @@ footer{background:var(--dark);color:#fff;padding:60px 32px 24px}
         <h2 style="font-size:20px;font-weight:700;color:var(--green-light);margin-top:10px;font-family:Georgia,serif">Centre Harmonie</h2>
         <p class="footer-desc">Le centre bien-être de référence à Abidjan depuis 2018. Yoga, méditation, massages et nutrition — votre chemin vers l'équilibre total.</p>
       </div>
-      <div><div class="fh">Services</div><ul class="ful"><li><a href="#">Yoga</a></li><li><a href="#">Méditation</a></li><li><a href="#">Massages</a></li><li><a href="#">Nutrition</a></li><li><a href="#">Pilates</a></li></ul></div>
-      <div><div class="fh">Programmes</div><ul class="ful"><li><a href="#">Sérénité</a></li><li><a href="#">Équilibre</a></li><li><a href="#">Transformation VIP</a></li><li><a href="#">Retraite Weekend</a></li></ul></div>
-      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Cocody, Abidjan</a></li><li><a href="#">📞 +225 07 00 00 00</a></li><li><a href="#">💬 WhatsApp</a></li><li><a href="#">Lun–Sam 7h–20h</a></li></ul></div>
+      <div><div class="fh">Services</div><ul class="ful"><li><a href="#services">Yoga</a></li><li><a href="#services">Méditation</a></li><li><a href="#services">Massages</a></li><li><a href="#services">Nutrition</a></li><li><a href="#services">Pilates</a></li></ul></div>
+      <div><div class="fh">Programmes</div><ul class="ful"><li><a href="#programmes">Sérénité</a></li><li><a href="#programmes">Équilibre</a></li><li><a href="#programmes">Transformation VIP</a></li><li><a href="#programmes">Retraite Weekend</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#contact">📍 Cocody, Abidjan</a></li><li><a href="#contact">📞 +225 07 00 00 00</a></li><li><a href="#contact">💬 WhatsApp</a></li><li><a href="#contact">Lun–Sam 7h–20h</a></li></ul></div>
     </div>
     <div class="foot-bottom"><span>© 2025 Centre Bien-Être Harmonie — Tous droits réservés</span><span>CGV · Confidentialité</span></div>
   </div>

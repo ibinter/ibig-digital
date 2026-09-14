@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <title>AfriMall — Marketplace Africaine</title>
 <style>
 :root{--bg:#fff;--bg2:#F9FAFB;--bg3:#F3F4F6;--orange:#EA580C;--orange2:#C2410C;--orange-light:#FFEDD5;--dark:#111827;--gray:#6B7280;--gray2:#9CA3AF;--blue:#2563EB;--green:#16A34A;--yellow:#F59E0B;--purple:#7C3AED;--red:#DC2626}
-*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}*{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg2);color:var(--dark);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
 .demo-bar strong{color:#EA580C}
@@ -174,7 +174,7 @@ footer{background:var(--dark);color:#fff;padding:50px 24px 20px;margin-top:40px}
   </div>
 </div>
 
-<div class="hero-banner">
+<div class="hero-banner" id="accueil">
   <div class="hero-inner">
     <div class="hero-text">
       <h1>Tout l'Afrique<br>dans un Mall</h1>
@@ -201,7 +201,7 @@ footer{background:var(--dark);color:#fff;padding:50px 24px 20px;margin-top:40px}
   </div>
 </div>
 
-<div class="flash-row">
+<div class="flash-row" id="flash-deals">
   <div class="flash-inner">
     <div class="flash-header">
       <div class="flash-title-row">
@@ -255,7 +255,7 @@ footer{background:var(--dark);color:#fff;padding:50px 24px 20px;margin-top:40px}
   </div>
 </div>
 
-<div class="main-layout">
+<div class="main-layout" id="catalogue">
   <div class="sidebar">
     <div class="sidebar-card">
       <div class="sidebar-title">📂 Catégories</div>
@@ -371,7 +371,7 @@ footer{background:var(--dark);color:#fff;padding:50px 24px 20px;margin-top:40px}
       </div>
     </div>
 
-    <div class="vendeurs-section">
+    <div class="vendeurs-section" id="vendeurs">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
         <h3 style="font-size:18px;font-weight:700">Vendeurs <span style="color:var(--orange)">Certifiés</span></h3>
         <a href="#" style="color:var(--orange);font-size:13px;font-weight:600;text-decoration:none">Voir tous →</a>
@@ -410,16 +410,16 @@ footer{background:var(--dark);color:#fff;padding:50px 24px 20px;margin-top:40px}
   </div>
 </div>
 
-<footer>
+<footer id="contact">
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
         <div style="display:flex;align-items:center;gap:8px"><div style="background:var(--orange);color:#fff;font-size:20px;font-weight:900;padding:5px 10px;border-radius:6px">Afri</div><span style="font-size:20px;font-weight:700">Mall</span></div>
         <p class="footer-desc">La plus grande marketplace africaine. Des milliers de vendeurs, des millions de produits — tout l'Afrique dans votre poche.</p>
       </div>
-      <div><div class="fh">Acheter</div><ul class="ful"><li><a href="#">Flash Deals</a></li><li><a href="#">Catégories</a></li><li><a href="#">Vendeurs certifiés</a></li><li><a href="#">Promotions</a></li></ul></div>
-      <div><div class="fh">Vendre</div><ul class="ful"><li><a href="#">Devenir vendeur</a></li><li><a href="#">Tarifs & commissions</a></li><li><a href="#">Formation vendeurs</a></li><li><a href="#">Centre vendeurs</a></li></ul></div>
-      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Abidjan, CI</a></li><li><a href="#">📞 +225 11 00 00 00</a></li><li><a href="#">💬 Chat 24/7</a></li><li><a href="#">✉️ support@afrimall.africa</a></li></ul></div>
+      <div><div class="fh">Acheter</div><ul class="ful"><li><a href="#flash-deals">Flash Deals</a></li><li><a href="#catalogue">Catégories</a></li><li><a href="#vendeurs">Vendeurs certifiés</a></li><li><a href="#flash-deals">Promotions</a></li></ul></div>
+      <div><div class="fh">Vendre</div><ul class="ful"><li><a href="#vendeurs">Devenir vendeur</a></li><li><a href="#vendeurs">Tarifs & commissions</a></li><li><a href="#vendeurs">Formation vendeurs</a></li><li><a href="#vendeurs">Centre vendeurs</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#contact">📍 Abidjan, CI</a></li><li><a href="#contact">📞 +225 11 00 00 00</a></li><li><a href="#contact">💬 Chat 24/7</a></li><li><a href="#contact">✉️ support@afrimall.africa</a></li></ul></div>
     </div>
     <div class="foot-bottom"><span>© 2025 AfriMall — La Marketplace de l'Afrique</span><span>CGV · Confidentialité · Cookie</span></div>
   </div>

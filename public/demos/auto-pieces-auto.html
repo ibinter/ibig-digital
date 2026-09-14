@@ -17,6 +17,7 @@
   --dark:#1F2937;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
 
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px}
@@ -163,7 +164,7 @@ footer{background:var(--dark);color:#fff;padding:48px 5% 24px}
       </div>
       <div class="nav-actions">
         <span class="nav-tel">📞 +234 80 XXX XXXX</span>
-        <a href="#" class="nav-cart">🛒 Panier <span class="cart-badge">4</span></a>
+        <a href="#catalogue" class="nav-cart">🛒 Panier <span class="cart-badge">4</span></a>
         <div class="burger"><span></span><span></span><span></span></div>
       </div>
     </div>
@@ -201,7 +202,7 @@ footer{background:var(--dark);color:#fff;padding:48px 5% 24px}
   </div>
 </section>
 
-<section class="cats-section">
+<section class="cats-section" id="categories">
   <div class="max-w">
     <div class="stag">Catégories</div>
     <h2 class="sh2">Trouvez votre <em>pièce</em></h2>
@@ -218,7 +219,7 @@ footer{background:var(--dark);color:#fff;padding:48px 5% 24px}
   </div>
 </section>
 
-<section class="products-section">
+<section class="products-section" id="catalogue">
   <div class="max-w">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
       <div>
@@ -249,7 +250,7 @@ footer{background:var(--dark);color:#fff;padding:48px 5% 24px}
   </div>
 </section>
 
-<section class="search-veh-section">
+<section class="search-veh-section" id="recherche">
   <div class="sv-inner">
     <div class="sv-left">
       <h2>Trouvez la pièce exacte pour votre véhicule</h2>
@@ -279,7 +280,7 @@ footer{background:var(--dark);color:#fff;padding:48px 5% 24px}
   </div>
 </section>
 
-<section class="av-section">
+<section class="av-section" id="garanties">
   <div class="max-w">
     <div class="stag">Nos garanties</div>
     <h2 class="sh2">Achetez en toute <em>confiance</em></h2>

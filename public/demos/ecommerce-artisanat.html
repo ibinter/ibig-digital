@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <title>Artisanat d'Afrique — Boutique de Créations Traditionnelles</title>
 <style>
 :root{--bg:#FDF6EC;--bg2:#FFF8F0;--bg3:#FEF3C7;--brown:#92400E;--brown2:#78350F;--dark-brown:#451A03;--gold:#D97706;--gold2:#B45309;--gold-light:#FEF3C7;--cream:#FFFBEB;--terracotta:#C2410C;--dark:#1C1917;--gray:#78716C;--gray2:#A8A29E;--green:#15803D}
-*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}*{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--dark);font-family:Georgia,'Times New Roman',serif}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff;font-family:-apple-system,sans-serif}
 .demo-bar strong{color:#D97706}
@@ -146,11 +146,11 @@ footer{background:var(--dark-brown);color:#fff;padding:60px 32px 24px;font-famil
     </div>
   </div>
   <ul class="nav-links">
-    <li><a href="#">Tissus & Kente</a></li>
-    <li><a href="#">Bijoux</a></li>
-    <li><a href="#">Sculptures</a></li>
-    <li><a href="#">Poteries</a></li>
-    <li><a href="#">Nos Artisans</a></li>
+    <li><a href="#collections">Tissus & Kente</a></li>
+    <li><a href="#collections">Bijoux</a></li>
+    <li><a href="#collections">Sculptures</a></li>
+    <li><a href="#collections">Poteries</a></li>
+    <li><a href="#produits">Nos Artisans</a></li>
   </ul>
   <div class="nav-actions">
     <input class="search-input" placeholder="🔍 Kente, bronze, masque…">
@@ -158,7 +158,7 @@ footer{background:var(--dark-brown);color:#fff;padding:60px 32px 24px;font-famil
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="accueil">
   <div class="hero-ornament">🏺</div>
   <div class="hero-inner">
     <div>
@@ -207,7 +207,7 @@ footer{background:var(--dark-brown);color:#fff;padding:60px 32px 24px;font-famil
   </div>
 </div>
 
-<div class="section">
+<div class="section" id="collections">
   <div class="s-title">
     <h2>Nos <em>Collections</em></h2>
     <p>Des trésors artistiques de chaque région d'Afrique</p>
@@ -248,7 +248,7 @@ footer{background:var(--dark-brown);color:#fff;padding:60px 32px 24px;font-famil
   </div>
 </div>
 
-<div class="products-section">
+<div class="products-section" id="produits">
   <div class="products-inner">
     <div class="s-title">
       <h2>Pièces <em>Vedettes</em></h2>
@@ -398,7 +398,7 @@ footer{background:var(--dark-brown);color:#fff;padding:60px 32px 24px;font-famil
   </div>
 </div>
 
-<footer>
+<footer id="contact">
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
@@ -412,29 +412,29 @@ footer{background:var(--dark-brown);color:#fff;padding:60px 32px 24px;font-famil
       <div>
         <div class="fh">Collections</div>
         <ul class="ful">
-          <li><a href="#">Tissus & Kente</a></li>
-          <li><a href="#">Bijoux Africains</a></li>
-          <li><a href="#">Sculptures & Masques</a></li>
-          <li><a href="#">Poteries</a></li>
-          <li><a href="#">Peintures</a></li>
+          <li><a href="#collections">Tissus & Kente</a></li>
+          <li><a href="#collections">Bijoux Africains</a></li>
+          <li><a href="#collections">Sculptures & Masques</a></li>
+          <li><a href="#collections">Poteries</a></li>
+          <li><a href="#collections">Peintures</a></li>
         </ul>
       </div>
       <div>
         <div class="fh">À Propos</div>
         <ul class="ful">
-          <li><a href="#">Nos Artisans</a></li>
-          <li><a href="#">Commerce Équitable</a></li>
-          <li><a href="#">Authenticité</a></li>
-          <li><a href="#">Notre Mission</a></li>
+          <li><a href="#produits">Nos Artisans</a></li>
+          <li><a href="#produits">Commerce Équitable</a></li>
+          <li><a href="#produits">Authenticité</a></li>
+          <li><a href="#apropos">Notre Mission</a></li>
         </ul>
       </div>
       <div>
         <div class="fh">Contact</div>
         <ul class="ful">
-          <li><a href="#">📍 Treichville, Abidjan</a></li>
-          <li><a href="#">📞 +225 08 00 00 00</a></li>
-          <li><a href="#">✉️ info@artisanatafrique.ci</a></li>
-          <li><a href="#">Lun–Sam 9h–18h</a></li>
+          <li><a href="#contact">📍 Treichville, Abidjan</a></li>
+          <li><a href="#contact">📞 +225 08 00 00 00</a></li>
+          <li><a href="#contact">✉️ info@artisanatafrique.ci</a></li>
+          <li><a href="#contact">Lun–Sam 9h–18h</a></li>
         </ul>
       </div>
     </div>

@@ -18,6 +18,7 @@
   --dark-green:#1B4332;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
 
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#1B4332;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px}
@@ -152,19 +153,19 @@ footer{background:var(--dark-green);color:#fff;padding:48px 5% 24px}
   <div class="nav-inner">
     <div class="logo"><span>Brasserie</span> du Plateau<em>Cuisine française-africaine</em></div>
     <ul class="nav-links">
-      <li><a href="#">Menu</a></li>
-      <li><a href="#">La terrasse</a></li>
-      <li><a href="#">Événements</a></li>
-      <li><a href="#">Notre histoire</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#terrasse">La terrasse</a></li>
+      <li><a href="#temoignages">Événements</a></li>
+      <li><a href="#temoignages">Notre histoire</a></li>
     </ul>
     <div class="nav-actions">
       <span class="nav-tel">+225 27 20 XX XX</span>
-      <a href="#" class="nav-cta">Réserver</a>
+      <a href="#reservation" class="nav-cta">Réserver</a>
       <div class="burger" onclick="document.getElementById('mm').style.display=document.getElementById('mm').style.display==='block'?'none':'block'"><span></span><span></span><span></span></div>
     </div>
   </div>
   <div class="mobile-menu" id="mm">
-    <a href="#">Menu</a><a href="#">La terrasse</a><a href="#">Réserver une table</a>
+    <a href="#menu">Menu</a><a href="#terrasse">La terrasse</a><a href="#reservation">Réserver une table</a>
   </div>
 </nav>
 
@@ -175,8 +176,8 @@ footer{background:var(--dark-green);color:#fff;padding:48px 5% 24px}
       <h1>Cuisine fusion<br><em>franco-africaine</em></h1>
       <p>La Brasserie du Plateau allie la finesse de la cuisine française à la richesse des saveurs africaines. Un lieu de vie au cœur d'Abidjan.</p>
       <div class="hero-ctas">
-        <a href="#" class="btn-green">Réserver une table</a>
-        <a href="#" class="btn-ghost">Voir le menu</a>
+        <a href="#reservation" class="btn-green">Réserver une table</a>
+        <a href="#menu" class="btn-ghost">Voir le menu</a>
       </div>
       <div class="hero-infos">
         <div class="info-item"><span>📍</span><span>Plateau, Abidjan</span></div>
@@ -195,7 +196,7 @@ footer{background:var(--dark-green);color:#fff;padding:48px 5% 24px}
   </div>
 </div>
 
-<section class="menu-section">
+<section class="menu-section" id="menu">
   <div class="max-w">
     <div class="tag">Notre menu</div>
     <h2 class="h2">Des plats qui racontent <em>deux continents</em></h2>
@@ -217,7 +218,7 @@ footer{background:var(--dark-green);color:#fff;padding:48px 5% 24px}
   </div>
 </section>
 
-<section class="terrasse-section">
+<section class="terrasse-section" id="terrasse">
   <div class="max-w">
     <div class="terrasse-inner">
       <div class="terrasse-visual">🌿</div>
@@ -232,13 +233,13 @@ footer{background:var(--dark-green);color:#fff;padding:48px 5% 24px}
           <li><span>🅿️</span><span>Parking sécurisé gratuit pour les clients</span></li>
           <li><span>♿</span><span>Accès adapté aux personnes à mobilité réduite</span></li>
         </ul>
-        <a href="#" class="btn-green">Réserver la terrasse</a>
+        <a href="#reservation" class="btn-green">Réserver la terrasse</a>
       </div>
     </div>
   </div>
 </section>
 
-<section style="padding:64px 5%;background:var(--bg2)">
+<section id="temoignages" style="padding:64px 5%;background:var(--bg2)">
   <div class="max-w">
     <div class="tag">Témoignages</div>
     <h2 class="h2">Ce que disent nos <em>clients</em></h2>
@@ -250,7 +251,7 @@ footer{background:var(--dark-green);color:#fff;padding:48px 5% 24px}
   </div>
 </section>
 
-<section class="resa-section">
+<section class="resa-section" id="reservation">
   <div class="max-w" style="padding:72px 0">
     <div class="resa-inner">
       <div class="resa-info">

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -16,6 +16,7 @@
   --shadow: 0 4px 24px rgba(30,58,95,0.12);
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
 
 /* DEMO BAR */
@@ -191,13 +192,13 @@ footer{background:#0f1f33;padding:60px 24px 24px;color:rgba(255,255,255,0.7)}
       <div class="logo-text">ESBA<span>École Supérieure Business Abidjan</span></div>
     </a>
     <ul class="nav-links">
-      <li><a href="#">Programmes</a></li>
-      <li><a href="#">Admissions</a></li>
-      <li><a href="#">Campus</a></li>
-      <li><a href="#">Entreprises</a></li>
-      <li><a href="#">Alumni</a></li>
+      <li><a href="#programmes">Programmes</a></li>
+      <li><a href="#admissions">Admissions</a></li>
+      <li><a href="#campus">Campus</a></li>
+      <li><a href="#partners">Entreprises</a></li>
+      <li><a href="#testi">Alumni</a></li>
     </ul>
-    <a href="#" class="nav-cta">Candidater</a>
+    <a href="#admissions" class="nav-cta">Candidater</a>
   </div>
 </nav>
 
@@ -223,7 +224,7 @@ footer{background:#0f1f33;padding:60px 24px 24px;color:rgba(255,255,255,0.7)}
 </section>
 
 <!-- ADMISSIONS STRIP -->
-<div class="admissions-strip">
+<div id="admissions" class="admissions-strip">
   <div class="admissions-inner">
     <div>
       <div class="adm-text">📅 Candidatures ouvertes — Promotion <span>2025-2026</span></div>
@@ -245,7 +246,7 @@ footer{background:#0f1f33;padding:60px 24px 24px;color:rgba(255,255,255,0.7)}
 </div>
 
 <!-- PROGRAMMES -->
-<section class="programmes">
+<section id="programmes" class="programmes">
   <div class="section-inner">
     <div class="section-tag">Nos Programmes</div>
     <h2 class="section-title">Des Formations d'Excellence</h2>
@@ -319,7 +320,7 @@ footer{background:#0f1f33;padding:60px 24px 24px;color:rgba(255,255,255,0.7)}
 </section>
 
 <!-- CAMPUS -->
-<section>
+<section id="campus">
   <div class="section-inner">
     <div class="campus-grid">
       <div>
@@ -341,7 +342,7 @@ footer{background:#0f1f33;padding:60px 24px 24px;color:rgba(255,255,255,0.7)}
 </section>
 
 <!-- PARTENAIRES -->
-<section class="partners">
+<section id="partners" class="partners">
   <div class="section-inner">
     <div class="section-tag">Partenaires Entreprises</div>
     <h2 class="section-title">Votre Réseau Professionnel dès le Campus</h2>
@@ -360,7 +361,7 @@ footer{background:#0f1f33;padding:60px 24px 24px;color:rgba(255,255,255,0.7)}
 </section>
 
 <!-- CORPS PROFESSORAL -->
-<section>
+<section id="equipe">
   <div class="section-inner">
     <div class="section-tag">Corps Professoral</div>
     <h2 class="section-title">Des Professeurs d'Exception</h2>
@@ -403,7 +404,7 @@ footer{background:#0f1f33;padding:60px 24px 24px;color:rgba(255,255,255,0.7)}
 </section>
 
 <!-- TEMOIGNAGES -->
-<section class="testi">
+<section id="testi" class="testi">
   <div class="section-inner">
     <div class="section-tag">Témoignages Alumni</div>
     <h2 class="section-title">Ils Font la Fierté de l'ESBA</h2>
@@ -478,11 +479,11 @@ footer{background:#0f1f33;padding:60px 24px 24px;color:rgba(255,255,255,0.7)}
       <div>
         <div class="footer-heading">Informations</div>
         <ul class="footer-links">
-          <li><a href="#">Admissions</a></li>
+          <li><a href="#admissions">Admissions</a></li>
           <li><a href="#">Bourses & aides</a></li>
           <li><a href="#">International</a></li>
-          <li><a href="#">Entreprises</a></li>
-          <li><a href="#">Alumni</a></li>
+          <li><a href="#partners">Entreprises</a></li>
+          <li><a href="#testi">Alumni</a></li>
         </ul>
       </div>
     </div>

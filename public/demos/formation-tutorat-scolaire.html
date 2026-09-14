@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -7,6 +7,7 @@
 <style>
 :root{--purple:#7C3AED;--violet:#5B21B6;--yellow:#FCD34D;--light:#F5F3FF;--white:#fff;--text:#1F2937;--gray:#6B7280;--border:#E5E7EB;--shadow:0 4px 24px rgba(124,58,237,0.14)}
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text);background:var(--white);padding-top:40px}
 #demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;font-weight:500}
 #demo-bar a{background:#16a34a;color:#fff;padding:5px 16px;border-radius:4px;text-decoration:none;font-weight:700;font-size:12px}
@@ -179,10 +180,10 @@ footer{background:#1e0a3c;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
     </a>
     <ul class="nav-links">
       <li><a href="#">Matières</a></li>
-      <li><a href="#">Professeurs</a></li>
-      <li><a href="#">Tarifs</a></li>
-      <li><a href="#">Niveaux</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#profs">Professeurs</a></li>
+      <li><a href="#tarifs">Tarifs</a></li>
+      <li><a href="#matieres">Niveaux</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#" class="nav-cta">Réserver un cours</a>
   </div>
@@ -234,7 +235,7 @@ footer{background:#1e0a3c;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="matieres">
+<section id="matieres" class="matieres">
   <div class="section-inner">
     <div class="section-tag">Matières disponibles</div>
     <h2 class="section-title">Toutes les Matières, Tous les Niveaux</h2>
@@ -252,7 +253,7 @@ footer{background:#1e0a3c;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="profs">
+<section id="profs" class="profs">
   <div class="section-inner">
     <div class="section-tag">Nos Professeurs</div>
     <h2 class="section-title">Les Meilleurs Tuteurs d'Abidjan</h2>
@@ -302,7 +303,7 @@ footer{background:#1e0a3c;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="tarifs">
+<section id="tarifs" class="tarifs">
   <div class="section-inner">
     <div class="section-tag">Nos Formules</div>
     <h2 class="section-title">Choisissez Votre Formule</h2>
@@ -363,7 +364,7 @@ footer{background:#1e0a3c;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="testi">
+<section id="testi" class="testi">
   <div class="section-inner">
     <div class="section-tag">Témoignages Parents</div>
     <h2 class="section-title">Ce Que Disent les Familles</h2>
@@ -387,7 +388,7 @@ footer{background:#1e0a3c;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
   </div>
 </section>
 
-<section class="cta-section">
+<section id="contact" class="cta-section">
   <h2>Première Séance Gratuite !</h2>
   <p>Inscrivez-vous maintenant et bénéficiez d'une heure de cours gratuite avec l'un de nos meilleurs professeurs.</p>
   <div class="cta-btns">
@@ -406,7 +407,7 @@ footer{background:#1e0a3c;padding:56px 24px 24px;color:rgba(255,255,255,0.6)}
       </div>
       <div><div class="footer-heading">Matières</div><ul class="footer-links"><li><a href="#">Mathématiques</a></li><li><a href="#">Français</a></li><li><a href="#">Physique-Chimie</a></li><li><a href="#">Anglais</a></li><li><a href="#">SVT</a></li></ul></div>
       <div><div class="footer-heading">Niveaux</div><ul class="footer-links"><li><a href="#">Primaire</a></li><li><a href="#">Collège</a></li><li><a href="#">Lycée</a></li><li><a href="#">Prépa BAC</a></li><li><a href="#">Supérieur</a></li></ul></div>
-      <div><div class="footer-heading">TutorAfrik</div><ul class="footer-links"><li><a href="#">Devenir tuteur</a></li><li><a href="#">Nos garanties</a></li><li><a href="#">Parrainage</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div><div class="footer-heading">TutorAfrik</div><ul class="footer-links"><li><a href="#">Devenir tuteur</a></li><li><a href="#">Nos garanties</a></li><li><a href="#">Parrainage</a></li><li><a href="#">Blog</a></li><li><a href="#contact">Contact</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <span>© 2025 TutorAfrik · Tous droits réservés</span>

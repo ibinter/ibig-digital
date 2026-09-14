@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <title>Barber Kings Dakar — Barbershop Masculin Premium</title>
 <style>
 :root{--bg:#111827;--bg2:#1F2937;--bg3:#374151;--gold:#F59E0B;--gold2:#D97706;--white:#F9FAFB;--gray:#9CA3AF;--gray2:#6B7280;--dark:#000;--red:#EF4444;--green:#22C55E}
-*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}*{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
 .demo-bar strong{color:#F59E0B}
@@ -145,11 +145,11 @@ footer{background:#000;padding:60px 32px 20px;border-top:1px solid rgba(245,158,
     </div>
   </div>
   <ul class="nav-links">
-    <li><a href="#">Coupes</a></li>
-    <li><a href="#">Barbe</a></li>
-    <li><a href="#">Soins Homme</a></li>
-    <li><a href="#">Maîtres Barbiers</a></li>
-    <li><a href="#">Tarifs</a></li>
+    <li><a href="#services">Coupes</a></li>
+    <li><a href="#services">Barbe</a></li>
+    <li><a href="#services">Soins Homme</a></li>
+    <li><a href="#barbiers">Maîtres Barbiers</a></li>
+    <li><a href="#services">Tarifs</a></li>
   </ul>
   <div class="nav-right">
     <button class="tel-btn">📞 +221 78 000 000</button>
@@ -157,7 +157,7 @@ footer{background:#000;padding:60px 32px 20px;border-top:1px solid rgba(245,158,
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="accueil">
   <div class="hero-grid-bg"></div>
   <div class="hero-inner">
     <div>
@@ -197,7 +197,7 @@ footer{background:#000;padding:60px 32px 20px;border-top:1px solid rgba(245,158,
   <span>📸 Lookbook disponible</span>
 </div>
 
-<div class="section">
+<div class="section" id="barbiers">
   <div class="s-header">
     <div class="s-eyebrow">Notre Équipe</div>
     <div class="s-title">Les <em>Maîtres</em><br>Barbiers</div>
@@ -239,7 +239,7 @@ footer{background:#000;padding:60px 32px 20px;border-top:1px solid rgba(245,158,
   </div>
 </div>
 
-<div class="services-section">
+<div class="services-section" id="services">
   <div class="services-inner">
     <div class="s-header">
       <div class="s-eyebrow">Notre Menu</div>
@@ -292,7 +292,7 @@ footer{background:#000;padding:60px 32px 20px;border-top:1px solid rgba(245,158,
   </div>
 </div>
 
-<div class="gallery">
+<div class="gallery" id="galerie">
   <div class="gallery-inner">
     <div class="s-header" style="color:var(--white)">
       <div class="s-eyebrow">Nos Créations</div>
@@ -344,16 +344,16 @@ footer{background:#000;padding:60px 32px 20px;border-top:1px solid rgba(245,158,
   <button class="btn-dark">👑 Réserver Maintenant →</button>
 </div>
 
-<footer>
+<footer id="contact">
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
         <div style="font-size:22px;font-weight:900;letter-spacing:2px;color:var(--gold)">BARBER KINGS</div>
         <p class="footer-desc">Le barbershop masculin premium de Dakar depuis 2015. Maîtres barbiers certifiés, services haut de gamme, ambiance exclusive.</p>
       </div>
-      <div><div class="fh">Services</div><ul class="ful"><li><a href="#">Coupes Homme</a></li><li><a href="#">Barbe & Rasage</a></li><li><a href="#">Soins Capillaires</a></li><li><a href="#">Package King</a></li></ul></div>
-      <div><div class="fh">Infos</div><ul class="ful"><li><a href="#">Nos Barbiers</a></li><li><a href="#">Tarifs</a></li><li><a href="#">Carte Cadeau</a></li><li><a href="#">Carte de Fidélité</a></li></ul></div>
-      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Sacré-Cœur, Dakar</a></li><li><a href="#">📞 +221 78 000 000</a></li><li><a href="#">💬 WhatsApp</a></li><li><a href="#">Lun–Dim 8h–20h</a></li></ul></div>
+      <div><div class="fh">Services</div><ul class="ful"><li><a href="#services">Coupes Homme</a></li><li><a href="#services">Barbe & Rasage</a></li><li><a href="#services">Soins Capillaires</a></li><li><a href="#services">Package King</a></li></ul></div>
+      <div><div class="fh">Infos</div><ul class="ful"><li><a href="#barbiers">Nos Barbiers</a></li><li><a href="#services">Tarifs</a></li><li><a href="#contact">Carte Cadeau</a></li><li><a href="#contact">Carte de Fidélité</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#contact">📍 Sacré-Cœur, Dakar</a></li><li><a href="#contact">📞 +221 78 000 000</a></li><li><a href="#contact">💬 WhatsApp</a></li><li><a href="#contact">Lun–Dim 8h–20h</a></li></ul></div>
     </div>
     <div class="foot-bottom"><span>© 2025 BARBER KINGS DAKAR</span><span>CGV · MENTIONS LÉGALES</span></div>
   </div>

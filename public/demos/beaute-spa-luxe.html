@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <title>Spa Évasion Lagos — Spa de Luxe & Bien-être</title>
 <style>
 :root{--bg:#FAF5EB;--bg2:#FFFBF2;--bg3:#FEF3C7;--gold:#D97706;--gold2:#B45309;--gold-light:#FEF3C7;--cream:#FFFBEB;--dark:#1C1917;--dark2:#292524;--gray:#78716C;--gray2:#A8A29E;--beige:#F5EED8}
-*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}*{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--dark);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff}
 .demo-bar strong{color:#D97706}
@@ -141,11 +141,11 @@ footer{background:#0A0A0A;padding:60px 40px 24px}
     </div>
   </div>
   <ul class="nav-links">
-    <li><a href="#">Soins</a></li>
-    <li><a href="#">Massages</a></li>
-    <li><a href="#">Hammam</a></li>
-    <li><a href="#">Packages</a></li>
-    <li><a href="#">Tarifs VIP</a></li>
+    <li><a href="#soins">Soins</a></li>
+    <li><a href="#soins">Massages</a></li>
+    <li><a href="#soins">Hammam</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#packages">Tarifs VIP</a></li>
   </ul>
   <div class="nav-right">
     <span class="phone-display">📞 +234 901 000 000</span>
@@ -153,7 +153,7 @@ footer{background:#0A0A0A;padding:60px 40px 24px}
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="accueil">
   <div class="hero-bg"></div>
   <div class="hero-inner">
     <div>
@@ -187,7 +187,7 @@ footer{background:#0A0A0A;padding:60px 40px 24px}
 
 <div class="gold-divider"></div>
 
-<div class="experience">
+<div class="experience" id="experience">
   <div class="section-header-luxe">
     <div class="shl-eyebrow">Notre Philosophie</div>
     <div class="shl-title">Un univers de luxe,<br>un art de <em>vivre</em></div>
@@ -212,7 +212,7 @@ footer{background:#0A0A0A;padding:60px 40px 24px}
   </div>
 </div>
 
-<div class="soins-section">
+<div class="soins-section" id="soins">
   <div class="soins-inner">
     <div class="section-header-luxe">
       <div class="shl-eyebrow">Notre Menu de Soins</div>
@@ -271,7 +271,7 @@ footer{background:#0A0A0A;padding:60px 40px 24px}
   </div>
 </div>
 
-<div class="packages-section">
+<div class="packages-section" id="packages">
   <div class="section-header-luxe">
     <div class="shl-eyebrow">Nos Packages VIP</div>
     <div class="shl-title">Des expériences<br><em>sur-mesure</em></div>
@@ -356,16 +356,16 @@ footer{background:#0A0A0A;padding:60px 40px 24px}
   </div>
 </div>
 
-<footer>
+<footer id="contact">
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
         <div style="font-size:22px;letter-spacing:3px;font-family:Georgia,serif;color:var(--gold)">SPA ÉVASION</div>
         <p class="footer-desc">Le spa de luxe de référence à Lagos depuis 2013. Soins premium, thérapeutes certifiés, expériences sensorielles uniques en Afrique de l'Ouest.</p>
       </div>
-      <div><div class="fh">Nos Soins</div><ul class="ful"><li><a href="#">Massages</a></li><li><a href="#">Soins visage</a></li><li><a href="#">Hammam</a></li><li><a href="#">Packages VIP</a></li></ul></div>
-      <div><div class="fh">Informations</div><ul class="ful"><li><a href="#">Tarifs</a></li><li><a href="#">Horaires</a></li><li><a href="#">Carte cadeau</a></li><li><a href="#">Abonnement spa</a></li></ul></div>
-      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Victoria Island, Lagos</a></li><li><a href="#">📞 +234 901 000 000</a></li><li><a href="#">✉️ contact@spaevasion.ng</a></li><li><a href="#">7j/7 · 9h–21h</a></li></ul></div>
+      <div><div class="fh">Nos Soins</div><ul class="ful"><li><a href="#soins">Massages</a></li><li><a href="#soins">Soins visage</a></li><li><a href="#soins">Hammam</a></li><li><a href="#packages">Packages VIP</a></li></ul></div>
+      <div><div class="fh">Informations</div><ul class="ful"><li><a href="#packages">Tarifs</a></li><li><a href="#contact">Horaires</a></li><li><a href="#contact">Carte cadeau</a></li><li><a href="#packages">Abonnement spa</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#contact">📍 Victoria Island, Lagos</a></li><li><a href="#contact">📞 +234 901 000 000</a></li><li><a href="#contact">✉️ contact@spaevasion.ng</a></li><li><a href="#contact">7j/7 · 9h–21h</a></li></ul></div>
     </div>
     <div class="foot-bottom"><span>© 2025 SPA ÉVASION LAGOS — TOUS DROITS RÉSERVÉS</span><span>MENTIONS LÉGALES · CONFIDENTIALITÉ</span></div>
   </div>

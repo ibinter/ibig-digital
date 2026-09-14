@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <title>Librairie Africaine en Ligne — Livres, Auteurs & Culture</title>
 <style>
 :root{--bg:#1E1B4B;--bg2:#2D2A5E;--bg3:#3D3A72;--gold:#D97706;--gold2:#B45309;--gold-light:#FEF3C7;--cream:#FFFBEB;--white:#F5F3FF;--gray:#A5B4FC;--gray2:#818CF8;--dark:#0F0D2E;--red:#EF4444;--green:#22C55E}
-*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}*{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--white);font-family:Georgia,'Times New Roman',serif}
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;color:#fff;font-family:-apple-system,sans-serif}
 .demo-bar strong{color:#D97706}
@@ -145,12 +145,12 @@ footer{background:var(--dark);color:var(--white);padding:60px 32px 24px;font-fam
     </div>
   </div>
   <ul class="nav-links">
-    <li><a href="#">Romans</a></li>
-    <li><a href="#">Essais</a></li>
-    <li><a href="#">BD Africaine</a></li>
-    <li><a href="#">Scolaire</a></li>
-    <li><a href="#">Musique</a></li>
-    <li><a href="#">Auteurs</a></li>
+    <li><a href="#genres">Romans</a></li>
+    <li><a href="#genres">Essais</a></li>
+    <li><a href="#genres">BD Africaine</a></li>
+    <li><a href="#genres">Scolaire</a></li>
+    <li><a href="#livres">Musique</a></li>
+    <li><a href="#livres">Auteurs</a></li>
   </ul>
   <div class="nav-right">
     <input class="search-box" placeholder="🔍 Titre, auteur, ISBN…">
@@ -158,7 +158,7 @@ footer{background:var(--dark);color:var(--white);padding:60px 32px 24px;font-fam
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="accueil">
   <div class="hero-stars"></div>
   <div class="hero-inner">
     <div>
@@ -193,7 +193,7 @@ footer{background:var(--dark);color:var(--white);padding:60px 32px 24px;font-fam
   </div>
 </section>
 
-<div class="section">
+<div class="section" id="genres">
   <div class="s-h"><h2>Nos <em>Genres</em> Littéraires</h2><p>Toute la diversité de la création africaine</p></div>
   <div class="genres-grid">
     <div class="genre-card"><div class="genre-icon">📕</div><div class="genre-name">Romans</div><div class="genre-count">3 240 titres</div></div>
@@ -207,7 +207,7 @@ footer{background:var(--dark);color:var(--white);padding:60px 32px 24px;font-fam
   </div>
 </div>
 
-<div class="books-section">
+<div class="books-section" id="livres">
   <div class="books-inner">
     <div class="s-h"><h2>Livres <em>du Moment</em></h2><p>Sélection éditoriale — les titres incontournables de la saison</p></div>
     <div class="books-filters">
@@ -358,7 +358,7 @@ footer{background:var(--dark);color:var(--white);padding:60px 32px 24px;font-fam
   </div>
 </div>
 
-<footer>
+<footer id="contact">
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
@@ -366,9 +366,9 @@ footer{background:var(--dark);color:var(--white);padding:60px 32px 24px;font-fam
         <h2 style="font-size:18px;font-weight:700;color:var(--gold);margin-top:8px;font-family:Georgia,serif">Librairie Africaine</h2>
         <p class="footer-desc">Promouvoir la littérature et la culture africaine depuis Abidjan. Plus de 15 000 titres, auteurs africains célébrés.</p>
       </div>
-      <div><div class="fh">Catalogue</div><ul class="ful"><li><a href="#">Romans africains</a></li><li><a href="#">BD & Comics</a></li><li><a href="#">Livres scolaires</a></li><li><a href="#">Musique</a></li></ul></div>
-      <div><div class="fh">Services</div><ul class="ful"><li><a href="#">Commandes pro</a></li><li><a href="#">Abonnement lecture</a></li><li><a href="#">Auteurs en résidence</a></li><li><a href="#">Clubs de lecture</a></li></ul></div>
-      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#">📍 Adjamé, Abidjan</a></li><li><a href="#">📞 +225 10 00 00 00</a></li><li><a href="#">✉️ lecture@librairie-afrique.ci</a></li></ul></div>
+      <div><div class="fh">Catalogue</div><ul class="ful"><li><a href="#genres">Romans africains</a></li><li><a href="#genres">BD & Comics</a></li><li><a href="#genres">Livres scolaires</a></li><li><a href="#livres">Musique</a></li></ul></div>
+      <div><div class="fh">Services</div><ul class="ful"><li><a href="#contact">Commandes pro</a></li><li><a href="#livres">Abonnement lecture</a></li><li><a href="#livres">Auteurs en résidence</a></li><li><a href="#livres">Clubs de lecture</a></li></ul></div>
+      <div><div class="fh">Contact</div><ul class="ful"><li><a href="#contact">📍 Adjamé, Abidjan</a></li><li><a href="#contact">📞 +225 10 00 00 00</a></li><li><a href="#contact">✉️ lecture@librairie-afrique.ci</a></li></ul></div>
     </div>
     <div class="foot-bottom"><span>© 2025 Librairie Africaine en Ligne — Tous droits réservés</span><span>CGV · Confidentialité</span></div>
   </div>

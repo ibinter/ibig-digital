@@ -18,6 +18,7 @@
   --green:#10B981;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
 
 .demo-bar{position:fixed;top:0;left:0;right:0;height:40px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;z-index:9999;font-size:13px;border-bottom:2px solid var(--primary)}
@@ -152,18 +153,18 @@ footer{background:#000;padding:48px 5% 24px;border-top:1px solid var(--border)}
   <div class="nav-inner">
     <div class="logo">Auto<span>Service</span> Pro<em>Garage & Mécanique Abidjan</em></div>
     <ul class="nav-links">
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Devis</a></li>
-      <li><a href="#">Notre équipe</a></li>
-      <li><a href="#">Témoignages</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#devis">Devis</a></li>
+      <li><a href="#equipe">Notre équipe</a></li>
+      <li><a href="#temoignages">Témoignages</a></li>
     </ul>
     <div class="nav-actions">
       <span class="nav-tel">📞 +225 07 XX XX XX</span>
-      <a href="#" class="nav-cta">Devis gratuit</a>
+      <a href="#devis" class="nav-cta">Devis gratuit</a>
       <div class="burger" onclick="document.getElementById('mm').style.display=document.getElementById('mm').style.display==='block'?'none':'block'"><span></span><span></span><span></span></div>
     </div>
   </div>
-  <div class="mob-menu" id="mm"><a href="#">Services</a><a href="#">Devis gratuit</a><a href="#">Notre équipe</a><a href="#">Contact</a></div>
+  <div class="mob-menu" id="mm"><a href="#services">Services</a><a href="#devis">Devis gratuit</a><a href="#equipe">Notre équipe</a><a href="#temoignages">Contact</a></div>
 </nav>
 
 <section class="hero">
@@ -174,7 +175,7 @@ footer{background:#000;padding:48px 5% 24px;border-top:1px solid var(--border)}
       <h1>Votre voiture entre <span>les meilleures mains</span></h1>
       <p>Révision, réparation moteur, carrosserie, vidange express — Auto Service Pro est le garage de référence à Abidjan. Techniciens certifiés, pièces authentiques.</p>
       <div class="hero-ctas">
-        <a href="#" class="btn-yellow">🔧 Demander un devis</a>
+        <a href="#devis" class="btn-yellow">🔧 Demander un devis</a>
         <a href="#" class="btn-outline">📞 Nous appeler</a>
       </div>
       <div class="hero-nums">
@@ -192,7 +193,7 @@ footer{background:#000;padding:48px 5% 24px;border-top:1px solid var(--border)}
   </div>
 </section>
 
-<section class="services-section">
+<section class="services-section" id="services">
   <div class="max-w">
     <div class="stag">Nos services</div>
     <h2 class="sh2">Tout pour votre <em>véhicule</em></h2>
@@ -208,7 +209,7 @@ footer{background:#000;padding:48px 5% 24px;border-top:1px solid var(--border)}
   </div>
 </section>
 
-<section class="devis-section">
+<section class="devis-section" id="devis">
   <div class="devis-inner">
     <div class="devis-info">
       <h2>Devis <em>gratuit</em> en 2h</h2>
@@ -243,7 +244,7 @@ footer{background:#000;padding:48px 5% 24px;border-top:1px solid var(--border)}
   </div>
 </section>
 
-<section class="team-section">
+<section class="team-section" id="equipe">
   <div class="max-w">
     <div class="stag">Notre équipe</div>
     <h2 class="sh2">Des techniciens <em>certifiés</em></h2>
@@ -257,7 +258,7 @@ footer{background:#000;padding:48px 5% 24px;border-top:1px solid var(--border)}
   </div>
 </section>
 
-<section class="testi-section">
+<section class="testi-section" id="temoignages">
   <div class="max-w">
     <div class="stag">Avis clients</div>
     <h2 class="sh2">Ce qu'ils disent de <em>nous</em></h2>
