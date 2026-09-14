@@ -4,7 +4,7 @@ import { type ReactNode } from 'react'
 import { getClient } from '@/lib/auth'
 import sql from '@/lib/db'
 import EspaceClientNav from '@/components/espace-client/EspaceClientNav'
-import { ArrowLeft, ExternalLink, Globe, Key, MessageSquare, CheckCircle, Clock, Loader, Archive } from 'lucide-react'
+import { ArrowLeft, ExternalLink, Globe, Key, MessageSquare, CheckCircle, Clock, Loader, Archive, Pencil } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -112,6 +112,10 @@ export default async function CommandeDetailPage({ params }: { params: Promise<{
                   <Key size={15} /> Administration <ExternalLink size={13} />
                 </a>
               )}
+              <Link href={`/espace-client/mon-site/${order.id}`}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem', padding: '.75rem 1.5rem', borderRadius: '.875rem', fontWeight: 700, fontSize: '.85rem', color: 'white', background: 'linear-gradient(135deg,#FF6B00,#FF4500)', textDecoration: 'none' }}>
+                <Pencil size={15} /> Modifier le contenu
+              </Link>
             </div>
           </div>
         )}

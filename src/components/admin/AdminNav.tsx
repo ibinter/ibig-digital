@@ -2,11 +2,12 @@
 import { useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { LayoutDashboard, ShoppingBag, MessageSquare, Users, LogOut, Menu, X, ChevronRight } from 'lucide-react'
+import { LayoutDashboard, ShoppingBag, MessageSquare, Users, Globe, LogOut, Menu, X, ChevronRight } from 'lucide-react'
 
 const LINKS = [
   { href: '/admin/dashboard', label: 'Tableau de bord', icon: LayoutDashboard },
   { href: '/admin/commandes',  label: 'Commandes',       icon: ShoppingBag },
+  { href: '/admin/sites',      label: 'Sites / CMS',     icon: Globe },
   { href: '/admin/tickets',    label: 'Tickets',          icon: MessageSquare },
   { href: '/admin/clients',    label: 'Clients',          icon: Users },
 ]
