@@ -1,5 +1,6 @@
 'use client'
 import { useState, useRef } from 'react'
+import type { ReactNode } from 'react'
 import { Monitor, Tablet, Smartphone, RefreshCw, ExternalLink } from 'lucide-react'
 
 interface ColorTheme {
@@ -238,7 +239,7 @@ export default function TemplatePreviewClient({ demoFile, primaryColor, tplName,
         {/* ── Toolbar ── */}
         <div className="preview-toolbar">
           <div className="vp-switcher">
-            {([['desktop', 'Bureau', <Monitor key="d" size={11}/>], ['tablet', 'Tablette', <Tablet key="t" size={11}/>], ['mobile', 'Mobile', <Smartphone key="m" size={11}/>]] as [Viewport, string, React.ReactNode][]).map(([vp, label, icon]) => (
+            {([['desktop', 'Bureau', <Monitor key="d" size={11}/>], ['tablet', 'Tablette', <Tablet key="t" size={11}/>], ['mobile', 'Mobile', <Smartphone key="m" size={11}/>]] as [Viewport, string, ReactNode][]).map(([vp, label, icon]) => (
               <button key={vp} onClick={() => setViewport(vp)} className="vp-btn"
                 style={{ background: viewport === vp ? 'rgba(255,255,255,.12)' : 'transparent', color: viewport === vp ? 'white' : 'rgba(255,255,255,.35)' }}>
                 {icon}
