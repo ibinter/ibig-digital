@@ -26,49 +26,62 @@ const CATEGORIES = [
 /* ─── FORMULES ──────────────────────────────────────────────────────────────── */
 const FORMULES = [
   {
+    name: 'Starter',
+    desc: 'Lancer rapidement',
+    color: '#22C55E',
+    gradient: 'linear-gradient(135deg,#052e16,#14532d,#166534)',
+    features: [
+      'Design responsive mobile',
+      'Hébergement 1 an offert',
+      '3 pages incluses',
+      'Formulaire de contact',
+      'SEO de base',
+      'Livraison en 5 jours',
+    ],
+    notIncluded: ['Blog & galerie', 'Modules avancés'],
+  },
+  {
     name: 'Standard',
-    desc: 'Besoins essentiels',
+    desc: 'Présence complète',
     color: '#64748B',
     gradient: 'linear-gradient(135deg,#1E293B,#334155)',
     features: [
-      'Template de base complet',
-      'Design responsive mobile',
+      'Tout Starter inclus',
       'Contenu administrable',
-      '5 pages incluses',
-      'Formulaire de contact',
-      'Optimisation SEO de base',
+      '6 pages incluses',
+      'Blog & galerie photos',
+      'Réseaux sociaux intégrés',
+      'Rapport de visite mensuel',
     ],
-    notIncluded: ['Domaine & hébergement', 'Modules avancés'],
+    notIncluded: ['Modules avancés'],
   },
   {
     name: 'Premium',
-    desc: 'Besoins plus complets',
+    desc: 'Croissance accélérée',
     color: '#FF6B00',
     gradient: 'linear-gradient(135deg,#7C1D06,#C2410C,#EA580C)',
     popular: true,
     features: [
-      'Tout le Standard inclus',
-      'Personnalisation avancée',
-      'Domaine + hébergement 1 an',
+      'Tout Standard inclus',
       '10 pages incluses',
-      'Blog & galerie',
-      'Intégration réseaux sociaux',
-      'Analytics & statistiques',
+      'Animations & effets pro',
+      'Analytics avancés',
+      'Formulaires multi-étapes',
+      'Support prioritaire',
     ],
     notIncluded: ['Modules e-commerce'],
   },
   {
     name: 'Elite',
-    desc: 'Entreprises exigeantes',
+    desc: 'Solution sur mesure',
     color: '#6D28D9',
     gradient: 'linear-gradient(135deg,#1E1B4B,#3730A3,#4F46E5)',
     features: [
-      'Tout le Premium inclus',
-      'Modules au choix (e-commerce, résa…)',
-      'Espace client / membre',
+      'Tout Premium inclus',
+      'Pages illimitées',
+      'Modules au choix',
       'Paiement en ligne intégré',
       'Maintenance 3 mois offerte',
-      'Formation à l\'administration',
       'Support prioritaire 7j/7',
     ],
     notIncluded: [],
@@ -142,12 +155,27 @@ export default function TemplatesPage() {
             personnalisez-le, et soyez en ligne en quelques jours — sans compétences techniques.
           </p>
 
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
             {['Design professionnel', 'Responsive mobile', 'Administrable', 'SEO optimisé'].map((t) => (
               <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', fontSize: '.75rem', fontWeight: 600, color: 'rgba(255,255,255,.45)' }}>
                 <CheckCircle size={13} style={{ color: '#4ADE80' }} /> {t}
               </span>
             ))}
+          </div>
+
+          {/* Bandeau prix + 3x */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap', justifyContent: 'center', padding: '.75rem 1.5rem', borderRadius: '1rem', background: 'rgba(34,197,94,.06)', border: '1px solid rgba(34,197,94,.2)', marginBottom: '2rem' }}>
+            <span style={{ fontSize: '.8rem', fontWeight: 800, color: '#4ADE80' }}>
+              💰 Dès <strong>29 900 FCFA</strong>
+            </span>
+            <div style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,.12)' }} />
+            <span style={{ fontSize: '.8rem', fontWeight: 700, color: 'rgba(255,255,255,.55)' }}>
+              🎁 Paiement en <strong style={{ color: '#4ADE80' }}>3×</strong> sans frais
+            </span>
+            <div style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,.12)' }} />
+            <span style={{ fontSize: '.8rem', fontWeight: 700, color: 'rgba(255,255,255,.55)' }}>
+              ⚡ Livraison en <strong style={{ color: 'white' }}>5–7 jours</strong>
+            </span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
@@ -324,7 +352,7 @@ export default function TemplatesPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '1rem' }}>
           {[
             { icon: '⚡', title: 'Livraison rapide', desc: 'Votre site est opérationnel en 3 à 7 jours ouvrés, pas en plusieurs semaines comme une création sur mesure.' },
-            { icon: '💰', title: 'Prix accessibles', desc: 'Dès 29 900 FCFA pour un site professionnel complet. Pensé pour les entrepreneurs et PME africains.' },
+            { icon: '💰', title: 'Prix accessibles', desc: 'Dès 29 900 FCFA pour un site professionnel complet. Paiement en 3× sans frais disponible.' },
             { icon: '🔧', title: 'Administrable sans coder', desc: 'Modifiez vos textes, images, produits et services vous-même depuis un back-office simple et intuitif.' },
             { icon: '🌍', title: 'Pensé pour l\'Afrique', desc: 'Mobile Money intégré, adapté aux réseaux locaux, multidevise et multilingue dès la conception.' },
             { icon: '📈', title: 'Évolutif dans le temps', desc: 'Ajoutez des modules, des pages ou des fonctionnalités à tout moment selon l\'évolution de votre activité.' },

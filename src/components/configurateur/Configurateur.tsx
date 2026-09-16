@@ -10,7 +10,7 @@ import {
 /* ─── TYPES ─────────────────────────────────────────────────────────────── */
 interface Config {
   sector: string
-  formule: 'standard' | 'premium' | 'elite'
+  formule: 'starter' | 'standard' | 'premium' | 'elite'
   domainOption: 'none' | 'existing' | 'new'
   existingDomain: string
   newDomain: string
@@ -28,7 +28,7 @@ interface Config {
 }
 
 const DEFAULT: Config = {
-  sector: '', formule: 'premium',
+  sector: '', formule: 'starter',
   domainOption: 'none', existingDomain: '', newDomain: '', domainExtension: '.com',
   hosting: 'basic', maintenance: 'none',
   personalization: [], modules: [],
@@ -98,7 +98,7 @@ export default function Configurateur() {
       setConfig((prev) => ({
         ...prev,
         ...(secteur ? { sector: secteur } : {}),
-        ...(formule && ['standard', 'premium', 'elite'].includes(formule) ? { formule: formule as Config['formule'] } : {}),
+        ...(formule && ['starter', 'standard', 'premium', 'elite'].includes(formule) ? { formule: formule as Config['formule'] } : {}),
       }))
       if (secteur) setStep(2)
     }
@@ -616,12 +616,19 @@ export default function Configurateur() {
                     {status === 'loading' ? <><Loader2 size={14} style={{ animation: 'spin 1s linear infinite' }} /> Envoi…</> : <><CheckCircle size={14} /> Devis sans paiement</>}
                   </button>
                   {/* Payer en ligne */}
-                  <button className="nav-btn"
-                    onClick={handlePayer}
-                    disabled={!canNext() || payStatus === 'loading'}
-                    style={{ background: canNext() ? 'linear-gradient(135deg,#FF6B00,#FF4500)' : 'rgba(255,255,255,.06)', color: canNext() ? 'white' : 'rgba(255,255,255,.25)', cursor: canNext() ? 'pointer' : 'not-allowed', boxShadow: canNext() ? '0 8px 24px rgba(255,107,0,.3)' : 'none', minWidth: '160px', justifyContent: 'center' }}>
-                    {payStatus === 'loading' ? <><Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} /> Redirection…</> : <>💳 Payer en ligne</>}
-                  </button>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '.25rem' }}>
+                    <button className="nav-btn"
+                      onClick={handlePayer}
+                      disabled={!canNext() || payStatus === 'loading'}
+                      style={{ background: canNext() ? 'linear-gradient(135deg,#FF6B00,#FF4500)' : 'rgba(255,255,255,.06)', color: canNext() ? 'white' : 'rgba(255,255,255,.25)', cursor: canNext() ? 'pointer' : 'not-allowed', boxShadow: canNext() ? '0 8px 24px rgba(255,107,0,.3)' : 'none', minWidth: '160px', justifyContent: 'center' }}>
+                      {payStatus === 'loading' ? <><Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} /> Redirection…</> : <>💳 Payer en ligne</>}
+                    </button>
+                    {prices.initial >= 30000 && (
+                      <span style={{ fontSize: '.65rem', color: '#4ADE80', fontWeight: 700 }}>
+                        ou 3× {Math.ceil(prices.initial / 3).toLocaleString('fr-FR')} FCFA
+                      </span>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
@@ -692,14 +699,24 @@ function PricePanel({ config, prices, step }: { config: Config; prices: ReturnTy
 
       {/* 3 Totaux */}
       <div style={{ borderTop: '1px solid rgba(255,255,255,.1)', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div>
-            <div style={{ fontSize: '.65rem', color: 'rgba(255,255,255,.35)', fontWeight: 700, letterSpacing: '.04em' }}>TOTAL INITIAL</div>
-            <div style={{ fontSize: '.62rem', color: 'rgba(255,255,255,.25)' }}>À payer aujourd&apos;hui</div>
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div>
+              <div style={{ fontSize: '.65rem', color: 'rgba(255,255,255,.35)', fontWeight: 700, letterSpacing: '.04em' }}>TOTAL INITIAL</div>
+              <div style={{ fontSize: '.62rem', color: 'rgba(255,255,255,.25)' }}>À payer aujourd&apos;hui</div>
+            </div>
+            <div style={{ fontSize: '1.3rem', fontWeight: 900, color: prices.initial > 0 ? 'white' : 'rgba(255,255,255,.2)' }}>
+              {prices.initial > 0 ? fmt(prices.initial) : '—'}
+            </div>
           </div>
-          <div style={{ fontSize: '1.3rem', fontWeight: 900, color: prices.initial > 0 ? 'white' : 'rgba(255,255,255,.2)' }}>
-            {prices.initial > 0 ? fmt(prices.initial) : '—'}
-          </div>
+          {prices.initial >= 30000 && (
+            <div style={{ marginTop: '.5rem', display: 'flex', alignItems: 'center', gap: '.5rem', padding: '.45rem .75rem', borderRadius: '.75rem', background: 'rgba(34,197,94,.07)', border: '1px solid rgba(34,197,94,.18)' }}>
+              <span style={{ fontSize: '.65rem', fontWeight: 800, color: '#4ADE80' }}>🎁 PAIEMENT EN 3×</span>
+              <span style={{ marginLeft: 'auto', fontSize: '.82rem', fontWeight: 900, color: '#4ADE80' }}>
+                3× {Math.ceil(prices.initial / 3).toLocaleString('fr-FR')} FCFA
+              </span>
+            </div>
+          )}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '.6rem .75rem', borderRadius: '.75rem', background: prices.annual > 0 ? 'rgba(255,107,0,.07)' : 'rgba(255,255,255,.02)', border: `1px solid ${prices.annual > 0 ? 'rgba(255,107,0,.2)' : 'rgba(255,255,255,.04)'}` }}>
           <div>
