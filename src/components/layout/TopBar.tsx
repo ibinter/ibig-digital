@@ -28,7 +28,7 @@ const TICKER_ITEMS = [
   '🌍 Sites web · Applications · E-commerce · Branding · IA',
   '🎯 Devis gratuit — Réponse sous 24h',
   '🏆 La branche digitale d\'INTERMARK BUSINESS INTERNATIONAL GROUP – IBIG SARL',
-  '📦 Découvrez nos packs clé en main à partir de 75 000 FCFA',
+  '📦 Découvrez nos packs clé en main à partir de 225 000 FCFA',
   '🤝 Programme IBIG PARTNERS — Devenez partenaire et gagnez des commissions',
   '⚡ Solutions digitales adaptées aux réalités africaines',
   '🔐 Sites sécurisés · Hébergement professionnel · Support 30 jours inclus',

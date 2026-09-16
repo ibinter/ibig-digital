@@ -129,7 +129,7 @@ export default function TemplatesSection() {
           {[
             { n: '100+', l: 'Templates' },
             { n: '12', l: 'Secteurs' },
-            { n: 'Dès 49 900', l: 'FCFA' },
+            { n: 'Dès 29 900', l: 'FCFA' },
             { n: '3–7 j', l: 'Délai livraison' },
           ].map(({ n, l }) => (
             <div key={l} style={{ textAlign: 'center' }}>
