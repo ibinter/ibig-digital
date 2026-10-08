@@ -14,12 +14,25 @@ import { SITE } from '@/lib/constants'
 import { LocalBusinessJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
-  title: `${SITE.name} – Agence Digitale en Côte d'Ivoire`,
-  description: 'IBIG DIGITAL crée vos sites web, applications mobiles, solutions e-commerce et identité visuelle. Agence digitale premium en Côte d\'Ivoire et en Afrique.',
+  title: 'IBIG DIGITAL — Agence Digitale Abidjan | Sites Web dès 19 900 FCFA | Côte d\'Ivoire',
+  description: 'IBIG DIGITAL, agence digitale #1 en Côte d\'Ivoire. Création de sites web professionnels dès 19 900 FCFA, applications mobiles, e-commerce, marketing digital, SEO et IA. Livraison en 5 jours, paiement en 3× sans frais. Devis gratuit 24h. Abidjan, Côte d\'Ivoire.',
+  keywords: [
+    'agence digitale Côte d\'Ivoire','agence web Abidjan','création site web Abidjan',
+    'site web pas cher Côte d\'Ivoire','agence digitale Afrique','création site web FCFA',
+    'agence marketing digital Abidjan','développement application mobile Côte d\'Ivoire',
+    'e-commerce Abidjan','IBIG DIGITAL','agence numérique Abidjan',
+    'site web restaurant Côte d\'Ivoire','site web entreprise Abidjan',
+  ],
   alternates: { canonical: SITE.url },
   openGraph: {
-    title: `${SITE.name} – Agence Digitale Premium`,
-    description: 'Solutions digitales professionnelles pour entreprises, PME et startups.',
+    title: 'IBIG DIGITAL — Sites Web dès 19 900 FCFA | Agence Digitale Abidjan',
+    description: 'Agence digitale à Abidjan. Sites web, apps, e-commerce, marketing. Livraison 5 jours, paiement 3× sans frais. +40 clients satisfaits.',
+    images: [{ url: `${SITE.url}/icon-512x512.png`, width: 512, height: 512, alt: 'IBIG DIGITAL' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IBIG DIGITAL — Agence Digitale Abidjan | Dès 19 900 FCFA',
+    description: 'Sites web, apps, e-commerce en Côte d\'Ivoire. Livraison 5 jours, 3× sans frais.',
   },
 }
 

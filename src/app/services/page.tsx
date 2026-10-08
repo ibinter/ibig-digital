@@ -4,11 +4,14 @@ import { getCategories, getProducts } from '@/lib/queries'
 import { STATIC_CATEGORIES, STATIC_PRODUCTS } from '@/lib/services-data'
 import type { Category, Product } from '@/types'
 import ServicesCatalog from './ServicesCatalog'
+import { ServicesJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'Nos Services – Solutions Digitales Premium | IBIG DIGITAL',
-  description: "100+ services digitaux : sites web, applications, documents QR, e-commerce, design, marketing, IA. Devis gratuit en 24h.",
+  title: 'Services Digitaux en Côte d\'Ivoire — Sites Web, Apps, E-commerce | IBIG DIGITAL',
+  description: '100+ services digitaux à prix accessibles en Côte d\'Ivoire et Afrique : création de sites web dès 45 000 FCFA, e-commerce, applications mobiles, design graphique, marketing digital, SEO, IA et community management. Devis gratuit sous 24h.',
+  keywords: ['agence digitale Abidjan','création site web Côte d\'Ivoire','agence web Abidjan','développement application mobile Afrique','e-commerce Côte d\'Ivoire','marketing digital Abidjan','SEO Afrique','IBIG DIGITAL'],
   alternates: { canonical: 'https://ibig-digital.com/services' },
+  openGraph: { title: 'Services Digitaux IBIG DIGITAL — Côte d\'Ivoire & Afrique', description: '100+ services digitaux à prix accessibles. Sites web, e-commerce, apps, design, SEO, marketing. Devis gratuit 24h.' },
 }
 
 export const dynamic = 'force-dynamic'
@@ -22,6 +25,9 @@ export default async function ServicesPage() {
   const products = dbProducts.length > 0 ? dbProducts : STATIC_PRODUCTS
 
   return (
+    <>
+    <ServicesJsonLd />
+    <BreadcrumbJsonLd items={[{ name: 'Services', href: '/services' }]} />
     <div style={{ background: '#06091A', minHeight: '100vh' }}>
       <style>{`
         @keyframes pulse-glow { 0%,100%{opacity:.35} 50%{opacity:.75} }
@@ -87,5 +93,6 @@ export default async function ServicesPage() {
       {/* CLIENT CATALOG (categories + services + CTA) */}
       <ServicesCatalog categories={categories} products={products} />
     </div>
+    </>
   )
 }

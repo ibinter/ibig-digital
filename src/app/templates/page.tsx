@@ -1,10 +1,18 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle, Star, Zap, Globe, Settings, ShoppingCart, Users, ExternalLink } from 'lucide-react'
+import { TemplatesJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'Templates de Sites Web Professionnels | IBIG DIGITAL',
-  description: 'Choisissez votre template de site web professionnel parmi 100+ modèles prêts à l\'emploi, personnalisables et administrables. Restaurant, immobilier, e-commerce, clinique, formation… Lancez-vous dès aujourd\'hui.',
+  title: 'Templates Sites Web Professionnels Côte d\'Ivoire — Dès 19 900 FCFA | IBIG DIGITAL',
+  description: '100+ templates de sites web professionnels prêts à l\'emploi dès 19 900 FCFA. Restaurant, immobilier, santé, e-commerce, formation, BTP, cabinet, hôtel, beauté… Livraison en 5 jours. Paiement en 3× sans frais. Agence digitale en Côte d\'Ivoire.',
+  keywords: ['template site web Côte d\'Ivoire','créer site web pas cher Abidjan','site web restaurant Abidjan','site web immobilier Côte d\'Ivoire','template e-commerce Afrique','site web professionnel FCFA'],
+  alternates: { canonical: 'https://ibig-digital.com/templates' },
+  openGraph: {
+    title: '100+ Templates Sites Web Professionnels — Dès 19 900 FCFA | IBIG DIGITAL',
+    description: 'Lancez votre site web en 5 jours dès 19 900 FCFA. 12 secteurs, paiement 3× sans frais. Côte d\'Ivoire & Afrique.',
+    images: [{ url: 'https://ibig-digital.com/logo-full.png', width: 1060, height: 60 }],
+  },
 }
 
 /* ─── CATÉGORIES DE TEMPLATES ──────────────────────────────────────────────── */
@@ -108,6 +116,9 @@ const MODULES = [
 /* ─── PAGE ──────────────────────────────────────────────────────────────────── */
 export default function TemplatesPage() {
   return (
+    <>
+    <TemplatesJsonLd />
+    <BreadcrumbJsonLd items={[{ name: 'Templates', href: '/templates' }]} />
     <div style={{ background: '#06091A', minHeight: '100vh', fontFamily: 'inherit' }}>
       <style>{`
         @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
@@ -390,5 +401,6 @@ export default function TemplatesPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

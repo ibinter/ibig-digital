@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import QuoteForm from '@/components/forms/QuoteForm'
 
 export const metadata: Metadata = {
-  title: 'Demander un devis',
-  description: 'Décrivez votre projet digital et recevez une proposition personnalisée d\'IBIG DIGITAL sous 48h. Premier échange gratuit et sans engagement.',
+  title: 'Devis Gratuit Site Web & Digital — Réponse 24h | IBIG DIGITAL Abidjan',
+  description: 'Demandez votre devis gratuit à IBIG DIGITAL, agence digitale à Abidjan. Site web, e-commerce, application mobile, design, marketing digital. Proposition personnalisée sous 24h. Sans engagement. Côte d\'Ivoire & Afrique.',
+  keywords: ['devis site web Abidjan','devis gratuit agence digitale Côte d\'Ivoire','créer site web pas cher Afrique','devis application mobile Côte d\'Ivoire'],
   alternates: { canonical: 'https://ibig-digital.com/devis' },
 }
 

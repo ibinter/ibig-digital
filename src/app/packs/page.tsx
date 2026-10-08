@@ -5,8 +5,11 @@ import { getPacks } from '@/lib/queries'
 import { formatPrice, fcfaToUsd } from '@/lib/utils'
 
 export const metadata: Metadata = {
-  title: 'Nos Packs – Offres Digitales Complètes | IBIG DIGITAL',
-  description: 'Découvrez les packs commerciaux IBIG DIGITAL : Visibilité, Lancement Entreprise, Commerce en Ligne, Mobile Pro et Digital 360.',
+  title: 'Packs Digitaux Clé en Main — Offres Groupées | IBIG DIGITAL Côte d\'Ivoire',
+  description: 'Packs digitaux tout-en-un pour entreprises en Côte d\'Ivoire : Pack Visibilité, Lancement Entreprise, Commerce en Ligne, Mobile Pro et Digital 360. Économisez jusqu\'à 40% vs services séparés. Paiement Mobile Money, Orange Money, Wave.',
+  keywords: ['pack digital Abidjan','offre site web e-commerce Côte d\'Ivoire','pack numérique PME Afrique','pack lancement entreprise Abidjan'],
+  alternates: { canonical: 'https://ibig-digital.com/packs' },
+  openGraph: { title: 'Packs Digitaux IBIG DIGITAL — Jusqu\'à 40% d\'économies', description: 'Packs tout-en-un : site web + design + marketing + hébergement. Côte d\'Ivoire & Afrique.' },
 }
 
 export const dynamic = 'force-dynamic'

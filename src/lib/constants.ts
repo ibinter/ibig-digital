@@ -1,7 +1,7 @@
 export const SITE = {
   name: 'IBIG DIGITAL',
   tagline: 'Votre transformation digitale commence ici',
-  description: 'IBIG DIGITAL accompagne les entreprises, entrepreneurs et organisations dans la conception et la mise en place de leurs outils numériques.',
+  description: 'IBIG DIGITAL — Agence digitale en Côte d\'Ivoire. Création de sites web professionnels dès 19 900 FCFA, applications mobiles, e-commerce, marketing digital et IA. Livraison en 5 jours. Paiement en 3× sans frais. +40 clients satisfaits en Afrique.',
   url: 'https://ibig-digital.com',
   company: 'INTERMARK BUSINESS INTERNATIONAL GROUP – IBIG SARL',
   email: 'contact@ibig-digital.com',

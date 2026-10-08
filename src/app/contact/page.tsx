@@ -4,9 +4,11 @@ import { SITE } from '@/lib/constants'
 import ContactForm from '@/components/forms/ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Contactez IBIG DIGITAL par e-mail, téléphone ou WhatsApp. Notre équipe répond sous 48h.',
+  title: 'Contactez IBIG DIGITAL — Agence Digitale Abidjan, Côte d\'Ivoire',
+  description: 'Contactez IBIG DIGITAL à Abidjan par e-mail, téléphone ou WhatsApp. Réponse sous 24h. Devis gratuit pour votre projet digital : site web, application, e-commerce, marketing digital en Côte d\'Ivoire et Afrique.',
+  keywords: ['contact agence web Abidjan','agence digitale Côte d\'Ivoire contact','IBIG DIGITAL téléphone','créer site web Abidjan'],
   alternates: { canonical: 'https://ibig-digital.com/contact' },
+  openGraph: { title: 'Contactez IBIG DIGITAL — Abidjan, Côte d\'Ivoire', description: 'Agence digitale à Abidjan. Réponse sous 24h par e-mail, téléphone ou WhatsApp.' },
 }
 
 export default function ContactPage() {

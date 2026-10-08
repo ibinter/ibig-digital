@@ -1,9 +1,13 @@
 ﻿import type { Metadata } from 'next'
 import { getFAQs } from '@/lib/queries'
+import { FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'FAQ – Questions fréquentes',
-  description: 'Toutes les réponses à vos questions sur les prestations, délais, hébergement et maintenance IBIG DIGITAL.',
+  title: 'FAQ — Questions fréquentes sur nos services digitaux | IBIG DIGITAL',
+  description: 'Toutes les réponses à vos questions sur IBIG DIGITAL : délais de livraison, hébergement, maintenance, prix, paiement Mobile Money, garanties et support. Agence digitale en Côte d\'Ivoire.',
+  keywords: ['FAQ agence digitale Abidjan','questions site web Côte d\'Ivoire','délai création site web Afrique','prix site web FCFA'],
+  alternates: { canonical: 'https://ibig-digital.com/faq' },
+  openGraph: { title: 'FAQ IBIG DIGITAL — Vos questions sur nos services digitaux', description: 'Réponses à toutes vos questions : délais, prix, paiement, hébergement, maintenance.' },
 }
 
 export const dynamic = 'force-dynamic'
@@ -12,6 +16,9 @@ export default async function FAQPage() {
   const faqs = await getFAQs().catch(() => [])
 
   return (
+    <>
+    <FAQJsonLd faqs={faqs} />
+    <BreadcrumbJsonLd items={[{ name: 'FAQ', href: '/faq' }]} />
     <div className="pt-24">
       <section className="py-20" style={{ background: 'linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%)' }}>
         <div className="max-w-3xl mx-auto px-4 text-center">
@@ -38,5 +45,6 @@ export default async function FAQPage() {
         )}
       </section>
     </div>
+    </>
   )
 }
