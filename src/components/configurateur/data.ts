@@ -1,18 +1,18 @@
 /* ─── DONNÉES DU CONFIGURATEUR DE COMMANDE ─────────────────────────────── */
 
 export const TEMPLATE_CATEGORIES = [
-  { id: 'restaurant',  icon: '🍽️', label: 'Restaurant & Food',     basePrice: 29900 },
-  { id: 'immobilier',  icon: '🏠', label: 'Immobilier',              basePrice: 59900 },
-  { id: 'sante',       icon: '🏥', label: 'Santé & Clinique',        basePrice: 39900 },
-  { id: 'formation',   icon: '🎓', label: 'Formation & École',       basePrice: 39900 },
-  { id: 'ecommerce',   icon: '🛒', label: 'E-commerce',              basePrice: 79900 },
-  { id: 'btp',         icon: '🏗️', label: 'BTP & Construction',      basePrice: 49900 },
-  { id: 'cabinet',     icon: '⚖️', label: 'Cabinet & Conseil',       basePrice: 39900 },
-  { id: 'hotel',       icon: '🏨', label: 'Hôtel & Tourisme',        basePrice: 59900 },
-  { id: 'beaute',      icon: '💄', label: 'Beauté & Spa',            basePrice: 29900 },
-  { id: 'auto',        icon: '🚗', label: 'Auto & Transport',        basePrice: 39900 },
-  { id: 'agriculture', icon: '🌾', label: 'Agriculture',             basePrice: 29900 },
-  { id: 'corporate',   icon: '💼', label: 'Corporate & Finance',     basePrice: 49900 },
+  { id: 'restaurant',  icon: '🍽️', label: 'Restaurant & Food',     basePrice: 19900 },
+  { id: 'immobilier',  icon: '🏠', label: 'Immobilier',              basePrice: 39900 },
+  { id: 'sante',       icon: '🏥', label: 'Santé & Clinique',        basePrice: 24900 },
+  { id: 'formation',   icon: '🎓', label: 'Formation & École',       basePrice: 24900 },
+  { id: 'ecommerce',   icon: '🛒', label: 'E-commerce',              basePrice: 59900 },
+  { id: 'btp',         icon: '🏗️', label: 'BTP & Construction',      basePrice: 29900 },
+  { id: 'cabinet',     icon: '⚖️', label: 'Cabinet & Conseil',       basePrice: 24900 },
+  { id: 'hotel',       icon: '🏨', label: 'Hôtel & Tourisme',        basePrice: 39900 },
+  { id: 'beaute',      icon: '💄', label: 'Beauté & Spa',            basePrice: 19900 },
+  { id: 'auto',        icon: '🚗', label: 'Auto & Transport',        basePrice: 24900 },
+  { id: 'agriculture', icon: '🌾', label: 'Agriculture',             basePrice: 19900 },
+  { id: 'corporate',   icon: '💼', label: 'Corporate & Finance',     basePrice: 29900 },
 ]
 
 export const FORMULES = [

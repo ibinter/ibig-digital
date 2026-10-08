@@ -1,10 +1,53 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle, Play, Star } from 'lucide-react'
+import { ArrowRight, Zap, Shield, TrendingUp } from 'lucide-react'
 import { SITE } from '@/lib/constants'
 
 const words = ['sites web', 'applications', 'e-commerce', 'stratégies IA', 'identités visuelles']
+
+const counters = [
+  { value: 100, suffix: '+', label: 'Templates pro' },
+  { value: 40, suffix: '+', label: 'Clients satisfaits' },
+  { value: 5, suffix: ' j', label: 'Délai livraison' },
+  { value: 19900, suffix: ' FCFA', label: 'À partir de', format: true },
+]
+
+function useCounter(target: number, duration = 1800, started: boolean) {
+  const [count, setCount] = useState(0)
+  useEffect(() => {
+    if (!started) return
+    let start = 0
+    const step = target / (duration / 16)
+    const timer = setInterval(() => {
+      start += step
+      if (start >= target) { setCount(target); clearInterval(timer) }
+      else setCount(Math.floor(start))
+    }, 16)
+    return () => clearInterval(timer)
+  }, [target, duration, started])
+  return count
+}
+
+function Counter({ value, suffix, label, format }: { value: number; suffix: string; label: string; format?: boolean }) {
+  const [started, setStarted] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const count = useCounter(value, 1600, started)
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setStarted(true) }, { threshold: 0.3 })
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [])
+  const display = format ? count.toLocaleString('fr-FR') : count
+  return (
+    <div ref={ref} style={{ textAlign: 'center' }}>
+      <div style={{ fontSize: '1.6rem', fontWeight: 900, color: 'white', lineHeight: 1, letterSpacing: '-0.02em' }}>
+        {display}{suffix}
+      </div>
+      <div style={{ fontSize: '.65rem', color: 'rgba(255,255,255,.4)', marginTop: '4px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '.08em' }}>{label}</div>
+    </div>
+  )
+}
 
 export default function Hero() {
   const [wordIndex, setWordIndex] = useState(0)
@@ -14,183 +57,279 @@ export default function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setFade(false)
-      setTimeout(() => {
-        setWordIndex((i) => (i + 1) % words.length)
-        setFade(true)
-      }, 400)
-    }, 2800)
+      setTimeout(() => { setWordIndex((i) => (i + 1) % words.length); setFade(true) }, 350)
+    }, 2600)
     return () => clearInterval(interval)
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden" style={{ background: '#001D3D' }}>
-
-      {/* Orbes animés */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[600px] lg:h-[600px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(0,91,187,0.5) 0%, transparent 70%)', animation: 'pulse 8s ease-in-out infinite' }} />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[250px] h-[250px] sm:w-[380px] sm:h-[380px] lg:w-[500px] lg:h-[500px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(255,107,0,0.25) 0%, transparent 70%)', animation: 'pulse 6s ease-in-out infinite 2s' }} />
-        <div className="absolute top-[40%] left-[30%] w-[150px] h-[150px] sm:w-[220px] sm:h-[220px] lg:w-[300px] lg:h-[300px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(0,86,179,0.2) 0%, transparent 70%)', animation: 'pulse 10s ease-in-out infinite 1s' }} />
-        {/* Grille */}
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-      </div>
+    <section style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden', background: '#06091A' }}>
 
       <style>{`
-        @keyframes pulse { 0%,100%{transform:scale(1);opacity:0.7} 50%{transform:scale(1.15);opacity:1} }
-        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-        @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-        .float-1{animation:float 5s ease-in-out infinite}
-        .float-2{animation:float 7s ease-in-out infinite 1s}
-        .float-3{animation:float 6s ease-in-out infinite 2s}
-        .float-4{animation:float 8s ease-in-out infinite 0.5s}
-        .word-fade{transition:opacity 0.4s,transform 0.4s}
+        @keyframes ibig-pulse { 0%,100%{transform:scale(1);opacity:.6} 50%{transform:scale(1.2);opacity:1} }
+        @keyframes ibig-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+        @keyframes ibig-in { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes ibig-spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        @keyframes ibig-shimmer { 0%{background-position:200% center} 100%{background-position:-200% center} }
+        .hero-word { transition: opacity .35s ease, transform .35s ease; }
+        .hero-btn-primary { transition: transform .2s, box-shadow .2s; }
+        .hero-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(255,107,0,.5) !important; }
+        .hero-btn-ghost:hover { background: rgba(255,255,255,.08) !important; }
+        .hero-card:hover { transform: translateY(-3px); }
+        .hero-card { transition: transform .3s; }
+        .float-1{animation:ibig-float 5s ease-in-out infinite}
+        .float-2{animation:ibig-float 7s ease-in-out infinite 1s}
+        .float-3{animation:ibig-float 6s ease-in-out infinite .5s}
       `}</style>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      {/* Fond — orbes */}
+      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
+        {/* Orbe violet */}
+        <div style={{
+          position: 'absolute', top: '-15%', right: '-8%',
+          width: 'clamp(300px,45vw,700px)', height: 'clamp(300px,45vw,700px)',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(124,58,237,.45) 0%, transparent 65%)',
+          animation: 'ibig-pulse 9s ease-in-out infinite',
+        }} />
+        {/* Orbe orange */}
+        <div style={{
+          position: 'absolute', bottom: '-10%', left: '-5%',
+          width: 'clamp(250px,35vw,550px)', height: 'clamp(250px,35vw,550px)',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(255,107,0,.3) 0%, transparent 65%)',
+          animation: 'ibig-pulse 7s ease-in-out infinite 2s',
+        }} />
+        {/* Orbe bleu */}
+        <div style={{
+          position: 'absolute', top: '35%', left: '20%',
+          width: 'clamp(150px,20vw,320px)', height: 'clamp(150px,20vw,320px)',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(0,91,187,.25) 0%, transparent 65%)',
+          animation: 'ibig-pulse 11s ease-in-out infinite 1s',
+        }} />
+        {/* Grille fine */}
+        <div style={{
+          position: 'absolute', inset: 0, opacity: .025,
+          backgroundImage: 'linear-gradient(rgba(255,255,255,.8) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.8) 1px,transparent 1px)',
+          backgroundSize: '60px 60px',
+        }} />
+        {/* Cercle déco tournant */}
+        <div style={{
+          position: 'absolute', top: '15%', right: '8%',
+          width: 200, height: 200,
+          border: '1px solid rgba(124,58,237,.15)',
+          borderRadius: '50%',
+          animation: 'ibig-spin 25s linear infinite',
+        }} />
+        <div style={{
+          position: 'absolute', top: 'calc(15% + 30px)', right: 'calc(8% + 30px)',
+          width: 140, height: 140,
+          border: '1px solid rgba(255,107,0,.1)',
+          borderRadius: '50%',
+          animation: 'ibig-spin 18s linear infinite reverse',
+        }} />
+      </div>
 
-          {/* COLONNE GAUCHE */}
-          <div style={{ animation: 'fadeIn 0.8s ease both' }}>
+      <div style={{ position: 'relative', maxWidth: 1280, margin: '0 auto', padding: 'clamp(6rem,10vw,8rem) clamp(1rem,4vw,2rem) 5rem', width: '100%' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,480px),1fr))', gap: 'clamp(3rem,6vw,5rem)', alignItems: 'center' }}>
+
+          {/* ── GAUCHE ── */}
+          <div style={{ animation: 'ibig-in .7s ease both' }}>
 
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-8 border"
-              style={{ background: 'rgba(255,107,0,0.12)', borderColor: 'rgba(255,107,0,0.3)', color: '#FF8C42' }}>
-              <span className="w-2 h-2 rounded-full inline-block animate-pulse" style={{ background: '#FF6B00' }} />
-              Votre Partenaire Digital de Confiance – Côte d&apos;Ivoire &amp; Afrique
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '6px 16px', borderRadius: 100, marginBottom: 32,
+              background: 'rgba(124,58,237,.12)',
+              border: '1px solid rgba(124,58,237,.3)',
+              color: '#A78BFA', fontSize: '.72rem', fontWeight: 800,
+              textTransform: 'uppercase', letterSpacing: '.1em',
+            }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#7C3AED', display: 'inline-block', animation: 'ibig-pulse 2s ease-in-out infinite' }} />
+              Agence Digitale · Côte d&apos;Ivoire &amp; Afrique
             </div>
 
             {/* Titre */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-6" style={{ letterSpacing: '-0.02em' }}>
-              Nous créons des{' '}
-              <span className="block mt-1 word-fade" style={{
-                background: 'linear-gradient(90deg, #FF6B00, #FF8C42)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                opacity: fade ? 1 : 0,
-                transform: fade ? 'translateY(0)' : 'translateY(8px)',
-              }}>
-                {words[wordIndex]}
+            <h1 style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', fontWeight: 900, color: 'white', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: 24 }}>
+              Votre site web pro<br />
+              <span style={{ display: 'inline-block', marginTop: 8 }}>
+                <span
+                  className="hero-word"
+                  style={{
+                    background: 'linear-gradient(90deg, #FF6B00 0%, #7C3AED 50%, #FF6B00 100%)',
+                    backgroundSize: '200% auto',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    animation: 'ibig-shimmer 4s linear infinite',
+                    opacity: fade ? 1 : 0,
+                    transform: fade ? 'translateY(0)' : 'translateY(8px)',
+                  }}>
+                  {words[wordIndex]}
+                </span>
               </span>
-              <span className="block mt-1">qui convertissent.</span>
+              <br />
+              <span style={{ color: 'rgba(255,255,255,.7)' }}>dès 19 900 FCFA</span>
             </h1>
 
-            <p className="text-lg text-blue-200 mb-10 leading-relaxed max-w-lg" style={{ opacity: 0.85 }}>
-              IBIG DIGITAL transforme vos idées en solutions digitales performantes. Sites web, applications, marketing et IA — tout ce dont votre entreprise a besoin pour dominer son marché.
+            <p style={{ fontSize: '1rem', color: 'rgba(200,210,255,.75)', lineHeight: 1.75, marginBottom: 36, maxWidth: 460 }}>
+              IBIG DIGITAL crée des sites web, applications et stratégies digitales pour les entrepreneurs et PME africains — livrés en 5 jours, paiement en 3× sans frais.
             </p>
 
-            {/* Checkpoints */}
-            <div className="flex flex-col gap-3 mb-10">
+            {/* Avantages pills */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 36 }}>
               {[
-                'Devis gratuit en moins de 24h',
-                'Livrables professionnels garantis',
-                'Support dédié après livraison',
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: 'rgba(255,107,0,0.2)' }}>
-                    <CheckCircle size={14} style={{ color: '#FF6B00' }} />
-                  </div>
-                  <span className="text-sm text-blue-100">{item}</span>
+                { icon: Zap, text: 'Livraison en 5 jours', color: '#FBBF24' },
+                { icon: Shield, text: 'Satisfaction garantie', color: '#34D399' },
+                { icon: TrendingUp, text: 'Paiement en 3×', color: '#60A5FA' },
+              ].map(({ icon: Icon, text, color }) => (
+                <div key={text} style={{
+                  display: 'flex', alignItems: 'center', gap: 6,
+                  padding: '7px 14px', borderRadius: 100,
+                  background: 'rgba(255,255,255,.05)', border: '1px solid rgba(255,255,255,.1)',
+                  color: 'rgba(255,255,255,.8)', fontSize: '.75rem', fontWeight: 600,
+                }}>
+                  <Icon size={13} style={{ color }} />
+                  {text}
                 </div>
               ))}
             </div>
 
-            {/* CTA */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Link href="/devis"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-white transition-all hover:-translate-y-1"
-                style={{ background: 'linear-gradient(135deg, #FF6B00, #FF4500)', boxShadow: '0 8px 30px rgba(255,107,0,0.4)' }}>
-                Démarrer mon projet <ArrowRight size={20} />
+            {/* CTAs */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 40 }}>
+              <Link href="/templates/commander" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '14px 28px', borderRadius: 14, fontWeight: 800, fontSize: '.9rem',
+                color: 'white', textDecoration: 'none',
+                background: 'linear-gradient(135deg, #FF6B00 0%, #E84E00 100%)',
+                boxShadow: '0 8px 24px rgba(255,107,0,.35)',
+              }} className="hero-btn-primary">
+                Créer mon site maintenant <ArrowRight size={18} />
               </Link>
-              <Link href="/realisations"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-semibold text-white border transition-all hover:bg-white/10"
-                style={{ borderColor: 'rgba(255,255,255,0.2)' }}>
-                <Play size={18} />
-                Voir nos réalisations
+              <Link href="/devis" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '14px 24px', borderRadius: 14, fontWeight: 700, fontSize: '.9rem',
+                color: 'rgba(255,255,255,.85)', textDecoration: 'none',
+                background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.12)',
+              }} className="hero-btn-ghost">
+                Devis gratuit en 24h
               </Link>
             </div>
 
             {/* Social proof */}
-            <div className="flex items-center gap-4">
-              <div className="flex -space-x-2">
-                {['🧑🏾‍💼','👩🏽‍💻','🧑🏿‍🏫','👨🏽‍💼'].map((emoji, i) => (
-                  <div key={i} className="w-9 h-9 rounded-full border-2 flex items-center justify-center text-sm"
-                    style={{ borderColor: '#001D3D', background: 'rgba(255,255,255,0.1)' }}>
-                    {emoji}
-                  </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+              <div style={{ display: 'flex' }}>
+                {['🧑🏾‍💼','👩🏽‍💻','🧑🏿‍🏫','👨🏽‍💼','👩🏾‍💼'].map((e, i) => (
+                  <div key={i} style={{
+                    width: 34, height: 34, borderRadius: '50%', border: '2px solid #06091A',
+                    background: 'rgba(124,58,237,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '.9rem', marginLeft: i === 0 ? 0 : -8,
+                  }}>{e}</div>
                 ))}
               </div>
               <div>
-                <div className="flex items-center gap-1 mb-0.5">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="#FF6B00" style={{ color: '#FF6B00' }} />)}
+                <div style={{ display: 'flex', gap: 2, marginBottom: 2 }}>
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} width="11" height="11" viewBox="0 0 24 24" fill="#FF6B00"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  ))}
                 </div>
-                <p className="text-xs text-blue-300">+40 clients satisfaits en Afrique</p>
+                <p style={{ fontSize: '.7rem', color: 'rgba(200,210,255,.55)', margin: 0 }}>+40 clients satisfaits en Afrique</p>
               </div>
             </div>
           </div>
 
-          {/* COLONNE DROITE – Cards flottantes */}
-          <div className="hidden lg:flex flex-col gap-4" style={{ animation: 'fadeIn 1s ease 0.3s both' }}>
+          {/* ── DROITE — Cards glassmorphism ── */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16, animation: 'ibig-in .9s ease .25s both' }}>
 
-            {/* Card principale */}
-            <div className="p-6 rounded-3xl border float-1"
-              style={{ background: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(20px)' }}>
-              <div className="flex items-start justify-between mb-4">
+            {/* Card principale — projet en cours */}
+            <div className="hero-card float-1" style={{
+              padding: '24px 28px', borderRadius: 24,
+              background: 'rgba(255,255,255,.04)',
+              border: '1px solid rgba(255,255,255,.09)',
+              backdropFilter: 'blur(24px)',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
                 <div>
-                  <div className="text-xs text-blue-300 mb-1 font-medium uppercase tracking-wider">Projet en cours</div>
-                  <div className="text-white font-bold text-lg">Site E-commerce Premium</div>
-                  <div className="text-blue-300 text-sm mt-1">Livraison dans 12 jours</div>
+                  <div style={{ fontSize: '.65rem', color: '#A78BFA', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: 6 }}>Projet en cours</div>
+                  <div style={{ color: 'white', fontWeight: 800, fontSize: '1.05rem' }}>Site Restaurant Premium</div>
+                  <div style={{ color: 'rgba(200,210,255,.5)', fontSize: '.78rem', marginTop: 4 }}>Livraison dans 4 jours</div>
                 </div>
-                <div className="px-3 py-1 rounded-full text-xs font-bold" style={{ background: 'rgba(0,200,100,0.15)', color: '#00C864' }}>
+                <div style={{ padding: '4px 12px', borderRadius: 100, background: 'rgba(52,211,153,.12)', border: '1px solid rgba(52,211,153,.25)', color: '#34D399', fontSize: '.68rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
                   ● En cours
                 </div>
               </div>
-              <div className="w-full rounded-full h-2 mb-2" style={{ background: 'rgba(255,255,255,0.1)' }}>
-                <div className="h-2 rounded-full" style={{ width: '72%', background: 'linear-gradient(90deg, #003B7A, #FF6B00)' }} />
+              <div style={{ height: 6, borderRadius: 100, background: 'rgba(255,255,255,.06)', overflow: 'hidden', marginBottom: 8 }}>
+                <div style={{ height: '100%', width: '85%', borderRadius: 100, background: 'linear-gradient(90deg, #7C3AED, #FF6B00)', transition: 'width 1s ease' }} />
               </div>
-              <div className="text-xs text-blue-300">72% complété</div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '.72rem', color: 'rgba(200,210,255,.5)' }}>85% complété</span>
+                <span style={{ fontSize: '.72rem', color: '#A78BFA', fontWeight: 700 }}>19 900 FCFA</span>
+              </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            {/* 4 mini-cards */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               {[
-                { icon: '🌐', label: 'Sites web', count: '30+', desc: 'projets livrés', cls: 'float-2' },
-                { icon: '📱', label: 'Applications', count: '10+', desc: 'apps mobiles', cls: 'float-3' },
-                { icon: '🛒', label: 'E-commerce', count: '15+', desc: 'boutiques créées', cls: 'float-4' },
-                { icon: '🎨', label: 'Branding', count: '50+', desc: 'identités visuelles', cls: 'float-1' },
-              ].map((card) => (
-                <div key={card.label}
-                  className={`p-5 rounded-2xl border ${card.cls}`}
-                  style={{ background: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.08)' }}>
-                  <div className="text-2xl mb-2">{card.icon}</div>
-                  <div className="text-2xl font-black text-white">{card.count}</div>
-                  <div className="text-xs text-blue-300 mt-0.5">{card.desc}</div>
+                { icon: '🌐', count: '100+', label: 'Templates', cls: 'float-2', color: 'rgba(124,58,237,.15)' },
+                { icon: '🚀', count: '5 j', label: 'Livraison', cls: 'float-3', color: 'rgba(255,107,0,.15)' },
+                { icon: '✅', count: '40+', label: 'Clients', cls: 'float-1', color: 'rgba(52,211,153,.12)' },
+                { icon: '🔁', count: '3×', label: 'Paiement', cls: 'float-2', color: 'rgba(96,165,250,.12)' },
+              ].map((c) => (
+                <div key={c.label} className={`hero-card ${c.cls}`} style={{
+                  padding: '18px 20px', borderRadius: 18,
+                  background: c.color, border: '1px solid rgba(255,255,255,.07)',
+                }}>
+                  <div style={{ fontSize: '1.6rem', marginBottom: 8 }}>{c.icon}</div>
+                  <div style={{ color: 'white', fontWeight: 900, fontSize: '1.4rem', lineHeight: 1 }}>{c.count}</div>
+                  <div style={{ color: 'rgba(200,210,255,.5)', fontSize: '.68rem', marginTop: 4, fontWeight: 600 }}>{c.label}</div>
                 </div>
               ))}
             </div>
 
-            {/* Badge IBIG PARTNERS */}
-            <div className="flex items-center gap-4 p-4 rounded-2xl border"
-              style={{ background: 'rgba(255,107,0,0.1)', borderColor: 'rgba(255,107,0,0.2)' }}>
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm"
-                style={{ background: 'linear-gradient(135deg, #FF6B00, #FF4500)', color: 'white' }}>
-                IP
-              </div>
+            {/* Bandeau promo */}
+            <div className="hero-card" style={{
+              padding: '16px 20px', borderRadius: 18,
+              background: 'linear-gradient(135deg, rgba(255,107,0,.12) 0%, rgba(124,58,237,.12) 100%)',
+              border: '1px solid rgba(255,107,0,.2)',
+              display: 'flex', alignItems: 'center', gap: 14,
+            }}>
+              <div style={{
+                width: 42, height: 42, borderRadius: 12, flexShrink: 0,
+                background: 'linear-gradient(135deg, #FF6B00, #7C3AED)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: 'white', fontWeight: 900, fontSize: '.85rem',
+              }}>🎁</div>
               <div>
-                <div className="text-white font-bold text-sm">IBIG PARTNERS</div>
-                <div className="text-orange-300 text-xs">Gagnez des commissions en recommandant nos services</div>
+                <div style={{ color: 'white', fontWeight: 800, fontSize: '.88rem' }}>Paiement en 3× sans frais</div>
+                <div style={{ color: 'rgba(255,200,100,.7)', fontSize: '.72rem', marginTop: 2 }}>Dès 19 900 FCFA · 3 mensualités · 0% intérêts</div>
               </div>
               <ArrowRight size={16} style={{ color: '#FF6B00', marginLeft: 'auto', flexShrink: 0 }} />
             </div>
           </div>
         </div>
+
+        {/* ── Compteurs bas de page ── */}
+        <div style={{
+          marginTop: 'clamp(3rem,6vw,5rem)',
+          padding: '28px 32px',
+          borderRadius: 20,
+          background: 'rgba(255,255,255,.03)',
+          border: '1px solid rgba(255,255,255,.07)',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit,minmax(120px,1fr))',
+          gap: 24,
+          backdropFilter: 'blur(10px)',
+        }}>
+          {counters.map((c) => (
+            <Counter key={c.label} {...c} />
+          ))}
+        </div>
       </div>
 
-      {/* Vague */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0 80L1440 80L1440 30C1100 80 600 5 0 50L0 80Z" fill="white"/>
+      {/* Vague de transition */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, lineHeight: 0 }}>
+        <svg viewBox="0 0 1440 70" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ display: 'block', width: '100%' }}>
+          <path d="M0 70L1440 70L1440 25C1100 70 600 5 0 45L0 70Z" fill="white"/>
         </svg>
       </div>
     </section>
