@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server'
 import sql from '@/lib/db'
 import { generateReference } from '@/lib/utils'
 
-const MONEROO_API = 'https://api.moneroo.io/v1/payments/initialize'
+/* GeniusPay — checkout hébergé (Wave, Orange Money, MTN, Moov, carte) */
+const GENIUSPAY_API = 'https://geniuspay.ci/api/v1/merchant/payments'
 
 export async function POST(request: Request) {
   try {
@@ -14,8 +15,14 @@ export async function POST(request: Request) {
     }
 
     const amount = Number(montant)
-    if (isNaN(amount) || amount < 100) {
+    if (isNaN(amount) || amount < 200) {
       return NextResponse.json({ error: 'Montant invalide.' }, { status: 400 })
+    }
+
+    const apiKey    = process.env.GENIUSPAY_API_KEY
+    const apiSecret = process.env.GENIUSPAY_API_SECRET
+    if (!apiKey || !apiSecret) {
+      return NextResponse.json({ error: 'Paiement en ligne non configuré.' }, { status: 503 })
     }
 
     const transaction_id = `IBIG-${generateReference()}`
@@ -35,20 +42,21 @@ export async function POST(request: Request) {
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ibig-digital.com'
 
-    /* Appel Moneroo */
+    /* Appel GeniusPay (sans payment_method → page de checkout GeniusPay) */
     const payload = {
       amount,
       currency:    'XOF',
       description: description || `Template ${template_id} — Formule ${formule}`,
-      return_url:  `${siteUrl}/paiement/succes?ref=${transaction_id}`,
+      success_url: `${siteUrl}/paiement/succes?ref=${transaction_id}`,
+      error_url:   `${siteUrl}/paiement/annule?ref=${transaction_id}`,
       customer: {
+        name:    [nom, prenom].filter(Boolean).join(' '),
         email,
-        first_name: nom,
-        last_name:  prenom || '',
-        phone:      telephone || undefined,
-        country:    'CI',
+        phone:   telephone || undefined,
+        country: 'CI',
       },
       metadata: {
+        site:        'ibig-digital',
         transaction_id,
         template_id: template_id || '',
         secteur_id:  secteur_id  || '',
@@ -56,27 +64,29 @@ export async function POST(request: Request) {
       },
     }
 
-    const res = await fetch(MONEROO_API, {
+    const res = await fetch(GENIUSPAY_API, {
       method: 'POST',
       headers: {
-        'Authorization':  `Bearer ${process.env.MONEROO_SECRET_KEY}`,
-        'Content-Type':   'application/json',
-        'Accept':         'application/json',
+        'X-API-Key':    apiKey,
+        'X-API-Secret': apiSecret,
+        'Content-Type': 'application/json',
+        'Accept':       'application/json',
       },
       body: JSON.stringify(payload),
     })
 
-    const data = await res.json()
+    const data = await res.json().catch(() => ({}))
+    const checkoutUrl = data?.data?.checkout_url ?? data?.data?.payment_url
 
-    if (!data.success || !data.data?.checkout_url) {
-      console.error('Moneroo error:', data)
-      return NextResponse.json({ error: data.message || 'Erreur Moneroo.' }, { status: 502 })
+    if (!res.ok || !data.success || !checkoutUrl) {
+      console.error('GeniusPay error:', data)
+      return NextResponse.json({ error: data?.error?.message || 'Erreur GeniusPay.' }, { status: 502 })
     }
 
     return NextResponse.json({
       success:      true,
-      payment_url:  data.data.checkout_url,
-      payment_id:   data.data.id,
+      payment_url:  checkoutUrl,
+      payment_id:   data.data.reference,
       transaction_id,
     })
   } catch (err) {
